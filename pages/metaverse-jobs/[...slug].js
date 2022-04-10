@@ -11,17 +11,27 @@ TODO
 - get the slug using getserversideprops to make sure it is checked before it renders on the page (SSR rendering)
 */
 
-const JobPage = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-
+const JobPage = (props) => {
   return (
     <div>
-      <p>Job id: {slug ? /^[^-]*/.exec(slug)[0] : 'loading'}</p>
-      <p>Job title: {slug}</p>
-      <p>Job location: {slug}</p>
+      <p>Job id: {props.id}</p>
+      <p>Job title: GETFROMDB</p>
+      <p>Job location: GETFROMDB</p>
     </div>
   );
 };
 
 export default JobPage;
+
+export async function getServerSideProps(context) {
+  const { slug } = context.query;
+  const id = /^[^-]*/.exec(context.query.slug[0])[0];
+
+  // make a call the the database and load the data to render the page in SSR
+
+  // const res = await fetch(`https://restcountries.eu/rest/v2/name/${id}`);
+  // const country = await res.json();
+
+  // console.log(`Fetched place: ${country.name}`);
+  return { props: { id } };
+}

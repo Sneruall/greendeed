@@ -7,12 +7,17 @@ import Header from '../components/Header';
 type UserSubmitForm = {
   organizationName: string;
   jobTitle: string;
+  tag1: string;
+  tags: string;
   jobDescription: string;
   jobType: string;
+  salary: string;
+  location: string;
+  link: string;
   email: string;
-  password: string;
-  confirmPassword: string;
-  acceptTerms: boolean;
+  // password: string;
+  // confirmPassword: string;
+  // acceptTerms: boolean;
 };
 
 function Hiring() {
@@ -23,20 +28,25 @@ function Hiring() {
       .required('jobTitle is required')
       .min(6, 'jobTitle must be at least 6 characters')
       .max(20, 'jobTitle must not exceed 20 characters'),
+    tag1: Yup.string().required('tag is required'),
+    tags: Yup.string().required('tags is required'), // has to be separated by comma (pattern)
     jobDescription: Yup.string()
       .required('jobDescription is required')
       .min(6, 'jobDescription must be at least 6 characters')
       .max(200, 'jobDescription must not exceed 200 characters'),
     jobType: Yup.string().required('Jobtype is required'),
+    salary: Yup.string().required('salary is required'),
+    location: Yup.string().required('location  is required'),
+    link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
     email: Yup.string().required('Email is required').email('Email is invalid'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(40, 'Password must not exceed 40 characters'),
-    confirmPassword: Yup.string()
-      .required('Confirm Password is required')
-      .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-    acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
+    // password: Yup.string()
+    //   .required('Password is required')
+    //   .min(6, 'Password must be at least 6 characters')
+    //   .max(40, 'Password must not exceed 40 characters'),
+    // confirmPassword: Yup.string()
+    //   .required('Confirm Password is required')
+    //   .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
+    // acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
   });
   const {
     register,
@@ -93,6 +103,41 @@ function Hiring() {
               online" please.
             </p>
           </div>
+          <div className="form-group">
+            <label
+              htmlFor="tag1"
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+            >
+              Primary tag
+            </label>
+            <select
+              {...register('tag1')}
+              id="tag1"
+              className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
+            >
+              <option>Development</option>
+              <option>Marketing</option>
+              <option>Support</option>
+              <option>Design</option>
+              <option>Non-tech</option>
+              <option>Other</option>
+            </select>
+            <div className="text-red-500">{errors.tag1?.message}</div>
+          </div>
+          <div className="form-group">
+            <label>Tags</label>
+            <input
+              type="text"
+              placeholder="Separated by comma, e,g, tech stack or industry"
+              {...register('tags')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.tags
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.tags?.message}</div>
+          </div>
           {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
           <div className="form-group">
             <label
@@ -133,7 +178,49 @@ function Hiring() {
               <option>Volunteer</option>
               <option>Other</option>
             </select>
-            <div className="invalid-feedback">{errors.jobType?.message}</div>
+            <div className="text-red-500">{errors.jobType?.message}</div>
+          </div>
+          <div className="form-group">
+            <label>Salary*</label>
+            <input
+              type="text"
+              placeholder="Salary range (e.g. $50k - $60k)"
+              {...register('salary')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.salary
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.salary?.message}</div>
+          </div>
+          <div className="form-group">
+            <label>Location*</label>
+            <input
+              type="text"
+              placeholder="Remote and/or country/city"
+              {...register('location')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.location
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.location?.message}</div>
+          </div>
+          <div className="form-group">
+            <label>Apply link*</label>
+            <input
+              type="text"
+              placeholder="URL or email"
+              {...register('link')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.link
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.link?.message}</div>
           </div>
           <div className="form-group">
             <label>Email</label>
@@ -148,7 +235,7 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.email?.message}</div>
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Password</label>
             <input
               type="password"
@@ -160,8 +247,8 @@ function Hiring() {
               }`}
             />
             <div className="text-red-500">{errors.password?.message}</div>
-          </div>
-          <div className="form-group">
+          </div> */}
+          {/* <div className="form-group">
             <label>Confirm Password</label>
             <input
               type="password"
@@ -192,15 +279,15 @@ function Hiring() {
             <div className="invalid-feedback">
               {errors.acceptTerms?.message}
             </div>
-          </div>
+          </div> */}
           <div className="form-group">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="underline hover:font-bold">
               Post job
             </button>
             <button
               type="button"
               onClick={() => reset()}
-              className="btn btn-warning float-right"
+              className="ml-10 underline hover:font-bold"
             >
               Reset
             </button>

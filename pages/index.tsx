@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
+import { MongoClient } from 'mongodb';
 
-const Home: NextPage = () => {
+const Home: React.FC<{ jobs: [] }> = ({ children, jobs }) => {
+  console.log(jobs);
+
   return (
     <div className="">
       <Head>
@@ -24,5 +26,23 @@ const Home: NextPage = () => {
     </div>
   );
 };
+export async function getServerSideProps() {
+  const client = await MongoClient.connect(
+    'mongodb+srv://dbsnerual:dblaptop14@nodejsshop.nin7l.mongodb.net/metaversed?retryWrites=true&w=majority'
+  );
+
+  const db = client.db();
+  const jobs = await db
+    .collection('metaverseJobs')
+    .find({})
+    // .sort({ metacritic: -1 })
+    // .limit(20)
+    .toArray();
+  return {
+    props: {
+      jobs: JSON.parse(JSON.stringify(jobs)),
+    },
+  };
+}
 
 export default Home;

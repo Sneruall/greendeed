@@ -14,4 +14,18 @@ export default async function handler(req, res) {
     client.close();
     res.status(201).json({ message: 'Data inserted successfully!' });
   }
+  if (req.method === 'GET') {
+    const client = await MongoClient.connect(
+      'mongodb+srv://dbsnerual:dblaptop14@nodejsshop.nin7l.mongodb.net/metaversed?retryWrites=true&w=majority'
+    );
+    const db = client.db();
+
+    const jobs = await db
+      .collection('metaverseJobs')
+      .find({})
+      //   .sort({ metacritic: -1 })
+      //   .limit(20)
+      .toArray();
+    res.json(jobs);
+  }
 }

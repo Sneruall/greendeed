@@ -7,6 +7,7 @@ import Header from '../components/Header';
 type UserSubmitForm = {
   organizationName: string;
   jobTitle: string;
+  jobType: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -21,6 +22,7 @@ function Hiring() {
       .required('jobTitle is required')
       .min(6, 'jobTitle must be at least 6 characters')
       .max(20, 'jobTitle must not exceed 20 characters'),
+    jobType: Yup.string().required('Organization Name is required'),
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .required('Password is required')
@@ -83,6 +85,22 @@ function Hiring() {
               real jobs, absolutely no MLM-type courses "learn how to work
               online" please.
             </p>
+          </div>
+          <div className="form-group">
+            <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">
+              Select your country
+            </label>
+            <select
+              {...register('jobType')}
+              id="countries"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            >
+              <option>United States</option>
+              <option>Canada</option>
+              <option>France</option>
+              <option>Germany</option>
+            </select>
+            <div className="invalid-feedback">{errors.jobType?.message}</div>
           </div>
           <div className="form-group">
             <label>Email</label>

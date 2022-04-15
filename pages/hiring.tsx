@@ -6,7 +6,7 @@ import Header from '../components/Header';
 
 type UserSubmitForm = {
   organizationName: string;
-  position: string;
+  jobTitle: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -17,10 +17,10 @@ function Hiring() {
   // ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
     organizationName: Yup.string().required('Organization Name is required'),
-    position: Yup.string()
-      .required('Position is required')
-      .min(6, 'Position must be at least 6 characters')
-      .max(20, 'Position must not exceed 20 characters'),
+    jobTitle: Yup.string()
+      .required('jobTitle is required')
+      .min(6, 'jobTitle must be at least 6 characters')
+      .max(20, 'jobTitle must not exceed 20 characters'),
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .required('Password is required')
@@ -63,17 +63,17 @@ function Hiring() {
             </div>
           </div>
           <div className="form-group">
-            <label>Position</label>
+            <label>Job Title</label>
             <input
               type="text"
-              {...register('position')}
+              {...register('jobTitle')}
               className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                errors.position
+                errors.jobTitle
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
-            <div className="text-red-500">{errors.position?.message}</div>
+            <div className="text-red-500">{errors.jobTitle?.message}</div>
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
               Please specify as single job position like "Marketing Manager" or
               "Node JS Developer", not a sentence like "Looking for PM / Biz Dev

@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 import Header from '../components/Header';
 
 type UserSubmitForm = {
-  fullname: string;
-  username: string;
+  organizationName: string;
+  position: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -14,12 +14,13 @@ type UserSubmitForm = {
 };
 
 function Hiring() {
+  // ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
-    fullname: Yup.string().required('Fullname is required'),
-    username: Yup.string()
-      .required('Username is required')
-      .min(6, 'Username must be at least 6 characters')
-      .max(20, 'Username must not exceed 20 characters'),
+    organizationName: Yup.string().required('Organization Name is required'),
+    position: Yup.string()
+      .required('Position is required')
+      .min(6, 'Position must be at least 6 characters')
+      .max(20, 'Position must not exceed 20 characters'),
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .required('Password is required')
@@ -46,27 +47,42 @@ function Hiring() {
   return (
     <>
       <Header />
-      <div className="">
+      <div className="mx-auto max-w-5xl">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Full Name</label>
+            <label>Organization Name*</label>
             <input
               type="text"
-              {...register('fullname')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ${
-                errors.fullname ? 'border-2 border-red-500' : ''
+              {...register('organizationName')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.organizationName ? 'border-2 border-red-500' : ''
               }`}
             />
-            <div className="invalid-feedback">{errors.fullname?.message}</div>
+            <div className="text-red-500">
+              {errors.organizationName?.message}
+            </div>
           </div>
           <div className="form-group">
-            <label>Username</label>
+            <label>Position</label>
             <input
               type="text"
-              {...register('username')}
-              className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+              {...register('position')}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors.position
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
             />
-            <div className="invalid-feedback">{errors.username?.message}</div>
+            <div className="text-red-500">{errors.position?.message}</div>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Please specify as single job position like "Marketing Manager" or
+              "Node JS Developer", not a sentence like "Looking for PM / Biz Dev
+              / Manager". We know your job is important but please DO NOT WRITE
+              IN FULL CAPS. If posting multiple roles, please create multiple
+              job posts. A job post is limited to a single job. We only allow
+              real jobs, absolutely no MLM-type courses "learn how to work
+              online" please.
+            </p>
           </div>
           <div className="form-group">
             <label>Email</label>

@@ -7,6 +7,7 @@ import Header from '../components/Header';
 type UserSubmitForm = {
   organizationName: string;
   jobTitle: string;
+  jobDescription: string;
   jobType: string;
   email: string;
   password: string;
@@ -22,7 +23,11 @@ function Hiring() {
       .required('jobTitle is required')
       .min(6, 'jobTitle must be at least 6 characters')
       .max(20, 'jobTitle must not exceed 20 characters'),
-    jobType: Yup.string().required('Organization Name is required'),
+    jobDescription: Yup.string()
+      .required('jobDescription is required')
+      .min(6, 'jobDescription must be at least 6 characters')
+      .max(200, 'jobDescription must not exceed 200 characters'),
+    jobType: Yup.string().required('Jobtype is required'),
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .required('Password is required')
@@ -57,7 +62,9 @@ function Hiring() {
               type="text"
               {...register('organizationName')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.organizationName ? 'border-2 border-red-500' : ''
+                errors.organizationName
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
             <div className="text-red-500">
@@ -86,19 +93,45 @@ function Hiring() {
               online" please.
             </p>
           </div>
+          {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
           <div className="form-group">
-            <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">
-              Select your country
+            <label
+              htmlFor="jobDescription"
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+            >
+              Job Description
+            </label>
+            <textarea
+              {...register('jobDescription')}
+              id="jobDescription"
+              rows={4}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors.jobDescription
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+              placeholder="Write a good job description..."
+            ></textarea>
+            <div className="text-red-500">{errors.jobDescription?.message}</div>
+          </div>
+          <div className="form-group">
+            <label
+              htmlFor="jobType"
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+            >
+              Type of employment
             </label>
             <select
               {...register('jobType')}
-              id="countries"
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              id="jobType"
+              className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
             >
-              <option>United States</option>
-              <option>Canada</option>
-              <option>France</option>
-              <option>Germany</option>
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Freelance</option>
+              <option>Internship</option>
+              <option>Volunteer</option>
+              <option>Other</option>
             </select>
             <div className="invalid-feedback">{errors.jobType?.message}</div>
           </div>
@@ -107,29 +140,39 @@ function Hiring() {
             <input
               type="text"
               {...register('email')}
-              className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors.email
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
             />
-            <div className="invalid-feedback">{errors.email?.message}</div>
+            <div className="text-red-500">{errors.email?.message}</div>
           </div>
           <div className="form-group">
             <label>Password</label>
             <input
               type="password"
               {...register('password')}
-              className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  ${
+                errors.password
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
             />
-            <div className="invalid-feedback">{errors.password?.message}</div>
+            <div className="text-red-500">{errors.password?.message}</div>
           </div>
           <div className="form-group">
             <label>Confirm Password</label>
             <input
               type="password"
               {...register('confirmPassword')}
-              className={`form-control ${
-                errors.confirmPassword ? 'is-invalid' : ''
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  ${
+                errors.confirmPassword
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
-            <div className="invalid-feedback">
+            <div className="text-red-500">
               {errors.confirmPassword?.message}
             </div>
           </div>
@@ -138,7 +181,9 @@ function Hiring() {
               type="checkbox"
               {...register('acceptTerms')}
               className={`form-check-input ${
-                errors.acceptTerms ? 'is-invalid' : ''
+                errors.acceptTerms
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
             <label htmlFor="acceptTerms" className="form-check-label">
@@ -150,7 +195,7 @@ function Hiring() {
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-primary">
-              Register
+              Post job
             </button>
             <button
               type="button"

@@ -7,8 +7,6 @@ the title of the job listing, and ending with the name of the company.
 - We store this data in a database and on this dynamic route we check for the unique id to load all the
 data for on the page using SSR or ISSR.
 
-TODO
-- get the slug using getserversideprops to make sure it is checked before it renders on the page (SSR rendering)
 */
 
 const JobPage = (props) => {

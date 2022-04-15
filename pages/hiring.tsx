@@ -57,9 +57,21 @@ function Hiring() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
-  };
+  // const onSubmit = (data: UserSubmitForm) => {
+  //   console.log(JSON.stringify(data, null, 2));
+  // };
+
+  async function onSubmit(enteredData: UserSubmitForm) {
+    const response = await fetch('/api/jobs', {
+      method: 'POST',
+      body: JSON.stringify(enteredData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <>

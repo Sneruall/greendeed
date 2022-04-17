@@ -4,9 +4,7 @@ import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { MongoClient } from 'mongodb';
 
-const Home: React.FC<{ jobs: [] }> = ({ children, jobs }) => {
-  console.log(jobs);
-
+const Home: React.FC<{ jobs: [] }> = ({ jobs }) => {
   return (
     <div className="">
       <Head>
@@ -19,7 +17,7 @@ const Home: React.FC<{ jobs: [] }> = ({ children, jobs }) => {
         {/* Searchbar / filtering */}
         <p className="py-10 text-center">Searchbar</p>
         {/* Listing of jobs */}
-        <JobListing />
+        <JobListing jobs={jobs} />
       </main>
 
       {/* Footer */}

@@ -1,11 +1,11 @@
 import React from 'react';
 
-function JobItem() {
+const JobItem: React.FC<{ jobs: [] }> = ({ jobs }) => {
   return (
     <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
       <div className="flex justify-between">
         <div className="">
-          <h2 className="font-semibold">Unity 3D developer | Facebook</h2>
+          <h2 className="font-semibold">{jobs[0].jobTitle}</h2>
           <div className="flex gap-2">
             <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
               WORLDWIDE
@@ -32,6 +32,6 @@ function JobItem() {
       </div>
     </div>
   );
-}
+};
 
 export default JobItem;

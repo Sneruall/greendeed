@@ -3,8 +3,9 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { MongoClient } from 'mongodb';
+import { Job } from '../types/types';
 
-const Home: React.FC<{ jobs: [] }> = ({ jobs }) => {
+const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   return (
     <div className="">
       <Head>
@@ -25,6 +26,7 @@ const Home: React.FC<{ jobs: [] }> = ({ jobs }) => {
   );
 };
 export async function getServerSideProps() {
+  // Todo: implement this more neatly according to mongodb docs for nextjs (create separate connectdb function and import here)
   const client = await MongoClient.connect(
     'mongodb+srv://dbsnerual:dblaptop14@nodejsshop.nin7l.mongodb.net/metaversed?retryWrites=true&w=majority'
   );

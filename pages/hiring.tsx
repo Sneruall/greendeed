@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
+import { nanoid } from 'nanoid';
 
 type UserSubmitForm = {
   organizationName: string;
@@ -16,6 +17,7 @@ type UserSubmitForm = {
   link: string;
   email: string;
   timestamp: number; //set on submit function call
+  id: string;
   // password: string;
   // confirmPassword: string;
   // acceptTerms: boolean;
@@ -61,6 +63,7 @@ function Hiring() {
 
   async function onSubmit(enteredData: UserSubmitForm) {
     enteredData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
+    enteredData.id = nanoid(7);
     const response = await fetch('/api/jobs', {
       method: 'POST',
       body: JSON.stringify(enteredData),

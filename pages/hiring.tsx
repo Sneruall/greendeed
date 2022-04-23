@@ -15,6 +15,7 @@ type UserSubmitForm = {
   location: string;
   link: string;
   email: string;
+  timestamp: Date; //set on submit function call
   // password: string;
   // confirmPassword: string;
   // acceptTerms: boolean;
@@ -39,6 +40,7 @@ function Hiring() {
     location: Yup.string().required('location  is required'),
     link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
     email: Yup.string().required('Email is required').email('Email is invalid'),
+    // timestamp: Yup.date(),
     // password: Yup.string()
     //   .required('Password is required')
     //   .min(6, 'Password must be at least 6 characters')
@@ -57,11 +59,8 @@ function Hiring() {
     resolver: yupResolver(validationSchema),
   });
 
-  // const onSubmit = (data: UserSubmitForm) => {
-  //   console.log(JSON.stringify(data, null, 2));
-  // };
-
   async function onSubmit(enteredData: UserSubmitForm) {
+    enteredData.timestamp = new Date(); //to log the timestamp the form was submitted.
     const response = await fetch('/api/jobs', {
       method: 'POST',
       body: JSON.stringify(enteredData),

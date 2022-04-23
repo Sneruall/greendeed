@@ -28,7 +28,12 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
           </p>
         </div>
         <div className="my-auto">
-          <p>4h</p>
+          <p>
+            {job.timestamp
+              ? Math.floor(new Date().getTime() / 1000 / 3600 - job.timestamp) +
+                'h'
+              : 'unkown'}
+          </p>
         </div>
       </div>
     </div>

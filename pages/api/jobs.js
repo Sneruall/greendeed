@@ -1,5 +1,11 @@
-// convert to TS later
 import clientPromise from '../../lib/mongodb';
+
+/*
+TODO:
+- Convert this to TS
+- Add Server Side validation (now only client side)
+
+*/
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {

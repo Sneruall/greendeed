@@ -1,7 +1,12 @@
 import React from 'react';
 import { Job } from '../types/types';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
 
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
+  TimeAgo.addLocale(en);
+  const timeAgo = new TimeAgo('en_US');
+
   return (
     <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
       <div className="flex justify-between">
@@ -12,7 +17,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               {job.location}
             </p>
             <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
-              $50K - $90K
+              $40k - $50k
             </p>
           </div>
         </div>
@@ -30,9 +35,11 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         <div className="my-auto">
           <p>
             {job.timestamp
-              ? Math.floor(new Date().getTime() / 1000 / 3600 - job.timestamp) +
-                'h'
-              : 'unkown'}
+              ? timeAgo.format(
+                  new Date().getTime() - (new Date().getTime() - job.timestamp),
+                  'mini-minute-now'
+                )
+              : '??'}
           </p>
         </div>
       </div>

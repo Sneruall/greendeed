@@ -61,7 +61,7 @@ function Hiring() {
 
   async function onSubmit(enteredData: UserSubmitForm) {
     const d = new Date();
-    enteredData.timestamp = d.getTime() / 1000 / 3600; //to log the hour timestamp the form was submitted (hours since 1 jan 1970)
+    enteredData.timestamp = d.getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
     const response = await fetch('/api/jobs', {
       method: 'POST',
       body: JSON.stringify(enteredData),

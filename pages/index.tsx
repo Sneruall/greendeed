@@ -6,6 +6,11 @@ import { Job } from '../types/types';
 // @ts-ignore
 import clientPromise from '../lib/mongodb';
 
+/*
+Todo:
+- Fix TS error clientpromise
+*/
+
 const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   return (
     <div className="">

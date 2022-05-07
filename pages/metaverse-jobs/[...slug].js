@@ -16,16 +16,16 @@ add a ...slug under each of them for the job detail pages.
 
 /*
 TODO:
+- Make this page with typescript
 - Handle if id is not found in db (forward to 404 page)
-- Import all necessary data to render the page..
 */
 
 const JobPage = (props) => {
   return (
     <div>
-      <p>Job id: {props.id}</p>
-      <p>Job title: GETFROMDB</p>
-      <p>Job location: GETFROMDB</p>
+      <p>Job id: {props.data.id}</p>
+      <p>Job title: {props.data.jobTitle}</p>
+      <p>Job location: {props.data.location}</p>
     </div>
   );
 };
@@ -51,5 +51,5 @@ export async function getServerSideProps(context) {
   // .limit(20)
   // .toArray();
 
-  return { props: { id: JSON.stringify(job.id) } }; //if you stringify(job) instead of job.id you get the full data, todo: import all data and make it usable in the page level.
+  return { props: { data: JSON.parse(JSON.stringify(job)) } };
 }

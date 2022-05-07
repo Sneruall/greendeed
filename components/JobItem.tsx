@@ -8,9 +8,16 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
+  //function to replace whitespaces by dashes for url generation
+  const replaceWhitespaceByDash = (input: string) => {
+    return input.replace(/\s+/g, '-');
+  };
+
   return (
     <Link
-      href={`/metaverse-jobs/${job.id}-${job.jobTitle}-${job.organizationName}`}
+      href={`/metaverse-jobs/${job.id}-${replaceWhitespaceByDash(
+        job.jobTitle
+      )}-${replaceWhitespaceByDash(job.organizationName)}`}
     >
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">

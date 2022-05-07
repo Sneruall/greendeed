@@ -17,7 +17,6 @@ add a ...slug under each of them for the job detail pages.
 /*
 TODO:
 - Make this page with typescript
-- Handle if id is not found in db (forward to 404 page)
 */
 
 const JobPage = (props) => {
@@ -33,23 +32,19 @@ const JobPage = (props) => {
 export default JobPage;
 
 export async function getServerSideProps(context) {
-  const { slug } = context.query;
   const queryId = /^[^-]*/.exec(context.query.slug[0])[0]; //removes everything after the first minus sign (to get the id)
-
-  // make a call the the database and load the data to render the page in SSR
-
-  // const res = await fetch(`https://restcountries.eu/rest/v2/name/${id}`);
-  // const country = await res.json();
-
-  // console.log(`Fetched place: ${country.name}`);
 
   const client = await clientPromise;
 
   const db = client.db();
   const job = await db.collection('metaverseJobs').findOne({ id: queryId });
-  // .sort({ metacritic: -1 })
-  // .limit(20)
-  // .toArray();
+
+  if (!job) {
+    return {
+      // returns the default 404 page with a status code of 404
+      notFound: true,
+    };
+  }
 
   return { props: { data: JSON.parse(JSON.stringify(job)) } };
 }

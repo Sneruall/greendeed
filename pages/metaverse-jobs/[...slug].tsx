@@ -30,7 +30,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = await clientPromise;
 
   const db = client.db();
-  const job = await db.collection('metaverseJobs').findOne({ id: queryId });
+
+  let collection: string;
+  if (process.env.MONGODB_COLLECTION) {
+    collection = process.env.MONGODB_COLLECTION;
+  } else {
+    throw new Error('Please add your Mongo URI to .env.local');
+  }
+
+  const job = await db.collection(collection).findOne({ id: queryId });
 
   if (!job) {
     return {

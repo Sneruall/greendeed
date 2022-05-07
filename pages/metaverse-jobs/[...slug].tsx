@@ -5,11 +5,7 @@ import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 
-interface Props {
-  data: Job;
-}
-
-const JobPage: NextPage<Props> = (props) => {
+const JobPage: NextPage<{ data: Job }> = (props) => {
   return (
     <div>
       <Head>

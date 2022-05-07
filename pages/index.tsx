@@ -1,15 +1,8 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
-import { MongoClient } from 'mongodb';
 import { Job } from '../types/types';
-// @ts-ignore
 import clientPromise from '../lib/mongodb';
-
-/*
-Todo:
-- Fix TS error clientpromise
-*/
 
 const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   return (
@@ -35,8 +28,11 @@ export async function getServerSideProps() {
   const client = await clientPromise;
 
   const db = client.db();
+  if (!process.env.MONGODB_COLLECTION) {
+    throw new Error('Please add your Mongo URI to .env.local');
+  }
   const jobs = await db
-    .collection('metaverseJobs')
+    .collection(process.env.MONGODB_COLLECTION)
     .find({})
     // .sort({ metacritic: -1 })
     // .limit(20)

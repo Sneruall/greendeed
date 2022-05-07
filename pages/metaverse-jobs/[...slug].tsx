@@ -1,13 +1,10 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import clientPromise from '../../lib/mongodb';
+import { Job } from '../../types/types';
 
 interface Props {
-  data: {
-    id: string;
-    jobTitle: string;
-    location: string;
-  };
+  data: Job;
 }
 
 const JobPage: NextPage<Props> = (props) => {

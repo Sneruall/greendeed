@@ -6,6 +6,7 @@ import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 
 // TODO: fix code from line 60 and also do it for the organization name
+// - code refactoring (replacewhitespace function also used elsewhere...)
 
 const JobPage: NextPage<{ data: Job }> = (props) => {
   return (
@@ -26,17 +27,21 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
 export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  //function to replace dashes by whitespaces
+  const replaceDashByWhitespace = (input: string) => {
+    return input.replace(/-/g, ' ');
+  };
+  //function to replace whitespaces by dashes for url generation
+  const replaceWhitespaceByDash = (input: string) => {
+    return input.replace(/\s+/g, '-');
+  };
+
   const { slug } = context.query;
   if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
-
   const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
   if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
 
-  //get the title and org out of the slug
-  const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
-  const queryTitle = slugMinusQueryId.split(',').pop();
-  const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
-
+  // Connect to the database and look for the job based on the queryId
   const client = await clientPromise;
 
   const db = client.db();
@@ -50,6 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const job = await db.collection(collection).findOne({ id: queryId });
 
+  // If there is no job for the given queryId
   if (!job) {
     return {
       // returns the default 404 page with a status code of 404
@@ -57,16 +63,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  // if the slug is not matching the one from the database, redirect to the currect url.
-  if (job.jobTitle != queryTitle) {
+  //get the title and org out of the slug
+  const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
+  const queryTitle = slugMinusQueryId.split(',').pop();
+  const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
+
+  // if the id is found, but slug (organization name and/or job title) is not matching the one from the database, redirect to the currect url.
+  if (
+    job.jobTitle !== replaceDashByWhitespace(queryTitle!) ||
+    job.organizationName !== replaceDashByWhitespace(queryOrg)
+  ) {
     return {
       redirect: {
         permanent: false,
-        destination: '/hiring', //make sure to calculate the right destination here with data from the database! TODO
+        destination:
+          '/metaverse-jobs/' +
+          replaceWhitespaceByDash(job.organizationName) +
+          '/' +
+          replaceWhitespaceByDash(job.jobTitle) +
+          '-' +
+          job.id,
       },
       props: {},
     };
   }
 
+  // Render the page with the job data as props
   return { props: { data: JSON.parse(JSON.stringify(job)) } };
 };

@@ -5,6 +5,8 @@ import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 
+// TODO: fix code from line 60 and also do it for the organization name
+
 const JobPage: NextPage<{ data: Job }> = (props) => {
   return (
     <div>
@@ -25,8 +27,15 @@ export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.query;
-  if (!slug) return { notFound: true };
-  const queryId = /^[^-]*/.exec(slug[0])![0]; //removes everything after the first minus sign (to get the id)
+  if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
+
+  const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
+  if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
+
+  //get the title and org out of the slug
+  const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
+  const queryTitle = slugMinusQueryId.split(',').pop();
+  const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
 
   const client = await clientPromise;
 
@@ -45,6 +54,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       // returns the default 404 page with a status code of 404
       notFound: true,
+    };
+  }
+
+  // if the slug is not matching the one from the database, redirect to the currect url.
+  if (job.jobTitle != queryTitle) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/hiring', //make sure to calculate the right destination here with data from the database! TODO
+      },
+      props: {},
     };
   }
 

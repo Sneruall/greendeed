@@ -13,11 +13,15 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
     return input.replace(/\s+/g, '-');
   };
 
+  // Link structure: /metaverse-jobs/<id>-<title>-<organization>
+
+  // Link structure: /metaverse-jobs/<organization>-<title>-<id>
+
   return (
     <Link
-      href={`/metaverse-jobs/${job.id}-${replaceWhitespaceByDash(
-        job.jobTitle
-      )}-${replaceWhitespaceByDash(job.organizationName)}`}
+      href={`/metaverse-jobs/${replaceWhitespaceByDash(
+        job.organizationName
+      )}/${replaceWhitespaceByDash(job.jobTitle)}-${job.id}`}
     >
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">

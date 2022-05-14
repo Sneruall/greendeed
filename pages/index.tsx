@@ -33,7 +33,7 @@ export async function getServerSideProps() {
   }
   const jobs = await db
     .collection(process.env.MONGODB_COLLECTION)
-    .find({})
+    .find({ hidden: false })
     // .sort({ metacritic: -1 })
     // .limit(20)
     .toArray();

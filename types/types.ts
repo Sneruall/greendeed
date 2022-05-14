@@ -5,4 +5,7 @@ export type Job = {
   location: string;
   timestamp: number;
   id: string;
+  price: number;
+  paid: boolean;
+  hidden: boolean;
 };

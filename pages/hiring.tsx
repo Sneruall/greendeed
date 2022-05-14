@@ -18,6 +18,9 @@ type UserSubmitForm = {
   email: string;
   timestamp: number; //set on submit function call
   id: string;
+  price: number;
+  paid: boolean;
+  hidden: boolean;
   // password: string;
   // confirmPassword: string;
   // acceptTerms: boolean;
@@ -62,8 +65,14 @@ function Hiring() {
   });
 
   async function onSubmit(enteredData: UserSubmitForm) {
+    // Set other job data attributes
     enteredData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
-    enteredData.id = nanoid(7);
+    enteredData.id = nanoid(7); // set the job id
+    enteredData.price = 50; // set the price
+    enteredData.paid = true; // set the payment status
+    enteredData.hidden = false; // set the visibility
+
+    // Post the job data in the Database
     const response = await fetch('/api/jobs', {
       method: 'POST',
       body: JSON.stringify(enteredData),

@@ -3,26 +3,14 @@ import { Job } from '../types/types';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
+import { generateJobUrl } from '../utils/urlGeneration';
 
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
-  //function to replace whitespaces by dashes for url generation
-  const replaceWhitespaceByDash = (input: string) => {
-    return input.replace(/\s+/g, '-');
-  };
-
-  // Link structure: /metaverse-jobs/<id>-<title>-<organization>
-
-  // Link structure: /metaverse-jobs/<organization>-<title>-<id>
-
   return (
-    <Link
-      href={`/metaverse-jobs/${replaceWhitespaceByDash(
-        job.organizationName
-      )}/${replaceWhitespaceByDash(job.jobTitle)}-${job.id}`}
-    >
+    <Link href={generateJobUrl(job.organizationName, job.jobTitle, job.id)}>
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">
           <div className="">

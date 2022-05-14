@@ -4,9 +4,8 @@ import Head from 'next/head';
 import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
-
-// TODO: fix code from line 60 and also do it for the organization name
-// - code refactoring (replacewhitespace function also used elsewhere...)
+import { replaceDashByWhitespace } from '../../utils/stringManipulations';
+import { generateJobUrl } from '../../utils/urlGeneration';
 
 const JobPage: NextPage<{ data: Job }> = (props) => {
   return (
@@ -27,15 +26,6 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
 export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  //function to replace dashes by whitespaces
-  const replaceDashByWhitespace = (input: string) => {
-    return input.replace(/-/g, ' ');
-  };
-  //function to replace whitespaces by dashes for url generation
-  const replaceWhitespaceByDash = (input: string) => {
-    return input.replace(/\s+/g, '-');
-  };
-
   const { slug } = context.query;
   if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
   const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
@@ -76,13 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination:
-          '/metaverse-jobs/' +
-          replaceWhitespaceByDash(job.organizationName) +
-          '/' +
-          replaceWhitespaceByDash(job.jobTitle) +
-          '-' +
-          job.id,
+        destination: generateJobUrl(job.organizationName, job.jobTitle, job.id),
       },
       props: {},
     };

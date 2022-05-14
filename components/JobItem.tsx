@@ -10,7 +10,13 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   const timeAgo = new TimeAgo('en_US');
 
   return (
-    <Link href={generateJobUrl(job.organizationName, job.jobTitle, job.id)}>
+    <Link
+      href={generateJobUrl(
+        job.organizationName.toLowerCase(),
+        job.jobTitle.toLowerCase(),
+        job.id
+      )}
+    >
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">
           <div className="">

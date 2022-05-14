@@ -7,6 +7,11 @@ import { Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateJobUrl } from '../../utils/urlGeneration';
 
+/*
+Todo:
+- lower case url generation only
+*/
+
 const JobPage: NextPage<{ data: Job }> = (props) => {
   return (
     <div>
@@ -60,13 +65,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // if the id is found, but slug (organization name and/or job title) is not matching the one from the database, redirect to the currect url.
   if (
-    job.jobTitle !== replaceDashByWhitespace(queryTitle!) ||
-    job.organizationName !== replaceDashByWhitespace(queryOrg)
+    job.jobTitle.toLowerCase() !== replaceDashByWhitespace(queryTitle!) ||
+    job.organizationName.toLowerCase() !== replaceDashByWhitespace(queryOrg)
   ) {
     return {
       redirect: {
         permanent: false,
-        destination: generateJobUrl(job.organizationName, job.jobTitle, job.id),
+        destination: generateJobUrl(
+          job.organizationName.toLowerCase(),
+          job.jobTitle.toLowerCase(),
+          job.id
+        ),
       },
       props: {},
     };

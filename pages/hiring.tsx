@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
 import { nanoid } from 'nanoid';
+import clientPromise from '../lib/mongodb';
 
 type UserSubmitForm = {
   organizationName: string;
@@ -26,6 +27,29 @@ type UserSubmitForm = {
   // confirmPassword: string;
   // acceptTerms: boolean;
 };
+
+// const checkOrg = async (input: string) => {
+//   // make sure this connecting only runs once?
+
+//   const client = await clientPromise;
+
+//   const db = client.db();
+
+//   let collection: string;
+//   if (process.env.MONGODB_COLLECTION) {
+//     collection = process.env.MONGODB_COLLECTION;
+//   } else {
+//     throw new Error('Please add your Mongo URI to .env.local');
+//   }
+
+//   const orgId = await db
+//     .collection(collection)
+//     .findOne({ organizationId: input });
+
+//   if (orgId) {
+//     return true;
+//   } else return false;
+// };
 
 function Hiring() {
   // ADJUST THE REQUIREMENTS FOR EACH FIELD
@@ -103,6 +127,13 @@ function Hiring() {
             <input
               type="text"
               {...register('organizationName')}
+              onChange={({ target: { value } }) => {
+                // Check if the value has a match with the database (do it with care, not every second/debounce?)
+                // If match found, show it to the user and set the OrgId already
+                // If no match, set the OrgId back to undefined and welcome the new company
+                console.log(value);
+                // console.log(checkOrg(value));
+              }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.organizationName
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'

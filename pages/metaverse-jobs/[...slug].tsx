@@ -21,6 +21,8 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
       </Head>
 
       <Header />
+      <p>Org id: {props.data?.organizationId}</p>
+      <p>Org name: {props.data.organizationName}</p>
       <p>Job id: {props.data.id}</p>
       <p>Job title: {props.data.jobTitle}</p>
       <p>Job location: {props.data.location}</p>

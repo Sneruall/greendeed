@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid';
 
 type UserSubmitForm = {
   organizationName: string;
+  organizationId: string;
   jobTitle: string;
   tag1: string;
   tags: string;
@@ -71,6 +72,14 @@ function Hiring() {
     enteredData.price = 50; // set the price
     enteredData.paid = true; // set the payment status
     enteredData.hidden = false; // set the visibility
+
+    // Generate a company id (if the company does not already exist in the db, then take this one over)
+
+    // Check if the company already exists in the database
+    // If it exists take over the id and assign it to the job posting
+
+    // If it does not exist:
+    enteredData.organizationId = nanoid(7);
 
     // Post the job data in the Database
     const response = await fetch('/api/jobs', {

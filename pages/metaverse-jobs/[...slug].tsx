@@ -9,7 +9,6 @@ import { generateJobUrl } from '../../utils/urlGeneration';
 
 /*
 Todo:
-- lower case url generation only
 */
 
 const JobPage: NextPage<{ data: Job }> = (props) => {
@@ -62,13 +61,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   //get the title and org out of the slug
   const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
+
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
 
   // if the id is found, but slug (organization name and/or job title) is not matching the one from the database, redirect to the currect url.
+  // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
-    job.jobTitle.toLowerCase() !== replaceDashByWhitespace(queryTitle!) ||
-    job.organizationName.toLowerCase() !== replaceDashByWhitespace(queryOrg)
+    replaceDashByWhitespace(job.jobTitle.toLowerCase()) !==
+      replaceDashByWhitespace(queryTitle!) ||
+    replaceDashByWhitespace(job.organizationName.toLowerCase()) !==
+      replaceDashByWhitespace(queryOrg)
   ) {
     return {
       redirect: {

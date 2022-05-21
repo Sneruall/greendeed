@@ -5,7 +5,7 @@ import JobItem from './JobItem';
 const JobListing: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   const joblist = jobs
     .map((job) => (
-      <li className="list-none" key={job._id}>
+      <li className="list-none" key={job.id}>
         <JobItem job={job} />
       </li>
     ))

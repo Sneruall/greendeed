@@ -4,30 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
 import { nanoid } from 'nanoid';
+import { Job } from '../types/types';
 
 /*
 TODO
 - 
 */
-
-type UserSubmitForm = {
-  organizationName: string;
-  organizationId: string;
-  jobTitle: string;
-  tag1: string;
-  tags: string;
-  jobDescription: string;
-  jobType: string;
-  salary: string;
-  location: string;
-  link: string;
-  email: string;
-  timestamp: number; //set on submit function call
-  id: string;
-  price: number;
-  paid: boolean;
-  hidden: boolean;
-};
 
 let timer: ReturnType<typeof setTimeout>;
 
@@ -78,26 +60,17 @@ function Hiring() {
     location: Yup.string().required('location  is required'),
     link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
     email: Yup.string().required('Email is required').email('Email is invalid'),
-    // timestamp: Yup.date(),
-    // password: Yup.string()
-    //   .required('Password is required')
-    //   .min(6, 'Password must be at least 6 characters')
-    //   .max(40, 'Password must not exceed 40 characters'),
-    // confirmPassword: Yup.string()
-    //   .required('Confirm Password is required')
-    //   .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-    // acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
   });
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UserSubmitForm>({
+  } = useForm<Job>({
     resolver: yupResolver(validationSchema),
   });
 
-  async function onSubmit(enteredData: UserSubmitForm) {
+  async function onSubmit(enteredData: Job) {
     // Set other job data attributes
     enteredData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
     enteredData.id = nanoid(7); // set the job id

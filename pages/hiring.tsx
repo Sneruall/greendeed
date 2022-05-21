@@ -11,12 +11,13 @@ TODO
 - 
 */
 
+// set timer type used for timeout function for calling api to get company name
 let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
-  const [enteredOrgName, setEnteredOrgName] = useState('');
-  const [retrievedOrgName, setRetrievedOrgName] = useState('');
-  const [orgNameIsLoading, setOrgNameIsLoading] = useState(false);
+  const [retrievedOrgName, setRetrievedOrgName] =
+    useState<Job['organizationId']>(); // what we get from db after checking (undefined or org id)
+  const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
   async function findOrg(value: string) {
     if (!value) {
@@ -34,7 +35,6 @@ function Hiring() {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      setEnteredOrgName(value);
       // do the db check
       findOrg(value);
       setOrgNameIsLoading(false);
@@ -70,29 +70,29 @@ function Hiring() {
     resolver: yupResolver(validationSchema),
   });
 
-  async function onSubmit(enteredData: Job) {
+  async function onSubmit(formData: Job) {
     // Set other job data attributes
-    enteredData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
-    enteredData.id = nanoid(7); // set the job id
-    enteredData.price = 50; // set the price
-    enteredData.paid = true; // set the payment status
-    enteredData.hidden = false; // set the visibility
+    formData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
+    formData.id = nanoid(7); // set the job id
+    formData.price = 50; // set the price
+    formData.paid = true; // set the payment status
+    formData.hidden = false; // set the visibility
 
     // Generate a company id (if the company does not already exist in the db, then take this one over)
 
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
     if (retrievedOrgName) {
-      enteredData.organizationId = retrievedOrgName;
+      formData.organizationId = retrievedOrgName;
     } else {
       // If it does not exist:
-      enteredData.organizationId = nanoid(7);
+      formData.organizationId = nanoid(7);
     }
 
     // Post the job data in the Database
     const response = await fetch('/api/jobs', {
       method: 'POST',
-      body: JSON.stringify(enteredData),
+      body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -129,8 +129,8 @@ function Hiring() {
             {!orgNameIsLoading && retrievedOrgName && (
               <p className="text-blue-800">{retrievedOrgName}</p>
             )}
-            {!orgNameIsLoading &&
-              enteredOrgName &&
+            {orgNameIsLoading != undefined &&
+              !orgNameIsLoading &&
               !retrievedOrgName &&
               'Welcome new user!'}
             {orgNameIsLoading && 'Loading'}

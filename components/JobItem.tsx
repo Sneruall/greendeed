@@ -20,7 +20,9 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">
           <div className="">
-            <h2 className="font-semibold">{job.jobTitle}</h2>
+            <h2 className="font-semibold">
+              {job.jobTitle} - {job.organizationName}
+            </h2>
             <div className="flex gap-2">
               <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
                 {job.location}

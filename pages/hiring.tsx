@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
 import { nanoid } from 'nanoid';
+
+/*
+TODO
+- make the organization name not dependend on capitals?? So if you enter laurens it also finds Laurens?
+*/
 
 type UserSubmitForm = {
   organizationName: string;
@@ -31,7 +36,25 @@ let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
   const [enteredOrgName, setEnteredOrgName] = useState('');
+  const [retrievedOrgName, setRetrievedOrgName] = useState('');
   const [orgNameIsLoading, setOrgNameIsLoading] = useState(false);
+
+  useEffect(() => {
+    // do the api call
+    return () => {
+      // cleanup
+    };
+  }, [enteredOrgName]);
+
+  async function findOrg(value: string) {
+    if (!value) {
+      setRetrievedOrgName('');
+      return;
+    }
+    const res = await fetch(`/api/find-organization/${value}`);
+    const data = await res.json();
+    setRetrievedOrgName(await data.orgId);
+  }
 
   const checkOrg = (value: string) => {
     setOrgNameIsLoading(true);
@@ -39,11 +62,14 @@ function Hiring() {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      console.log(value);
       setEnteredOrgName(value);
+      // do the db check
+      findOrg(value);
       setOrgNameIsLoading(false);
     }, 1000);
+    //  await new Promise(resolve => setTimeout(resolve, 1000));
   };
+
   // ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
     organizationName: Yup.string().required('Organization Name is required'),
@@ -93,9 +119,12 @@ function Hiring() {
 
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
-
-    // If it does not exist:
-    enteredData.organizationId = nanoid(7);
+    if (retrievedOrgName) {
+      enteredData.organizationId = retrievedOrgName;
+    } else {
+      // If it does not exist:
+      enteredData.organizationId = nanoid(7);
+    }
 
     // Post the job data in the Database
     const response = await fetch('/api/jobs', {
@@ -134,11 +163,14 @@ function Hiring() {
             <div className="text-red-500">
               {errors.organizationName?.message}
             </div>
-            {!orgNameIsLoading ? (
-              <p className="text-blue-800">{enteredOrgName}</p>
-            ) : (
-              '[loading]'
+            {!orgNameIsLoading && retrievedOrgName && (
+              <p className="text-blue-800">{retrievedOrgName}</p>
             )}
+            {!orgNameIsLoading &&
+              enteredOrgName &&
+              !retrievedOrgName &&
+              'Welcome new user!'}
+            {orgNameIsLoading && 'Loading'}
           </div>
           <div className="form-group">
             <label>Job Title</label>

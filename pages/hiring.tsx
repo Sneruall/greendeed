@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
 import { nanoid } from 'nanoid';
-import clientPromise from '../lib/mongodb';
 
 type UserSubmitForm = {
   organizationName: string;
@@ -28,30 +27,23 @@ type UserSubmitForm = {
   // acceptTerms: boolean;
 };
 
-// const checkOrg = async (input: string) => {
-//   // make sure this connecting only runs once?
-
-//   const client = await clientPromise;
-
-//   const db = client.db();
-
-//   let collection: string;
-//   if (process.env.MONGODB_COLLECTION) {
-//     collection = process.env.MONGODB_COLLECTION;
-//   } else {
-//     throw new Error('Please add your Mongo URI to .env.local');
-//   }
-
-//   const orgId = await db
-//     .collection(collection)
-//     .findOne({ organizationId: input });
-
-//   if (orgId) {
-//     return true;
-//   } else return false;
-// };
+let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
+  const [enteredOrgName, setEnteredOrgName] = useState('');
+  const [orgNameIsLoading, setOrgNameIsLoading] = useState(false);
+
+  const checkOrg = (value: string) => {
+    setOrgNameIsLoading(true);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      console.log(value);
+      setEnteredOrgName(value);
+      setOrgNameIsLoading(false);
+    }, 1000);
+  };
   // ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
     organizationName: Yup.string().required('Organization Name is required'),
@@ -131,8 +123,7 @@ function Hiring() {
                 // Check if the value has a match with the database (do it with care, not every second/debounce?)
                 // If match found, show it to the user and set the OrgId already
                 // If no match, set the OrgId back to undefined and welcome the new company
-                console.log(value);
-                // console.log(checkOrg(value));
+                checkOrg(value);
               }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.organizationName
@@ -143,6 +134,11 @@ function Hiring() {
             <div className="text-red-500">
               {errors.organizationName?.message}
             </div>
+            {!orgNameIsLoading ? (
+              <p className="text-blue-800">{enteredOrgName}</p>
+            ) : (
+              '[loading]'
+            )}
           </div>
           <div className="form-group">
             <label>Job Title</label>

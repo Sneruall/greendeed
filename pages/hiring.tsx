@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 
 /*
 TODO
-- make the organization name not dependend on capitals?? So if you enter laurens it also finds Laurens?
+- 
 */
 
 type UserSubmitForm = {
@@ -27,9 +27,6 @@ type UserSubmitForm = {
   price: number;
   paid: boolean;
   hidden: boolean;
-  // password: string;
-  // confirmPassword: string;
-  // acceptTerms: boolean;
 };
 
 let timer: ReturnType<typeof setTimeout>;
@@ -38,13 +35,6 @@ function Hiring() {
   const [enteredOrgName, setEnteredOrgName] = useState('');
   const [retrievedOrgName, setRetrievedOrgName] = useState('');
   const [orgNameIsLoading, setOrgNameIsLoading] = useState(false);
-
-  useEffect(() => {
-    // do the api call
-    return () => {
-      // cleanup
-    };
-  }, [enteredOrgName]);
 
   async function findOrg(value: string) {
     if (!value) {
@@ -66,7 +56,7 @@ function Hiring() {
       // do the db check
       findOrg(value);
       setOrgNameIsLoading(false);
-    }, 1000);
+    }, 2000);
     //  await new Promise(resolve => setTimeout(resolve, 1000));
   };
 
@@ -326,51 +316,6 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.email?.message}</div>
           </div>
-          {/* <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              {...register('password')}
-              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  ${
-                errors.password
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">{errors.password?.message}</div>
-          </div> */}
-          {/* <div className="form-group">
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              {...register('confirmPassword')}
-              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  ${
-                errors.confirmPassword
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">
-              {errors.confirmPassword?.message}
-            </div>
-          </div>
-          <div className="form-group form-check">
-            <input
-              type="checkbox"
-              {...register('acceptTerms')}
-              className={`form-check-input ${
-                errors.acceptTerms
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <label htmlFor="acceptTerms" className="form-check-label">
-              I have read and agree to the Terms
-            </label>
-            <div className="invalid-feedback">
-              {errors.acceptTerms?.message}
-            </div>
-          </div> */}
           <div className="form-group">
             <button type="submit" className="underline hover:font-bold">
               Post job

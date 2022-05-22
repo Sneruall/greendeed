@@ -1,6 +1,7 @@
 export type Job = {
   organizationName: string;
   organizationId: string;
+  organizationDescription: string;
   jobTitle: string;
   tag1: string;
   tags: string;

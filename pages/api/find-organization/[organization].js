@@ -14,14 +14,17 @@ export default async function handler(req, res) {
     }
     const client = await clientPromise;
     const db = client.db();
-    const yourCollection = db.collection('metaverseJobs');
+    const yourCollection = db.collection('metaverseOrganizations');
     const organization = await yourCollection.findOne({
       organizationName: data.organization,
     });
     if (organization) {
-      res.status(201).json({ orgId: organization.organizationId });
+      res.status(201).json({
+        orgId: organization.organizationId,
+        orgName: organization.organizationName,
+      });
     } else {
-      res.status(201).json({ orgId: undefined });
+      res.status(201).json({ orgId: undefined, orgName: undefined });
     }
   }
 }

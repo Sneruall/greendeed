@@ -17,7 +17,8 @@ let timer: ReturnType<typeof setTimeout>;
 function Hiring() {
   // Checking the entered organization name with what is already in the DB
   const [retrievedOrgName, setRetrievedOrgName] =
-    useState<Job['organizationId']>();
+    useState<Job['organizationName']>();
+  const [retrievedOrgId, setRetrievedOrgId] = useState<Job['organizationId']>();
   const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
   // Function that is called onChange of organization name field for checking the value in DB with timeout.
@@ -35,17 +36,20 @@ function Hiring() {
   // Making the call to the DB to check if the organization name exists
   async function findOrg(value: string) {
     if (!value) {
+      setRetrievedOrgId('');
       setRetrievedOrgName('');
       return;
     }
     const res = await fetch(`/api/find-organization/${value}`);
     const data = await res.json();
-    setRetrievedOrgName(await data.orgId);
+    setRetrievedOrgName(await data.orgName);
+    setRetrievedOrgId(await data.orgId);
   }
 
   // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
     organizationName: Yup.string().required('Organization Name is required'),
+    organizationDescription: Yup.string(),
     jobTitle: Yup.string()
       .required('jobTitle is required')
       .min(6, 'jobTitle must be at least 6 characters')
@@ -82,8 +86,8 @@ function Hiring() {
 
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
-    if (retrievedOrgName) {
-      formData.organizationId = retrievedOrgName;
+    if (retrievedOrgId) {
+      formData.organizationId = retrievedOrgId;
     } else {
       // If it does not exist:
       formData.organizationId = nanoid(7);
@@ -99,6 +103,24 @@ function Hiring() {
     });
     const data = await response.json();
     console.log(data);
+
+    // Post the job data in the organization Database (if it does not already exist)
+    if (!retrievedOrgId) {
+      const companyFormData = {
+        organizationName: formData.organizationName,
+        organizationId: formData.organizationId,
+        organizationDescription: formData.organizationDescription,
+      };
+      const organizationResponse = await fetch('/api/add-organization', {
+        method: 'POST',
+        body: JSON.stringify(companyFormData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const organizationData = await organizationResponse.json();
+      console.log(organizationData);
+    }
   }
 
   // THE JSX CODE, TODO: MAKE SEPARATE COMPONENT(S) OUT OF THE FORM.
@@ -128,13 +150,29 @@ function Hiring() {
               {errors.organizationName?.message}
             </div>
             {!orgNameIsLoading && retrievedOrgName && (
-              <p className="text-blue-800">{retrievedOrgName}</p>
+              <p className="text-blue-800">Welcome back {retrievedOrgName}</p>
             )}
             {orgNameIsLoading != undefined &&
               !orgNameIsLoading &&
               !retrievedOrgName &&
               'Welcome new user!'}
             {orgNameIsLoading && 'Loading'}
+          </div>
+          <div className="form-group">
+            <label>Organization Description</label>
+            <input
+              type="text"
+              {...register('organizationDescription')}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors.organizationDescription
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">
+              {errors.organizationDescription?.message}
+            </div>
+            <p>For on your company page</p>
           </div>
           <div className="form-group">
             <label>Job Title</label>

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Header from '../components/Header';
-import { nanoid } from 'nanoid';
+import { customAlphabet, nanoid } from 'nanoid';
 import { Job } from '../types/types';
 
 /*
@@ -77,9 +77,11 @@ function Hiring() {
 
   // FORM SUBMISSION
   async function onSubmit(formData: Job) {
+    const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
+
     // Set other job data attributes
     formData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
-    formData.id = nanoid(7); // set the job id
+    formData.id = nanoid(); // set the job id
     formData.price = 50; // set the price
     formData.paid = true; // set the payment status
     formData.hidden = false; // set the visibility
@@ -90,7 +92,7 @@ function Hiring() {
       formData.organizationId = retrievedOrgId;
     } else {
       // If it does not exist:
-      formData.organizationId = nanoid(7);
+      formData.organizationId = nanoid();
     }
 
     // Post the job data in the Database

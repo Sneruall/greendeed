@@ -15,10 +15,24 @@ TODO
 let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
+  // Checking the entered organization name with what is already in the DB
   const [retrievedOrgName, setRetrievedOrgName] =
-    useState<Job['organizationId']>(); // what we get from db after checking (undefined or org id)
+    useState<Job['organizationId']>();
   const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
+  // Function that is called onChange of organization name field for checking the value in DB with timeout.
+  const checkOrg = (value: string) => {
+    setOrgNameIsLoading(true);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      findOrg(value);
+      setOrgNameIsLoading(false);
+    }, 2000);
+  };
+
+  // Making the call to the DB to check if the organization name exists
   async function findOrg(value: string) {
     if (!value) {
       setRetrievedOrgName('');
@@ -29,20 +43,7 @@ function Hiring() {
     setRetrievedOrgName(await data.orgId);
   }
 
-  const checkOrg = (value: string) => {
-    setOrgNameIsLoading(true);
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      // do the db check
-      findOrg(value);
-      setOrgNameIsLoading(false);
-    }, 2000);
-    //  await new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // ADJUST THE REQUIREMENTS FOR EACH FIELD
+  // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
   const validationSchema = Yup.object().shape({
     organizationName: Yup.string().required('Organization Name is required'),
     jobTitle: Yup.string()
@@ -70,6 +71,7 @@ function Hiring() {
     resolver: yupResolver(validationSchema),
   });
 
+  // FORM SUBMISSION
   async function onSubmit(formData: Job) {
     // Set other job data attributes
     formData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
@@ -77,8 +79,6 @@ function Hiring() {
     formData.price = 50; // set the price
     formData.paid = true; // set the payment status
     formData.hidden = false; // set the visibility
-
-    // Generate a company id (if the company does not already exist in the db, then take this one over)
 
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
@@ -101,6 +101,7 @@ function Hiring() {
     console.log(data);
   }
 
+  // THE JSX CODE, TODO: MAKE SEPARATE COMPONENT(S) OUT OF THE FORM.
   return (
     <>
       <Header />

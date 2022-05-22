@@ -15,11 +15,11 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db();
     const yourCollection = db.collection('metaverseJobs');
-    const orgId = await yourCollection.findOne({
+    const organization = await yourCollection.findOne({
       organizationName: data.organization,
     });
-    if (orgId) {
-      res.status(201).json({ orgId: orgId.organizationId });
+    if (organization) {
+      res.status(201).json({ orgId: organization.organizationId });
     } else {
       res.status(201).json({ orgId: undefined });
     }

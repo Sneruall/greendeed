@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import { customAlphabet } from 'nanoid';
 import { Job, Company } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
+import Link from 'next/link';
+import { generateCompanyUrl } from '../utils/urlGeneration';
 
 /*
 TODO
@@ -136,11 +138,27 @@ function Hiring() {
               }`}
             />
             <div className="text-red-500">{errors.companyName?.message}</div>
-            {!companyNameIsLoading && retrievedCompanyName && (
-              <p className="text-blue-800">
-                Welcome back {retrievedCompanyName}
-              </p>
-            )}
+            {!companyNameIsLoading &&
+              retrievedCompanyName &&
+              retrievedCompanyId && (
+                <p className="text-blue-800">
+                  Welcome back{' '}
+                  <Link
+                    href={generateCompanyUrl(
+                      retrievedCompanyName.toLowerCase(),
+                      retrievedCompanyId
+                    )}
+                  >
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline"
+                    >
+                      {retrievedCompanyName}
+                    </a>
+                  </Link>
+                </p>
+              )}
             {companyNameIsLoading != undefined &&
               !companyNameIsLoading &&
               !retrievedCompanyName &&

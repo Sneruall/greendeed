@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 
 export default Yup.object().shape({
-  companyName: Yup.string().required('Organization Name is required'),
+  companyName: Yup.string().required('Company Name is required'),
   companyDescription: Yup.string(),
   jobTitle: Yup.string()
     .required('jobTitle is required')

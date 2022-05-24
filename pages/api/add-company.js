@@ -12,11 +12,11 @@ export default async function handler(req, res) {
     const data = req.body;
     const client = await clientPromise;
     const db = client.db();
-    const yourCollection = db.collection('metaverseOrganizations');
+    const yourCollection = db.collection(process.env.MONGODB_COMPANY_COLLECTION);
     const result = await yourCollection.insertOne(data);
     console.log(result);
     res
       .status(201)
-      .json({ message: 'Data inserted successfully in Organization DB!' });
+      .json({ message: 'Data inserted successfully in Company DB!' });
   }
 }

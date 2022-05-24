@@ -33,7 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
   const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
   if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
-  console.log(queryId);
   // Connect to the database and look for the job based on the queryId
   const client = await clientPromise;
 

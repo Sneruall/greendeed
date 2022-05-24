@@ -17,14 +17,14 @@ export default async function handler(req, res) {
     const db = client.db();
     const yourCollection = db.collection('metaverseOrganizations');
     const organization = await yourCollection.findOne({
-      organizationName: data.organization,
+      companyName: data.organization,
     });
     if (organization) {
       console.log('match found');
       res.status(201).json({
-        orgId: organization.organizationId,
-        orgName: organization.organizationName,
-        orgDesc: organization.organizationDescription,
+        orgId: organization.companyId,
+        orgName: organization.companyName,
+        orgDesc: organization.companyDescription,
       });
     } else {
       console.log('no match found');

@@ -17,10 +17,10 @@ let timer: ReturnType<typeof setTimeout>;
 function Hiring() {
   // Checking the entered organization name with what is already in the DB
   const [retrievedOrgName, setRetrievedOrgName] =
-    useState<Job['organizationName']>();
-  const [retrievedOrgId, setRetrievedOrgId] = useState<Job['organizationId']>();
+    useState<Job['companyName']>();
+  const [retrievedOrgId, setRetrievedOrgId] = useState<Job['companyId']>();
   const [retrievedOrgDescription, setRetrievedOrgDescription] =
-    useState<Job['organizationDescription']>();
+    useState<Job['companyDescription']>();
   const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
   // Function that is called onChange of organization name field for checking the value in DB with timeout.
@@ -74,10 +74,10 @@ function Hiring() {
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
     if (retrievedOrgId) {
-      formData.organizationId = retrievedOrgId;
+      formData.companyId = retrievedOrgId;
     } else {
       // If it does not exist:
-      formData.organizationId = nanoid();
+      formData.companyId = nanoid();
     }
 
     // Post the job data in the Database
@@ -94,9 +94,9 @@ function Hiring() {
     // Post the job data in the organization Database (if it does not already exist)
     if (!retrievedOrgId) {
       const companyFormData: Company = {
-        name: formData.organizationName,
-        id: formData.organizationId,
-        description: formData.organizationDescription,
+        name: formData.companyName,
+        id: formData.companyId,
+        description: formData.companyDescription,
       };
       const organizationResponse = await fetch('/api/add-organization', {
         method: 'POST',
@@ -120,7 +120,7 @@ function Hiring() {
             <label>Organization Name*</label>
             <input
               type="text"
-              {...register('organizationName')}
+              {...register('companyName')}
               onChange={({ target: { value } }) => {
                 // Check if the value has a match with the database (do it with care, not every second/debounce?)
                 // If match found, show it to the user and set the OrgId already
@@ -128,14 +128,12 @@ function Hiring() {
                 checkOrg(value);
               }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.organizationName
+                errors.companyName
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
-            <div className="text-red-500">
-              {errors.organizationName?.message}
-            </div>
+            <div className="text-red-500">{errors.companyName?.message}</div>
             {!orgNameIsLoading && retrievedOrgName && (
               <p className="text-blue-800">Welcome back {retrievedOrgName}</p>
             )}
@@ -150,9 +148,9 @@ function Hiring() {
             {!retrievedOrgDescription ? (
               <input
                 type="text"
-                {...register('organizationDescription')}
+                {...register('companyDescription')}
                 className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                  errors.organizationDescription
+                  errors.companyDescription
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                 }`}
@@ -161,7 +159,7 @@ function Hiring() {
               <p>Contact us if you want to change it for your organization</p>
             )}
             <div className="text-red-500">
-              {errors.organizationDescription?.message}
+              {errors.companyDescription?.message}
             </div>
             <p>Shown on your company page</p>
           </div>

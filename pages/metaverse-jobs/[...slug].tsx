@@ -20,8 +20,8 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
       </Head>
 
       <Header />
-      <p>Org id: {props.data?.organizationId}</p>
-      <p>Org name: {props.data.organizationName}</p>
+      <p>Org id: {props.data?.companyId}</p>
+      <p>Org name: {props.data.companyName}</p>
       <p>Job id: {props.data.id}</p>
       <p>Job title: {props.data.jobTitle}</p>
       <p>Job location: {props.data.location}</p>
@@ -70,14 +70,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (
     replaceDashByWhitespace(job.jobTitle.toLowerCase()) !==
       replaceDashByWhitespace(queryTitle!) ||
-    replaceDashByWhitespace(job.organizationName.toLowerCase()) !==
+    replaceDashByWhitespace(job.companyName.toLowerCase()) !==
       replaceDashByWhitespace(queryOrg)
   ) {
     return {
       redirect: {
         permanent: false,
         destination: generateJobUrl(
-          job.organizationName.toLowerCase(),
+          job.companyName.toLowerCase(),
           job.jobTitle.toLowerCase(),
           job.id
         ),

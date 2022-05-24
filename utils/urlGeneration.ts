@@ -1,12 +1,12 @@
 import { replaceWhitespaceByDash } from './stringManipulations';
 
 export const generateJobUrl = (
-  organizationName: string,
+  companyName: string,
   jobTitle: string,
   id: string
 ) => {
   return `/metaverse-jobs/${replaceWhitespaceByDash(
-    organizationName
+    companyName
   )}/${replaceWhitespaceByDash(jobTitle)}-${id}`;
 };
 

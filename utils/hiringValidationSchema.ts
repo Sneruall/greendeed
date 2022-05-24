@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 
 export default Yup.object().shape({
-  organizationName: Yup.string().required('Organization Name is required'),
-  organizationDescription: Yup.string(),
+  companyName: Yup.string().required('Organization Name is required'),
+  companyDescription: Yup.string(),
   jobTitle: Yup.string()
     .required('jobTitle is required')
     .min(6, 'jobTitle must be at least 6 characters')

@@ -15,7 +15,7 @@ TODO
 let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
-  // Checking the entered organization name with what is already in the DB
+  // Checking the entered company name with what is already in the DB
   const [retrievedOrgName, setRetrievedOrgName] =
     useState<Job['companyName']>();
   const [retrievedOrgId, setRetrievedOrgId] = useState<Job['companyId']>();
@@ -23,7 +23,7 @@ function Hiring() {
     useState<Job['companyDescription']>();
   const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
-  // Function that is called onChange of organization name field for checking the value in DB with timeout.
+  // Function that is called onChange of company name field for checking the value in DB with timeout.
   const checkOrg = (value: string) => {
     setOrgNameIsLoading(true);
     if (timer) {
@@ -35,7 +35,7 @@ function Hiring() {
     }, 2000);
   };
 
-  // Making the call to the DB to check if the organization name exists
+  // Making the call to the DB to check if the company name exists
   async function findOrg(value: string) {
     if (!value) {
       setRetrievedOrgId('');
@@ -43,7 +43,7 @@ function Hiring() {
       setRetrievedOrgDescription('');
       return;
     }
-    const res = await fetch(`/api/find-organization/${value}`);
+    const res = await fetch(`/api/find-company/${value}`);
     const data = await res.json();
     setRetrievedOrgName(await data.orgName);
     setRetrievedOrgId(await data.orgId);
@@ -91,22 +91,22 @@ function Hiring() {
     const data = await response.json();
     console.log(data);
 
-    // Post the job data in the organization Database (if it does not already exist)
+    // Post the job data in the company Database (if it does not already exist)
     if (!retrievedOrgId) {
       const companyFormData: Company = {
         name: formData.companyName,
         id: formData.companyId,
         description: formData.companyDescription,
       };
-      const organizationResponse = await fetch('/api/add-organization', {
+      const companyResponse = await fetch('/api/add-company', {
         method: 'POST',
         body: JSON.stringify(companyFormData),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      const organizationData = await organizationResponse.json();
-      console.log(organizationData);
+      const companyData = await companyResponse.json();
+      console.log(companyData);
     }
   }
 
@@ -117,7 +117,7 @@ function Hiring() {
       <div className="mx-auto max-w-5xl">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Organization Name*</label>
+            <label>Company Name*</label>
             <input
               type="text"
               {...register('companyName')}
@@ -144,7 +144,7 @@ function Hiring() {
             {orgNameIsLoading && 'Loading'}
           </div>
           <div className="form-group">
-            <label className="font-bold">Organization Description</label>
+            <label className="font-bold">Company Description</label>
             {!retrievedOrgDescription ? (
               <input
                 type="text"
@@ -156,7 +156,7 @@ function Hiring() {
                 }`}
               />
             ) : (
-              <p>Contact us if you want to change it for your organization</p>
+              <p>Contact us if you want to change it for your company</p>
             )}
             <div className="text-red-500">
               {errors.companyDescription?.message}

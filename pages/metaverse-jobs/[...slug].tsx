@@ -65,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
 
-  // if the id is found, but slug (organization name and/or job title) is not matching the one from the database, redirect to the currect url.
+  // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
     replaceDashByWhitespace(job.jobTitle.toLowerCase()) !==

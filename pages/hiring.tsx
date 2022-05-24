@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
 import { customAlphabet } from 'nanoid';
-import { Job } from '../types/types';
+import { Job, Company } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 
 /*
@@ -93,10 +93,10 @@ function Hiring() {
 
     // Post the job data in the organization Database (if it does not already exist)
     if (!retrievedOrgId) {
-      const companyFormData = {
-        organizationName: formData.organizationName,
-        organizationId: formData.organizationId,
-        organizationDescription: formData.organizationDescription,
+      const companyFormData: Company = {
+        name: formData.organizationName,
+        id: formData.organizationId,
+        description: formData.organizationDescription,
       };
       const organizationResponse = await fetch('/api/add-organization', {
         method: 'POST',

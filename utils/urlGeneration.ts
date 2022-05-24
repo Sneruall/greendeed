@@ -9,3 +9,7 @@ export const generateJobUrl = (
     organizationName
   )}/${replaceWhitespaceByDash(jobTitle)}-${id}`;
 };
+
+export const generateCompanyUrl = (companyName: string, id: string) => {
+  return `/metaverse-companies/${replaceWhitespaceByDash(companyName)}-${id}`;
+};

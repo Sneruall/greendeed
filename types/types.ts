@@ -17,3 +17,11 @@ export type Job = {
   paid: boolean;
   hidden: boolean;
 };
+
+// Todo Use the type below
+// Make these shorter (name, id and description), and adjust in hiring.tsx and maybe other pages
+export type Organization = {
+  organizationName: string;
+  organizationId: string;
+  organizationDescription: string;
+};

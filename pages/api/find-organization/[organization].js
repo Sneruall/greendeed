@@ -22,9 +22,12 @@ export default async function handler(req, res) {
       res.status(201).json({
         orgId: organization.organizationId,
         orgName: organization.organizationName,
+        orgDesc: organization.organizationDescription,
       });
     } else {
-      res.status(201).json({ orgId: undefined, orgName: undefined });
+      res
+        .status(201)
+        .json({ orgId: undefined, orgName: undefined, orgDesc: undefined });
     }
   }
 }

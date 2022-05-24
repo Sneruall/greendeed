@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import Header from '../components/Header';
-import { customAlphabet, nanoid } from 'nanoid';
+import { customAlphabet } from 'nanoid';
 import { Job } from '../types/types';
+import hiringValidationSchema from '../utils/hiringValidationSchema';
 
 /*
 TODO
@@ -19,6 +19,8 @@ function Hiring() {
   const [retrievedOrgName, setRetrievedOrgName] =
     useState<Job['organizationName']>();
   const [retrievedOrgId, setRetrievedOrgId] = useState<Job['organizationId']>();
+  const [retrievedOrgDescription, setRetrievedOrgDescription] =
+    useState<Job['organizationDescription']>();
   const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
 
   // Function that is called onChange of organization name field for checking the value in DB with timeout.
@@ -38,44 +40,26 @@ function Hiring() {
     if (!value) {
       setRetrievedOrgId('');
       setRetrievedOrgName('');
+      setRetrievedOrgDescription('');
       return;
     }
     const res = await fetch(`/api/find-organization/${value}`);
     const data = await res.json();
     setRetrievedOrgName(await data.orgName);
     setRetrievedOrgId(await data.orgId);
+    setRetrievedOrgDescription(await data.orgDesc);
   }
 
-  // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
-  const validationSchema = Yup.object().shape({
-    organizationName: Yup.string().required('Organization Name is required'),
-    organizationDescription: Yup.string(),
-    jobTitle: Yup.string()
-      .required('jobTitle is required')
-      .min(6, 'jobTitle must be at least 6 characters')
-      .max(20, 'jobTitle must not exceed 20 characters'),
-    tag1: Yup.string().required('tag is required'),
-    tags: Yup.string().required('tags is required'), // has to be separated by comma (pattern)
-    jobDescription: Yup.string()
-      .required('jobDescription is required')
-      .min(6, 'jobDescription must be at least 6 characters')
-      .max(200, 'jobDescription must not exceed 200 characters'),
-    jobType: Yup.string().required('Jobtype is required'),
-    salary: Yup.string().required('salary is required'),
-    location: Yup.string().required('location  is required'),
-    link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
-    email: Yup.string().required('Email is required').email('Email is invalid'),
-  });
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<Job>({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(hiringValidationSchema),
   });
 
-  // FORM SUBMISSION
+  // FORM SUBMISSION todo: refactor (split into separate methods in one class?)
   async function onSubmit(formData: Job) {
     const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
 
@@ -164,6 +148,7 @@ function Hiring() {
             <label>Organization Description</label>
             <input
               type="text"
+              value={retrievedOrgDescription}
               {...register('organizationDescription')}
               className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
                 errors.organizationDescription

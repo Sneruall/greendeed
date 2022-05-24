@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
-import { generateJobUrl } from '../../utils/urlGeneration';
+import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
 
 /*
 Todo:
@@ -21,7 +22,14 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
 
       <Header />
       <p>Company id: {props.data?.companyId}</p>
-      <p>Company name: {props.data.companyName}</p>
+      <Link
+        href={generateCompanyUrl(
+          props.data.companyName.toLowerCase(),
+          props.data.companyId
+        )}
+      >
+        <a className="underline">{props.data.companyName}</a>
+      </Link>
       <p>Job id: {props.data.id}</p>
       <p>Job title: {props.data.jobTitle}</p>
       <p>Job location: {props.data.location}</p>

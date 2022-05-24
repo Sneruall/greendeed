@@ -11,26 +11,28 @@ export default async function handler(req, res) {
     const data = req.query;
     if (!data) {
       console.log('no query');
-      res.status(400).json({ orgId: undefined });
+      res.status(400).json({ id: undefined });
     }
     const client = await clientPromise;
     const db = client.db();
-    const yourCollection = db.collection('metaverseOrganizations');
-    const organization = await yourCollection.findOne({
-      companyName: data.organization,
+    const yourCollection = db.collection(
+      process.env.MONGODB_COMPANY_COLLECTION
+    );
+    const company = await yourCollection.findOne({
+      name: data.company,
     });
-    if (organization) {
+    if (company) {
       console.log('match found');
       res.status(201).json({
-        orgId: organization.companyId,
-        orgName: organization.companyName,
-        orgDesc: organization.companyDescription,
+        id: company.id,
+        name: company.name,
+        description: company.description,
       });
     } else {
       console.log('no match found');
       res
         .status(201)
-        .json({ orgId: undefined, orgName: undefined, orgDesc: undefined });
+        .json({ id: undefined, name: undefined, description: undefined });
     }
   }
 }

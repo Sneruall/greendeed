@@ -16,39 +16,41 @@ let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
   // Checking the entered company name with what is already in the DB
-  const [retrievedOrgName, setRetrievedOrgName] =
+  const [retrievedCompanyName, setRetrievedCompanyName] =
     useState<Job['companyName']>();
-  const [retrievedOrgId, setRetrievedOrgId] = useState<Job['companyId']>();
-  const [retrievedOrgDescription, setRetrievedOrgDescription] =
+  const [retrievedCompanyId, setRetrievedCompanyId] =
+    useState<Job['companyId']>();
+  const [retrievedCompanyDescription, setretrievedCompanyDescription] =
     useState<Job['companyDescription']>();
-  const [orgNameIsLoading, setOrgNameIsLoading] = useState<boolean>();
+  const [companyNameIsLoading, setcompanyNameIsLoading] = useState<boolean>();
 
   // Function that is called onChange of company name field for checking the value in DB with timeout.
-  const checkOrg = (value: string) => {
-    setOrgNameIsLoading(true);
+  const checkCompany = (value: string) => {
+    setcompanyNameIsLoading(true);
     if (timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      findOrg(value);
-      setOrgNameIsLoading(false);
+      findCompany(value);
+      setcompanyNameIsLoading(false);
     }, 2000);
   };
 
   // Making the call to the DB to check if the company name exists
-  async function findOrg(value: string) {
+  async function findCompany(value: string) {
     if (!value) {
-      setRetrievedOrgId('');
-      setRetrievedOrgName('');
-      setRetrievedOrgDescription('');
+      setRetrievedCompanyId('');
+      setRetrievedCompanyName('');
+      setretrievedCompanyDescription('');
       return;
     }
     const res = await fetch(`/api/find-company/${value}`);
     const data = await res.json();
-    setRetrievedOrgName(await data.orgName);
-    setRetrievedOrgId(await data.orgId);
-    setRetrievedOrgDescription(await data.orgDesc);
-    console.log(data.orgId);
+    console.log(data.name);
+    setRetrievedCompanyName(await data.name);
+    setRetrievedCompanyId(await data.id);
+    setretrievedCompanyDescription(await data.description);
+    console.log(data.id);
   }
 
   const {
@@ -73,8 +75,8 @@ function Hiring() {
 
     // Check if the company already exists in the database
     // If it exists take over the id and assign it to the job posting
-    if (retrievedOrgId) {
-      formData.companyId = retrievedOrgId;
+    if (retrievedCompanyId) {
+      formData.companyId = retrievedCompanyId;
     } else {
       // If it does not exist:
       formData.companyId = nanoid();
@@ -92,7 +94,7 @@ function Hiring() {
     console.log(data);
 
     // Post the job data in the company Database (if it does not already exist)
-    if (!retrievedOrgId) {
+    if (!retrievedCompanyId) {
       const companyFormData: Company = {
         name: formData.companyName,
         id: formData.companyId,
@@ -123,9 +125,9 @@ function Hiring() {
               {...register('companyName')}
               onChange={({ target: { value } }) => {
                 // Check if the value has a match with the database (do it with care, not every second/debounce?)
-                // If match found, show it to the user and set the OrgId already
-                // If no match, set the OrgId back to undefined and welcome the new company
-                checkOrg(value);
+                // If match found, show it to the user and set the CompanyId already
+                // If no match, set the CompanyId back to undefined and welcome the new company
+                checkCompany(value);
               }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.companyName
@@ -134,18 +136,20 @@ function Hiring() {
               }`}
             />
             <div className="text-red-500">{errors.companyName?.message}</div>
-            {!orgNameIsLoading && retrievedOrgName && (
-              <p className="text-blue-800">Welcome back {retrievedOrgName}</p>
+            {!companyNameIsLoading && retrievedCompanyName && (
+              <p className="text-blue-800">
+                Welcome back {retrievedCompanyName}
+              </p>
             )}
-            {orgNameIsLoading != undefined &&
-              !orgNameIsLoading &&
-              !retrievedOrgName &&
+            {companyNameIsLoading != undefined &&
+              !companyNameIsLoading &&
+              !retrievedCompanyName &&
               'Welcome new user!'}
-            {orgNameIsLoading && 'Loading'}
+            {companyNameIsLoading && 'Loading'}
           </div>
           <div className="form-group">
             <label className="font-bold">Company Description</label>
-            {!retrievedOrgDescription ? (
+            {!retrievedCompanyDescription ? (
               <input
                 type="text"
                 {...register('companyDescription')}
@@ -319,7 +323,7 @@ function Hiring() {
           </div>
           <div className="form-group">
             <button
-              disabled={orgNameIsLoading}
+              disabled={companyNameIsLoading}
               type="submit"
               className="underline hover:font-bold"
             >

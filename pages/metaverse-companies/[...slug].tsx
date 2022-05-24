@@ -39,8 +39,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const db = client.db();
 
   let collection: string;
-  if (process.env.COMPANY_COLLECTION) {
-    collection = process.env.COMPANY_COLLECTION;
+  if (process.env.MONGODB_COMPANY_COLLECTION) {
+    collection = process.env.MONGODB_COMPANY_COLLECTION;
   } else {
     throw new Error('Please add your Mongo URI to .env.local');
   }
@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  //get the title and org out of the slug
+  //get the title and company out of the slug
   const name = slug.toString().replace('-' + queryId, '');
 
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.

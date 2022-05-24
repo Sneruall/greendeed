@@ -20,8 +20,8 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
       </Head>
 
       <Header />
-      <p>Org id: {props.data?.companyId}</p>
-      <p>Org name: {props.data.companyName}</p>
+      <p>Company id: {props.data?.companyId}</p>
+      <p>Company name: {props.data.companyName}</p>
       <p>Job id: {props.data.id}</p>
       <p>Job title: {props.data.jobTitle}</p>
       <p>Job location: {props.data.location}</p>
@@ -59,11 +59,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  //get the title and org out of the slug
+  //get the title and company out of the slug
   const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
 
   const queryTitle = slugMinusQueryId.split(',').pop();
-  const queryOrg = slugMinusQueryId.replace(',' + queryTitle, '');
+  const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
 
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     replaceDashByWhitespace(job.jobTitle.toLowerCase()) !==
       replaceDashByWhitespace(queryTitle!) ||
     replaceDashByWhitespace(job.companyName.toLowerCase()) !==
-      replaceDashByWhitespace(queryOrg)
+      replaceDashByWhitespace(queryCompany)
   ) {
     return {
       redirect: {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
@@ -48,6 +48,7 @@ function Hiring() {
     setRetrievedOrgName(await data.orgName);
     setRetrievedOrgId(await data.orgId);
     setRetrievedOrgDescription(await data.orgDesc);
+    console.log(data.orgId);
   }
 
   const {
@@ -145,24 +146,27 @@ function Hiring() {
             {orgNameIsLoading && 'Loading'}
           </div>
           <div className="form-group">
-            <label>Organization Description</label>
-            <input
-              type="text"
-              value={retrievedOrgDescription}
-              {...register('organizationDescription')}
-              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                errors.organizationDescription
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
+            <label className="font-bold">Organization Description</label>
+            {!retrievedOrgDescription ? (
+              <input
+                type="text"
+                {...register('organizationDescription')}
+                className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                  errors.organizationDescription
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+            ) : (
+              <p>Contact us if you want to change it for your organization</p>
+            )}
             <div className="text-red-500">
               {errors.organizationDescription?.message}
             </div>
-            <p>For on your company page</p>
+            <p>Shown on your company page</p>
           </div>
           <div className="form-group">
-            <label>Job Title</label>
+            <label className="font-bold">Job Title</label>
             <input
               type="text"
               {...register('jobTitle')}
@@ -316,9 +320,14 @@ function Hiring() {
             <div className="text-red-500">{errors.email?.message}</div>
           </div>
           <div className="form-group">
-            <button type="submit" className="underline hover:font-bold">
+            <button
+              disabled={orgNameIsLoading}
+              type="submit"
+              className="underline hover:font-bold"
+            >
               Post job
             </button>
+
             <button
               type="button"
               onClick={() => reset()}

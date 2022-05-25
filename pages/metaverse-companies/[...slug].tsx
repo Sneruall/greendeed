@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../../components/Header';
+import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
@@ -12,16 +13,24 @@ Todo:
 - adjust the documentation (now based on job pages)
 */
 
-const JobPage: NextPage<{ data: Company }> = (props) => {
+const JobPage: NextPage<{ company: Company; jobs: [Job] }> = (props) => {
+  const joblist = props.jobs
+    .map((job) => (
+      <li className="list-none" key={job.id}>
+        <JobItem job={job} />
+      </li>
+    ))
+    .reverse();
+
   return (
     <div>
       <Head>
         <title>Metaversed Careers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
-      <p>Company name: {props.data.name}</p>
+      <p>Company name: {props.company.name}</p>
+      <div className="flex flex-col gap-3">{joblist}</div>;
     </div>
   );
 };
@@ -73,6 +82,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  if (!process.env.MONGODB_COLLECTION) {
+    throw new Error('Please add your Mongo URI to .env.local');
+  }
+  const jobs = await db
+    .collection(process.env.MONGODB_COLLECTION)
+    .find({ hidden: false, companyId: company.id })
+    // .sort({ metacritic: -1 })
+    // .limit(20)
+    .toArray();
+  console.log(jobs);
   // Render the page with the job data as props
-  return { props: { data: JSON.parse(JSON.stringify(company)) } };
+  return {
+    props: {
+      company: JSON.parse(JSON.stringify(company)),
+      jobs: JSON.parse(JSON.stringify(jobs)),
+    },
+  };
 };

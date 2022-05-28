@@ -33,3 +33,17 @@ export const setCompanyId = (
     formData.companyId = nanoid();
   }
 };
+
+export async function postJob(formData: Job) {
+  // Post the job data in the Database
+  //todo no console log and nothing is done with data?
+  const response = await fetch('/api/jobs', {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+}

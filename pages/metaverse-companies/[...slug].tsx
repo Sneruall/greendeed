@@ -33,7 +33,7 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       </Head>
       <Header />
       <p>Company name: {company.name}</p>
-      <div className="flex flex-col gap-3">{joblist}</div>;
+      <div className="flex flex-col gap-3">{joblist}</div>
     </div>
   );
 };

@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
-import { customAlphabet } from 'nanoid';
 import { Job, Company } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
-import { setCompanyId, setDefaultJobAttributes } from '../backend/job/jobApi';
+import {
+  postJob,
+  setCompanyId,
+  setDefaultJobAttributes,
+} from '../backend/job/jobApi';
+import { postCompany } from '../backend/company/companyApi';
 
 /*
 TODO
@@ -69,35 +73,11 @@ function Hiring() {
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
     setCompanyId(formData, retrievedCompanyId);
-
-    // Post the job data in the Database
-    const response = await fetch('/api/jobs', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-
-    // Post the job data in the company Database (if it does not already exist)
+    await postJob(formData);
     if (!retrievedCompanyId) {
-      const companyFormData: Company = {
-        name: formData.companyName,
-        id: formData.companyId,
-        description: formData.companyDescription,
-      };
-      const companyResponse = await fetch('/api/add-company', {
-        method: 'POST',
-        body: JSON.stringify(companyFormData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const companyData = await companyResponse.json();
-      console.log(companyData);
+      await postCompany(formData);
     }
+    //todo: add redirect / success popup. Add protection that if either postJob or postCompany fails it will error
   }
 
   // THE JSX CODE, TODO: MAKE SEPARATE COMPONENT(S) OUT OF THE FORM.

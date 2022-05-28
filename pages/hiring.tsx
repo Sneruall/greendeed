@@ -7,6 +7,7 @@ import { Job, Company } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
+import { setCompanyId, setDefaultJobAttributes } from '../backend/job/jobApi';
 
 /*
 TODO
@@ -66,23 +67,8 @@ function Hiring() {
 
   // FORM SUBMISSION todo: refactor (split into separate methods in one class?)
   async function onSubmit(formData: Job) {
-    const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
-
-    // Set other job data attributes
-    formData.timestamp = new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
-    formData.id = nanoid(); // set the job id
-    formData.price = 50; // set the price
-    formData.paid = true; // set the payment status
-    formData.hidden = false; // set the visibility
-
-    // Check if the company already exists in the database
-    // If it exists take over the id and assign it to the job posting
-    if (retrievedCompanyId) {
-      formData.companyId = retrievedCompanyId;
-    } else {
-      // If it does not exist:
-      formData.companyId = nanoid();
-    }
+    setDefaultJobAttributes(formData);
+    setCompanyId(formData, retrievedCompanyId);
 
     // Post the job data in the Database
     const response = await fetch('/api/jobs', {

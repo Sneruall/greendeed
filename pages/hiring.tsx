@@ -11,7 +11,7 @@ import {
   setCompanyId,
   setDefaultJobAttributes,
 } from '../backend/job/jobApi';
-import { postCompany } from '../backend/company/companyApi';
+import { postCompany, checkCompany } from '../backend/company/companyApi';
 
 /*
 TODO
@@ -23,42 +23,8 @@ let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
   // Checking the entered company name with what is already in the DB
-  const [retrievedCompanyName, setRetrievedCompanyName] =
-    useState<Job['companyName']>();
-  const [retrievedCompanyId, setRetrievedCompanyId] =
-    useState<Job['companyId']>();
-  const [retrievedCompanyDescription, setretrievedCompanyDescription] =
-    useState<Job['companyDescription']>();
-  const [companyNameIsLoading, setcompanyNameIsLoading] = useState<boolean>();
-
-  // Function that is called onChange of company name field for checking the value in DB with timeout.
-  const checkCompany = (value: string) => {
-    setcompanyNameIsLoading(true);
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      findCompany(value);
-      setcompanyNameIsLoading(false);
-    }, 2000);
-  };
-
-  // Making the call to the DB to check if the company name exists
-  async function findCompany(value: string) {
-    if (!value) {
-      setRetrievedCompanyId('');
-      setRetrievedCompanyName('');
-      setretrievedCompanyDescription('');
-      return;
-    }
-    const res = await fetch(`/api/find-company/${value}`);
-    const data = await res.json();
-    console.log(data.name);
-    setRetrievedCompanyName(await data.name);
-    setRetrievedCompanyId(await data.id);
-    setretrievedCompanyDescription(await data.description);
-    console.log(data.id);
-  }
+  const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
+  const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
   const {
     register,
@@ -72,9 +38,9 @@ function Hiring() {
   // FORM SUBMISSION todo: refactor (split into separate methods in one class?)
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
-    setCompanyId(formData, retrievedCompanyId);
+    setCompanyId(formData, retrievedCompanyData?.id);
     await postJob(formData);
-    if (!retrievedCompanyId) {
+    if (!retrievedCompanyData?.id) {
       await postCompany(formData);
     }
     //todo: add redirect / success popup. Add protection that if either postJob or postCompany fails it will error
@@ -95,7 +61,11 @@ function Hiring() {
                 // Check if the value has a match with the database (do it with care, not every second/debounce?)
                 // If match found, show it to the user and set the CompanyId already
                 // If no match, set the CompanyId back to undefined and welcome the new company
-                checkCompany(value);
+                checkCompany(
+                  value,
+                  setCompanyNameIsLoading,
+                  setRetrievedCompanyData
+                );
               }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.companyName
@@ -105,14 +75,14 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.companyName?.message}</div>
             {!companyNameIsLoading &&
-              retrievedCompanyName &&
-              retrievedCompanyId && (
+              retrievedCompanyData?.name &&
+              retrievedCompanyData.id && (
                 <p className="text-blue-800">
                   Welcome back{' '}
                   <Link
                     href={generateCompanyUrl(
-                      retrievedCompanyName.toLowerCase(),
-                      retrievedCompanyId
+                      retrievedCompanyData.name.toLowerCase(),
+                      retrievedCompanyData.id
                     )}
                   >
                     <a
@@ -120,20 +90,20 @@ function Hiring() {
                       rel="noopener noreferrer"
                       className="underline"
                     >
-                      {retrievedCompanyName}
+                      {retrievedCompanyData.name}
                     </a>
                   </Link>
                 </p>
               )}
             {companyNameIsLoading != undefined &&
               !companyNameIsLoading &&
-              !retrievedCompanyName &&
+              !retrievedCompanyData?.name &&
               'Welcome new user!'}
             {companyNameIsLoading && 'Loading'}
           </div>
           <div className="form-group">
             <label className="font-bold">Company Description</label>
-            {!retrievedCompanyDescription ? (
+            {!retrievedCompanyData?.description ? (
               <input
                 type="text"
                 {...register('companyDescription')}

@@ -4,6 +4,11 @@ import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
 import clientPromise from '../lib/mongodb';
 
+/*
+Todo:
+- Make sure apis can only be called from our server? (post apis) prevent curl from working,..
+*/
+
 const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   return (
     <div className="">

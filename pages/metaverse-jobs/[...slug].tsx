@@ -12,7 +12,7 @@ import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
 Todo:
 */
 
-const JobPage: NextPage<{ data: Job }> = (props) => {
+const JobPage: NextPage<{ job: Job }> = ({ job }) => {
   return (
     <div>
       <Head>
@@ -21,18 +21,15 @@ const JobPage: NextPage<{ data: Job }> = (props) => {
       </Head>
 
       <Header />
-      <p>Company id: {props.data?.companyId}</p>
+      <p>Company id: {job.companyId}</p>
       <Link
-        href={generateCompanyUrl(
-          props.data.companyName.toLowerCase(),
-          props.data.companyId
-        )}
+        href={generateCompanyUrl(job.companyName.toLowerCase(), job.companyId)}
       >
-        <a className="underline">{props.data.companyName}</a>
+        <a className="underline">{job.companyName}</a>
       </Link>
-      <p>Job id: {props.data.id}</p>
-      <p>Job title: {props.data.jobTitle}</p>
-      <p>Job location: {props.data.location}</p>
+      <p>Job id: {job.id}</p>
+      <p>Job title: {job.jobTitle}</p>
+      <p>Job location: {job.location}</p>
     </div>
   );
 };
@@ -95,5 +92,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // Render the page with the job data as props
-  return { props: { data: JSON.parse(JSON.stringify(job)) } };
+  return { props: { job: JSON.parse(JSON.stringify(job)) } };
 };

@@ -6,15 +6,18 @@ import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
-import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
+import { generateCompanyUrl } from '../../utils/urlGeneration';
 
 /*
 Todo:
 - adjust the documentation (now based on job pages)
 */
 
-const JobPage: NextPage<{ company: Company; jobs: [Job] }> = (props) => {
-  const joblist = props.jobs
+const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
+  company,
+  jobs,
+}) => {
+  const joblist = jobs
     .map((job) => (
       <li className="list-none" key={job.id}>
         <JobItem job={job} />
@@ -29,7 +32,7 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <p>Company name: {props.company.name}</p>
+      <p>Company name: {company.name}</p>
       <div className="flex flex-col gap-3">{joblist}</div>;
     </div>
   );

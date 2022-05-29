@@ -13,6 +13,9 @@ export default Yup.object().shape({
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'),
   tags: Yup.string().max(70, 'Tags must not exceed 70 characters'),
+  // tags: Yup.array()
+  // .max(5, 'Max 5 tags')
+  // .of(Yup.string().max(32, 'Max 32 characters per tag')),
   jobDescription: Yup.string()
     .required('jobDescription is required')
     .min(6, 'jobDescription must be at least 6 characters')

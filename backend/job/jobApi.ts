@@ -21,14 +21,28 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.listed = true;
 };
 
+// TODO: merge convertTags and convertOnSiteLocation functions (repeats code)
+
 export const convertTags = (formData: Job) => {
+  //todo account for entries like: holland,germany,    or ,holland, germany,,,
   if (formData.tags.includes(',')) {
-    formData.tags = formData.tags.replace(/\s*,\s*/g, ',');
+    // @ts-ignore: tags are entered as a string at first and then converted into array
+    const commaSeparatedTags = formData.tags.replace(/\s*,\s*/g, ',');
+    formData.tags = commaSeparatedTags.split(',').filter((a: string) => a); //splitsen op de comma en filteren op undefined or null elements in array
   }
 };
+
 export const convertOnSiteLocation = (formData: Job) => {
+  //todo account for entries like: holland,germany,    or ,holland, germany,,,
   if (formData.onSiteLocation.includes(',')) {
-    formData.onSiteLocation = formData.onSiteLocation.replace(/\s*,\s*/g, ',');
+    // @ts-ignore: tags are entered as a string at first and then converted into array
+    const commaSeparatedLocations = formData.onSiteLocation.replace(
+      /\s*,\s*/g,
+      ','
+    );
+    formData.onSiteLocation = commaSeparatedLocations
+      .split(',')
+      .filter((a: string) => a);
   }
 };
 

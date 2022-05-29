@@ -4,12 +4,12 @@ export type Job = {
   companyDescription: string;
   jobTitle: string;
   category: string;
-  tags: string;
+  tags: string[];
   jobDescription: string;
   jobType: string;
   salary: string;
   location: string;
-  onSiteLocation: string;
+  onSiteLocation: string[];
   remoteLocation: string;
   geoRestriction: string[];
   link: string;

@@ -18,6 +18,13 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.price = 50; // set the price
   formData.paid = true; // set the payment status
   formData.hidden = false; // set the visibility
+  formData.listed = true;
+};
+
+export const convertTags = (formData: Job) => {
+  if (formData.tags.includes(',')) {
+    formData.tags = formData.tags.replace(/\s*,\s*/g, ',');
+  }
 };
 
 export const setCompanyId = (

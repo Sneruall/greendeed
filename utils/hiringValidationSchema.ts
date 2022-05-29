@@ -3,14 +3,15 @@ import * as Yup from 'yup';
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 
 export default Yup.object().shape({
-  companyName: Yup.string().required('Company Name is required'),
-  companyDescription: Yup.string(),
+  companyName: Yup.string()
+    .min(2, 'Company name must be at least 2 characters')
+    .required('Company name is required'),
   jobTitle: Yup.string()
-    .required('jobTitle is required')
-    .min(6, 'jobTitle must be at least 6 characters')
-    .max(20, 'jobTitle must not exceed 20 characters'),
-  tag1: Yup.string().required('tag is required'),
-  tags: Yup.string().required('tags is required'), // has to be separated by comma (pattern)
+    .required('Job title is required')
+    .min(3, 'Job title must be at least 3 characters')
+    .max(70, 'Job title must not exceed 70 characters'),
+  category: Yup.string().required('Category is required'),
+  tags: Yup.string().max(70, 'Job title must not exceed 70 characters'),
   jobDescription: Yup.string()
     .required('jobDescription is required')
     .min(6, 'jobDescription must be at least 6 characters')
@@ -20,4 +21,5 @@ export default Yup.object().shape({
   location: Yup.string().required('location  is required'),
   link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
   email: Yup.string().required('Email is required').email('Email is invalid'),
+  companyDescription: Yup.string(),
 });

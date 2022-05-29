@@ -30,6 +30,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job id: {job.id}</p>
       <p>Job title: {job.jobTitle}</p>
       <p>Job location: {job.location}</p>
+      <p>Tags: {job.tags}</p>
     </div>
   );
 };

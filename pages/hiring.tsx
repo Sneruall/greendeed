@@ -7,6 +7,7 @@ import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
 import {
+  convertTags,
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
@@ -17,9 +18,6 @@ import { postCompany, checkCompany } from '../backend/company/companyApi';
 TODO
 - 
 */
-
-// set timer type used for timeout function for calling api to get company name
-let timer: ReturnType<typeof setTimeout>;
 
 function Hiring() {
   // Checking the entered company name with what is already in the DB
@@ -35,9 +33,9 @@ function Hiring() {
     resolver: yupResolver(hiringValidationSchema),
   });
 
-  // FORM SUBMISSION todo: refactor (split into separate methods in one class?)
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
+    convertTags(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
@@ -101,26 +99,7 @@ function Hiring() {
               'Welcome new user!'}
             {companyNameIsLoading && 'Loading'}
           </div>
-          <div className="form-group">
-            <label className="font-bold">Company Description</label>
-            {!retrievedCompanyData?.description ? (
-              <input
-                type="text"
-                {...register('companyDescription')}
-                className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                  errors.companyDescription
-                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-                }`}
-              />
-            ) : (
-              <p>Contact us if you want to change it for your company</p>
-            )}
-            <div className="text-red-500">
-              {errors.companyDescription?.message}
-            </div>
-            <p>Shown on your company page</p>
-          </div>
+
           <div className="form-group">
             <label className="font-bold">Job Title</label>
             <input
@@ -145,24 +124,33 @@ function Hiring() {
           </div>
           <div className="form-group">
             <label
-              htmlFor="tag1"
+              htmlFor="category"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
             >
-              Primary tag
+              Category
             </label>
             <select
-              {...register('tag1')}
-              id="tag1"
+              {...register('category')}
+              id="category"
               className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
             >
-              <option>Development</option>
-              <option>Marketing</option>
-              <option>Support</option>
+              <option>Software Development</option>
+              <option>Customer Support</option>
               <option>Design</option>
+              <option>DevOps and Sysadmin</option>
+              <option>Sales and Marketing</option>
+              <option>Legal and Finance</option>
+              <option>Operations</option>
+              <option>Management</option>
               <option>Non-tech</option>
+              <option>Product</option>
+              <option>Business</option>
+              <option>Data</option>
+              <option>Human Resources</option>
+              <option>Writing</option>
               <option>Other</option>
             </select>
-            <div className="text-red-500">{errors.tag1?.message}</div>
+            <div className="text-red-500">{errors.category?.message}</div>
           </div>
           <div className="form-group">
             <label>Tags</label>
@@ -274,6 +262,27 @@ function Hiring() {
               }`}
             />
             <div className="text-red-500">{errors.email?.message}</div>
+          </div>
+          <h2 className="text-xl">Tell us about your company</h2>
+          <div className="form-group">
+            <label className="font-bold">Company Description</label>
+            {!retrievedCompanyData?.description ? (
+              <input
+                type="text"
+                {...register('companyDescription')}
+                className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                  errors.companyDescription
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+            ) : (
+              <p>Contact us if you want to change it for your company</p>
+            )}
+            <div className="text-red-500">
+              {errors.companyDescription?.message}
+            </div>
+            <p>Shown on your company page</p>
           </div>
           <div className="form-group">
             <button

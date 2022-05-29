@@ -3,7 +3,7 @@ export type Job = {
   companyId: string;
   companyDescription: string;
   jobTitle: string;
-  tag1: string;
+  category: string;
   tags: string;
   jobDescription: string;
   jobType: string;
@@ -16,10 +16,10 @@ export type Job = {
   price: number;
   paid: boolean;
   hidden: boolean;
+  listed: boolean;
 };
 
-// Todo Use the type below
-// Make these shorter (name, id and description), and adjust in hiring.tsx and maybe other pages
+// todo: add fields (websiteurl, employees...)
 export type Company = {
   name: string;
   id: string;

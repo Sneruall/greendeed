@@ -9,6 +9,9 @@ export type Job = {
   jobType: string;
   salary: string;
   location: string;
+  onSiteLocation: string;
+  remoteLocation: string;
+  geoRestriction: string[];
   link: string;
   email: string;
   timestamp: number;

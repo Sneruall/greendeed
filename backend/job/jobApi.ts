@@ -26,6 +26,11 @@ export const convertTags = (formData: Job) => {
     formData.tags = formData.tags.replace(/\s*,\s*/g, ',');
   }
 };
+export const convertOnSiteLocation = (formData: Job) => {
+  if (formData.onSiteLocation.includes(',')) {
+    formData.onSiteLocation = formData.onSiteLocation.replace(/\s*,\s*/g, ',');
+  }
+};
 
 export const setCompanyId = (
   formData: Job,

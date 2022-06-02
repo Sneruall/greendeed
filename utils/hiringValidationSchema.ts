@@ -44,7 +44,7 @@ export default Yup.object().shape({
   geoRestriction: Yup.array()
     .nullable()
     .when('remoteLocation', {
-      is: 'geoRestricted', //strange that here it works only with 'geoRestricted' instead of 'geoRestriction'
+      is: 'geoRestriction', //strange that here it works only with 'geoRestricted' instead of 'geoRestriction'
       then: Yup.array()
         .min(1, 'At least one Geographic restriction is required')
         .max(4, 'Max. 4 Geographic restrictions allowed')

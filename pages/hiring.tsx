@@ -373,7 +373,7 @@ function Hiring() {
                 />
                 <input
                   type="text"
-                  id="other"
+                  id="otherText"
                   placeholder="e.g. Switzerland"
                   onChange={(e) => setOtherGeoRestriction(e.target.value)}
                   className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900"

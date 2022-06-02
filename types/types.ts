@@ -8,7 +8,7 @@ export type Job = {
   jobDescription: string;
   jobType: string;
   salary: string;
-  location: string;
+  location: Location;
   onSiteLocation: string[];
   remoteLocation: string;
   geoRestriction: string[];
@@ -28,3 +28,5 @@ export type Company = {
   id: string;
   description: string;
 };
+
+export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';

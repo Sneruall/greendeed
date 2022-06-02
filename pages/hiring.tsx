@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
-import { Job, Company } from '../types/types';
+import { Job, Location, Company } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
@@ -24,7 +24,15 @@ function Hiring() {
   // Checking the entered company name with what is already in the DB
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
+
+  // Location fields tracking
+  const [location, setLocation] = useState<Location>('remote');
+  const [remoteLocation, setRemoteLocation] = useState<string>();
   const [otherGeoRestriction, setOtherGeoRestriction] = useState<string>();
+
+  const setLocationHandler = (location: Location) => {
+    setLocation(location);
+  };
 
   const {
     register,
@@ -216,22 +224,25 @@ function Hiring() {
             <label htmlFor="remote">Remote</label>
             <input
               type="radio"
-              id="remote"
-              checked
+              id={'remote'}
               value="remote"
               {...register('location')}
+              checked={location === 'remote'}
+              onClick={() => setLocationHandler('remote', 1)}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
-            />{' '}
+            />
             <label htmlFor="onSite">On Site</label>
             <input
               type="radio"
               id="onSite"
               value="onSite"
+              checked={location === 'onSite'}
               {...register('location')}
+              onClick={() => setLocationHandler('onSite', 2)}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -243,7 +254,9 @@ function Hiring() {
               type="radio"
               id="onSiteOrRemote"
               value="onSiteOrRemote"
+              checked={location === 'onSiteOrRemote'}
               {...register('location')}
+              onClick={() => setLocationHandler('onSiteOrRemote', 3)}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -252,6 +265,27 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.location?.message}</div>
           </div>
+          {location === 3 && (
+            <div className="form-group">
+              <label>On Site location</label>
+              <input
+                type="text"
+                placeholder="e.g. Amsterdam, London, New York"
+                {...register('onSiteLocation')}
+                className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                  errors.onSiteLocation
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+              <div className="text-red-500">
+                {errors.onSiteLocation?.message}
+              </div>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Please use a comma to separate multiple locations.
+              </p>
+            </div>
+          )}
           <h2>Remote location</h2>
           <div className="form-group">
             <label htmlFor="worldwide">Worldwide</label>
@@ -329,23 +363,7 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.geoRestriction?.message}</div>
           </div>
-          <div className="form-group">
-            <label>On Site location</label>
-            <input
-              type="text"
-              placeholder="e.g. Amsterdam, London, New York"
-              {...register('onSiteLocation')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.onSiteLocation
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">{errors.onSiteLocation?.message}</div>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Please use a comma to separate multiple locations.
-            </p>
-          </div>
+
           <div className="form-group">
             <label>Salary*</label>
             <input

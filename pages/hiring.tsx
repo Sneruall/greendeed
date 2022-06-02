@@ -30,7 +30,7 @@ function Hiring() {
   const [location, setLocation] = useState<Location>('remote');
   const [remoteLocation, setRemoteLocation] =
     useState<RemoteLocation>('worldwide');
-  const [otherGeoRestriction, setOtherGeoRestriction] = useState<string>();
+  const [otherGeoRestriction, setOtherGeoRestriction] = useState<boolean>();
 
   const {
     register,
@@ -363,23 +363,34 @@ function Hiring() {
                 <input
                   type="checkbox"
                   id="other"
-                  value={otherGeoRestriction}
+                  value="other"
                   {...register('geoRestriction')}
+                  onChange={(e) => setOtherGeoRestriction(e.target.checked)}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                     errors.geoRestriction
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
                 />
-                <input
-                  type="text"
-                  id="otherText"
-                  placeholder="e.g. Switzerland"
-                  onChange={(e) => setOtherGeoRestriction(e.target.value)}
-                  className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900"
-                />
                 <div className="text-red-500">
                   {errors.geoRestriction?.message}
+                </div>
+                {otherGeoRestriction && (
+                  <input
+                    type="text"
+                    id="otherText"
+                    placeholder="e.g. Switzerland"
+                    {...register('geoRestrictionOther')}
+                    className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                      errors.geoRestrictionOther
+                        ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                        : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                    }`}
+                  />
+                )}
+
+                <div className="text-red-500">
+                  {errors.geoRestrictionOther?.message}
                 </div>
               </div>
             </>

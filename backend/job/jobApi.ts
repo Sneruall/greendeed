@@ -52,15 +52,16 @@ export const convertOnSiteLocation = (formData: Job) => {
 
 export const convertOtherGeoRestriction = (formData: Job) => {
   //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  console.log(formData.geoRestriction);
-  if (formData.geoRestriction && formData.geoRestriction.includes(',')) {
-    console.log('reached here');
+  if (
+    formData.geoRestrictionOther &&
+    formData.geoRestrictionOther.includes(',')
+  ) {
     // @ts-ignore: tags are entered as a string at first and then converted into array
-    const commaSeparatedLocations = formData.geoRestriction.replace(
+    const commaSeparatedLocations = formData.geoRestrictionOther.replace(
       /\s*,\s*/g,
       ','
     );
-    formData.geoRestriction = commaSeparatedLocations
+    formData.geoRestrictionOther = commaSeparatedLocations
       .split(',')
       .filter((a: string) => a);
   }

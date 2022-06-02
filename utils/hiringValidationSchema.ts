@@ -44,7 +44,7 @@ export default Yup.object().shape({
   geoRestriction: Yup.array()
     .nullable()
     .when('remoteLocation', {
-      is: 'geoRestriction', //strange that here it works only with 'geoRestricted' instead of 'geoRestriction'
+      is: 'geoRestriction',
       then: Yup.array()
         .min(1, 'At least one Geographic restriction is required')
         .max(4, 'Max. 4 Geographic restrictions allowed')
@@ -53,6 +53,7 @@ export default Yup.object().shape({
         .nullable(false)
         .typeError('At least one Geographic restriction is required'),
     }),
+  geoRestrictionOther: Yup.string().nullable(),
   salary: Yup.string(),
   link: Yup.string().required('apply link is required'), //check if it is either a url or email address, or make it two fields
   email: Yup.string().required('Email is required').email('Email is invalid'),

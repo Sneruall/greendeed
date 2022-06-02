@@ -12,6 +12,7 @@ export type Job = {
   onSiteLocation?: string[];
   remoteLocation?: RemoteLocation;
   geoRestriction?: string[];
+  geoRestrictionOther?: string[];
   link: string;
   email: string;
   timestamp: number;

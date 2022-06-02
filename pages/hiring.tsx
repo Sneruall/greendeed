@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
-import { Job, Location, Company } from '../types/types';
+import { Job, Location, Company, RemoteLocation } from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
 import {
   convertOnSiteLocation,
+  convertOtherGeoRestriction,
   convertTags,
   postJob,
   setCompanyId,
@@ -27,12 +28,9 @@ function Hiring() {
 
   // Location fields tracking
   const [location, setLocation] = useState<Location>('remote');
-  const [remoteLocation, setRemoteLocation] = useState<string>();
+  const [remoteLocation, setRemoteLocation] =
+    useState<RemoteLocation>('worldwide');
   const [otherGeoRestriction, setOtherGeoRestriction] = useState<string>();
-
-  const setLocationHandler = (location: Location) => {
-    setLocation(location);
-  };
 
   const {
     register,
@@ -47,7 +45,10 @@ function Hiring() {
     setDefaultJobAttributes(formData);
     convertTags(formData);
     convertOnSiteLocation(formData);
+    convertOtherGeoRestriction(formData);
+
     setCompanyId(formData, retrievedCompanyData?.id);
+    console.log(formData);
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
       await postCompany(formData);
@@ -228,7 +229,7 @@ function Hiring() {
               value="remote"
               {...register('location')}
               checked={location === 'remote'}
-              onClick={() => setLocationHandler('remote', 1)}
+              onClick={() => setLocation('remote')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -242,7 +243,9 @@ function Hiring() {
               value="onSite"
               checked={location === 'onSite'}
               {...register('location')}
-              onClick={() => setLocationHandler('onSite', 2)}
+              onClick={() => {
+                setLocation('onSite');
+              }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -256,7 +259,7 @@ function Hiring() {
               value="onSiteOrRemote"
               checked={location === 'onSiteOrRemote'}
               {...register('location')}
-              onClick={() => setLocationHandler('onSiteOrRemote', 3)}
+              onClick={() => setLocation('onSiteOrRemote')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
                 errors.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -265,7 +268,7 @@ function Hiring() {
             />
             <div className="text-red-500">{errors.location?.message}</div>
           </div>
-          {location === 3 && (
+          {location !== 'remote' && (
             <div className="form-group">
               <label>On Site location</label>
               <input
@@ -286,83 +289,101 @@ function Hiring() {
               </p>
             </div>
           )}
-          <h2>Remote location</h2>
-          <div className="form-group">
-            <label htmlFor="worldwide">Worldwide</label>
-            <input
-              type="radio"
-              id="worldwide"
-              value="worldwide"
-              checked
-              {...register('remoteLocation')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.remoteLocation
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">{errors.remoteLocation?.message}</div>
-            <label htmlFor="geoRestricted">Geographic restrictions</label>
-            <input
-              type="radio"
-              id="geoRestricted"
-              value="geoRestricted"
-              {...register('remoteLocation')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.remoteLocation
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">{errors.remoteLocation?.message}</div>
-          </div>
-          <h2>Geographic restriction</h2>
-          <div className="form-group">
-            <label htmlFor="europe">Europe</label>
-            <input
-              type="checkbox"
-              id="europe"
-              value="europe"
-              {...register('geoRestriction')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <label htmlFor="us">US</label>
-            <input
-              type="checkbox"
-              id="us"
-              value="us"
-              {...register('geoRestriction')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <label htmlFor="other">Other</label>
-            <input
-              type="checkbox"
-              id="other"
-              value={otherGeoRestriction}
-              {...register('geoRestriction')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <input
-              type="text"
-              id="other"
-              placeholder="e.g. Switzerland"
-              onChange={(e) => setOtherGeoRestriction(e.target.value)}
-              className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900"
-            />
-            <div className="text-red-500">{errors.geoRestriction?.message}</div>
-          </div>
+
+          {location !== 'onSite' && (
+            <>
+              <h2>Remote location</h2>
+              <div className="form-group">
+                <label htmlFor="worldwide">Worldwide</label>
+                <input
+                  type="radio"
+                  id="worldwide"
+                  value="worldwide"
+                  checked={remoteLocation === 'worldwide'}
+                  onClick={() => setRemoteLocation('worldwide')}
+                  {...register('remoteLocation')}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                    errors.remoteLocation
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+                <div className="text-red-500">
+                  {errors.remoteLocation?.message}
+                </div>
+                <label htmlFor="geoRestriction">Geographic restrictions</label>
+                <input
+                  type="radio"
+                  id="geoRestriction"
+                  value="geoRestriction"
+                  checked={remoteLocation === 'geoRestriction'}
+                  onClick={() => setRemoteLocation('geoRestriction')}
+                  {...register('remoteLocation')}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                    errors.remoteLocation
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+                <div className="text-red-500">
+                  {errors.remoteLocation?.message}
+                </div>
+              </div>
+            </>
+          )}
+          {remoteLocation === 'geoRestriction' && (
+            <>
+              <h2>Geographic restriction</h2>
+              <div className="form-group">
+                <label htmlFor="europe">Europe</label>
+                <input
+                  type="checkbox"
+                  id="europe"
+                  value="europe"
+                  {...register('geoRestriction')}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                    errors.geoRestriction
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+                <label htmlFor="us">US</label>
+                <input
+                  type="checkbox"
+                  id="us"
+                  value="us"
+                  {...register('geoRestriction')}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                    errors.geoRestriction
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+                <label htmlFor="other">Other</label>
+                <input
+                  type="checkbox"
+                  id="other"
+                  value={otherGeoRestriction}
+                  {...register('geoRestriction')}
+                  className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                    errors.geoRestriction
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+                <input
+                  type="text"
+                  id="other"
+                  placeholder="e.g. Switzerland"
+                  onChange={(e) => setOtherGeoRestriction(e.target.value)}
+                  className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900"
+                />
+                <div className="text-red-500">
+                  {errors.geoRestriction?.message}
+                </div>
+              </div>
+            </>
+          )}
 
           <div className="form-group">
             <label>Salary*</label>

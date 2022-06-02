@@ -21,17 +21,40 @@ export default Yup.object().shape({
     .min(6, 'jobDescription must be at least 6 characters')
     .max(200, 'jobDescription must not exceed 200 characters'),
   jobType: Yup.string().required('Type of employment is required'),
-  location: Yup.string().required('location  is required'),
-  onSiteLocation: Yup.string(),
-  remoteLocation: Yup.string(),
+  location: Yup.string().required('location  is required'), //here and also maybe other fields: check if it is of type Location!
+  onSiteLocation: Yup.string()
+    .when('location', {
+      is: 'onSite',
+      then: Yup.string().required(),
+    })
+    .when('location', {
+      is: 'onSiteOrRemote',
+      then: Yup.string().required(),
+    }),
+  remoteLocation: Yup.string()
+    .nullable()
+    .when('location', {
+      is: 'remote',
+      then: Yup.string().required().nullable(false),
+    })
+    .when('location', {
+      is: 'onSiteOrRemote',
+      then: Yup.string().required().nullable(false),
+    }),
   geoRestriction: Yup.array()
-    .min(1, 'At least one Geographic restriction is required')
-    .max(4, 'Max. 4 Geographic restrictions allowed')
-    .of(Yup.string().required('Error'))
-    .required('This is a required field')
-    .typeError('At least one Geographic restriction is required'),
+    .nullable()
+    .when('remoteLocation', {
+      is: 'geoRestricted', //strange that here it works only with 'geoRestricted' instead of 'geoRestriction'
+      then: Yup.array()
+        .min(1, 'At least one Geographic restriction is required')
+        .max(4, 'Max. 4 Geographic restrictions allowed')
+        .of(Yup.string().required('Error'))
+        .required('This is a required field')
+        .nullable(false)
+        .typeError('At least one Geographic restriction is required'),
+    }),
   salary: Yup.string(),
-  link: Yup.string().required('location  is required'), //check if it is either a url or email address, or make it two fields
+  link: Yup.string().required('apply link is required'), //check if it is either a url or email address, or make it two fields
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),
 });

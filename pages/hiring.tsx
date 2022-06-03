@@ -14,9 +14,7 @@ import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
 import {
   convertCommaSeparatedStringToArray,
-  convertOnSiteLocation,
-  convertOtherGeoRestriction,
-  convertTags,
+  convertTagsAndLocations,
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
@@ -54,23 +52,7 @@ function Hiring() {
 
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
-    // convertTags(formData);
-    if (formData.tags) {
-      formData.tags = convertCommaSeparatedStringToArray(formData.tags);
-    }
-    if (formData.locationInfo.onSiteLocation) {
-      formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
-        formData.locationInfo.onSiteLocation
-      );
-    }
-    if (formData.locationInfo.geoRestrictionOther) {
-      formData.locationInfo.geoRestrictionOther =
-        convertCommaSeparatedStringToArray(
-          formData.locationInfo.geoRestrictionOther
-        );
-    }
-    // convertOnSiteLocation(formData);
-    // convertOtherGeoRestriction(formData);
+    convertTagsAndLocations(formData);
 
     setCompanyId(formData, retrievedCompanyData?.id);
     console.log(formData);

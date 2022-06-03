@@ -1,5 +1,6 @@
 import { customAlphabet } from 'nanoid';
 import { Job } from '../../types/types';
+import { convertCommaSeparatedStringToArray } from '../../utils/arrayConversions';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
 
@@ -24,69 +25,20 @@ export const setDefaultJobAttributes = (formData: Job) => {
   }
 };
 
-// TODO: merge convertTags and convertOnSiteLocation functions (repeats code)
-
-export const convertTags = (formData: Job) => {
-  //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  if (formData.tags?.includes(',')) {
-    // @ts-ignore: tags are entered as a string at first and then converted into array
-    const commaSeparatedTags = formData.tags.replace(/\s*,\s*/g, ',');
-    formData.tags = commaSeparatedTags.split(',').filter((a: string) => a); //splitsen op de comma en filteren op undefined or null elements in array
+export const convertTagsAndLocations = (formData: Job) => {
+  if (formData.tags) {
+    formData.tags = convertCommaSeparatedStringToArray(formData.tags);
   }
-};
-
-//todo account for entries like: holland,germany,    or ,holland, germany,,,
-export const convertCommaSeparatedStringToArray = (stringValue: string[]) => {
-  console.log(stringValue);
-  if (!stringValue) {
-    return;
-  }
-  if (stringValue.includes(',')) {
-    console.log(
-      stringValue
-        .toString()
-        .replace(/\s*,\s*/g, ',')
-        .split(',')
-        .filter((a: string) => a)
+  if (formData.locationInfo.onSiteLocation) {
+    formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
+      formData.locationInfo.onSiteLocation
     );
-    return stringValue
-      .toString()
-      .replace(/\s*,\s*/g, ',')
-      .split(',')
-      .filter((a: string) => a);
-  } else {
-    return stringValue;
   }
-};
-
-//todo: refactor here, two functions below eachother very similar
-export const convertOnSiteLocation = (formData: Job) => {
-  //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  if (
-    formData.locationInfo.onSiteLocation &&
-    formData.locationInfo.onSiteLocation.includes(',')
-  ) {
-    const commaSeparatedLocations =
-      // @ts-ignore: tags are entered as a string at first and then converted into array
-      formData.locationInfo.onSiteLocation.replace(/\s*,\s*/g, ',');
-    formData.locationInfo.onSiteLocation = commaSeparatedLocations
-      .split(',')
-      .filter((a: string) => a);
-  }
-};
-
-export const convertOtherGeoRestriction = (formData: Job) => {
-  //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  if (
-    formData.locationInfo.geoRestrictionOther &&
-    formData.locationInfo.geoRestrictionOther.includes(',')
-  ) {
-    const commaSeparatedLocations =
-      // @ts-ignore: tags are entered as a string at first and then converted into array
-      formData.locationInfo.geoRestrictionOther.replace(/\s*,\s*/g, ',');
-    formData.locationInfo.geoRestrictionOther = commaSeparatedLocations
-      .split(',')
-      .filter((a: string) => a);
+  if (formData.locationInfo.geoRestrictionOther) {
+    formData.locationInfo.geoRestrictionOther =
+      convertCommaSeparatedStringToArray(
+        formData.locationInfo.geoRestrictionOther
+      );
   }
 };
 

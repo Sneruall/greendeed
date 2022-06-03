@@ -7,6 +7,7 @@ import clientPromise from '../lib/mongodb';
 /*
 Todo:
 - Make sure apis can only be called from our server? (post apis) prevent curl from working,..
+- Make sure to use caching (getserversideprops with settings special)
 */
 
 const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {

@@ -29,7 +29,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       </Link>
       <p>Job id: {job.id}</p>
       <p>Job title: {job.jobTitle}</p>
-      <p>Job location: {job.location}</p>
+      <p>Job location: {job.locationInfo?.location}</p>
       <p>Tags: {job.tags}</p>
     </div>
   );

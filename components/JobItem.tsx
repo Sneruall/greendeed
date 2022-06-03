@@ -25,7 +25,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
             </h2>
             <div className="flex gap-2">
               <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
-                {job.location}
+                {job.locationInfo?.location}
               </p>
               <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
                 $40k - $50k

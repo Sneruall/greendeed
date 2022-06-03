@@ -220,8 +220,8 @@ function Hiring() {
             </select>
             <div className="text-red-500">{errors.jobType?.message}</div>
           </div>
-          <h2>Location</h2>
-          <div className="form-group">
+          <div className="form-group bg-green-100">
+            <h2>Location</h2>
             <label htmlFor="remote">Remote</label>
             <input
               type="radio"
@@ -269,7 +269,7 @@ function Hiring() {
             <div className="text-red-500">{errors.location?.message}</div>
           </div>
           {location !== 'remote' && (
-            <div className="form-group">
+            <div className="form-group bg-purple-100">
               <label>On Site location</label>
               <input
                 type="text"
@@ -292,8 +292,8 @@ function Hiring() {
 
           {location !== 'onSite' && (
             <>
-              <h2>Remote location</h2>
-              <div className="form-group">
+              <div className="form-group bg-blue-100">
+                <h2>Remote location</h2>
                 <label htmlFor="worldwide">Worldwide</label>
                 <input
                   type="radio"
@@ -333,8 +333,8 @@ function Hiring() {
           )}
           {remoteLocation === 'geoRestriction' && (
             <>
-              <h2>Geographic restriction</h2>
-              <div className="form-group">
+              <div className="form-group bg-red-100">
+                <h2>Geographic restriction</h2>
                 <label htmlFor="europe">Europe</label>
                 <input
                   type="checkbox"

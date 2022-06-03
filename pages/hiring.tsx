@@ -404,9 +404,7 @@ function Hiring() {
               id="currency"
               className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
             >
-              <option value="" disabled selected>
-                Select currency...
-              </option>
+              <option>Select currency...</option>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>

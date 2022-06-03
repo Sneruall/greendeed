@@ -8,8 +8,8 @@ export type Job = {
   jobDescription: string;
   jobType: string;
   salary?: {
-    currency: Currency;
-    min: number;
+    currency?: Currency;
+    min?: number;
     max?: number;
   };
   location: Location;

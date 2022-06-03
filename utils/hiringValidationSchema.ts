@@ -55,16 +55,14 @@ export default Yup.object().shape({
     }),
   geoRestrictionOther: Yup.string().nullable(true),
   salary: Yup.object().shape({
-    currency: Yup.string().required(), // only make required when min is filled out.
-    min: Yup.number()
+    currency: Yup.string(), // only make required when min is filled out.
+    min: Yup.number() // only make required when max is filled out
       .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null))
       .min(0, 'Value must be greater than zero')
       .nullable(true)
       .typeError('Value must be a number'),
     max: Yup.number()
       .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null))
       .min(0, 'Value must be greater than zero')
       .nullable(true)
       .typeError('Value must be a number'),

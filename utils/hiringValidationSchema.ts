@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 // make fields dependent of eachother with .when, see https://stackoverflow.com/questions/67368180/validation-in-yup-react-based-on-the-value-of-checkbox
+// Make good and consistant error messages
 
 export default Yup.object().shape({
   companyName: Yup.string()
@@ -12,7 +13,7 @@ export default Yup.object().shape({
     .min(3, 'Job title must be at least 3 characters')
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'),
-  tags: Yup.string().max(70, 'Tags must not exceed 70 characters'),
+  tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
   // tags: Yup.array()
   // .max(5, 'Max 5 tags')
   // .of(Yup.string().max(32, 'Max 32 characters per tag')),
@@ -57,14 +58,25 @@ export default Yup.object().shape({
     geoRestrictionOther: Yup.string().nullable(true),
   }),
   salary: Yup.object().shape({
-    currency: Yup.string(), // only make required when min is filled out.
-    min: Yup.number() // only make required when max is filled out
+    currency: Yup.string().when('min', {
+      is: Number,
+      then: Yup.string().required(), //this does not work as it should yet.
+    }), // only make required when min is filled out.
+    min: Yup.number()
       .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
       .min(0, 'Value must be greater than zero')
       .nullable(true)
-      .typeError('Value must be a number'),
+      .typeError('Value must be a number')
+      .when('max', {
+        is: Number,
+        then: Yup.number()
+          .required()
+          .min(1, 'Minimum salary must be entered if max salary is given'),
+      }),
     max: Yup.number()
       .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
       .min(0, 'Value must be greater than zero')
       .nullable(true)
       .typeError('Value must be a number'),
@@ -105,14 +117,3 @@ export default Yup.object().shape({
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),
 });
-
-/*
-(salary: { currency: string; min: number; max: number }) =>
-          salary.max > 0,
-
-
-              max: Yup.string()
-      .transform((_, val) => (val === '' ? null : val))
-      .matches(/^[0-9]+$/gi, 'Must be a positive number')
-      .nullable(true),
-*/

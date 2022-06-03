@@ -35,6 +35,30 @@ export const convertTags = (formData: Job) => {
   }
 };
 
+//todo account for entries like: holland,germany,    or ,holland, germany,,,
+export const convertCommaSeparatedStringToArray = (stringValue: string[]) => {
+  console.log(stringValue);
+  if (!stringValue) {
+    return;
+  }
+  if (stringValue.includes(',')) {
+    console.log(
+      stringValue
+        .toString()
+        .replace(/\s*,\s*/g, ',')
+        .split(',')
+        .filter((a: string) => a)
+    );
+    return stringValue
+      .toString()
+      .replace(/\s*,\s*/g, ',')
+      .split(',')
+      .filter((a: string) => a);
+  } else {
+    return stringValue;
+  }
+};
+
 //todo: refactor here, two functions below eachother very similar
 export const convertOnSiteLocation = (formData: Job) => {
   //todo account for entries like: holland,germany,    or ,holland, germany,,,
@@ -42,8 +66,8 @@ export const convertOnSiteLocation = (formData: Job) => {
     formData.locationInfo.onSiteLocation &&
     formData.locationInfo.onSiteLocation.includes(',')
   ) {
-    // @ts-ignore: tags are entered as a string at first and then converted into array
     const commaSeparatedLocations =
+      // @ts-ignore: tags are entered as a string at first and then converted into array
       formData.locationInfo.onSiteLocation.replace(/\s*,\s*/g, ',');
     formData.locationInfo.onSiteLocation = commaSeparatedLocations
       .split(',')
@@ -57,8 +81,8 @@ export const convertOtherGeoRestriction = (formData: Job) => {
     formData.locationInfo.geoRestrictionOther &&
     formData.locationInfo.geoRestrictionOther.includes(',')
   ) {
-    // @ts-ignore: tags are entered as a string at first and then converted into array
     const commaSeparatedLocations =
+      // @ts-ignore: tags are entered as a string at first and then converted into array
       formData.locationInfo.geoRestrictionOther.replace(/\s*,\s*/g, ',');
     formData.locationInfo.geoRestrictionOther = commaSeparatedLocations
       .split(',')

@@ -44,6 +44,8 @@ export type LocationInfo = {
   geoRestriction?: string[];
   geoRestrictionOther?: string[];
 };
+
+// Todo: Maybe find how to not hardcode this but use global constants or something?
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 

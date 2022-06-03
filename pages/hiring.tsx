@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
@@ -13,7 +13,6 @@ import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
 import {
-  convertCommaSeparatedStringToArray,
   convertTagsAndLocations,
   postJob,
   setCompanyId,
@@ -53,21 +52,20 @@ function Hiring() {
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
-
     setCompanyId(formData, retrievedCompanyData?.id);
     console.log(formData);
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
       await postCompany(formData);
     }
-    //todo: add redirect / success popup. Add protection that if either postJob or postCompany fails it will error
+    //todo: add reset, redirect / success popup. Add protection that if either postJob or postCompany fails it will error
   }
 
   // THE JSX CODE, TODO: MAKE SEPARATE COMPONENT(S) OUT OF THE FORM.
   return (
     <>
       <Header />
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-3xl">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <label>Company Name*</label>

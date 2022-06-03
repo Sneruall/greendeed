@@ -18,6 +18,7 @@ import {
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import { generateCompanyUrl } from '../../utils/urlGeneration';
+import FieldJobTitle from './FieldJobTitle';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -55,6 +56,7 @@ function Form() {
     //todo: add reset, redirect / success popup. Add protection that if either postJob or postCompany fails it will error
   }
 
+  // todo: make this more readable, by adding components for recurring UI elements
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group">
@@ -106,28 +108,8 @@ function Form() {
           'Welcome new user!'}
         {companyNameIsLoading && 'Loading'}
       </div>
+      <FieldJobTitle register={register} errors={errors} />
 
-      <div className="form-group">
-        <label className="font-bold">Job Title</label>
-        <input
-          type="text"
-          {...register('jobTitle')}
-          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors.jobTitle
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.jobTitle?.message}</div>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Please specify as single job position like "Marketing Manager" or
-          "Node JS Developer", not a sentence like "Looking for PM / Biz Dev /
-          Manager". We know your job is important but please DO NOT WRITE IN
-          FULL CAPS. If posting multiple roles, please create multiple job
-          posts. A job post is limited to a single job. We only allow real jobs,
-          absolutely no MLM-type courses "learn how to work online" please.
-        </p>
-      </div>
       <div className="form-group">
         <label
           htmlFor="category"
@@ -170,7 +152,7 @@ function Form() {
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
-        <div className="text-red-500">{errors.tags?.message}</div>
+        <div className="text-red-500">{(errors.tags as any)?.message}</div>
       </div>
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
       <div className="form-group">
@@ -278,7 +260,7 @@ function Form() {
             }`}
           />
           <div className="text-red-500">
-            {errors.locationInfo?.onSiteLocation?.message}
+            {(errors.locationInfo?.onSiteLocation as any)?.message}
           </div>
           <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             Please use a comma to separate multiple locations.
@@ -369,7 +351,7 @@ function Form() {
               }`}
             />
             <div className="text-red-500">
-              {errors.locationInfo?.geoRestriction?.message}
+              {(errors.locationInfo?.geoRestriction as any)?.message}
             </div>
             {otherGeoRestriction && (
               <input
@@ -386,7 +368,7 @@ function Form() {
             )}
 
             <div className="text-red-500">
-              {errors.locationInfo?.geoRestrictionOther?.message}
+              {(errors.locationInfo?.geoRestrictionOther as any)?.message}
             </div>
           </div>
         </>

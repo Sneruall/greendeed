@@ -4,10 +4,14 @@ export type Job = {
   companyDescription: string;
   jobTitle: string;
   category: string;
-  tags: string[];
+  tags?: string[];
   jobDescription: string;
   jobType: string;
-  salary: string;
+  salary?: {
+    currency: Currency;
+    min: number;
+    max?: number;
+  };
   location: Location;
   onSiteLocation?: string[];
   remoteLocation?: RemoteLocation;
@@ -32,3 +36,5 @@ export type Company = {
 
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
+
+export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';

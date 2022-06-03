@@ -32,7 +32,7 @@ export default Yup.object().shape({
       then: Yup.string().required(),
     }),
   remoteLocation: Yup.string()
-    .nullable()
+    .nullable(true)
     .when('location', {
       is: 'remote',
       then: Yup.string().required().nullable(false),
@@ -42,20 +42,45 @@ export default Yup.object().shape({
       then: Yup.string().required().nullable(false),
     }),
   geoRestriction: Yup.array()
-    .nullable()
+    .nullable(true)
     .when('remoteLocation', {
       is: 'geoRestriction',
       then: Yup.array()
         .min(1, 'At least one Geographic restriction is required')
         .max(4, 'Max. 4 Geographic restrictions allowed')
-        .of(Yup.string().required('Error'))
+        .of(Yup.string().required('Required field'))
         .required('This is a required field')
         .nullable(false)
         .typeError('At least one Geographic restriction is required'),
     }),
-  geoRestrictionOther: Yup.string().nullable(),
-  salary: Yup.string(),
+  geoRestrictionOther: Yup.string().nullable(true),
+  salary: Yup.object().shape({
+    currency: Yup.string().required(), // only make required when min is filled out.
+    min: Yup.number()
+      .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null))
+      .min(0, 'Value must be greater than zero')
+      .nullable(true)
+      .typeError('Value must be a number'),
+    max: Yup.number()
+      .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null))
+      .min(0, 'Value must be greater than zero')
+      .nullable(true)
+      .typeError('Value must be a number'),
+  }),
   link: Yup.string().required('apply link is required'), //check if it is either a url or email address, or make it two fields
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),
 });
+
+/*
+(salary: { currency: string; min: number; max: number }) =>
+          salary.max > 0,
+
+
+              max: Yup.string()
+      .transform((_, val) => (val === '' ? null : val))
+      .matches(/^[0-9]+$/gi, 'Must be a positive number')
+      .nullable(true),
+*/

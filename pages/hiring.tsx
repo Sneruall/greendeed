@@ -445,6 +445,41 @@ function Hiring() {
             </p>
           </div>
           <div className="form-group">
+            <h3>Equity</h3>
+            <input
+              id="min"
+              type="number"
+              min="0"
+              max="100"
+              step=".01"
+              placeholder="Amount or Minimum percentage"
+              {...register('equity.min')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.equity?.min
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.equity?.min?.message}</div>
+            <input
+              id="max"
+              type="number"
+              min="0"
+              max="100"
+              step=".01"
+              placeholder="Maximum percentage"
+              {...register('equity.max')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.equity?.max
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors.equity?.max?.message}</div>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              If equity is provided as part of the compensation package, please
+              enter the percentage or specify a range.
+            </p>
             <label>Apply link*</label>
             <input
               type="text"

@@ -12,6 +12,10 @@ export type Job = {
     min?: number;
     max?: number;
   };
+  equity?: {
+    min?: number;
+    max?: number;
+  };
   location: Location;
   onSiteLocation?: string[];
   remoteLocation?: RemoteLocation;

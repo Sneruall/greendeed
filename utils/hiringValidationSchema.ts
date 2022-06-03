@@ -67,6 +67,22 @@ export default Yup.object().shape({
       .nullable(true)
       .typeError('Value must be a number'),
   }),
+  equity: Yup.object().shape({
+    min: Yup.number() // only make required when max is filled out
+      .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
+      .min(0, 'Value must be greater than zero')
+      .max(100, 'Value cannot be over 100%')
+      .nullable(true)
+      .typeError('Value must be a number'),
+    max: Yup.number() // make sure that it cannot be lower than min value from field above
+      .transform((_, val) => (val === '' ? null : val))
+      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
+      .min(0, 'Value must be greater than zero')
+      .max(100, 'Value cannot be over 100%')
+      .nullable(true)
+      .typeError('Value must be a number'),
+  }),
   link: Yup.string().required('apply link is required'), //check if it is either a url or email address, or make it two fields
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),

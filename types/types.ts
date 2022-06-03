@@ -16,12 +16,12 @@ export type Job = {
     min?: number;
     max?: number;
   };
+  digitalCurrency: boolean;
   location: Location;
   onSiteLocation?: string[];
   remoteLocation?: RemoteLocation;
   geoRestriction?: string[];
   geoRestrictionOther?: string[];
-  link: string;
   email: string;
   timestamp: number;
   id: string;
@@ -29,6 +29,9 @@ export type Job = {
   paid: boolean;
   hidden: boolean;
   listed: boolean;
+  applicationMethod: ApplicationMethod;
+  applyEmail: string;
+  applyWebsite: string;
 };
 
 // todo: add fields (websiteurl, employees...)
@@ -42,3 +45,5 @@ export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
+
+export type ApplicationMethod = 'email' | 'website';

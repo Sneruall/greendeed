@@ -83,7 +83,23 @@ export default Yup.object().shape({
       .nullable(true)
       .typeError('Value must be a number'),
   }),
-  link: Yup.string().required('apply link is required'), //check if it is either a url or email address, or make it two fields
+  digitalCurrency: Yup.boolean(),
+  applicationMethod: Yup.string().required(),
+  applyEmail: Yup.string()
+    .email('invalid email')
+    .when('applicationMethod', {
+      is: 'email',
+      then: Yup.string().required('apply email is required'),
+    }),
+  applyWebsite: Yup.string().when('applicationMethod', {
+    is: 'website',
+    then: Yup.string()
+      .matches(
+        /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
+        'url is not valid, use this format: website.com/apply'
+      )
+      .required('apply website is required'),
+  }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),
 });

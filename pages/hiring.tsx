@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Header from '../components/Header';
-import { Job, Location, Company, RemoteLocation } from '../types/types';
+import {
+  Job,
+  Location,
+  Company,
+  RemoteLocation,
+  ApplicationMethod,
+} from '../types/types';
 import hiringValidationSchema from '../utils/hiringValidationSchema';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../utils/urlGeneration';
@@ -31,6 +37,10 @@ function Hiring() {
   const [remoteLocation, setRemoteLocation] =
     useState<RemoteLocation>('worldwide');
   const [otherGeoRestriction, setOtherGeoRestriction] = useState<boolean>();
+
+  // Application method tracking
+  const [applicationMethod, setApplicationMethod] =
+    useState<ApplicationMethod>('email');
 
   const {
     register,
@@ -480,19 +490,95 @@ function Hiring() {
               If equity is provided as part of the compensation package, please
               enter the percentage or specify a range.
             </p>
-            <label>Apply link*</label>
+          </div>
+          <div className="form-group">
             <input
-              type="text"
-              placeholder="URL or email"
-              {...register('link')}
+              type="checkbox"
+              id="digitalCurrency"
+              {...register('digitalCurrency')}
+            />
+            <label htmlFor="digitalCurrency">
+              The option of getting paid in digital currency
+            </label>
+            <div className="text-red-500">
+              {errors.digitalCurrency?.message}
+            </div>
+          </div>
+          <div className="form-group bg-blue-100">
+            <h2>Apply by</h2>
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="radio"
+              id="email"
+              value="email"
+              checked={applicationMethod === 'email'}
+              onClick={() => setApplicationMethod('email')}
+              {...register('applicationMethod')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.link
+                errors.applicationMethod
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
-            <div className="text-red-500">{errors.link?.message}</div>
+            <div className="text-red-500">
+              {errors.applicationMethod?.message}
+            </div>
+            <label htmlFor="website">website</label>
+            <input
+              type="radio"
+              id="website"
+              value="website"
+              onClick={() => setApplicationMethod('website')}
+              {...register('applicationMethod')}
+              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                errors.applicationMethod
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">
+              {errors.applicationMethod?.message}
+            </div>
           </div>
+          {applicationMethod === 'email' ? (
+            <div className="form-group">
+              <input
+                type="email"
+                id="applyEmail"
+                placeholder="e.g. hiring@company.com"
+                {...register('applyEmail')}
+                className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                  errors.applyEmail
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+              <div className="text-red-500">{errors.applyEmail?.message}</div>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Applications for the position will be sent to the email address
+                you specify.
+              </p>
+            </div>
+          ) : (
+            <div className="form-group">
+              <input
+                id="applyWebsite"
+                type="text"
+                placeholder="e.g. https://www.company.com/apply"
+                {...register('applyWebsite')}
+                className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+                  errors.applyWebsite
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+              <div className="text-red-500">{errors.applyWebsite?.message}</div>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Applicants will be sent to the website you specify to apply for
+                the position.
+              </p>
+            </div>
+          )}
 
           <h2 className="text-xl">Company details</h2>
           <div className="form-group">

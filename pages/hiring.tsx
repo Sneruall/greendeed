@@ -237,11 +237,11 @@ function Hiring() {
               type="radio"
               id={'remote'}
               value="remote"
-              {...register('location')}
+              {...register('locationInfo.location')}
               checked={location === 'remote'}
               onClick={() => setLocation('remote')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.location
+                errors.locationInfo?.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
@@ -252,12 +252,12 @@ function Hiring() {
               id="onSite"
               value="onSite"
               checked={location === 'onSite'}
-              {...register('location')}
+              {...register('locationInfo.location')}
               onClick={() => {
                 setLocation('onSite');
               }}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.location
+                errors.locationInfo?.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
@@ -268,15 +268,17 @@ function Hiring() {
               id="onSiteOrRemote"
               value="onSiteOrRemote"
               checked={location === 'onSiteOrRemote'}
-              {...register('location')}
+              {...register('locationInfo.location')}
               onClick={() => setLocation('onSiteOrRemote')}
               className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.location
+                errors.locationInfo?.location
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
             />
-            <div className="text-red-500">{errors.location?.message}</div>
+            <div className="text-red-500">
+              {errors.locationInfo?.location?.message}
+            </div>
           </div>
           {location !== 'remote' && (
             <div className="form-group bg-purple-100">
@@ -284,15 +286,15 @@ function Hiring() {
               <input
                 type="text"
                 placeholder="e.g. Amsterdam, London, New York"
-                {...register('onSiteLocation')}
+                {...register('locationInfo.onSiteLocation')}
                 className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                  errors.onSiteLocation
+                  errors.locationInfo?.onSiteLocation
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                 }`}
               />
               <div className="text-red-500">
-                {errors.onSiteLocation?.message}
+                {errors.locationInfo?.onSiteLocation?.message}
               </div>
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                 Please use a comma to separate multiple locations.
@@ -311,15 +313,15 @@ function Hiring() {
                   value="worldwide"
                   checked={remoteLocation === 'worldwide'}
                   onClick={() => setRemoteLocation('worldwide')}
-                  {...register('remoteLocation')}
+                  {...register('locationInfo.remoteLocation')}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                    errors.remoteLocation
+                    errors.locationInfo?.remoteLocation
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
                 />
                 <div className="text-red-500">
-                  {errors.remoteLocation?.message}
+                  {errors.locationInfo?.remoteLocation?.message}
                 </div>
                 <label htmlFor="geoRestriction">Geographic restrictions</label>
                 <input
@@ -328,15 +330,15 @@ function Hiring() {
                   value="geoRestriction"
                   checked={remoteLocation === 'geoRestriction'}
                   onClick={() => setRemoteLocation('geoRestriction')}
-                  {...register('remoteLocation')}
+                  {...register('locationInfo.remoteLocation')}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                    errors.remoteLocation
+                    errors.locationInfo?.remoteLocation
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
                 />
                 <div className="text-red-500">
-                  {errors.remoteLocation?.message}
+                  {errors.locationInfo?.remoteLocation?.message}
                 </div>
               </div>
             </>
@@ -350,9 +352,9 @@ function Hiring() {
                   type="checkbox"
                   id="europe"
                   value="europe"
-                  {...register('geoRestriction')}
+                  {...register('locationInfo.geoRestriction')}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                    errors.geoRestriction
+                    errors.locationInfo?.geoRestriction
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
@@ -362,9 +364,9 @@ function Hiring() {
                   type="checkbox"
                   id="us"
                   value="us"
-                  {...register('geoRestriction')}
+                  {...register('locationInfo.geoRestriction')}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                    errors.geoRestriction
+                    errors.locationInfo?.geoRestriction
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
@@ -374,25 +376,25 @@ function Hiring() {
                   type="checkbox"
                   id="other"
                   value="other"
-                  {...register('geoRestriction')}
+                  {...register('locationInfo.geoRestriction')}
                   onChange={(e) => setOtherGeoRestriction(e.target.checked)}
                   className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                    errors.geoRestriction
+                    errors.locationInfo?.geoRestriction
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
                 />
                 <div className="text-red-500">
-                  {errors.geoRestriction?.message}
+                  {errors.locationInfo?.geoRestriction?.message}
                 </div>
                 {otherGeoRestriction && (
                   <input
                     type="text"
                     id="otherText"
                     placeholder="e.g. Switzerland"
-                    {...register('geoRestrictionOther')}
+                    {...register('locationInfo.geoRestrictionOther')}
                     className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                      errors.geoRestrictionOther
+                      errors.locationInfo?.geoRestrictionOther
                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                         : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                     }`}
@@ -400,7 +402,7 @@ function Hiring() {
                 )}
 
                 <div className="text-red-500">
-                  {errors.geoRestrictionOther?.message}
+                  {errors.locationInfo?.geoRestrictionOther?.message}
                 </div>
               </div>
             </>

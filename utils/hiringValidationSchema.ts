@@ -21,39 +21,41 @@ export default Yup.object().shape({
     .min(6, 'jobDescription must be at least 6 characters')
     .max(200, 'jobDescription must not exceed 200 characters'),
   jobType: Yup.string().required('Type of employment is required'),
-  location: Yup.string().required('location  is required'), //here and also maybe other fields: check if it is of type Location!
-  onSiteLocation: Yup.string()
-    .when('location', {
-      is: 'onSite',
-      then: Yup.string().required(),
-    })
-    .when('location', {
-      is: 'onSiteOrRemote',
-      then: Yup.string().required(),
-    }),
-  remoteLocation: Yup.string()
-    .nullable(true)
-    .when('location', {
-      is: 'remote',
-      then: Yup.string().required().nullable(false),
-    })
-    .when('location', {
-      is: 'onSiteOrRemote',
-      then: Yup.string().required().nullable(false),
-    }),
-  geoRestriction: Yup.array()
-    .nullable(true)
-    .when('remoteLocation', {
-      is: 'geoRestriction',
-      then: Yup.array()
-        .min(1, 'At least one Geographic restriction is required')
-        .max(4, 'Max. 4 Geographic restrictions allowed')
-        .of(Yup.string().required('Required field'))
-        .required('This is a required field')
-        .nullable(false)
-        .typeError('At least one Geographic restriction is required'),
-    }),
-  geoRestrictionOther: Yup.string().nullable(true),
+  locationInfo: Yup.object().shape({
+    location: Yup.string().required('location is required'), //here and also maybe other fields: check if it is of type Location!
+    onSiteLocation: Yup.string()
+      .when('location', {
+        is: 'onSite',
+        then: Yup.string().required('This is a required field'),
+      })
+      .when('location', {
+        is: 'onSiteOrRemote',
+        then: Yup.string().required('This is a required field'),
+      }),
+    remoteLocation: Yup.string()
+      .nullable(true)
+      .when('location', {
+        is: 'remote',
+        then: Yup.string().required().nullable(false),
+      })
+      .when('location', {
+        is: 'onSiteOrRemote',
+        then: Yup.string().required().nullable(false),
+      }),
+    geoRestriction: Yup.array()
+      .nullable(true)
+      .when('remoteLocation', {
+        is: 'geoRestriction',
+        then: Yup.array()
+          .min(1, 'At least one Geographic restriction is required')
+          .max(4, 'Max. 4 Geographic restrictions allowed')
+          .of(Yup.string().required('Required field'))
+          .required('This is a required field')
+          .nullable(false)
+          .typeError('At least one Geographic restriction is required'),
+      }),
+    geoRestrictionOther: Yup.string().nullable(true),
+  }),
   salary: Yup.object().shape({
     currency: Yup.string(), // only make required when min is filled out.
     min: Yup.number() // only make required when max is filled out

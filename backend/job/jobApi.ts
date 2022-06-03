@@ -19,8 +19,8 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.paid = true; // set the payment status
   formData.hidden = false; // set the visibility
   formData.listed = true;
-  if (formData.location === 'onSite') {
-    formData.remoteLocation = undefined;
+  if (formData.locationInfo.location === 'onSite') {
+    formData.locationInfo.remoteLocation = undefined;
   }
 };
 
@@ -28,7 +28,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
 
 export const convertTags = (formData: Job) => {
   //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  if (formData.tags.includes(',')) {
+  if (formData.tags?.includes(',')) {
     // @ts-ignore: tags are entered as a string at first and then converted into array
     const commaSeparatedTags = formData.tags.replace(/\s*,\s*/g, ',');
     formData.tags = commaSeparatedTags.split(',').filter((a: string) => a); //splitsen op de comma en filteren op undefined or null elements in array
@@ -38,13 +38,14 @@ export const convertTags = (formData: Job) => {
 //todo: refactor here, two functions below eachother very similar
 export const convertOnSiteLocation = (formData: Job) => {
   //todo account for entries like: holland,germany,    or ,holland, germany,,,
-  if (formData.onSiteLocation && formData.onSiteLocation.includes(',')) {
+  if (
+    formData.locationInfo.onSiteLocation &&
+    formData.locationInfo.onSiteLocation.includes(',')
+  ) {
     // @ts-ignore: tags are entered as a string at first and then converted into array
-    const commaSeparatedLocations = formData.onSiteLocation.replace(
-      /\s*,\s*/g,
-      ','
-    );
-    formData.onSiteLocation = commaSeparatedLocations
+    const commaSeparatedLocations =
+      formData.locationInfo.onSiteLocation.replace(/\s*,\s*/g, ',');
+    formData.locationInfo.onSiteLocation = commaSeparatedLocations
       .split(',')
       .filter((a: string) => a);
   }
@@ -53,15 +54,13 @@ export const convertOnSiteLocation = (formData: Job) => {
 export const convertOtherGeoRestriction = (formData: Job) => {
   //todo account for entries like: holland,germany,    or ,holland, germany,,,
   if (
-    formData.geoRestrictionOther &&
-    formData.geoRestrictionOther.includes(',')
+    formData.locationInfo.geoRestrictionOther &&
+    formData.locationInfo.geoRestrictionOther.includes(',')
   ) {
     // @ts-ignore: tags are entered as a string at first and then converted into array
-    const commaSeparatedLocations = formData.geoRestrictionOther.replace(
-      /\s*,\s*/g,
-      ','
-    );
-    formData.geoRestrictionOther = commaSeparatedLocations
+    const commaSeparatedLocations =
+      formData.locationInfo.geoRestrictionOther.replace(/\s*,\s*/g, ',');
+    formData.locationInfo.geoRestrictionOther = commaSeparatedLocations
       .split(',')
       .filter((a: string) => a);
   }

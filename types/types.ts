@@ -17,11 +17,7 @@ export type Job = {
     max?: number;
   };
   digitalCurrency: boolean;
-  location: Location;
-  onSiteLocation?: string[];
-  remoteLocation?: RemoteLocation;
-  geoRestriction?: string[];
-  geoRestrictionOther?: string[];
+  locationInfo: LocationInfo;
   email: string;
   timestamp: number;
   id: string;
@@ -41,6 +37,13 @@ export type Company = {
   description: string;
 };
 
+export type LocationInfo = {
+  location: Location;
+  onSiteLocation?: string[];
+  remoteLocation?: RemoteLocation;
+  geoRestriction?: string[];
+  geoRestrictionOther?: string[];
+};
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 

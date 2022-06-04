@@ -101,20 +101,14 @@ function Form() {
         title="Category"
       />
 
-      <div className="form-group">
-        <label>Tags</label>
-        <input
-          type="text"
-          placeholder="Separated by comma, e,g, tech stack or industry"
-          {...register('tags')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.tags
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{(errors.tags as any)?.message}</div>
-      </div>
+      <FormFieldString
+        title="Tags"
+        placeholder="Separated by comma, e,g, tech stack or industry"
+        errors={errors.tags}
+        id="tags"
+        register={register}
+      />
+
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
       <div className="form-group">
         <label

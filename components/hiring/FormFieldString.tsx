@@ -5,16 +5,26 @@ import React from 'react';
 const FormFieldString: React.FC<{
   id: string;
   title: string;
+  placeholder?: string;
   description?: string;
   onChangeMethod?: Function;
   register: any;
   errors: any;
-}> = ({ id, title, description, onChangeMethod, register, errors }) => {
+}> = ({
+  id,
+  title,
+  description,
+  onChangeMethod,
+  register,
+  errors,
+  placeholder,
+}) => {
   return (
     <div className="form-group">
       <label className="font-bold">{title}</label>
       <input
         type="text"
+        placeholder={placeholder}
         {...register(id)}
         onChange={onChangeMethod}
         className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${

@@ -81,7 +81,7 @@ export const jobCategories = [
         <option>Other</option> */
 }
 
-export const jobType = [
+export const jobTypes = [
   'Full-time',
   'Part-time',
   'Freelance',
@@ -90,3 +90,5 @@ export const jobType = [
   'Volunteer',
   'Other',
 ];
+
+export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];

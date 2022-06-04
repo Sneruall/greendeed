@@ -15,7 +15,7 @@ import {
   Location,
   Company,
   jobCategories,
-  jobType,
+  jobTypes,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -23,6 +23,7 @@ import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
 import FormFieldOption from './FormFieldOption';
 import LocationElement from './form-elements/LocationElement';
+import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -141,7 +142,7 @@ function Form() {
         register={register}
         errors={errors.jobType}
         title="Type of Employment"
-        options={jobType}
+        options={jobTypes}
       />
 
       <LocationElement
@@ -197,51 +198,12 @@ function Form() {
           <div className="form-group bg-red-100">
             <h2>Geographic restriction</h2>
 
-            <FormFieldOption
-              errors={errors.locationInfo?.geoRestriction}
-              registerId="locationInfo.geoRestriction"
-              option="europe"
-              optionType="checkbox"
+            <GeoRestrictionElement
+              errors={errors?.locationInfo?.geoRestriction}
               register={register}
-              title="Europe"
+              setOtherGeoRestriction={setOtherGeoRestriction}
             />
-            {/* <label htmlFor="europe">Europe</label>
-            <input
-              type="checkbox"
-              id="europe"
-              value="europe"
-              {...register('locationInfo.geoRestriction')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.locationInfo?.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            /> */}
-            <label htmlFor="us">US</label>
-            <input
-              type="checkbox"
-              id="us"
-              value="us"
-              {...register('locationInfo.geoRestriction')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.locationInfo?.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <label htmlFor="other">Other</label>
-            <input
-              type="checkbox"
-              id="other"
-              value="other"
-              {...register('locationInfo.geoRestriction')}
-              onChange={(e) => setOtherGeoRestriction(e.target.checked)}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.locationInfo?.geoRestriction
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
+
             <div className="text-red-500">
               {(errors.locationInfo?.geoRestriction as any)?.message}
             </div>

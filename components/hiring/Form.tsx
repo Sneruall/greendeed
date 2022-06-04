@@ -14,11 +14,16 @@ import {
   RemoteLocation,
   Location,
   Company,
+  jobCategories,
+  jobType,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
+import FormFieldOption from './FormFieldOption';
+import Location from './form-elements/LocationElement';
+import LocationElement from './form-elements/LocationElement';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -99,6 +104,7 @@ function Form() {
         id="category"
         register={register}
         title="Category"
+        options={jobCategories.sort()}
       />
 
       <FormFieldString
@@ -130,97 +136,31 @@ function Form() {
         ></textarea>
         <div className="text-red-500">{errors.jobDescription?.message}</div>
       </div>
-      <div className="form-group">
-        <label
-          htmlFor="jobType"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
-        >
-          Type of employment
-        </label>
-        <select
-          {...register('jobType')}
-          id="jobType"
-          className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
-        >
-          <option>Full-time</option>
-          <option>Part-time</option>
-          <option>Freelance</option>
-          <option>Internship</option>
-          <option>Volunteer</option>
-          <option>Other</option>
-        </select>
-        <div className="text-red-500">{errors.jobType?.message}</div>
-      </div>
-      <div className="form-group bg-green-100">
-        <h2>Location</h2>
-        <label htmlFor="remote">Remote</label>
-        <input
-          type="radio"
-          id={'remote'}
-          value="remote"
-          {...register('locationInfo.location')}
-          checked={location === 'remote'}
-          onClick={() => setLocation('remote')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.locationInfo?.location
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <label htmlFor="onSite">On Site</label>
-        <input
-          type="radio"
-          id="onSite"
-          value="onSite"
-          checked={location === 'onSite'}
-          {...register('locationInfo.location')}
-          onClick={() => {
-            setLocation('onSite');
-          }}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.locationInfo?.location
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <label htmlFor="onSiteOrRemote">On Site or Remote</label>
-        <input
-          type="radio"
-          id="onSiteOrRemote"
-          value="onSiteOrRemote"
-          checked={location === 'onSiteOrRemote'}
-          {...register('locationInfo.location')}
-          onClick={() => setLocation('onSiteOrRemote')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.locationInfo?.location
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">
-          {errors.locationInfo?.location?.message}
-        </div>
-      </div>
+
+      <FormFieldDropdown
+        id="jobType"
+        register={register}
+        errors={errors.jobType}
+        title="Type of Employment"
+        options={jobType}
+      />
+
+      <LocationElement
+        errors={errors}
+        register={register}
+        setLocation={setLocation}
+        location={location}
+      />
+
       {location !== 'remote' && (
-        <div className="form-group bg-purple-100">
-          <label>On Site location</label>
-          <input
-            type="text"
-            placeholder="e.g. Amsterdam, London, New York"
-            {...register('locationInfo.onSiteLocation')}
-            className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-              errors.locationInfo?.onSiteLocation
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-            }`}
-          />
-          <div className="text-red-500">
-            {(errors.locationInfo?.onSiteLocation as any)?.message}
-          </div>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Please use a comma to separate multiple locations.
-          </p>
-        </div>
+        <FormFieldString
+          errors={errors.locationInfo?.onSiteLocation}
+          id="locationInfo.onSiteLocation"
+          register={register}
+          title="On Site Location(s)"
+          placeholder="e.g. Amsterdam, London, New York"
+          description="Please use a comma to separate multiple locations."
+        />
       )}
 
       {location !== 'onSite' && (
@@ -264,7 +204,7 @@ function Form() {
           </div>
         </>
       )}
-      {remoteLocation === 'geoRestriction' && (
+      {remoteLocation === 'geoRestriction' && location !== 'onSite' && (
         <>
           <div className="form-group bg-red-100">
             <h2>Geographic restriction</h2>

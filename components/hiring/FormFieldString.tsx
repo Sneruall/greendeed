@@ -21,8 +21,11 @@ const FormFieldString: React.FC<{
 }) => {
   return (
     <div className="form-group">
-      <label className="font-bold">{title}</label>
+      <label htmlFor={id} className="font-bold">
+        {title}
+      </label>
       <input
+        id={id}
         type="text"
         placeholder={placeholder}
         {...register(id)}

@@ -52,3 +52,41 @@ export type RemoteLocation = 'worldwide' | 'geoRestriction';
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
 
 export type ApplicationMethod = 'email' | 'website';
+
+// Option lists
+export const jobCategories = [
+  'IT',
+  'Operations',
+  'Manufacturing',
+  'Consultancy',
+];
+{
+  /* Todo: make the categories complete: https://tallo.com/blog/types-of-careers/ https://www.recruiter.com/careers/ */
+}
+{
+  /* <option>Software Development</option>
+        <option>Customer Support</option>
+        <option>Design</option>
+        <option>DevOps and Sysadmin</option>
+        <option>Sales and Marketing</option>
+        <option>Legal and Finance</option>
+        <option>Operations</option>
+        <option>Management</option>
+        <option>Non-tech</option>
+        <option>Product</option>
+        <option>Business</option>
+        <option>Data</option>
+        <option>Human Resources</option>
+        <option>Writing</option>
+        <option>Other</option> */
+}
+
+export const jobType = [
+  'Full-time',
+  'Part-time',
+  'Freelance',
+  'Internship',
+  'Traineeship',
+  'Volunteer',
+  'Other',
+];

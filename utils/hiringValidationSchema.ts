@@ -12,7 +12,7 @@ export default Yup.object().shape({
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters')
     .max(70, 'Job title must not exceed 70 characters'),
-  category: Yup.string().required('Category is required'),
+  category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
   // tags: Yup.array()
   // .max(5, 'Max 5 tags')
@@ -21,7 +21,7 @@ export default Yup.object().shape({
     .required('jobDescription is required')
     .min(6, 'jobDescription must be at least 6 characters')
     .max(200, 'jobDescription must not exceed 200 characters'),
-  jobType: Yup.string().required('Type of employment is required'),
+  jobType: Yup.string().required('Type of employment is required'), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
     location: Yup.string().required('location is required'), //here and also maybe other fields: check if it is of type Location!
     onSiteLocation: Yup.string()
@@ -45,16 +45,33 @@ export default Yup.object().shape({
       }),
     geoRestriction: Yup.array()
       .nullable(true)
-      .when('remoteLocation', {
-        is: 'geoRestriction',
-        then: Yup.array()
-          .min(1, 'At least one Geographic restriction is required')
-          .max(4, 'Max. 4 Geographic restrictions allowed')
-          .of(Yup.string().required('Required field'))
-          .required('This is a required field')
-          .nullable(false)
-          .typeError('At least one Geographic restriction is required'),
+      .when('location', {
+        is: 'onSiteOrRemote',
+        then: Yup.array().when('remoteLocation', {
+          is: 'geoRestriction',
+          then: Yup.array()
+            .min(1, 'At least one Geographic restriction is required')
+            .max(4, 'Max. 4 Geographic restrictions allowed')
+            .of(Yup.string().required('Required field'))
+            .required('This is a required field')
+            .nullable(false)
+            .typeError('At least one Geographic restriction is required'),
+        }),
+      })
+      .when('location', {
+        is: 'remote',
+        then: Yup.array().when('remoteLocation', {
+          is: 'geoRestriction',
+          then: Yup.array()
+            .min(1, 'At least one Geographic restriction is required')
+            .max(4, 'Max. 4 Geographic restrictions allowed')
+            .of(Yup.string().required('Required field'))
+            .required('This is a required field')
+            .nullable(false)
+            .typeError('At least one Geographic restriction is required'),
+        }),
       }),
+
     geoRestrictionOther: Yup.string().nullable(true),
   }),
   salary: Yup.object().shape({

@@ -18,7 +18,7 @@ import {
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import { generateCompanyUrl } from '../../utils/urlGeneration';
-import FieldJobTitle from './FieldJobTitle';
+import FormFieldString from './FormFieldString';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -108,7 +108,18 @@ function Form() {
           'Welcome new user!'}
         {companyNameIsLoading && 'Loading'}
       </div>
-      <FieldJobTitle register={register} errors={errors} />
+      <FormFieldString
+        id="jobTitle"
+        title="Job Title"
+        description="Please specify as single job position like Marketing Manager or Node
+        JS Developer, not a sentence like Looking for PM / Biz Dev / Manager.
+        We know your job is important but please DO NOT WRITE IN FULL CAPS. If
+        posting multiple roles, please create multiple job posts. A job post is
+        limited to a single job. We only allow real jobs, absolutely no MLM-type
+        courses learn how to work online please."
+        register={register}
+        errors={errors}
+      />
 
       <div className="form-group">
         <label

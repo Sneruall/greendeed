@@ -102,7 +102,11 @@ function Form() {
           !companyNameIsLoading &&
           !retrievedCompanyData?.name &&
           'Welcome new user!'}
-        {companyNameIsLoading && 'Loading'}
+        {companyNameIsLoading && 'Checking for existing companies...'}
+        {retrievedCompanyData?.name === 'x' &&
+          !companyNameIsLoading &&
+          !errors.companyName &&
+          'Company name must be at least 2 characters'}
       </div>
       <FormFieldString
         id="jobTitle"

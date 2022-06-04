@@ -46,8 +46,8 @@ async function findCompany(
     React.SetStateAction<Company | undefined>
   >
 ) {
-  if (!value) {
-    setRetrievedCompanyData({ name: '', id: '', description: '' });
+  if (value.length < 2 || !value) {
+    setRetrievedCompanyData({ name: 'x', id: '', description: '' });
     return;
   }
   const res = await fetch(`/api/find-company/${value}`);

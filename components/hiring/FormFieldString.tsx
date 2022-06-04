@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
+
 const FormFieldString: React.FC<{
   id: string;
   title: string;

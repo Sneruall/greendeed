@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
@@ -17,8 +16,9 @@ import {
   Company,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
-import { generateCompanyUrl } from '../../utils/urlGeneration';
+import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
+import FormFieldDropdown from './FormFieldDropdown';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -75,39 +75,12 @@ function Form() {
           );
         }}
       />
+      <CompanyChecker
+        companyNameIsLoading={companyNameIsLoading}
+        errorsCompanyName={errors.companyName}
+        retrievedCompanyData={retrievedCompanyData}
+      />
 
-      <div>
-        {!companyNameIsLoading &&
-          retrievedCompanyData?.name &&
-          retrievedCompanyData.id && (
-            <p className="text-blue-800">
-              Welcome back{' '}
-              <Link
-                href={generateCompanyUrl(
-                  retrievedCompanyData.name.toLowerCase(),
-                  retrievedCompanyData.id
-                )}
-              >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  {retrievedCompanyData.name}
-                </a>
-              </Link>
-            </p>
-          )}
-        {companyNameIsLoading != undefined &&
-          !companyNameIsLoading &&
-          !retrievedCompanyData?.name &&
-          'Welcome new user!'}
-        {companyNameIsLoading && 'Checking for existing companies...'}
-        {retrievedCompanyData?.name === 'x' &&
-          !companyNameIsLoading &&
-          !errors.companyName &&
-          'Company name must be at least 2 characters'}
-      </div>
       <FormFieldString
         id="jobTitle"
         title="Job Title"
@@ -121,36 +94,13 @@ function Form() {
         errors={errors.jobTitle}
       />
 
-      <div className="form-group">
-        <label
-          htmlFor="category"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
-        >
-          Category
-        </label>
-        <select
-          {...register('category')}
-          id="category"
-          className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
-        >
-          <option>Software Development</option>
-          <option>Customer Support</option>
-          <option>Design</option>
-          <option>DevOps and Sysadmin</option>
-          <option>Sales and Marketing</option>
-          <option>Legal and Finance</option>
-          <option>Operations</option>
-          <option>Management</option>
-          <option>Non-tech</option>
-          <option>Product</option>
-          <option>Business</option>
-          <option>Data</option>
-          <option>Human Resources</option>
-          <option>Writing</option>
-          <option>Other</option>
-        </select>
-        <div className="text-red-500">{errors.category?.message}</div>
-      </div>
+      <FormFieldDropdown
+        errors={errors.category}
+        id="category"
+        register={register}
+        title="Category"
+      />
+
       <div className="form-group">
         <label>Tags</label>
         <input

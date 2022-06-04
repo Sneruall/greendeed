@@ -5,6 +5,8 @@ import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
 import { generateJobUrl } from '../utils/urlGeneration';
 
+//Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
+
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');

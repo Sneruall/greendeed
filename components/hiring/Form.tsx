@@ -59,28 +59,24 @@ function Form() {
   // todo: make this more readable, by adding components for recurring UI elements
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group">
-        <label>Company Name*</label>
-        <input
-          type="text"
-          {...register('companyName')}
-          onChange={({ target: { value } }) => {
-            // Check if the value has a match with the database (do it with care, not every second/debounce?)
-            // If match found, show it to the user and set the CompanyId already
-            // If no match, set the CompanyId back to undefined and welcome the new company
-            checkCompany(
-              value,
-              setCompanyNameIsLoading,
-              setRetrievedCompanyData
-            );
-          }}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.companyName
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.companyName?.message}</div>
+      <FormFieldString
+        id="companyName"
+        title="Company Name*"
+        errors={errors.companyName}
+        register={register}
+        onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
+          // Check if the value has a match with the database (do it with care, not every second/debounce?)
+          // If match found, show it to the user and set the CompanyId already
+          // If no match, set the CompanyId back to undefined and welcome the new company
+          checkCompany(
+            event?.target.value,
+            setCompanyNameIsLoading,
+            setRetrievedCompanyData
+          );
+        }}
+      />
+
+      <div>
         {!companyNameIsLoading &&
           retrievedCompanyData?.name &&
           retrievedCompanyData.id && (
@@ -118,7 +114,7 @@ function Form() {
         limited to a single job. We only allow real jobs, absolutely no MLM-type
         courses learn how to work online please."
         register={register}
-        errors={errors}
+        errors={errors.jobTitle}
       />
 
       <div className="form-group">

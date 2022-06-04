@@ -170,6 +170,7 @@ function Form() {
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
               option="worldwide"
+              optionType="radio"
               location={remoteLocation}
               register={register}
               setLocationState={setRemoteLocation}
@@ -179,6 +180,7 @@ function Form() {
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
               option="geoRestriction"
+              optionType="radio"
               location={remoteLocation}
               register={register}
               setLocationState={setRemoteLocation}
@@ -194,7 +196,16 @@ function Form() {
         <>
           <div className="form-group bg-red-100">
             <h2>Geographic restriction</h2>
-            <label htmlFor="europe">Europe</label>
+
+            <FormFieldOption
+              errors={errors.locationInfo?.geoRestriction}
+              registerId="locationInfo.geoRestriction"
+              option="europe"
+              optionType="checkbox"
+              register={register}
+              title="Europe"
+            />
+            {/* <label htmlFor="europe">Europe</label>
             <input
               type="checkbox"
               id="europe"
@@ -205,7 +216,7 @@ function Form() {
                   ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                   : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
               }`}
-            />
+            /> */}
             <label htmlFor="us">US</label>
             <input
               type="checkbox"

@@ -16,29 +16,29 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
       <FormFieldOption
         option="remote"
         title="Remote"
-        id="locationInfo.location"
+        registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
         location={location}
-        setLocation={setLocation}
+        setLocationState={setLocation}
       />
       <FormFieldOption
         option="onSite"
         title="On Site"
-        id="locationInfo.location"
+        registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
         location={location}
-        setLocation={setLocation}
+        setLocationState={setLocation}
       />
       <FormFieldOption
         option="onSiteOrRemote"
         title="On Site or Remote"
-        id="locationInfo.location"
+        registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
         location={location}
-        setLocation={setLocation}
+        setLocationState={setLocation}
       />
       <div className="text-red-500">
         {errors.locationInfo?.location?.message}

@@ -1,24 +1,26 @@
 import React, { Fragment } from 'react';
-import { Location } from '../../types/types';
+import { Location, RemoteLocation } from '../../types/types';
 
 type Props = {
-  id: string;
+  registerId: string;
   option: any;
   title: string;
   register: any;
   errors: any;
-  location: Location;
-  setLocation: React.Dispatch<React.SetStateAction<Location>>;
+  location: Location | RemoteLocation;
+  setLocationState:
+    | React.Dispatch<React.SetStateAction<Location>>
+    | React.Dispatch<React.SetStateAction<RemoteLocation>>;
 };
 
 function FormFieldOption({
-  id,
+  registerId,
   option,
   title,
   register,
   errors,
   location,
-  setLocation,
+  setLocationState,
 }: Props) {
   return (
     <div>
@@ -27,9 +29,9 @@ function FormFieldOption({
         type="radio"
         id={option}
         value={option}
-        {...register(id)}
+        {...register(registerId)}
         checked={location === option}
-        onClick={() => setLocation(option)}
+        onClick={() => setLocationState(option)}
         className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
           errors
             ? 'border-red-300 focus:border-red-500 focus:ring-red-500'

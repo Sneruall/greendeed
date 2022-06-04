@@ -22,7 +22,6 @@ import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
 import FormFieldOption from './FormFieldOption';
-import Location from './form-elements/LocationElement';
 import LocationElement from './form-elements/LocationElement';
 
 function Form() {
@@ -167,36 +166,23 @@ function Form() {
         <>
           <div className="form-group bg-blue-100">
             <h2>Remote location</h2>
-            <label htmlFor="worldwide">Worldwide</label>
-            <input
-              type="radio"
-              id="worldwide"
-              value="worldwide"
-              checked={remoteLocation === 'worldwide'}
-              onClick={() => setRemoteLocation('worldwide')}
-              {...register('locationInfo.remoteLocation')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.locationInfo?.remoteLocation
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
+            <FormFieldOption
+              errors={errors.locationInfo?.remoteLocation}
+              registerId="locationInfo.remoteLocation"
+              option="worldwide"
+              location={remoteLocation}
+              register={register}
+              setLocationState={setRemoteLocation}
+              title="Worldwide"
             />
-            <div className="text-red-500">
-              {errors.locationInfo?.remoteLocation?.message}
-            </div>
-            <label htmlFor="geoRestriction">Geographic restrictions</label>
-            <input
-              type="radio"
-              id="geoRestriction"
-              value="geoRestriction"
-              checked={remoteLocation === 'geoRestriction'}
-              onClick={() => setRemoteLocation('geoRestriction')}
-              {...register('locationInfo.remoteLocation')}
-              className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                errors.locationInfo?.remoteLocation
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
+            <FormFieldOption
+              errors={errors.locationInfo?.remoteLocation}
+              registerId="locationInfo.remoteLocation"
+              option="geoRestriction"
+              location={remoteLocation}
+              register={register}
+              setLocationState={setRemoteLocation}
+              title="Geographic restrictions"
             />
             <div className="text-red-500">
               {errors.locationInfo?.remoteLocation?.message}

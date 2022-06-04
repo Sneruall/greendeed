@@ -56,6 +56,9 @@ export default Yup.object().shape({
             .required('This is a required field')
             .nullable(false)
             .typeError('At least one Geographic restriction is required'),
+          // otherwise: Yup.array().transform((_, val) =>
+          //   val === '' ? null : val
+          // ),
         }),
       })
       .when('location', {
@@ -69,6 +72,9 @@ export default Yup.object().shape({
             .required('This is a required field')
             .nullable(false)
             .typeError('At least one Geographic restriction is required'),
+          // otherwise: Yup.array().transform((_, val) =>
+          //   val === '' ? null : val
+          // ),
         }),
       }),
 

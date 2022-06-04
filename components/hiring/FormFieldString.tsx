@@ -4,7 +4,7 @@ import React from 'react';
 
 const FormFieldString: React.FC<{
   id: string;
-  title: string;
+  title?: string;
   placeholder?: string;
   description?: string;
   onChangeMethod?: Function;

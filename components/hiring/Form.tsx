@@ -203,28 +203,19 @@ function Form() {
               register={register}
               setOtherGeoRestriction={setOtherGeoRestriction}
             />
-
             <div className="text-red-500">
               {(errors.locationInfo?.geoRestriction as any)?.message}
             </div>
-            {otherGeoRestriction && (
-              <input
-                type="text"
-                id="otherText"
-                placeholder="e.g. Switzerland"
-                {...register('locationInfo.geoRestrictionOther')}
-                className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-                  errors.locationInfo?.geoRestrictionOther
-                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-                }`}
-              />
-            )}
-
-            <div className="text-red-500">
-              {(errors.locationInfo?.geoRestrictionOther as any)?.message}
-            </div>
           </div>
+
+          {otherGeoRestriction && (
+            <FormFieldString
+              errors={errors.locationInfo?.geoRestrictionOther}
+              id="locationInfo.geoRestrictionOther"
+              register={register}
+              placeholder="e.g. Switzerland"
+            />
+          )}
         </>
       )}
 

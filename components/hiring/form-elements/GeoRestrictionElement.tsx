@@ -28,14 +28,7 @@ function GeoRestrictionElement({
     />
   ));
 
-  return (
-    <div>
-      {optionList}
-      <div className="text-red-500">
-        {(errors?.locationInfo?.geoRestriction as any)?.message}
-      </div>
-    </div>
-  );
+  return <div>{optionList}</div>;
 }
 
 export default GeoRestrictionElement;

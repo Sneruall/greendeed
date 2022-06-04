@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 // make fields dependent of eachother with .when, see https://stackoverflow.com/questions/67368180/validation-in-yup-react-based-on-the-value-of-checkbox
-// Make good and consistant error messages
+// Make good and consistant error messages as constants, e.g. (.required(requirederror))
 
 export default Yup.object().shape({
   companyName: Yup.string()
@@ -78,7 +78,14 @@ export default Yup.object().shape({
         }),
       }),
 
-    geoRestrictionOther: Yup.string().nullable(true),
+    geoRestrictionOther: Yup.string().when(
+      'geoRestriction',
+      (geoRestriction) => {
+        return geoRestriction.includes('other')
+          ? Yup.string().required('Required to fill out')
+          : Yup.string();
+      }
+    ),
   }),
   salary: Yup.object().shape({
     currency: Yup.string().when('min', {

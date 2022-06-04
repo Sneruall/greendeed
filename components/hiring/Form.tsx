@@ -16,6 +16,7 @@ import {
   Company,
   jobCategories,
   jobTypes,
+  currencies,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -171,7 +172,7 @@ function Form() {
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
               option="worldwide"
-              optionType="radio"
+              inputType="radio"
               location={remoteLocation}
               register={register}
               setLocationState={setRemoteLocation}
@@ -181,7 +182,7 @@ function Form() {
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
               option="geoRestriction"
-              optionType="radio"
+              inputType="radio"
               location={remoteLocation}
               register={register}
               setLocationState={setRemoteLocation}
@@ -219,52 +220,32 @@ function Form() {
         </>
       )}
 
-      <div className="form-group">
-        <h2>Compensation</h2>
-        <h3>Base Salary</h3>
-        <select
-          {...register('salary.currency')}
-          id="currency"
-          className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
-        >
-          <option>Select currency...</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="CAD">CAD</option>
-          <option value="AUD">AUD</option>
-        </select>
-        <div className="text-red-500">{errors.salary?.currency?.message}</div>
-        <input
-          id="min"
-          type="number"
-          placeholder="Amount or Minimum"
-          {...register('salary.min')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.salary?.min
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.salary?.min?.message}</div>
-        <input
-          id="max"
-          type="number"
-          placeholder="Maximum"
-          {...register('salary.max')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.salary?.max
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.salary?.max?.message}</div>
+      <h2>Compensation</h2>
+      <h3>Base Salary</h3>
+      <FormFieldDropdown
+        errors={errors.salary?.currency?.message}
+        id="salary.currency"
+        options={currencies}
+        register={register}
+      />
 
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Please enter the annual base salary or specify a salary range for the
-          position.
-        </p>
-      </div>
+      <FormFieldString
+        errors={errors.salary?.min}
+        register={register}
+        inputType="number"
+        placeholder="Amount or Minimum"
+        id="salary.min"
+      />
+      <FormFieldString
+        errors={errors.salary?.max}
+        register={register}
+        inputType="number"
+        placeholder="Maximum (optional)"
+        id="salary.max"
+        description="Please enter the annual base salary or specify a salary range for the
+        position."
+      />
+
       <div className="form-group">
         <h3>Equity</h3>
         <input

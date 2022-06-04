@@ -21,7 +21,7 @@ function GeoRestrictionElement({
       errors={errors?.locationInfo?.geoRestriction}
       registerId="locationInfo.geoRestriction"
       option={option.replace(/\s/g, '').toLocaleLowerCase()}
-      optionType="checkbox"
+      inputType="checkbox"
       register={register}
       title={option}
       setOtherGeoRestriction={setOtherGeoRestriction}

@@ -10,6 +10,7 @@ const FormFieldString: React.FC<{
   onChangeMethod?: Function;
   register: any;
   errors: any;
+  inputType?: React.HTMLInputTypeAttribute | undefined;
 }> = ({
   id,
   title,
@@ -18,6 +19,7 @@ const FormFieldString: React.FC<{
   register,
   errors,
   placeholder,
+  inputType,
 }) => {
   return (
     <div className="form-group">
@@ -26,7 +28,7 @@ const FormFieldString: React.FC<{
       </label>
       <input
         id={id}
-        type="text"
+        type={inputType ? inputType : 'text'}
         placeholder={placeholder}
         {...register(id)}
         onChange={onChangeMethod}

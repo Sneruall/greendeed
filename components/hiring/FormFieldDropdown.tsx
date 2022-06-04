@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
   id: string;
-  title: string;
+  title?: string;
   options: string[];
   register: any;
   errors: any;
@@ -10,7 +10,9 @@ type Props = {
 
 const FormFieldDropdown = ({ id, title, register, errors, options }: Props) => {
   const optionList = options.map((option) => (
-    <option key={option}>{option}</option>
+    <option value={option} key={option}>
+      {option}
+    </option>
   ));
 
   return (

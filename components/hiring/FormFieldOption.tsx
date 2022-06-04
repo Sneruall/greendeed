@@ -4,7 +4,7 @@ import { Location, RemoteLocation } from '../../types/types';
 type Props = {
   registerId: string;
   option: any;
-  optionType: React.HTMLInputTypeAttribute | undefined;
+  inputType?: React.HTMLInputTypeAttribute | undefined;
   title: string;
   register: any;
   errors: any;
@@ -20,7 +20,7 @@ type Props = {
 function FormFieldOption({
   registerId,
   option,
-  optionType,
+  inputType,
   title,
   register,
   errors,
@@ -43,7 +43,7 @@ function FormFieldOption({
     <div>
       <label htmlFor={option}>{title}</label>
       <input
-        type={optionType}
+        type={inputType ? inputType : 'radio'}
         id={option}
         value={option}
         {...register(registerId)}

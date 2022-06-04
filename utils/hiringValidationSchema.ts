@@ -1,8 +1,9 @@
 import * as Yup from 'yup';
 
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
-// make fields dependent of eachother with .when, see https://stackoverflow.com/questions/67368180/validation-in-yup-react-based-on-the-value-of-checkbox
+// REFACTOR:
 // Make good and consistant error messages as constants, e.g. (.required(requirederror))
+//todo, refactor using predefined schema's, see https://stackoverflow.com/questions/68475489/check-if-an-array-contains-a-string-with-yup
 
 export default Yup.object().shape({
   companyName: Yup.string()

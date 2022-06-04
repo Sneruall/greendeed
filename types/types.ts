@@ -92,3 +92,5 @@ export const jobTypes = [
 ];
 
 export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];
+
+export const currencies = ['USD', 'EUR', 'GBP', 'CAD', 'AUD'];

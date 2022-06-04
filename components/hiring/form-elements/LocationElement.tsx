@@ -15,7 +15,7 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
       <h2>Location</h2>
       <FormFieldOption
         option="remote"
-        optionType="radio"
+        inputType="radio"
         title="Remote"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
@@ -25,7 +25,7 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
       />
       <FormFieldOption
         option="onSite"
-        optionType="radio"
+        inputType="radio"
         title="On Site"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
@@ -35,7 +35,7 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
       />
       <FormFieldOption
         option="onSiteOrRemote"
-        optionType="radio"
+        inputType="radio"
         title="On Site or Remote"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}

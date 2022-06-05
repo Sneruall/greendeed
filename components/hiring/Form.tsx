@@ -221,7 +221,7 @@ function Form() {
       )}
 
       <h2>Compensation</h2>
-      <h3>Base Salary (optional)</h3>
+      <h3>Annual Base Salary (optional)</h3>
       <FormFieldDropdown
         errors={errors.salary?.currency?.message}
         id="salary.currency"
@@ -229,13 +229,30 @@ function Form() {
         register={register}
       />
 
-      <FormFieldString
+      <div className="form-group">
+        <label htmlFor="salary.min" className="font-bold"></label>
+        <input
+          id="salary.min"
+          type="text"
+          placeholder="Amount or Minimum"
+          {...register('salary.min')}
+          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+            errors?.salary?.min
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+        <div className="text-red-500">{errors?.salary?.min?.message}</div>
+      </div>
+
+      {/* <FormFieldString
         errors={errors.salary?.min}
         register={register}
         inputType="number"
         placeholder="Amount or Minimum"
         id="salary.min"
-      />
+      /> */}
+
       <FormFieldString
         errors={errors.salary?.max}
         register={register}

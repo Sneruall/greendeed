@@ -82,7 +82,7 @@ export default Yup.object().shape({
     geoRestrictionOther: Yup.string().when(
       'geoRestriction',
       (geoRestriction) => {
-        return geoRestriction.includes('other')
+        return geoRestriction && geoRestriction.includes('other')
           ? Yup.string().required('Required to fill out')
           : Yup.string();
       }

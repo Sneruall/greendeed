@@ -221,7 +221,7 @@ function Form() {
       )}
 
       <h2>Compensation</h2>
-      <h3>Base Salary</h3>
+      <h3>Base Salary (optional)</h3>
       <FormFieldDropdown
         errors={errors.salary?.currency?.message}
         id="salary.currency"
@@ -245,44 +245,31 @@ function Form() {
         description="Please enter the annual base salary or specify a salary range for the
         position."
       />
+      <h3>Equity in percentage (optional)</h3>
 
-      <div className="form-group">
-        <h3>Equity</h3>
-        <input
-          id="min"
-          type="number"
-          min="0"
-          max="100"
-          step=".01"
-          placeholder="Amount or Minimum percentage"
-          {...register('equity.min')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.equity?.min
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.equity?.min?.message}</div>
-        <input
-          id="max"
-          type="number"
-          min="0"
-          max="100"
-          step=".01"
-          placeholder="Maximum percentage"
-          {...register('equity.max')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.equity?.max
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.equity?.max?.message}</div>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          If equity is provided as part of the compensation package, please
-          enter the percentage or specify a range.
-        </p>
-      </div>
+      <FormFieldString
+        errors={errors.equity?.min}
+        register={register}
+        inputType="number"
+        placeholder="Amount or Minimum Percentage"
+        id="equity.min"
+        min={0}
+        max={100}
+        step={0.01}
+      />
+      <FormFieldString
+        errors={errors.equity?.max}
+        register={register}
+        inputType="number"
+        placeholder="Maximum Percentage"
+        id="equity.max"
+        min={0}
+        max={100}
+        step={0.01}
+        description="If equity is provided as part of the compensation package, please
+        enter the percentage or specify a range."
+      />
+
       <div className="form-group">
         <input
           type="checkbox"

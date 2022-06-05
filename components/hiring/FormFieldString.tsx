@@ -11,6 +11,9 @@ const FormFieldString: React.FC<{
   register: any;
   errors: any;
   inputType?: React.HTMLInputTypeAttribute | undefined;
+  min?: number;
+  max?: number;
+  step?: number;
 }> = ({
   id,
   title,
@@ -20,6 +23,9 @@ const FormFieldString: React.FC<{
   errors,
   placeholder,
   inputType,
+  min,
+  max,
+  step,
 }) => {
   return (
     <div className="form-group">
@@ -30,6 +36,9 @@ const FormFieldString: React.FC<{
         id={id}
         type={inputType ? inputType : 'text'}
         placeholder={placeholder}
+        min={min}
+        max={max}
+        step={step}
         {...register(id)}
         onChange={onChangeMethod}
         className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${

@@ -6,9 +6,17 @@ type Props = {
   options: string[];
   register: any;
   errors: any;
+  onChangeMethod?: Function;
 };
 
-const FormFieldDropdown = ({ id, title, register, errors, options }: Props) => {
+const FormFieldDropdown = ({
+  id,
+  title,
+  register,
+  errors,
+  options,
+  onChangeMethod,
+}: Props) => {
   const optionList = options.map((option) => (
     <option value={option} key={option}>
       {option}
@@ -25,6 +33,7 @@ const FormFieldDropdown = ({ id, title, register, errors, options }: Props) => {
       </label>
       <select
         {...register(id)}
+        onChange={onChangeMethod}
         id={id}
         className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
       >

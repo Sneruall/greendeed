@@ -17,6 +17,7 @@ import {
   jobCategories,
   jobTypes,
   currencies,
+  Currency,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -25,7 +26,7 @@ import FormFieldDropdown from './FormFieldDropdown';
 import FormFieldOption from './FormFieldOption';
 import LocationElement from './form-elements/LocationElement';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
-import CurrencyInput from 'react-currency-input-field';
+import CurrencyInput, { formatValue } from 'react-currency-input-field';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -41,6 +42,9 @@ function Form() {
   // Application method tracking
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
+
+  //Currency tracking
+  const [currency, setCurrency] = useState<string>('US$');
 
   const {
     register,
@@ -228,6 +232,9 @@ function Form() {
         id="salary.currency"
         options={currencies}
         register={register}
+        onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setCurrency(e?.target?.value);
+        }}
       />
 
       <div className="form-group">
@@ -235,7 +242,7 @@ function Form() {
         <CurrencyInput
           id="salary.min"
           allowDecimals={false}
-          prefix={'$'}
+          prefix={currency}
           step={10}
           placeholder="Amount or Minimum"
           {...register('salary.min')}
@@ -248,39 +255,28 @@ function Form() {
         <div className="text-red-500">{errors?.salary?.min?.message}</div>
       </div>
 
-      {/* <div className="form-group">
-        <label htmlFor="salary.min" className="font-bold"></label>
-        <input
-          id="salary.min"
-          type="text"
-          placeholder="Amount or Minimum"
-          {...register('salary.min')}
+      <div className="form-group">
+        <label htmlFor="salary.max" className="font-bold"></label>
+        <CurrencyInput
+          id="salary.max"
+          allowDecimals={false}
+          prefix={currency}
+          step={10}
+          placeholder="Maximum (optional)"
+          {...register('salary.max')}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.min
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
-        <div className="text-red-500">{errors?.salary?.min?.message}</div>
-      </div> */}
+        <div className="text-red-500">{errors?.salary?.max?.message}</div>
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          Please enter the annual base salary or specify a salary range for the
+          position.
+        </p>
+      </div>
 
-      {/* <FormFieldString
-        errors={errors.salary?.min}
-        register={register}
-        inputType="number"
-        placeholder="Amount or Minimum"
-        id="salary.min"
-      /> */}
-
-      <FormFieldString
-        errors={errors.salary?.max}
-        register={register}
-        inputType="number"
-        placeholder="Maximum (optional)"
-        id="salary.max"
-        description="Please enter the annual base salary or specify a salary range for the
-        position."
-      />
       <h3>Equity in percentage (optional)</h3>
 
       <FormFieldString

@@ -17,7 +17,7 @@ import {
   jobCategories,
   jobTypes,
   currencies,
-  Currency,
+  SalaryPeriod,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -27,6 +27,10 @@ import FormFieldOption from './FormFieldOption';
 import LocationElement from './form-elements/LocationElement';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
 import CurrencyInput, { formatValue } from 'react-currency-input-field';
+import {
+  CurrencyInputProps,
+  CurrencyInputOnChangeValues,
+} from 'react-currency-input-field/dist/components/CurrencyInputProps';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -43,8 +47,29 @@ function Form() {
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
 
-  //Currency tracking
+  //Currency tracking TODO: try refactoring the handleonvaluechange method into 1 and also the state?
   const [currency, setCurrency] = useState<string>('US$');
+  const [minSalaryValues, setMinSalaryValues] =
+    useState<CurrencyInputOnChangeValues>();
+  const [maxSalaryValues, setMaxSalaryValues] =
+    useState<CurrencyInputOnChangeValues>();
+
+  const handleOnValueChangeMin: CurrencyInputProps['onValueChange'] = (
+    value,
+    _,
+    values
+  ): void => {
+    console.log('change max');
+    setMinSalaryValues(values);
+  };
+  const handleOnValueChangeMax: CurrencyInputProps['onValueChange'] = (
+    value,
+    _,
+    values
+  ): void => {
+    console.log('change min');
+    setMaxSalaryValues(values);
+  };
 
   const {
     register,
@@ -59,6 +84,13 @@ function Form() {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
+    if (minSalaryValues) {
+      formData.salary.min = minSalaryValues;
+    }
+    if (maxSalaryValues) {
+      formData.salary.max = maxSalaryValues;
+    }
+
     console.log(formData);
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
@@ -226,7 +258,13 @@ function Form() {
       )}
 
       <h2>Compensation</h2>
-      <h3>Annual Base Salary (optional)</h3>
+      <h3>Base Salary (optional)</h3>
+      <FormFieldDropdown
+        id="salary.period"
+        errors={errors.salary?.period?.message}
+        options={SalaryPeriod}
+        register={register}
+      />
       <FormFieldDropdown
         errors={errors.salary?.currency?.message}
         id="salary.currency"
@@ -242,17 +280,17 @@ function Form() {
         <CurrencyInput
           id="salary.min"
           allowDecimals={false}
+          disableAbbreviations={false}
           prefix={currency}
           step={10}
           placeholder="Amount or Minimum"
-          {...register('salary.min')}
+          onValueChange={handleOnValueChangeMin}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.min
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
-        <div className="text-red-500">{errors?.salary?.min?.message}</div>
       </div>
 
       <div className="form-group">
@@ -263,14 +301,13 @@ function Form() {
           prefix={currency}
           step={10}
           placeholder="Maximum (optional)"
-          {...register('salary.max')}
+          onValueChange={handleOnValueChangeMax}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.min
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
-        <div className="text-red-500">{errors?.salary?.max?.message}</div>
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
           Please enter the annual base salary or specify a salary range for the
           position.

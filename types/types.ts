@@ -1,3 +1,5 @@
+import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
+
 export type Job = {
   companyName: string;
   companyId: string;
@@ -7,10 +9,11 @@ export type Job = {
   tags?: string[];
   jobDescription: string;
   jobType: string;
-  salary?: {
-    currency?: Currency;
-    min?: string;
-    max?: string;
+  salary: {
+    currency: Currency;
+    period: SalaryPeriod;
+    min: CurrencyInputOnChangeValues;
+    max: CurrencyInputOnChangeValues;
   };
   equity?: {
     min?: number;
@@ -50,6 +53,8 @@ export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
+export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
+export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
 
 export type ApplicationMethod = 'email' | 'website';
 

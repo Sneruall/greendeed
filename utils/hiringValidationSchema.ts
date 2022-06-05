@@ -90,6 +90,7 @@ export default Yup.object().shape({
   }),
   salary: Yup.object().shape({
     currency: Yup.string(),
+    salaryIndication: Yup.string(),
     min: Yup.string(),
     max: Yup.string(),
   }),

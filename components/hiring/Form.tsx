@@ -25,6 +25,7 @@ import FormFieldDropdown from './FormFieldDropdown';
 import FormFieldOption from './FormFieldOption';
 import LocationElement from './form-elements/LocationElement';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
+import CurrencyInput from 'react-currency-input-field';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -231,6 +232,24 @@ function Form() {
 
       <div className="form-group">
         <label htmlFor="salary.min" className="font-bold"></label>
+        <CurrencyInput
+          id="salary.min"
+          allowDecimals={false}
+          prefix={'$'}
+          step={10}
+          placeholder="Amount or Minimum"
+          {...register('salary.min')}
+          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+            errors?.salary?.min
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+        <div className="text-red-500">{errors?.salary?.min?.message}</div>
+      </div>
+
+      {/* <div className="form-group">
+        <label htmlFor="salary.min" className="font-bold"></label>
         <input
           id="salary.min"
           type="text"
@@ -243,7 +262,7 @@ function Form() {
           }`}
         />
         <div className="text-red-500">{errors?.salary?.min?.message}</div>
-      </div>
+      </div> */}
 
       {/* <FormFieldString
         errors={errors.salary?.min}

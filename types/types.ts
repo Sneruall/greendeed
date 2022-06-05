@@ -9,8 +9,8 @@ export type Job = {
   jobType: string;
   salary?: {
     currency?: Currency;
-    min?: number;
-    max?: number;
+    min?: string;
+    max?: string;
   };
   equity?: {
     min?: number;

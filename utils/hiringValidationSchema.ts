@@ -89,28 +89,9 @@ export default Yup.object().shape({
     ),
   }),
   salary: Yup.object().shape({
-    currency: Yup.string().when('min', {
-      is: Number,
-      then: Yup.string().required(), //this does not work as it should yet.
-    }), // only make required when min is filled out.
-    min: Yup.number()
-      .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
-      .min(0, 'Value must be greater than zero')
-      .nullable(true)
-      .typeError('Value must be a number')
-      .when('max', {
-        is: Number,
-        then: Yup.number()
-          .required()
-          .min(1, 'Minimum salary must be entered if max salary is given'),
-      }),
-    max: Yup.number()
-      .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
-      .min(0, 'Value must be greater than zero')
-      .nullable(true)
-      .typeError('Value must be a number'),
+    currency: Yup.string(),
+    min: Yup.string(),
+    max: Yup.string(),
   }),
   equity: Yup.object().shape({
     min: Yup.number() // only make required when max is filled out

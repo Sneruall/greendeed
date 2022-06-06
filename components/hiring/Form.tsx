@@ -32,6 +32,7 @@ import {
   CurrencyInputOnChangeValues,
 } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
+import FormFieldRadio from './FormFieldRadio';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -404,35 +405,25 @@ function Form() {
 
       <div className=" bg-blue-100">
         <h2>Apply by</h2>
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="radio"
-          id="email"
+
+        <FormFieldRadio
+          errors={errors.applicationMethod}
+          register={register}
+          registerId="applicationMethod"
+          title="E-mail"
           value="email"
-          checked={applicationMethod === 'email'}
-          onClick={() => setApplicationMethod('email')}
-          {...register('applicationMethod')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.applicationMethod
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
+          state={applicationMethod}
+          callback={() => setApplicationMethod('email')}
         />
-        <div className="text-red-500">{errors.applicationMethod?.message}</div>
-        <label htmlFor="website">website</label>
-        <input
-          type="radio"
-          id="website"
+        <FormFieldRadio
+          errors={errors.applicationMethod}
+          register={register}
+          registerId="applicationMethod"
+          title="Website"
           value="website"
-          onClick={() => setApplicationMethod('website')}
-          {...register('applicationMethod')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.applicationMethod
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
+          state={applicationMethod}
+          callback={() => setApplicationMethod('website')}
         />
-        <div className="text-red-500">{errors.applicationMethod?.message}</div>
       </div>
       {applicationMethod === 'email' ? (
         <div className="">

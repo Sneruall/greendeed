@@ -29,8 +29,7 @@ export type Job = {
   hidden: boolean;
   listed: boolean;
   applicationMethod: ApplicationMethod;
-  applyEmail: string;
-  applyWebsite: string;
+  apply: string;
 };
 
 // todo: add fields (websiteurl, employees...)

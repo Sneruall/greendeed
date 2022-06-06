@@ -112,21 +112,22 @@ export default Yup.object().shape({
   }),
   digitalCurrency: Yup.boolean(),
   applicationMethod: Yup.string().required(),
-  applyEmail: Yup.string()
-    .email('invalid email')
+  apply: Yup.string()
     .when('applicationMethod', {
       is: 'email',
-      then: Yup.string().required('apply email is required'),
+      then: Yup.string()
+        .email('invalid email')
+        .required('apply email is required'),
+    })
+    .when('applicationMethod', {
+      is: 'website',
+      then: Yup.string()
+        .matches(
+          /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
+          'url is not valid, use this format: website.com/apply'
+        )
+        .required('apply website is required'),
     }),
-  applyWebsite: Yup.string().when('applicationMethod', {
-    is: 'website',
-    then: Yup.string()
-      .matches(
-        /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
-        'url is not valid, use this format: website.com/apply'
-      )
-      .required('apply website is required'),
-  }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
   companyDescription: Yup.string(),
 });

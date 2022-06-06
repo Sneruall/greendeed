@@ -425,45 +425,38 @@ function Form() {
           callback={() => setApplicationMethod('website')}
         />
       </div>
-      {applicationMethod === 'email' ? (
-        <div className="">
-          <input
-            type="email"
-            id="applyEmail"
-            placeholder="e.g. hiring@company.com"
-            {...register('applyEmail')}
-            className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-              errors.applyEmail
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-            }`}
-          />
-          <div className="text-red-500">{errors.applyEmail?.message}</div>
+      <div className="">
+        <input
+          type="text"
+          id="apply"
+          placeholder={
+            applicationMethod === 'email'
+              ? 'hiring@company.com'
+              : 'www.yourcompany.com/apply'
+          }
+          {...register('apply')}
+          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+            errors.apply
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+
+        <div className="text-red-500">{errors.apply?.message}</div>
+        {applicationMethod === 'email' ? (
           <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             Applications for the position will be sent to the email address you
             specify.
           </p>
-        </div>
-      ) : (
-        <div className="">
-          <input
-            id="applyWebsite"
-            type="text"
-            placeholder="e.g. https://www.company.com/apply"
-            {...register('applyWebsite')}
-            className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-              errors.applyWebsite
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-            }`}
-          />
-          <div className="text-red-500">{errors.applyWebsite?.message}</div>
+        ) : (
           <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             Applicants will be sent to the website you specify to apply for the
             position.
           </p>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* COMPANY FIELDS */}
 
       <h2 className="text-xl">Company details</h2>
       <div className="">

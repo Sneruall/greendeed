@@ -28,7 +28,7 @@ const FormFieldString: React.FC<{
   step,
 }) => {
   return (
-    <div className="form-group">
+    <div className="">
       <label htmlFor={id} className="font-bold">
         {title}
       </label>

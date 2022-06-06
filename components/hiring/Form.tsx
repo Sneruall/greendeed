@@ -31,6 +31,7 @@ import {
   CurrencyInputProps,
   CurrencyInputOnChangeValues,
 } from 'react-currency-input-field/dist/components/CurrencyInputProps';
+import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -118,12 +119,19 @@ function Form() {
     if (!retrievedCompanyData?.id) {
       await postCompany(formData);
     }
+
     //todo: add reset, redirect / success popup. Add protection that if either postJob or postCompany fails it will error
+    // const form = document.getElementById('form') as HTMLFormElement;
+
+    // if (form) {
+    //   console.log('reset' + form);
+    //   form.reset;
+    // }
   }
 
   // todo: make this more readable, by adding components for recurring UI elements
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form id="form" onSubmit={handleSubmit(onSubmit)}>
       <FormFieldString
         id="companyName"
         title="Company Name*"
@@ -176,7 +184,7 @@ function Form() {
       />
 
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
-      <div className="form-group">
+      <div className="">
         <label
           htmlFor="jobDescription"
           className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -225,7 +233,7 @@ function Form() {
 
       {location !== 'onSite' && (
         <>
-          <div className="form-group bg-blue-100">
+          <div className=" bg-blue-100">
             <h2>Remote location</h2>
             <FormFieldOption
               errors={errors.locationInfo?.remoteLocation}
@@ -255,7 +263,7 @@ function Form() {
       )}
       {remoteLocation === 'geoRestriction' && location !== 'onSite' && (
         <>
-          <div className="form-group bg-red-100">
+          <div className=" bg-red-100">
             <h2>Geographic restriction</h2>
 
             <GeoRestrictionElement
@@ -297,7 +305,7 @@ function Form() {
         }}
       />
 
-      <div className="form-group">
+      <div className="">
         <label htmlFor="salary.min" className="font-bold"></label>
         <CurrencyInput
           id="salary.min"
@@ -317,7 +325,7 @@ function Form() {
         <div className="text-red-500">{errors?.salary?.min}</div>
       </div>
 
-      <div className="form-group">
+      <div className="">
         <label htmlFor="salary.max" className="font-bold"></label>
         <CurrencyInput
           id="salary.max"
@@ -341,10 +349,10 @@ function Form() {
         </p>
       </div>
 
-      <h3>Equity in percentage (optional)</h3>
-
-      {/* <input type="text" hidden {...register('equity.min')} />
-      <input type="text" hidden {...register('equity.max')} /> */}
+      <h3>
+        Equity in percentage (optional) - consider making this just a checkbox
+        like digital currency (equity options)
+      </h3>
 
       <CurrencyInput
         id="equity.min"
@@ -387,18 +395,14 @@ function Form() {
         the percentage or specify a range.
       </p>
 
-      <div className="form-group">
-        <input
-          type="checkbox"
-          id="digitalCurrency"
-          {...register('digitalCurrency')}
-        />
-        <label htmlFor="digitalCurrency">
-          The option of getting paid in digital currency
-        </label>
-        <div className="text-red-500">{errors.digitalCurrency?.message}</div>
-      </div>
-      <div className="form-group bg-blue-100">
+      <FormFieldBoolCheckbox
+        checkboxText="The option of getting paid in digital currency"
+        errors={errors.digitalCurrency?.message}
+        register={register}
+        registerId="digitalCurrency"
+      />
+
+      <div className=" bg-blue-100">
         <h2>Apply by</h2>
         <label htmlFor="email">E-mail</label>
         <input
@@ -431,7 +435,7 @@ function Form() {
         <div className="text-red-500">{errors.applicationMethod?.message}</div>
       </div>
       {applicationMethod === 'email' ? (
-        <div className="form-group">
+        <div className="">
           <input
             type="email"
             id="applyEmail"
@@ -450,7 +454,7 @@ function Form() {
           </p>
         </div>
       ) : (
-        <div className="form-group">
+        <div className="">
           <input
             id="applyWebsite"
             type="text"
@@ -471,7 +475,7 @@ function Form() {
       )}
 
       <h2 className="text-xl">Company details</h2>
-      <div className="form-group">
+      <div className="">
         <label>
           Email (stays private, for verification / invoice delivery)
         </label>
@@ -486,7 +490,7 @@ function Form() {
         />
         <div className="text-red-500">{errors.email?.message}</div>
       </div>
-      <div className="form-group">
+      <div className="">
         <label className="font-bold">Company Description</label>
         {!retrievedCompanyData?.description ? (
           <input
@@ -504,7 +508,7 @@ function Form() {
         <div className="text-red-500">{errors.companyDescription?.message}</div>
         <p>Shown on your company page</p>
       </div>
-      <div className="form-group">
+      <div className="">
         <button
           disabled={companyNameIsLoading}
           type="submit"

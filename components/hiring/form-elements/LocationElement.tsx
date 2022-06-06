@@ -11,7 +11,7 @@ type Props = {
 
 function LocationElement({ errors, register, location, setLocation }: Props) {
   return (
-    <div className="form-group bg-green-100">
+    <div className=" bg-green-100">
       <h2>Location</h2>
       <FormFieldOption
         option="remote"

@@ -24,7 +24,7 @@ const FormFieldDropdown = ({
   ));
 
   return (
-    <div className="form-group">
+    <div className="">
       <label
         htmlFor={id}
         className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"

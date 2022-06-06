@@ -5,10 +5,10 @@ export type Job = {
   companyId: string;
   companyDescription: string;
   jobTitle: string;
-  category: string;
+  category: jobCategory;
   tags?: string[];
   jobDescription: string;
-  jobType: string;
+  jobType: jobType;
   salary: {
     currency: Currency;
     period: SalaryPeriod;
@@ -49,15 +49,17 @@ export type LocationInfo = {
 
 // Todo: Maybe find how to not hardcode this but use global constants or something?
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
+
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
+
 export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
 export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
 
 export type ApplicationMethod = 'email' | 'website';
 
-// Option lists
+export type jobCategory = 'IT' | 'Operations' | 'Manufacturing' | 'Consultancy';
 export const jobCategories = [
   'IT',
   'Operations',
@@ -85,6 +87,14 @@ export const jobCategories = [
         <option>Other</option> */
 }
 
+export type jobType =
+  | 'Full-time'
+  | 'Part-time'
+  | 'Freelance'
+  | 'Internship'
+  | 'Traineeship'
+  | 'Volunteer'
+  | 'Other';
 export const jobTypes = [
   'Full-time',
   'Part-time',

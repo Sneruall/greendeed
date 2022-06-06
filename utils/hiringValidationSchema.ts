@@ -90,25 +90,25 @@ export default Yup.object().shape({
   }),
   salary: Yup.object().shape({
     currency: Yup.string(),
-    salaryIndication: Yup.string(),
+    period: Yup.string(),
     min: Yup.string(),
     max: Yup.string(),
   }),
   equity: Yup.object().shape({
-    min: Yup.number() // only make required when max is filled out
-      .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
-      .min(0, 'Value must be greater than zero')
-      .max(100, 'Value cannot be over 100%')
-      .nullable(true)
-      .typeError('Value must be a number'),
-    max: Yup.number() // make sure that it cannot be lower than min value from field above
-      .transform((_, val) => (val === '' ? null : val))
-      .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
-      .min(0, 'Value must be greater than zero')
-      .max(100, 'Value cannot be over 100%')
-      .nullable(true)
-      .typeError('Value must be a number'),
+    min: Yup.string(), // only make required when max is filled out
+    // .transform((_, val) => (val === '' ? null : val))
+    // .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
+    // .min(0, 'Value must be greater than zero')
+    // .max(100, 'Value cannot be over 100%')
+    // .nullable(true)
+    // .typeError('Value must be a number'),
+    max: Yup.string(), // make sure that it cannot be lower than min value from field above
+    // .transform((_, val) => (val === '' ? null : val))
+    // .transform((_, val) => (val === String(val) ? +val : null)) //to convert '1' to number 1...
+    // .min(0, 'Value must be greater than zero')
+    // .max(100, 'Value cannot be over 100%')
+    // .nullable(true)
+    // .typeError('Value must be a number'),
   }),
   digitalCurrency: Yup.boolean(),
   applicationMethod: Yup.string().required(),

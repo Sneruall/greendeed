@@ -47,11 +47,15 @@ function Form() {
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
 
-  //Currency tracking TODO: try refactoring the handleonvaluechange method into 1 and also the state?
+  //Currency and equity tracking TODO: try refactoring the handleonvaluechange method into 1 and also the state?
   const [currency, setCurrency] = useState<string>('US$');
   const [minSalaryValues, setMinSalaryValues] =
     useState<CurrencyInputOnChangeValues>();
   const [maxSalaryValues, setMaxSalaryValues] =
+    useState<CurrencyInputOnChangeValues>();
+  const [minEquityValues, setMinEquityValues] =
+    useState<CurrencyInputOnChangeValues>();
+  const [maxEquityValues, setMaxEquityValues] =
     useState<CurrencyInputOnChangeValues>();
 
   const handleOnValueChangeMin: CurrencyInputProps['onValueChange'] = (
@@ -59,7 +63,6 @@ function Form() {
     _,
     values
   ): void => {
-    console.log('change max');
     setMinSalaryValues(values);
   };
   const handleOnValueChangeMax: CurrencyInputProps['onValueChange'] = (
@@ -67,8 +70,21 @@ function Form() {
     _,
     values
   ): void => {
-    console.log('change min');
     setMaxSalaryValues(values);
+  };
+  const handleOnValueChangeMinEquity: CurrencyInputProps['onValueChange'] = (
+    value,
+    _,
+    values
+  ): void => {
+    setMinEquityValues(values);
+  };
+  const handleOnValueChangeMaxEquity: CurrencyInputProps['onValueChange'] = (
+    value,
+    _,
+    values
+  ): void => {
+    setMaxEquityValues(values);
   };
 
   const {
@@ -84,14 +100,20 @@ function Form() {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
+    console.log(formData);
     if (minSalaryValues) {
       formData.salary.min = minSalaryValues;
     }
     if (maxSalaryValues) {
       formData.salary.max = maxSalaryValues;
     }
-
-    console.log(formData);
+    if (minEquityValues) {
+      console.log(minEquityValues);
+      formData.equity.min = minEquityValues;
+    }
+    if (maxEquityValues) {
+      formData.equity.max = maxEquityValues;
+    }
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
       await postCompany(formData);
@@ -284,6 +306,7 @@ function Form() {
           prefix={currency}
           step={10}
           placeholder="Amount or Minimum"
+          {...register('salary.min')}
           onValueChange={handleOnValueChangeMin}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.min
@@ -291,6 +314,7 @@ function Form() {
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
+        <div className="text-red-500">{errors?.salary?.min}</div>
       </div>
 
       <div className="form-group">
@@ -301,13 +325,16 @@ function Form() {
           prefix={currency}
           step={10}
           placeholder="Maximum (optional)"
+          {...register('salary.max')}
           onValueChange={handleOnValueChangeMax}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors?.salary?.min
+            errors?.salary?.max
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
           }`}
         />
+        <div className="text-red-500">{errors?.salary?.max}</div>
+
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
           Please enter the annual base salary or specify a salary range for the
           position.
@@ -316,28 +343,49 @@ function Form() {
 
       <h3>Equity in percentage (optional)</h3>
 
-      <FormFieldString
-        errors={errors.equity?.min}
-        register={register}
-        inputType="number"
-        placeholder="Amount or Minimum Percentage"
+      {/* <input type="text" hidden {...register('equity.min')} />
+      <input type="text" hidden {...register('equity.max')} /> */}
+
+      <CurrencyInput
         id="equity.min"
-        min={0}
-        max={100}
+        allowDecimals={true}
+        decimalsLimit={2}
+        suffix="%"
         step={0.01}
+        max={100}
+        placeholder="Amount or minimum (e.g. 0.01%)"
+        {...register('equity.min')}
+        onValueChange={handleOnValueChangeMinEquity}
+        className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+          errors?.equity?.min
+            ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+            : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+        }`}
       />
-      <FormFieldString
-        errors={errors.equity?.max}
-        register={register}
-        inputType="number"
-        placeholder="Maximum Percentage"
+      <div className="text-red-500">{errors?.equity?.min}</div>
+
+      <CurrencyInput
         id="equity.max"
-        min={0}
-        max={100}
+        allowDecimals={true}
+        decimalsLimit={2}
+        suffix="%"
         step={0.01}
-        description="If equity is provided as part of the compensation package, please
-        enter the percentage or specify a range."
+        max={100}
+        placeholder="Maximum (e.g. 1%)"
+        {...register('equity.max')}
+        onValueChange={handleOnValueChangeMaxEquity}
+        className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+          errors?.equity?.max
+            ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+            : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+        }`}
       />
+      <div className="text-red-500">{errors?.equity?.max}</div>
+
+      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        If equity is provided as part of the compensation package, please enter
+        the percentage or specify a range.
+      </p>
 
       <div className="form-group">
         <input

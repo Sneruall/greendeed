@@ -15,10 +15,7 @@ export type Job = {
     min: CurrencyInputOnChangeValues;
     max: CurrencyInputOnChangeValues;
   };
-  equity: {
-    min: CurrencyInputOnChangeValues;
-    max: CurrencyInputOnChangeValues;
-  };
+  equity: boolean;
   digitalCurrency: boolean;
   locationInfo: LocationInfo;
   email: string;

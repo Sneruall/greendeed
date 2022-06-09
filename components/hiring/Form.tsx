@@ -54,10 +54,6 @@ function Form() {
     useState<CurrencyInputOnChangeValues>();
   const [maxSalaryValues, setMaxSalaryValues] =
     useState<CurrencyInputOnChangeValues>();
-  const [minEquityValues, setMinEquityValues] =
-    useState<CurrencyInputOnChangeValues>();
-  const [maxEquityValues, setMaxEquityValues] =
-    useState<CurrencyInputOnChangeValues>();
 
   const handleOnValueChangeMin: CurrencyInputProps['onValueChange'] = (
     value,
@@ -72,20 +68,6 @@ function Form() {
     values
   ): void => {
     setMaxSalaryValues(values);
-  };
-  const handleOnValueChangeMinEquity: CurrencyInputProps['onValueChange'] = (
-    value,
-    _,
-    values
-  ): void => {
-    setMinEquityValues(values);
-  };
-  const handleOnValueChangeMaxEquity: CurrencyInputProps['onValueChange'] = (
-    value,
-    _,
-    values
-  ): void => {
-    setMaxEquityValues(values);
   };
 
   const {
@@ -107,13 +89,6 @@ function Form() {
     }
     if (maxSalaryValues) {
       formData.salary.max = maxSalaryValues;
-    }
-    if (minEquityValues) {
-      console.log(minEquityValues);
-      formData.equity.min = minEquityValues;
-    }
-    if (maxEquityValues) {
-      formData.equity.max = maxEquityValues;
     }
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
@@ -358,51 +333,12 @@ function Form() {
         </p>
       </div>
 
-      <h3>
-        Equity in percentage (optional) - consider making this just a checkbox
-        like digital currency (equity options)
-      </h3>
-
-      <CurrencyInput
-        id="equity.min"
-        allowDecimals={true}
-        decimalsLimit={2}
-        suffix="%"
-        step={0.01}
-        max={100}
-        placeholder="Amount or minimum (e.g. 0.01%)"
-        {...register('equity.min')}
-        onValueChange={handleOnValueChangeMinEquity}
-        className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-          errors?.equity?.min
-            ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-            : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-        }`}
+      <FormFieldBoolCheckbox
+        checkboxText="Equity"
+        errors={errors.equity?.message}
+        register={register}
+        registerId="equity"
       />
-      <div className="text-red-500">{errors?.equity?.min}</div>
-
-      <CurrencyInput
-        id="equity.max"
-        allowDecimals={true}
-        decimalsLimit={2}
-        suffix="%"
-        step={0.01}
-        max={100}
-        placeholder="Maximum (e.g. 1%)"
-        {...register('equity.max')}
-        onValueChange={handleOnValueChangeMaxEquity}
-        className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-          errors?.equity?.max
-            ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-            : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-        }`}
-      />
-      <div className="text-red-500">{errors?.equity?.max}</div>
-
-      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        If equity is provided as part of the compensation package, please enter
-        the percentage or specify a range.
-      </p>
 
       <FormFieldBoolCheckbox
         checkboxText="The option of getting paid in digital currency"

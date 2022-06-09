@@ -55,19 +55,16 @@ function Form() {
   const [maxSalaryValues, setMaxSalaryValues] =
     useState<CurrencyInputOnChangeValues>();
 
-  const handleOnValueChangeMin: CurrencyInputProps['onValueChange'] = (
+  const handleOnValueChange: CurrencyInputProps['onValueChange'] = (
     value,
-    _,
+    name,
     values
   ): void => {
-    setMinSalaryValues(values);
-  };
-  const handleOnValueChangeMax: CurrencyInputProps['onValueChange'] = (
-    value,
-    _,
-    values
-  ): void => {
-    setMaxSalaryValues(values);
+    if (name === 'salary.min') {
+      setMinSalaryValues(values);
+    } else {
+      setMaxSalaryValues(values);
+    }
   };
 
   const {
@@ -299,7 +296,7 @@ function Form() {
           step={10}
           placeholder="Amount or Minimum"
           {...register('salary.min')}
-          onValueChange={handleOnValueChangeMin}
+          onValueChange={handleOnValueChange}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.min
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
@@ -318,7 +315,7 @@ function Form() {
           step={10}
           placeholder="Maximum (optional)"
           {...register('salary.max')}
-          onValueChange={handleOnValueChangeMax}
+          onValueChange={handleOnValueChange}
           className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
             errors?.salary?.max
               ? 'border-red-300 focus:border-red-500 focus:ring-red-500'

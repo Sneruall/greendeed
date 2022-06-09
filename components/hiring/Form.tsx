@@ -11,19 +11,17 @@ import {
 import {
   ApplicationMethod,
   Job,
-  RemoteLocation,
-  Location,
   Company,
   jobCategories,
   jobTypes,
   currencies,
   SalaryPeriod,
+  LocationObject,
 } from '../../types/types';
 import hiringValidationSchema from '../../utils/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
-import FormFieldOption from './FormFieldOption';
 import LocationElement from './form-elements/LocationElement';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
 import CurrencyInput, { formatValue } from 'react-currency-input-field';
@@ -40,10 +38,11 @@ function Form() {
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
   // Location fields tracking
-  const [location, setLocation] = useState<Location>('remote');
-  const [remoteLocation, setRemoteLocation] =
-    useState<RemoteLocation>('worldwide');
-  const [otherGeoRestriction, setOtherGeoRestriction] = useState<boolean>();
+  const [locationInfo, setLocationObject] = useState<LocationObject>({
+    location: 'remote',
+    remoteLocation: 'worldwide',
+    otherGeoRestriction: false,
+  });
 
   // Application method tracking
   const [applicationMethod, setApplicationMethod] =
@@ -217,11 +216,11 @@ function Form() {
       <LocationElement
         errors={errors}
         register={register}
-        setLocation={setLocation}
-        location={location}
+        setLocation={setLocationObject}
+        location={locationInfo.location}
       />
 
-      {location !== 'remote' && (
+      {locationInfo.location !== 'remote' && (
         <FormFieldString
           errors={errors.locationInfo?.onSiteLocation}
           id="locationInfo.onSiteLocation"
@@ -232,7 +231,7 @@ function Form() {
         />
       )}
 
-      {location !== 'onSite' && (
+      {locationInfo.location !== 'onSite' && (
         <>
           <div className=" bg-blue-100">
             <h2>Remote location</h2>
@@ -242,17 +241,27 @@ function Form() {
               register={register}
               title="Worldwide"
               value="worldwide"
-              state={remoteLocation}
-              callback={() => setRemoteLocation('worldwide')}
+              state={locationInfo.remoteLocation}
+              callback={() =>
+                setLocationObject((prevState) => ({
+                  ...prevState,
+                  remoteLocation: 'worldwide',
+                }))
+              }
             />
             <FormFieldRadio
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
               value="geoRestriction"
-              state={remoteLocation}
+              state={locationInfo.remoteLocation}
               register={register}
               title="Geographic restrictions"
-              callback={() => setRemoteLocation('geoRestriction')}
+              callback={() =>
+                setLocationObject((prevState) => ({
+                  ...prevState,
+                  remoteLocation: 'geoRestriction',
+                }))
+              }
             />
             <div className="text-red-500">
               {errors.locationInfo?.remoteLocation?.message}
@@ -260,31 +269,32 @@ function Form() {
           </div>
         </>
       )}
-      {remoteLocation === 'geoRestriction' && location !== 'onSite' && (
-        <>
-          <div className=" bg-red-100">
-            <h2>Geographic restriction</h2>
+      {locationInfo.remoteLocation === 'geoRestriction' &&
+        locationInfo.location !== 'onSite' && (
+          <>
+            <div className=" bg-red-100">
+              <h2>Geographic restriction</h2>
 
-            <GeoRestrictionElement
-              errors={errors?.locationInfo?.geoRestriction}
-              register={register}
-              setOtherGeoRestriction={setOtherGeoRestriction}
-            />
-            <div className="text-red-500">
-              {(errors.locationInfo?.geoRestriction as any)?.message}
+              <GeoRestrictionElement
+                errors={errors?.locationInfo?.geoRestriction}
+                register={register}
+                setLocationObject={setLocationObject}
+              />
+              <div className="text-red-500">
+                {(errors.locationInfo?.geoRestriction as any)?.message}
+              </div>
             </div>
-          </div>
 
-          {otherGeoRestriction && (
-            <FormFieldString
-              errors={errors.locationInfo?.geoRestrictionOther}
-              id="locationInfo.geoRestrictionOther"
-              register={register}
-              placeholder="e.g. Switzerland"
-            />
-          )}
-        </>
-      )}
+            {locationInfo.otherGeoRestriction && (
+              <FormFieldString
+                errors={errors.locationInfo?.geoRestrictionOther}
+                id="locationInfo.geoRestrictionOther"
+                register={register}
+                placeholder="e.g. Switzerland"
+              />
+            )}
+          </>
+        )}
 
       <h2>Compensation</h2>
       <h3>Base Salary (optional)</h3>

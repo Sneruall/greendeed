@@ -1,20 +1,14 @@
 import React from 'react';
-import { geoRestrictions } from '../../../types/types';
+import { geoRestrictions, LocationObject } from '../../../types/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 
 type Props = {
   register: any;
   errors: any;
-  setOtherGeoRestriction: React.Dispatch<
-    React.SetStateAction<boolean | undefined>
-  >;
+  setLocationObject: React.Dispatch<React.SetStateAction<LocationObject>>;
 };
 
-function GeoRestrictionElement({
-  errors,
-  register,
-  setOtherGeoRestriction,
-}: Props) {
+function GeoRestrictionElement({ errors, register, setLocationObject }: Props) {
   const optionList = geoRestrictions.map((option) => (
     <FormFieldBoolCheckbox
       key={option}
@@ -25,9 +19,10 @@ function GeoRestrictionElement({
       checkboxText={option}
       callback={() => {
         if (option === 'Other') {
-          setOtherGeoRestriction(
-            (prevOtherGeoRestriction) => !prevOtherGeoRestriction
-          );
+          setLocationObject((prevState) => ({
+            ...prevState,
+            otherGeoRestriction: !prevState.otherGeoRestriction,
+          }));
         }
       }}
     />

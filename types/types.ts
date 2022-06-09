@@ -52,6 +52,12 @@ export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 
+export type LocationObject = {
+  location: Location;
+  remoteLocation: RemoteLocation;
+  otherGeoRestriction: boolean;
+};
+
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
 
 export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';

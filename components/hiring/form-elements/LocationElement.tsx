@@ -1,12 +1,12 @@
 import React from 'react';
-import { Location } from '../../../types/types';
+import { LocationObject } from '../../../types/types';
 import FormFieldRadio from '../FormFieldRadio';
 
 type Props = {
   register: any;
   errors: any;
-  location: Location;
-  setLocation: React.Dispatch<React.SetStateAction<Location>>;
+  location: LocationObject['location'];
+  setLocation: React.Dispatch<React.SetStateAction<LocationObject>>;
 };
 
 function LocationElement({ errors, register, location, setLocation }: Props) {
@@ -20,7 +20,12 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
         errors={errors.locationInfo?.location}
         register={register}
         state={location}
-        callback={() => setLocation('remote')}
+        callback={() =>
+          setLocation((prevState) => ({
+            ...prevState,
+            location: 'remote',
+          }))
+        }
       />
       <FormFieldRadio
         value="onSite"
@@ -29,7 +34,12 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
         errors={errors.locationInfo?.location}
         register={register}
         state={location}
-        callback={() => setLocation('onSite')}
+        callback={() =>
+          setLocation((prevState) => ({
+            ...prevState,
+            location: 'onSite',
+          }))
+        }
       />
       <FormFieldRadio
         value="onSiteOrRemote"
@@ -38,7 +48,12 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
         errors={errors.locationInfo?.location}
         register={register}
         state={location}
-        callback={() => setLocation('onSiteOrRemote')}
+        callback={() =>
+          setLocation((prevState) => ({
+            ...prevState,
+            location: 'onSiteOrRemote',
+          }))
+        }
       />
       <div className="text-red-500">
         {errors.locationInfo?.location?.message}

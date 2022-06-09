@@ -20,7 +20,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.paid = true; // set the payment status
   formData.hidden = false; // set the visibility
   formData.listed = true;
-  if (formData.locationInfo.location === 'onSite') {
+  if (formData.locationInfo.location === 'onSite') {  
     formData.locationInfo.remoteLocation = undefined;
   }
 };

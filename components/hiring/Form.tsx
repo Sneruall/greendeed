@@ -236,25 +236,23 @@ function Form() {
         <>
           <div className=" bg-blue-100">
             <h2>Remote location</h2>
-            <FormFieldOption
+            <FormFieldRadio
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
-              option="worldwide"
-              inputType="radio"
-              location={remoteLocation}
               register={register}
-              setLocationState={setRemoteLocation}
               title="Worldwide"
+              value="worldwide"
+              state={remoteLocation}
+              callback={() => setRemoteLocation('worldwide')}
             />
-            <FormFieldOption
+            <FormFieldRadio
               errors={errors.locationInfo?.remoteLocation}
               registerId="locationInfo.remoteLocation"
-              option="geoRestriction"
-              inputType="radio"
-              location={remoteLocation}
+              value="geoRestriction"
+              state={remoteLocation}
               register={register}
-              setLocationState={setRemoteLocation}
               title="Geographic restrictions"
+              callback={() => setRemoteLocation('geoRestriction')}
             />
             <div className="text-red-500">
               {errors.locationInfo?.remoteLocation?.message}

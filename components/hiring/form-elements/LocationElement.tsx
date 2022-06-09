@@ -1,6 +1,6 @@
 import React from 'react';
 import { Location } from '../../../types/types';
-import FormFieldOption from '../FormFieldOption';
+import FormFieldRadio from '../FormFieldRadio';
 
 type Props = {
   register: any;
@@ -13,35 +13,32 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
   return (
     <div className=" bg-green-100">
       <h2>Location</h2>
-      <FormFieldOption
-        option="remote"
-        inputType="radio"
+      <FormFieldRadio
+        value="remote"
         title="Remote"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
-        location={location}
-        setLocationState={setLocation}
+        state={location}
+        callback={() => setLocation('remote')}
       />
-      <FormFieldOption
-        option="onSite"
-        inputType="radio"
+      <FormFieldRadio
+        value="onSite"
         title="On Site"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
-        location={location}
-        setLocationState={setLocation}
+        state={location}
+        callback={() => setLocation('onSite')}
       />
-      <FormFieldOption
-        option="onSiteOrRemote"
-        inputType="radio"
+      <FormFieldRadio
+        value="onSiteOrRemote"
         title="On Site or Remote"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}
-        location={location}
-        setLocationState={setLocation}
+        state={location}
+        callback={() => setLocation('onSiteOrRemote')}
       />
       <div className="text-red-500">
         {errors.locationInfo?.location?.message}

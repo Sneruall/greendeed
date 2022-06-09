@@ -5,6 +5,8 @@ type Props = {
   checkboxText: string;
   register: any;
   errors: any;
+  value?: string;
+  callback?: Function;
 };
 
 function FormFieldBoolCheckbox({
@@ -12,10 +14,18 @@ function FormFieldBoolCheckbox({
   checkboxText,
   register,
   errors,
+  value,
+  callback,
 }: Props) {
   return (
     <div className="">
-      <input type="checkbox" id={registerId} {...register(registerId)} />
+      <input
+        value={value}
+        type="checkbox"
+        id={registerId}
+        {...register(registerId)}
+        onClick={callback}
+      />
       <label htmlFor={registerId}>{checkboxText}</label>
       <div className="text-red-500">{errors?.digitalCurrency?.message}</div>
     </div>

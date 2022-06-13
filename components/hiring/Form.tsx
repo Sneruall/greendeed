@@ -402,10 +402,11 @@ function Form() {
       {/* COMPANY FIELDS */}
 
       <h2 className="text-xl">Company details</h2>
+      <p>Shown on your company page</p>
 
       {/* EMAIL */}
       <div className="">
-        <label>
+        <label className="font-bold">
           Email (stays private, for verification / invoice delivery)
         </label>
         <input
@@ -437,7 +438,24 @@ function Form() {
           <p>Contact us if you want to change it for your company</p>
         )}
         <div className="text-red-500">{errors.companyDescription?.message}</div>
-        <p>Shown on your company page</p>
+      </div>
+
+      <div className="">
+        <label className="font-bold">Company Website</label>
+
+        <input
+          type="text"
+          id="companyWebsite"
+          placeholder="www.yourcompany.com"
+          {...register('companyWebsite')}
+          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
+            errors.apply
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+
+        <div className="text-red-500">{errors.companyWebsite?.message}</div>
       </div>
 
       {/* SUBMIT */}

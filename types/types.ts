@@ -27,6 +27,7 @@ export type Job = {
   listed: boolean;
   applicationMethod: ApplicationMethod;
   apply: string;
+  companyWebsite: string;
 };
 
 // todo: add fields (websiteurl, employees...)

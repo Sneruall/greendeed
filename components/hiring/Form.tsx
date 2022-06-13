@@ -335,14 +335,6 @@ function Form() {
         registerId="equity"
       />
 
-      {/* DIGITAL CURRENCY */}
-      <FormFieldBoolCheckbox
-        checkboxText="The option of getting paid in digital currency"
-        errors={errors.digitalCurrency}
-        register={register}
-        registerId="digitalCurrency"
-      />
-
       {/* APPLY BY */}
       <div className=" bg-blue-100">
         <h2>Apply by</h2>

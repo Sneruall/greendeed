@@ -16,7 +16,6 @@ export type Job = {
     max: CurrencyInputOnChangeValues;
   };
   equity: boolean;
-  digitalCurrency: boolean;
   locationInfo: LocationInfo;
   email: string;
   timestamp: number;
@@ -25,6 +24,7 @@ export type Job = {
   paid: boolean;
   hidden: boolean;
   listed: boolean;
+  closed: boolean;
   applicationMethod: ApplicationMethod;
   apply: string;
   companyWebsite: string;

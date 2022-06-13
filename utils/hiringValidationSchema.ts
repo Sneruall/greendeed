@@ -95,7 +95,6 @@ export default Yup.object().shape({
     max: Yup.string(),
   }),
   equity: Yup.boolean(),
-  digitalCurrency: Yup.boolean(),
   applicationMethod: Yup.string().required(),
   apply: Yup.string()
     .when('applicationMethod', {

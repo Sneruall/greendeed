@@ -92,27 +92,18 @@ function Form() {
       await postCompany(formData);
     }
 
-    //todo: add reset, redirect / success popup. Add protection that if either postJob or postCompany fails it will error
-    // const form = document.getElementById('form') as HTMLFormElement;
-
-    // if (form) {
-    //   console.log('reset' + form);
-    //   form.reset;
-    // }
+    reset(); //todo: add protection that if either postJob or postCompany fails it will error
   }
 
-  // todo: make this more readable, by adding components for recurring UI elements
   return (
     <form id="form" onSubmit={handleSubmit(onSubmit)}>
+      {/* COMPANY NAME */}
       <FormFieldString
         id="companyName"
         title="Company Name*"
         errors={errors.companyName}
         register={register}
         onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
-          // Check if the value has a match with the database (do it with care, not every second/debounce?)
-          // If match found, show it to the user and set the CompanyId already
-          // If no match, set the CompanyId back to undefined and welcome the new company
           checkCompany(
             event?.target.value,
             setCompanyNameIsLoading,
@@ -126,6 +117,7 @@ function Form() {
         retrievedCompanyData={retrievedCompanyData}
       />
 
+      {/* JOB TITLE */}
       <FormFieldString
         id="jobTitle"
         title="Job Title"
@@ -139,6 +131,7 @@ function Form() {
         errors={errors.jobTitle}
       />
 
+      {/* CATEGROY */}
       <FormFieldDropdown
         errors={errors.category}
         id="category"
@@ -147,6 +140,7 @@ function Form() {
         options={jobCategories.sort()}
       />
 
+      {/* TAGS */}
       <FormFieldString
         title="Tags"
         placeholder="Separated by comma, e,g, tech stack or industry"
@@ -177,6 +171,7 @@ function Form() {
         <div className="text-red-500">{errors.jobDescription?.message}</div>
       </div>
 
+      {/* JOB TYPES */}
       <FormFieldDropdown
         id="jobType"
         register={register}
@@ -185,6 +180,7 @@ function Form() {
         options={jobTypes}
       />
 
+      {/* LOCATION */}
       <LocationElement
         errors={errors}
         register={register}
@@ -192,6 +188,7 @@ function Form() {
         location={locationInfo.location}
       />
 
+      {/* ON SITE LOCATION */}
       {locationInfo.location !== 'remote' && (
         <FormFieldString
           errors={errors.locationInfo?.onSiteLocation}
@@ -203,6 +200,7 @@ function Form() {
         />
       )}
 
+      {/* REMOTE LOCATION */}
       {locationInfo.location !== 'onSite' && (
         <>
           <div className=" bg-blue-100">
@@ -241,6 +239,8 @@ function Form() {
           </div>
         </>
       )}
+
+      {/* GEOGRAPHIC RESTRICTION */}
       {locationInfo.remoteLocation === 'geoRestriction' &&
         locationInfo.location !== 'onSite' && (
           <>
@@ -268,7 +268,7 @@ function Form() {
           </>
         )}
 
-      <h2>Compensation</h2>
+      {/* SALARY */}
       <h3>Base Salary (optional)</h3>
       <FormFieldDropdown
         id="salary.period"
@@ -285,7 +285,6 @@ function Form() {
           setCurrency(e?.target?.value);
         }}
       />
-
       <div className="">
         <label htmlFor="salary.min" className="font-bold"></label>
         <CurrencyInput
@@ -330,6 +329,7 @@ function Form() {
         </p>
       </div>
 
+      {/* EQUITY */}
       <FormFieldBoolCheckbox
         checkboxText="Equity"
         errors={errors.equity?.message}
@@ -337,6 +337,7 @@ function Form() {
         registerId="equity"
       />
 
+      {/* DIGITAL CURRENCY */}
       <FormFieldBoolCheckbox
         checkboxText="The option of getting paid in digital currency"
         errors={errors.digitalCurrency?.message}
@@ -344,6 +345,7 @@ function Form() {
         registerId="digitalCurrency"
       />
 
+      {/* APPLY BY */}
       <div className=" bg-blue-100">
         <h2>Apply by</h2>
 
@@ -400,6 +402,8 @@ function Form() {
       {/* COMPANY FIELDS */}
 
       <h2 className="text-xl">Company details</h2>
+
+      {/* EMAIL */}
       <div className="">
         <label>
           Email (stays private, for verification / invoice delivery)
@@ -415,6 +419,8 @@ function Form() {
         />
         <div className="text-red-500">{errors.email?.message}</div>
       </div>
+
+      {/* DESCRIPTION */}
       <div className="">
         <label className="font-bold">Company Description</label>
         {!retrievedCompanyData?.description ? (
@@ -433,6 +439,8 @@ function Form() {
         <div className="text-red-500">{errors.companyDescription?.message}</div>
         <p>Shown on your company page</p>
       </div>
+
+      {/* SUBMIT */}
       <div className="">
         <button
           disabled={companyNameIsLoading}
@@ -442,6 +450,7 @@ function Form() {
           Post job
         </button>
 
+        {/* RESET */}
         <button
           type="button"
           onClick={() => reset()}

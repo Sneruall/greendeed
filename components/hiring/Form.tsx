@@ -149,7 +149,7 @@ function Form() {
         register={register}
       />
 
-      {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR */}
+      {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
       <div className="">
         <label
           htmlFor="jobDescription"
@@ -272,12 +272,12 @@ function Form() {
       <h3>Base Salary (optional)</h3>
       <FormFieldDropdown
         id="salary.period"
-        errors={errors.salary?.period?.message}
+        errors={errors.salary?.period}
         options={SalaryPeriod}
         register={register}
       />
       <FormFieldDropdown
-        errors={errors.salary?.currency?.message}
+        errors={errors.salary?.currency}
         id="salary.currency"
         options={currencies}
         register={register}
@@ -286,7 +286,6 @@ function Form() {
         }}
       />
       <div className="">
-        <label htmlFor="salary.min" className="font-bold"></label>
         <CurrencyInput
           id="salary.min"
           allowDecimals={false}
@@ -306,7 +305,6 @@ function Form() {
       </div>
 
       <div className="">
-        <label htmlFor="salary.max" className="font-bold"></label>
         <CurrencyInput
           id="salary.max"
           allowDecimals={false}
@@ -332,7 +330,7 @@ function Form() {
       {/* EQUITY */}
       <FormFieldBoolCheckbox
         checkboxText="Equity"
-        errors={errors.equity?.message}
+        errors={errors.equity}
         register={register}
         registerId="equity"
       />
@@ -340,7 +338,7 @@ function Form() {
       {/* DIGITAL CURRENCY */}
       <FormFieldBoolCheckbox
         checkboxText="The option of getting paid in digital currency"
-        errors={errors.digitalCurrency?.message}
+        errors={errors.digitalCurrency}
         register={register}
         registerId="digitalCurrency"
       />
@@ -368,36 +366,27 @@ function Form() {
           callback={() => setApplicationMethod('website')}
         />
       </div>
-      <div className="">
-        <input
-          type="text"
-          id="apply"
-          placeholder={
-            applicationMethod === 'email'
-              ? 'hiring@company.com'
-              : 'www.yourcompany.com/apply'
-          }
-          {...register('apply')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.apply
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-
-        <div className="text-red-500">{errors.apply?.message}</div>
-        {applicationMethod === 'email' ? (
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Applications for the position will be sent to the email address you
-            specify.
-          </p>
-        ) : (
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Applicants will be sent to the website you specify to apply for the
-            position.
-          </p>
-        )}
-      </div>
+      <FormFieldString
+        errors={errors.apply}
+        id="apply"
+        register={register}
+        placeholder={
+          applicationMethod === 'email'
+            ? 'hiring@company.com'
+            : 'www.yourcompany.com/apply'
+        }
+      />
+      {applicationMethod === 'email' ? (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          Applications for the position will be sent to the email address you
+          specify.
+        </p>
+      ) : (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          Applicants will be sent to the website you specify to apply for the
+          position.
+        </p>
+      )}
 
       {/* COMPANY FIELDS */}
 
@@ -405,58 +394,33 @@ function Form() {
       <p>Shown on your company page</p>
 
       {/* EMAIL */}
-      <div className="">
-        <label className="font-bold">
-          Email (stays private, for verification / invoice delivery)
-        </label>
-        <input
-          type="text"
-          {...register('email')}
-          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors.email
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors.email?.message}</div>
-      </div>
+      <FormFieldString
+        errors={errors.email}
+        id="email"
+        register={register}
+        title="Email (stays private, for verification/invoice delivery"
+      />
 
       {/* DESCRIPTION */}
-      <div className="">
-        <label className="font-bold">Company Description</label>
-        {!retrievedCompanyData?.description ? (
-          <input
-            type="text"
-            {...register('companyDescription')}
-            className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-              errors.companyDescription
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-            }`}
-          />
-        ) : (
-          <p>Contact us if you want to change it for your company</p>
-        )}
-        <div className="text-red-500">{errors.companyDescription?.message}</div>
-      </div>
-
-      <div className="">
-        <label className="font-bold">Company Website</label>
-
-        <input
-          type="text"
-          id="companyWebsite"
-          placeholder="www.yourcompany.com"
-          {...register('companyWebsite')}
-          className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  ${
-            errors.apply
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
+      {!retrievedCompanyData?.description ? (
+        <FormFieldString
+          title="Company Description"
+          register={register}
+          errors={errors.companyDescription}
+          id="companyDescription"
         />
+      ) : (
+        <p>Contact us if you want to change it for your company</p>
+      )}
 
-        <div className="text-red-500">{errors.companyWebsite?.message}</div>
-      </div>
+      {/* COMPANY WEBSITE */}
+      <FormFieldString
+        title="Company website"
+        errors={errors.apply}
+        id="companyWebsite"
+        register={register}
+        placeholder="www.yourcompany.com"
+      />
 
       {/* SUBMIT */}
       <div className="">

@@ -27,7 +27,7 @@ function FormFieldBoolCheckbox({
         onClick={callback}
       />
       <label htmlFor={registerId}>{checkboxText}</label>
-      <div className="text-red-500">{errors?.digitalCurrency?.message}</div>
+      <div className="text-red-500">{errors?.message}</div>
     </div>
   );
 }

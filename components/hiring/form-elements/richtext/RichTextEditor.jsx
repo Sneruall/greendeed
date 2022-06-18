@@ -48,14 +48,14 @@ const formats = [
   'video',
 ];
 
-function RichTextEditor(props) {
+function RichTextEditor({ state }) {
   // const [value, setValue] = useState({ value: null });
 
   const editor = React.createRef();
 
   const handleChange = (content, delta, source, editor) => {
     // setValue({ value: editor.getHTML() });
-    props.state(editor.getHTML());
+    state(editor.getHTML());
   };
 
   return (

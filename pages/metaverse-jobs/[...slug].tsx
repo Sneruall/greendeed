@@ -19,7 +19,6 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
         <title>Metaversed Careers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
       <p>Company id: {job.companyId}</p>
       <Link
@@ -31,6 +30,8 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job title: {job.jobTitle}</p>
       <p>Job location: {job.locationInfo?.location}</p>
       <p>Tags: {job.tags}</p>
+      <p>Job Description:</p>
+      {job.jobDescription};
     </div>
   );
 };

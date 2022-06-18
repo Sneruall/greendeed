@@ -156,7 +156,9 @@ function Form() {
 
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
 
+      <h2 className="text-base font-bold">Job description</h2>
       <RichTextEditor state={setjobDescriptionHtml} />
+      <div className="text-red-500">{errors.jobDescription?.message}</div>
 
       {/* <div className="">
         <label

@@ -68,6 +68,8 @@ function Form() {
     }
   };
 
+  const [jobDescriptionHtml, setjobDescriptionHtml] = useState();
+
   const {
     register,
     handleSubmit,
@@ -152,7 +154,8 @@ function Form() {
 
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
 
-      <RichTextEditor />
+      <RichTextEditor state={setjobDescriptionHtml} />
+      {jobDescriptionHtml}
 
       <div className="">
         <label

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { render } from 'react-dom';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
@@ -47,32 +46,27 @@ const formats = [
   'video',
 ];
 
-class RichTextEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: null }; // You can also pass a Quill Delta here
-    this.handleChange = this.handleChange.bind(this);
-    this.editor = React.createRef();
-  }
+function RichTextEditor(props) {
+  const [value, setValue] = useState({ value: null });
 
-  handleChange = (content, delta, source, editor) => {
-    this.setState({ value: editor.getHTML() });
+  const editor = React.createRef();
+
+  const handleChange = (content, delta, source, editor) => {
+    setValue({ value: editor.getHTML() });
     console.log(editor.getHTML());
   };
 
-  render() {
-    return (
-      <>
-        <div dangerouslySetInnerHTML={{ __html: this.state.value }} />
-        <QuillNoSSRWrapper
-          ref={this.editor}
-          onChange={this.handleChange}
-          modules={modules}
-          formats={formats}
-          theme="snow"
-        />
-      </>
-    );
-  }
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: value.value }} />
+      <QuillNoSSRWrapper
+        ref={editor}
+        onChange={handleChange}
+        modules={modules}
+        formats={formats}
+        theme="snow"
+      />
+    </>
+  );
 }
 export default RichTextEditor;

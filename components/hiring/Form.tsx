@@ -158,6 +158,7 @@ function Form() {
 
       <h2 className="text-base font-bold">Job description</h2>
       <RichTextEditor state={setjobDescriptionHtml} />
+      {jobDescriptionHtml}
       <div className="text-red-500">{errors.jobDescription?.message}</div>
 
       {/* <div className="">

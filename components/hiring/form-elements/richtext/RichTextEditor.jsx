@@ -10,17 +10,10 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
 
 const modules = {
   toolbar: [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
+    [{ header: '1' }, { header: '2' }],
     [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['link', 'image', 'video'],
-    ['clean'],
+    ['bold', 'italic', 'underline'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -33,19 +26,12 @@ const modules = {
  */
 const formats = [
   'header',
-  'font',
   'size',
   'bold',
   'italic',
   'underline',
-  'strike',
-  'blockquote',
   'list',
   'bullet',
-  'indent',
-  'link',
-  'image',
-  'video',
 ];
 
 function RichTextEditor({ state }) {

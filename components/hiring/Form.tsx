@@ -74,6 +74,11 @@ function Form() {
     loading: () => <p>Loading ...</p>,
   });
 
+  const [richTextJobDescriptionValue, setrichTextJobDescriptionValue] =
+    useState('');
+
+  console.log(richTextJobDescriptionValue);
+
   const {
     register,
     handleSubmit,
@@ -157,7 +162,11 @@ function Form() {
       />
 
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
-      <QuillNoSSRWrapper theme="snow" />
+      <QuillNoSSRWrapper
+        placeholder="Please write a job description here..."
+        onChange={setrichTextJobDescriptionValue}
+        theme="snow"
+      />
 
       <div className="">
         <label

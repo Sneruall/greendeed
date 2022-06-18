@@ -1,3 +1,5 @@
+//Todo convert to typescript
+
 import React, { Component, useState } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -47,18 +49,18 @@ const formats = [
 ];
 
 function RichTextEditor(props) {
-  const [value, setValue] = useState({ value: null });
+  // const [value, setValue] = useState({ value: null });
 
   const editor = React.createRef();
 
   const handleChange = (content, delta, source, editor) => {
-    setValue({ value: editor.getHTML() });
-    console.log(editor.getHTML());
+    // setValue({ value: editor.getHTML() });
+    props.state(editor.getHTML());
   };
 
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: value.value }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: value.value }} /> */}
       <QuillNoSSRWrapper
         ref={editor}
         onChange={handleChange}

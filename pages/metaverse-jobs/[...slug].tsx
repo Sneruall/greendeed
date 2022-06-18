@@ -7,6 +7,7 @@ import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
+import parse from 'html-react-parser';
 
 /*
 Todo:
@@ -31,7 +32,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job location: {job.locationInfo?.location}</p>
       <p>Tags: {job.tags}</p>
       <p>Job Description:</p>
-      {job.jobDescription};
+      {parse(job.jobDescription)}
     </div>
   );
 };

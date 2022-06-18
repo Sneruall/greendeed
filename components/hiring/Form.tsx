@@ -7,6 +7,7 @@ import {
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
+  setJobDescription,
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
@@ -68,7 +69,7 @@ function Form() {
     }
   };
 
-  const [jobDescriptionHtml, setjobDescriptionHtml] = useState();
+  const [jobDescriptionHtml, setjobDescriptionHtml] = useState('');
 
   const {
     register,
@@ -83,6 +84,7 @@ function Form() {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
+    setJobDescription(formData, jobDescriptionHtml);
     console.log(formData);
     if (minSalaryValues) {
       formData.salary.min = minSalaryValues;
@@ -155,9 +157,8 @@ function Form() {
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
 
       <RichTextEditor state={setjobDescriptionHtml} />
-      {jobDescriptionHtml}
 
-      <div className="">
+      {/* <div className="">
         <label
           htmlFor="jobDescription"
           className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -176,7 +177,7 @@ function Form() {
           placeholder="Write a good job description..."
         ></textarea>
         <div className="text-red-500">{errors.jobDescription?.message}</div>
-      </div>
+      </div> */}
 
       {/* JOB TYPES */}
       <FormFieldDropdown

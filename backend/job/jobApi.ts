@@ -43,6 +43,13 @@ export const convertTagsAndLocations = (formData: Job) => {
   }
 };
 
+export const setJobDescription = (
+  formData: Job,
+  jobDescriptionHtml: string
+) => {
+  formData.jobDescription = jobDescriptionHtml;
+};
+
 export const setCompanyId = (
   formData: Job,
   retrievedCompanyId: Job['companyId'] | undefined

@@ -18,10 +18,10 @@ export default Yup.object().shape({
   // tags: Yup.array()
   // .max(5, 'Max 5 tags')
   // .of(Yup.string().max(32, 'Max 32 characters per tag')),
-  jobDescription: Yup.string()
-    .required('jobDescription is required')
-    .min(6, 'jobDescription must be at least 6 characters')
-    .max(200, 'jobDescription must not exceed 200 characters'),
+  // jobDescription: Yup.string()
+  //   .required('jobDescription is required')
+  //   .min(6, 'jobDescription must be at least 6 characters')
+  //   .max(200, 'jobDescription must not exceed 200 characters'),
   jobType: Yup.string().required('Type of employment is required'), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
     location: Yup.string().required('location is required'), //here and also maybe other fields: check if it is of type Location!

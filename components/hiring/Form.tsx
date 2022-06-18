@@ -31,7 +31,7 @@ import {
 } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
 import FormFieldRadio from './FormFieldRadio';
-import dynamic from 'next/dynamic';
+import RichTextEditor from './form-elements/richtext/RichTextEditor';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -67,17 +67,6 @@ function Form() {
       setMaxSalaryValues(values);
     }
   };
-
-  //rich text editor
-  const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-  });
-
-  const [richTextJobDescriptionValue, setrichTextJobDescriptionValue] =
-    useState('');
-
-  console.log(richTextJobDescriptionValue);
 
   const {
     register,
@@ -162,11 +151,8 @@ function Form() {
       />
 
       {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
-      <QuillNoSSRWrapper
-        placeholder="Please write a job description here..."
-        onChange={setrichTextJobDescriptionValue}
-        theme="snow"
-      />
+
+      <RichTextEditor />
 
       <div className="">
         <label

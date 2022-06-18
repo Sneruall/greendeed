@@ -7,11 +7,43 @@ import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
-import parse from 'html-react-parser';
+import parse, {
+  domToReact,
+  HTMLReactParserOptions,
+  Element,
+} from 'html-react-parser';
 
 /*
 Todo:
 */
+
+const options: HTMLReactParserOptions = {
+  replace: (domNode) => {
+    if (domNode instanceof Element && domNode.attribs) {
+      if (domNode.attribs.class === 'ql-size-small') {
+        return (
+          <span className="text-[0.75rem]">
+            {domToReact(domNode.children, options)}
+          </span>
+        );
+      }
+      if (domNode.attribs.class === 'ql-size-large') {
+        return (
+          <span className="text-[1.5rem]">
+            {domToReact(domNode.children, options)}
+          </span>
+        );
+      }
+      if (domNode.attribs.class === 'ql-size-huge') {
+        return (
+          <span className="text-[2.5rem]">
+            {domToReact(domNode.children, options)}
+          </span>
+        );
+      }
+    }
+  },
+};
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
   return (
@@ -32,7 +64,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job location: {job.locationInfo?.location}</p>
       <p>Tags: {job.tags}</p>
       <p>Job Description:</p>
-      {parse(job.jobDescription)}
+      {parse(job.jobDescription, options)}
     </div>
   );
 };

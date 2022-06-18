@@ -10,7 +10,6 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
 
 const modules = {
   toolbar: [
-    [{ header: '1' }, { header: '2' }],
     [{ size: [] }],
     ['bold', 'italic', 'underline'],
     [{ list: 'ordered' }, { list: 'bullet' }],
@@ -24,15 +23,7 @@ const modules = {
  * Quill editor formats
  * See https://quilljs.com/docs/formats/
  */
-const formats = [
-  'header',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'list',
-  'bullet',
-];
+const formats = ['size', 'bold', 'italic', 'underline', 'list', 'bullet'];
 
 function RichTextEditor({ state }) {
   // const [value, setValue] = useState({ value: null });

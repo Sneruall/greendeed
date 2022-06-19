@@ -28,7 +28,7 @@ export async function getServerSideProps() {
   const data = await res.json();
   const remotiveJobs: [remotiveJob] = data.jobs;
 
-  const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
+  const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob).reverse();
 
   // Pass data to the page via props
   return { props: { convertedJobs } };

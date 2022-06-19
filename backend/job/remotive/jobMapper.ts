@@ -15,7 +15,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
       location: 'onSite',
     },
     email: '',
-    timestamp: Date.now(),
+    timestamp: toTimestamp(remotiveJob.publication_date),
     id: remotiveJob.id,
     price: 0,
     paid: true,
@@ -27,4 +27,9 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     companyWebsite: '',
   };
   return job;
+};
+
+const toTimestamp = (strDate: string) => {
+  const dt = new Date(strDate).getTime();
+  return dt;
 };

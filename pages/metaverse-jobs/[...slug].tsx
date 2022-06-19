@@ -4,17 +4,19 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
-import { Job } from '../../types/types';
+import { Job, remotiveJob } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
+import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
 
 /*
 Todo:
 */
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
+  console.log(job);
   return (
     <div>
       <Head>
@@ -62,6 +64,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // If there is no job for the given queryId
   if (!job) {
+    console.log('no job found in db');
+    // check to see if it can be retrieved from an external api like remotive
+    const res = await fetch(
+      `https://remotive.com/api/remote-jobs?search=sustainability`
+    );
+    const data = await res.json();
+    const remotiveJobs: [remotiveJob] = data.jobs;
+    const convertedJobs: Job[] = remotiveJobs
+      .map(mapRemotiveJobtoJob)
+      .reverse();
+    const apiJob = convertedJobs.find((j) => j.id === queryId);
+    // const apiJob = convertedJobs.filter((j) => j.id === queryId);
+
+    console.log(convertedJobs);
+    console.log(queryId);
+    console.log(apiJob?.id);
+    if (apiJob) {
+      return { props: { job: JSON.parse(JSON.stringify(apiJob)) } };
+    }
+
+    // if it can't be retrieved from an external api, return 404
     return {
       // returns the default 404 page with a status code of 404
       notFound: true,

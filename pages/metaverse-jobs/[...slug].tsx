@@ -41,6 +41,20 @@ const options: HTMLReactParserOptions = {
           </span>
         );
       }
+      if (domNode.name === 'ul') {
+        return (
+          <ul className="list-inside list-disc">
+            {domToReact(domNode.children, options)}
+          </ul>
+        );
+      }
+      if (domNode.name === 'ol') {
+        return (
+          <ul className="list-inside list-decimal">
+            {domToReact(domNode.children, options)}
+          </ul>
+        );
+      }
     }
   },
 };

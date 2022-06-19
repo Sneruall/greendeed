@@ -9,13 +9,13 @@ export type Job = {
   tags?: string[];
   jobDescription: string;
   jobType: jobType;
-  salary: {
+  salary?: {
     currency: Currency;
     period: SalaryPeriod;
     min: CurrencyInputOnChangeValues;
     max: CurrencyInputOnChangeValues;
   };
-  equity: boolean;
+  equity?: boolean;
   locationInfo: LocationInfo;
   email: string;
   timestamp: number;
@@ -63,12 +63,18 @@ export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
 
 export type ApplicationMethod = 'email' | 'website';
 
-export type jobCategory = 'IT' | 'Operations' | 'Manufacturing' | 'Consultancy';
+export type jobCategory =
+  | 'IT'
+  | 'Operations'
+  | 'Manufacturing'
+  | 'Consultancy'
+  | 'Other';
 export const jobCategories = [
   'IT',
   'Operations',
   'Manufacturing',
   'Consultancy',
+  'Other',
 ];
 {
   /* Todo: make the categories complete: https://tallo.com/blog/types-of-careers/ https://www.recruiter.com/careers/ */
@@ -114,7 +120,7 @@ export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];
 export const currencies = ['$', '€', '£', 'CA$', 'AU$'];
 
 export type remotiveJob = {
-  id: number;
+  id: string;
   url: string;
   title: string;
   company_name: string;

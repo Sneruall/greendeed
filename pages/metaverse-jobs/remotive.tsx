@@ -1,14 +1,17 @@
 import React from 'react';
 import { NextPage } from 'next';
 
-import { remotiveJob } from '../../types/types';
+import { Job, remotiveJob } from '../../types/types';
+import JobListing from '../../components/JobListing';
+import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
 
-const remotive: NextPage<{ jobs: remotiveJob }> = ({ jobs }) => {
+const remotive: NextPage<{ convertedJobs: [Job] }> = ({ convertedJobs }) => {
   return (
     <div>
       <p>remotive:</p>
       <div>
-        <pre>{JSON.stringify(jobs, null, 2)}</pre>
+        <JobListing jobs={convertedJobs} />
+        <pre>{JSON.stringify(convertedJobs, null, 2)}</pre>
       </div>
     </div>
   );
@@ -23,8 +26,10 @@ export async function getServerSideProps() {
     `https://remotive.com/api/remote-jobs?search=sustainability`
   );
   const data = await res.json();
-  const jobs = data.jobs;
+  const remotiveJobs: [remotiveJob] = data.jobs;
+
+  const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
 
   // Pass data to the page via props
-  return { props: { jobs } };
+  return { props: { convertedJobs } };
 }

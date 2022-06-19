@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const convertedJobs: Job[] = remotiveJobs
       .map(mapRemotiveJobtoJob)
       .reverse();
-    const apiJob = convertedJobs.find((j) => j.id === queryId);
+    const apiJob = convertedJobs.find((j) => j.id == queryId);
     // const apiJob = convertedJobs.filter((j) => j.id === queryId);
 
     console.log(convertedJobs);

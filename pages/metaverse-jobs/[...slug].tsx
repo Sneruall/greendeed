@@ -33,7 +33,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job location: {job.locationInfo?.location}</p>
       <p>Tags: {job.tags}</p>
       <p>Job Description:</p>
-      {parse(job.jobDescription, options)}
+      {job.jobDescription && parse(job.jobDescription, options)}
     </div>
   );
 };

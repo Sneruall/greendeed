@@ -48,13 +48,11 @@ export const setHTMLDescription = (
   descriptionHtml: string,
   descriptionType: 'job' | 'company'
 ) => {
-  if (descriptionHtml !== '') {
-    if (descriptionType === 'job') {
-      formData.jobDescription = descriptionHtml;
-    }
-    if (descriptionType === 'company') {
-      formData.companyDescription = descriptionHtml;
-    }
+  if (descriptionType === 'job') {
+    formData.jobDescription = descriptionHtml;
+  }
+  if (descriptionType === 'company') {
+    formData.companyDescription = descriptionHtml;
   }
 };
 

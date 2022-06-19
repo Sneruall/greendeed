@@ -7,7 +7,7 @@ import {
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
-  setJobDescription,
+  setHTMLDescription,
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
@@ -70,6 +70,7 @@ function Form() {
   };
 
   const [jobDescriptionHtml, setjobDescriptionHtml] = useState('');
+  const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');
 
   const {
     register,
@@ -84,7 +85,8 @@ function Form() {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
-    setJobDescription(formData, jobDescriptionHtml);
+    setHTMLDescription(formData, jobDescriptionHtml, 'job');
+    setHTMLDescription(formData, companyDescriptionHtml, 'company');
     console.log(formData);
     if (minSalaryValues) {
       formData.salary.min = minSalaryValues;
@@ -158,29 +160,7 @@ function Form() {
 
       <h2 className="text-base font-bold">Job description</h2>
       <RichTextEditor state={setjobDescriptionHtml} />
-      {jobDescriptionHtml}
-      <div className="text-red-500">{errors.jobDescription?.message}</div>
-
-      {/* <div className="">
-        <label
-          htmlFor="jobDescription"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
-        >
-          Job Description
-        </label>
-        <textarea
-          {...register('jobDescription')}
-          id="jobDescription"
-          rows={4}
-          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors.jobDescription
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-          placeholder="Write a good job description..."
-        ></textarea>
-        <div className="text-red-500">{errors.jobDescription?.message}</div>
-      </div> */}
+      {/* {jobDescriptionHtml} */}
 
       {/* JOB TYPES */}
       <FormFieldDropdown
@@ -406,12 +386,10 @@ function Form() {
 
       {/* DESCRIPTION */}
       {!retrievedCompanyData?.description ? (
-        <FormFieldString
-          title="Company Description"
-          register={register}
-          errors={errors.companyDescription}
-          id="companyDescription"
-        />
+        <>
+          <h2 className="text-base font-bold">Company description</h2>
+          <RichTextEditor state={setcompanyDescriptionHtml} />
+        </>
       ) : (
         <p>Contact us if you want to change it for your company</p>
       )}

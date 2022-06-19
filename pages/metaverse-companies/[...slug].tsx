@@ -5,8 +5,10 @@ import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
+import { options } from '../../utils/htmlReactParserOptions';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl } from '../../utils/urlGeneration';
+import parse from 'html-react-parser';
 
 /*
 Todo:
@@ -33,6 +35,7 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       </Head>
       <Header />
       <p>Company name: {company.name}</p>
+      <p>Company description: {parse(company.description, options)}</p>
       <div className="flex flex-col gap-3">{joblist}</div>
     </div>
   );

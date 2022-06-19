@@ -43,11 +43,19 @@ export const convertTagsAndLocations = (formData: Job) => {
   }
 };
 
-export const setJobDescription = (
+export const setHTMLDescription = (
   formData: Job,
-  jobDescriptionHtml: string
+  descriptionHtml: string,
+  descriptionType: 'job' | 'company'
 ) => {
-  formData.jobDescription = jobDescriptionHtml;
+  if (descriptionHtml !== '') {
+    if (descriptionType === 'job') {
+      formData.jobDescription = descriptionHtml;
+    }
+    if (descriptionType === 'company') {
+      formData.companyDescription = descriptionHtml;
+    }
+  }
 };
 
 export const setCompanyId = (

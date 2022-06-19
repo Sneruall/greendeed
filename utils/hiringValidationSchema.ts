@@ -113,7 +113,6 @@ export default Yup.object().shape({
         .required('apply website is required'),
     }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
-  companyDescription: Yup.string(),
   companyWebsite: Yup.string().matches(
     /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
     'url is not valid, this format should work: website.com'

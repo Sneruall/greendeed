@@ -6,7 +6,7 @@ import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { options } from '../../utils/htmlReactParserOptions';
-import { replaceDashByWhitespace } from '../../utils/stringManipulations';
+import { replaceDashAndSlashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 
@@ -77,8 +77,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
-    replaceDashByWhitespace(company.name.toLowerCase()) !==
-    replaceDashByWhitespace(name)
+    replaceDashAndSlashByWhitespace(company.name.toLowerCase()) !==
+    replaceDashAndSlashByWhitespace(name)
   ) {
     return {
       redirect: {

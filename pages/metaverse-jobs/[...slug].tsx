@@ -5,12 +5,7 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job, remotiveJob } from '../../types/types';
-import { replaceDashByWhitespace } from '../../utils/stringManipulations';
-import {
-  generateCompanyUrl,
-  generateJobUrl,
-  matchSlugToJob,
-} from '../../utils/urlGeneration';
+import { generateCompanyUrl, matchSlugToJob } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
 import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';

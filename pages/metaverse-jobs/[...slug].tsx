@@ -7,57 +7,12 @@ import clientPromise from '../../lib/mongodb';
 import { Job } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
-import parse, {
-  domToReact,
-  HTMLReactParserOptions,
-  Element,
-} from 'html-react-parser';
+import parse from 'html-react-parser';
+import { options } from '../../utils/htmlReactParserOptions';
 
 /*
 Todo:
 */
-
-const options: HTMLReactParserOptions = {
-  replace: (domNode) => {
-    if (domNode instanceof Element && domNode.attribs) {
-      if (domNode.attribs.class === 'ql-size-small') {
-        return (
-          <span className="text-[0.75rem]">
-            {domToReact(domNode.children, options)}
-          </span>
-        );
-      }
-      if (domNode.attribs.class === 'ql-size-large') {
-        return (
-          <span className="text-[1.5rem]">
-            {domToReact(domNode.children, options)}
-          </span>
-        );
-      }
-      if (domNode.attribs.class === 'ql-size-huge') {
-        return (
-          <span className="text-[2.5rem]">
-            {domToReact(domNode.children, options)}
-          </span>
-        );
-      }
-      if (domNode.name === 'ul') {
-        return (
-          <ul className="list-inside list-disc">
-            {domToReact(domNode.children, options)}
-          </ul>
-        );
-      }
-      if (domNode.name === 'ol') {
-        return (
-          <ul className="list-inside list-decimal">
-            {domToReact(domNode.children, options)}
-          </ul>
-        );
-      }
-    }
-  },
-};
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
   return (

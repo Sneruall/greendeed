@@ -112,3 +112,18 @@ export const jobTypes = [
 export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];
 
 export const currencies = ['$', '€', '£', 'CA$', 'AU$'];
+
+export type remotiveJob = {
+  id: number;
+  url: string;
+  title: string;
+  company_name: string;
+  company_logo: string;
+  category: string;
+  tags: string[];
+  job_type: string;
+  publication_date: string;
+  candidate_required_location: string;
+  salary: string;
+  description: string;
+};

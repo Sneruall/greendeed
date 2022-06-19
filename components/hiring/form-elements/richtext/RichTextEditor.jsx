@@ -39,7 +39,7 @@ function RichTextEditor({ state }) {
     <>
       {/* <div dangerouslySetInnerHTML={{ __html: value.value }} /> */}
       <QuillNoSSRWrapper
-        placeholder="Write a good job description..."
+        placeholder="Write a good description..."
         ref={editor}
         onChange={handleChange}
         modules={modules}

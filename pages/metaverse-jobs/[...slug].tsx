@@ -6,7 +6,11 @@ import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job, remotiveJob } from '../../types/types';
 import { replaceDashByWhitespace } from '../../utils/stringManipulations';
-import { generateCompanyUrl, generateJobUrl } from '../../utils/urlGeneration';
+import {
+  generateCompanyUrl,
+  generateJobUrl,
+  matchSlugToJob,
+} from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
 import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
@@ -16,7 +20,6 @@ Todo:
 */
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
-  console.log(job);
   return (
     <div>
       <Head>
@@ -60,7 +63,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     throw new Error('Please add your Mongo URI to .env.local');
   }
 
-  const job = await db.collection(collection).findOne({ id: queryId });
+  const job = (await db
+    .collection(collection)
+    .findOne({ id: queryId })) as unknown as Job;
 
   // If there is no job for the given queryId
   if (!job) {
@@ -75,13 +80,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       .map(mapRemotiveJobtoJob)
       .reverse();
     const apiJob = convertedJobs.find((j) => j.id == queryId);
-    // const apiJob = convertedJobs.filter((j) => j.id === queryId);
 
-    console.log(convertedJobs);
-    console.log(queryId);
-    console.log(apiJob?.id);
     if (apiJob) {
-      return { props: { job: JSON.parse(JSON.stringify(apiJob)) } };
+      console.log('api job found');
+      return matchSlugToJob(apiJob, slug, queryId);
     }
 
     // if it can't be retrieved from an external api, return 404
@@ -89,35 +91,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       // returns the default 404 page with a status code of 404
       notFound: true,
     };
+  } else {
+    console.log('job found in db');
+    // Render the page with the job data as props
+    return matchSlugToJob(job, slug, queryId);
   }
-
-  //get the title and company out of the slug
-  const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
-
-  const queryTitle = slugMinusQueryId.split(',').pop();
-  const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
-
-  // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
-  // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
-  if (
-    replaceDashByWhitespace(job.jobTitle.toLowerCase()) !==
-      replaceDashByWhitespace(queryTitle!) ||
-    replaceDashByWhitespace(job.companyName.toLowerCase()) !==
-      replaceDashByWhitespace(queryCompany)
-  ) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: generateJobUrl(
-          job.companyName.toLowerCase(),
-          job.jobTitle.toLowerCase(),
-          job.id
-        ),
-      },
-      props: {},
-    };
-  }
-
-  // Render the page with the job data as props
-  return { props: { job: JSON.parse(JSON.stringify(job)) } };
 };

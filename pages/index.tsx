@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
 import clientPromise from '../lib/mongodb';
+import { getRemotiveJobs } from '../backend/job/remotive/apiCall';
 
 /*
 Todo:
@@ -43,9 +44,15 @@ export async function getServerSideProps() {
     // .sort({ metacritic: -1 })
     // .limit(20)
     .toArray();
+
+  const remotiveJobs = await getRemotiveJobs();
+
+  // Array.prototype.push.apply(jobs, remotiveJobs);
+  const merged = [...jobs, ...remotiveJobs];
+
   return {
     props: {
-      jobs: JSON.parse(JSON.stringify(jobs)),
+      jobs: JSON.parse(JSON.stringify(merged)),
     },
   };
 }

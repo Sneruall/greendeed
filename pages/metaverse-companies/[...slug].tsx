@@ -19,13 +19,11 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
   jobs,
 }) => {
-  const joblist = jobs
-    .map((job) => (
-      <li className="list-none" key={job.id}>
-        <JobItem job={job} />
-      </li>
-    ))
-    .reverse();
+  const joblist = jobs.map((job) => (
+    <li className="list-none" key={job.id}>
+      <JobItem job={job} />
+    </li>
+  ));
 
   return (
     <div>

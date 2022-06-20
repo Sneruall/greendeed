@@ -48,11 +48,15 @@ export async function getServerSideProps() {
   const remotiveJobs = await getRemotiveJobs();
 
   // Array.prototype.push.apply(jobs, remotiveJobs);
-  const merged = [...jobs, ...remotiveJobs];
+  const allJobs = [...jobs, ...remotiveJobs];
+
+  allJobs.sort((a, b) => {
+    return a.timestamp - b.timestamp;
+  });
 
   return {
     props: {
-      jobs: JSON.parse(JSON.stringify(merged)),
+      jobs: JSON.parse(JSON.stringify(allJobs)),
     },
   };
 }

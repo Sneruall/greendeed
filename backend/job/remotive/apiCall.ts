@@ -9,7 +9,7 @@ export async function getRemotiveJobs() {
   const data = await res.json();
   const remotiveJobs: [remotiveJob] = data.jobs;
 
-  const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob).reverse();
+  const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
 
   return convertedJobs;
 

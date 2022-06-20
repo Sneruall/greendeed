@@ -4,11 +4,11 @@ import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
 import clientPromise from '../lib/mongodb';
 import { getRemotiveJobs } from '../backend/job/remotive/apiCall';
+import { getJobsFromMongo } from '../backend/job/db';
 
 /*
 Todo:
 - Make sure apis can only be called from our server? (post apis) prevent curl from working,..
-- Make sure to use caching (getserversideprops with settings special)
 */
 
 const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
@@ -32,22 +32,10 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   );
 };
 export async function getServerSideProps() {
-  const client = await clientPromise;
-
-  const db = client.db();
-  if (!process.env.MONGODB_COLLECTION) {
-    throw new Error('Please add your Mongo URI to .env.local');
-  }
-  const jobs = await db
-    .collection(process.env.MONGODB_COLLECTION)
-    .find({ hidden: false })
-    // .sort({ metacritic: -1 })
-    // .limit(20)
-    .toArray();
+  const jobs = await getJobsFromMongo();
 
   const remotiveJobs = await getRemotiveJobs();
 
-  // Array.prototype.push.apply(jobs, remotiveJobs);
   const allJobs = [...jobs, ...remotiveJobs];
 
   allJobs.sort((a, b) => {

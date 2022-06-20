@@ -46,6 +46,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
   if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
 
+  // TODO MAKE THIS A SEPARATE METHOD WE IMPORT, ALSO COMBINE WITH INDEX.TSX ONE..
   // Connect to the database and look for the job based on the queryId
   const client = await clientPromise;
 
@@ -71,9 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
     const data = await res.json();
     const remotiveJobs: [remotiveJob] = data.jobs;
-    const convertedJobs: Job[] = remotiveJobs
-      .map(mapRemotiveJobtoJob)
-      .reverse();
+    const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
     const apiJob = convertedJobs.find((j) => j.id == queryId);
 
     if (apiJob) {

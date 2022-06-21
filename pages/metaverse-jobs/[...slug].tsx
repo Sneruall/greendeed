@@ -9,6 +9,8 @@ import { generateCompanyUrl, matchSlugToJob } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
 import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
+import { getJobFromMongo } from '../../backend/job/db';
+import { getRemotiveJobs } from '../../backend/job/remotive/apiCall';
 
 /*
 Todo:
@@ -42,52 +44,29 @@ export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.query;
-  if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
-  const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
-  if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
+  if (!slug) return { notFound: true };
+  const queryId = slug.toString().split('-').pop();
+  if (!queryId) return { notFound: true };
 
-  // TODO MAKE THIS A SEPARATE METHOD WE IMPORT, ALSO COMBINE WITH INDEX.TSX ONE..
-  // Connect to the database and look for the job based on the queryId
-  const client = await clientPromise;
-
-  const db = client.db();
-
-  let collection: string;
-  if (process.env.MONGODB_COLLECTION) {
-    collection = process.env.MONGODB_COLLECTION;
-  } else {
-    throw new Error('Please add your Mongo URI to .env.local');
-  }
-
-  const job = (await db
-    .collection(collection)
-    .findOne({ id: queryId })) as unknown as Job;
+  const job = await getJobFromMongo(queryId);
 
   // If there is no job for the given queryId
   if (!job) {
     console.log('no job found in db');
     // check to see if it can be retrieved from an external api like remotive
-    const res = await fetch(
-      `https://remotive.com/api/remote-jobs?search=sustainability`
-    );
-    const data = await res.json();
-    const remotiveJobs: [remotiveJob] = data.jobs;
-    const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
-    const apiJob = convertedJobs.find((j) => j.id == queryId);
+    const remotiveJobs = await getRemotiveJobs();
+    const apiJob = remotiveJobs.find((j) => j.id == queryId);
 
     if (apiJob) {
       console.log('api job found');
       return matchSlugToJob(apiJob, slug, queryId);
     }
 
-    // if it can't be retrieved from an external api, return 404
     return {
-      // returns the default 404 page with a status code of 404
       notFound: true,
     };
   } else {
     console.log('job found in db');
-    // Render the page with the job data as props
     return matchSlugToJob(job, slug, queryId);
   }
 };

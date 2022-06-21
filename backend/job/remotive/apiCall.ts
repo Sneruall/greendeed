@@ -12,7 +12,4 @@ export async function getRemotiveJobs() {
   const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
 
   return convertedJobs;
-
-  // Pass data to the page via props
-  //   return { props: { convertedJobs } };
 }

@@ -33,9 +33,7 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
 };
 export async function getServerSideProps() {
   const jobs = await getJobsFromMongo();
-
   const remotiveJobs = await getRemotiveJobs();
-
   const allJobs = [...jobs, ...remotiveJobs];
 
   allJobs.sort((a, b) => {

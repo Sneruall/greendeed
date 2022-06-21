@@ -1,8 +1,8 @@
 import { WithId } from 'mongodb';
 import { Job } from '../types/types';
 import {
-  replaceDashAndSlashByWhitespace,
-  replaceWhitespaceAndSlashesByDash,
+  replaceCharactersByWhitespace,
+  replaceCharactersByDash,
 } from './stringManipulations';
 
 export const generateJobUrl = (
@@ -10,15 +10,13 @@ export const generateJobUrl = (
   jobTitle: string,
   id: string
 ) => {
-  return `/metaverse-jobs/${replaceWhitespaceAndSlashesByDash(
+  return `/metaverse-jobs/${replaceCharactersByDash(
     companyName
-  )}/${replaceWhitespaceAndSlashesByDash(jobTitle)}-${id}`;
+  )}/${replaceCharactersByDash(jobTitle)}-${id}`;
 };
 
 export const generateCompanyUrl = (name: string, id: string) => {
-  return `/metaverse-companies/${replaceWhitespaceAndSlashesByDash(
-    name
-  )}-${id}`;
+  return `/metaverse-companies/${replaceCharactersByDash(name)}-${id}`;
 };
 
 export const matchSlugToJob = (
@@ -33,10 +31,10 @@ export const matchSlugToJob = (
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes and slashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
-    replaceDashAndSlashByWhitespace(job.jobTitle.toLowerCase()) !==
-      replaceDashAndSlashByWhitespace(queryTitle!) ||
-    replaceDashAndSlashByWhitespace(job.companyName.toLowerCase()) !==
-      replaceDashAndSlashByWhitespace(queryCompany)
+    replaceCharactersByWhitespace(job.jobTitle.toLowerCase()) !==
+      replaceCharactersByWhitespace(queryTitle!) ||
+    replaceCharactersByWhitespace(job.companyName.toLowerCase()) !==
+      replaceCharactersByWhitespace(queryCompany)
   ) {
     return {
       redirect: {

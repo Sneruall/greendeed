@@ -6,9 +6,10 @@ import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { options } from '../../utils/htmlReactParserOptions';
-import { replaceDashAndSlashByWhitespace } from '../../utils/stringManipulations';
+import { replaceCharactersByWhitespace } from '../../utils/stringManipulations';
 import { generateCompanyUrl } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
+import { getCompanyFromMongo } from '../../backend/job/db';
 
 /*
 Todo:
@@ -44,10 +45,13 @@ export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.query;
-  if (!slug) return { notFound: true }; //if there is nothing after metaverse-jobs/ it will 404.
-  const queryId = slug.toString().split('-').pop(); //removes everything before the last - sign to get the id of the job
-  if (!queryId) return { notFound: true }; //if the above line results in undefined return 404
+  if (!slug) return { notFound: true };
+  const queryId = slug.toString().split('-').pop();
+  if (!queryId) return { notFound: true };
+
   // Connect to the database and look for the job based on the queryId
+  // const company = await getCompanyFromMongo(queryId);
+
   const client = await clientPromise;
 
   const db = client.db();
@@ -75,8 +79,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
-    replaceDashAndSlashByWhitespace(company.name.toLowerCase()) !==
-    replaceDashAndSlashByWhitespace(name)
+    replaceCharactersByWhitespace(company.name.toLowerCase()) !==
+    replaceCharactersByWhitespace(name)
   ) {
     return {
       redirect: {

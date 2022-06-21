@@ -1,5 +1,5 @@
 import clientPromise from '../../lib/mongodb';
-import { Company, Job } from '../../types/types';
+import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async () => {
   const client = await clientPromise;
@@ -38,22 +38,24 @@ export const getJobFromMongo = async (queryId: string) => {
   return job;
 };
 
-export const getCompanyFromMongo = async (queryId: string) => {
-  /* Using the MongoDB driver to connect to the database and retrieve a job from the database. */
+export const getJobsFromCompanyFromMongo = async (company: Company) => {
   const client = await clientPromise;
 
   const db = client.db();
 
   let collection: string;
-  if (process.env.MONGODB_COMPANY_COLLECTION) {
-    collection = process.env.MONGODB_COMPANY_COLLECTION;
+  if (process.env.MONGODB_COLLECTION) {
+    collection = process.env.MONGODB_COLLECTION;
   } else {
     throw new Error('Please add your Mongo URI to .env.local');
   }
 
-  const company = (await db
-    .collection(collection)
-    .findOne({ id: queryId })) as unknown as Company;
+  const companyJobs = await db
+    .collection(process.env.MONGODB_COLLECTION)
+    .find({ hidden: false, companyId: company.id })
+    // .sort({ metacritic: -1 })
+    // .limit(20)
+    .toArray();
 
-  return company;
+  return companyJobs;
 };

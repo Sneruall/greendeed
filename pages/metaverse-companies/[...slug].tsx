@@ -7,9 +7,14 @@ import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { options } from '../../utils/htmlReactParserOptions';
 import { replaceCharactersByWhitespace } from '../../utils/stringManipulations';
-import { generateCompanyUrl } from '../../utils/urlGeneration';
+import {
+  generateCompanyUrl,
+  slugIsEqualToCompany,
+  redirectToCorrectCompanyUrl,
+} from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
-import { getCompanyFromMongo } from '../../backend/job/db';
+import { getCompanyFromMongo } from '../../backend/company/companyDB';
+import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
 
 /*
 Todo:
@@ -50,20 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!queryId) return { notFound: true };
 
   // Connect to the database and look for the job based on the queryId
-  // const company = await getCompanyFromMongo(queryId);
-
-  const client = await clientPromise;
-
-  const db = client.db();
-
-  let collection: string;
-  if (process.env.MONGODB_COMPANY_COLLECTION) {
-    collection = process.env.MONGODB_COMPANY_COLLECTION;
-  } else {
-    throw new Error('Please add your Mongo URI to .env.local');
-  }
-
-  const company = await db.collection(collection).findOne({ id: queryId });
+  const company = await getCompanyFromMongo(queryId);
 
   // If there is no job for the given queryId
   if (!company) {
@@ -73,39 +65,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  //get the title and company out of the slug
-  const name = slug.toString().replace('-' + queryId, '');
-
   // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
   // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
-  if (
-    replaceCharactersByWhitespace(company.name.toLowerCase()) !==
-    replaceCharactersByWhitespace(name)
-  ) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: generateCompanyUrl(company.name.toLowerCase(), company.id),
-      },
-      props: {},
-    };
+
+  if (!slugIsEqualToCompany(company, queryId, slug)) {
+    return redirectToCorrectCompanyUrl(company);
   }
 
-  if (!process.env.MONGODB_COLLECTION) {
-    throw new Error('Please add your Mongo URI to .env.local');
-  }
-  const jobs = await db
-    .collection(process.env.MONGODB_COLLECTION)
-    .find({ hidden: false, companyId: company.id })
-    // .sort({ metacritic: -1 })
-    // .limit(20)
-    .toArray();
-  console.log(jobs);
+  const companyJobs = await getJobsFromCompanyFromMongo(company);
+
   // Render the page with the job data as props
   return {
     props: {
       company: JSON.parse(JSON.stringify(company)),
-      jobs: JSON.parse(JSON.stringify(jobs)),
+      jobs: JSON.parse(JSON.stringify(companyJobs)),
     },
   };
 };

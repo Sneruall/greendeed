@@ -1,5 +1,5 @@
 import { WithId } from 'mongodb';
-import { Job } from '../types/types';
+import { Company, Job } from '../types/types';
 import {
   replaceCharactersByWhitespace,
   replaceCharactersByDash,
@@ -50,4 +50,33 @@ export const matchSlugToJob = (
   } else {
     return { props: { job: JSON.parse(JSON.stringify(job)) } };
   }
+};
+
+export const slugIsEqualToCompany = (
+  company: Company,
+  queryId: string,
+  slug: string | string[]
+) => {
+  const name = slug.toString().replace('-' + queryId, '');
+
+  console.log(company.name.toLowerCase(), name);
+  if (
+    replaceCharactersByWhitespace(company.name.toLowerCase()) !==
+    replaceCharactersByWhitespace(name)
+  ) {
+    console.log('not the same');
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const redirectToCorrectCompanyUrl = (company: Company) => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: generateCompanyUrl(company.name.toLowerCase(), company.id),
+    },
+    props: {},
+  };
 };

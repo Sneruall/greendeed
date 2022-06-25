@@ -19,7 +19,7 @@ export const generateCompanyUrl = (name: string, id: string) => {
   return `/metaverse-companies/${replaceCharactersByDash(name)}-${id}`;
 };
 
-export const matchSlugToJob = (
+export const slugIsEqualToJob = (
   job: Job,
   slug: string | string[],
   queryId: string
@@ -28,28 +28,30 @@ export const matchSlugToJob = (
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
 
-  // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
-  // Replace Dashes and slashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
   if (
     replaceCharactersByWhitespace(job.jobTitle.toLowerCase()) !==
       replaceCharactersByWhitespace(queryTitle!) ||
     replaceCharactersByWhitespace(job.companyName.toLowerCase()) !==
       replaceCharactersByWhitespace(queryCompany)
   ) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: generateJobUrl(
-          job.companyName.toLowerCase(),
-          job.jobTitle.toLowerCase(),
-          job.id
-        ),
-      },
-      props: {},
-    };
+    return false;
   } else {
-    return { props: { job: JSON.parse(JSON.stringify(job)) } };
+    return true;
   }
+};
+
+export const redirectToCorrectJobUrl = (job: Job) => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: generateJobUrl(
+        job.companyName.toLowerCase(),
+        job.jobTitle.toLowerCase(),
+        job.id
+      ),
+    },
+    props: {},
+  };
 };
 
 export const slugIsEqualToCompany = (
@@ -59,12 +61,10 @@ export const slugIsEqualToCompany = (
 ) => {
   const name = slug.toString().replace('-' + queryId, '');
 
-  console.log(company.name.toLowerCase(), name);
   if (
     replaceCharactersByWhitespace(company.name.toLowerCase()) !==
     replaceCharactersByWhitespace(name)
   ) {
-    console.log('not the same');
     return false;
   } else {
     return true;

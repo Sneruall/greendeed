@@ -5,7 +5,11 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import clientPromise from '../../lib/mongodb';
 import { Job, remotiveJob } from '../../types/types';
-import { generateCompanyUrl, matchSlugToJob } from '../../utils/urlGeneration';
+import {
+  generateCompanyUrl,
+  redirectToCorrectJobUrl,
+  slugIsEqualToJob,
+} from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
 import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
@@ -53,20 +57,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // If there is no job for the given queryId
   if (!job) {
     console.log('no job found in db');
-    // check to see if it can be retrieved from an external api like remotive
     const remotiveJobs = await getRemotiveJobs();
     const apiJob = remotiveJobs.find((j) => j.id == queryId);
 
     if (apiJob) {
       console.log('api job found');
-      return matchSlugToJob(apiJob, slug, queryId);
+      if (!slugIsEqualToJob(apiJob, slug, queryId)) {
+        console.log('redirect to correct slug');
+        return redirectToCorrectJobUrl(apiJob);
+      } else return { props: { job: JSON.parse(JSON.stringify(apiJob)) } };
     }
 
     return {
       notFound: true,
     };
-  } else {
-    console.log('job found in db');
-    return matchSlugToJob(job, slug, queryId);
-  }
+  } else if (!slugIsEqualToJob(job, slug, queryId)) {
+    return redirectToCorrectJobUrl(job);
+  } else return { props: { job: JSON.parse(JSON.stringify(job)) } };
 };

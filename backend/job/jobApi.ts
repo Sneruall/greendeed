@@ -1,4 +1,5 @@
 import { customAlphabet } from 'nanoid';
+import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
 import { Job } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../utils/arrayConversions';
 
@@ -24,6 +25,10 @@ export const setDefaultJobAttributes = (formData: Job) => {
   if (formData.locationInfo.location === 'onSite') {
     formData.locationInfo.remoteLocation = undefined;
   }
+};
+
+export const createCategoryObject = (category: jobCategory['name']) => {
+  return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 
 export const convertTagsAndLocations = (formData: Job) => {

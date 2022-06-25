@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
   convertTagsAndLocations,
+  createCategoryObject,
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
@@ -13,7 +14,6 @@ import {
   ApplicationMethod,
   Job,
   Company,
-  jobCategories,
   jobTypes,
   currencies,
   SalaryPeriod,
@@ -33,6 +33,7 @@ import {
 import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
 import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
+import { generateCategoriesArray } from '../../types/jobCategories';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -84,15 +85,18 @@ function Form() {
   async function onSubmit(formData: Job) {
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
+    formData.category = createCategoryObject(
+      formData.category as unknown as string
+    )!;
     setCompanyId(formData, retrievedCompanyData?.id);
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
     console.log(formData);
     if (minSalaryValues) {
-      formData.salary.min = minSalaryValues;
+      formData.salary!.min = minSalaryValues;
     }
     if (maxSalaryValues) {
-      formData.salary.max = maxSalaryValues;
+      formData.salary!.max = maxSalaryValues;
     }
     await postJob(formData);
     if (!retrievedCompanyData?.id) {
@@ -144,7 +148,7 @@ function Form() {
         id="category"
         register={register}
         title="Category"
-        options={jobCategories.sort()}
+        options={generateCategoriesArray()}
       />
 
       {/* TAGS */}

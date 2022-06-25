@@ -1,3 +1,4 @@
+import { jobCategoriesList } from '../../../types/jobCategories';
 import { Job, remotiveJob } from '../../../types/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
@@ -6,7 +7,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     companyId: Math.random().toString(), //todo fixen
     companyDescription: '',
     jobTitle: remotiveJob.title,
-    category: 'Other', //todo categories mappen
+    category: jobCategoriesList[3], //todo categories mappen
     tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
     jobType: 'Other', //todo job_type naar jobType mappen

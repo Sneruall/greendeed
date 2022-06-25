@@ -3,8 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
-import clientPromise from '../../lib/mongodb';
-import { Job, remotiveJob } from '../../types/types';
+import { Job } from '../../types/types';
 import {
   generateCompanyUrl,
   redirectToCorrectJobUrl,
@@ -12,7 +11,6 @@ import {
 } from '../../utils/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../utils/htmlReactParserOptions';
-import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
 import { getJobFromMongo } from '../../backend/job/db';
 import { getRemotiveJobs } from '../../backend/job/remotive/apiCall';
 
@@ -37,6 +35,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job id: {job.id}</p>
       <p>Job title: {job.jobTitle}</p>
       <p>Job location: {job.locationInfo?.location}</p>
+      <p>Cat: {job.category.name}</p>
       <p>Tags: {job.tags}</p>
       <p>Job Description:</p>
       {job.jobDescription && parse(job.jobDescription, options)}

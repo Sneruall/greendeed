@@ -7,7 +7,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     companyId: Math.random().toString(), //todo fixen
     companyDescription: '',
     jobTitle: remotiveJob.title,
-    category: jobCategoriesList[3], //todo categories mappen
+    category: jobCategoriesList[4], //todo categories mappen
     tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
     jobType: 'Other', //todo job_type naar jobType mappen

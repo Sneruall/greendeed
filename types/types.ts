@@ -1,4 +1,5 @@
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
+import { jobCategory } from './jobCategories';
 
 export type Job = {
   companyName: string;
@@ -63,19 +64,6 @@ export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
 
 export type ApplicationMethod = 'email' | 'website';
 
-export type jobCategory =
-  | 'IT'
-  | 'Operations'
-  | 'Manufacturing'
-  | 'Consultancy'
-  | 'Other';
-export const jobCategories = [
-  'IT',
-  'Operations',
-  'Manufacturing',
-  'Consultancy',
-  'Other',
-];
 {
   /* Todo: make the categories complete: https://tallo.com/blog/types-of-careers/ https://www.recruiter.com/careers/ */
 }

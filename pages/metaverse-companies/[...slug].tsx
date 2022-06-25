@@ -54,19 +54,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };
 
-  // Connect to the database and look for the job based on the queryId
   const company = await getCompanyFromMongo(queryId);
 
-  // If there is no job for the given queryId
   if (!company) {
     return {
-      // returns the default 404 page with a status code of 404
       notFound: true,
     };
   }
 
-  // if the id is found, but slug (company name and/or job title) is not matching the one from the database, redirect to the currect url.
-  // Replace Dashes by whitespaces in the slug (because these are not in the db), but also remove them from DB, because if it has any it should also be removed for the comparison
 
   if (!slugIsEqualToCompany(company, queryId, slug)) {
     return redirectToCorrectCompanyUrl(company);

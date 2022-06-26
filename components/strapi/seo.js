@@ -4,15 +4,15 @@ import { GlobalContext } from '../../pages/_app';
 import { getStrapiMedia } from '../../lib/strapi/media';
 
 const Seo = ({ seo }) => {
-  const { defaultSeo, siteName } = useContext(GlobalContext);
+  //   const { defaultSeo, siteName } = useContext(GlobalContext); //TURNED OFF BECAUSE NO _APP.TSX CHANGES APPLIED
   const seoWithDefaults = {
-    ...defaultSeo,
+    // ...defaultSeo,
     ...seo,
   };
   const fullSeo = {
     ...seoWithDefaults,
     // Add title suffix
-    metaTitle: `${seoWithDefaults.metaTitle} | ${siteName}`,
+    // metaTitle: `${seoWithDefaults.metaTitle} | ${siteName}`, //TURNED OFF BECAUSE NO _APP.TSX CHANGES APPLIED
     // Get full image URL
     shareImage: getStrapiMedia(seoWithDefaults.shareImage),
   };

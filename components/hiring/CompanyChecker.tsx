@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Company } from '../../types/types';
-import { generateCompanyUrl } from '../../utils/urlGeneration';
+import { generateCompanyUrl } from '../../helpers/urlGeneration';
 
 const CompanyChecker: React.FC<{
   companyNameIsLoading: boolean | undefined;

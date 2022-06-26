@@ -1,7 +1,7 @@
 import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
 import { Job } from '../../types/types';
-import { convertCommaSeparatedStringToArray } from '../../utils/arrayConversions';
+import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
 

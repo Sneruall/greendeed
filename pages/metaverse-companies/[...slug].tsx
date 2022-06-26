@@ -5,13 +5,13 @@ import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
 import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
-import { options } from '../../utils/htmlReactParserOptions';
-import { replaceCharactersByWhitespace } from '../../utils/stringManipulations';
+import { options } from '../../helpers/htmlReactParserOptions';
+import { replaceCharactersByWhitespace } from '../../helpers/stringManipulations';
 import {
   generateCompanyUrl,
   slugIsEqualToCompany,
   redirectToCorrectCompanyUrl,
-} from '../../utils/urlGeneration';
+} from '../../helpers/urlGeneration';
 import parse from 'html-react-parser';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
@@ -61,7 +61,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       notFound: true,
     };
   }
-
 
   if (!slugIsEqualToCompany(company, queryId, slug)) {
     return redirectToCorrectCompanyUrl(company);

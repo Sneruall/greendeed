@@ -8,9 +8,9 @@ import {
   generateCompanyUrl,
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
-} from '../../utils/urlGeneration';
+} from '../../helpers/urlGeneration';
 import parse from 'html-react-parser';
-import { options } from '../../utils/htmlReactParserOptions';
+import { options } from '../../helpers/htmlReactParserOptions';
 import { getJobFromMongo } from '../../backend/job/db';
 import { getRemotiveJobs } from '../../backend/job/remotive/apiCall';
 

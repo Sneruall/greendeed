@@ -23,6 +23,11 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
       <main className="mx-auto max-w-screen-2xl">
         {/* Searchbar / filtering */}
         <p className="py-10 text-center">Searchbar</p>
+        <p>
+          Activate Blog by running yarn develop from
+          blog-greendeed-strapi/backend, runs on http://localhost:1337/
+        </p>
+        <p>Run this app from Node V16 and also the blog. nvm use v16</p>
         {/* Listing of jobs */}
         <JobListing jobs={jobs} />
       </main>

@@ -3,7 +3,7 @@ import { Job } from '../types/types';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
-import { generateJobUrl } from '../utils/urlGeneration';
+import { generateJobUrl } from '../helpers/urlGeneration';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 

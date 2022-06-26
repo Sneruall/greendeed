@@ -12,7 +12,7 @@ function Header() {
         </Link>
         <Link href="/blog">
           <a className="flex-1">
-            <h2 className="my-auto text-xl font-bold">Blog</h2>
+            <h2 className="my-auto text-sm font-bold">Blog</h2>
           </a>
         </Link>
         <Link href="/hiring">

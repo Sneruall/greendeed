@@ -1,10 +1,10 @@
 export type jobCategories = jobCategory[];
 
-export type jobCategory = {
+export interface jobCategory {
   id: number;
   name: string;
   slug: string;
-};
+}
 
 export const generateCategoriesArray = () => {
   return jobCategoriesList.map((category) => category.name).sort();

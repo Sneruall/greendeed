@@ -1,7 +1,7 @@
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import { jobCategory } from './jobCategories';
 
-export type Job = {
+export interface Job {
   companyName: string;
   companyId: string;
   companyDescription: string;
@@ -29,33 +29,33 @@ export type Job = {
   applicationMethod: ApplicationMethod;
   apply: string;
   companyWebsite: string;
-};
+}
 
 // todo: add fields (websiteurl, employees...)
-export type Company = {
+export interface Company {
   name: string;
   id: string;
   description: string;
-};
+}
 
-export type LocationInfo = {
+export interface LocationInfo {
   location: Location;
   onSiteLocation?: string[];
   remoteLocation?: RemoteLocation;
   geoRestriction?: string[];
   geoRestrictionOther?: string[];
-};
+}
 
 // Todo: Maybe find how to not hardcode this but use global constants or something?
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
 
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 
-export type LocationObject = {
+export interface LocationObject {
   location: Location;
   remoteLocation: RemoteLocation;
   otherGeoRestriction: boolean;
-};
+}
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
 
@@ -107,7 +107,7 @@ export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];
 
 export const currencies = ['$', '€', '£', 'CA$', 'AU$'];
 
-export type remotiveJob = {
+export interface remotiveJob {
   id: string;
   url: string;
   title: string;
@@ -120,4 +120,4 @@ export type remotiveJob = {
   candidate_required_location: string;
   salary: string;
   description: string;
-};
+}

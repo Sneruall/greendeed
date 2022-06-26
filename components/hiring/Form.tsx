@@ -19,7 +19,7 @@ import {
   SalaryPeriod,
   LocationObject,
 } from '../../types/types';
-import hiringValidationSchema from '../../helpers/hiringValidationSchema';
+import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';

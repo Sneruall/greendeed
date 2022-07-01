@@ -1,11 +1,14 @@
 import clientPromise from '../../lib/mongodb';
-import registerJobTimestamp from '../../backend/job/jobApi';
+
+// Send POST request to /api/remotive to add a remotive job selection from the database,
+// attach the id and sdg to the request body.
 
 /*
 TODO:
 - Convert this to TS
 - Add validation of incoming body
 - Add Server Side validation (now only client side)
+- Add authentication
 
 */
 

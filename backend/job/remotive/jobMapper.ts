@@ -20,6 +20,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     id: remotiveJob.id,
     price: 0,
     paid: true,
+    sdg: ['1', '2', '3'], //todo sdg mappen
     hidden: false,
     listed: true,
     closed: false,

@@ -17,6 +17,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
   // Set other job data attributes
   formData.timestamp = registerJobTimestamp();
   formData.id = setJobId();
+  formData.sdg = ['1', '2', '3'];
   formData.price = 50; // set the price
   formData.paid = true; // set the payment status
   formData.hidden = false; // set the visibility

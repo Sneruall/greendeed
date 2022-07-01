@@ -164,7 +164,8 @@ function Form() {
 
       <h2 className="text-base font-bold">Job description</h2>
       <RichTextEditor state={setjobDescriptionHtml} />
-      {/* {jobDescriptionHtml} */}
+
+      {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
       {/* JOB TYPES */}
       <FormFieldDropdown

@@ -1,10 +1,13 @@
 import clientPromise from '../../../lib/mongodb';
 
+// Send DELETE request to /api/remotive/delete/:id to delete a remotive job selection from the database.
+
 /*
 TODO:
 - Convert this to TS
 - Add validation of incoming body
 - Add Server Side validation (now only client side)
+- Add authentication
 
 */
 

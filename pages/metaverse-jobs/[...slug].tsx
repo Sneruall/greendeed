@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
-import { Job } from '../../types/types';
+import { Job, sdgList } from '../../types/types';
 import {
   generateCompanyUrl,
   redirectToCorrectJobUrl,
@@ -19,6 +19,10 @@ Todo:
 */
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
+  const mappedSdg = job.sdg.map((num) => {
+    return sdgList.find((el) => el.code === num)!.name; //todo: display icon/image instead of name
+  });
+
   return (
     <div>
       <Head>
@@ -37,6 +41,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       <p>Job location: {job.locationInfo?.location}</p>
       <p>Cat: {job.category.name}</p>
       <p>Tags: {job.tags}</p>
+      <p>SDGs: {mappedSdg}</p>
       <p>Job Description:</p>
       {job.jobDescription && parse(job.jobDescription, options)}
     </div>

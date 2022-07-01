@@ -1,4 +1,5 @@
 import clientPromise from '../../lib/mongodb';
+import registerJobTimestamp from '../../backend/job/jobApi';
 
 /*
 TODO:
@@ -11,6 +12,7 @@ TODO:
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const data = req.body;
+    data.timestamp = new Date().getTime();
     const client = await clientPromise;
     const db = client.db();
     const yourCollection = db.collection(

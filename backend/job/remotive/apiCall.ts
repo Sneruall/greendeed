@@ -17,6 +17,10 @@ export async function getRemotiveJobs() {
     });
   });
 
+  filteredRemotiveJobs.map(
+    (obj) => remotiveJobIds.find((o) => o.id === obj.id) || obj
+  );
+
   const convertedJobs: Job[] = filteredRemotiveJobs.map(mapRemotiveJobtoJob);
 
   return convertedJobs;

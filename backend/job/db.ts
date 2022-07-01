@@ -60,19 +60,19 @@ export const getJobsFromCompanyFromMongo = async (company: Company) => {
   return companyJobs;
 };
 
-export const getRemotiveJobIdsFromMongo = async () => {
+export const getremotiveJobSelectionFromMongo = async () => {
   const client = await clientPromise;
 
   const db = client.db();
   if (!process.env.MONGODB_REMOTIVE_COLLECTION) {
     throw new Error('Please add your Mongo URI to .env.local');
   }
-  const remotiveJobIds = await db
+  const remotiveJobSelection = await db
     .collection(process.env.MONGODB_REMOTIVE_COLLECTION)
     .find()
     // .sort({ metacritic: -1 })
     // .limit(20)
     .toArray();
 
-  return remotiveJobIds;
+  return remotiveJobSelection;
 };

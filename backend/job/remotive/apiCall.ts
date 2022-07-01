@@ -1,28 +1,34 @@
-import { Job, remotiveJob } from '../../../types/types';
-import { getRemotiveJobIdsFromMongo } from '../db';
+import { Job, remotiveJob, remotiveJobSelection } from '../../../types/types';
+import { getremotiveJobSelectionFromMongo } from '../db';
 import { mapRemotiveJobtoJob } from './jobMapper';
 
 export async function getRemotiveJobs() {
-  // Fetch data from external API
+  // Fetch all jobs from remotive
   const res = await fetch(`https://remotive.com/api/remote-jobs`);
-
   const data = await res.json();
   const remotiveData: remotiveJob[] = data.jobs;
 
-  const remotiveJobIds = await getRemotiveJobIdsFromMongo();
+  // Filter out jobs that have not been selected
+  const remotiveJobSelection =
+    (await getremotiveJobSelectionFromMongo()) as unknown as remotiveJobSelection;
 
   const filteredRemotiveJobs = remotiveData.filter((el) => {
-    return remotiveJobIds.some((r) => {
+    return remotiveJobSelection.some((r) => {
       return r.id === el.id.toString();
     });
   });
 
-  filteredRemotiveJobs.map(
-    (obj) => remotiveJobIds.find((o) => o.id === obj.id) || obj
-  );
+  // For each job in filteredRemotiveJobs set the publication date to date that job was added to database
+  filteredRemotiveJobs.forEach((el) => {
+    el.publication_date = remotiveJobSelection
+      .find((x) => x.id === el.id.toString())!
+      .timestamp.toString();
+  });
 
+  // Map remotive jobs to jobs
   const convertedJobs: Job[] = filteredRemotiveJobs.map(mapRemotiveJobtoJob);
 
+  // Return converted remotive jobs
   return convertedJobs;
 }
 

@@ -121,3 +121,11 @@ export interface remotiveJob {
   salary: string;
   description: string;
 }
+
+export type remotiveJobSelection = [
+  {
+    id: string;
+    sdg: [];
+    timestamp: number;
+  }
+];

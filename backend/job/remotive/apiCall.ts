@@ -6,24 +6,21 @@ export async function getRemotiveJobs() {
   const res = await fetch(`https://remotive.com/api/remote-jobs`);
 
   const data = await res.json();
+  const remotiveData: remotiveJob[] = data.jobs;
 
-  // const filteredData = data.jobs.filter((x) => x.id === 1294241);
-
-  // console.log(filteredData);
-
+  //todo get this info from a database that we fill/empty using postman requests
   const myFilter = [
-    { id: 1294241, sdg: [1, 2, 3] },
-    { id: 1275809, sdg: [1, 2, 3] },
+    { id: '1294241', sdg: [1, 2, 3] },
+    { id: '1275809', sdg: [1, 2, 3] },
   ];
-  const filteredData = data.jobs.filter((el) => {
+
+  const filteredData = remotiveData.filter((el) => {
     return myFilter.some((f) => {
-      return f.id === el.id;
+      return f.id === el.id.toString();
     });
   });
 
-  console.log(filteredData);
-
-  const remotiveJobs: [remotiveJob] = filteredData;
+  const remotiveJobs: remotiveJob[] = filteredData;
 
   const convertedJobs: Job[] = remotiveJobs.map(mapRemotiveJobtoJob);
 

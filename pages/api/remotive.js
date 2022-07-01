@@ -14,12 +14,32 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db();
     const yourCollection = db.collection(
-      process.env.MONGODB_COMPANY_COLLECTION
+      process.env.MONGODB_REMOTIVE_COLLECTION
     );
     const result = await yourCollection.insertOne(data);
     console.log(result);
-    res
-      .status(201)
-      .json({ message: 'Data inserted successfully in Company DB!' });
+    res.status(201).json({
+      message: 'Data inserted successfully in Company DB!',
+      data: data,
+    });
   }
 }
+
+// [
+//     {
+//        "id":"1294241",
+//        "sdg":[
+//           1,
+//           2,
+//           3
+//        ]
+//     },
+//     {
+//        "id":"1275809",
+//        "sdg":[
+//           1,
+//           2,
+//           3
+//        ]
+//     }
+//  ]

@@ -3,6 +3,7 @@ import clientPromise from '../../lib/mongodb';
 /*
 TODO:
 - Convert this to TS
+- Add validation of incoming body
 - Add Server Side validation (now only client side)
 
 */

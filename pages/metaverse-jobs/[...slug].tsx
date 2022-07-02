@@ -19,6 +19,7 @@ Todo:
 */
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
+  console.log(job.sdg);
   const mappedSdg = job.sdg.map((num) => {
     return sdgList.find((el) => el.code === num)!.name; //todo: display icon/image instead of name
   });

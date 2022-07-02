@@ -6,6 +6,7 @@ TODO:
 - Add validation of incoming body
 - Add Server Side validation (now only client side)
 - Add authentication
+- Prevent duplication of companies
 
 */
 

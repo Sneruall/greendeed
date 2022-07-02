@@ -121,6 +121,7 @@ export interface remotiveJob {
   candidate_required_location: string;
   salary: string;
   description: string;
+  sdg: string[];
 }
 
 export type remotiveJobSelection = [

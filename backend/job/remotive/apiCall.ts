@@ -23,6 +23,8 @@ export async function getRemotiveJobs() {
     el.publication_date = remotiveJobSelection
       .find((x) => x.id === el.id.toString())!
       .timestamp.toString();
+    el.sdg = ['12', '2', '3'];
+    console.log(el.sdg);
   });
 
   // Map remotive jobs to jobs

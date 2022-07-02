@@ -18,7 +18,7 @@ export async function getRemotiveJobs() {
     });
   });
 
-  // For each job in filteredRemotiveJobs set the publication date to date that job was added to database
+  // For each job in filteredRemotiveJobs set the publication date to date that job was added to database and add sdg values
   filteredRemotiveJobs.forEach((el) => {
     const matchInDB = remotiveJobSelection.find(
       (r) => r.id === el.id.toString()

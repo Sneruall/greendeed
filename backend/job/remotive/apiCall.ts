@@ -20,11 +20,11 @@ export async function getRemotiveJobs() {
 
   // For each job in filteredRemotiveJobs set the publication date to date that job was added to database
   filteredRemotiveJobs.forEach((el) => {
-    el.publication_date = remotiveJobSelection
-      .find((x) => x.id === el.id.toString())!
-      .timestamp.toString();
-    el.sdg = ['12', '2', '3'];
-    console.log(el.sdg);
+    const matchInDB = remotiveJobSelection.find(
+      (r) => r.id === el.id.toString()
+    );
+    el.publication_date = matchInDB!.timestamp.toString();
+    el.sdg = matchInDB!.sdg;
   });
 
   // Map remotive jobs to jobs

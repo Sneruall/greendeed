@@ -70,6 +70,8 @@ const Article = ({ article, categories }) => {
 };
 
 export async function getStaticPaths() {
+  if (!process.env.NEXT_PUBLIC_STRAPI_API_URL) return { notFound: true }; //making sure it only works if strapi url is set in env
+
   const articlesRes = await fetchAPI('/articles', { fields: ['slug'] });
 
   return {

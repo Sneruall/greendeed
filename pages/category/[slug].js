@@ -37,6 +37,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  if (!process.env.NEXT_PUBLIC_STRAPI_API_URL) return { notFound: true }; //making sure it only works if strapi url is set in env
+
   const matchingCategories = await fetchAPI('/categories', {
     filters: { slug: params.slug },
     populate: {

@@ -76,3 +76,20 @@ export const getremotiveJobSelectionFromMongo = async () => {
 
   return remotiveJobSelection;
 };
+
+export const getremotiveJobsFromMongo = async () => {
+  const client = await clientPromise;
+
+  const db = client.db();
+  if (!process.env.MONGODB_REMOTIVE_COMPLETE_COLLECTION) {
+    throw new Error('Please add your Mongo URI to .env.local');
+  }
+  const remotiveJobs = await db
+    .collection(process.env.MONGODB_REMOTIVE_COMPLETE_COLLECTION)
+    .find()
+    // .sort({ metacritic: -1 })
+    // .limit(20)
+    .toArray();
+
+  return remotiveJobs;
+};

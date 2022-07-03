@@ -2,9 +2,7 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
-import clientPromise from '../lib/mongodb';
-import { getRemotiveJobs } from '../backend/job/remotive/apiCall';
-import { getJobsFromMongo } from '../backend/job/db';
+import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 
 /*
 Todo:
@@ -37,8 +35,9 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   );
 };
 export async function getServerSideProps() {
+  // Todo Make this one DB call (from 1 db where everything is inside)
   const jobs = await getJobsFromMongo();
-  const remotiveJobs = await getRemotiveJobs();
+  const remotiveJobs = await getremotiveJobsFromMongo();
   const allJobs = [...jobs, ...remotiveJobs];
 
   allJobs.sort((a, b) => {

@@ -11,8 +11,10 @@ import {
 } from '../../helpers/urlGeneration';
 import parse from 'html-react-parser';
 import { options } from '../../helpers/htmlReactParserOptions';
-import { getJobFromMongo } from '../../backend/job/db';
-import { getRemotiveJobs } from '../../backend/job/remotive/apiCall';
+import {
+  getJobFromMongo,
+  getremotiveJobsFromMongo,
+} from '../../backend/job/db';
 
 /*
 Todo:
@@ -62,8 +64,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // If there is no job for the given queryId
   if (!job) {
     console.log('no job found in db');
-    const remotiveJobs = await getRemotiveJobs();
-    const apiJob = remotiveJobs.find((j) => j.id == queryId);
+    const remotiveJobs = await getremotiveJobsFromMongo();
+    const apiJob = remotiveJobs.find((j) => j.id == queryId) as unknown as Job;
 
     if (apiJob) {
       console.log('api job found');

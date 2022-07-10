@@ -30,18 +30,15 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
   );
 };
 export async function getServerSideProps() {
-  // Todo Make this one DB call (from 1 db where everything is inside)
   const jobs = await getJobsFromMongo();
-  const remotiveJobs = await getremotiveJobsFromMongo();
-  const allJobs = [...jobs, ...remotiveJobs];
 
-  allJobs.sort((a, b) => {
+  jobs.sort((a, b) => {
     return a.timestamp - b.timestamp;
   });
 
   return {
     props: {
-      jobs: JSON.parse(JSON.stringify(allJobs)),
+      jobs: JSON.parse(JSON.stringify(jobs)),
     },
   };
 }

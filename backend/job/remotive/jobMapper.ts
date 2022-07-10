@@ -17,7 +17,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     },
     email: '',
     timestamp: +remotiveJob.publication_date,
-    id: remotiveJob.id,
+    id: remotiveJob.id.toString(),
     price: 0,
     paid: true,
     sdg: remotiveJob.sdg, //todo sdg mappen

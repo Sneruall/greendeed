@@ -59,25 +59,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };
 
+  console.log(queryId);
+
   const job = await getJobFromMongo(queryId);
 
   // If there is no job for the given queryId
   if (!job) {
-    console.log('no job found in db');
-    const remotiveJobs = await getremotiveJobsFromMongo();
-    const apiJob = remotiveJobs.find((j) => j.id == queryId) as unknown as Job;
-
-    if (apiJob) {
-      console.log('api job found');
-      if (!slugIsEqualToJob(apiJob, slug, queryId)) {
-        console.log('redirect to correct slug');
-        return redirectToCorrectJobUrl(apiJob);
-      } else return { props: { job: JSON.parse(JSON.stringify(apiJob)) } };
-    }
-
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   } else if (!slugIsEqualToJob(job, slug, queryId)) {
     return redirectToCorrectJobUrl(job);
   } else return { props: { job: JSON.parse(JSON.stringify(job)) } };

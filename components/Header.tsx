@@ -10,11 +10,6 @@ function Header() {
             <h1 className="my-auto text-xl font-bold">Metaverse Jobs</h1>
           </a>
         </Link>
-        <Link href="/blog">
-          <a className="flex-1">
-            <h2 className="my-auto text-sm font-bold">Blog</h2>
-          </a>
-        </Link>
         <Link href="/hiring">
           <a>
             <button className="rounded-full bg-red-600 py-2 px-4 text-white hover:opacity-70">

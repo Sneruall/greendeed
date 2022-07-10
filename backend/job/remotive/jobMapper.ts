@@ -27,6 +27,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     applicationMethod: 'website',
     apply: remotiveJob.url,
     companyWebsite: '',
+    external: true,
   };
   return job;
 };

@@ -30,6 +30,7 @@ export interface Job {
   applicationMethod: ApplicationMethod;
   apply: string;
   companyWebsite: string;
+  external: boolean;
 }
 
 // todo: add fields (websiteurl, employees...)
@@ -122,6 +123,7 @@ export interface remotiveJob {
   salary: string;
   description: string;
   sdg: string[];
+  external: boolean;
 }
 
 export type remotiveJobSelection = [

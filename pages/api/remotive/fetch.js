@@ -11,6 +11,7 @@ TODO:
 - Add Server Side validation (now only client side)
 - Add authentication
 - Prevent duplication of jobs
+- Add try catch blocks
 
 */
 
@@ -21,13 +22,18 @@ export default async function handler(req, res) {
 
     const client = await clientPromise;
     const db = client.db();
-    const yourCollection = db.collection(
-      process.env.MONGODB_REMOTIVE_COMPLETE_COLLECTION
-    );
-    const test = await yourCollection.deleteMany({});
-    const result = await yourCollection.insertMany(remotiveJobs);
+    const yourCollection = db.collection(process.env.MONGODB_COLLECTION);
+
+    //delete all external jobs from db
+    await yourCollection.deleteMany({ external: true });
+
+    //inster all jobs from remotive into db
+    if (remotiveJobs.length > 0) {
+      await yourCollection.insertMany(remotiveJobs);
+    }
+
     res.status(201).json({
-      message: 'Data inserted successfully in Company DB!',
+      message: 'Remotive jobs cleaned up and inserted successfully in DB!',
       data: remotiveJobs,
     });
   }

@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const result = await yourCollection.insertOne(data);
     console.log(result);
     res.status(201).json({
-      message: 'Data inserted successfully in Company DB!',
+      message: 'Data inserted successfully in DB!',
       data: data,
     });
   }

@@ -23,6 +23,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.hidden = false; // set the visibility
   formData.listed = true;
   formData.closed = false;
+  formData.external = true;
   if (formData.locationInfo.location === 'onSite') {
     formData.locationInfo.remoteLocation = undefined;
   }

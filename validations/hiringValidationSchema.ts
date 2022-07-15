@@ -117,7 +117,7 @@ export default Yup.object().shape({
     /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
     'url is not valid, this format should work: website.com'
   ),
-  sdgs: Yup.array()
+  sdg: Yup.array()
     .min(1, 'At least one sdg is required')
     .max(3, 'Max. 3 sdgs allowed')
     .of(Yup.string().required('Required field'))

@@ -1,29 +1,24 @@
 import React from 'react';
-import { geoRestrictions, LocationObject } from '../../../types/types';
+import { LocationObject, sdgList } from '../../../types/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 
 type Props = {
   register: any;
   errors: any;
-  setSdgs: React.Dispatch<React.SetStateAction<LocationObject>>;
+  setSdgs: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 function SdgElement({ errors, register, setSdgs }: Props) {
-  const optionList = geoRestrictions.map((option) => (
+  const optionList = sdgList.map((option) => (
     <FormFieldBoolCheckbox
-      key={option}
+      key={option.name}
       errors={errors?.sdgs}
-      registerId="sdgs"
-      value={option}
+      registerId="sdg"
+      value={option.name}
       register={register}
-      checkboxText={option}
+      checkboxText={option.name}
       callback={() => {
-        if (option === 'Other') {
-          setSdgs((prevState) => ({
-            ...prevState,
-            otherGeoRestriction: !prevState.otherGeoRestriction,
-          }));
-        }
+        console.log('hoi');
       }}
     />
   ));

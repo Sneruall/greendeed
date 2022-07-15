@@ -48,6 +48,9 @@ function Form() {
     otherGeoRestriction: false,
   });
 
+  // SDG fields tracking
+  const [sdgs, setSdgs] = useState<string[]>([]);
+
   // Application method tracking
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
@@ -150,11 +153,9 @@ function Form() {
         <SdgElement
           errors={errors?.locationInfo?.geoRestriction}
           register={register}
-          setLocationObject={setLocationObject}
+          setSdgs={setSdgs}
         />
-        <div className="text-red-500">
-          {(errors.locationInfo?.geoRestriction as any)?.message}
-        </div>
+        <div className="text-red-500">{(errors.sdg as any)?.message}</div>
       </div>
 
       {/* CATEGORY */}

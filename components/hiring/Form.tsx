@@ -34,6 +34,7 @@ import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
 import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
+import SdgElement from './form-elements/SdgElement';
 
 function Form() {
   // Checking the entered company name with what is already in the DB
@@ -142,7 +143,21 @@ function Form() {
         errors={errors.jobTitle}
       />
 
-      {/* CATEGROY */}
+      {/* SDG */}
+      <div className=" bg-red-100">
+        <h2>Geographic restriction</h2>
+
+        <SdgElement
+          errors={errors?.locationInfo?.geoRestriction}
+          register={register}
+          setLocationObject={setLocationObject}
+        />
+        <div className="text-red-500">
+          {(errors.locationInfo?.geoRestriction as any)?.message}
+        </div>
+      </div>
+
+      {/* CATEGORY */}
       <FormFieldDropdown
         errors={errors.category}
         id="category"

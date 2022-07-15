@@ -3,10 +3,15 @@ import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
 import { Job } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 
-const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7); //prevent use of dashes (conflicts in url)
+/* Creating a random string of 7 characters from the alphabet. */
+const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
 
+/**
+ * It returns the current timestamp in milliseconds
+ * @returns A function that returns the current time in milliseconds.
+ */
 export const registerJobTimestamp = () => {
-  return new Date().getTime(); //to log the timestamp the form was submitted (ms since 1 jan 1970)
+  return new Date().getTime();
 };
 
 export const setJobId = () => {
@@ -20,15 +25,20 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.sdg = ['1', '2', '3'];
   formData.price = 50; // set the price
   formData.paid = true; // set the payment status
-  formData.hidden = false; // set the visibility
-  formData.listed = true;
-  formData.closed = false;
-  formData.external = false;
+  formData.hidden = false; // determine if the job is hidden from the platform overal
+  formData.listed = true; // determine if the job is listed in the jobs lists
+  formData.closed = false; // determine if the job is marked as closed
+  formData.external = false; // determine if the job is external (e.g. from remotive)
   if (formData.locationInfo.location === 'onSite') {
     formData.locationInfo.remoteLocation = undefined;
   }
 };
 
+/**
+ * It takes a category name as a string and returns the corresponding jobCategory object
+ * @param category - jobCategory['name']
+ * @returns An object with the name and color of the category.
+ */
 export const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };

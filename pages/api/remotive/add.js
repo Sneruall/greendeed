@@ -1,4 +1,4 @@
-import clientPromise from '../../lib/mongodb';
+import clientPromise from '../../../lib/mongodb';
 
 // Send POST request to /api/remotive to add a remotive job selection from the database,
 // attach the id and sdg to the request body.

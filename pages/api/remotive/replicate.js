@@ -1,8 +1,7 @@
 import clientPromise from '../../../lib/mongodb';
 import { getRemotiveJobs } from '../../../backend/job/remotive/apiCall';
 
-// Send POST request to /api/remotive to add a remotive job selection from the database,
-// attach the id and sdg to the request body.
+// replicates what is in the remotive database (db with id, sdg and timestamp) to the job database.
 
 /*
 TODO:

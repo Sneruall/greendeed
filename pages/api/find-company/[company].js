@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     });
     if (company) {
       console.log('match found');
-      res.status(201).json({
+      res.status(200).json({
         id: company.id,
         name: company.name,
         description: company.description,
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     } else {
       console.log('no match found');
       res
-        .status(201)
+        .status(400)
         .json({ id: undefined, name: undefined, description: undefined });
     }
   }

@@ -148,8 +148,9 @@ function Form() {
 
       {/* SDG */}
       <div className=" bg-green-100">
-        <h2>Sustainable development goals</h2>
-
+        <h2 className="font-bold text-gray-500">
+          Sustainable development goals (select max 3) We will verify.
+        </h2>
         <SdgElement
           errors={errors?.locationInfo?.geoRestriction}
           register={register}

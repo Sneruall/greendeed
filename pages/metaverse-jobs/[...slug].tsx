@@ -15,12 +15,17 @@ import {
   getJobFromMongo,
   getremotiveJobsFromMongo,
 } from '../../backend/job/db';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
 
 /*
 Todo:
 */
 
 const JobPage: NextPage<{ job: Job }> = ({ job }) => {
+  TimeAgo.addLocale(en);
+  const timeAgo = new TimeAgo('en_US');
+
   console.log(job.sdg);
   const mappedSdg = job.sdg.map((num) => {
     return sdgList.find((el) => el.code === num)!.name; //todo: display icon/image instead of name
@@ -33,20 +38,54 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <p>Company id: {job.companyId}</p>
-      <Link
-        href={generateCompanyUrl(job.companyName.toLowerCase(), job.companyId)}
-      >
-        <a className="underline">{job.companyName}</a>
-      </Link>
-      <p>Job id: {job.id}</p>
+      <p>
+        {job.timestamp
+          ? timeAgo.format(
+              new Date().getTime() - (new Date().getTime() - job.timestamp)
+            )
+          : '??'}
+      </p>{' '}
+      Company:{' '}
+      {!job.external ? (
+        <Link
+          href={generateCompanyUrl(
+            job.companyName.toLowerCase(),
+            job.companyId
+          )}
+        >
+          <a className="underline">{job.companyName}</a>
+        </Link>
+      ) : (
+        <Link href={job.apply}>
+          <a className="underline">
+            {job.companyName + ' (remotive job listing)'}
+          </a>
+        </Link>
+      )}
       <p>Job title: {job.jobTitle}</p>
       <p>Job location: {job.locationInfo?.location}</p>
-      <p>Cat: {job.category.name}</p>
+      <p>Category: {job.category.name}</p>
       <p>Tags: {job.tags}</p>
       <p>SDGs: {mappedSdg}</p>
+      <p>Job type: {job.jobType}</p>
+      <p>
+        Salary:{' '}
+        {job.salary?.min.value
+          ? job.salary?.min.formatted +
+            '-' +
+            job.salary?.max.formatted +
+            ' (' +
+            job.salary?.period +
+            ')'
+          : 'not specified'}
+      </p>
       <p>Job Description:</p>
       {job.jobDescription && parse(job.jobDescription, options)}
+      <Link href={job.apply}>
+        <button className="rounded-full bg-yellow-500 px-5 py-3 text-white">
+          Apply now
+        </button>
+      </Link>
     </div>
   );
 };

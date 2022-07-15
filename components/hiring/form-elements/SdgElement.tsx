@@ -11,19 +11,19 @@ type Props = {
 function SdgElement({ errors, register, setSdgs }: Props) {
   const optionList = sdgList.map((option) => (
     <FormFieldBoolCheckbox
-      key={option.name}
+      key={option.code}
       errors={errors?.sdgs}
       registerId="sdg"
-      value={option.name}
+      value={option.code}
       register={register}
-      checkboxText={option.name}
+      checkboxText={' ' + option.name}
       callback={() => {
         console.log('hoi');
       }}
     />
   ));
 
-  return <div>{optionList}</div>;
+  return <div className="grid grid-cols-3">{optionList}</div>;
 }
 
 export default SdgElement;

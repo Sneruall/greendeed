@@ -147,8 +147,8 @@ function Form() {
       />
 
       {/* SDG */}
-      <div className=" bg-red-100">
-        <h2>Geographic restriction</h2>
+      <div className=" bg-green-100">
+        <h2>Sustainable development goals</h2>
 
         <SdgElement
           errors={errors?.locationInfo?.geoRestriction}

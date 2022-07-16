@@ -1,5 +1,5 @@
 import { jobCategoriesList, jobCategory } from '../../../types/jobCategories';
-import { Job, remotiveJob } from '../../../types/types';
+import { Job, jobType, remotiveJob } from '../../../types/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
@@ -7,10 +7,10 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     companyId: 'external',
     companyDescription: 'external',
     jobTitle: remotiveJob.title,
-    category: mapRemotiveCategorytoJobCategory(remotiveJob.category),
+    category: mapRemotiveCategoryToJobCategory(remotiveJob.category),
     tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
-    jobType: 'Other', //todo job_type naar jobType mappen
+    jobType: mapRemotiveJobTypesToJobTypes(remotiveJob.job_type), //todo job_type naar jobType mappen
     // salary: remotiveJob.salary, // todo fixen
     locationInfo: {
       location: 'onSite',
@@ -32,7 +32,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   return job;
 };
 
-export const mapRemotiveCategorytoJobCategory = (
+const mapRemotiveCategoryToJobCategory = (
   remotiveJobCategory: string
 ): jobCategory => {
   // Remotive uses QA instead of Quality Assurance
@@ -48,4 +48,23 @@ export const mapRemotiveCategorytoJobCategory = (
     return jobCategoriesList.find((category) => category.name === 'Other')!;
   }
   return category;
+};
+
+const mapRemotiveJobTypesToJobTypes = (remotiveJobType: string): jobType => {
+  switch (remotiveJobType) {
+    case 'full_time':
+      return 'Full-time';
+    case 'part_time':
+      return 'Part-time';
+    case 'contract':
+      return 'Contract';
+    case 'internship':
+      return 'Internship';
+    case 'freelance':
+      return 'Freelance';
+    case 'other':
+      return 'Other';
+    default:
+      return 'Other';
+  }
 };

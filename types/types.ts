@@ -90,6 +90,7 @@ export type ApplicationMethod = 'email' | 'website';
 export type jobType =
   | 'Full-time'
   | 'Part-time'
+  | 'Contract'
   | 'Freelance'
   | 'Internship'
   | 'Traineeship'
@@ -98,6 +99,7 @@ export type jobType =
 export const jobTypes = [
   'Full-time',
   'Part-time',
+  'Contract',
   'Freelance',
   'Internship',
   'Traineeship',

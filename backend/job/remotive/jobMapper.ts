@@ -11,7 +11,21 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
     jobType: mapRemotiveJobTypesToJobTypes(remotiveJob.job_type), //todo job_type naar jobType mappen
-    // salary: remotiveJob.salary, // todo fixen
+    salary: {
+      min: {
+        float: null,
+        formatted: '',
+        value: '',
+      },
+      max: {
+        float: null,
+        formatted: '',
+        value: '',
+      },
+      currency: '',
+      period: '',
+      string: remotiveJob.salary,
+    },
     locationInfo: {
       location: 'onSite',
     },

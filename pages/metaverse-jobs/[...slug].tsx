@@ -77,7 +77,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
             ' (' +
             job.salary?.period +
             ')'
-          : 'not specified'}
+          : (job.salary?.string && job.salary?.string) || 'unknown'}
       </p>
       <p>Job Description:</p>
       {job.jobDescription && parse(job.jobDescription, options)}

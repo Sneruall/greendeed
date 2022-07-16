@@ -16,6 +16,7 @@ export interface Job {
     period: SalaryPeriod;
     min: CurrencyInputOnChangeValues;
     max: CurrencyInputOnChangeValues;
+    string: string;
   };
   equity?: boolean;
   locationInfo: LocationInfo;
@@ -59,10 +60,10 @@ export interface LocationObject {
   otherGeoRestriction: boolean;
 }
 
-export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD';
+export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | '';
 
-export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
-export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
+export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly' | '';
+export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly', ''];
 
 export type ApplicationMethod = 'email' | 'website';
 

@@ -64,6 +64,7 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
       )}
       <p>Job title: {job.jobTitle}</p>
       <p>Job location: {job.locationInfo?.location}</p>
+      <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
       <p>Category: {job.category.name}</p>
       <p>Tags: {job.tags}</p>
       <p>SDGs: {mappedSdg}</p>

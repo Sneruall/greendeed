@@ -1,5 +1,5 @@
 import { jobCategoriesList, jobCategory } from '../../../types/jobCategories';
-import { Job, jobType, remotiveJob } from '../../../types/types';
+import { Job, jobType, LocationInfo, remotiveJob } from '../../../types/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
@@ -10,7 +10,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     category: mapRemotiveCategoryToJobCategory(remotiveJob.category),
     tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
-    jobType: mapRemotiveJobTypesToJobTypes(remotiveJob.job_type), //todo job_type naar jobType mappen
+    jobType: mapRemotiveJobTypesToJobTypes(remotiveJob.job_type),
     salary: {
       min: {
         float: null,
@@ -27,9 +27,12 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
       string: remotiveJob.salary,
     },
     locationInfo: {
-      location: 'onSite',
+      location: 'remote',
+      geoRestrictionOther: mapRemotiveLocationToJobLocation(
+        remotiveJob.candidate_required_location
+      ),
     },
-    email: '',
+    email: '', //todo mail mappen
     timestamp: +remotiveJob.publication_date,
     id: remotiveJob.id.toString(),
     price: 0,
@@ -40,7 +43,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     closed: false,
     applicationMethod: 'website',
     apply: remotiveJob.url,
-    companyWebsite: '',
+    companyWebsite: '', // todo mappen / implementeren correct in [...slug]
     external: true,
   };
   return job;
@@ -81,4 +84,12 @@ const mapRemotiveJobTypesToJobTypes = (remotiveJobType: string): jobType => {
     default:
       return 'Other';
   }
+};
+
+const mapRemotiveLocationToJobLocation = (
+  geoRestrictedLocation: string
+): LocationInfo['geoRestrictionOther'] => {
+  const geoRestrictionOther = [];
+  geoRestrictionOther.push(geoRestrictedLocation);
+  return geoRestrictionOther;
 };

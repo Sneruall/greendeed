@@ -8,12 +8,12 @@ import * as Yup from 'yup';
 export default Yup.object().shape({
   companyName: Yup.string()
     .min(2, 'Company name must be at least 2 characters')
-    .matches(/^[\w\-\s\(\)\%]+$/, 'Company name must be alphanumeric')
+    .matches(/^[\w\-\s\(\)\%\/]+$/, 'Company name must be alphanumeric')
     .required('Company name is required'),
   jobTitle: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters')
-    .matches(/^[\w\-\s\(\)\%]+$/, 'Job title must be alphanumeric')
+    .matches(/^[\w\-\s\(\)\%\/]+$/, 'Job title must be alphanumeric')
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),

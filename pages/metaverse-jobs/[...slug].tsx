@@ -38,55 +38,60 @@ const JobPage: NextPage<{ job: Job }> = ({ job }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <p>
-        {job.timestamp
-          ? timeAgo.format(
-              new Date().getTime() - (new Date().getTime() - job.timestamp)
-            )
-          : '??'}
-      </p>{' '}
-      Company:{' '}
-      {!job.external ? (
-        <Link
-          href={generateCompanyUrl(
-            job.companyName.toLowerCase(),
-            job.companyId
-          )}
-        >
-          <a className="underline">{job.companyName}</a>
-        </Link>
-      ) : (
+      <main className="mx-auto max-w-screen-2xl px-10">
+        <p>
+          {job.timestamp
+            ? timeAgo.format(
+                new Date().getTime() - (new Date().getTime() - job.timestamp)
+              )
+            : '??'}
+        </p>{' '}
+        Company:{' '}
+        {!job.external ? (
+          <Link
+            href={generateCompanyUrl(
+              job.companyName.toLowerCase(),
+              job.companyId
+            )}
+          >
+            <a className="underline">{job.companyName}</a>
+          </Link>
+        ) : (
+          <Link href={job.apply}>
+            <a className="underline">
+              {job.companyName + ' (remotive job listing)'}
+            </a>
+          </Link>
+        )}
+        <p>Job title: {job.jobTitle}</p>
+        <p>Job location: {job.locationInfo?.location}</p>
+        <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
+        <p>Category: {job.category.name}</p>
+        <p>Tags: {job.tags}</p>
+        <p>SDGs: {mappedSdg}</p>
+        <p>Job type: {job.jobType}</p>
+        <p>
+          Salary:{' '}
+          {job.salary?.min.value
+            ? job.salary?.min.formatted +
+              '-' +
+              job.salary?.max.formatted +
+              ' (' +
+              job.salary?.period +
+              ')'
+            : (job.salary?.string && job.salary?.string) || 'unknown'}
+        </p>
+        {/* <li className="list-outside list-disc">fdsf</li> */}
+        <div>
+          <h2 className="pt-10 text-4xl font-bold">Job Description:</h2>
+          {job.jobDescription && parse(job.jobDescription, options)}
+        </div>
         <Link href={job.apply}>
-          <a className="underline">
-            {job.companyName + ' (remotive job listing)'}
-          </a>
+          <button className="rounded-full bg-yellow-500 px-5 py-3 text-white">
+            Apply now
+          </button>
         </Link>
-      )}
-      <p>Job title: {job.jobTitle}</p>
-      <p>Job location: {job.locationInfo?.location}</p>
-      <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
-      <p>Category: {job.category.name}</p>
-      <p>Tags: {job.tags}</p>
-      <p>SDGs: {mappedSdg}</p>
-      <p>Job type: {job.jobType}</p>
-      <p>
-        Salary:{' '}
-        {job.salary?.min.value
-          ? job.salary?.min.formatted +
-            '-' +
-            job.salary?.max.formatted +
-            ' (' +
-            job.salary?.period +
-            ')'
-          : (job.salary?.string && job.salary?.string) || 'unknown'}
-      </p>
-      <p>Job Description:</p>
-      {job.jobDescription && parse(job.jobDescription, options)}
-      <Link href={job.apply}>
-        <button className="rounded-full bg-yellow-500 px-5 py-3 text-white">
-          Apply now
-        </button>
-      </Link>
+      </main>
     </div>
   );
 };
@@ -98,8 +103,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!slug) return { notFound: true };
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };
-
-  console.log(queryId);
 
   const job = await getJobFromMongo(queryId);
 

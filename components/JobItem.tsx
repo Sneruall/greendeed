@@ -23,7 +23,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         <div className="flex justify-between">
           <div className="">
             <h2 className="font-semibold">
-              {job.jobTitle} - {job.companyName}
+              {job.jobTitle} | {job.companyName}
             </h2>
             <div className="flex gap-2">
               <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">

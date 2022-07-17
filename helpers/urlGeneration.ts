@@ -27,7 +27,6 @@ export const slugIsEqualToJob = (
   const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
-
   if (
     replaceCharactersByWhitespace(job.jobTitle.toLowerCase()) !==
       replaceCharactersByWhitespace(queryTitle!) ||

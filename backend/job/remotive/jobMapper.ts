@@ -32,18 +32,18 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
         remotiveJob.candidate_required_location
       ),
     },
-    email: '', //todo mail mappen
+    email: '',
     timestamp: +remotiveJob.publication_date,
     id: remotiveJob.id.toString(),
     price: 0,
     paid: true,
-    sdg: remotiveJob.sdg, //todo sdg mappen
+    sdg: remotiveJob.sdg,
     hidden: false,
     listed: true,
     closed: false,
     applicationMethod: 'website',
     apply: remotiveJob.url,
-    companyWebsite: '', // todo mappen / implementeren correct in [...slug]
+    companyWebsite: '',
     external: true,
   };
   return job;

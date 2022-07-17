@@ -84,6 +84,7 @@ function Form() {
     formState: { errors },
   } = useForm<Job>({
     resolver: yupResolver(hiringValidationSchema),
+    mode: 'onBlur',
   });
 
   async function onSubmit(formData: Job) {
@@ -419,7 +420,7 @@ function Form() {
       {/* COMPANY WEBSITE */}
       <FormFieldString
         title="Company website"
-        errors={errors.apply}
+        errors={errors.companyWebsite}
         id="companyWebsite"
         register={register}
         placeholder="www.yourcompany.com"

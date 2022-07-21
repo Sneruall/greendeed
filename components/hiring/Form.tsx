@@ -37,6 +37,25 @@ import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
 
 function Form() {
+  // Form step management
+  const [formStep, setFormStep] = useState(1);
+
+  const previousStep = () => {
+    if (formStep === 1) {
+      return;
+    } else {
+      setFormStep(formStep - 1);
+    }
+  };
+
+  const nextStep = () => {
+    if (formStep === 4) {
+      return;
+    } else {
+      setFormStep(formStep + 1);
+    }
+  };
+
   // Checking the entered company name with what is already in the DB
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
@@ -112,345 +131,433 @@ function Form() {
   }
 
   return (
-    <form id="form" onSubmit={handleSubmit(onSubmit)}>
-      {/* COMPANY FIELDS */}
+    <>
+      <div className="my-5 flex justify-between">
+        <div
+          onClick={() => setFormStep(1)}
+          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
+            formStep !== 1 && 'bg-opacity-30'
+          } ${
+            errors.companyName ||
+            errors.companyDescription ||
+            errors.email ||
+            errors.companyWebsite
+              ? 'border-red-500'
+              : 'border-black'
+          }`}
+        >
+          <span>1</span>
+        </div>
+        <div
+          onClick={() => setFormStep(2)}
+          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
+            formStep !== 2 && 'bg-opacity-30'
+          } ${
+            errors.jobDescription || errors.jobTitle
+              ? 'border-red-500'
+              : 'border-black'
+          }`}
+        >
+          <span>2</span>
+        </div>
+        <div
+          onClick={() => setFormStep(3)}
+          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
+            formStep !== 3 && 'bg-opacity-30'
+          } ${
+            errors.category ||
+            errors.tags ||
+            errors.jobType ||
+            errors.locationInfo ||
+            errors.salary ||
+            errors.equity ||
+            errors.applicationMethod ||
+            errors.apply
+              ? 'border-red-500'
+              : 'border-black'
+          }`}
+        >
+          <span>3</span>
+        </div>
+        <div
+          onClick={() => setFormStep(4)}
+          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
+            formStep !== 4 && 'bg-opacity-30'
+          } ${errors.sdg ? 'border-red-500' : 'border-black'}`}
+        >
+          <span>4</span>
+        </div>
+      </div>
+      <form id="form" onSubmit={handleSubmit(onSubmit)}>
+        {/* COMPANY FIELDS */}
+        <div className={`${formStep !== 1 && 'hidden'}`}>
+          <h2 className="text-xl">1. Company details</h2>
 
-      <h2 className="text-xl">1. Company details</h2>
+          {/* COMPANY NAME */}
+          <FormFieldString
+            id="companyName"
+            title="Company Name*"
+            errors={errors.companyName}
+            register={register}
+            onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
+              checkCompany(
+                event?.target.value,
+                setCompanyNameIsLoading,
+                setRetrievedCompanyData
+              );
+            }}
+          />
+          <CompanyChecker
+            companyNameIsLoading={companyNameIsLoading}
+            errorsCompanyName={errors.companyName}
+            retrievedCompanyData={retrievedCompanyData}
+          />
 
-      {/* COMPANY NAME */}
-      <FormFieldString
-        id="companyName"
-        title="Company Name*"
-        errors={errors.companyName}
-        register={register}
-        onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
-          checkCompany(
-            event?.target.value,
-            setCompanyNameIsLoading,
-            setRetrievedCompanyData
-          );
-        }}
-      />
-      <CompanyChecker
-        companyNameIsLoading={companyNameIsLoading}
-        errorsCompanyName={errors.companyName}
-        retrievedCompanyData={retrievedCompanyData}
-      />
+          {/* EMAIL */}
+          <FormFieldString
+            errors={errors.email}
+            id="email"
+            register={register}
+            title="Email (stays private, for verification/invoice delivery"
+          />
 
-      {/* EMAIL */}
-      <FormFieldString
-        errors={errors.email}
-        id="email"
-        register={register}
-        title="Email (stays private, for verification/invoice delivery"
-      />
+          {/* DESCRIPTION */}
+          {!retrievedCompanyData?.description ? (
+            <>
+              <h2 className="text-base font-bold">Company description</h2>
+              <RichTextEditor state={setcompanyDescriptionHtml} />
+            </>
+          ) : (
+            <p>Contact us if you want to change it for your company</p>
+          )}
 
-      {/* DESCRIPTION */}
-      {!retrievedCompanyData?.description ? (
-        <>
-          <h2 className="text-base font-bold">Company description</h2>
-          <RichTextEditor state={setcompanyDescriptionHtml} />
-        </>
-      ) : (
-        <p>Contact us if you want to change it for your company</p>
-      )}
+          {/* COMPANY WEBSITE */}
+          <FormFieldString
+            title="Company website"
+            errors={errors.companyWebsite}
+            id="companyWebsite"
+            register={register}
+            placeholder="www.yourcompany.com"
+          />
+        </div>
 
-      {/* COMPANY WEBSITE */}
-      <FormFieldString
-        title="Company website"
-        errors={errors.companyWebsite}
-        id="companyWebsite"
-        register={register}
-        placeholder="www.yourcompany.com"
-      />
+        <div className={`${formStep !== 2 && 'hidden'}`}>
+          <h2 className="text-xl">2. Job Description</h2>
 
-      <h2 className="text-xl">2. Job Description</h2>
-
-      {/* JOB TITLE */}
-      <FormFieldString
-        id="jobTitle"
-        title="Job Title"
-        description="Please specify as single job position like Marketing Manager or Node
+          {/* JOB TITLE */}
+          <FormFieldString
+            id="jobTitle"
+            title="Job Title"
+            description="Please specify as single job position like Marketing Manager or Node
         JS Developer, not a sentence like Looking for PM / Biz Dev / Manager.
         We know your job is important but please DO NOT WRITE IN FULL CAPS. If
         posting multiple roles, please create multiple job posts. A job post is
         limited to a single job. We only allow real jobs, absolutely no MLM-type
         courses learn how to work online please."
-        register={register}
-        errors={errors.jobTitle}
-      />
+            register={register}
+            errors={errors.jobTitle}
+          />
 
-      {/* JOB DESCRIPTION  */}
+          {/* JOB DESCRIPTION  */}
 
-      <h2 className="text-base font-bold">Job description</h2>
-      <RichTextEditor state={setjobDescriptionHtml} />
+          <h2 className="text-base font-bold">Job description</h2>
+          <RichTextEditor state={setjobDescriptionHtml} />
+        </div>
 
-      <h2 className="text-xl">3. Job Details</h2>
+        <div className={`${formStep !== 3 && 'hidden'}`}>
+          <h2 className="text-xl">3. Job Details</h2>
 
-      {/* CATEGORY */}
-      <FormFieldDropdown
-        errors={errors.category}
-        id="category"
-        register={register}
-        title="Category"
-        options={generateCategoriesArray()}
-      />
+          {/* CATEGORY */}
+          <FormFieldDropdown
+            errors={errors.category}
+            id="category"
+            register={register}
+            title="Category"
+            options={generateCategoriesArray()}
+          />
 
-      {/* TAGS */}
-      <FormFieldString
-        title="Tags"
-        placeholder="Separated by comma, e,g, tech stack or industry"
-        errors={errors.tags}
-        id="tags"
-        register={register}
-      />
+          {/* TAGS */}
+          <FormFieldString
+            title="Tags"
+            placeholder="Separated by comma, e,g, tech stack or industry"
+            errors={errors.tags}
+            id="tags"
+            register={register}
+          />
 
-      {/* JOB TYPES */}
-      <FormFieldDropdown
-        id="jobType"
-        register={register}
-        errors={errors.jobType}
-        title="Type of Employment"
-        options={jobTypes}
-      />
+          {/* JOB TYPES */}
+          <FormFieldDropdown
+            id="jobType"
+            register={register}
+            errors={errors.jobType}
+            title="Type of Employment"
+            options={jobTypes}
+          />
 
-      {/* LOCATION */}
-      <LocationElement
-        errors={errors}
-        register={register}
-        setLocation={setLocationObject}
-        location={locationInfo.location}
-      />
+          {/* LOCATION */}
+          <LocationElement
+            errors={errors}
+            register={register}
+            setLocation={setLocationObject}
+            location={locationInfo.location}
+          />
 
-      {/* ON SITE LOCATION */}
-      {locationInfo.location !== 'remote' && (
-        <FormFieldString
-          errors={errors.locationInfo?.onSiteLocation}
-          id="locationInfo.onSiteLocation"
-          register={register}
-          title="On Site Location(s)"
-          placeholder="e.g. Amsterdam, London, New York"
-          description="Please use a comma to separate multiple locations."
-        />
-      )}
-
-      {/* REMOTE LOCATION */}
-      {locationInfo.location !== 'onSite' && (
-        <>
-          <div className=" bg-blue-100">
-            <h2>Remote location</h2>
-            <FormFieldRadio
-              errors={errors.locationInfo?.remoteLocation}
-              registerId="locationInfo.remoteLocation"
+          {/* ON SITE LOCATION */}
+          {locationInfo.location !== 'remote' && (
+            <FormFieldString
+              errors={errors.locationInfo?.onSiteLocation}
+              id="locationInfo.onSiteLocation"
               register={register}
-              title="Worldwide"
-              value="worldwide"
-              state={locationInfo.remoteLocation}
-              callback={() =>
-                setLocationObject((prevState) => ({
-                  ...prevState,
-                  remoteLocation: 'worldwide',
-                }))
-              }
+              title="On Site Location(s)"
+              placeholder="e.g. Amsterdam, London, New York"
+              description="Please use a comma to separate multiple locations."
             />
-            <FormFieldRadio
-              errors={errors.locationInfo?.remoteLocation}
-              registerId="locationInfo.remoteLocation"
-              value="geoRestriction"
-              state={locationInfo.remoteLocation}
-              register={register}
-              title="Geographic restrictions"
-              callback={() =>
-                setLocationObject((prevState) => ({
-                  ...prevState,
-                  remoteLocation: 'geoRestriction',
-                }))
-              }
-            />
-            <div className="text-red-500">
-              {errors.locationInfo?.remoteLocation?.message}
-            </div>
-          </div>
-        </>
-      )}
+          )}
 
-      {/* GEOGRAPHIC RESTRICTION */}
-      {locationInfo.remoteLocation === 'geoRestriction' &&
-        locationInfo.location !== 'onSite' && (
-          <>
-            <div className=" bg-red-100">
-              <h2>Geographic restriction</h2>
-
-              <GeoRestrictionElement
-                errors={errors?.locationInfo?.geoRestriction}
-                register={register}
-                setLocationObject={setLocationObject}
-              />
-              <div className="text-red-500">
-                {(errors.locationInfo?.geoRestriction as any)?.message}
+          {/* REMOTE LOCATION */}
+          {locationInfo.location !== 'onSite' && (
+            <>
+              <div className=" bg-blue-100">
+                <h2>Remote location</h2>
+                <FormFieldRadio
+                  errors={errors.locationInfo?.remoteLocation}
+                  registerId="locationInfo.remoteLocation"
+                  register={register}
+                  title="Worldwide"
+                  value="worldwide"
+                  state={locationInfo.remoteLocation}
+                  callback={() =>
+                    setLocationObject((prevState) => ({
+                      ...prevState,
+                      remoteLocation: 'worldwide',
+                    }))
+                  }
+                />
+                <FormFieldRadio
+                  errors={errors.locationInfo?.remoteLocation}
+                  registerId="locationInfo.remoteLocation"
+                  value="geoRestriction"
+                  state={locationInfo.remoteLocation}
+                  register={register}
+                  title="Geographic restrictions"
+                  callback={() =>
+                    setLocationObject((prevState) => ({
+                      ...prevState,
+                      remoteLocation: 'geoRestriction',
+                    }))
+                  }
+                />
+                <div className="text-red-500">
+                  {errors.locationInfo?.remoteLocation?.message}
+                </div>
               </div>
-            </div>
+            </>
+          )}
 
-            {locationInfo.otherGeoRestriction && (
-              <FormFieldString
-                errors={errors.locationInfo?.geoRestrictionOther}
-                id="locationInfo.geoRestrictionOther"
-                register={register}
-                placeholder="e.g. Switzerland"
-              />
+          {/* GEOGRAPHIC RESTRICTION */}
+          {locationInfo.remoteLocation === 'geoRestriction' &&
+            locationInfo.location !== 'onSite' && (
+              <>
+                <div className=" bg-red-100">
+                  <h2>Geographic restriction</h2>
+
+                  <GeoRestrictionElement
+                    errors={errors?.locationInfo?.geoRestriction}
+                    register={register}
+                    setLocationObject={setLocationObject}
+                  />
+                  <div className="text-red-500">
+                    {(errors.locationInfo?.geoRestriction as any)?.message}
+                  </div>
+                </div>
+
+                {locationInfo.otherGeoRestriction && (
+                  <FormFieldString
+                    errors={errors.locationInfo?.geoRestrictionOther}
+                    id="locationInfo.geoRestrictionOther"
+                    register={register}
+                    placeholder="e.g. Switzerland"
+                  />
+                )}
+              </>
             )}
-          </>
-        )}
 
-      {/* SALARY */}
-      <h3>Base Salary (optional)</h3>
-      <FormFieldDropdown
-        id="salary.period"
-        errors={errors.salary?.period}
-        options={SalaryPeriod}
-        register={register}
-      />
-      <FormFieldDropdown
-        errors={errors.salary?.currency}
-        id="salary.currency"
-        options={currencies}
-        register={register}
-        onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setCurrency(e?.target?.value);
-        }}
-      />
-      <div className="">
-        <CurrencyInput
-          id="salary.min"
-          allowDecimals={false}
-          disableAbbreviations={false}
-          prefix={currency}
-          step={10}
-          placeholder="Amount or Minimum"
-          {...register('salary.min')}
-          onValueChange={handleOnValueChange}
-          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors?.salary?.min
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors?.salary?.min}</div>
-      </div>
+          {/* SALARY */}
+          <h3>Base Salary (optional)</h3>
+          <FormFieldDropdown
+            id="salary.period"
+            errors={errors.salary?.period}
+            options={SalaryPeriod}
+            register={register}
+          />
+          <FormFieldDropdown
+            errors={errors.salary?.currency}
+            id="salary.currency"
+            options={currencies}
+            register={register}
+            onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setCurrency(e?.target?.value);
+            }}
+          />
+          <div className="">
+            <CurrencyInput
+              id="salary.min"
+              allowDecimals={false}
+              disableAbbreviations={false}
+              prefix={currency}
+              step={10}
+              placeholder="Amount or Minimum"
+              {...register('salary.min')}
+              onValueChange={handleOnValueChange}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors?.salary?.min
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors?.salary?.min}</div>
+          </div>
 
-      <div className="">
-        <CurrencyInput
-          id="salary.max"
-          allowDecimals={false}
-          prefix={currency}
-          step={10}
-          placeholder="Maximum (optional)"
-          {...register('salary.max')}
-          onValueChange={handleOnValueChange}
-          className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-            errors?.salary?.max
-              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-          }`}
-        />
-        <div className="text-red-500">{errors?.salary?.max}</div>
+          <div className="">
+            <CurrencyInput
+              id="salary.max"
+              allowDecimals={false}
+              prefix={currency}
+              step={10}
+              placeholder="Maximum (optional)"
+              {...register('salary.max')}
+              onValueChange={handleOnValueChange}
+              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
+                errors?.salary?.max
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+              }`}
+            />
+            <div className="text-red-500">{errors?.salary?.max}</div>
 
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Please enter the annual base salary or specify a salary range for the
-          position.
-        </p>
-      </div>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Please enter the annual base salary or specify a salary range for
+              the position.
+            </p>
+          </div>
 
-      {/* EQUITY */}
-      <FormFieldBoolCheckbox
-        checkboxText="Equity"
-        errors={errors.equity}
-        register={register}
-        registerId="equity"
-      />
+          {/* EQUITY */}
+          <FormFieldBoolCheckbox
+            checkboxText="Equity"
+            errors={errors.equity}
+            register={register}
+            registerId="equity"
+          />
 
-      {/* APPLY BY */}
-      <div className=" bg-blue-100">
-        <h2>Apply by</h2>
+          {/* APPLY BY */}
+          <div className=" bg-blue-100">
+            <h2>Apply by</h2>
 
-        <FormFieldRadio
-          errors={errors.applicationMethod}
-          register={register}
-          registerId="applicationMethod"
-          title="E-mail"
-          value="email"
-          state={applicationMethod}
-          callback={() => setApplicationMethod('email')}
-        />
-        <FormFieldRadio
-          errors={errors.applicationMethod}
-          register={register}
-          registerId="applicationMethod"
-          title="Website"
-          value="website"
-          state={applicationMethod}
-          callback={() => setApplicationMethod('website')}
-        />
-      </div>
-      <FormFieldString
-        errors={errors.apply}
-        id="apply"
-        register={register}
-        placeholder={
-          applicationMethod === 'email'
-            ? 'hiring@company.com'
-            : 'www.yourcompany.com/apply'
-        }
-      />
-      {applicationMethod === 'email' ? (
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Applications for the position will be sent to the email address you
-          specify.
-        </p>
-      ) : (
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Applicants will be sent to the website you specify to apply for the
-          position.
-        </p>
-      )}
+            <FormFieldRadio
+              errors={errors.applicationMethod}
+              register={register}
+              registerId="applicationMethod"
+              title="E-mail"
+              value="email"
+              state={applicationMethod}
+              callback={() => setApplicationMethod('email')}
+            />
+            <FormFieldRadio
+              errors={errors.applicationMethod}
+              register={register}
+              registerId="applicationMethod"
+              title="Website"
+              value="website"
+              state={applicationMethod}
+              callback={() => setApplicationMethod('website')}
+            />
+          </div>
+          <FormFieldString
+            errors={errors.apply}
+            id="apply"
+            register={register}
+            placeholder={
+              applicationMethod === 'email'
+                ? 'hiring@company.com'
+                : 'www.yourcompany.com/apply'
+            }
+          />
+          {applicationMethod === 'email' ? (
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Applications for the position will be sent to the email address
+              you specify.
+            </p>
+          ) : (
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Applicants will be sent to the website you specify to apply for
+              the position.
+            </p>
+          )}
+        </div>
 
-      {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
+        {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
-      <h2 className="text-xl">4. Sustainability</h2>
+        <div className={`${formStep !== 4 && 'hidden'}`}>
+          <h2 className="text-xl">4. Sustainability</h2>
 
-      {/* SDG */}
-      <div className=" bg-green-100">
-        <h2 className="font-bold text-gray-500">
-          Sustainable development goals (select max 3) We will verify.
-        </h2>
-        <SdgElement
-          errors={errors?.locationInfo?.geoRestriction}
-          register={register}
-          setSdgs={setSdgs}
-        />
-        <div className="text-red-500">{(errors.sdg as any)?.message}</div>
-      </div>
+          {/* SDG */}
+          <div className=" bg-green-100">
+            <h2 className="font-bold text-gray-500">
+              Sustainable development goals (select max 3) We will verify.
+            </h2>
+            <SdgElement
+              errors={errors?.locationInfo?.geoRestriction}
+              register={register}
+              setSdgs={setSdgs}
+            />
+            <div className="text-red-500">{(errors.sdg as any)?.message}</div>
+          </div>
+        </div>
 
-      {/* SUBMIT */}
-      <div className="">
-        <button
-          disabled={companyNameIsLoading}
-          type="submit"
-          className="underline hover:font-bold"
+        {/* SUBMIT */}
+        <div
+          className={`flex justify-end space-x-4 ${formStep !== 4 && 'hidden'}`}
         >
-          Post job
-        </button>
+          <button
+            disabled={companyNameIsLoading}
+            type="submit"
+            className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
+          >
+            Post job
+          </button>
+        </div>
+      </form>
+      <div className="flex space-x-4">
+        {/* FORM NAVIGATION */}
+        <div className="flex-1">
+          <button
+            onClick={previousStep}
+            className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
+              formStep === 1 && 'hidden'
+            }`}
+          >
+            Previous
+          </button>
+        </div>
 
-        {/* RESET */}
         <button
-          type="button"
-          onClick={() => reset()}
-          className="ml-10 underline hover:font-bold"
+          onClick={nextStep}
+          className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
+            formStep === 4 && 'hidden'
+          }`}
         >
-          Reset
+          Next
         </button>
       </div>
-    </form>
+      {/* RESET */}
+      {/* <button
+        type="button"
+        onClick={() => reset()}
+        className="rounded-full bg-gray-400 px-4 py-2 text-white hover:bg-opacity-80"
+      >
+        Reset
+      </button> */}
+    </>
   );
 }
 

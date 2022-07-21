@@ -113,6 +113,10 @@ function Form() {
 
   return (
     <form id="form" onSubmit={handleSubmit(onSubmit)}>
+      {/* COMPANY FIELDS */}
+
+      <h2 className="text-xl">1. Company details</h2>
+
       {/* COMPANY NAME */}
       <FormFieldString
         id="companyName"
@@ -133,6 +137,35 @@ function Form() {
         retrievedCompanyData={retrievedCompanyData}
       />
 
+      {/* EMAIL */}
+      <FormFieldString
+        errors={errors.email}
+        id="email"
+        register={register}
+        title="Email (stays private, for verification/invoice delivery"
+      />
+
+      {/* DESCRIPTION */}
+      {!retrievedCompanyData?.description ? (
+        <>
+          <h2 className="text-base font-bold">Company description</h2>
+          <RichTextEditor state={setcompanyDescriptionHtml} />
+        </>
+      ) : (
+        <p>Contact us if you want to change it for your company</p>
+      )}
+
+      {/* COMPANY WEBSITE */}
+      <FormFieldString
+        title="Company website"
+        errors={errors.companyWebsite}
+        id="companyWebsite"
+        register={register}
+        placeholder="www.yourcompany.com"
+      />
+
+      <h2 className="text-xl">2. Job Description</h2>
+
       {/* JOB TITLE */}
       <FormFieldString
         id="jobTitle"
@@ -147,18 +180,12 @@ function Form() {
         errors={errors.jobTitle}
       />
 
-      {/* SDG */}
-      <div className=" bg-green-100">
-        <h2 className="font-bold text-gray-500">
-          Sustainable development goals (select max 3) We will verify.
-        </h2>
-        <SdgElement
-          errors={errors?.locationInfo?.geoRestriction}
-          register={register}
-          setSdgs={setSdgs}
-        />
-        <div className="text-red-500">{(errors.sdg as any)?.message}</div>
-      </div>
+      {/* JOB DESCRIPTION  */}
+
+      <h2 className="text-base font-bold">Job description</h2>
+      <RichTextEditor state={setjobDescriptionHtml} />
+
+      <h2 className="text-xl">3. Job Details</h2>
 
       {/* CATEGORY */}
       <FormFieldDropdown
@@ -177,13 +204,6 @@ function Form() {
         id="tags"
         register={register}
       />
-
-      {/* JOB DESCRIPTION --> TODO: MAKE IT A RICH TEXT EDITOR and a component (also used for company description) */}
-
-      <h2 className="text-base font-bold">Job description</h2>
-      <RichTextEditor state={setjobDescriptionHtml} />
-
-      {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
       {/* JOB TYPES */}
       <FormFieldDropdown
@@ -394,37 +414,22 @@ function Form() {
         </p>
       )}
 
-      {/* COMPANY FIELDS */}
+      {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
-      <h2 className="text-xl">Company details</h2>
-      <p>Shown on your company page</p>
+      <h2 className="text-xl">4. Sustainability</h2>
 
-      {/* EMAIL */}
-      <FormFieldString
-        errors={errors.email}
-        id="email"
-        register={register}
-        title="Email (stays private, for verification/invoice delivery"
-      />
-
-      {/* DESCRIPTION */}
-      {!retrievedCompanyData?.description ? (
-        <>
-          <h2 className="text-base font-bold">Company description</h2>
-          <RichTextEditor state={setcompanyDescriptionHtml} />
-        </>
-      ) : (
-        <p>Contact us if you want to change it for your company</p>
-      )}
-
-      {/* COMPANY WEBSITE */}
-      <FormFieldString
-        title="Company website"
-        errors={errors.companyWebsite}
-        id="companyWebsite"
-        register={register}
-        placeholder="www.yourcompany.com"
-      />
+      {/* SDG */}
+      <div className=" bg-green-100">
+        <h2 className="font-bold text-gray-500">
+          Sustainable development goals (select max 3) We will verify.
+        </h2>
+        <SdgElement
+          errors={errors?.locationInfo?.geoRestriction}
+          register={register}
+          setSdgs={setSdgs}
+        />
+        <div className="text-red-500">{(errors.sdg as any)?.message}</div>
+      </div>
 
       {/* SUBMIT */}
       <div className="">

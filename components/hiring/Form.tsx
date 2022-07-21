@@ -103,7 +103,7 @@ function Form() {
     formState: { errors },
   } = useForm<Job>({
     resolver: yupResolver(hiringValidationSchema),
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   async function onSubmit(formData: Job) {

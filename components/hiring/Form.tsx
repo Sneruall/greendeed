@@ -35,6 +35,7 @@ import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
+import FormSteps from './form-elements/FormSteps';
 
 function Form() {
   // Form step management
@@ -132,62 +133,14 @@ function Form() {
 
   return (
     <>
-      <div className="my-5 flex justify-between">
-        <div
-          onClick={() => setFormStep(1)}
-          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
-            formStep !== 1 && 'bg-opacity-30'
-          } ${
-            errors.companyName ||
-            errors.companyDescription ||
-            errors.email ||
-            errors.companyWebsite
-              ? 'border-red-500'
-              : 'border-black'
-          }`}
-        >
-          <span>1</span>
-        </div>
-        <div
-          onClick={() => setFormStep(2)}
-          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
-            formStep !== 2 && 'bg-opacity-30'
-          } ${
-            errors.jobDescription || errors.jobTitle
-              ? 'border-red-500'
-              : 'border-black'
-          }`}
-        >
-          <span>2</span>
-        </div>
-        <div
-          onClick={() => setFormStep(3)}
-          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
-            formStep !== 3 && 'bg-opacity-30'
-          } ${
-            errors.category ||
-            errors.tags ||
-            errors.jobType ||
-            errors.locationInfo ||
-            errors.salary ||
-            errors.equity ||
-            errors.applicationMethod ||
-            errors.apply
-              ? 'border-red-500'
-              : 'border-black'
-          }`}
-        >
-          <span>3</span>
-        </div>
-        <div
-          onClick={() => setFormStep(4)}
-          className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
-            formStep !== 4 && 'bg-opacity-30'
-          } ${errors.sdg ? 'border-red-500' : 'border-black'}`}
-        >
-          <span>4</span>
-        </div>
+      <div>
+        <FormSteps
+          setFormStep={setFormStep}
+          formStep={formStep}
+          errors={errors}
+        />
       </div>
+
       <form id="form" onSubmit={handleSubmit(onSubmit)}>
         {/* COMPANY FIELDS */}
         <div className={`${formStep !== 1 && 'hidden'}`}>

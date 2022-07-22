@@ -23,7 +23,7 @@ type Props = {
   };
 };
 
-const FormSteps = ({ setFormStep, errors, formStep }: Props) => {
+const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
   return (
     <div className="my-5 flex justify-between">
       <FormStep
@@ -68,4 +68,4 @@ const FormSteps = ({ setFormStep, errors, formStep }: Props) => {
   );
 };
 
-export default FormSteps;
+export default FormStatusIdentifier;

@@ -35,8 +35,8 @@ import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
-import FormSteps from './form-elements/FormSteps';
 import FormNavigation from './form-elements/FormNavigation';
+import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 
 function Form() {
   // Form step management
@@ -134,7 +134,7 @@ function Form() {
 
   return (
     <>
-      <FormSteps
+      <FormStatusIdentifier
         setFormStep={setFormStep}
         formStep={formStep}
         errors={errors}

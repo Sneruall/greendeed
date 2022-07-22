@@ -36,6 +36,7 @@ import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
 import FormSteps from './form-elements/FormSteps';
+import FormNavigation from './form-elements/FormNavigation';
 
 function Form() {
   // Form step management
@@ -133,15 +134,15 @@ function Form() {
 
   return (
     <>
-      <div>
-        <FormSteps
-          setFormStep={setFormStep}
-          formStep={formStep}
-          errors={errors}
-        />
-      </div>
+      <FormSteps
+        setFormStep={setFormStep}
+        formStep={formStep}
+        errors={errors}
+      />
 
       <form id="form" onSubmit={handleSubmit(onSubmit)}>
+        {/* ////-------/////------////------- STEP 1 -----////------////---////----//// */}
+
         {/* COMPANY FIELDS */}
         <div className={`${formStep !== 1 && 'hidden'}`}>
           <h2 className="text-xl">1. Company details</h2>
@@ -194,6 +195,8 @@ function Form() {
           />
         </div>
 
+        {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}
+
         <div className={`${formStep !== 2 && 'hidden'}`}>
           <h2 className="text-xl">2. Job Description</h2>
 
@@ -216,6 +219,8 @@ function Form() {
           <h2 className="text-base font-bold">Job description</h2>
           <RichTextEditor state={setjobDescriptionHtml} />
         </div>
+
+        {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}
 
         <div className={`${formStep !== 3 && 'hidden'}`}>
           <h2 className="text-xl">3. Job Details</h2>
@@ -448,6 +453,8 @@ function Form() {
           )}
         </div>
 
+        {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
+
         {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
         <div className={`${formStep !== 4 && 'hidden'}`}>
@@ -482,26 +489,13 @@ function Form() {
       </form>
       <div className="flex space-x-4">
         {/* FORM NAVIGATION */}
-        <div className="flex-1">
-          <button
-            onClick={previousStep}
-            className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
-              formStep === 1 && 'hidden'
-            }`}
-          >
-            Previous
-          </button>
-        </div>
-
-        <button
-          onClick={nextStep}
-          className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
-            formStep === 4 && 'hidden'
-          }`}
-        >
-          Next
-        </button>
+        <FormNavigation
+          formStep={formStep}
+          previousStep={previousStep}
+          nextStep={nextStep}
+        />
       </div>
+
       {/* RESET */}
       {/* <button
         type="button"

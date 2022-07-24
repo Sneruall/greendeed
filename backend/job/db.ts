@@ -9,19 +9,25 @@ export const getJobsFromMongo = async (search: String) => {
   if (!process.env.MONGODB_COLLECTION) {
     throw new Error('Please add your Mongo URI to .env.local');
   }
-  let jobs = {};
-  // if no query paramter is passed, return all jobs
+  let jobs = [];
   if (!search) {
+    // if no query paramter is passed, return all jobs
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({ hidden: false })
       .toArray();
   } else {
+    // if query paramter is passed, return jobs that match the query
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        jobDescription: { $regex: `.*${search}.*` },
-        // $or: { $regex: `.*${query}.*` },
+        // looking for jobs that match the query (in the description, title, tags, company name)
+        $or: [
+          { jobDescription: { $regex: `.*${search}.*` } },
+          { jobTitle: { $regex: `.*${search}.*` } },
+          { tags: { $regex: `.*${search}.*` } },
+          { companyName: { $regex: `.*${search}.*` } },
+        ],
       })
       .toArray();
   }

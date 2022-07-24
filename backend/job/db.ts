@@ -2,7 +2,6 @@ import clientPromise from '../../lib/mongodb';
 import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (search: String) => {
-  console.log('search: ' + search);
   const client = await clientPromise;
 
   const db = client.db();

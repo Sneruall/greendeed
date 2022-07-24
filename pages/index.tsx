@@ -23,7 +23,7 @@ let timer: ReturnType<typeof setTimeout>;
 //   }, 2000);
 // };
 
-const Home: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
+const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
   const router = useRouter();
 
   const searchInputCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +62,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
           className="my-3 border"
         />
         {/* Listing of jobs */}
-        <JobListing jobs={jobs} />
+        <JobListing search={search} jobs={jobs} />
       </main>
 
       {/* Footer */}
@@ -77,11 +77,20 @@ export async function getServerSideProps(context: any) {
     return a.timestamp - b.timestamp;
   });
 
-  return {
-    props: {
-      jobs: JSON.parse(JSON.stringify(jobs)),
-    },
-  };
+  if (search) {
+    return {
+      props: {
+        jobs: JSON.parse(JSON.stringify(jobs)),
+        search,
+      },
+    };
+  } else {
+    return {
+      props: {
+        jobs: JSON.parse(JSON.stringify(jobs)),
+      },
+    };
+  }
 }
 
 export default Home;

@@ -29,8 +29,9 @@ const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
     </div>
   );
 };
-export async function getServerSideProps() {
-  const jobs = await getJobsFromMongo();
+export async function getServerSideProps(context: any) {
+  const { search } = context.query;
+  const jobs = await getJobsFromMongo(search);
 
   jobs.sort((a, b) => {
     return a.timestamp - b.timestamp;

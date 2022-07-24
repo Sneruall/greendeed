@@ -1,19 +1,30 @@
 import clientPromise from '../../lib/mongodb';
 import { Company, Job, jobTypes } from '../../types/types';
 
-export const getJobsFromMongo = async () => {
+export const getJobsFromMongo = async (search: String) => {
+  console.log('search: ' + search);
   const client = await clientPromise;
 
   const db = client.db();
   if (!process.env.MONGODB_COLLECTION) {
     throw new Error('Please add your Mongo URI to .env.local');
   }
-  const jobs = await db
-    .collection(process.env.MONGODB_COLLECTION)
-    .find({ hidden: false })
-    // .sort({ metacritic: -1 })
-    // .limit(20)
-    .toArray();
+  let jobs = {};
+  // if no query paramter is passed, return all jobs
+  if (!search) {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({ hidden: false })
+      .toArray();
+  } else {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        jobDescription: { $regex: `.*${search}.*` },
+        // $or: { $regex: `.*${query}.*` },
+      })
+      .toArray();
+  }
 
   return jobs;
 };

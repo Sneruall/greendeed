@@ -22,8 +22,8 @@ export default async function handler(req, res) {
 
     const jobs = await yourCollection
       .find({
-        // jobDescription: { $regex: '.*' + query.toString() + '.*' },
         jobDescription: { $regex: `.*${query}.*` },
+        // $or: { $regex: `.*${query}.*` },
       })
       .toArray();
     if (jobs.length > 0) {

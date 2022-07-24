@@ -23,7 +23,7 @@ let timer: ReturnType<typeof setTimeout>;
 //   }, 2000);
 // };
 
-const Home: React.FC<{ jobs: [Job] }> = ({ jobs }) => {
+const Home: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
   const router = useRouter();
 
   const searchInputCallback = (e: React.ChangeEvent<HTMLInputElement>) => {

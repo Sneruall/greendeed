@@ -5,7 +5,7 @@ import { Job, remotiveJob } from '../../types/types';
 import JobListing from '../../components/JobListing';
 import { mapRemotiveJobtoJob } from '../../backend/job/remotive/jobMapper';
 
-const remotive: NextPage<{ convertedJobs: [Job] }> = ({ convertedJobs }) => {
+const remotive: NextPage<{ convertedJobs: Job[] }> = ({ convertedJobs }) => {
   return (
     <div>
       <p>remotive:</p>

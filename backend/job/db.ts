@@ -1,7 +1,11 @@
 import clientPromise from '../../lib/mongodb';
+import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
-export const getJobsFromMongo = async (search: String) => {
+export const getJobsFromMongo = async (
+  search: String,
+  category: jobCategory['slug']
+) => {
   const client = await clientPromise;
 
   const db = client.db();
@@ -9,13 +13,7 @@ export const getJobsFromMongo = async (search: String) => {
     throw new Error('Please add your Mongo URI to .env.local');
   }
   let jobs = [];
-  if (!search) {
-    // if no query paramter is passed, return all jobs
-    jobs = await db
-      .collection(process.env.MONGODB_COLLECTION)
-      .find({ hidden: false })
-      .toArray();
-  } else {
+  if (search) {
     // if query paramter is passed, return jobs that match the query
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
@@ -28,6 +26,20 @@ export const getJobsFromMongo = async (search: String) => {
           { companyName: { $regex: `.*${search}.*` } },
         ],
       })
+      .toArray();
+  } else if (category) {
+    // if category is passed, return jobs that match the category
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        jobCategory: category,
+      })
+      .toArray();
+  } else {
+    // if no query paramter is passed, return all jobs
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({ hidden: false })
       .toArray();
   }
 

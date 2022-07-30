@@ -6,8 +6,28 @@ export interface jobCategory {
   slug: string;
 }
 
-export const generateCategoriesArray = () => {
-  return jobCategoriesList.map((category) => category.name).sort();
+export const generateCategoriesArray = (placeholder?: string) => {
+  const categoriesArray = jobCategoriesList
+    .map((category) => category.name)
+    .sort();
+  if (placeholder) {
+    jobCategoriesList.unshift({
+      id: 0,
+      name: placeholder,
+      slug: '',
+    });
+  }
+  return categoriesArray;
+};
+
+export const getJobCategoriesListWithPlaceholder = (placeholder: string) => {
+  const jobCategories = [...jobCategoriesList];
+  jobCategories.unshift({
+    id: 0,
+    name: placeholder,
+    slug: '',
+  });
+  return jobCategories;
 };
 
 export const jobCategoriesList: jobCategory[] = [
@@ -27,62 +47,62 @@ export const jobCategoriesList: jobCategory[] = [
     slug: 'design',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Consultancy',
     slug: 'consultancy',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Marketing',
     slug: 'marketing',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Sales',
     slug: 'sales',
   },
   {
-    id: 6,
+    id: 7,
     name: 'Product',
     slug: 'product',
   },
   {
-    id: 7,
+    id: 8,
     name: 'Business',
     slug: 'business',
   },
   {
-    id: 8,
+    id: 9,
     name: 'Data',
     slug: 'data',
   },
   {
-    id: 9,
+    id: 10,
     name: 'DevOps / Sysadmin',
     slug: 'devops-sysadmin',
   },
   {
-    id: 10,
+    id: 11,
     name: 'Finance / Legal',
     slug: 'finance-legal',
   },
   {
-    id: 11,
+    id: 12,
     name: 'Human Resources',
     slug: 'human-resources',
   },
   {
-    id: 12,
+    id: 13,
     name: 'Quality Assurance',
     slug: 'quality-assurance',
   },
   {
-    id: 13,
+    id: 14,
     name: 'Writing',
     slug: 'writing',
   },
   {
-    id: 14,
+    id: 15,
     name: 'Other',
     slug: 'other',
   },

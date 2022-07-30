@@ -4,6 +4,12 @@ import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 import { useRouter } from 'next/router';
+import FormFieldDropdown from '../components/hiring/FormFieldDropdown';
+import {
+  generateCategoriesArray,
+  getJobCategoriesListWithPlaceholder,
+  jobCategoriesList,
+} from '../types/jobCategories';
 
 /*
 Todo:
@@ -61,6 +67,29 @@ const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
           type="text"
           className="my-3 border"
         />
+        <div className="">
+          <label
+            htmlFor="category"
+            className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+          >
+            Category
+          </label>
+          <select
+            onChange={() => {
+              console.log('change');
+            }}
+            id="category"
+            className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
+          >
+            {getJobCategoriesListWithPlaceholder('All categories').map(
+              (option) => (
+                <option value={option.slug} key={option.id}>
+                  {option.name}
+                </option>
+              )
+            )}
+          </select>
+        </div>
         {/* Listing of jobs */}
         <JobListing search={search} jobs={jobs} />
       </main>
@@ -70,8 +99,8 @@ const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
   );
 };
 export async function getServerSideProps(context: any) {
-  const { search } = context.query;
-  const jobs = await getJobsFromMongo(search);
+  const { search, category } = context.query;
+  const jobs = await getJobsFromMongo(search, category);
 
   jobs.sort((a, b) => {
     return a.timestamp - b.timestamp;

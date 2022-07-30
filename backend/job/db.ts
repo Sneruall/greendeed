@@ -13,7 +13,26 @@ export const getJobsFromMongo = async (
     throw new Error('Please add your Mongo URI to .env.local');
   }
   let jobs = [];
-  if (search) {
+  if (search && category) {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        $and: [
+          {
+            $or: [
+              { jobDescription: { $regex: `.*${search}.*` } },
+              { jobTitle: { $regex: `.*${search}.*` } },
+              { tags: { $regex: `.*${search}.*` } },
+              { companyName: { $regex: `.*${search}.*` } },
+            ],
+          },
+          {
+            'category.slug': category,
+          },
+        ],
+      })
+      .toArray();
+  } else if (search) {
     // if query paramter is passed, return jobs that match the query
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)

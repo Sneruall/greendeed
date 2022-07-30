@@ -1,32 +1,13 @@
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import React from 'react';
 
-type Props = {};
+type Props = {
+  searchInputCallback: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-let timer: ReturnType<typeof setTimeout>;
-
-const SearchInput = (props: Props) => {
-  const router = useRouter();
-
-  const searchInputCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      if (e.target.value) {
-        router.push({
-          query: {
-            search: e.target.value,
-          },
-        });
-      } else {
-        router.replace('/', undefined);
-      }
-    }, 300);
-  };
+const SearchInput = ({ searchInputCallback }: Props) => {
   return (
     <div>
-      {' '}
       search:{' '}
       <input
         onChange={(e) => {

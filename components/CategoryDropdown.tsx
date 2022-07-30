@@ -5,13 +5,11 @@ import {
   jobCategory,
 } from '../types/jobCategories';
 
-type Props = {
-  options: jobCategory[];
-};
+type Props = {};
 
-const CategoryDropdown = ({ options }: Props) => {
+const CategoryDropdown = (props: Props) => {
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState(options[0].slug);
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
 
   const setCategoryQuery = (value: String) => {
     if (value) {
@@ -42,7 +40,7 @@ const CategoryDropdown = ({ options }: Props) => {
         id="category"
         className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
       >
-        {options.map((option) => (
+        {getJobCategoriesListWithPlaceholder('All categories').map((option) => (
           <option value={option.slug} key={option.id}>
             {option.name}
           </option>

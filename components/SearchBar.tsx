@@ -11,22 +11,22 @@ let timer: ReturnType<typeof setTimeout>;
 export const SearchBar = (props: Props) => {
   const router = useRouter();
 
-  const searchInputCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const searchInputCallback = (value: String) => {
     if (timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      if (e.target.value && router.query.category) {
+      if (value && router.query.category) {
         router.push({
           query: {
-            search: e.target.value,
+            search: value.toString(),
             category: router.query.category,
           },
         });
-      } else if (e.target.value) {
+      } else if (value) {
         router.push({
           query: {
-            search: e.target.value,
+            search: value.toString(),
           },
         });
       } else {

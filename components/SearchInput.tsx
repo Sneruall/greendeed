@@ -2,7 +2,7 @@ import { NextRouter, useRouter } from 'next/router';
 import React from 'react';
 
 type Props = {
-  searchInputCallback: (e: String) => void;
+  searchInputCallback: (search: String) => void;
 };
 
 const SearchInput = ({ searchInputCallback }: Props) => {

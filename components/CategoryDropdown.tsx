@@ -5,23 +5,25 @@ import {
   jobCategory,
 } from '../types/jobCategories';
 
-type Props = {};
+type Props = {
+  searchInputCallback: (search: String, isCategory?: Boolean) => void;
+};
 
-const CategoryDropdown = (props: Props) => {
+const CategoryDropdown = ({ searchInputCallback }: Props) => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
 
-  const setCategoryQuery = (value: String) => {
-    if (value) {
-      router.push({
-        query: {
-          category: value?.toString(),
-        },
-      });
-    } else {
-      router.replace('/', undefined);
-    }
-  };
+  //   const setCategoryQuery = (value: String) => {
+  //     if (value) {
+  //       router.push({
+  //         query: {
+  //           category: value?.toString(),
+  //         },
+  //       });
+  //     } else {
+  //       router.replace('/', undefined);
+  //     }
+  //   };
 
   return (
     <div className="">
@@ -35,7 +37,7 @@ const CategoryDropdown = (props: Props) => {
         value={selectedCategory}
         onChange={(e) => {
           setSelectedCategory(e.target.value);
-          setCategoryQuery(e.target.value);
+          searchInputCallback(e.target.value, true);
         }}
         id="category"
         className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "

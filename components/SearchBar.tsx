@@ -11,34 +11,53 @@ let timer: ReturnType<typeof setTimeout>;
 export const SearchBar = (props: Props) => {
   const router = useRouter();
 
-  const searchInputCallback = (value: String) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      if (value && router.query.category) {
+  const searchInputCallback = (search: String, isCategory?: Boolean) => {
+    if (!isCategory) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        if (search && router.query.category) {
+          router.push({
+            query: {
+              search: search.toString(),
+              category: router.query.category,
+            },
+          });
+        } else if (search) {
+          router.push({
+            query: {
+              search: search.toString(),
+            },
+          });
+        } else {
+          router.replace('/', undefined);
+        }
+      }, 300);
+    } else {
+      if (search && router.query.search) {
         router.push({
           query: {
-            search: value.toString(),
-            category: router.query.category,
+            search: router.query.search,
+            category: search?.toString(),
           },
         });
-      } else if (value) {
+      } else if (search) {
         router.push({
           query: {
-            search: value.toString(),
+            category: search?.toString(),
           },
         });
       } else {
         router.replace('/', undefined);
       }
-    }, 300);
+    }
   };
 
   return (
     <div>
       <SearchInput searchInputCallback={searchInputCallback} />
-      <CategoryDropdown />
+      <CategoryDropdown searchInputCallback={searchInputCallback} />
     </div>
   );
 };

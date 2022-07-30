@@ -10,6 +10,8 @@ import {
   getJobCategoriesListWithPlaceholder,
   jobCategoriesList,
 } from '../types/jobCategories';
+import { useState } from 'react';
+import CategoryDropdown from '../components/CategoryDropdown';
 
 /*
 Todo:
@@ -17,17 +19,6 @@ Todo:
 */
 
 let timer: ReturnType<typeof setTimeout>;
-
-// ) => {
-//   setCompanyNameIsLoading(true);
-//   if (timer) {
-//     clearTimeout(timer);
-//   }
-//   timer = setTimeout(() => {
-//     findCompany(value, setRetrievedCompanyData);
-//     setCompanyNameIsLoading(false);
-//   }, 2000);
-// };
 
 const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
   const router = useRouter();
@@ -37,7 +28,7 @@ const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      if (e.target.value.length > 0) {
+      if (e.target.value) {
         router.push({
           query: {
             search: e.target.value,
@@ -67,29 +58,9 @@ const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
           type="text"
           className="my-3 border"
         />
-        <div className="">
-          <label
-            htmlFor="category"
-            className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
-          >
-            Category
-          </label>
-          <select
-            onChange={() => {
-              console.log('change');
-            }}
-            id="category"
-            className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
-          >
-            {getJobCategoriesListWithPlaceholder('All categories').map(
-              (option) => (
-                <option value={option.slug} key={option.id}>
-                  {option.name}
-                </option>
-              )
-            )}
-          </select>
-        </div>
+        <CategoryDropdown
+          options={getJobCategoriesListWithPlaceholder('All categories')}
+        />
         {/* Listing of jobs */}
         <JobListing search={search} jobs={jobs} />
       </main>

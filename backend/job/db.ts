@@ -32,7 +32,7 @@ export const getJobsFromMongo = async (
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        jobCategory: category,
+        'category.slug': category,
       })
       .toArray();
   } else {

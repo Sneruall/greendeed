@@ -12,6 +12,8 @@ export const SearchBar = (props: Props) => {
   const router = useRouter();
 
   const searchInputCallback = (search: String, isCategory?: Boolean) => {
+    // todo: account for empty values (resetting of everything) + refactoring
+
     if (!isCategory) {
       if (timer) {
         clearTimeout(timer);
@@ -31,7 +33,15 @@ export const SearchBar = (props: Props) => {
             },
           });
         } else {
-          router.replace('/', undefined);
+          if (router.query.category) {
+            router.push({
+              query: {
+                category: router.query.category,
+              },
+            });
+          } else {
+            router.replace('/', undefined);
+          }
         }
       }, 300);
     } else {
@@ -49,7 +59,15 @@ export const SearchBar = (props: Props) => {
           },
         });
       } else {
-        router.replace('/', undefined);
+        if (router.query.search) {
+          router.push({
+            query: {
+              search: router.query.search,
+            },
+          });
+        } else {
+          router.replace('/', undefined);
+        }
       }
     }
   };

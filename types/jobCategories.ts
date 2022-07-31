@@ -30,6 +30,8 @@ export const getJobCategoriesListWithPlaceholder = (placeholder: string) => {
   return jobCategories;
 };
 
+export type SearchInputType = 'search' | 'category';
+
 export const jobCategoriesList: jobCategory[] = [
   {
     id: 1,

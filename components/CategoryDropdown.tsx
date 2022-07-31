@@ -3,10 +3,14 @@ import React, { useState } from 'react';
 import {
   getJobCategoriesListWithPlaceholder,
   jobCategory,
+  SearchInputType,
 } from '../types/jobCategories';
 
 type Props = {
-  searchInputCallback: (search: String, isCategory?: Boolean) => void;
+  searchInputCallback: (
+    search: String,
+    searchInputType: SearchInputType
+  ) => void;
 };
 
 const CategoryDropdown = ({ searchInputCallback }: Props) => {
@@ -37,7 +41,7 @@ const CategoryDropdown = ({ searchInputCallback }: Props) => {
         value={selectedCategory}
         onChange={(e) => {
           setSelectedCategory(e.target.value);
-          searchInputCallback(e.target.value, true);
+          searchInputCallback(e.target.value, 'category');
         }}
         id="category"
         className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "

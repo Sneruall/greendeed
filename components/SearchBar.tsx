@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
-import { getJobCategoriesListWithPlaceholder } from '../types/jobCategories';
+import {
+  getJobCategoriesListWithPlaceholder,
+  SearchInputType,
+} from '../types/jobCategories';
 import CategoryDropdown from './CategoryDropdown';
 import SearchInput from './SearchInput';
 
@@ -11,65 +15,39 @@ let timer: ReturnType<typeof setTimeout>;
 export const SearchBar = (props: Props) => {
   const router = useRouter();
 
-  const searchInputCallback = (search: String, isCategory?: Boolean) => {
-    // todo: account for empty values (resetting of everything) + refactoring
+  //   Function to remove a specific query from the url
+  //   const removeQueryParam = (param: string) => {
+  //     const { pathname, query } = router;
+  //     const params = new URLSearchParams(query);
+  //     params.delete(param);
+  //     router.replace({ pathname, query: params.toString() }, undefined, {
+  //       shallow: true,
+  //     });
+  //   };
 
-    if (!isCategory) {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(() => {
-        if (search && router.query.category) {
-          router.push({
-            query: {
-              search: search.toString(),
-              category: router.query.category,
-            },
-          });
-        } else if (search) {
-          router.push({
-            query: {
-              search: search.toString(),
-            },
-          });
-        } else {
-          if (router.query.category) {
-            router.push({
-              query: {
-                category: router.query.category,
-              },
-            });
-          } else {
-            router.replace('/', undefined);
-          }
-        }
-      }, 300);
-    } else {
-      if (search && router.query.search) {
-        router.push({
-          query: {
-            search: router.query.search,
-            category: search?.toString(),
-          },
-        });
-      } else if (search) {
-        router.push({
-          query: {
-            category: search?.toString(),
-          },
-        });
-      } else {
-        if (router.query.search) {
-          router.push({
-            query: {
-              search: router.query.search,
-            },
-          });
-        } else {
-          router.replace('/', undefined);
-        }
-      }
+  const searchInputCallback = (
+    value: String,
+    searchInputType: SearchInputType
+  ) => {
+    if (timer) {
+      clearTimeout(timer);
     }
+    timer = setTimeout(() => {
+      if (!value && !router.query) {
+        router.replace('/', undefined);
+      }
+      //   if (!value && router.query) {
+      //     // remove the query param because it is empty (we remove query of searchInputType)
+      //   }
+      else {
+        router.push({
+          query: {
+            ...router.query,
+            [searchInputType]: value.toString(),
+          },
+        });
+      }
+    }, 300);
   };
 
   return (

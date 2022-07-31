@@ -15,16 +15,6 @@ let timer: ReturnType<typeof setTimeout>;
 export const SearchBar = (props: Props) => {
   const router = useRouter();
 
-  //   Function to remove a specific query from the url
-  //   const removeQueryParam = (param: string) => {
-  //     const { pathname, query } = router;
-  //     const params = new URLSearchParams(query);
-  //     params.delete(param);
-  //     router.replace({ pathname, query: params.toString() }, undefined, {
-  //       shallow: true,
-  //     });
-  //   };
-
   const searchInputCallback = (
     value: String,
     searchInputType: SearchInputType
@@ -33,13 +23,14 @@ export const SearchBar = (props: Props) => {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      if (!value && !router.query) {
-        router.replace('/', undefined);
-      }
-      //   if (!value && router.query) {
-      //     // remove the query param because it is empty (we remove query of searchInputType)
-      //   }
-      else {
+      // if there is no value, then we want to remove the query param that belongs to it.
+      if (!value) {
+        const { pathname } = router;
+        const params = new URLSearchParams(window.location.search);
+        params.delete(searchInputType);
+        router.replace({ pathname, query: params.toString() }, undefined);
+        // if there is a value, then we want to add the query param that belongs to it.
+      } else {
         router.push({
           query: {
             ...router.query,

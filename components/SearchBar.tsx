@@ -42,7 +42,7 @@ export const SearchBar = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="my-2 flex justify-center space-x-2">
       <SearchInput searchInputCallback={searchInputCallback} />
       <CategoryDropdown searchInputCallback={searchInputCallback} />
     </div>

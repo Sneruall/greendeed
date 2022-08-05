@@ -4,7 +4,7 @@ import JobItem from './JobItem';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 
-const JobListing: React.FC<{ jobs: Job[]; search: String }> = ({
+const JobListing: React.FC<{ jobs: Job[]; search?: String }> = ({
   jobs,
   search,
 }) => {

@@ -27,21 +27,33 @@ const convertTagsToLowercase = (tags: string[] | undefined): string[] => {
   }
 };
 
-const Home: React.FC<{ jobs: Job[]; search: string }> = ({ jobs, search }) => {
-  var filteredJobs = jobs.filter(function (job) {
-    if (search) {
+const Home: React.FC<{ jobs: Job[] }> = ({ jobs: jobsProp }) => {
+  const [jobs, setJobs] = useState<Job[]>(jobsProp);
+
+  let params: {
+    search?: string;
+    category?: string;
+  };
+  if (typeof window !== 'undefined') {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    params = Object.fromEntries(urlSearchParams.entries());
+    console.log(params);
+  }
+
+  const filteredJobs = jobs.filter(function (job) {
+    if (params && params.search) {
       if (
-        job.jobTitle.toLowerCase().includes(search) ||
-        job.companyName.toLowerCase().includes(search) ||
-        job.jobDescription.toLowerCase().includes(search) ||
-        convertTagsToLowercase(job.tags).includes(search) //double check if this works with uppercase
+        job.jobTitle.toLowerCase().includes(params.search) ||
+        job.companyName.toLowerCase().includes(params.search) ||
+        job.jobDescription.toLowerCase().includes(params.search) ||
+        convertTagsToLowercase(job.tags).includes(params.search) //double check if this works with uppercase
+        // job.tags?.includes(search)
       ) {
         return true;
       }
       return false;
     }
   });
-
   console.log(filteredJobs);
 
   return (
@@ -56,7 +68,7 @@ const Home: React.FC<{ jobs: Job[]; search: string }> = ({ jobs, search }) => {
         <SearchBar />
 
         {/* Listing of jobs */}
-        <JobListing search={search} jobs={jobs} />
+        <JobListing jobs={jobs} />
       </main>
 
       {/* Footer */}
@@ -64,27 +76,17 @@ const Home: React.FC<{ jobs: Job[]; search: string }> = ({ jobs, search }) => {
   );
 };
 export async function getServerSideProps(context: any) {
-  const { search, category } = context.query;
-  const jobs = await getJobsFromMongo(search, category);
+  const jobs = await getJobsFromMongo();
 
   jobs.sort((a, b) => {
     return a.timestamp - b.timestamp;
   });
 
-  if (search) {
-    return {
-      props: {
-        jobs: JSON.parse(JSON.stringify(jobs)),
-        search,
-      },
-    };
-  } else {
-    return {
-      props: {
-        jobs: JSON.parse(JSON.stringify(jobs)),
-      },
-    };
-  }
+  return {
+    props: {
+      jobs: JSON.parse(JSON.stringify(jobs)),
+    },
+  };
 }
 
 export default Home;

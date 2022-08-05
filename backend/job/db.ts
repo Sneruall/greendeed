@@ -2,65 +2,17 @@ import clientPromise from '../../lib/mongodb';
 import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
-export const getJobsFromMongo = async (
-  search: String,
-  category: jobCategory['slug']
-) => {
+export const getJobsFromMongo = async () => {
   const client = await clientPromise;
 
   const db = client.db();
   if (!process.env.MONGODB_COLLECTION) {
     throw new Error('Please add your Mongo URI to .env.local');
   }
-  let jobs = [];
-  if (search && category) {
-    jobs = await db
-      .collection(process.env.MONGODB_COLLECTION)
-      .find({
-        $and: [
-          {
-            $or: [
-              { jobDescription: { $regex: `.*${search}.*` } },
-              { jobTitle: { $regex: `.*${search}.*` } },
-              { tags: { $regex: `.*${search}.*` } },
-              { companyName: { $regex: `.*${search}.*` } },
-            ],
-          },
-          {
-            'category.slug': category,
-          },
-        ],
-      })
-      .toArray();
-  } else if (search) {
-    // if query paramter is passed, return jobs that match the query
-    jobs = await db
-      .collection(process.env.MONGODB_COLLECTION)
-      .find({
-        // looking for jobs that match the query (in the description, title, tags, company name)
-        $or: [
-          { jobDescription: { $regex: `.*${search}.*` } },
-          { jobTitle: { $regex: `.*${search}.*` } },
-          { tags: { $regex: `.*${search}.*` } },
-          { companyName: { $regex: `.*${search}.*` } },
-        ],
-      })
-      .toArray();
-  } else if (category) {
-    // if category is passed, return jobs that match the category
-    jobs = await db
-      .collection(process.env.MONGODB_COLLECTION)
-      .find({
-        'category.slug': category,
-      })
-      .toArray();
-  } else {
-    // if no query paramter is passed, return all jobs
-    jobs = await db
-      .collection(process.env.MONGODB_COLLECTION)
-      .find({ hidden: false })
-      .toArray();
-  }
+  const jobs = await db
+    .collection(process.env.MONGODB_COLLECTION)
+    .find({ hidden: false })
+    .toArray();
 
   return jobs;
 };

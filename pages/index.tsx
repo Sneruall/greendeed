@@ -19,7 +19,31 @@ Todo:
 - Make sure apis can only be called from our server? (post apis) prevent curl from working,..
 */
 
-const Home: React.FC<{ jobs: Job[]; search: String }> = ({ jobs, search }) => {
+const convertTagsToLowercase = (tags: string[] | undefined): string[] => {
+  if (tags) {
+    return tags.map((tag) => tag.toLowerCase());
+  } else {
+    return [];
+  }
+};
+
+const Home: React.FC<{ jobs: Job[]; search: string }> = ({ jobs, search }) => {
+  var filteredJobs = jobs.filter(function (job) {
+    if (search) {
+      if (
+        job.jobTitle.toLowerCase().includes(search) ||
+        job.companyName.toLowerCase().includes(search) ||
+        job.jobDescription.toLowerCase().includes(search) ||
+        convertTagsToLowercase(job.tags).includes(search) //double check if this works with uppercase
+      ) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+  console.log(filteredJobs);
+
   return (
     <div className="">
       <Head>

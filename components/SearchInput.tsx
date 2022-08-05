@@ -15,7 +15,7 @@ const SearchInput = ({ searchInputCallback }: Props) => {
       search:{' '}
       <input
         onChange={(e) => {
-          searchInputCallback(e.target.value, 'search');
+          searchInputCallback(e.target.value.toLowerCase(), 'search');
         }}
         type="text"
         className="my-3 border"

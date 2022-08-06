@@ -35,7 +35,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   }>({});
 
   useEffect(() => {
-    if (query.search) {
+    if (query.search || query.category) {
       const newJobs = filteredJobs();
       setJobs(newJobs);
     } else {
@@ -46,24 +46,48 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   if (typeof window !== 'undefined') {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    if (params.search !== query.search) {
+    if (params.search !== query.search || params.category !== query.category) {
       setQuery(params);
     }
   }
 
   const filteredJobs = () => {
     return allJobs.filter(function (job) {
-      if (query && query.search) {
-        if (
-          job.jobTitle.toLowerCase().includes(query.search) ||
-          job.companyName.toLowerCase().includes(query.search) ||
-          job.jobDescription.toLowerCase().includes(query.search) ||
-          convertTagsToLowercase(job.tags).includes(query.search) //double check if this works with uppercase
-          // job.tags?.includes(search)
-        ) {
-          return true;
+      if (query) {
+        // if both category and search is used
+        if (query.category && query.search) {
+          if (
+            job.category.slug == query.category &&
+            (job.jobTitle.toLowerCase().includes(query.search) ||
+              job.companyName.toLowerCase().includes(query.search) ||
+              job.jobDescription.toLowerCase().includes(query.search) ||
+              convertTagsToLowercase(job.tags).includes(query.search)) //double check if this works with uppercase
+            // job.tags?.includes(search)
+          ) {
+            return true;
+          }
+          return false;
         }
-        return false;
+        // if only category is used
+        if (query.category) {
+          if (job.category.slug == query.category) {
+            return true;
+          }
+          return false;
+        }
+        // if only search is used.
+        if (query.search) {
+          if (
+            job.jobTitle.toLowerCase().includes(query.search) ||
+            job.companyName.toLowerCase().includes(query.search) ||
+            job.jobDescription.toLowerCase().includes(query.search) ||
+            convertTagsToLowercase(job.tags).includes(query.search) //double check if this works with uppercase
+            // job.tags?.includes(search)
+          ) {
+            return true;
+          }
+          return false;
+        }
       }
     });
   };

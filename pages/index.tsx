@@ -27,8 +27,8 @@ const convertTagsToLowercase = (tags: string[] | undefined): string[] => {
   }
 };
 
-const Home: React.FC<{ jobs: Job[] }> = ({ jobs: jobsProp }) => {
-  const [jobs, setJobs] = useState<Job[]>(jobsProp);
+const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
+  const [jobs, setJobs] = useState<Job[]>(allJobs);
   const [query, setQuery] = useState<{
     search?: string;
     category?: string;
@@ -39,7 +39,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: jobsProp }) => {
       const newJobs = filteredJobs();
       setJobs(newJobs);
     } else {
-      setJobs(jobsProp);
+      setJobs(allJobs);
     }
   }, [query]);
 
@@ -52,7 +52,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: jobsProp }) => {
   }
 
   const filteredJobs = () => {
-    return jobsProp.filter(function (job) {
+    return allJobs.filter(function (job) {
       if (query && query.search) {
         if (
           job.jobTitle.toLowerCase().includes(query.search) ||

@@ -10,7 +10,7 @@ import {
   getJobCategoriesListWithPlaceholder,
   jobCategoriesList,
 } from '../types/jobCategories';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CategoryDropdown from '../components/CategoryDropdown';
 import { SearchBar } from '../components/SearchBar';
 
@@ -29,32 +29,44 @@ const convertTagsToLowercase = (tags: string[] | undefined): string[] => {
 
 const Home: React.FC<{ jobs: Job[] }> = ({ jobs: jobsProp }) => {
   const [jobs, setJobs] = useState<Job[]>(jobsProp);
-
-  let params: {
+  const [query, setQuery] = useState<{
     search?: string;
     category?: string;
-  };
+  }>({});
+
+  useEffect(() => {
+    if (query.search) {
+      const newJobs = filteredJobs();
+      setJobs(newJobs);
+    } else {
+      setJobs(jobsProp);
+    }
+  }, [query]);
+
   if (typeof window !== 'undefined') {
     const urlSearchParams = new URLSearchParams(window.location.search);
-    params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    if (params.search !== query.search) {
+      setQuery(params);
+    }
   }
 
-  const filteredJobs = jobs.filter(function (job) {
-    if (params && params.search) {
-      if (
-        job.jobTitle.toLowerCase().includes(params.search) ||
-        job.companyName.toLowerCase().includes(params.search) ||
-        job.jobDescription.toLowerCase().includes(params.search) ||
-        convertTagsToLowercase(job.tags).includes(params.search) //double check if this works with uppercase
-        // job.tags?.includes(search)
-      ) {
-        return true;
+  const filteredJobs = () => {
+    return jobsProp.filter(function (job) {
+      if (query && query.search) {
+        if (
+          job.jobTitle.toLowerCase().includes(query.search) ||
+          job.companyName.toLowerCase().includes(query.search) ||
+          job.jobDescription.toLowerCase().includes(query.search) ||
+          convertTagsToLowercase(job.tags).includes(query.search) //double check if this works with uppercase
+          // job.tags?.includes(search)
+        ) {
+          return true;
+        }
+        return false;
       }
-      return false;
-    }
-  });
-  console.log(filteredJobs);
+    });
+  };
 
   return (
     <div className="">

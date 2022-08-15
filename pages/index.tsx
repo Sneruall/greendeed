@@ -30,9 +30,8 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     if (query.search || query.category) {
       const newJobs = filteredJobs();
       setJobs(newJobs);
-    } else {
+    } else if (jobs !== allJobs) {
       setJobs(allJobs);
-      console.log('set to all jobs');
     }
   }, [query]);
 

@@ -1,8 +1,6 @@
-import { NextRouter, useRouter } from 'next/router';
 import React, { useState } from 'react';
 import {
   getJobCategoriesListWithPlaceholder,
-  jobCategory,
   SearchInputType,
 } from '../types/jobCategories';
 
@@ -14,20 +12,7 @@ type Props = {
 };
 
 const CategoryDropdown = ({ searchInputCallback }: Props) => {
-  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
-
-  //   const setCategoryQuery = (value: String) => {
-  //     if (value) {
-  //       router.push({
-  //         query: {
-  //           category: value?.toString(),
-  //         },
-  //       });
-  //     } else {
-  //       router.replace('/', undefined);
-  //     }
-  //   };
 
   return (
     <div className="">

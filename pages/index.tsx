@@ -3,15 +3,7 @@ import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
-import { useRouter } from 'next/router';
-import FormFieldDropdown from '../components/hiring/FormFieldDropdown';
-import {
-  generateCategoriesArray,
-  getJobCategoriesListWithPlaceholder,
-  jobCategoriesList,
-} from '../types/jobCategories';
 import { useEffect, useState } from 'react';
-import CategoryDropdown from '../components/CategoryDropdown';
 import { SearchBar } from '../components/SearchBar';
 
 /*

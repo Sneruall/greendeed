@@ -1,21 +1,27 @@
 import { NextRouter, useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { searchInputCallback } from '../helpers/search';
 import { SearchInputType } from '../types/jobCategories';
+import { useRef } from 'react';
 
-type Props = {
-  searchInputCallback: (
-    value: String,
-    searchInputType: SearchInputType
-  ) => void;
-};
+const SearchInput = () => {
+  const router = useRouter();
+  const ref = useRef<HTMLInputElement>(null);
 
-const SearchInput = ({ searchInputCallback }: Props) => {
+  useEffect(() => {
+    // if there is no search in query but input is set, reset input field
+    if (!router.asPath.includes('search') && ref.current != null) {
+      ref.current.value = '';
+    }
+  }, [router.asPath]);
+
   return (
     <div>
       search:{' '}
       <input
+        ref={ref}
         onChange={(e) => {
-          searchInputCallback(e.target.value.toLowerCase(), 'search');
+          searchInputCallback(e.target.value.toLowerCase(), 'search', router);
         }}
         type="text"
         className="my-3 border"

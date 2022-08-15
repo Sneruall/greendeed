@@ -32,6 +32,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       setJobs(newJobs);
     } else {
       setJobs(allJobs);
+      console.log('set to all jobs');
     }
   }, [query]);
 

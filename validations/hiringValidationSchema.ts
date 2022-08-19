@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 // YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
 // REFACTOR:
 // Make good and consistant error messages as constants, e.g. (.required(requirederror))
-//todo, refactor using predefined schema's, see https://stackoverflow.com/questions/68475489/check-if-an-array-contains-a-string-with-yup
 
 const ALPHANUMERIC = /^[\w\-\s\(\)\%\&\/]+$/;
 const VALID_URL =
@@ -21,13 +20,6 @@ export default Yup.object().shape({
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
-  // tags: Yup.array()
-  // .max(5, 'Max 5 tags')
-  // .of(Yup.string().max(32, 'Max 32 characters per tag')),
-  // jobDescription: Yup.string()
-  //   .required('jobDescription is required')
-  //   .min(6, 'jobDescription must be at least 6 characters')
-  //   .max(200, 'jobDescription must not exceed 200 characters'),
   jobType: Yup.string().required('Type of employment is required'), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
     location: Yup.string().required('location is required'), //here and also maybe other fields: check if it is of type Location!
@@ -84,7 +76,6 @@ export default Yup.object().shape({
           // ),
         }),
       }),
-
     geoRestrictionOther: Yup.string().when(
       'geoRestriction',
       (geoRestriction) => {
@@ -118,9 +109,12 @@ export default Yup.object().shape({
         )
         .required('apply website is required'),
     }),
-  email: Yup.string().required('Email is required').email('Email is invalid'),
+  email: Yup.string()
+    .required('Email is required')
+    .email('Email is invalid, maybe it contains spaces?'),
   companyWebsite: Yup.string().matches(VALID_URL, {
-    message: 'url is not valid, this format should work: website.com',
+    message:
+      'url is not valid, this format should work: website.com, contains spaces?',
     excludeEmptyString: true,
   }),
   sdg: Yup.array()

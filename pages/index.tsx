@@ -9,6 +9,7 @@ import { SearchBar } from '../components/SearchBar';
 /*
 Todo:
 - Make sure apis can only be called from our server? (post apis) prevent curl from working,..
+- add try catch blocks in SSR, see e.g. https://ellismin.com/2020/05/next-infinite-scroll/
 */
 
 const convertTagsToLowercase = (tags: string[] | undefined): string[] => {

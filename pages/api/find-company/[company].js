@@ -24,14 +24,12 @@ export default async function handler(req, res) {
       name: data.company,
     });
     if (company) {
-      console.log('match found');
       res.status(200).json({
         id: company.id,
         name: company.name,
         description: company.description,
       });
     } else {
-      console.log('no match found');
       res
         .status(400)
         .json({ id: undefined, name: undefined, description: undefined });

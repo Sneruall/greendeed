@@ -5,15 +5,19 @@ import * as Yup from 'yup';
 // Make good and consistant error messages as constants, e.g. (.required(requirederror))
 //todo, refactor using predefined schema's, see https://stackoverflow.com/questions/68475489/check-if-an-array-contains-a-string-with-yup
 
+const ALPHANUMERIC = /^[\w\-\s\(\)\%\&\/]+$/;
+const VALID_URL =
+  /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
+
 export default Yup.object().shape({
   companyName: Yup.string()
     .min(2, 'Company name must be at least 2 characters')
-    .matches(/^[\w\-\s\(\)\%\&\/]+$/, 'Company name must be alphanumeric')
+    .matches(ALPHANUMERIC, 'Company name must be alphanumeric')
     .required('Company name is required'),
   jobTitle: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters')
-    .matches(/^[\w\-\s\(\)\%\&\/]+$/, 'Job title must be alphanumeric')
+    .matches(ALPHANUMERIC, 'Job title must be alphanumeric')
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
@@ -109,16 +113,16 @@ export default Yup.object().shape({
       is: 'website',
       then: Yup.string()
         .matches(
-          /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
+          VALID_URL,
           'url is not valid, use this format: website.com/apply'
         )
         .required('apply website is required'),
     }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
-  companyWebsite: Yup.string().matches(
-    /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm,
-    'url is not valid, this format should work: website.com'
-  ),
+  companyWebsite: Yup.string().matches(VALID_URL, {
+    message: 'url is not valid, this format should work: website.com',
+    excludeEmptyString: true,
+  }),
   sdg: Yup.array()
     .min(1, 'At least one sdg is required')
     .max(3, 'Max. 3 sdgs allowed')

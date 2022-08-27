@@ -4,11 +4,12 @@ import JobItem from './JobItem';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 
-const JobListing: React.FC<{ jobs: Job[]; search?: String }> = ({
+const JobListing: React.FC<{ jobs: Job[]; search?: String; page: Number }> = ({
   jobs,
   search,
+  page,
 }) => {
-  const joblist = jobs.map((job) => (
+  const joblist = jobs.slice(0, +page * 20).map((job) => (
     <li className="list-none" key={job.id}>
       <JobItem job={job} />
     </li>

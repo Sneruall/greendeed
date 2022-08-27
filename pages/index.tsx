@@ -26,6 +26,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     search?: string;
     category?: string;
   }>({});
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (query.search || query.category) {
@@ -97,7 +98,15 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         <SearchBar />
 
         {/* Listing of jobs */}
-        <JobListing jobs={jobs} />
+        <JobListing page={page} jobs={jobs} />
+        <button
+          onClick={() => {
+            setPage(page + 1);
+          }}
+          className="rounded-full bg-green-500 py-2 px-4 text-white hover:opacity-70"
+        >
+          More
+        </button>
       </main>
 
       {/* Footer */}

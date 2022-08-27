@@ -108,7 +108,7 @@ export async function getServerSideProps(context: any) {
   const jobs = await getJobsFromMongo();
 
   jobs.sort((a, b) => {
-    return a.timestamp - b.timestamp;
+    return b.timestamp - a.timestamp;
   });
 
   return {

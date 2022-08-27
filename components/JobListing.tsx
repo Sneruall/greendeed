@@ -8,13 +8,11 @@ const JobListing: React.FC<{ jobs: Job[]; search?: String }> = ({
   jobs,
   search,
 }) => {
-  const joblist = jobs
-    .map((job) => (
-      <li className="list-none" key={job.id}>
-        <JobItem job={job} />
-      </li>
-    ))
-    .reverse();
+  const joblist = jobs.map((job) => (
+    <li className="list-none" key={job.id}>
+      <JobItem job={job} />
+    </li>
+  ));
 
   return (
     <div>

@@ -16,7 +16,7 @@ TODO:
 
 export default async function handler(req, res) {
   if (req.method === 'PATCH') {
-    // Fetch all jobs from remotive
+    // Fetch all desired jobs from remotive
     const remotiveJobs = await getRemotiveJobs();
 
     const client = await clientPromise;
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     //delete all external jobs from db
     await yourCollection.deleteMany({ external: true });
 
-    //inster all jobs from remotive into db
+    //insert all jobs from remotive into db
     if (remotiveJobs.length > 0) {
       await yourCollection.insertMany(remotiveJobs);
     }

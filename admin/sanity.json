@@ -23,7 +23,8 @@
   "parts": [
     {
       "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema"
+      "path": "./schemas/schema",
+      "basePath": "/admin"
     }
   ]
 }

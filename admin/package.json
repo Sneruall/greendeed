@@ -11,7 +11,7 @@
     "build": "sanity build"
   },
   "keywords": [
-    "sanity"
+    "sanity"  
   ],
   "dependencies": {
     "@sanity/base": "^2.31.1",

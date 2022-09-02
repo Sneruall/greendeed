@@ -1,4 +1,4 @@
-import { HiOutlineDocumentAdd } from '../react-icons/hi';
+import { HiOutlineDocumentAdd } from 'react-icons/hi';
 
 export default {
   name: 'post',

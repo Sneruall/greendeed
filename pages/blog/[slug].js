@@ -23,6 +23,13 @@ const ptComponents = {
       );
     },
   },
+  // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:
+  // https://github.com/portabletext/react-portabletext#customizing-components
+  block: {
+    h2: ({ children }) => (
+      <h2 className="mt-6 text-3xl font-bold leading-relaxed">{children}</h2>
+    ),
+  },
 };
 
 const Post = ({ post }) => {

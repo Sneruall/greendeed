@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "Greendeed"
+    "name": "Greendeed",
+    "basePath": "/admin"
   },
   "api": {
     "projectId": "1oy2ruak",
@@ -21,8 +22,7 @@
   "parts": [
     {
       "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema",
-      "basePath": "/admin"
+      "path": "./schemas/schema"
     },
     {
       "name": "part:@sanity/desk-tool/structure",

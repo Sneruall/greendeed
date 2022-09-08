@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     const data = req.body;
     const client = await clientPromise;
     const db = client.db();
-    const yourCollection = db.collection('metaverseJobs');
+    const yourCollection = db.collection(process.env.MONGODB_COLLECTION);
     const result = await yourCollection.insertOne(data);
     console.log(result);
     res.status(201).json({ message: 'Data inserted successfully in Job DB!' });

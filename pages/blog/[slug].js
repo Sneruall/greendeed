@@ -33,13 +33,6 @@ const ptComponents = {
 };
 
 const Post = ({ post }) => {
-  // const {
-  //   title = 'Missing title',
-  //   name = 'Missing name',
-  //   categories,
-  //   authorImage,
-  //   body = [],
-  // } = post;
   return (
     <article>
       <h1>{post?.title}</h1>

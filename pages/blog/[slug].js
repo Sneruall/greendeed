@@ -78,23 +78,6 @@ const Post = ({ post }) => {
   return (
     <article className="mx-auto max-w-2xl">
       <h1 className="text-5xl font-extrabold leading-tight">{post?.title}</h1>
-      <span>By {post?.name}</span>
-      {post?.categories && (
-        <ul>
-          Posted in
-          {post?.categories.map((category) => (
-            <li key={category}>{category}</li>
-          ))}
-        </ul>
-      )}
-      {post?.authorImage && (
-        <div>
-          <img
-            src={urlFor(post?.authorImage).width(50).url()}
-            alt={`${post?.name}'s picture`}
-          />
-        </div>
-      )}
       <PortableText value={post?.body} components={ptComponents} />
     </article>
   );

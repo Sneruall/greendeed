@@ -3,6 +3,8 @@ import imageUrlBuilder from '@sanity/image-url';
 import { PortableText } from '@portabletext/react';
 import client from '../../client';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useNextSanityImage } from 'next-sanity-image';
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -75,8 +77,16 @@ const ptComponents = {
 };
 
 const Post = ({ post }) => {
+  console.log(post);
+  const imageProps = useNextSanityImage(client, post.mainImage);
   return (
     <article className="mx-auto max-w-2xl">
+      <Image
+        {...imageProps}
+        layout="responsive"
+        sizes="(max-width: 800px) 100vw, 800px"
+      />
+
       <h1 className="text-5xl font-extrabold leading-tight">{post?.title}</h1>
       <PortableText value={post?.body} components={ptComponents} />
     </article>
@@ -85,6 +95,7 @@ const Post = ({ post }) => {
 
 const query = groq`*[_type == "post" && slug.current == $slug][0]{
   title,
+  mainImage,
   body
 }`;
 export async function getStaticPaths() {

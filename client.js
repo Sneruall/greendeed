@@ -11,6 +11,7 @@ export default sanityClient({
    **/
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  useCdn: true,
   apiVersion: '2022-09-03', // or today's date for latest
   /**
    * Set useCdn to `false` if your application require the freshest possible

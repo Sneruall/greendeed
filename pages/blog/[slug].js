@@ -1,8 +1,8 @@
-// [slug].js
 import groq from 'groq';
 import imageUrlBuilder from '@sanity/image-url';
 import { PortableText } from '@portabletext/react';
 import client from '../../client';
+import Link from 'next/link';
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source);
@@ -26,9 +26,51 @@ const ptComponents = {
   // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:
   // https://github.com/portabletext/react-portabletext#customizing-components
   block: {
+    h1: ({ children }) => (
+      <h1 className="mt-6 text-4xl font-bold leading-relaxed">{children}</h1>
+    ),
     h2: ({ children }) => (
       <h2 className="mt-6 text-3xl font-bold leading-relaxed">{children}</h2>
     ),
+    h3: ({ children }) => (
+      <h3 className="mt-6 text-2xl font-bold leading-relaxed">{children}</h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="mt-6 text-xl font-bold leading-relaxed">{children}</h4>
+    ),
+  },
+  marks: {
+    // Ex. 1: custom renderer for the em / italics decorator
+    em: ({ children }) => <em className="italic text-black">{children}</em>,
+  },
+  // Internal links: https://www.sanity.io/guides/portable-text-internal-and-external-links
+  link: ({ children, value }) => {
+    return (
+      <Link href={value.href}>
+        <a>{children}</a>
+      </Link>
+    );
+  },
+  list: {
+    // Ex. 1: customizing common list types
+    bullet: ({ children }) => (
+      <ul className="mt-xl list-inside list-disc">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="mt-lg list-inside list-decimal">{children}</ol>
+    ),
+
+    // Ex. 2: rendering custom lists
+    checkmarks: ({ children }) => (
+      <ol className="m-auto text-lg">{children}</ol>
+    ),
+  },
+  listItem: {
+    // Ex. 1: customizing common list types
+    // bullet: ({ children }) => <li className="list-disc">{children}</li>,
+
+    // Ex. 2: rendering custom list items
+    checkmarks: ({ children }) => <li>✅ {children}</li>,
   },
 };
 

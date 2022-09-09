@@ -76,8 +76,8 @@ const ptComponents = {
 
 const Post = ({ post }) => {
   return (
-    <article>
-      <h1>{post?.title}</h1>
+    <article className="mx-auto max-w-2xl">
+      <h1 className="text-5xl font-extrabold leading-tight">{post?.title}</h1>
       <span>By {post?.name}</span>
       {post?.categories && (
         <ul>

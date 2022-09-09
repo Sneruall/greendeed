@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  article {
+    @apply font-serif text-xl leading-relaxed text-black;
+  }
   p {
-    @apply mt-6 leading-relaxed;
+    @apply mt-6;
   }
 }

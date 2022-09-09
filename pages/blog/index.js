@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import groq from 'groq';
 import client from '../../client';
+import Head from 'next/head';
+import Header from '../../components/Header';
 
 const Index = ({ posts }) => {
   return (
-    <div>
+    <main>
+      <Head>
+        <title>Greendeed Blog</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Header />
       <h1>Welcome to a blog!</h1>
       {posts.length > 0 &&
         posts.map(
@@ -18,7 +26,7 @@ const Index = ({ posts }) => {
               </li>
             )
         )}
-    </div>
+    </main>
   );
 };
 

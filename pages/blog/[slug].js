@@ -61,7 +61,7 @@ const ptComponents = {
 
 const Post = ({ post }) => {
   console.log(post);
-  const imageProps = useNextSanityImage(client, post.mainImage);
+  const imageProps = useNextSanityImage(client, post?.mainImage);
   return (
     <main>
       <Head>

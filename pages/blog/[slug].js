@@ -80,13 +80,19 @@ const Post = ({ post }) => {
           />
         </div>
         <div>
-          <span className="text-center text-sm">
+          <span className="text-sm">
             {new Date(post?.publishedAt).toDateString()}
           </span>
         </div>
 
         <h1 className="text-5xl font-extrabold leading-tight">{post?.title}</h1>
         <PortableText value={post?.body} components={ptComponents} />
+        {new Date(post?._updatedAt).toDateString() !==
+          new Date(post?.publishedAt).toDateString() && (
+          <span className="text-sm italic">
+            Article updated at: {new Date(post?._updatedAt).toDateString()}
+          </span>
+        )}
       </article>
     </main>
   );
@@ -96,7 +102,8 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
   title,
   mainImage,
   body,
-  publishedAt
+  publishedAt,
+  _updatedAt
 }`;
 export async function getStaticPaths() {
   const paths = await client.fetch(

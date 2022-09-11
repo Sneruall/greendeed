@@ -51,10 +51,6 @@ const ptComponents = {
     ),
   },
   listItem: {
-    // Ex. 1: customizing common list types
-    // bullet: ({ children }) => <li className="list-disc">{children}</li>,
-
-    // Ex. 2: rendering custom list items
     checkmarks: ({ children }) => <li>✅ {children}</li>,
   },
 };

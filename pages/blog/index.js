@@ -2,12 +2,15 @@ import Link from 'next/link';
 import groq from 'groq';
 import client from '../../client';
 import Head from 'next/head';
+import Image from 'next/image';
 import Header from '../../components/Header';
+import { useNextSanityImage } from 'next-sanity-image';
 
 const Index = ({ posts }) => {
   console.log(posts);
+
   return (
-    <main>
+    <>
       <Head>
         <title>Greendeed Blog</title>
         <link rel="icon" href="/favicon.ico" />
@@ -17,23 +20,44 @@ const Index = ({ posts }) => {
       <main className="mx-auto max-w-2xl">
         {posts.length > 0 &&
           posts.map(
-            ({ _id, title = '', excerpt = '', slug = '', publishedAt = '' }) =>
+            ({
+              _id,
+              title = '',
+              excerpt = '',
+              slug = '',
+              publishedAt = '',
+              mainImage,
+            }) =>
               slug && (
                 <div key={_id} className="border-b py-3">
-                  <p className="text-sm text-gray-500">
-                    {new Date(publishedAt).toDateString()}
-                  </p>
-                  <Link href="/blog/[slug]" as={`/blog/${slug.current}`}>
-                    <a className="mt-6 text-xl font-bold leading-snug">
-                      {title}
-                    </a>
-                  </Link>
-                  <p className="mt-2">{excerpt}</p>
+                  <div className="grid grid-cols-4 items-center gap-2">
+                    <div className="col-span-3">
+                      <p className="text-sm text-gray-500">
+                        {new Date(publishedAt).toDateString()}
+                      </p>
+                      <Link href="/blog/[slug]" as={`/blog/${slug.current}`}>
+                        <a className="mt-6 text-xl font-bold leading-snug">
+                          {title}
+                        </a>
+                      </Link>
+                      <p className="mt-2">{excerpt}</p>
+                    </div>
+                    {mainImage && (
+                      <div className="">
+                        <Image
+                          {...useNextSanityImage(client, mainImage)}
+                          layout="responsive"
+                          sizes="(max-width: 800px) 100vw, 800px"
+                          alt={mainImage.alt}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               )
           )}
       </main>
-    </main>
+    </>
   );
 };
 

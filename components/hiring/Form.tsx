@@ -197,7 +197,7 @@ function Form() {
           )}
 
           {/* COMPANY LOGO */}
-          {/* <LogoUploader /> */}
+          <LogoUploader />
         </div>
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}

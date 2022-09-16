@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   images: {
     loader: 'default',
-    domains: ['localhost', 'cdn.sanity.io'],
+    domains: ['localhost', 'cdn.sanity.io', 'res.cloudinary.com'],
   },
 };
 

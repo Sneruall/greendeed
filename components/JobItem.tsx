@@ -23,13 +23,13 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
         <div className="flex justify-between">
           <div className="flex gap-4">
-            <Image
-              src="https://res.cloudinary.com/diw9ouhky/image/upload/ar_1:1,c_fill,g_auto,r_max,w_100/v1/company-logos/b3uk5xhamdt1kcmxh7lx"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-            <div className="my-auto h-8 w-8 rounded-full bg-gray-100"></div>
+            <div className="flex items-center">
+              <Image
+                src="https://res.cloudinary.com/diw9ouhky/image/upload/ar_1:1,c_fill,g_auto,r_max,w_100/v1/company-logos/b3uk5xhamdt1kcmxh7lx"
+                width={40}
+                height={40}
+              />
+            </div>
             <div className="">
               <h2 className="font-semibold">
                 {job.jobTitle} | {job.companyName}
@@ -55,7 +55,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               Senior
             </p>
           </div>
-          <div className="my-auto">
+          <div className="">
             <p>
               {job.timestamp
                 ? timeAgo.format(

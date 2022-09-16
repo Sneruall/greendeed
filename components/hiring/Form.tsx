@@ -35,6 +35,7 @@ import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
+import LogoUploader from './form-elements/LogoUploader';
 import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 
@@ -109,6 +110,7 @@ function Form() {
   });
 
   async function onSubmit(formData: Job) {
+    // Todo: shrink this function.
     setDefaultJobAttributes(formData);
     convertTagsAndLocations(formData);
     formData.category = createCategoryObject(
@@ -193,6 +195,9 @@ function Form() {
               placeholder="www.yourcompany.com"
             />
           )}
+
+          {/* COMPANY LOGO */}
+          {/* <LogoUploader /> */}
         </div>
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}

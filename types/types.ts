@@ -39,6 +39,7 @@ export interface Company {
   name: string;
   id: string;
   description: string;
+  website: string;
 }
 
 export interface LocationInfo {

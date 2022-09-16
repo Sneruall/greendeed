@@ -41,6 +41,8 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       <p>Company name: {company.name}</p>
       <span>Company description: </span>
       {company.description && parse(company.description, options)}
+      <span>Company site:</span>
+      {company.website}
       <div className="flex flex-col gap-3">{joblist}</div>
     </div>
   );

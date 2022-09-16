@@ -176,23 +176,23 @@ function Form() {
           />
 
           {/* DESCRIPTION */}
-          {!retrievedCompanyData?.description ? (
+          {!retrievedCompanyData?.id && (
             <>
               <h2 className="text-base font-bold">Company description</h2>
               <RichTextEditor state={setcompanyDescriptionHtml} />
             </>
-          ) : (
-            <p>Contact us if you want to change it for your company</p>
           )}
 
           {/* COMPANY WEBSITE */}
-          <FormFieldString
-            title="Company website"
-            errors={errors.companyWebsite}
-            id="companyWebsite"
-            register={register}
-            placeholder="www.yourcompany.com"
-          />
+          {!retrievedCompanyData?.id && (
+            <FormFieldString
+              title="Company website"
+              errors={errors.companyWebsite}
+              id="companyWebsite"
+              register={register}
+              placeholder="www.yourcompany.com"
+            />
+          )}
         </div>
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}

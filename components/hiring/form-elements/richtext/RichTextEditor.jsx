@@ -25,7 +25,7 @@ const modules = {
  */
 const formats = ['size', 'bold', 'italic', 'underline', 'list', 'bullet'];
 
-function RichTextEditor({ state }) {
+function RichTextEditor({ state, defaultValue = '' }) {
   // const [value, setValue] = useState({ value: null });
 
   const editor = React.createRef();
@@ -45,6 +45,7 @@ function RichTextEditor({ state }) {
         modules={modules}
         formats={formats}
         theme="snow"
+        defaultValue={defaultValue}
       />
     </>
   );

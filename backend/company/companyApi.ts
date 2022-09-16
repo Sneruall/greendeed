@@ -48,7 +48,12 @@ async function findCompany(
   >
 ) {
   if (value.length < 2 || !value) {
-    setRetrievedCompanyData({ name: 'x', id: '', description: '' });
+    setRetrievedCompanyData({
+      name: 'x',
+      id: '',
+      description: '',
+      website: '',
+    });
     return;
   }
   const res = await fetch(`/api/find-company/${value}`);
@@ -57,5 +62,6 @@ async function findCompany(
     name: await data.name,
     id: await data.id,
     description: await data.description,
+    website: await data.website,
   });
 }

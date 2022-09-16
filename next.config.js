@@ -4,7 +4,6 @@ module.exports = {
   images: {
     loader: 'default',
     domains: ['localhost', 'cdn.sanity.io', 'res.cloudinary.com'],
-    formats: ['image/webp'],
   },
 };
 

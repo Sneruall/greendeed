@@ -5,6 +5,7 @@ import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
+import Image from 'next/image';
 
 /*
 Todo:
@@ -97,7 +98,6 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       <Header />
       <main className="mx-auto max-w-screen-2xl">
         <SearchBar />
-
         {/* Listing of jobs */}
         <JobListing page={page} resultsPerPage={RESULTS_PER_PAGE} jobs={jobs} />
         {page * RESULTS_PER_PAGE < jobs.length && (

@@ -1,18 +1,34 @@
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+import React from 'react';
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from '@cloudinary/url-gen';
+
+// Import required actions.
+import { thumbnail, scale } from '@cloudinary/url-gen/actions/resize';
+import { byRadius } from '@cloudinary/url-gen/actions/roundCorners';
 
 const LogoPreview = ({ image }) => {
+  // Create and configure your Cloudinary instance.
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'diw9ouhky',
+    },
+  });
+
+  // Use the image with public ID, 'front_face'.
+  const myImage = cld.image(image);
+  console.log(myImage);
+
+  // Apply the transformation.
+  myImage
+    .resize(thumbnail().width(100).height(100)) // Crop the image.
+    .roundCorners(byRadius(20)); // Round the corners.
+  // .format('png'); // Deliver as PNG. */
+
+  // Render the transformed image in a React component.
   return (
-    <CloudinaryContext cloudName="diw9ouhky">
-      <Image publicId={image}>
-        <Transformation
-          width={100}
-          crop="fill"
-          aspect_ratio="1:1"
-          radius="max"
-          gravity="auto"
-        />
-      </Image>
-    </CloudinaryContext>
+    <div>
+      <AdvancedImage cldImg={myImage} />
+    </div>
   );
 };
 

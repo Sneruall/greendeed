@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import LogoPreview from './LogoPreview';
 
 function LogoUploader({ imagePublicId, setImagePublicId }) {
@@ -7,7 +6,7 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
     const widget = window.cloudinary.createUploadWidget(
       {
         cloudName: 'diw9ouhky',
-        uploadPreset: 'company-logos',
+        uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
       },
       (error, result) => {
         if (

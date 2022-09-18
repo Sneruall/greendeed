@@ -13,7 +13,7 @@ function Hiring() {
   return (
     <>
       <Head>
-        <title>How to Crop and Resize Image in the Browser</title>
+        <title>Hire</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
         <script

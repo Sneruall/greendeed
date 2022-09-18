@@ -2,9 +2,13 @@ import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/com
 import { jobCategory } from './jobCategories';
 
 export interface Job {
-  companyName: string;
   companyId: string;
-  companyDescription: string;
+  companyData: {
+    name: string;
+    description?: string;
+    website?: string;
+    logo?: string;
+  };
   jobTitle: string;
   category: jobCategory;
   sdg: string[];
@@ -30,8 +34,6 @@ export interface Job {
   closed: boolean;
   applicationMethod: ApplicationMethod;
   apply: string;
-  companyWebsite: string;
-  companyLogo: string;
   external: boolean;
 }
 
@@ -39,9 +41,9 @@ export interface Job {
 export interface Company {
   name: string;
   id: string;
-  description: string;
-  website: string;
-  logo: string;
+  description?: string;
+  website?: string;
+  logo?: string;
 }
 
 export interface LocationInfo {

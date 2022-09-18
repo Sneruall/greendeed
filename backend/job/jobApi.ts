@@ -69,7 +69,7 @@ export const setHTMLDescription = (
     formData.jobDescription = descriptionHtml;
   }
   if (descriptionType === 'company') {
-    formData.companyDescription = descriptionHtml;
+    formData.companyData.description = descriptionHtml;
   }
 };
 

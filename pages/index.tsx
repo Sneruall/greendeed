@@ -55,7 +55,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           if (
             job.category.slug == query.category &&
             (job.jobTitle.toLowerCase().includes(query.search) ||
-              job.companyName.toLowerCase().includes(query.search) ||
+              job.companyData.name.toLowerCase().includes(query.search) ||
               job.jobDescription.toLowerCase().includes(query.search) ||
               convertTagsToLowercase(job.tags).includes(query.search)) //double check if this works with uppercase
             // job.tags?.includes(search)
@@ -75,7 +75,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         if (query.search) {
           if (
             job.jobTitle.toLowerCase().includes(query.search) ||
-            job.companyName.toLowerCase().includes(query.search) ||
+            job.companyData.name.toLowerCase().includes(query.search) ||
             job.jobDescription.toLowerCase().includes(query.search) ||
             convertTagsToLowercase(job.tags).includes(query.search) //double check if this works with uppercase
             // job.tags?.includes(search)

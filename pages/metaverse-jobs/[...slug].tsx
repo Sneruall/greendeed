@@ -18,6 +18,7 @@ import {
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
+import Image from 'next/image';
 
 /*
 Todo:
@@ -54,19 +55,23 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
         Company:{' '}
         {!job.external ? (
           <Link
-            href={generateCompanyUrl(
-              job.companyName.toLowerCase(),
-              job.companyId
-            )}
+            href={generateCompanyUrl(company.name.toLowerCase(), job.companyId)}
           >
-            <a className="underline">{job.companyName}</a>
+            <a className="underline">{company.name}</a>
           </Link>
         ) : (
           <Link href={job.apply}>
             <a className="underline">
-              {job.companyName + ' (remotive job listing)'}
+              {company.name + ' (remotive job listing)'}
             </a>
           </Link>
+        )}
+        {company.logo && (
+          <Image
+            src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+            width={40}
+            height={40}
+          />
         )}
         <p>Job title: {job.jobTitle}</p>
         <p>Job location: {job.locationInfo?.location}</p>

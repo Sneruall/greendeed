@@ -9,10 +9,6 @@ const VALID_URL =
   /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
 
 export default Yup.object().shape({
-  companyName: Yup.string()
-    .min(2, 'Company name must be at least 2 characters')
-    .matches(ALPHANUMERIC, 'Company name must be alphanumeric')
-    .required('Company name is required'),
   jobTitle: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters')
@@ -112,10 +108,16 @@ export default Yup.object().shape({
   email: Yup.string()
     .required('Email is required')
     .email('Email is invalid, maybe it contains spaces?'),
-  companyWebsite: Yup.string().matches(VALID_URL, {
-    message:
-      'url is not valid, this format should work: website.com, contains spaces?',
-    excludeEmptyString: true,
+  companyData: Yup.object().shape({
+    name: Yup.string()
+      .min(2, 'Company name must be at least 2 characters')
+      .matches(ALPHANUMERIC, 'Company name must be alphanumeric')
+      .required('Company name is required'),
+    website: Yup.string().matches(VALID_URL, {
+      message:
+        'url is not valid, this format should work: website.com, contains spaces?',
+      excludeEmptyString: true,
+    }),
   }),
   sdg: Yup.array()
     .min(1, 'At least one sdg is required')

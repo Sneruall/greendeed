@@ -121,7 +121,7 @@ function Form() {
     )!;
     setCompanyId(formData, retrievedCompanyData?.id);
     if (imagePublicId) {
-      formData.companyLogo = imagePublicId;
+      formData.companyData.logo = imagePublicId;
     }
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
@@ -157,9 +157,9 @@ function Form() {
 
           {/* COMPANY NAME */}
           <FormFieldString
-            id="companyName"
+            id="companyData.name"
             title="Company Name*"
-            errors={errors.companyName}
+            errors={errors.companyData?.name}
             register={register}
             onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
               checkCompany(
@@ -171,7 +171,7 @@ function Form() {
           />
           <CompanyChecker
             companyNameIsLoading={companyNameIsLoading}
-            errorsCompanyName={errors.companyName}
+            errorsCompanyName={errors.companyData?.name}
             retrievedCompanyData={retrievedCompanyData}
           />
 
@@ -194,8 +194,8 @@ function Form() {
               {/* COMPANY WEBSITE */}
               <FormFieldString
                 title="Company website"
-                errors={errors.companyWebsite}
-                id="companyWebsite"
+                errors={errors.companyData?.website}
+                id="companyData.website"
                 register={register}
                 placeholder="www.yourcompany.com"
               />

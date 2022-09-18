@@ -30,7 +30,7 @@ export const slugIsEqualToJob = (
   if (
     replaceCharactersByWhitespace(job.jobTitle.toLowerCase()) !==
       replaceCharactersByWhitespace(queryTitle!) ||
-    replaceCharactersByWhitespace(job.companyName.toLowerCase()) !==
+    replaceCharactersByWhitespace(job.companyData.name.toLowerCase()) !==
       replaceCharactersByWhitespace(queryCompany)
   ) {
     return false;
@@ -44,7 +44,7 @@ export const redirectToCorrectJobUrl = (job: Job) => {
     redirect: {
       permanent: false,
       destination: generateJobUrl(
-        job.companyName.toLowerCase(),
+        job.companyData.name.toLowerCase(),
         job.jobTitle.toLowerCase(),
         job.id
       ),

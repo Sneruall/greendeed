@@ -15,6 +15,7 @@ import {
 import parse from 'html-react-parser';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
+import Image from 'next/image';
 
 /*
 Todo:
@@ -41,6 +42,13 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       </Head>
       <Header />
       <p>Company name: {company.name}</p>
+      {company.logo && (
+        <Image
+          src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+          width={40}
+          height={40}
+        />
+      )}
       <span>Company description: </span>
       {company.description && parse(company.description, options)}
       <span>Company site:</span>

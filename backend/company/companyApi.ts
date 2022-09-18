@@ -4,11 +4,11 @@ let timer: ReturnType<typeof setTimeout>;
 
 export async function postCompany(formData: Job) {
   const companyFormData: Company = {
-    name: formData.companyName,
+    name: formData.companyData.name,
     id: formData.companyId,
-    description: formData.companyDescription,
-    website: formData.companyWebsite,
-    logo: formData.companyLogo,
+    description: formData.companyData.description,
+    website: formData.companyData.website,
+    logo: formData.companyData.logo,
   };
   const companyResponse = await fetch('/api/add-company', {
     method: 'POST',
@@ -54,6 +54,7 @@ async function findCompany(
       id: '',
       description: '',
       website: '',
+      logo: '',
     });
     return;
   }
@@ -64,5 +65,6 @@ async function findCompany(
     id: await data.id,
     description: await data.description,
     website: await data.website,
+    logo: await data.logo,
   });
 }

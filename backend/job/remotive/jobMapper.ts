@@ -3,9 +3,10 @@ import { Job, jobType, LocationInfo, remotiveJob } from '../../../types/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
-    companyName: remotiveJob.company_name,
+    companyData: {
+      name: remotiveJob.company_name,
+    },
     companyId: 'external',
-    companyDescription: 'external',
     jobTitle: remotiveJob.title,
     category: mapRemotiveCategoryToJobCategory(remotiveJob.category),
     tags: remotiveJob.tags,
@@ -43,7 +44,6 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     closed: false,
     applicationMethod: 'website',
     apply: remotiveJob.url,
-    companyWebsite: '',
     external: true,
   };
   return job;

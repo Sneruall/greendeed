@@ -4,7 +4,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 
 // Import required actions.
 import { thumbnail, scale } from '@cloudinary/url-gen/actions/resize';
-import { byRadius } from '@cloudinary/url-gen/actions/roundCorners';
+import { byRadius, max } from '@cloudinary/url-gen/actions/roundCorners';
 
 const LogoPreview = ({ image }) => {
   // Create and configure your Cloudinary instance.
@@ -21,8 +21,8 @@ const LogoPreview = ({ image }) => {
   // Apply the transformation.
   myImage
     .resize(thumbnail().width(100).height(100)) // Crop the image.
-    .roundCorners(byRadius(20)); // Round the corners.
-  // .format('png'); // Deliver as PNG. */
+    .roundCorners(max()) // Round the corners.
+    .format('png'); // Deliver as PNG. */
 
   // Render the transformed image in a React component.
   return (

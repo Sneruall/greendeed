@@ -30,6 +30,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
                   width={40}
                   height={40}
+                  className="rounded-full bg-white"
                 />
               ) : (
                 <div className="h-10 w-10 rounded-full bg-gray-50"></div>

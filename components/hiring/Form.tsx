@@ -141,7 +141,7 @@ function Form() {
   }
 
   return (
-    <>
+    <div className="bg-green-100">
       <FormStatusIdentifier
         setFormStep={setFormStep}
         formStep={formStep}
@@ -518,7 +518,7 @@ function Form() {
       >
         Reset
       </button> */}
-    </>
+    </div>
   );
 }
 

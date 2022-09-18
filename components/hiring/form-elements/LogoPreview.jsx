@@ -21,12 +21,13 @@ const LogoPreview = ({ image }) => {
   // Apply the transformation.
   myImage
     .resize(thumbnail().width(100).height(100)) // Crop the image.
+    // .backgroundColor('red')
     .roundCorners(max()) // Round the corners.
     .format('png'); // Deliver as PNG. */
 
   // Render the transformed image in a React component.
   return (
-    <div>
+    <div className="inline-block rounded-full bg-white">
       <AdvancedImage cldImg={myImage} />
     </div>
   );

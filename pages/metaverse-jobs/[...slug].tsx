@@ -62,11 +62,11 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
         ) : (
           <Link href={job.apply}>
             <a className="underline">
-              {company.name + ' (remotive job listing)'}
+              {job.companyData.name + ' (remotive job listing)'}
             </a>
           </Link>
         )}
-        {company.logo && (
+        {company && company.logo && (
           <Image
             src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
             width={40}

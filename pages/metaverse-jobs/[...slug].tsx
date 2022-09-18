@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
-import { Job, sdgList } from '../../types/types';
+import { Company, Job, sdgList } from '../../types/types';
 import {
   generateCompanyUrl,
   redirectToCorrectJobUrl,
@@ -17,16 +17,21 @@ import {
 } from '../../backend/job/db';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
+import { getCompanyFromMongo } from '../../backend/company/companyDB';
 
 /*
 Todo:
 */
 
-const JobPage: NextPage<{ job: Job }> = ({ job }) => {
+const JobPage: NextPage<{ job: Job; company: Company }> = ({
+  job,
+  company,
+}) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
   console.log(job.sdg);
+  console.log(job);
   const mappedSdg = job.sdg.map((num) => {
     return sdgList.find((el) => el.code === num)!.name; //todo: display icon/image instead of name
   });
@@ -105,11 +110,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!queryId) return { notFound: true };
 
   const job = await getJobFromMongo(queryId);
+  let company = {};
+  if (job) {
+    company = await getCompanyFromMongo(job.companyId);
+  }
 
   // If there is no job for the given queryId
   if (!job) {
     return { notFound: true };
   } else if (!slugIsEqualToJob(job, slug, queryId)) {
     return redirectToCorrectJobUrl(job);
-  } else return { props: { job: JSON.parse(JSON.stringify(job)) } };
+  } else
+    return {
+      props: {
+        job: JSON.parse(JSON.stringify(job)),
+        company: JSON.parse(JSON.stringify(company)),
+      },
+    };
 };

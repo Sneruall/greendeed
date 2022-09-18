@@ -63,6 +63,9 @@ function Form() {
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
+  // logo upload
+  const [imagePublicId, setImagePublicId] = useState('');
+
   // Location fields tracking
   const [locationInfo, setLocationObject] = useState<LocationObject>({
     location: 'remote',
@@ -117,6 +120,9 @@ function Form() {
       formData.category as unknown as string
     )!;
     setCompanyId(formData, retrievedCompanyData?.id);
+    if (imagePublicId) {
+      formData.companyLogo = imagePublicId;
+    }
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
     console.log(formData);
@@ -177,27 +183,30 @@ function Form() {
             title="Email (stays private, for verification/invoice delivery"
           />
 
-          {/* DESCRIPTION */}
           {!retrievedCompanyData?.id && (
-            <>
-              <h2 className="text-base font-bold">Company description</h2>
-              <RichTextEditor state={setcompanyDescriptionHtml} />
-            </>
-          )}
+            <div>
+              {/* DESCRIPTION */}
+              <>
+                <h2 className="text-base font-bold">Company description</h2>
+                <RichTextEditor state={setcompanyDescriptionHtml} />
+              </>
 
-          {/* COMPANY WEBSITE */}
-          {!retrievedCompanyData?.id && (
-            <FormFieldString
-              title="Company website"
-              errors={errors.companyWebsite}
-              id="companyWebsite"
-              register={register}
-              placeholder="www.yourcompany.com"
-            />
-          )}
+              {/* COMPANY WEBSITE */}
+              <FormFieldString
+                title="Company website"
+                errors={errors.companyWebsite}
+                id="companyWebsite"
+                register={register}
+                placeholder="www.yourcompany.com"
+              />
 
-          {/* COMPANY LOGO */}
-          <LogoUploader />
+              {/* COMPANY LOGO */}
+              <LogoUploader
+                imagePublicId={imagePublicId}
+                setImagePublicId={setImagePublicId}
+              />
+            </div>
+          )}
         </div>
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}

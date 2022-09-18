@@ -25,7 +25,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
           <div className="flex gap-4">
             <div className="flex items-center">
               <Image
-                src="https://res.cloudinary.com/diw9ouhky/image/upload/ar_1:1,c_fill,g_auto,r_max,w_100/v1/company-logos/b3uk5xhamdt1kcmxh7lx"
+                src="https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/company-logos/ts5mvglwoypqi0beyxqt?_a=AJE+xWI0"
                 width={40}
                 height={40}
               />

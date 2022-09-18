@@ -8,6 +8,7 @@ export async function postCompany(formData: Job) {
     id: formData.companyId,
     description: formData.companyDescription,
     website: formData.companyWebsite,
+    logo: formData.companyLogo,
   };
   const companyResponse = await fetch('/api/add-company', {
     method: 'POST',

@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import LogoPreview from './LogoPreview';
 
-function LogoUploader() {
-  const [imagePublicId, setImagePublicId] = useState('');
-  const [alt, setAlt] = useState('');
-
+function LogoUploader({ imagePublicId, setImagePublicId }) {
   const openWidget = () => {
     // create the widget
     const widget = window.cloudinary.createUploadWidget(

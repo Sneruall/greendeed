@@ -31,6 +31,7 @@ export interface Job {
   applicationMethod: ApplicationMethod;
   apply: string;
   companyWebsite: string;
+  companyLogo: string;
   external: boolean;
 }
 
@@ -40,6 +41,7 @@ export interface Company {
   id: string;
   description: string;
   website: string;
+  logo: string;
 }
 
 export interface LocationInfo {

@@ -1,8 +1,17 @@
+import { useState } from 'react';
 import LogoPreview from './LogoPreview';
 
 function LogoUploader({ imagePublicId, setImagePublicId }) {
+  const [loadingSpinner, setLoadingSpinner] = useState(false);
+
+  const resetLoadingSpinner = () => {
+    setLoadingSpinner(false);
+  };
+
   const openWidget = () => {
     // create the widget
+    setLoadingSpinner(true);
+    setTimeout(resetLoadingSpinner, 2000);
     const widget = window.cloudinary.createUploadWidget(
       {
         cloudName: 'diw9ouhky',
@@ -15,6 +24,7 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
         ) {
           console.log(result.info);
           setImagePublicId(result.info.public_id);
+          setLoadingSpinner(false);
         }
       }
     );
@@ -23,16 +33,23 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
 
   return (
     <>
-      <div>
+      <label className="font-bold">Company logo</label>
+      <div className="my-3">
         {imagePublicId ? (
           <LogoPreview image={imagePublicId} />
         ) : (
           <h1> Image will appear here</h1>
         )}
       </div>
-      <button type="button" onClick={openWidget}>
-        Upload Image (1:1 aspect ratio recommended (e.g. 500 x 500 px))
+      <button
+        className="mr-2 rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30"
+        type="button"
+        onClick={openWidget}
+      >
+        Upload Image
       </button>
+      {loadingSpinner && <span>Loading...</span>}
+      <span>1:1 aspect ratio recommended e.g. 500 x 500 px</span>
     </>
   );
 }

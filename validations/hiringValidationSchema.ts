@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // REFACTOR:
 // Make good and consistant error messages as constants, e.g. (.required(requirederror))
 
-const ALPHANUMERIC = /^[\w\-\s\(\)\%\&\/]+$/;
+const ALPHANUMERIC_AND_SPECIFIC_CHARS = /^[\w\-\s\(\)\%\+\,\.\&\#\/]+$/;
 const VALID_URL =
   /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
 
@@ -12,7 +12,10 @@ export default Yup.object().shape({
   jobTitle: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters')
-    .matches(ALPHANUMERIC, 'Job title must be alphanumeric')
+    .matches(
+      ALPHANUMERIC_AND_SPECIFIC_CHARS,
+      'Job title contains characters that are now allowed.'
+    )
     .max(70, 'Job title must not exceed 70 characters'),
   category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
@@ -111,7 +114,10 @@ export default Yup.object().shape({
   companyData: Yup.object().shape({
     name: Yup.string()
       .min(2, 'Company name must be at least 2 characters')
-      .matches(ALPHANUMERIC, 'Company name must be alphanumeric')
+      .matches(
+        ALPHANUMERIC_AND_SPECIFIC_CHARS,
+        'Company contains characters that are now allowed.'
+      )
       .required('Company name is required'),
     website: Yup.string().matches(VALID_URL, {
       message:

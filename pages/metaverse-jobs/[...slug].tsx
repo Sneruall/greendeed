@@ -124,6 +124,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!job) {
     return { notFound: true };
   } else if (!slugIsEqualToJob(job, slug, queryId)) {
+    console.log('redirect');
     return redirectToCorrectJobUrl(job);
   } else
     return {

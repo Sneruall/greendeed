@@ -5,18 +5,22 @@ import {
   replaceCharactersByDash,
 } from './stringManipulations';
 
+var accents = require('remove-accents');
+
 export const generateJobUrl = (
   companyName: string,
   jobTitle: string,
   id: string
 ) => {
   return `/metaverse-jobs/${replaceCharactersByDash(
-    companyName
-  )}/${replaceCharactersByDash(jobTitle)}-${id}`;
+    accents.remove(companyName)
+  )}/${replaceCharactersByDash(accents.remove(jobTitle))}-${id}`;
 };
 
 export const generateCompanyUrl = (name: string, id: string) => {
-  return `/metaverse-companies/${replaceCharactersByDash(name)}-${id}`;
+  return `/metaverse-companies/${replaceCharactersByDash(
+    accents.remove(name)
+  )}-${id}`;
 };
 
 export const slugIsEqualToJob = (
@@ -27,11 +31,26 @@ export const slugIsEqualToJob = (
   const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
+  console.log('querytitle: ' + replaceCharactersByWhitespace(queryTitle!));
+  console.log(
+    'querytitle: ' +
+      replaceCharactersByWhitespace(accents.remove(job.jobTitle.toLowerCase()))
+  );
+  console.log('querycompany: ' + replaceCharactersByWhitespace(queryCompany));
+  console.log(
+    'querycompany: ' +
+      replaceCharactersByWhitespace(
+        accents.remove(job.companyData.name.toLowerCase())
+      )
+  );
+
   if (
-    replaceCharactersByWhitespace(job.jobTitle.toLowerCase()) !==
-      replaceCharactersByWhitespace(queryTitle!) ||
-    replaceCharactersByWhitespace(job.companyData.name.toLowerCase()) !==
-      replaceCharactersByWhitespace(queryCompany)
+    replaceCharactersByWhitespace(
+      accents.remove(job.jobTitle.toLowerCase())
+    ) !== replaceCharactersByWhitespace(queryTitle!) ||
+    replaceCharactersByWhitespace(
+      accents.remove(job.companyData.name.toLowerCase())
+    ) !== replaceCharactersByWhitespace(queryCompany)
   ) {
     return false;
   } else {

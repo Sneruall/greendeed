@@ -1,9 +1,13 @@
 import * as Yup from 'yup';
 
-// YUP FORM FIELD CHECKS. TODO: ADJUST THE REQUIREMENTS FOR EACH FIELD
-// REFACTOR:
-// Make good and consistant error messages as constants, e.g. (.required(requirederror))
+// ERROR MESSAGE CONSTANTS
+const REQUIRED_FIELD = 'This field is required.';
+const CHARACTERS_NOT_ALLOWED =
+  'This field contains characters that are not allowed.';
+const MIN_2_CHARACTERS = 'This field must contain at least 2 characters.';
+const MAX_70_CHARACTERS = 'This field must not exceed 70 characters.';
 
+// REGEX
 const ALPHANUMERIC_AND_SPECIFIC_CHARS =
   /^[A-Za-zÀ-ÖØ-öø-ÿ\w\-\s\(\)\%\+\,\.\&\#\/]+$/;
 const NO_BACKWARD_SLASH = /^((?![\\\\]).)*$/;
@@ -12,36 +16,36 @@ const VALID_URL =
 
 export default Yup.object().shape({
   jobTitle: Yup.string()
-    .required('Job title is required')
-    .min(3, 'Job title must be at least 3 characters')
+    .required(REQUIRED_FIELD)
+    .min(2, MIN_2_CHARACTERS)
     .matches(
       ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
-      'Job title contains characters that are now allowed.'
+      CHARACTERS_NOT_ALLOWED
     )
-    .max(70, 'Job title must not exceed 70 characters'),
-  category: Yup.string().required('Category is required'), //todo: check if it is one of the options from our types.ts file?
-  tags: Yup.string().max(70, 'All Tags combined must not exceed 70 characters'),
-  jobType: Yup.string().required('Type of employment is required'), //todo: check if it is one of the options from our types.ts file?
+    .max(70, MAX_70_CHARACTERS),
+  category: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
+  tags: Yup.string().max(70, MAX_70_CHARACTERS),
+  jobType: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
-    location: Yup.string().required('location is required'), //here and also maybe other fields: check if it is of type Location!
+    location: Yup.string().required(REQUIRED_FIELD), //here and also maybe other fields: check if it is of type Location!
     onSiteLocation: Yup.string()
       .when('location', {
         is: 'onSite',
-        then: Yup.string().required('This is a required field'),
+        then: Yup.string().required(REQUIRED_FIELD),
       })
       .when('location', {
         is: 'onSiteOrRemote',
-        then: Yup.string().required('This is a required field'),
+        then: Yup.string().required(REQUIRED_FIELD),
       }),
     remoteLocation: Yup.string()
       .nullable(true)
       .when('location', {
         is: 'remote',
-        then: Yup.string().required().nullable(false),
+        then: Yup.string().required(REQUIRED_FIELD).nullable(false),
       })
       .when('location', {
         is: 'onSiteOrRemote',
-        then: Yup.string().required().nullable(false),
+        then: Yup.string().required(REQUIRED_FIELD).nullable(false),
       }),
     geoRestriction: Yup.array()
       .nullable(true)
@@ -51,14 +55,11 @@ export default Yup.object().shape({
           is: 'geoRestriction',
           then: Yup.array()
             .min(1, 'At least one Geographic restriction is required')
-            .max(4, 'Max. 4 Geographic restrictions allowed')
-            .of(Yup.string().required('Required field'))
-            .required('This is a required field')
+            .max(4, 'Max 4 Geographic restrictions allowed')
+            .of(Yup.string().required(REQUIRED_FIELD))
+            .required(REQUIRED_FIELD)
             .nullable(false)
             .typeError('At least one Geographic restriction is required'),
-          // otherwise: Yup.array().transform((_, val) =>
-          //   val === '' ? null : val
-          // ),
         }),
       })
       .when('location', {
@@ -68,20 +69,17 @@ export default Yup.object().shape({
           then: Yup.array()
             .min(1, 'At least one Geographic restriction is required')
             .max(4, 'Max. 4 Geographic restrictions allowed')
-            .of(Yup.string().required('Required field'))
-            .required('This is a required field')
+            .of(Yup.string().required(REQUIRED_FIELD))
+            .required(REQUIRED_FIELD)
             .nullable(false)
             .typeError('At least one Geographic restriction is required'),
-          // otherwise: Yup.array().transform((_, val) =>
-          //   val === '' ? null : val
-          // ),
         }),
       }),
     geoRestrictionOther: Yup.string().when(
       'geoRestriction',
       (geoRestriction) => {
         return geoRestriction && geoRestriction.includes('other')
-          ? Yup.string().required('Required to fill out')
+          ? Yup.string().required(REQUIRED_FIELD)
           : Yup.string();
       }
     ),
@@ -93,48 +91,42 @@ export default Yup.object().shape({
     max: Yup.string(),
   }),
   equity: Yup.boolean(),
-  applicationMethod: Yup.string().required(),
+  applicationMethod: Yup.string().required(REQUIRED_FIELD),
   apply: Yup.string()
     .when('applicationMethod', {
       is: 'email',
-      then: Yup.string()
-        .email('invalid email')
-        .required('apply email is required'),
+      then: Yup.string().email('invalid email').required(REQUIRED_FIELD),
     })
     .when('applicationMethod', {
       is: 'website',
       then: Yup.string()
         .matches(
           VALID_URL,
-          'url is not valid, use this format: website.com/apply'
+          'URL is not valid, try this format: website.com/apply'
         )
-        .required('apply website is required'),
+        .required(REQUIRED_FIELD),
     }),
   email: Yup.string()
-    .required('Email is required')
+    .required(REQUIRED_FIELD)
     .email('Email is invalid, maybe it contains spaces?'),
   companyData: Yup.object().shape({
     name: Yup.string()
-      .min(2, 'Company name must be at least 2 characters')
+      .min(2, MIN_2_CHARACTERS)
       .matches(
         ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
-        'Company contains characters that are now allowed.'
+        CHARACTERS_NOT_ALLOWED
       )
-      .required('Company name is required'),
+      .required(REQUIRED_FIELD),
     website: Yup.string().matches(VALID_URL, {
-      message:
-        'url is not valid, this format should work: website.com, contains spaces?',
+      message: 'URL is not valid, try this format: website.com',
       excludeEmptyString: true,
     }),
   }),
   sdg: Yup.array()
-    .min(1, 'At least one sdg is required')
-    .max(3, 'Max. 3 sdgs allowed')
-    .of(Yup.string().required('Required field'))
-    .required('This is a required field')
+    .min(1, 'At least one SDG is required')
+    .max(3, 'Max 3 SDGs allowed')
+    .of(Yup.string().required('At least one SDG is required'))
+    .required('At least one SDG is required')
     .nullable(false)
-    .typeError('At least one sdg is required'),
-  // otherwise: Yup.array().transform((_, val) =>
-  //   val === '' ? null : val
-  // ),
+    .typeError('At least one SDG is required'),
 });

@@ -80,7 +80,7 @@ function Form() {
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
 
-  //Currency and equity tracking TODO: try refactoring the handleonvaluechange method into 1 and also the state?
+  //Currency and equity tracking
   const [currency, setCurrency] = useState<string>('US$');
   const [minSalaryValues, setMinSalaryValues] =
     useState<CurrencyInputOnChangeValues>();
@@ -125,13 +125,13 @@ function Form() {
     }
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
-    console.log(formData);
     if (minSalaryValues) {
       formData.salary!.min = minSalaryValues;
     }
     if (maxSalaryValues) {
       formData.salary!.max = maxSalaryValues;
     }
+    console.log(formData);
     try {
       await postJob(formData);
       if (!retrievedCompanyData?.id) {

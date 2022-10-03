@@ -22,9 +22,9 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       )}
     >
       <div className="w-full rounded-2xl bg-green-300 py-2 px-5 hover:cursor-pointer hover:opacity-90">
-        <div className="flex justify-between">
+        <div className="grid grid-cols-3 gap-3">
           <div className="flex gap-4">
-            <div className="flex items-center">
+            <div className="self-center">
               {job.companyData.logo ? ( //consequence: if name changes a redirect will occur
                 <Image
                   src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
@@ -36,19 +36,17 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 <div className="h-10 w-10 rounded-full bg-gray-50"></div>
               )}
             </div>
-            <div className="">
+            <div className="my-auto">
               <h2 className="font-semibold">
+                {/* company data below not retrieved from company db */}
                 {job.jobTitle} | {job.companyData.name}
               </h2>
-              <div className="flex gap-2">
-                <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
+              <div className="">
+                <p className="my-auto text-sm text-black">
                   {job.locationInfo?.location}
                 </p>
-                <p className="my-auto rounded-md bg-gray-400 px-2 py-1 text-sm text-white">
-                  $40k - $50k
-                </p>
               </div>
-            </div>{' '}
+            </div>
           </div>
           <div className="flex gap-4">
             <p className="my-auto rounded-full bg-black px-4 py-1 text-white">
@@ -61,17 +59,14 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               Senior
             </p>
           </div>
-          <div className="">
-            <p>
-              {job.timestamp
-                ? timeAgo.format(
-                    new Date().getTime() -
-                      (new Date().getTime() - job.timestamp),
-                    'mini-minute-now'
-                  )
-                : '??'}
-            </p>
-          </div>
+          <span className="self-center text-right">
+            {job.timestamp
+              ? timeAgo.format(
+                  new Date().getTime() - (new Date().getTime() - job.timestamp),
+                  'mini-minute-now'
+                )
+              : '??'}
+          </span>
         </div>
       </div>
     </Link>

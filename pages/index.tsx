@@ -96,7 +96,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       </Head>
 
       <Header />
-      <main className="mx-auto max-w-screen-2xl">
+      <main className="mx-auto max-w-screen-2xl px-10 2xl:px-0">
         <SearchBar />
         {/* Listing of jobs */}
         <JobListing page={page} resultsPerPage={RESULTS_PER_PAGE} jobs={jobs} />

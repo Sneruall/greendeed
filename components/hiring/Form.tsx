@@ -132,12 +132,18 @@ function Form() {
     if (maxSalaryValues) {
       formData.salary!.max = maxSalaryValues;
     }
-    await postJob(formData);
-    if (!retrievedCompanyData?.id) {
-      await postCompany(formData);
+    try {
+      await postJob(formData);
+      if (!retrievedCompanyData?.id) {
+        await postCompany(formData);
+      }
+    } catch {
+      // todo: log errors here, based on what is returned from the APIs.
+      console.log(
+        'an error occurred when posting job and company data into DB'
+      );
     }
-
-    reset(); //todo: add protection that if either postJob or postCompany fails it will error
+    reset();
   }
 
   return (

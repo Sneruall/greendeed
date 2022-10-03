@@ -3,12 +3,9 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
-import clientPromise from '../../lib/mongodb';
 import { Company, Job } from '../../types/types';
 import { options } from '../../helpers/htmlReactParserOptions';
-import { replaceCharactersByWhitespace } from '../../helpers/stringManipulations';
 import {
-  generateCompanyUrl,
   slugIsEqualToCompany,
   redirectToCorrectCompanyUrl,
 } from '../../helpers/urlGeneration';
@@ -16,11 +13,6 @@ import parse from 'html-react-parser';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
 import Image from 'next/image';
-
-/*
-Todo:
-- adjust the documentation (now based on job pages)
-*/
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -31,8 +23,6 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       <JobItem job={job} />
     </li>
   ));
-
-  console.log(company);
 
   return (
     <div>
@@ -80,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const companyJobs = await getJobsFromCompanyFromMongo(company);
 
-  // Render the page with the job data as props
+  // Render the page with the company and job data as props
   return {
     props: {
       company: JSON.parse(JSON.stringify(company)),

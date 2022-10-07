@@ -4,7 +4,7 @@ import React from 'react';
 function Header() {
   return (
     <div className="z-50 py-4">
-      <nav className="mx-auto flex max-w-screen-2xl justify-between px-10 2xl:px-0">
+      <nav className="mx-auto flex max-w-screen-2xl justify-between px-4 md:px-10 2xl:px-0">
         <div className="self-center">
           <Link href="/">
             <a className="my-auto text-xl font-bold text-black">Greendeed</a>

@@ -21,8 +21,8 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         job.id
       )}
     >
-      <div className="w-full rounded-full bg-white py-2 px-5 hover:cursor-pointer hover:opacity-90">
-        <div className="grid grid-cols-3 gap-3">
+      <div className="w-full rounded-2xl bg-white py-2 px-5 hover:cursor-pointer hover:opacity-90 sm:rounded-full">
+        <div className="flex flex-col sm:grid sm:grid-cols-3 sm:gap-3">
           <div className="flex gap-4">
             <div className="flex self-center">
               {job.companyData.logo ? ( //consequence: if name changes a redirect will occur
@@ -36,19 +36,63 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 <div className="h-10 w-10 rounded-full bg-gray-50"></div>
               )}
             </div>
-            <div className="my-auto">
-              <h2 className="font-semibold">
+            <div className="my-auto flex flex-col gap-1">
+              <h2 className="text-sm font-bold line-clamp-1 sm:hidden">
+                {job.jobTitle}
+              </h2>
+              <h2 className="text-sm line-clamp-1 sm:hidden">
+                {job.companyData.name}
+              </h2>
+              <h2 className="hidden font-semibold sm:block">
                 {/* company data below not retrieved from company db */}
                 {job.jobTitle} | {job.companyData.name}
               </h2>
               <div className="">
-                <p className="my-auto text-sm capitalize text-black">
+                <p className="my-auto text-sm capitalize italic text-black">
                   {job.locationInfo?.location}
                 </p>
               </div>
+              <div className="flex gap-4 sm:hidden">
+                <Image
+                  src={'/images/icons/sdg-icons/1-no-poverty.png'}
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                  layout="intrinsic"
+                />
+                <Image
+                  src={'/images/icons/sdg-icons/12-prod.png'}
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                  layout="intrinsic"
+                />
+                <Image
+                  src={'/images/icons/sdg-icons/13-climate-action.png'}
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                  layout="intrinsic"
+                />
+                <Image
+                  src={'/images/icons/sdg-icons/3.png'}
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                  layout="intrinsic"
+                />
+                <Image
+                  src={'/images/icons/sdg-icons/8.png'}
+                  width={40}
+                  height={40}
+                  objectFit="contain"
+                  layout="intrinsic"
+                />
+              </div>
             </div>
           </div>
-          <div className="flex justify-center gap-4">
+
+          <div className="hidden justify-center gap-4 sm:flex">
             <Image
               src={'/images/icons/sdg-icons/1-no-poverty.png'}
               width={40}
@@ -85,7 +129,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               layout="intrinsic"
             />
           </div>
-          <div className="flex justify-end gap-8 self-center">
+          <div className="hidden justify-end gap-8 self-center sm:flex">
             <span className="self-center text-sm">
               {job.salary?.min.formatted} {job.salary?.max.formatted && '- '}
               {job.salary?.max.formatted}

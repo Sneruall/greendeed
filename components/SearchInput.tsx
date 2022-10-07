@@ -17,8 +17,8 @@ const SearchInput = () => {
 
   return (
     <div>
-      search:{' '}
       <input
+        placeholder="search"
         ref={ref}
         onChange={(e) => {
           searchInputCallback(e.target.value.toLowerCase(), 'search', router);

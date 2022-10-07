@@ -21,7 +21,7 @@ const CategoryDropdown = () => {
   }, [router.asPath]);
 
   return (
-    <div className="">
+    <div className="self-center">
       <select
         value={selectedCategory}
         onChange={(e) => {

@@ -5,7 +5,7 @@ const REQUIRED_FIELD = 'This field is required.';
 const CHARACTERS_NOT_ALLOWED =
   'This field contains characters that are not allowed.';
 const MIN_2_CHARACTERS = 'This field must contain at least 2 characters.';
-const MAX_70_CHARACTERS = 'This field must not exceed 70 characters.';
+const MAX_50_CHARACTERS = 'This field must not exceed 50 characters.';
 
 // REGEX
 const ALPHANUMERIC_AND_SPECIFIC_CHARS =
@@ -22,9 +22,9 @@ export default Yup.object().shape({
       ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
       CHARACTERS_NOT_ALLOWED
     )
-    .max(70, MAX_70_CHARACTERS),
+    .max(70, MAX_50_CHARACTERS),
   category: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
-  tags: Yup.string().max(70, MAX_70_CHARACTERS),
+  tags: Yup.string().max(70, MAX_50_CHARACTERS),
   jobType: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
     location: Yup.string().required(REQUIRED_FIELD), //here and also maybe other fields: check if it is of type Location!

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Header from '../../components/Header';
 import { useNextSanityImage } from 'next-sanity-image';
+import Footer from '../../components/Footer';
 
 const Index = ({ posts }) => {
   console.log(posts);
@@ -57,6 +58,7 @@ const Index = ({ posts }) => {
               )
           )}
       </main>
+      <Footer />
     </>
   );
 };

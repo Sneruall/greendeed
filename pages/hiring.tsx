@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Form from '../components/hiring/Form';
 
@@ -25,6 +26,7 @@ function Hiring() {
       <div className="mx-auto max-w-3xl">
         <Form />
       </div>
+      <Footer />
     </>
   );
 }

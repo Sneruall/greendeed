@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useNextSanityImage } from 'next-sanity-image';
 import Head from 'next/head';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const ptComponents = {
   // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:
@@ -59,38 +60,43 @@ const Post = ({ post }) => {
   console.log(post);
   const imageProps = useNextSanityImage(client, post?.mainImage);
   return (
-    <main>
-      <Head>
-        <title>{post?.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <main>
+        <Head>
+          <title>{post?.title}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Header />
-      <article className="mx-auto max-w-2xl">
-        <div className="mb-3">
-          <Image
-            {...imageProps}
-            layout="responsive"
-            sizes="(max-width: 800px) 100vw, 800px"
-            alt={post?.mainImage.alt}
-          />
-        </div>
-        <div>
-          <span className="text-sm">
-            {new Date(post?.publishedAt).toDateString()}
-          </span>
-        </div>
+        <Header />
+        <article className="mx-auto max-w-2xl">
+          <div className="mb-3">
+            <Image
+              {...imageProps}
+              layout="responsive"
+              sizes="(max-width: 800px) 100vw, 800px"
+              alt={post?.mainImage.alt}
+            />
+          </div>
+          <div>
+            <span className="text-sm">
+              {new Date(post?.publishedAt).toDateString()}
+            </span>
+          </div>
 
-        <h1 className="text-5xl font-extrabold leading-tight">{post?.title}</h1>
-        <PortableText value={post?.body} components={ptComponents} />
-        {new Date(post?._updatedAt).toDateString() !==
-          new Date(post?.publishedAt).toDateString() && (
-          <span className="text-sm italic">
-            Article updated at: {new Date(post?._updatedAt).toDateString()}
-          </span>
-        )}
-      </article>
-    </main>
+          <h1 className="text-5xl font-extrabold leading-tight">
+            {post?.title}
+          </h1>
+          <PortableText value={post?.body} components={ptComponents} />
+          {new Date(post?._updatedAt).toDateString() !==
+            new Date(post?.publishedAt).toDateString() && (
+            <span className="text-sm italic">
+              Article updated at: {new Date(post?._updatedAt).toDateString()}
+            </span>
+          )}
+        </article>
+      </main>
+      <Footer />
+    </>
   );
 };
 

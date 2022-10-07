@@ -5,7 +5,6 @@ import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
-import Image from 'next/image';
 
 /*
 Todo:

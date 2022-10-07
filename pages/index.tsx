@@ -89,7 +89,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   };
 
   return (
-    <div className="">
+    <div className="bg-amber-50">
       <Head>
         <title>Metaversed Careers</title>
         <link rel="icon" href="/favicon.ico" />

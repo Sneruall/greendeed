@@ -22,7 +22,7 @@ export const SearchBar = () => {
           <CategoryDropdown />
         </div>
       </div>
-      <div className="w-[600px] flex-initial">
+      <div className="w-[600px] flex-initial self-end">
         <Image
           src={'/images/home/flagman.png'}
           width={600}

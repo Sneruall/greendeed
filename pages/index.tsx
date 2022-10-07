@@ -5,6 +5,7 @@ import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
+import Footer from '../components/Footer';
 
 /*
 Todo:
@@ -27,7 +28,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     category?: string;
   }>({});
   const [page, setPage] = useState(1);
-  const RESULTS_PER_PAGE = 20;
+  const RESULTS_PER_PAGE = 10; //set to 20?
 
   useEffect(() => {
     if (query.search || query.category) {
@@ -100,16 +101,19 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         {/* Listing of jobs */}
         <JobListing page={page} resultsPerPage={RESULTS_PER_PAGE} jobs={jobs} />
         {page * RESULTS_PER_PAGE < jobs.length && (
-          <button
-            onClick={() => {
-              setPage(page + 1);
-            }}
-            className="rounded-full bg-green-500 py-2 px-4 text-white hover:opacity-70"
-          >
-            More jobs
-          </button>
+          <div className="mt-10 text-center">
+            <button
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              className="rounded-full bg-yellow-400 py-2 px-4 text-sm text-black hover:opacity-70"
+            >
+              More jobs
+            </button>
+          </div>
         )}
       </main>
+      <Footer />
 
       {/* Footer */}
     </div>

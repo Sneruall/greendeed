@@ -66,22 +66,31 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               <div className="flex gap-4 sm:hidden">{sdgList}</div>
             </div>
           </div>
-
-          <div className="hidden justify-center gap-4 sm:flex">{sdgList}</div>
+          <div className="flex justify-end">
+            <div className="hidden justify-around gap-2 sm:grid sm:grid-cols-5">
+              {sdgList}
+            </div>
+          </div>
           <div className="hidden justify-end gap-8 self-center sm:flex">
             <span className="self-center text-sm">
-              {job.salary?.min.formatted} {job.salary?.max.formatted && '- '}
-              {job.salary?.max.formatted}
+              {job.salary?.min && '💰'}
+              {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
+              {job.salary?.max.formatted && '- '}
+              {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}
+              {job.salary?.min && job.salary?.period === 'Hourly' && '/ h'}
+              {job.salary?.min && job.salary?.period === 'Monthly' && '/ m'}
+              {job.salary?.min && job.salary?.period === 'Annual' && '/ y'}
               {job.salary?.string}
             </span>
-            <span>
+            <span className="text-sm">
               {job.timestamp
                 ? timeAgo.format(
                     new Date().getTime() -
                       (new Date().getTime() - job.timestamp),
                     'mini-minute-now'
                   )
-                : '??'}
+                : '??'}{' '}
+              ⏱️
             </span>
           </div>
         </div>

@@ -24,7 +24,7 @@ export default Yup.object().shape({
     )
     .max(70, MAX_50_CHARACTERS),
   category: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
-  tags: Yup.string().max(70, MAX_50_CHARACTERS),
+  tags: Yup.string().max(50, MAX_50_CHARACTERS),
   jobType: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
   locationInfo: Yup.object().shape({
     location: Yup.string().required(REQUIRED_FIELD), //here and also maybe other fields: check if it is of type Location!
@@ -124,7 +124,7 @@ export default Yup.object().shape({
   }),
   sdg: Yup.array()
     .min(1, 'At least one SDG is required')
-    .max(3, 'Max 3 SDGs allowed')
+    .max(5, 'Max 5 SDGs allowed')
     .of(Yup.string().required('At least one SDG is required'))
     .required('At least one SDG is required')
     .nullable(false)

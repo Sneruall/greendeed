@@ -379,6 +379,7 @@ function Form() {
           />
           <div className="">
             <CurrencyInput
+              maxLength={6}
               id="salary.min"
               allowDecimals={false}
               disableAbbreviations={false}
@@ -398,6 +399,7 @@ function Form() {
 
           <div className="">
             <CurrencyInput
+              maxLength={6}
               id="salary.max"
               allowDecimals={false}
               prefix={currency}

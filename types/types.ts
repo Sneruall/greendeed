@@ -65,8 +65,8 @@ export interface LocationObject {
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | '';
 
-export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly' | '';
-export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly', ''];
+export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
+export const SalaryPeriod = ['Annual', 'Monthly', 'Hourly'];
 
 export type ApplicationMethod = 'email' | 'website';
 

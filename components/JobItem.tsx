@@ -14,15 +14,19 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
-  const sdgList = job.sdg.map((sdg) => (
-    <Image
-      src={'/images/icons/sdg-icons/' + sdg + '.png'}
-      width={40}
-      height={40}
-      objectFit="contain"
-      layout="intrinsic"
-    />
-  ));
+  const sdgList = job.sdg
+    .sort(function (a, b) {
+      return +a - +b;
+    })
+    .map((sdg) => (
+      <Image
+        src={'/images/icons/sdg-icons/' + sdg + '.png'}
+        width={40}
+        height={40}
+        objectFit="contain"
+        layout="intrinsic"
+      />
+    ));
 
   return (
     <Link
@@ -56,7 +60,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               </h2>
               <h2 className="hidden font-semibold sm:block">
                 {/* company data below not retrieved from company db */}
-                {job.jobTitle} | {job.companyData.name} {job.sdg}
+                {job.jobTitle} | {job.companyData.name}
               </h2>
               <div className="">
                 <p className="my-auto text-sm capitalize italic text-black">

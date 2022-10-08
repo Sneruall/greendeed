@@ -82,10 +82,10 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
         <p>Job type: {job.jobType}</p>
         <p>
           Salary:{' '}
-          {job.salary?.min.value
-            ? job.salary?.min.formatted +
+          {job.salary?.min?.value
+            ? job.salary?.min?.formatted +
               '-' +
-              job.salary?.max.formatted +
+              job.salary?.max?.formatted +
               ' (' +
               job.salary?.period +
               ')'

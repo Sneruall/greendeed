@@ -79,7 +79,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
             <span className="hidden self-center text-sm lg:block">
               {job.salary?.min && '💰'}
               {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
-              {job.salary?.max.formatted && '- '}
+              {job.salary?.max?.formatted && '- '}
               {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}
               {job.salary?.min && job.salary?.period === 'Hourly' && '/ h'}
               {job.salary?.min && job.salary?.period === 'Monthly' && '/ m'}

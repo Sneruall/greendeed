@@ -16,11 +16,11 @@ export interface Job {
   jobDescription: string;
   jobType: jobType;
   salary?: {
-    currency: Currency;
-    period: SalaryPeriod;
-    min: CurrencyInputOnChangeValues;
-    max: CurrencyInputOnChangeValues;
-    string: string;
+    currency?: Currency;
+    period?: SalaryPeriod;
+    min?: CurrencyInputOnChangeValues;
+    max?: CurrencyInputOnChangeValues;
+    string?: string;
   };
   equity?: boolean;
   locationInfo: LocationInfo;

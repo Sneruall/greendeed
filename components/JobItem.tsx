@@ -5,6 +5,7 @@ import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
 import { generateJobUrl } from '../helpers/urlGeneration';
 import Image from 'next/image';
+import SDGicons from './SDGicons';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 //Todo, account for consequense that if company data changes (name, logo) in company DB it won't affect this component as it gets the info from job db, search for job.companyData
@@ -12,6 +13,16 @@ import Image from 'next/image';
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
+
+  const sdgList = job.sdg.map((sdg) => (
+    <Image
+      src={'/images/icons/sdg-icons/' + sdg + '.png'}
+      width={40}
+      height={40}
+      objectFit="contain"
+      layout="intrinsic"
+    />
+  ));
 
   return (
     <Link
@@ -45,90 +56,18 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               </h2>
               <h2 className="hidden font-semibold sm:block">
                 {/* company data below not retrieved from company db */}
-                {job.jobTitle} | {job.companyData.name}
+                {job.jobTitle} | {job.companyData.name} {job.sdg}
               </h2>
               <div className="">
                 <p className="my-auto text-sm capitalize italic text-black">
                   {job.locationInfo?.location}
                 </p>
               </div>
-              <div className="flex gap-4 sm:hidden">
-                <Image
-                  src={'/images/icons/sdg-icons/1-no-poverty.png'}
-                  width={40}
-                  height={40}
-                  objectFit="contain"
-                  layout="intrinsic"
-                />
-                <Image
-                  src={'/images/icons/sdg-icons/12-prod.png'}
-                  width={40}
-                  height={40}
-                  objectFit="contain"
-                  layout="intrinsic"
-                />
-                <Image
-                  src={'/images/icons/sdg-icons/13-climate-action.png'}
-                  width={40}
-                  height={40}
-                  objectFit="contain"
-                  layout="intrinsic"
-                />
-                <Image
-                  src={'/images/icons/sdg-icons/3.png'}
-                  width={40}
-                  height={40}
-                  objectFit="contain"
-                  layout="intrinsic"
-                />
-                <Image
-                  src={'/images/icons/sdg-icons/8.png'}
-                  width={40}
-                  height={40}
-                  objectFit="contain"
-                  layout="intrinsic"
-                />
-              </div>
+              <div className="flex gap-4 sm:hidden">{sdgList}</div>
             </div>
           </div>
 
-          <div className="hidden justify-center gap-4 sm:flex">
-            <Image
-              src={'/images/icons/sdg-icons/1-no-poverty.png'}
-              width={40}
-              height={40}
-              objectFit="contain"
-              layout="intrinsic"
-            />
-            <Image
-              src={'/images/icons/sdg-icons/12-prod.png'}
-              width={40}
-              height={40}
-              objectFit="contain"
-              layout="intrinsic"
-            />
-            <Image
-              src={'/images/icons/sdg-icons/13-climate-action.png'}
-              width={40}
-              height={40}
-              objectFit="contain"
-              layout="intrinsic"
-            />
-            <Image
-              src={'/images/icons/sdg-icons/3.png'}
-              width={40}
-              height={40}
-              objectFit="contain"
-              layout="intrinsic"
-            />
-            <Image
-              src={'/images/icons/sdg-icons/8.png'}
-              width={40}
-              height={40}
-              objectFit="contain"
-              layout="intrinsic"
-            />
-          </div>
+          <div className="hidden justify-center gap-4 sm:flex">{sdgList}</div>
           <div className="hidden justify-end gap-8 self-center sm:flex">
             <span className="self-center text-sm">
               {job.salary?.min.formatted} {job.salary?.max.formatted && '- '}

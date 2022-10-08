@@ -33,8 +33,8 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       )}
     >
       <div className="w-full rounded-2xl bg-white py-2 px-5 hover:cursor-pointer hover:opacity-90 sm:rounded-full">
-        <div className="flex flex-col sm:grid sm:grid-cols-3 sm:gap-3">
-          <div className="flex gap-4">
+        <div className="flex flex-col sm:grid sm:grid-cols-6 sm:gap-3 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="flex gap-4 sm:col-span-3 lg:col-span-1 xl:col-span-2">
             <div className="flex self-center">
               {job.companyData.logo ? ( //consequence: if name changes a redirect will occur
                 <Image
@@ -66,13 +66,13 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               <div className="flex gap-4 sm:hidden">{sdgList}</div>
             </div>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end sm:col-span-2 lg:col-span-1">
             <div className="hidden justify-around gap-2 sm:grid sm:grid-cols-5">
               {sdgList}
             </div>
           </div>
-          <div className="hidden justify-end gap-8 self-center sm:flex">
-            <span className="self-center text-sm">
+          <div className="hidden justify-end gap-8 self-center sm:flex xl:col-span-2">
+            <span className="hidden self-center text-sm lg:block">
               {job.salary?.min && '💰'}
               {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
               {job.salary?.max.formatted && '- '}

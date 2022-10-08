@@ -22,7 +22,7 @@ export default Yup.object().shape({
       ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
       CHARACTERS_NOT_ALLOWED
     )
-    .max(70, MAX_50_CHARACTERS),
+    .max(50, MAX_50_CHARACTERS),
   category: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
   tags: Yup.string().max(50, MAX_50_CHARACTERS),
   jobType: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?

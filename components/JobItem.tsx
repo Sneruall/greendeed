@@ -25,6 +25,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         height={40}
         objectFit="contain"
         layout="intrinsic"
+        key={sdg}
       />
     ));
 
@@ -36,7 +37,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         job.id
       )}
     >
-      <div className="w-full rounded-2xl bg-white py-2 px-5 hover:cursor-pointer hover:opacity-90 sm:rounded-full">
+      <div className="w-full cursor-pointer rounded-2xl bg-white py-2 px-5 shadow-[0_2px_20px_0px_rgba(0,0,0,0.1)] hover:bg-lime-500">
         <div className="flex flex-col sm:grid sm:grid-cols-6 sm:gap-3 lg:grid-cols-3 xl:grid-cols-5">
           <div className="flex gap-4 sm:col-span-3 lg:col-span-1 xl:col-span-2">
             <div className="flex self-center">

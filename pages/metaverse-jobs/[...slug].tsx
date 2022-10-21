@@ -45,62 +45,89 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
       </Head>
       <Header />
       <main className="mx-auto max-w-screen-2xl px-10">
-        <p>
-          {job.timestamp
-            ? timeAgo.format(
-                new Date().getTime() - (new Date().getTime() - job.timestamp)
-              )
-            : '??'}
-        </p>{' '}
-        Company:{' '}
-        {!job.external ? (
-          <Link
-            href={generateCompanyUrl(company.name.toLowerCase(), job.companyId)}
-          >
-            <a className="underline">{company.name}</a>
-          </Link>
-        ) : (
-          <Link href={job.apply}>
-            <a className="underline">
-              {job.companyData.name + ' (remotive job listing)'}
-            </a>
-          </Link>
-        )}
-        {company && company.logo && (
-          <Image
-            src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-            width={40}
-            height={40}
-          />
-        )}
-        <p>Job title: {job.jobTitle}</p>
-        <p>Job location: {job.locationInfo?.location}</p>
-        <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
-        <p>Category: {job.category.name}</p>
-        <p>Tags: {job.tags}</p>
-        <p>SDGs: {mappedSdg}</p>
-        <p>Job type: {job.jobType}</p>
-        <p>
-          Salary:{' '}
-          {job.salary?.min?.value
-            ? job.salary?.min?.formatted +
-              '-' +
-              job.salary?.max?.formatted +
-              ' (' +
-              job.salary?.period +
-              ')'
-            : (job.salary?.string && job.salary?.string) || 'unknown'}
-        </p>
-        {/* <li className="list-outside list-disc">fdsf</li> */}
-        <div>
-          <h2 className="pt-10 text-4xl font-bold">Job Description:</h2>
-          {job.jobDescription && parse(job.jobDescription, options)}
+        <div className="flex flex-row items-start gap-10">
+          <div className="flex-1">
+            <p>
+              {job.timestamp
+                ? timeAgo.format(
+                    new Date().getTime() -
+                      (new Date().getTime() - job.timestamp)
+                  )
+                : '??'}
+            </p>{' '}
+            <p>Job title: {job.jobTitle}</p>
+            <p>Job location: {job.locationInfo?.location}</p>
+            <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
+            <p>Category: {job.category.name}</p>
+            <p>Tags: {job.tags}</p>
+            <p>SDGs: {mappedSdg}</p>
+            <p>Job type: {job.jobType}</p>
+            <p>
+              Salary:{' '}
+              {job.salary?.min?.value
+                ? job.salary?.min?.formatted +
+                  '-' +
+                  job.salary?.max?.formatted +
+                  ' (' +
+                  job.salary?.period +
+                  ')'
+                : (job.salary?.string && job.salary?.string) || 'unknown'}
+            </p>
+            <div>
+              {job.jobDescription && parse(job.jobDescription, options)}
+            </div>
+            {/* <li className="list-outside list-disc">fdsf</li> */}
+          </div>
+          <div className="flex-initial rounded-lg bg-[#CDF682]">
+            <div className="m-10 flex flex-col gap-10">
+              {/* Logo, name and date */}
+              <div className="text-center">
+                <div>
+                  {company && company.logo && (
+                    <Image
+                      src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                      width={75}
+                      height={75}
+                    />
+                  )}
+                </div>
+                <div className="text-2xl font-bold text-[#402C06]">
+                  {!job.external ? (
+                    <Link
+                      href={generateCompanyUrl(
+                        company.name.toLowerCase(),
+                        job.companyId
+                      )}
+                    >
+                      <a className="hover:underline">{company.name}</a>
+                    </Link>
+                  ) : (
+                    <Link href={job.apply}>
+                      <a className="hover:underline">
+                        {job.companyData.name + ' (remotive job listing)'}
+                      </a>
+                    </Link>
+                  )}
+                </div>
+              </div>
+              {/* Features */}
+              <div className="flex flex-col gap-2 text-center font-bold text-[#402C06]">
+                <div>Remote</div>
+                <div>Remote</div>
+                <div>Remote</div>
+                <div>Remote</div>
+              </div>
+              {/* Button */}
+              <div>
+                <Link href={job.apply}>
+                  <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
+                    Apply for the position
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <Link href={job.apply}>
-          <button className="rounded-full bg-yellow-500 px-5 py-3 text-white">
-            Apply now
-          </button>
-        </Link>
       </main>
     </div>
   );

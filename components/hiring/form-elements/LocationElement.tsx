@@ -43,7 +43,7 @@ function LocationElement({ errors, register, location, setLocation }: Props) {
       />
       <FormFieldRadio
         value="onSiteOrRemote"
-        title="On Site or Remote"
+        title="On Site or Remote (Hybrid)"
         registerId="locationInfo.location"
         errors={errors.locationInfo?.location}
         register={register}

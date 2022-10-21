@@ -62,17 +62,7 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
             <p>Tags: {job.tags}</p>
             <p>SDGs: {mappedSdg}</p>
             <p>Job type: {job.jobType}</p>
-            <p>
-              Salary:{' '}
-              {job.salary?.min?.value
-                ? job.salary?.min?.formatted +
-                  '-' +
-                  job.salary?.max?.formatted +
-                  ' (' +
-                  job.salary?.period +
-                  ')'
-                : (job.salary?.string && job.salary?.string) || 'unknown'}
-            </p>
+            <p>Salary: </p>
             <div>
               {job.jobDescription && parse(job.jobDescription, options)}
             </div>
@@ -111,12 +101,35 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                 </div>
               </div>
               {/* Features */}
-              <div className="flex flex-col gap-2 text-center font-bold text-[#402C06]">
-                <div>Remote</div>
-                <div>Remote</div>
-                <div>Remote</div>
-                <div>Remote</div>
-              </div>
+              <ul className="flex flex-col gap-2 font-bold text-[#402C06]">
+                <li>
+                  🌎 {job.locationInfo?.location == 'onSite' && 'Office'}
+                  {job.locationInfo?.location == 'remote' && 'Remote'}
+                  {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
+                </li>
+                <li>
+                  📌{' '}
+                  {(job.locationInfo?.onSiteLocation &&
+                    job.locationInfo?.onSiteLocation.map(
+                      (location, i) => location + ', '
+                    )) ||
+                    'Global'}
+                </li>
+                {job.locationInfo?.geoRestrictionOther && (
+                  <li>'🌐 ' + job.locationInfo?.geoRestrictionOther</li>
+                )}
+                <li>⏰ {job.jobType}</li>
+                <li>
+                  {job.salary?.min && '💰'}
+                  {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
+                  {job.salary?.max?.formatted && '- '}
+                  {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}
+                  {job.salary?.min && job.salary?.period === 'Hourly' && '/ h'}
+                  {job.salary?.min && job.salary?.period === 'Monthly' && '/ m'}
+                  {job.salary?.min && job.salary?.period === 'Annual' && '/ y'}
+                  {job.salary?.string}
+                </li>
+              </ul>
               {/* Button */}
               <div>
                 <Link href={job.apply}>

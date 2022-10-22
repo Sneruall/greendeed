@@ -74,6 +74,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   {job.locationInfo?.location == 'onSiteOrRemote' &&
                     '🏘️ Hybrid'}
                 </li>
+                {/* todo georestrictionother */}
                 <li className="capitalize">
                   {job.locationInfo.geoRestriction &&
                     '🌐 ' + job.locationInfo.geoRestriction?.join(', ')}

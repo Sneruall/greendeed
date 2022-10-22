@@ -156,8 +156,11 @@ const JobPage: NextPage<{
                     {'🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}
                   </li>
                 )}
-                {job.locationInfo?.geoRestrictionOther && (
-                  <li>{'🌐 ' + job.locationInfo?.geoRestrictionOther}</li>
+                {/* todo georestrictionother */}
+                {job.locationInfo?.geoRestriction && (
+                  <li className="capitalize">
+                    {'🌐 ' + job.locationInfo?.geoRestriction}
+                  </li>
                 )}
                 <li>⏰ {job.jobType}</li>
                 <li>

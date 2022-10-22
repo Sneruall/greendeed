@@ -235,18 +235,26 @@ const JobPage: NextPage<{
         </div>
 
         {/* SIMILAR JOBS */}
-        <div className="my-24">
-          <div className="my-3 text-2xl font-bold">Similar Jobs</div>
-          <div className="flex flex-col gap-3">
-            {categoryJobs.map((job) => {
-              return (
-                <li className="list-none" key={job.id}>
-                  <JobItem job={job} />
-                </li>
-              );
-            })}
+        {categoryJobs && categoryJobs[0].id !== job.id && (
+          <div className="my-24">
+            <div className="my-3">
+              <h4 className="text-2xl font-bold">Similar Jobs</h4>
+              <p className="text-sm">
+                Latest jobs from the {job.category.name} category
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              {categoryJobs.map((categoryJob) => {
+                if (categoryJob.id === job.id) return;
+                return (
+                  <li className="list-none" key={categoryJob.id}>
+                    <JobItem job={categoryJob} />
+                  </li>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </main>
       <Footer />
     </>

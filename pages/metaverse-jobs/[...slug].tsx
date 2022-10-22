@@ -34,36 +34,56 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
   console.log(job.sdg);
   console.log(job);
   const mappedSdg = job.sdg.map((num) => {
-    return sdgList.find((el) => el.code === num)!.name; //todo: display icon/image instead of name
+    return (
+      <Image
+        src={'/images/icons/sdg-icons/' + num + '.png'}
+        width={40}
+        height={40}
+        objectFit="contain"
+        layout="intrinsic"
+        key={num}
+      />
+    );
   });
 
   return (
-    <div>
+    <>
       <Head>
         <title>Metaversed Careers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main className="mx-auto max-w-screen-2xl px-10">
-        <div className="flex flex-row items-start gap-10">
+        <div className="flex flex-row items-start gap-24">
           {/* JOB DESCRIPTION */}
           <div className="flex-1">
-            <p>
-              {job.timestamp
-                ? timeAgo.format(
-                    new Date().getTime() -
-                      (new Date().getTime() - job.timestamp)
-                  )
-                : '??'}
-            </p>{' '}
-            <p>Job title: {job.jobTitle}</p>
-            <p>Job location: {job.locationInfo?.location}</p>
-            <p>Geo restriction: {job.locationInfo?.geoRestrictionOther}</p>
-            <p>Category: {job.category.name}</p>
-            <p>Tags: {job.tags}</p>
-            <p>SDGs: {mappedSdg}</p>
-            <p>Job type: {job.jobType}</p>
-            <p>Salary: </p>
+            {/* top bar */}
+            <div className="flex flex-row items-center gap-8 border-b-[0.7px] border-b-[#CBCBCB] pb-4">
+              <div className="">
+                {company && company.logo && (
+                  <Image
+                    src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                    width={100}
+                    height={100}
+                  />
+                )}
+              </div>
+              <div className="flex-1">
+                <h1 className="text-2xl">
+                  {company?.name || job.companyData?.name} is hiring a<br />
+                  <span className="text-4xl font-bold">{job.jobTitle}</span>
+                </h1>
+              </div>
+              <div>
+                <Link href={job.apply}>
+                  <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
+                    Apply
+                  </button>
+                </Link>
+              </div>
+              <div className="flex flex-row gap-1">{mappedSdg}</div>
+            </div>
+            {/* job description */}
             <div>
               {job.jobDescription && parse(job.jobDescription, options)}
             </div>
@@ -71,7 +91,7 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
           </div>
 
           {/* COMPANY INFO CARD --> TODO: make component out of it? */}
-          <div className="flex-initial rounded-lg bg-[#CDF682]">
+          <div className="flex-initial rounded-lg bg-[#CDF682]/75">
             <div className="m-10 flex flex-col gap-10">
               {/* Logo, name and date */}
               <ul className="text-center">
@@ -123,7 +143,7 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                   </li>
                 )}
                 {job.locationInfo?.geoRestrictionOther && (
-                  <li>'🌐 ' + job.locationInfo?.geoRestrictionOther</li>
+                  <li>{'🌐 ' + job.locationInfo?.geoRestrictionOther}</li>
                 )}
                 <li>⏰ {job.jobType}</li>
                 <li>
@@ -149,7 +169,7 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

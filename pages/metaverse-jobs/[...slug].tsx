@@ -13,6 +13,7 @@ import parse from 'html-react-parser';
 import { options } from '../../helpers/htmlReactParserOptions';
 import {
   getJobFromMongo,
+  getJobsFromMongo,
   getremotiveJobsFromMongo,
 } from '../../backend/job/db';
 import TimeAgo from 'javascript-time-ago';
@@ -20,30 +21,34 @@ import en from 'javascript-time-ago/locale/en.json';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
+import JobItem from '../../components/JobItem';
 
 /*
 Todo:
 */
 
-const JobPage: NextPage<{ job: Job; company: Company }> = ({
-  job,
-  company,
-}) => {
+const JobPage: NextPage<{
+  job: Job;
+  company: Company;
+  categoryJobs: Job[];
+}> = ({ job, company, categoryJobs }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
-  console.log(job.sdg);
   console.log(job);
+  console.log(categoryJobs);
   const mappedSdg = job.sdg.map((num) => {
     return (
-      <div className="cursor-pointer transition duration-200 ease-in-out hover:scale-110">
+      <div
+        key={num}
+        className="cursor-pointer transition duration-200 ease-in-out hover:scale-110"
+      >
         <Image
           src={'/images/icons/sdg-icons/' + num + '.png'}
           width={50}
           height={50}
           objectFit="contain"
           layout="intrinsic"
-          key={num}
         />
       </div>
     );
@@ -195,18 +200,20 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
               </Link>
             )}
           </div>
-          <div className="mx-auto flex max-w-2xl flex-col gap-8">
+          <ul className="mx-auto flex max-w-2xl flex-col gap-8">
             {job.sdg.map((num) => {
               return (
-                <div className="flex flex-row items-center justify-center gap-10">
-                  <div className="flex-shrink-0 cursor-pointer transition duration-200 ease-in-out hover:scale-110">
+                <li className="flex flex-row items-center justify-center gap-10">
+                  <div
+                    key={num}
+                    className="flex-shrink-0 cursor-pointer transition duration-200 ease-in-out hover:scale-110"
+                  >
                     <Image
                       src={'/images/icons/sdg-icons/' + num + '.png'}
                       width={50}
                       height={50}
                       objectFit="contain"
                       layout="intrinsic"
-                      key={num}
                     />
                   </div>
                   <div>
@@ -221,18 +228,23 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                       ea rebum. Stet clita kasd
                     </p>
                   </div>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
 
         {/* SIMILAR JOBS */}
         <div className="my-24">
-          <div className="text-2xl font-bold">Similar Jobs</div>
+          <div className="my-3 text-2xl font-bold">Similar Jobs</div>
           <div className="flex flex-col gap-3">
-            todo: fetch jobs that are in the same category (e.g. software
-            development or human resources
+            {categoryJobs.map((job) => {
+              return (
+                <li className="list-none" key={job.id}>
+                  <JobItem job={job} />
+                </li>
+              );
+            })}
           </div>
         </div>
       </main>
@@ -255,6 +267,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     company = await getCompanyFromMongo(job.companyId);
   }
 
+  const categoryJobs = await getJobsFromMongo(job.category);
+
   // If there is no job for the given queryId
   if (!job) {
     return { notFound: true };
@@ -266,6 +280,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         job: JSON.parse(JSON.stringify(job)),
         company: JSON.parse(JSON.stringify(company)),
+        categoryJobs: JSON.parse(JSON.stringify(categoryJobs)),
       },
     };
 };

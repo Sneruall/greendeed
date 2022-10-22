@@ -120,10 +120,6 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
 export async function getServerSideProps(context: any) {
   const jobs = await getJobsFromMongo();
 
-  jobs.sort((a, b) => {
-    return b.timestamp - a.timestamp;
-  });
-
   return {
     props: {
       jobs: JSON.parse(JSON.stringify(jobs)),

@@ -2,17 +2,33 @@ import clientPromise from '../../lib/mongodb';
 import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
-export const getJobsFromMongo = async () => {
+export const getJobsFromMongo = async (category?: jobCategory) => {
   const client = await clientPromise;
 
   const db = client.db();
   if (!process.env.MONGODB_COLLECTION) {
     throw new Error('Please add your Mongo URI to .env.local');
   }
-  const jobs = await db
-    .collection(process.env.MONGODB_COLLECTION)
-    .find({ hidden: false })
-    .toArray();
+  let jobs;
+  if (category) {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        hidden: false,
+        category: category,
+      })
+      .sort({ _id: -1 })
+      .limit(5)
+      .toArray();
+  } else {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        hidden: false,
+      })
+      .sort({ _id: -1 })
+      .toArray();
+  }
 
   return jobs;
 };

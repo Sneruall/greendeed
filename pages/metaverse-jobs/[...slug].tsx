@@ -46,6 +46,7 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
       <Header />
       <main className="mx-auto max-w-screen-2xl px-10">
         <div className="flex flex-row items-start gap-10">
+          {/* JOB DESCRIPTION */}
           <div className="flex-1">
             <p>
               {job.timestamp
@@ -68,11 +69,13 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
             </div>
             {/* <li className="list-outside list-disc">fdsf</li> */}
           </div>
+
+          {/* COMPANY INFO CARD --> TODO: make component out of it? */}
           <div className="flex-initial rounded-lg bg-[#CDF682]">
             <div className="m-10 flex flex-col gap-10">
               {/* Logo, name and date */}
-              <div className="text-center">
-                <div>
+              <ul className="text-center">
+                <li>
                   {company && company.logo && (
                     <Image
                       src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
@@ -80,8 +83,8 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                       height={75}
                     />
                   )}
-                </div>
-                <div className="text-2xl font-bold text-[#402C06]">
+                </li>
+                <li className="text-2xl font-bold text-[#402C06]">
                   {!job.external ? (
                     <Link
                       href={generateCompanyUrl(
@@ -93,13 +96,20 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                     </Link>
                   ) : (
                     <Link href={job.apply}>
-                      <a className="hover:underline">
-                        {job.companyData.name + ' (remotive job listing)'}
-                      </a>
+                      <a className="hover:underline">{job.companyData.name}</a>
                     </Link>
                   )}
-                </div>
-              </div>
+                </li>
+                <li className="text-sm">
+                  {' '}
+                  {job.timestamp
+                    ? timeAgo.format(
+                        new Date().getTime() -
+                          (new Date().getTime() - job.timestamp)
+                      )
+                    : '??'}
+                </li>
+              </ul>
               {/* Features */}
               <ul className="flex flex-col gap-2 font-bold text-[#402C06]">
                 <li>

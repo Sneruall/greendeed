@@ -107,14 +107,11 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                   {job.locationInfo?.location == 'remote' && 'Remote'}
                   {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
                 </li>
-                <li>
-                  📌{' '}
-                  {(job.locationInfo?.onSiteLocation &&
-                    job.locationInfo?.onSiteLocation.map(
-                      (location, i) => location + ', '
-                    )) ||
-                    'Global'}
-                </li>
+                {job.locationInfo?.onSiteLocation && (
+                  <li>
+                    {'🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}
+                  </li>
+                )}
                 {job.locationInfo?.geoRestrictionOther && (
                   <li>'🌐 ' + job.locationInfo?.geoRestrictionOther</li>
                 )}

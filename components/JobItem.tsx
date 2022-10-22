@@ -65,11 +65,20 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 {/* company data below not retrieved from company db */}
                 {job.jobTitle} | {job.companyData.name}
               </h2>
-              <div className="">
-                <p className="my-auto text-sm capitalize italic text-black">
-                  {job.locationInfo?.location}
-                </p>
-              </div>
+              <ul className="my-auto flex flex-row gap-2 text-sm text-black">
+                <li className="">
+                  {job.locationInfo?.location == 'onSite' &&
+                    job.locationInfo?.onSiteLocation &&
+                    '🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}
+                  {job.locationInfo?.location == 'remote' && '🏠 Remote'}
+                  {job.locationInfo?.location == 'onSiteOrRemote' &&
+                    '🏘️ Hybrid'}
+                </li>
+                <li className="capitalize">
+                  {job.locationInfo.geoRestriction &&
+                    '🌐 ' + job.locationInfo.geoRestriction?.join(', ')}
+                </li>
+              </ul>
               <div className="flex gap-4 sm:hidden">{sdgList}</div>
             </div>
           </div>

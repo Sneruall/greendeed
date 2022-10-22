@@ -144,11 +144,13 @@ const JobPage: NextPage<{
               </ul>
               {/* Features */}
               <ul className="flex flex-col gap-2 font-bold text-[#402C06]">
-                <li>
-                  🌎 {job.locationInfo?.location == 'onSite' && 'Office'}
-                  {job.locationInfo?.location == 'remote' && 'Remote'}
-                  {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
-                </li>
+                {job.locationInfo?.location !== 'onSite' && (
+                  <li>
+                    {job.locationInfo?.location == 'remote' && '🏠 Remote'}
+                    {job.locationInfo?.location == 'onSiteOrRemote' &&
+                      '🏘️ Hybrid'}
+                  </li>
+                )}
                 {job.locationInfo?.onSiteLocation && (
                   <li>
                     {'🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}

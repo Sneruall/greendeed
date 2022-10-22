@@ -235,7 +235,8 @@ const JobPage: NextPage<{
         </div>
 
         {/* SIMILAR JOBS */}
-        {categoryJobs && categoryJobs[0].id !== job.id && (
+        {(categoryJobs.length > 1 ||
+          (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
           <div className="my-24">
             <div className="my-3">
               <h4 className="text-2xl font-bold">Similar Jobs</h4>
@@ -253,6 +254,15 @@ const JobPage: NextPage<{
                 );
               })}
             </div>
+            {categoryJobs.length === 5 && (
+              <div className="my-5 text-center">
+                <Link href="/">
+                  <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
+                    More {job.category.name} Jobs
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </main>

@@ -35,14 +35,16 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
   console.log(job);
   const mappedSdg = job.sdg.map((num) => {
     return (
-      <Image
-        src={'/images/icons/sdg-icons/' + num + '.png'}
-        width={40}
-        height={40}
-        objectFit="contain"
-        layout="intrinsic"
-        key={num}
-      />
+      <div className="cursor-pointer transition duration-200 ease-in-out hover:scale-110">
+        <Image
+          src={'/images/icons/sdg-icons/' + num + '.png'}
+          width={50}
+          height={50}
+          objectFit="contain"
+          layout="intrinsic"
+          key={num}
+        />
+      </div>
     );
   });
 
@@ -59,13 +61,15 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
           <div className="flex-1">
             {/* top bar */}
             <div className="flex flex-row items-center gap-8 border-b-[0.7px] border-b-[#CBCBCB] pb-4">
-              <div className="">
-                {company && company.logo && (
+              <div className="flex-shrink-0">
+                {company && company.logo ? (
                   <Image
                     src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
                     width={100}
                     height={100}
                   />
+                ) : (
+                  <div className="h-[100px] w-[100px] rounded-full bg-gray-50"></div>
                 )}
               </div>
               <div className="flex-1">
@@ -81,7 +85,9 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
                   </button>
                 </Link>
               </div>
-              <div className="flex flex-row gap-1">{mappedSdg}</div>
+              <div className="flex flex-shrink-0 flex-row gap-2">
+                {mappedSdg}
+              </div>
             </div>
             {/* job description */}
             <div>

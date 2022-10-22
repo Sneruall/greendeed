@@ -19,14 +19,16 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       return +a - +b;
     })
     .map((sdg) => (
-      <Image
-        src={'/images/icons/sdg-icons/' + sdg + '.png'}
-        width={40}
-        height={40}
-        objectFit="contain"
-        layout="intrinsic"
-        key={sdg}
-      />
+      <div className="cursor-pointer self-center transition duration-200 ease-in-out hover:scale-110">
+        <Image
+          src={'/images/icons/sdg-icons/' + sdg + '.png'}
+          width={40}
+          height={40}
+          objectFit="contain"
+          layout="intrinsic"
+          key={sdg}
+        />
+      </div>
     ));
 
   return (
@@ -37,10 +39,10 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         job.id
       )}
     >
-      <div className="w-full cursor-pointer rounded-2xl bg-white py-2 px-5 shadow-[0_2px_20px_0px_rgba(0,0,0,0.1)] hover:bg-lime-500">
+      <div className="w-full cursor-pointer rounded-2xl bg-white py-2 px-5 shadow-[0_2px_20px_0px_rgba(0,0,0,0.1)] transition duration-300 ease-in-out hover:bg-[#CDF682]">
         <div className="flex flex-col sm:grid sm:grid-cols-6 sm:gap-3 lg:grid-cols-3 xl:grid-cols-5">
           <div className="flex gap-4 sm:col-span-3 lg:col-span-1 xl:col-span-2">
-            <div className="flex self-center">
+            <div className="flex flex-shrink-0 self-center">
               {job.companyData.logo ? ( //consequence: if name changes a redirect will occur
                 <Image
                   src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}

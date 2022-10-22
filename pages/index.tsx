@@ -114,8 +114,6 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         )}
       </main>
       <Footer />
-
-      {/* Footer */}
     </div>
   );
 };

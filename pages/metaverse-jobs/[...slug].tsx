@@ -19,6 +19,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import Image from 'next/image';
+import Footer from '../../components/Footer';
 
 /*
 Todo:
@@ -174,7 +175,68 @@ const JobPage: NextPage<{ job: Job; company: Company }> = ({
             </div>
           </div>
         </div>
+
+        {/* SDG INFO */}
+        <div className="my-24">
+          <div className="my-10 text-center text-2xl font-bold text-[#402C06]">
+            Sustainability at{' '}
+            {!job.external ? (
+              <Link
+                href={generateCompanyUrl(
+                  company.name.toLowerCase(),
+                  job.companyId
+                )}
+              >
+                <a className="underline">{company.name}</a>
+              </Link>
+            ) : (
+              <Link href={job.apply}>
+                <a className="underline">{job.companyData.name}</a>
+              </Link>
+            )}
+          </div>
+          <div className="mx-auto flex max-w-2xl flex-col gap-8">
+            {job.sdg.map((num) => {
+              return (
+                <div className="flex flex-row items-center justify-center gap-10">
+                  <div className="flex-shrink-0 cursor-pointer transition duration-200 ease-in-out hover:scale-110">
+                    <Image
+                      src={'/images/icons/sdg-icons/' + num + '.png'}
+                      width={50}
+                      height={50}
+                      objectFit="contain"
+                      layout="intrinsic"
+                      key={num}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">
+                      {sdgList.find((el) => el.code === num)!.name}
+                    </h4>
+                    <p>
+                      No poverty Lorem ipsum dolor sit amet, consetetur
+                      sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                      ut labore et dolore magna aliquyam erat, sed diam
+                      voluptua. At vero eos et accusam et justo duo dolores et
+                      ea rebum. Stet clita kasd
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* SIMILAR JOBS */}
+        <div className="my-24">
+          <div className="text-2xl font-bold">Similar Jobs</div>
+          <div className="flex flex-col gap-3">
+            todo: fetch jobs that are in the same category (e.g. software
+            development or human resources
+          </div>
+        </div>
       </main>
+      <Footer />
     </>
   );
 };

@@ -6,7 +6,8 @@
   article {
     @apply font-serif text-xl leading-relaxed text-black;
   }
-  p {
+  /* Todo: make sure this only applies to the job description part */
+  /* p {
     @apply mt-6;
-  }
+  } */
 }

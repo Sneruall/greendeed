@@ -61,13 +61,13 @@ const JobPage: NextPage<{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="mx-auto max-w-screen-2xl px-10">
-        <div className="flex flex-row items-start gap-24">
+      <main className="mx-auto max-w-screen-2xl px-10 2xl:px-0">
+        <div className="flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
           {/* JOB DESCRIPTION */}
           <div className="flex-1">
             {/* top bar */}
-            <div className="flex flex-row items-center gap-8 border-b-[0.7px] border-b-[#CBCBCB] pb-4">
-              <div className="flex-shrink-0">
+            <div className="flex flex-row flex-wrap items-center gap-4 border-b-[0.7px] border-b-[#CBCBCB] pb-4 lg:gap-8 xl:flex-nowrap">
+              <div className="hidden flex-shrink-0 lg:block">
                 {company && company.logo ? (
                   <Image
                     src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
@@ -78,21 +78,34 @@ const JobPage: NextPage<{
                   <div className="h-[100px] w-[100px] rounded-full bg-gray-50"></div>
                 )}
               </div>
-              <div className="flex-1">
-                <h1 className="text-2xl">
+              <div className="flex-shrink-0 lg:hidden">
+                {company && company.logo ? (
+                  <Image
+                    src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                    width={50}
+                    height={50}
+                  />
+                ) : (
+                  <div className="h-[50px] w-[50px] rounded-full bg-gray-50"></div>
+                )}
+              </div>
+              <div className="min-w-[200px] flex-1">
+                <h1 className="text-lg md:text-xl xl:text-2xl">
                   {company?.name || job.companyData?.name} is hiring a<br />
-                  <span className="text-4xl font-bold">{job.jobTitle}</span>
+                  <span className="text-xl font-bold md:text-2xl xl:text-4xl">
+                    {job.jobTitle}
+                  </span>
                 </h1>
               </div>
-              <div>
+              <div className="flex flex-row items-center gap-4 sm:gap-8 xl:gap-10">
                 <Link href={job.apply}>
                   <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
                     Apply
                   </button>
                 </Link>
-              </div>
-              <div className="flex flex-shrink-0 flex-row gap-2">
-                {mappedSdg}
+                <div className="flex flex-row gap-2 md:flex-shrink-0">
+                  {mappedSdg}
+                </div>
               </div>
             </div>
             {/* job description */}

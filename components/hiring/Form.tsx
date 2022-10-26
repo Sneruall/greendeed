@@ -149,7 +149,7 @@ function Form() {
   return (
     <div className="">
       <div className="my-10 text-center">
-        <h1 className="mx-auto max-w-xl text-7xl font-bold text-[#402C06]">
+        <h1 className="mx-auto max-w-3xl font-alfa text-7xl text-[#402C06]">
           Find your next employee with us
         </h1>
       </div>

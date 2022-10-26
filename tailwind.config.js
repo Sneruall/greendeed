@@ -8,7 +8,11 @@ module.exports = {
       fontFamily: {
         alfa: ['Alfa Slab One'],
       },
+      colors: {
+        brown: { 500: '#402C06' },
+      },
     },
   },
+
   plugins: [require('@tailwindcss/line-clamp')],
 };

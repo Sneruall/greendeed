@@ -25,7 +25,7 @@ type Props = {
 
 const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
   return (
-    <div className="my-5 flex justify-between">
+    <div className="my-10 flex justify-between">
       <FormStep
         errors={[
           errors.companyName,

@@ -147,14 +147,23 @@ function Form() {
   }
 
   return (
-    <div className="bg-green-100">
+    <div className="">
+      <div className="my-10 text-center">
+        <h1 className="mx-auto max-w-xl text-7xl font-bold text-[#402C06]">
+          Find your next employee with us
+        </h1>
+      </div>
       <FormStatusIdentifier
         setFormStep={setFormStep}
         formStep={formStep}
         errors={errors}
       />
 
-      <form id="form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="mx-auto max-w-xl"
+        id="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* ////-------/////------////------- STEP 1 -----////------////---////----//// */}
 
         {/* COMPANY FIELDS */}
@@ -509,7 +518,7 @@ function Form() {
           </button>
         </div>
       </form>
-      <div className="flex space-x-4">
+      <div className="mx-auto flex max-w-xl space-x-4">
         {/* FORM NAVIGATION */}
         <FormNavigation
           formStep={formStep}

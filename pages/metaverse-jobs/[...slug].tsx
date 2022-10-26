@@ -116,7 +116,7 @@ const JobPage: NextPage<{
           </div>
 
           {/* COMPANY INFO CARD --> TODO: make component out of it? */}
-          <div className="flex-initial rounded-lg bg-[#CDF682]/75">
+          <div className="mx-auto flex-initial rounded-lg bg-[#CDF682]/75">
             <div className="m-10 flex flex-col gap-10">
               {/* Logo, name and date */}
               <ul className="text-center">
@@ -144,15 +144,6 @@ const JobPage: NextPage<{
                       <a className="hover:underline">{job.companyData.name}</a>
                     </Link>
                   )}
-                </li>
-                <li className="text-sm">
-                  {' '}
-                  {job.timestamp
-                    ? timeAgo.format(
-                        new Date().getTime() -
-                          (new Date().getTime() - job.timestamp)
-                      )
-                    : '??'}
                 </li>
               </ul>
               {/* Features */}
@@ -189,11 +180,25 @@ const JobPage: NextPage<{
               </ul>
               {/* Button */}
               <div>
-                <Link href={job.apply}>
-                  <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
-                    Apply for the position
-                  </button>
-                </Link>
+                <div className="my-2">
+                  <Link href={job.apply}>
+                    <button className="rounded-full bg-[#402C06] px-8 py-2 text-sm font-bold text-white">
+                      Apply for the position
+                    </button>
+                  </Link>
+                </div>
+                <div className="text-center">
+                  <p className="text-sm">
+                    Posted{' '}
+                    {job.timestamp
+                      ? timeAgo.format(
+                          new Date().getTime() -
+                            (new Date().getTime() - job.timestamp)
+                        )
+                      : '??'}{' '}
+                    ⏱️
+                  </p>
+                </div>
               </div>
             </div>
           </div>

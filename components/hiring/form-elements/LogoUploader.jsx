@@ -33,12 +33,12 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
 
   return (
     <>
-      <label className="font-bold">Company logo</label>
+      <label className="font-bold text-custom-brown1">Company logo</label>
       <div className="my-3">
         {imagePublicId ? (
           <LogoPreview image={imagePublicId} />
         ) : (
-          <h1> Image will appear here</h1>
+          <p> Image will appear here</p>
         )}
       </div>
       <button

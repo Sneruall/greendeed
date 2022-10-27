@@ -198,7 +198,9 @@ function Form() {
               />
               {/* DESCRIPTION */}
               <>
-                <h2 className="text-base font-bold">Company description</h2>
+                <h2 className="font-bold text-custom-brown1">
+                  Company description
+                </h2>
                 <RichTextEditor state={setcompanyDescriptionHtml} />
               </>
 

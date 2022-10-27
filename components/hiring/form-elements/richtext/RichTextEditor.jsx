@@ -36,7 +36,7 @@ function RichTextEditor({ state, defaultValue = '' }) {
   };
 
   return (
-    <>
+    <div className="my-2 bg-white">
       {/* <div dangerouslySetInnerHTML={{ __html: value.value }} /> */}
       <QuillNoSSRWrapper
         placeholder="Write a good description..."
@@ -47,7 +47,7 @@ function RichTextEditor({ state, defaultValue = '' }) {
         theme="snow"
         defaultValue={defaultValue}
       />
-    </>
+    </div>
   );
 }
 export default RichTextEditor;

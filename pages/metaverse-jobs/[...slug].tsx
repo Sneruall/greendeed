@@ -62,7 +62,7 @@ const JobPage: NextPage<{
       </Head>
       <Header />
       <main className="mx-auto max-w-screen-2xl px-10 2xl:px-0">
-        <div className="flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
+        <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
           {/* JOB DESCRIPTION */}
           <div className="flex-1">
             {/* top bar */}

@@ -168,8 +168,6 @@ function Form() {
 
         {/* COMPANY FIELDS */}
         <div className={`${formStep !== 1 && 'hidden'}`}>
-          <h2 className="text-xl">1. Company details</h2>
-
           {/* COMPANY NAME */}
           <FormFieldString
             id="companyData.name"

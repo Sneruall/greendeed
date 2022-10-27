@@ -29,7 +29,7 @@ const FormFieldString: React.FC<{
 }) => {
   return (
     <div className="">
-      <label htmlFor={id} className="font-bold">
+      <label htmlFor={id} className="font-century font-bold text-custom-brown1">
         {title}
       </label>
       <input

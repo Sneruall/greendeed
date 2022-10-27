@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         alfa: ['Alfa Slab One'],
+        century: ['century-gothic', 'sans-serif'],
       },
       colors: {
         custom: { brown1: '#402C06', yellow1: '#F3D45A' },

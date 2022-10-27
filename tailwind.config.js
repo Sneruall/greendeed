@@ -9,7 +9,7 @@ module.exports = {
         alfa: ['Alfa Slab One'],
       },
       colors: {
-        brown: { 500: '#402C06' },
+        custom: { brown1: '#402C06', yellow1: '#F3D45A' },
       },
     },
   },

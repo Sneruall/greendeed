@@ -99,7 +99,7 @@ const JobPage: NextPage<{
               </div>
               <div className="flex flex-row items-center gap-4 sm:gap-8 xl:gap-10">
                 <Link href={job.apply}>
-                  <button className="rounded-full bg-brown-500 px-8 py-2 text-sm font-bold text-white">
+                  <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
                     Apply
                   </button>
                 </Link>
@@ -129,7 +129,7 @@ const JobPage: NextPage<{
                     />
                   )}
                 </li>
-                <li className="text-2xl font-bold text-brown-500">
+                <li className="text-2xl font-bold text-custom-brown1">
                   {!job.external ? (
                     <Link
                       href={generateCompanyUrl(
@@ -147,7 +147,7 @@ const JobPage: NextPage<{
                 </li>
               </ul>
               {/* Features */}
-              <ul className="flex flex-col gap-2 font-bold text-brown-500">
+              <ul className="flex flex-col gap-2 font-bold text-custom-brown1">
                 {job.locationInfo?.location !== 'onSite' && (
                   <li>
                     {job.locationInfo?.location == 'remote' && '🏠 Remote'}
@@ -182,7 +182,7 @@ const JobPage: NextPage<{
               <div>
                 <div className="my-2">
                   <Link href={job.apply}>
-                    <button className="rounded-full bg-brown-500 px-8 py-2 text-sm font-bold text-white">
+                    <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
                       Apply for the position
                     </button>
                   </Link>
@@ -206,7 +206,7 @@ const JobPage: NextPage<{
 
         {/* SDG INFO */}
         <div className="my-24">
-          <div className="my-10 text-center text-2xl font-bold text-brown-500">
+          <div className="my-10 text-center text-2xl font-bold text-custom-brown1">
             Sustainability at{' '}
             {!job.external ? (
               <Link
@@ -280,7 +280,7 @@ const JobPage: NextPage<{
             {categoryJobs.length === 5 && (
               <div className="my-5 text-center">
                 <Link href="/">
-                  <button className="rounded-full bg-brown-500 px-8 py-2 text-sm font-bold text-white">
+                  <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
                     More {job.category.name} Jobs
                   </button>
                 </Link>

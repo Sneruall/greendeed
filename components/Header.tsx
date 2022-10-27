@@ -11,11 +11,6 @@ function Header() {
           </Link>
         </div>
         <div className="flex gap-12">
-          <Link href="/sdgs">
-            <a className="my-auto self-center font-alfa text-base text-custom-brown1">
-              SDGs
-            </a>
-          </Link>
           <Link href="/blog">
             <a className="my-auto self-center font-alfa text-base text-custom-brown1">
               Blog

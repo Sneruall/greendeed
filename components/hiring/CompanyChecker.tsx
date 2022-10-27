@@ -29,6 +29,7 @@ const CompanyChecker: React.FC<{
                 {retrievedCompanyData.name}
               </a>
             </Link>
+            , contact us if you would like to update your company details.
           </p>
         )}
       {companyNameIsLoading != undefined &&

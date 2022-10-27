@@ -173,6 +173,7 @@ function Form() {
             id="companyData.name"
             title="Company Name*"
             errors={errors.companyData?.name}
+            placeholder="e.g. Greenpeace"
             register={register}
             onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
               checkCompany(
@@ -188,16 +189,13 @@ function Form() {
             retrievedCompanyData={retrievedCompanyData}
           />
 
-          {/* EMAIL */}
-          <FormFieldString
-            errors={errors.email}
-            id="email"
-            register={register}
-            title="Email (stays private, for verification/invoice delivery"
-          />
-
           {!retrievedCompanyData?.id && (
             <div>
+              {/* COMPANY LOGO */}
+              <LogoUploader
+                imagePublicId={imagePublicId}
+                setImagePublicId={setImagePublicId}
+              />
               {/* DESCRIPTION */}
               <>
                 <h2 className="text-base font-bold">Company description</h2>
@@ -213,10 +211,12 @@ function Form() {
                 placeholder="www.yourcompany.com"
               />
 
-              {/* COMPANY LOGO */}
-              <LogoUploader
-                imagePublicId={imagePublicId}
-                setImagePublicId={setImagePublicId}
+              {/* EMAIL */}
+              <FormFieldString
+                errors={errors.email}
+                id="email"
+                register={register}
+                title="Email (stays private, for verification/invoice delivery"
               />
             </div>
           )}

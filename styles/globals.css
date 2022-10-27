@@ -4,7 +4,7 @@
 
 @layer base {
   article {
-    @apply font-serif text-xl leading-relaxed text-black;
+    @apply font-sans text-xl leading-relaxed text-black;
   }
   /* Todo: make sure this only applies to the job description part */
   /* p {

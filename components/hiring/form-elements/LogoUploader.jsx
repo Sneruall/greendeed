@@ -42,7 +42,7 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
         )}
       </div>
       <button
-        className="mr-2 rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30"
+        className="mr-4 mb-2 rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70"
         type="button"
         onClick={openWidget}
       >

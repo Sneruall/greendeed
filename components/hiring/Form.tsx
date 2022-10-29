@@ -168,21 +168,23 @@ function Form() {
 
         {/* COMPANY FIELDS */}
         <div className={`${formStep !== 1 && 'hidden'}`}>
-          {/* COMPANY NAME */}
-          <FormFieldString
-            id="companyData.name"
-            title="Company Name*"
-            errors={errors.companyData?.name}
-            placeholder="e.g. Greenpeace"
-            register={register}
-            onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
-              checkCompany(
-                event?.target.value,
-                setCompanyNameIsLoading,
-                setRetrievedCompanyData
-              );
-            }}
-          />
+          <div className="mb-6">
+            {/* COMPANY NAME */}
+            <FormFieldString
+              id="companyData.name"
+              title="Company name*"
+              errors={errors.companyData?.name}
+              placeholder="e.g. Greenpeace"
+              register={register}
+              onChangeMethod={(event: React.ChangeEvent<HTMLInputElement>) => {
+                checkCompany(
+                  event?.target.value,
+                  setCompanyNameIsLoading,
+                  setRetrievedCompanyData
+                );
+              }}
+            />
+          </div>
           <CompanyChecker
             companyNameIsLoading={companyNameIsLoading}
             errorsCompanyName={errors.companyData?.name}
@@ -190,19 +192,19 @@ function Form() {
           />
 
           {!retrievedCompanyData?.id && (
-            <div>
+            <div className="flex flex-col gap-5">
               {/* COMPANY LOGO */}
               <LogoUploader
                 imagePublicId={imagePublicId}
                 setImagePublicId={setImagePublicId}
               />
               {/* DESCRIPTION */}
-              <>
+              <div>
                 <h2 className="font-bold text-custom-brown1">
                   Company description
                 </h2>
                 <RichTextEditor state={setcompanyDescriptionHtml} />
-              </>
+              </div>
 
               {/* COMPANY WEBSITE */}
               <FormFieldString

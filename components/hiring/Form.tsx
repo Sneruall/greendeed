@@ -172,7 +172,7 @@ function Form() {
             {/* COMPANY NAME */}
             <FormFieldString
               id="companyData.name"
-              title="Company name*"
+              title="Organization name*"
               errors={errors.companyData?.name}
               placeholder="e.g. Greenpeace"
               register={register}
@@ -184,12 +184,12 @@ function Form() {
                 );
               }}
             />
+            <CompanyChecker
+              companyNameIsLoading={companyNameIsLoading}
+              errorsCompanyName={errors.companyData?.name}
+              retrievedCompanyData={retrievedCompanyData}
+            />
           </div>
-          <CompanyChecker
-            companyNameIsLoading={companyNameIsLoading}
-            errorsCompanyName={errors.companyData?.name}
-            retrievedCompanyData={retrievedCompanyData}
-          />
 
           {!retrievedCompanyData?.id && (
             <div className="flex flex-col gap-5">
@@ -220,7 +220,8 @@ function Form() {
                 errors={errors.email}
                 id="email"
                 register={register}
-                title="Email (stays private, for verification/invoice delivery"
+                title="Email"
+                description="Stays private, for verification/invoice delivery only."
               />
             </div>
           )}

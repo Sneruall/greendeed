@@ -32,6 +32,7 @@ const FormFieldString: React.FC<{
       <label htmlFor={id} className="font-bold text-custom-brown1">
         {title}
       </label>
+      <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>
       <input
         id={id}
         type={inputType ? inputType : 'text'}
@@ -48,9 +49,6 @@ const FormFieldString: React.FC<{
         }`}
       />
       <div className="text-red-500">{errors?.message}</div>
-      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        {description}
-      </p>
     </div>
   );
 };

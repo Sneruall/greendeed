@@ -29,18 +29,15 @@ const CompanyChecker: React.FC<{
                 {retrievedCompanyData.name}
               </a>
             </Link>
-            , contact us if you would like to update your company details.
+            , contact us if you would like to update your organization details.
           </p>
         )}
       {companyNameIsLoading != undefined &&
         !companyNameIsLoading &&
         !retrievedCompanyData?.name &&
-        'Welcome new user!'}
-      {companyNameIsLoading && 'Checking for existing companies...'}
-      {retrievedCompanyData?.name === 'x' &&
-        !companyNameIsLoading &&
-        !errorsCompanyName &&
-        'Company name must be at least 2 characters'}
+        'Welcome to Greendeed!'}
+      {companyNameIsLoading &&
+        'Checking for existing organizations at Greendeed...'}
     </div>
   );
 };

@@ -31,6 +31,7 @@ export const checkCompany = (
     React.SetStateAction<Company | undefined>
   >
 ) => {
+  // if value is 2 or more...
   setCompanyNameIsLoading(true);
   if (timer) {
     clearTimeout(timer);

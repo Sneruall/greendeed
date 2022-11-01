@@ -25,7 +25,11 @@ const modules = {
  */
 const formats = ['size', 'bold', 'italic', 'underline', 'list', 'bullet'];
 
-function RichTextEditor({ state, defaultValue = '' }) {
+function RichTextEditor({
+  state,
+  defaultValue = '',
+  placeholder = 'Write a text here...',
+}) {
   // const [value, setValue] = useState({ value: null });
 
   const editor = React.createRef();
@@ -39,7 +43,7 @@ function RichTextEditor({ state, defaultValue = '' }) {
     <div className="my-2 bg-white">
       {/* <div dangerouslySetInnerHTML={{ __html: value.value }} /> */}
       <QuillNoSSRWrapper
-        placeholder="Write a good description..."
+        placeholder={placeholder}
         ref={editor}
         onChange={handleChange}
         modules={modules}

@@ -201,9 +201,12 @@ function Form() {
               {/* DESCRIPTION */}
               <div>
                 <h2 className="font-bold text-custom-brown1">
-                  Company description
+                  Organization description
                 </h2>
-                <RichTextEditor state={setcompanyDescriptionHtml} />
+                <RichTextEditor
+                  placeholder="Write something about your oganization..."
+                  state={setcompanyDescriptionHtml}
+                />
               </div>
 
               {/* COMPANY WEBSITE */}
@@ -249,7 +252,10 @@ function Form() {
           {/* JOB DESCRIPTION  */}
 
           <h2 className="text-base font-bold">Job description</h2>
-          <RichTextEditor state={setjobDescriptionHtml} />
+          <RichTextEditor
+            placeholder="Write a good job description..."
+            state={setjobDescriptionHtml}
+          />
         </div>
 
         {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}

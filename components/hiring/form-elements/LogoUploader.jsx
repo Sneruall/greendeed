@@ -42,13 +42,13 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
       </div>
       <button
         type="button"
-        class="mr-2 inline-flex items-center rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70"
+        className="mr-2 inline-flex items-center rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70"
         onClick={openWidget}
       >
         {loadingSpinner && (
           <svg
             role="status"
-            class="mr-3 inline h-4 w-4 animate-spin text-custom-brown1"
+            className="mr-3 inline h-4 w-4 animate-spin text-custom-brown1"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

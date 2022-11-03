@@ -11,3 +11,23 @@
     @apply mt-6;
   } */
 }
+
+/* QUILL RICH TEXT EDITOR */
+.ql-toolbar.ql-snow {
+  @apply rounded-t-lg border border-b-0 border-[#D5D3D3] bg-white;
+}
+.ql-container.ql-snow {
+  @apply rounded-b-lg border border-[#D5D3D3] bg-white shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)];
+}
+.ql-container.ql-snow {
+  @apply h-96;
+}
+.ql-editor.ql-blank {
+  @apply font-century text-sm not-italic text-gray-500;
+}
+.ql-editor {
+  @apply focus:outline-none;
+}
+.ql-editor p {
+  @apply font-century text-sm text-black;
+}

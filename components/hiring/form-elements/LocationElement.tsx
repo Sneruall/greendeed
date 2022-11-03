@@ -11,8 +11,8 @@ type Props = {
 
 function LocationElement({ errors, register, location, setLocation }: Props) {
   return (
-    <div className=" bg-green-100">
-      <h2>Location</h2>
+    <div className="">
+      <h2 className="font-bold text-custom-brown1">Location</h2>
       <FormFieldRadio
         value="remote"
         title="Remote"

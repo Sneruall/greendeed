@@ -27,7 +27,7 @@ const FormFieldDropdown = ({
     <div className="">
       <label
         htmlFor={id}
-        className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="mb-2 block text-sm font-medium text-gray-900"
       >
         {title}
       </label>
@@ -35,7 +35,7 @@ const FormFieldDropdown = ({
         {...register(id)}
         onChange={onChangeMethod}
         id={id}
-        className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 "
+        className="my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
       >
         {optionList}
       </select>

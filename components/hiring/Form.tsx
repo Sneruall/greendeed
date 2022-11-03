@@ -258,7 +258,6 @@ function Form() {
 
         <div className={`${formStep !== 3 && 'hidden'}`}>
           <h2 className="text-xl">3. Job Details</h2>
-
           {/* CATEGORY */}
           <FormFieldDropdown
             errors={errors.category}
@@ -267,7 +266,6 @@ function Form() {
             title="Category"
             options={generateCategoriesArray()}
           />
-
           {/* TAGS */}
           <FormFieldString
             title="Tags"
@@ -276,7 +274,6 @@ function Form() {
             id="tags"
             register={register}
           />
-
           {/* JOB TYPES */}
           <FormFieldDropdown
             id="jobType"
@@ -285,7 +282,6 @@ function Form() {
             title="Type of Employment"
             options={jobTypes}
           />
-
           {/* LOCATION */}
           <LocationElement
             errors={errors}
@@ -293,7 +289,6 @@ function Form() {
             setLocation={setLocationObject}
             location={locationInfo.location}
           />
-
           {/* ON SITE LOCATION */}
           {locationInfo.location !== 'remote' && (
             <FormFieldString
@@ -305,7 +300,6 @@ function Form() {
               description="Please use a comma to separate multiple locations."
             />
           )}
-
           {/* REMOTE LOCATION */}
           {locationInfo.location !== 'onSite' && (
             <>
@@ -345,7 +339,6 @@ function Form() {
               </div>
             </>
           )}
-
           {/* GEOGRAPHIC RESTRICTION */}
           {locationInfo.remoteLocation === 'geoRestriction' &&
             locationInfo.location !== 'onSite' && (
@@ -373,68 +366,72 @@ function Form() {
                 )}
               </>
             )}
-
           {/* SALARY */}
           <h3>Base Salary (optional)</h3>
-          <FormFieldDropdown
-            id="salary.period"
-            errors={errors.salary?.period}
-            options={SalaryPeriod}
-            register={register}
-          />
-          <FormFieldDropdown
-            errors={errors.salary?.currency}
-            id="salary.currency"
-            options={currencies}
-            register={register}
-            onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setCurrency(e?.target?.value);
-            }}
-          />
-          <div className="">
-            <CurrencyInput
-              maxLength={6}
-              id="salary.min"
-              allowDecimals={false}
-              disableAbbreviations={false}
-              prefix={currency}
-              step={10}
-              placeholder="Amount or Minimum"
-              {...register('salary.min')}
-              onValueChange={handleOnValueChange}
-              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                errors?.salary?.min
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
+          <div className="flex gap-2">
+            <div className="flex">
+              <div className="flex-none">
+                <FormFieldDropdown
+                  errors={errors.salary?.currency}
+                  id="salary.currency"
+                  options={currencies}
+                  register={register}
+                  onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setCurrency(e?.target?.value);
+                  }}
+                  twinleft
+                />
+              </div>
+              <div className="flex-1">
+                <CurrencyInput
+                  maxLength={6}
+                  id="salary.min"
+                  allowDecimals={false}
+                  disableAbbreviations={false}
+                  step={10}
+                  placeholder="Amount or Minimum"
+                  {...register('salary.min')}
+                  onValueChange={handleOnValueChange}
+                  className={`my-2 block w-full rounded-lg rounded-l-none border border-l-0 bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+                    errors?.salary?.min
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                  }`}
+                />
+              </div>
+              <div className="text-red-500">{errors?.salary?.min}</div>
+            </div>
+            <div className="my-auto">-</div>
+
+            <div className="flex-1">
+              <CurrencyInput
+                maxLength={6}
+                id="salary.max"
+                allowDecimals={false}
+                prefix={currency}
+                step={10}
+                placeholder="Maximum (optional)"
+                {...register('salary.max')}
+                onValueChange={handleOnValueChange}
+                className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+                  errors?.salary?.max
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+              <div className="text-red-500">{errors?.salary?.max}</div>
+            </div>
+            <FormFieldDropdown
+              id="salary.period"
+              errors={errors.salary?.period}
+              options={SalaryPeriod}
+              register={register}
             />
-            <div className="text-red-500">{errors?.salary?.min}</div>
-          </div>
-
-          <div className="">
-            <CurrencyInput
-              maxLength={6}
-              id="salary.max"
-              allowDecimals={false}
-              prefix={currency}
-              step={10}
-              placeholder="Maximum (optional)"
-              {...register('salary.max')}
-              onValueChange={handleOnValueChange}
-              className={`block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900 ${
-                errors?.salary?.max
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-              }`}
-            />
-            <div className="text-red-500">{errors?.salary?.max}</div>
-
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Please enter the annual base salary or specify a salary range for
-              the position.
-            </p>
-          </div>
-
+          </div>{' '}
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            Please enter the annual base salary or specify a salary range for
+            the position.
+          </p>
           {/* EQUITY */}
           <FormFieldBoolCheckbox
             checkboxText="Equity"
@@ -442,7 +439,6 @@ function Form() {
             register={register}
             registerId="equity"
           />
-
           {/* APPLY BY */}
           <div className=" bg-blue-100">
             <h2>Apply by</h2>

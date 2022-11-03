@@ -7,6 +7,8 @@ type Props = {
   register: any;
   errors: any;
   onChangeMethod?: Function;
+  twinleft?: boolean;
+  twinright?: boolean;
 };
 
 const FormFieldDropdown = ({
@@ -16,6 +18,8 @@ const FormFieldDropdown = ({
   errors,
   options,
   onChangeMethod,
+  twinleft,
+  twinright,
 }: Props) => {
   const optionList = options.map((option) => (
     <option value={option} key={option}>
@@ -35,7 +39,9 @@ const FormFieldDropdown = ({
         {...register(id)}
         onChange={onChangeMethod}
         id={id}
-        className="my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
+        className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+          twinleft && 'rounded-r-none'
+        } ${twinright && 'rounded-l-none'}`}
       >
         {optionList}
       </select>

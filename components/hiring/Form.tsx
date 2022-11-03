@@ -257,234 +257,236 @@ function Form() {
         {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}
 
         <div className={`${formStep !== 3 && 'hidden'}`}>
-          <h2 className="text-xl">3. Job Details</h2>
-          {/* CATEGORY */}
-          <FormFieldDropdown
-            errors={errors.category}
-            id="category"
-            register={register}
-            title="Category"
-            options={generateCategoriesArray()}
-          />
-          {/* TAGS */}
-          <FormFieldString
-            title="Tags"
-            placeholder="Separated by comma, e,g, tech stack or industry"
-            errors={errors.tags}
-            id="tags"
-            register={register}
-          />
-          {/* JOB TYPES */}
-          <FormFieldDropdown
-            id="jobType"
-            register={register}
-            errors={errors.jobType}
-            title="Type of Employment"
-            options={jobTypes}
-          />
-          {/* LOCATION */}
-          <LocationElement
-            errors={errors}
-            register={register}
-            setLocation={setLocationObject}
-            location={locationInfo.location}
-          />
-          {/* ON SITE LOCATION */}
-          {locationInfo.location !== 'remote' && (
-            <FormFieldString
-              errors={errors.locationInfo?.onSiteLocation}
-              id="locationInfo.onSiteLocation"
+          <div className="flex flex-col gap-5">
+            {/* CATEGORY */}
+            <FormFieldDropdown
+              errors={errors.category}
+              id="category"
               register={register}
-              title="On Site Location(s)"
-              placeholder="e.g. Amsterdam, London, New York"
-              description="Please use a comma to separate multiple locations."
+              title="Category"
+              options={generateCategoriesArray()}
             />
-          )}
-          {/* REMOTE LOCATION */}
-          {locationInfo.location !== 'onSite' && (
-            <>
-              <div className=" bg-blue-100">
-                <h2>Remote location</h2>
-                <FormFieldRadio
-                  errors={errors.locationInfo?.remoteLocation}
-                  registerId="locationInfo.remoteLocation"
-                  register={register}
-                  title="Worldwide"
-                  value="worldwide"
-                  state={locationInfo.remoteLocation}
-                  callback={() =>
-                    setLocationObject((prevState) => ({
-                      ...prevState,
-                      remoteLocation: 'worldwide',
-                    }))
-                  }
-                />
-                <FormFieldRadio
-                  errors={errors.locationInfo?.remoteLocation}
-                  registerId="locationInfo.remoteLocation"
-                  value="geoRestriction"
-                  state={locationInfo.remoteLocation}
-                  register={register}
-                  title="Geographic restrictions"
-                  callback={() =>
-                    setLocationObject((prevState) => ({
-                      ...prevState,
-                      remoteLocation: 'geoRestriction',
-                    }))
-                  }
-                />
-                <div className="text-red-500">
-                  {errors.locationInfo?.remoteLocation?.message}
-                </div>
-              </div>
-            </>
-          )}
-          {/* GEOGRAPHIC RESTRICTION */}
-          {locationInfo.remoteLocation === 'geoRestriction' &&
-            locationInfo.location !== 'onSite' && (
+            {/* TAGS */}
+            <FormFieldString
+              title="Tags"
+              placeholder="Separated by comma, e,g, tech stack or industry"
+              errors={errors.tags}
+              id="tags"
+              register={register}
+            />
+            {/* JOB TYPES */}
+            <FormFieldDropdown
+              id="jobType"
+              register={register}
+              errors={errors.jobType}
+              title="Type of Employment"
+              options={jobTypes}
+            />
+            {/* LOCATION */}
+            <LocationElement
+              errors={errors}
+              register={register}
+              setLocation={setLocationObject}
+              location={locationInfo.location}
+            />
+            {/* ON SITE LOCATION */}
+            {locationInfo.location !== 'remote' && (
+              <FormFieldString
+                errors={errors.locationInfo?.onSiteLocation}
+                id="locationInfo.onSiteLocation"
+                register={register}
+                title="On Site Location(s)"
+                placeholder="e.g. Amsterdam, London, New York"
+                description="Please use a comma to separate multiple locations."
+              />
+            )}
+            {/* REMOTE LOCATION */}
+            {locationInfo.location !== 'onSite' && (
               <>
-                <div className=" bg-red-100">
-                  <h2>Geographic restriction</h2>
-
-                  <GeoRestrictionElement
-                    errors={errors?.locationInfo?.geoRestriction}
+                <div className=" bg-blue-100">
+                  <h2>Remote location</h2>
+                  <FormFieldRadio
+                    errors={errors.locationInfo?.remoteLocation}
+                    registerId="locationInfo.remoteLocation"
                     register={register}
-                    setLocationObject={setLocationObject}
+                    title="Worldwide"
+                    value="worldwide"
+                    state={locationInfo.remoteLocation}
+                    callback={() =>
+                      setLocationObject((prevState) => ({
+                        ...prevState,
+                        remoteLocation: 'worldwide',
+                      }))
+                    }
+                  />
+                  <FormFieldRadio
+                    errors={errors.locationInfo?.remoteLocation}
+                    registerId="locationInfo.remoteLocation"
+                    value="geoRestriction"
+                    state={locationInfo.remoteLocation}
+                    register={register}
+                    title="Geographic restrictions"
+                    callback={() =>
+                      setLocationObject((prevState) => ({
+                        ...prevState,
+                        remoteLocation: 'geoRestriction',
+                      }))
+                    }
                   />
                   <div className="text-red-500">
-                    {(errors.locationInfo?.geoRestriction as any)?.message}
+                    {errors.locationInfo?.remoteLocation?.message}
                   </div>
                 </div>
-
-                {locationInfo.otherGeoRestriction && (
-                  <FormFieldString
-                    errors={errors.locationInfo?.geoRestrictionOther}
-                    id="locationInfo.geoRestrictionOther"
-                    register={register}
-                    placeholder="e.g. Switzerland"
-                  />
-                )}
               </>
             )}
-          {/* SALARY */}
-          <h3>Base Salary (optional)</h3>
-          <div className="flex gap-2">
-            <div className="flex">
-              <div className="flex-none">
-                <FormFieldDropdown
-                  errors={errors.salary?.currency}
-                  id="salary.currency"
-                  options={currencies}
-                  register={register}
-                  onChangeMethod={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setCurrency(e?.target?.value);
-                  }}
-                  twinleft
-                />
+            {/* GEOGRAPHIC RESTRICTION */}
+            {locationInfo.remoteLocation === 'geoRestriction' &&
+              locationInfo.location !== 'onSite' && (
+                <>
+                  <div className=" bg-red-100">
+                    <h2>Geographic restriction</h2>
+
+                    <GeoRestrictionElement
+                      errors={errors?.locationInfo?.geoRestriction}
+                      register={register}
+                      setLocationObject={setLocationObject}
+                    />
+                    <div className="text-red-500">
+                      {(errors.locationInfo?.geoRestriction as any)?.message}
+                    </div>
+                  </div>
+
+                  {locationInfo.otherGeoRestriction && (
+                    <FormFieldString
+                      errors={errors.locationInfo?.geoRestrictionOther}
+                      id="locationInfo.geoRestrictionOther"
+                      register={register}
+                      placeholder="e.g. Switzerland"
+                    />
+                  )}
+                </>
+              )}
+            {/* SALARY */}
+            <h3>Base Salary (optional)</h3>
+            <div className="flex gap-2">
+              <div className="flex">
+                <div className="flex-none">
+                  <FormFieldDropdown
+                    errors={errors.salary?.currency}
+                    id="salary.currency"
+                    options={currencies}
+                    register={register}
+                    onChangeMethod={(
+                      e: React.ChangeEvent<HTMLInputElement>
+                    ) => {
+                      setCurrency(e?.target?.value);
+                    }}
+                    twinleft
+                  />
+                </div>
+                <div className="flex-1">
+                  <CurrencyInput
+                    maxLength={6}
+                    id="salary.min"
+                    allowDecimals={false}
+                    disableAbbreviations={false}
+                    step={10}
+                    placeholder="Amount or Minimum"
+                    {...register('salary.min')}
+                    onValueChange={handleOnValueChange}
+                    className={`my-2 block w-full rounded-lg rounded-l-none border border-l-0 bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+                      errors?.salary?.min
+                        ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                        : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                    }`}
+                  />
+                </div>
+                <div className="text-red-500">{errors?.salary?.min}</div>
               </div>
+              <div className="my-auto">-</div>
+
               <div className="flex-1">
                 <CurrencyInput
                   maxLength={6}
-                  id="salary.min"
+                  id="salary.max"
                   allowDecimals={false}
-                  disableAbbreviations={false}
+                  prefix={currency}
                   step={10}
-                  placeholder="Amount or Minimum"
-                  {...register('salary.min')}
+                  placeholder="Maximum (optional)"
+                  {...register('salary.max')}
                   onValueChange={handleOnValueChange}
-                  className={`my-2 block w-full rounded-lg rounded-l-none border border-l-0 bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
-                    errors?.salary?.min
+                  className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+                    errors?.salary?.max
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                       : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                   }`}
                 />
+                <div className="text-red-500">{errors?.salary?.max}</div>
               </div>
-              <div className="text-red-500">{errors?.salary?.min}</div>
-            </div>
-            <div className="my-auto">-</div>
-
-            <div className="flex-1">
-              <CurrencyInput
-                maxLength={6}
-                id="salary.max"
-                allowDecimals={false}
-                prefix={currency}
-                step={10}
-                placeholder="Maximum (optional)"
-                {...register('salary.max')}
-                onValueChange={handleOnValueChange}
-                className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
-                  errors?.salary?.max
-                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
-                }`}
+              <FormFieldDropdown
+                id="salary.period"
+                errors={errors.salary?.period}
+                options={SalaryPeriod}
+                register={register}
               />
-              <div className="text-red-500">{errors?.salary?.max}</div>
-            </div>
-            <FormFieldDropdown
-              id="salary.period"
-              errors={errors.salary?.period}
-              options={SalaryPeriod}
-              register={register}
-            />
-          </div>{' '}
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Please enter the annual base salary or specify a salary range for
-            the position.
-          </p>
-          {/* EQUITY */}
-          <FormFieldBoolCheckbox
-            checkboxText="Equity"
-            errors={errors.equity}
-            register={register}
-            registerId="equity"
-          />
-          {/* APPLY BY */}
-          <div className=" bg-blue-100">
-            <h2>Apply by</h2>
-
-            <FormFieldRadio
-              errors={errors.applicationMethod}
-              register={register}
-              registerId="applicationMethod"
-              title="E-mail"
-              value="email"
-              state={applicationMethod}
-              callback={() => setApplicationMethod('email')}
-            />
-            <FormFieldRadio
-              errors={errors.applicationMethod}
-              register={register}
-              registerId="applicationMethod"
-              title="Website"
-              value="website"
-              state={applicationMethod}
-              callback={() => setApplicationMethod('website')}
-            />
-          </div>
-          <FormFieldString
-            errors={errors.apply}
-            id="apply"
-            register={register}
-            placeholder={
-              applicationMethod === 'email'
-                ? 'hiring@company.com'
-                : 'www.yourcompany.com/apply'
-            }
-          />
-          {applicationMethod === 'email' ? (
+            </div>{' '}
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Applications for the position will be sent to the email address
-              you specify.
-            </p>
-          ) : (
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Applicants will be sent to the website you specify to apply for
+              Please enter the annual base salary or specify a salary range for
               the position.
             </p>
-          )}
-        </div>
+            {/* EQUITY */}
+            <FormFieldBoolCheckbox
+              checkboxText="Equity"
+              errors={errors.equity}
+              register={register}
+              registerId="equity"
+            />
+            {/* APPLY BY */}
+            <div className=" bg-blue-100">
+              <h2>Apply by</h2>
 
+              <FormFieldRadio
+                errors={errors.applicationMethod}
+                register={register}
+                registerId="applicationMethod"
+                title="E-mail"
+                value="email"
+                state={applicationMethod}
+                callback={() => setApplicationMethod('email')}
+              />
+              <FormFieldRadio
+                errors={errors.applicationMethod}
+                register={register}
+                registerId="applicationMethod"
+                title="Website"
+                value="website"
+                state={applicationMethod}
+                callback={() => setApplicationMethod('website')}
+              />
+            </div>
+            <FormFieldString
+              errors={errors.apply}
+              id="apply"
+              register={register}
+              placeholder={
+                applicationMethod === 'email'
+                  ? 'hiring@company.com'
+                  : 'www.yourcompany.com/apply'
+              }
+            />
+            {applicationMethod === 'email' ? (
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Applications for the position will be sent to the email address
+                you specify.
+              </p>
+            ) : (
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Applicants will be sent to the website you specify to apply for
+                the position.
+              </p>
+            )}
+          </div>
+        </div>
         {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
 
         {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}

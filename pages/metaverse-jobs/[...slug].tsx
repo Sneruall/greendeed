@@ -36,7 +36,6 @@ const JobPage: NextPage<{
   const timeAgo = new TimeAgo('en_US');
 
   console.log(job);
-  console.log(categoryJobs);
   const mappedSdg = job.sdg.map((num) => {
     return (
       <div

@@ -191,6 +191,16 @@ function Form() {
               retrievedCompanyData={retrievedCompanyData}
             />
           </div>
+          {/* EMAIL */}
+          <div className="mb-6">
+            <FormFieldString
+              errors={errors.email}
+              id="email"
+              register={register}
+              title="Email"
+              description="Stays private, for verification/invoice delivery only."
+            />
+          </div>
 
           {!retrievedCompanyData?.id && (
             <div className="flex flex-col gap-5">
@@ -217,15 +227,6 @@ function Form() {
                 id="companyData.website"
                 register={register}
                 placeholder="www.yourcompany.com"
-              />
-
-              {/* EMAIL */}
-              <FormFieldString
-                errors={errors.email}
-                id="email"
-                register={register}
-                title="Email"
-                description="Stays private, for verification/invoice delivery only."
               />
             </div>
           )}

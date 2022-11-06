@@ -237,7 +237,7 @@ function Form() {
             {/* JOB TITLE */}
             <FormFieldString
               id="jobTitle"
-              title="Job Title"
+              title="Job Title*"
               placeholder="e.g. Senior Product Manager"
               register={register}
               errors={errors.jobTitle}
@@ -245,7 +245,7 @@ function Form() {
 
             {/* JOB DESCRIPTION  */}
             <div>
-              <h2 className="text-base font-bold">Job description</h2>
+              <h2 className="text-base font-bold">Job description*</h2>
               <RichTextEditor
                 placeholder="Write a good job description..."
                 state={setjobDescriptionHtml}
@@ -263,13 +263,13 @@ function Form() {
               errors={errors.category}
               id="category"
               register={register}
-              title="Category"
+              title="Category*"
               options={generateCategoriesArray()}
             />
             {/* TAGS */}
             <FormFieldString
               title="Tags"
-              placeholder="Separated by comma, e,g, tech stack or industry"
+              placeholder="Separated by comma, e.g. tech stack or industry"
               errors={errors.tags}
               id="tags"
               register={register}
@@ -462,7 +462,8 @@ function Form() {
             <FormFieldString
               title={
                 applicationMethod.charAt(0).toUpperCase() +
-                applicationMethod.slice(1)
+                applicationMethod.slice(1) +
+                '*'
               }
               errors={errors.apply}
               id="apply"

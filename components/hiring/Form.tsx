@@ -80,7 +80,7 @@ function Form() {
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
 
-  //Currency and equity tracking
+  //Currency tracking
   const [currency, setCurrency] = useState<string>('US$');
   const [minSalaryValues, setMinSalaryValues] =
     useState<CurrencyInputOnChangeValues>();
@@ -436,13 +436,6 @@ function Form() {
                 />
               </div>
             </div>
-            {/* EQUITY */}
-            <FormFieldBoolCheckbox
-              checkboxText="Equity"
-              errors={errors.equity}
-              register={register}
-              registerId="equity"
-            />
             {/* APPLY BY */}
             <div className="">
               <h2 className="font-bold text-custom-brown1">Apply by</h2>

@@ -22,7 +22,6 @@ export interface Job {
     max?: CurrencyInputOnChangeValues;
     string?: string;
   };
-  equity?: boolean;
   locationInfo: LocationInfo;
   email: string;
   timestamp: number;

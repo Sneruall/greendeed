@@ -90,7 +90,6 @@ export default Yup.object().shape({
     min: Yup.string(),
     max: Yup.string(),
   }),
-  equity: Yup.boolean(),
   applicationMethod: Yup.string().required(REQUIRED_FIELD),
   apply: Yup.string()
     .when('applicationMethod', {

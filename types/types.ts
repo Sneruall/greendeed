@@ -53,6 +53,19 @@ export interface LocationInfo {
 }
 
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';
+export const Location = [
+  {
+    id: 1,
+    value: 'remote',
+    title: 'Remote',
+  },
+  {
+    id: 2,
+    value: 'onSite',
+    title: 'On Site',
+  },
+  { id: 3, value: 'onSiteOrRemote', title: 'Hybrid (On Site or Remote)' },
+];
 
 export type RemoteLocation = 'worldwide' | 'geoRestriction';
 

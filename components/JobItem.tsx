@@ -19,14 +19,16 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
       return +a - +b;
     })
     .map((sdg) => (
-      <div className="cursor-pointer self-center transition duration-200 ease-in-out hover:scale-110">
+      <div
+        key={sdg}
+        className="cursor-pointer self-center transition duration-200 ease-in-out hover:scale-110"
+      >
         <Image
           src={'/images/icons/sdg-icons/' + sdg + '.png'}
           width={40}
           height={40}
           objectFit="contain"
           layout="intrinsic"
-          key={sdg}
         />
       </div>
     ));

@@ -37,44 +37,10 @@ export default Yup.object().shape({
         is: 'onSiteOrRemote',
         then: Yup.string().required(REQUIRED_FIELD),
       }),
-    remoteLocation: Yup.string()
-      .nullable(true)
-      .when('location', {
-        is: 'remote',
-        then: Yup.string().required(REQUIRED_FIELD).nullable(false),
-      })
-      .when('location', {
-        is: 'onSiteOrRemote',
-        then: Yup.string().required(REQUIRED_FIELD).nullable(false),
-      }),
+
     geoRestriction: Yup.array()
       .nullable(true)
-      .when('location', {
-        is: 'onSiteOrRemote',
-        then: Yup.array().when('remoteLocation', {
-          is: 'geoRestriction',
-          then: Yup.array()
-            .min(1, 'At least one Geographic restriction is required')
-            .max(4, 'Max 4 Geographic restrictions allowed')
-            .of(Yup.string().required(REQUIRED_FIELD))
-            .required(REQUIRED_FIELD)
-            .nullable(false)
-            .typeError('At least one Geographic restriction is required'),
-        }),
-      })
-      .when('location', {
-        is: 'remote',
-        then: Yup.array().when('remoteLocation', {
-          is: 'geoRestriction',
-          then: Yup.array()
-            .min(1, 'At least one Geographic restriction is required')
-            .max(4, 'Max. 4 Geographic restrictions allowed')
-            .of(Yup.string().required(REQUIRED_FIELD))
-            .required(REQUIRED_FIELD)
-            .nullable(false)
-            .typeError('At least one Geographic restriction is required'),
-        }),
-      }),
+      .max(4, 'Max 4 Geographic restrictions allowed'),
     geoRestrictionOther: Yup.string().when(
       'geoRestriction',
       (geoRestriction) => {

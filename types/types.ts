@@ -1,6 +1,10 @@
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import { jobCategory } from './jobCategories';
 
+// Todo:
+// - consider converting into separate smaller type files (per type) like fr does
+// -  make more use of object types (with id, value and title), like Location const
+
 export interface Job {
   companyId: string;
   companyData: {
@@ -47,7 +51,6 @@ export interface Company {
 export interface LocationInfo {
   location: Location;
   onSiteLocation?: string[];
-  remoteLocation?: RemoteLocation;
   geoRestriction?: string[];
   geoRestrictionOther?: string[];
 }
@@ -67,11 +70,8 @@ export const Location = [
   { id: 3, value: 'onSiteOrRemote', title: 'Hybrid (On Site or Remote)' },
 ];
 
-export type RemoteLocation = 'worldwide' | 'geoRestriction';
-
 export interface LocationObject {
   location: Location;
-  remoteLocation: RemoteLocation;
   otherGeoRestriction: boolean;
 }
 
@@ -102,7 +102,33 @@ export const jobTypes = [
   'Other',
 ];
 
-export const geoRestrictions = ['Europe', 'US', 'EMEA', 'APAC', 'Other'];
+export const geoRestrictions = [
+  {
+    id: 1,
+    value: 'europe',
+    title: 'Europe',
+  },
+  {
+    id: 2,
+    value: 'us',
+    title: 'US',
+  },
+  {
+    id: 3,
+    value: 'emea',
+    title: 'EMEA',
+  },
+  {
+    id: 4,
+    value: 'apac',
+    title: 'APAC',
+  },
+  {
+    id: 5,
+    value: 'other',
+    title: 'Other',
+  },
+];
 
 export const currencies = ['$', '€', '£', 'CA$', 'AU$'];
 

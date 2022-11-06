@@ -157,13 +157,17 @@ const JobPage: NextPage<{
                 )}
                 {job.locationInfo?.onSiteLocation && (
                   <li>
-                    {'🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}
+                    {typeof job.locationInfo?.onSiteLocation == 'object'
+                      ? '🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')
+                      : '🏢 ' + job.locationInfo?.onSiteLocation}
                   </li>
                 )}
                 {/* todo georestrictionother */}
                 {job.locationInfo?.geoRestriction && (
-                  <li className="capitalize">
-                    {'🌐 ' + job.locationInfo?.geoRestriction}
+                  <li>
+                    {typeof job.locationInfo?.geoRestriction == 'object'
+                      ? '🌐 ' + job.locationInfo?.geoRestriction?.join(', ')
+                      : '🌐 ' + job.locationInfo?.geoRestriction}
                   </li>
                 )}
                 <li>⏰ {job.jobType}</li>

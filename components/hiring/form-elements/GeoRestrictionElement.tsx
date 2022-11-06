@@ -11,14 +11,14 @@ type Props = {
 function GeoRestrictionElement({ errors, register, setLocationObject }: Props) {
   const optionList = geoRestrictions.map((option) => (
     <FormFieldBoolCheckbox
-      key={option}
+      key={option.id}
       errors={errors?.locationInfo?.geoRestriction}
       registerId="locationInfo.geoRestriction"
-      value={option.replace(/\s/g, '').toLocaleLowerCase()}
+      value={option.title}
       register={register}
-      checkboxText={option}
+      checkboxText={option.title}
       callback={() => {
-        if (option === 'Other') {
+        if (option.value === 'other') {
           setLocationObject((prevState) => ({
             ...prevState,
             otherGeoRestriction: !prevState.otherGeoRestriction,

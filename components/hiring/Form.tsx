@@ -71,7 +71,6 @@ function Form() {
   // Location fields tracking
   const [locationInfo, setLocationObject] = useState<LocationObject>({
     location: 'remote',
-    remoteLocation: 'worldwide',
     otherGeoRestriction: false,
   });
 
@@ -341,7 +340,7 @@ function Form() {
               />
             )}
             {/* REMOTE LOCATION */}
-            {locationInfo.location !== 'onSite' && (
+            {/* {locationInfo.location !== 'onSite' && (
               <>
                 <div className="">
                   <h2 className="font-bold text-custom-brown1">
@@ -380,7 +379,7 @@ function Form() {
                   </div>
                 </div>
               </>
-            )}
+            )} */}
             {/* GEOGRAPHIC RESTRICTION */}
             {locationInfo.location !== 'onSite' && (
               <>

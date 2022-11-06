@@ -29,9 +29,6 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.listed = true; // determine if the job is listed in the jobs lists
   formData.closed = false; // determine if the job is marked as closed
   formData.external = false; // determine if the job is external (e.g. from remotive)
-  if (formData.locationInfo.location === 'onSite') {
-    formData.locationInfo.remoteLocation = undefined;
-  }
 };
 
 /**

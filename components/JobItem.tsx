@@ -77,7 +77,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                     '🏘️ Hybrid'}
                 </li>
                 {/* todo georestrictionother */}
-                <li className="capitalize">
+                <li>
                   {job.locationInfo.geoRestriction &&
                     '🌐 ' + job.locationInfo.geoRestriction?.join(', ')}
                 </li>

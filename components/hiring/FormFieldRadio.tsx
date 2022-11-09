@@ -1,5 +1,7 @@
 import React from 'react';
 
+// delete? not used looks like
+
 type Props = {
   registerId: string;
   title: string;

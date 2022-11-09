@@ -205,11 +205,6 @@ function Form() {
 
           {!retrievedCompanyData?.id && (
             <div className="flex flex-col gap-5">
-              {/* COMPANY LOGO */}
-              <LogoUploader
-                imagePublicId={imagePublicId}
-                setImagePublicId={setImagePublicId}
-              />
               {/* DESCRIPTION */}
               <div>
                 <h2 className="font-bold text-custom-brown1">
@@ -220,7 +215,11 @@ function Form() {
                   state={setcompanyDescriptionHtml}
                 />
               </div>
-
+              {/* COMPANY LOGO */}
+              <LogoUploader
+                imagePublicId={imagePublicId}
+                setImagePublicId={setImagePublicId}
+              />
               {/* COMPANY WEBSITE */}
               <FormFieldString
                 title="Company website"
@@ -495,11 +494,14 @@ function Form() {
             <h2 className="font-bold text-custom-brown1">
               Sustainable development goals (select max 5) We will verify.
             </h2>
-            <SdgElement
-              errors={errors?.locationInfo?.geoRestriction}
-              register={register}
-              setSdgs={setSdgs}
-            />
+            <div className="my-2">
+              <SdgElement
+                errors={errors?.locationInfo?.geoRestriction}
+                register={register}
+                setSdgs={setSdgs}
+              />
+            </div>
+
             <div className="text-red-500">{(errors.sdg as any)?.message}</div>
           </div>
         </div>

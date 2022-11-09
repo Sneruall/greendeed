@@ -75,6 +75,19 @@ export interface LocationObject {
   otherGeoRestriction: boolean;
 }
 
+export const ApplicationMethods = [
+  {
+    id: 1,
+    value: 'email',
+    title: 'E-mail',
+  },
+  {
+    id: 2,
+    value: 'website',
+    title: 'Website',
+  },
+];
+
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | '';
 
 export type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';

@@ -20,6 +20,7 @@ import {
   LocationObject,
   Location as LocationOptions,
   LocationInfo,
+  ApplicationMethods,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -284,20 +285,6 @@ function Form() {
               title="Type of Employment"
               options={jobTypes}
             />
-            {/* LOCATION */}
-            {/* <FormFieldDropdown
-              id="locationInfo.location"
-              register={register}
-              errors={errors.locationInfo?.location}
-              title="Location"
-              options={jobTypes}
-              onChangeMethod={() =>
-                setLocationObject((prevState) => ({
-                  ...prevState,
-                  location: 'remote',
-                }))
-              }
-            /> */}
 
             <div>
               <label
@@ -340,47 +327,7 @@ function Form() {
                 description="Please use a comma to separate multiple locations."
               />
             )}
-            {/* REMOTE LOCATION */}
-            {/* {locationInfo.location !== 'onSite' && (
-              <>
-                <div className="">
-                  <h2 className="font-bold text-custom-brown1">
-                    Remote location
-                  </h2>
-                  <FormFieldRadio
-                    errors={errors.locationInfo?.remoteLocation}
-                    registerId="locationInfo.remoteLocation"
-                    register={register}
-                    title="Worldwide"
-                    value="worldwide"
-                    state={locationInfo.remoteLocation}
-                    callback={() =>
-                      setLocationObject((prevState) => ({
-                        ...prevState,
-                        remoteLocation: 'worldwide',
-                      }))
-                    }
-                  />
-                  <FormFieldRadio
-                    errors={errors.locationInfo?.remoteLocation}
-                    registerId="locationInfo.remoteLocation"
-                    value="geoRestriction"
-                    state={locationInfo.remoteLocation}
-                    register={register}
-                    title="Geographic restrictions"
-                    callback={() =>
-                      setLocationObject((prevState) => ({
-                        ...prevState,
-                        remoteLocation: 'geoRestriction',
-                      }))
-                    }
-                  />
-                  <div className="text-red-500">
-                    {errors.locationInfo?.remoteLocation?.message}
-                  </div>
-                </div>
-              </>
-            )} */}
+
             {/* GEOGRAPHIC RESTRICTION */}
             {locationInfo.location !== 'onSite' && (
               <div>
@@ -480,29 +427,47 @@ function Form() {
                 />
               </div>
             </div>
-            {/* APPLY BY */}
+            {/* APPLY BY: todo: add form as option */}
             <div className="">
-              <h2 className="font-bold text-custom-brown1">Apply by</h2>
-
-              <FormFieldRadio
-                errors={errors.applicationMethod}
-                register={register}
-                registerId="applicationMethod"
-                title="E-mail"
-                value="email"
-                state={applicationMethod}
-                callback={() => setApplicationMethod('email')}
-              />
-              <FormFieldRadio
-                errors={errors.applicationMethod}
-                register={register}
-                registerId="applicationMethod"
-                title="Website"
-                value="website"
-                state={applicationMethod}
-                callback={() => setApplicationMethod('website')}
-              />
+              <div>
+                <label
+                  htmlFor={applicationMethod}
+                  className="font-bold text-custom-brown1"
+                >
+                  Apply by
+                </label>
+                <select
+                  {...register('applicationMethod')}
+                  onChange={(e) => {
+                    const value = e.target.value as ApplicationMethod;
+                    setApplicationMethod(value);
+                  }}
+                  id={applicationMethod}
+                  className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none`}
+                >
+                  {ApplicationMethods.map((option) => (
+                    <option value={option.value} key={option.id}>
+                      {option.title}
+                    </option>
+                  ))}
+                </select>
+                <div className="text-red-500">
+                  {errors?.applicationMethod?.message}
+                </div>
+              </div>
+              {applicationMethod === 'email' ? (
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  Applications for the position will be sent to the email
+                  address you specify.
+                </p>
+              ) : (
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  Applicants will be sent to the website you specify to apply
+                  for the position.
+                </p>
+              )}
             </div>
+
             <FormFieldString
               title={
                 applicationMethod.charAt(0).toUpperCase() +
@@ -518,17 +483,6 @@ function Form() {
                   : 'www.yourcompany.com/apply'
               }
             />
-            {applicationMethod === 'email' ? (
-              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Applications for the position will be sent to the email address
-                you specify.
-              </p>
-            ) : (
-              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Applicants will be sent to the website you specify to apply for
-                the position.
-              </p>
-            )}
           </div>
         </div>
         {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}

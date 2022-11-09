@@ -28,7 +28,7 @@ function GeoRestrictionElement({ errors, register, setLocationObject }: Props) {
     />
   ));
 
-  return <div>{optionList}</div>;
+  return <div className="my-2 flex gap-4">{optionList}</div>;
 }
 
 export default GeoRestrictionElement;

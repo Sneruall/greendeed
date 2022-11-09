@@ -16,7 +16,6 @@ type Props = {
     jobType?: any;
     locationInfo?: any;
     salary?: any;
-    equity?: any;
     applicationMethod?: any;
     apply?: any;
     sdg?: any;
@@ -50,7 +49,6 @@ const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
           errors.jobType,
           errors.locationInfo,
           errors.salary,
-          errors.equity,
           errors.applicationMethod,
           errors.apply,
         ]}

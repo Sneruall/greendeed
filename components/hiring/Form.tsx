@@ -383,9 +383,14 @@ function Form() {
             )} */}
             {/* GEOGRAPHIC RESTRICTION */}
             {locationInfo.location !== 'onSite' && (
-              <>
-                <div className=" bg-red-100">
-                  <h2>Geographic restriction?</h2>
+              <div>
+                <div className="">
+                  <label className="font-bold text-custom-brown1">
+                    Geographic restrictions
+                  </label>
+                  <p className="text-sm text-gray-500">
+                    Hiring worldwide or are there geographic restrictions?
+                  </p>
 
                   <GeoRestrictionElement
                     errors={errors?.locationInfo?.geoRestriction}
@@ -405,7 +410,7 @@ function Form() {
                     placeholder="e.g. Switzerland"
                   />
                 )}
-              </>
+              </div>
             )}
             {/* SALARY */}
             <div>

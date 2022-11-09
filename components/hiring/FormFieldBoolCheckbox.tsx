@@ -22,11 +22,11 @@ function FormFieldBoolCheckbox({
       <input
         value={value}
         type="checkbox"
-        id={registerId}
+        id={value}
         {...register(registerId)}
         onClick={callback}
       />
-      <label htmlFor={registerId}>{checkboxText}</label>
+      <label htmlFor={value}> {checkboxText}</label>
       <div className="text-red-500">{errors?.message}</div>
     </div>
   );

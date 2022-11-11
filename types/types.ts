@@ -79,12 +79,12 @@ export const ApplicationMethods = [
   {
     id: 1,
     value: 'email',
-    title: 'E-mail',
+    title: 'Sending us an E-mail',
   },
   {
     id: 2,
     value: 'website',
-    title: 'Website',
+    title: 'Via a link on our website',
   },
 ];
 
@@ -115,6 +115,7 @@ export const jobTypes = [
   'Other',
 ];
 
+// todo: ook worldwide toevoegen (en die speciaal maken, kan alleen enkel worden ingevuld)
 export const geoRestrictions = [
   {
     id: 1,
@@ -139,7 +140,7 @@ export const geoRestrictions = [
   {
     id: 5,
     value: 'other',
-    title: 'Other',
+    title: 'Specific countries...',
   },
 ];
 

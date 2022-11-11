@@ -33,7 +33,9 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
 
   return (
     <div>
-      <label className="font-bold text-custom-brown1">Company logo</label>
+      <label className="font-bold text-custom-brown1">
+        Company Logo (optional)
+      </label>
       <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
         1:1 aspect ratio recommended e.g. 500 x 500 px
       </p>

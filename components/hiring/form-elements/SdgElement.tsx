@@ -18,7 +18,7 @@ function SdgElement({ errors, register, setSdgs }: Props) {
           type="checkbox"
           id={option.code}
           {...register('sdg')}
-          class="peer hidden"
+          className="peer hidden"
         />
         <label
           htmlFor={option.code}
@@ -29,17 +29,14 @@ function SdgElement({ errors, register, setSdgs }: Props) {
               {' '}
               <Image
                 src={'/images/icons/sdg-icons/' + option.code + '.png'}
-                width={100}
-                height={100}
+                width={40}
+                height={40}
                 objectFit="contain"
                 layout="intrinsic"
               />
             </div>
             <div className="w-full font-bold text-custom-brown1">
               {option.name}
-            </div>
-            <div className="w-full text-sm">
-              A JavaScript library for building user interfaces.
             </div>
           </div>
         </label>
@@ -48,7 +45,7 @@ function SdgElement({ errors, register, setSdgs }: Props) {
     </li>
   ));
 
-  return <ul className="grid w-full gap-6 md:grid-cols-3">{optionList}</ul>;
+  return <ul className="flex flex-wrap gap-6">{optionList}</ul>;
 }
 
 export default SdgElement;

@@ -222,7 +222,7 @@ function Form() {
               />
               {/* COMPANY WEBSITE */}
               <FormFieldString
-                title="Company website"
+                title="Company website (optional)"
                 errors={errors.companyData?.website}
                 id="companyData.website"
                 register={register}
@@ -332,10 +332,10 @@ function Form() {
               <div>
                 <div className="">
                   <label className="font-bold text-custom-brown1">
-                    Geographic restrictions
+                    Remote Areas
                   </label>
                   <p className="text-sm text-gray-500">
-                    Hiring worldwide or are there geographic restrictions?
+                    Hiring worldwide or for specific areas?
                   </p>
 
                   <GeoRestrictionElement
@@ -433,7 +433,7 @@ function Form() {
                   htmlFor={applicationMethod}
                   className="font-bold text-custom-brown1"
                 >
-                  Apply by
+                  How can People Apply?
                 </label>
                 <select
                   {...register('applicationMethod')}
@@ -454,25 +454,10 @@ function Form() {
                   {errors?.applicationMethod?.message}
                 </div>
               </div>
-              {applicationMethod === 'email' ? (
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Applications for the position will be sent to the email
-                  address you specify.
-                </p>
-              ) : (
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Applicants will be sent to the website you specify to apply
-                  for the position.
-                </p>
-              )}
             </div>
 
             <FormFieldString
-              title={
-                applicationMethod.charAt(0).toUpperCase() +
-                applicationMethod.slice(1) +
-                '*'
-              }
+              title={applicationMethod === 'email' ? 'E-mail' : 'Website Link'}
               errors={errors.apply}
               id="apply"
               register={register}
@@ -515,8 +500,8 @@ function Form() {
             type="submit"
             className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
           >
-            Post job
-          </button>
+            Post Job - $200
+          </button>{' '}
         </div>
       </form>
       <div className="mx-auto flex max-w-xl space-x-4">

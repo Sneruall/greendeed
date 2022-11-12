@@ -124,8 +124,8 @@ function Form() {
       formData.category as unknown as string
     )!;
     setCompanyId(formData, retrievedCompanyData?.id);
-    if (imagePublicId) {
-      formData.companyData.logo = imagePublicId;
+    if (imagePublicId || retrievedCompanyData?.logo) {
+      formData.companyData.logo = imagePublicId || retrievedCompanyData?.logo;
     }
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
@@ -257,7 +257,35 @@ function Form() {
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}
 
+        {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
+
         <div className={`${formStep !== 2 && 'hidden'}`}>
+          {/* SDG */}
+          <div className="">
+            <h2 className="font-bold text-custom-brown1">
+              Sustainable development goals (select max 5) We will verify.
+            </h2>
+            {retrievedCompanyData && (
+              <p className="text-green-500">
+                Hey, we found the below data already, you can adjust but we will
+                then need to reverify your SDGs
+              </p>
+            )}
+            <div className="my-2">
+              <SdgElement
+                errors={errors?.locationInfo?.geoRestriction}
+                register={register}
+                setSdgs={setSdgs}
+              />
+            </div>
+
+            <div className="text-red-500">{(errors.sdg as any)?.message}</div>
+          </div>
+        </div>
+
+        {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}
+
+        <div className={`${formStep !== 3 && 'hidden'}`}>
           <div className="flex flex-col gap-5">
             {/* JOB TITLE */}
             <FormFieldString
@@ -279,9 +307,8 @@ function Form() {
           </div>
         </div>
 
-        {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}
-
-        <div className={`${formStep !== 3 && 'hidden'}`}>
+        {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
+        <div className={`${formStep !== 4 && 'hidden'}`}>
           <div className="flex flex-col gap-5">
             {/* CATEGORY */}
             <FormFieldDropdown
@@ -492,28 +519,6 @@ function Form() {
             />
           </div>
         </div>
-        {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
-
-        {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
-
-        <div className={`${formStep !== 4 && 'hidden'}`}>
-          {/* SDG */}
-          <div className="">
-            <h2 className="font-bold text-custom-brown1">
-              Sustainable development goals (select max 5) We will verify.
-            </h2>
-            <div className="my-2">
-              <SdgElement
-                errors={errors?.locationInfo?.geoRestriction}
-                register={register}
-                setSdgs={setSdgs}
-              />
-            </div>
-
-            <div className="text-red-500">{(errors.sdg as any)?.message}</div>
-          </div>
-        </div>
-
         {/* SUBMIT */}
         <div
           className={`flex justify-end space-x-4 ${formStep !== 4 && 'hidden'}`}

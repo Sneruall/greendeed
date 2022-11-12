@@ -16,7 +16,6 @@ const LogoPreview = ({ image }) => {
 
   // Use the image with public ID, 'front_face'.
   const myImage = cld.image(image);
-  console.log(myImage);
 
   // Apply the transformation.
   myImage

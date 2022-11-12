@@ -29,7 +29,8 @@ const CompanyChecker: React.FC<{
                 {retrievedCompanyData.name}
               </a>
             </Link>
-            , contact us if you would like to update your organization details.
+            , we retrieved the below information from previous job posts made by
+            you, feel free to update it.
           </p>
         )}
       {companyNameIsLoading != undefined &&

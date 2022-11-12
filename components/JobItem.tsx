@@ -5,7 +5,6 @@ import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
 import { generateJobUrl } from '../helpers/urlGeneration';
 import Image from 'next/image';
-import SDGicons from './SDGicons';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 //Todo, account for consequense that if company data changes (name, logo) in company DB it won't affect this component as it gets the info from job db, search for job.companyData

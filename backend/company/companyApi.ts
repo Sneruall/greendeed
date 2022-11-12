@@ -2,15 +2,19 @@ import { Company, Job } from '../../types/types';
 
 let timer: ReturnType<typeof setTimeout>;
 
-export async function postCompany(formData: Job) {
+export async function postCompany(
+  formData: Job,
+  retrievedCompanyData: Company | undefined
+) {
   const companyFormData: Company = {
     name: formData.companyData.name,
     id: formData.companyId,
-    description: formData.companyData.description,
-    website: formData.companyData.website,
-    logo: formData.companyData.logo,
+    description:
+      formData.companyData.description || retrievedCompanyData?.description,
+    website: formData.companyData.website || retrievedCompanyData?.website,
+    logo: formData.companyData.logo || retrievedCompanyData?.logo,
   };
-  const companyResponse = await fetch('/api/add-company', {
+  const companyResponse = await fetch('/api/update-company', {
     method: 'POST',
     body: JSON.stringify(companyFormData),
     headers: {

@@ -138,11 +138,7 @@ function Form() {
     console.log(formData);
     try {
       await postJob(formData);
-      // Als het een nieuw bedrijf is:
-      if (!retrievedCompanyData?.id) {
-        await postCompany(formData);
-      }
-      // Als het een bestaand bedrijf is wat geupdate moet worden (todo):
+      await postCompany(formData, retrievedCompanyData);
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(
@@ -247,7 +243,7 @@ function Form() {
                 {...register('companyData.website')}
                 onChange={(e) => setWebsite(e?.target.value)}
                 className={`my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
-                  errors
+                  errors.companyData?.website
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                 }`}

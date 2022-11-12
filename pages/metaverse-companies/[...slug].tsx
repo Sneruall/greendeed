@@ -24,6 +24,8 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
     </li>
   ));
 
+  console.log(company);
+
   return (
     <div>
       <Head>

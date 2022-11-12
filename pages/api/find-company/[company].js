@@ -28,6 +28,8 @@ export default async function handler(req, res) {
         id: company.id,
         name: company.name,
         description: company.description,
+        logo: company.logo,
+        website: company.website,
       });
     } else {
       res

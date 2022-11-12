@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import LogoPreview from './LogoPreview';
 
-function LogoUploader({ imagePublicId, setImagePublicId }) {
+function LogoUploader({ imagePublicId, setImagePublicId, retrievedLogo }) {
   const [loadingSpinner, setLoadingSpinner] = useState(false);
 
   const resetLoadingSpinner = () => {
@@ -40,7 +41,16 @@ function LogoUploader({ imagePublicId, setImagePublicId }) {
         1:1 aspect ratio recommended e.g. 500 x 500 px
       </p>
       <div className="my-3">
-        {imagePublicId && <LogoPreview image={imagePublicId} />}
+        {imagePublicId && (
+          <LogoPreview key={imagePublicId} image={imagePublicId} />
+        )}
+        {retrievedLogo && (
+          <Image
+            src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${retrievedLogo}?_a=AJE+xWI0`}
+            width={75}
+            height={75}
+          />
+        )}
       </div>
       <button
         type="button"

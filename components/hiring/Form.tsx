@@ -68,6 +68,7 @@ function Form() {
 
   // logo upload
   const [imagePublicId, setImagePublicId] = useState('');
+  const [retrievedLogo, setRetrievedLogo] = useState('');
 
   // Location fields tracking
   const [locationInfo, setLocationObject] = useState<LocationObject>({
@@ -222,6 +223,8 @@ function Form() {
             </div>
             {/* COMPANY LOGO */}
             <LogoUploader
+              key={retrievedCompanyData?.logo}
+              retrievedLogo={retrievedCompanyData?.logo}
               imagePublicId={imagePublicId}
               setImagePublicId={setImagePublicId}
             />

@@ -136,9 +136,11 @@ function Form() {
     console.log(formData);
     try {
       await postJob(formData);
+      // Als het een nieuw bedrijf is:
       if (!retrievedCompanyData?.id) {
         await postCompany(formData);
       }
+      // Als het een bestaand bedrijf is wat geupdate moet worden (todo):
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(
@@ -203,33 +205,35 @@ function Form() {
             />
           </div>
 
-          {!retrievedCompanyData?.id && (
-            <div className="flex flex-col gap-5">
-              {/* DESCRIPTION */}
-              <div>
-                <h2 className="font-bold text-custom-brown1">
-                  Organization description
-                </h2>
-                <RichTextEditor
-                  placeholder="Write something about your oganization..."
-                  state={setcompanyDescriptionHtml}
-                />
-              </div>
-              {/* COMPANY LOGO */}
-              <LogoUploader
-                imagePublicId={imagePublicId}
-                setImagePublicId={setImagePublicId}
-              />
-              {/* COMPANY WEBSITE */}
-              <FormFieldString
-                title="Company website (optional)"
-                errors={errors.companyData?.website}
-                id="companyData.website"
-                register={register}
-                placeholder="www.yourcompany.com"
+          <div className="flex flex-col gap-5">
+            {/* DESCRIPTION */}
+            <div>
+              <h2 className="font-bold text-custom-brown1">
+                Organization description
+              </h2>
+              <RichTextEditor
+                key={retrievedCompanyData?.id}
+                placeholder="Write something about your oganization..."
+                state={setcompanyDescriptionHtml}
+                defaultValue={
+                  retrievedCompanyData ? retrievedCompanyData.description : ''
+                }
               />
             </div>
-          )}
+            {/* COMPANY LOGO */}
+            <LogoUploader
+              imagePublicId={imagePublicId}
+              setImagePublicId={setImagePublicId}
+            />
+            {/* COMPANY WEBSITE */}
+            <FormFieldString
+              title="Company website (optional)"
+              errors={errors.companyData?.website}
+              id="companyData.website"
+              register={register}
+              placeholder="www.yourcompany.com"
+            />
+          </div>
         </div>
 
         {/* ////-------/////------////------- STEP 2 -----////------////---////----//// */}

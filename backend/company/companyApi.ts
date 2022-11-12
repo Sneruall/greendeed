@@ -29,7 +29,8 @@ export const checkCompany = (
   >,
   setRetrievedCompanyData: React.Dispatch<
     React.SetStateAction<Company | undefined>
-  >
+  >,
+  setWebsite: React.Dispatch<React.SetStateAction<string>>
 ) => {
   // if value is 2 or more...
   setCompanyNameIsLoading(true);
@@ -37,7 +38,7 @@ export const checkCompany = (
     clearTimeout(timer);
   }
   timer = setTimeout(() => {
-    findCompany(value, setRetrievedCompanyData);
+    findCompany(value, setRetrievedCompanyData, setWebsite);
     setCompanyNameIsLoading(false);
   }, 2000);
 };
@@ -47,7 +48,8 @@ async function findCompany(
   value: string,
   setRetrievedCompanyData: React.Dispatch<
     React.SetStateAction<Company | undefined>
-  >
+  >,
+  setWebsite: React.Dispatch<React.SetStateAction<string>>
 ) {
   if (value.length < 2 || !value) {
     setRetrievedCompanyData({
@@ -68,4 +70,5 @@ async function findCompany(
     website: await data.website,
     logo: await data.logo,
   });
+  setWebsite(data.website);
 }

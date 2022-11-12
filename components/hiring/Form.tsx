@@ -68,7 +68,8 @@ function Form() {
 
   // logo upload
   const [imagePublicId, setImagePublicId] = useState('');
-  const [retrievedLogo, setRetrievedLogo] = useState('');
+
+  const [website, setWebsite] = useState('');
 
   // Location fields tracking
   const [locationInfo, setLocationObject] = useState<LocationObject>({
@@ -185,7 +186,8 @@ function Form() {
                 checkCompany(
                   event?.target.value,
                   setCompanyNameIsLoading,
-                  setRetrievedCompanyData
+                  setRetrievedCompanyData,
+                  setWebsite
                 );
               }}
             />
@@ -229,13 +231,31 @@ function Form() {
               setImagePublicId={setImagePublicId}
             />
             {/* COMPANY WEBSITE */}
-            <FormFieldString
-              title="Company website (optional)"
-              errors={errors.companyData?.website}
-              id="companyData.website"
-              register={register}
-              placeholder="www.yourcompany.com"
-            />
+            <div className="">
+              <label
+                htmlFor="companyData.website"
+                className="font-bold text-custom-brown1"
+              >
+                Company website (optional)
+              </label>
+              <input
+                key={retrievedCompanyData?.website}
+                id="companyData.website"
+                type="text"
+                placeholder="www.yourcompany.com"
+                value={website}
+                {...register('companyData.website')}
+                onChange={(e) => setWebsite(e?.target.value)}
+                className={`my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none ${
+                  errors
+                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
+                }`}
+              />
+              <div className="text-red-500">
+                {errors.companyData?.website?.message}
+              </div>
+            </div>
           </div>
         </div>
 

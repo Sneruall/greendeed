@@ -7,6 +7,7 @@ const FormFieldString: React.FC<{
   title?: string;
   placeholder?: string;
   description?: string;
+  defaultValue?: string;
   onChangeMethod?: Function;
   register: any;
   errors: any;
@@ -18,6 +19,7 @@ const FormFieldString: React.FC<{
   id,
   title,
   description,
+  defaultValue,
   onChangeMethod,
   register,
   errors,
@@ -39,6 +41,7 @@ const FormFieldString: React.FC<{
         placeholder={placeholder}
         min={min}
         max={max}
+        value={defaultValue}
         step={step}
         {...register(id)}
         onChange={onChangeMethod}

@@ -1,4 +1,5 @@
-import { Job, remotiveJob, remotiveJobSelection } from '../../../types/types';
+import { Job } from 'customtypes/job/Job';
+import { remotiveJob, remotiveJobSelection } from '../../../customtypes/types';
 import { getremotiveJobSelectionFromMongo } from '../db';
 import { mapRemotiveJobtoJob } from './jobMapper';
 

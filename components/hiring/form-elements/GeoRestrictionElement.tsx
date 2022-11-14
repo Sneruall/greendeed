@@ -1,5 +1,5 @@
 import React from 'react';
-import { geoRestrictions, LocationObject } from '../../../types/types';
+import { geoRestrictions, LocationObject } from '../../../customtypes/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 
 type Props = {

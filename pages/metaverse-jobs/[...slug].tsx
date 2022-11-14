@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
-import { Company, Job, sdgList } from '../../types/types';
+import { Company, sdgList } from '../../customtypes/types';
 import {
   generateCompanyUrl,
   redirectToCorrectJobUrl,
@@ -22,6 +22,7 @@ import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 import JobItem from '../../components/JobItem';
+import { Job } from 'customtypes/job/Job';
 
 /*
 Todo:

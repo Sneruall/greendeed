@@ -1,5 +1,6 @@
+import { Job } from 'customtypes/job/Job';
 import { WithId } from 'mongodb';
-import { Company, Job } from '../types/types';
+import { Company } from '../customtypes/types';
 import {
   replaceCharactersByWhitespace,
   replaceCharactersByDash,

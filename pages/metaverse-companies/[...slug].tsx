@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
-import { Company, Job } from '../../types/types';
+import { Company } from '../../customtypes/types';
 import { options } from '../../helpers/htmlReactParserOptions';
 import {
   slugIsEqualToCompany,
@@ -13,6 +13,7 @@ import parse from 'html-react-parser';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
 import Image from 'next/image';
+import { Job } from 'customtypes/job/Job';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,

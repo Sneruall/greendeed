@@ -1,5 +1,9 @@
-import { jobCategoriesList, jobCategory } from '../../../types/jobCategories';
-import { Job, jobType, LocationInfo, remotiveJob } from '../../../types/types';
+import { Job } from 'customtypes/job/Job';
+import {
+  jobCategoriesList,
+  jobCategory,
+} from '../../../customtypes/jobCategories';
+import { jobType, LocationInfo, remotiveJob } from '../../../customtypes/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {

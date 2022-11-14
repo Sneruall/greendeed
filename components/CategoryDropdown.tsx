@@ -4,7 +4,7 @@ import { searchInputCallback } from '../helpers/search';
 import {
   getJobCategoriesListWithPlaceholder,
   SearchInputType,
-} from '../types/jobCategories';
+} from '../customtypes/jobCategories';
 
 const CategoryDropdown = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');

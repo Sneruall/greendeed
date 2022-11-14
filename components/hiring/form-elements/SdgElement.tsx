@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { LocationObject, sdgList } from '../../../types/types';
+import { LocationObject, sdgList } from '../../../customtypes/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 
 type Props = {

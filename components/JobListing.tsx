@@ -1,5 +1,5 @@
+import { Job } from 'customtypes/job/Job';
 import React from 'react';
-import { Job } from '../types/types';
 import JobItem from './JobItem';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)

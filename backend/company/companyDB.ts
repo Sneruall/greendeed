@@ -1,5 +1,5 @@
 import clientPromise from '../../lib/mongodb';
-import { Company } from '../../types/types';
+import { Company } from '../../customtypes/types';
 
 export const getCompanyFromMongo = async (queryId: string) => {
   /* Using the MongoDB driver to connect to the database and retrieve a job from the database. */

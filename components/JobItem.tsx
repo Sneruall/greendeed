@@ -91,14 +91,20 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
           </div>
           <div className="hidden justify-end gap-8 self-center sm:flex xl:col-span-2">
             <span className="hidden self-center text-sm lg:block">
-              {job.salary?.min && '💰'}
+              {job.salary?.min?.formatted && '💰'}
               {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
               {job.salary?.max?.formatted && '- '}
               {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}
-              {job.salary?.min && job.salary?.period === 'Hourly' && '/ h'}
-              {job.salary?.min && job.salary?.period === 'Monthly' && '/ m'}
-              {job.salary?.min && job.salary?.period === 'Annual' && '/ y'}
-              {job.salary?.string}
+              {job.salary?.min?.formatted &&
+                job.salary?.period === 'Hourly' &&
+                '/ h'}
+              {job.salary?.min?.formatted &&
+                job.salary?.period === 'Monthly' &&
+                '/ m'}
+              {job.salary?.min?.formatted &&
+                job.salary?.period === 'Annual' &&
+                '/ y'}
+              {job.salary?.string && '💰 ' + job.salary.string}
             </span>
             <span className="text-sm">
               {job.timestamp

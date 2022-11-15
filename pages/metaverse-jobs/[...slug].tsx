@@ -171,14 +171,20 @@ const JobPage: NextPage<{
                 )}
                 <li>⏰ {job.jobType}</li>
                 <li>
-                  {job.salary?.min && '💰'}
+                  {job.salary?.min?.formatted && '💰'}
                   {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
                   {job.salary?.max?.formatted && '- '}
                   {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}
-                  {job.salary?.min && job.salary?.period === 'Hourly' && '/ h'}
-                  {job.salary?.min && job.salary?.period === 'Monthly' && '/ m'}
-                  {job.salary?.min && job.salary?.period === 'Annual' && '/ y'}
-                  {job.salary?.string}
+                  {job.salary?.min?.formatted &&
+                    job.salary?.period === 'Hourly' &&
+                    '/ h'}
+                  {job.salary?.min?.formatted &&
+                    job.salary?.period === 'Monthly' &&
+                    '/ m'}
+                  {job.salary?.min?.formatted &&
+                    job.salary?.period === 'Annual' &&
+                    '/ y'}
+                  {job.salary?.string && '💰 ' + job.salary.string}
                 </li>
               </ul>
               {/* Button */}

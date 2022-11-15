@@ -2,6 +2,7 @@ import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
 import { Job } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
+import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 
 /* Creating a random string of 7 characters from the alphabet. */
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
@@ -97,22 +98,16 @@ const createCategoryObject = (category: jobCategory['name']) => {
 };
 export async function setSalary(
   formData: Job,
-  minSalaryValues?: {
-    float: number | null;
-    formatted: string;
-    value: string;
-  },
-  maxSalaryValues?: {
-    float: number | null;
-    formatted: string;
-    value: string;
+  salaryValues: {
+    minSalary: CurrencyInputOnChangeValues;
+    maxSalary: CurrencyInputOnChangeValues;
   }
 ) {
-  if (minSalaryValues) {
-    formData.salary!.min = minSalaryValues;
+  if (salaryValues.minSalary) {
+    formData.salary!.min = salaryValues.minSalary;
   }
-  if (maxSalaryValues) {
-    formData.salary!.max = maxSalaryValues;
+  if (salaryValues.maxSalary) {
+    formData.salary!.max = salaryValues.maxSalary;
   }
 }
 

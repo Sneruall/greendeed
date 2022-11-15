@@ -77,20 +77,31 @@ function Form() {
 
   //Currency tracking
   const [currency, setCurrency] = useState<string>('US$');
-  const [minSalaryValues, setMinSalaryValues] =
-    useState<CurrencyInputOnChangeValues>();
-  const [maxSalaryValues, setMaxSalaryValues] =
-    useState<CurrencyInputOnChangeValues>();
+  const [salaryValues, setSalaryValues] = useState<{
+    minSalary: CurrencyInputOnChangeValues;
+    maxSalary: CurrencyInputOnChangeValues;
+  }>({
+    minSalary: { float: null, formatted: '', value: '' },
+    maxSalary: { float: null, formatted: '', value: '' },
+  });
 
   const handleOnValueChange: CurrencyInputProps['onValueChange'] = (
     value,
     name,
     values
   ): void => {
-    if (name === 'salary.min') {
-      setMinSalaryValues(values);
-    } else {
-      setMaxSalaryValues(values);
+    if (values) {
+      if (name === 'salary.min') {
+        setSalaryValues((prevState) => ({
+          ...prevState,
+          minSalary: values,
+        }));
+      } else {
+        setSalaryValues((prevState) => ({
+          ...prevState,
+          maxSalary: values,
+        }));
+      }
     }
   };
 
@@ -115,7 +126,7 @@ function Form() {
     setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
-    setSalary(formData, minSalaryValues, maxSalaryValues);
+    setSalary(formData, salaryValues);
     try {
       await postJob(formData);
       await postCompany(formData, retrievedCompanyData);

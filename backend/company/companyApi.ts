@@ -1,5 +1,4 @@
-import { Job } from 'customtypes/job/Job';
-import { Company } from '../../customtypes/types';
+import { Company, Job } from '../../types/types';
 
 let timer: ReturnType<typeof setTimeout>;
 

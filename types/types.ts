@@ -5,40 +5,40 @@ import { jobCategory } from './jobCategories';
 // - consider converting into separate smaller type files (per type) like fr does
 // -  make more use of object types (with id, value and title), like Location const
 
-// export interface Job {
-//   companyId: string;
-//   companyData: {
-//     name: string;
-//     description?: string;
-//     website?: string;
-//     logo?: string;
-//   };
-//   jobTitle: string;
-//   category: jobCategory;
-//   sdg: string[];
-//   tags?: string[];
-//   jobDescription: string;
-//   jobType: jobType;
-//   salary?: {
-//     currency?: Currency;
-//     period?: SalaryPeriod;
-//     min?: CurrencyInputOnChangeValues;
-//     max?: CurrencyInputOnChangeValues;
-//     string?: string;
-//   };
-//   locationInfo: LocationInfo;
-//   email: string;
-//   timestamp: number;
-//   id: string;
-//   price: number;
-//   paid: boolean;
-//   hidden: boolean;
-//   listed: boolean;
-//   closed: boolean;
-//   applicationMethod: ApplicationMethod;
-//   apply: string;
-//   external: boolean;
-// }
+export interface Job {
+  companyId: string;
+  companyData: {
+    name: string;
+    description?: string;
+    website?: string;
+    logo?: string;
+  };
+  jobTitle: string;
+  category: jobCategory;
+  sdg: string[];
+  tags?: string[];
+  jobDescription: string;
+  jobType: jobType;
+  salary?: {
+    currency?: Currency;
+    period?: SalaryPeriod;
+    min?: CurrencyInputOnChangeValues;
+    max?: CurrencyInputOnChangeValues;
+    string?: string;
+  };
+  locationInfo: LocationInfo;
+  email: string;
+  timestamp: number;
+  id: string;
+  price: number;
+  paid: boolean;
+  hidden: boolean;
+  listed: boolean;
+  closed: boolean;
+  applicationMethod: ApplicationMethod;
+  apply: string;
+  external: boolean;
+}
 
 export interface Company {
   name: string;

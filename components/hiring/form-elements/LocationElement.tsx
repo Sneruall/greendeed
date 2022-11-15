@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocationObject } from '../../../customtypes/types';
+import { LocationObject } from '../../../types/types';
 import FormFieldRadio from '../FormFieldRadio';
 
 type Props = {

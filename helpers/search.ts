@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router';
-import { SearchInputType } from '../customtypes/jobCategories';
+import { SearchInputType } from '../types/jobCategories';
 
 let timer: ReturnType<typeof setTimeout>;
 

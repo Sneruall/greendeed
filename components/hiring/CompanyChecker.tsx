@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { Company } from '../../customtypes/types';
+import { Company } from '../../types/types';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 
 const CompanyChecker: React.FC<{

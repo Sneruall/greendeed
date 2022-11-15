@@ -1,10 +1,7 @@
 import { customAlphabet } from 'nanoid';
-import {
-  jobCategoriesList,
-  jobCategory,
-} from '../../customtypes/jobCategories';
+import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
+import { Job } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
-import { Job } from 'customtypes/job/Job';
 
 /* Creating a random string of 7 characters from the alphabet. */
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);

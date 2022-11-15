@@ -12,6 +12,7 @@ import {
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
+  Job,
   Company,
   jobTypes,
   currencies,
@@ -20,7 +21,7 @@ import {
   Location as LocationOptions,
   LocationInfo,
   ApplicationMethods,
-} from '../../customtypes/types';
+} from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
@@ -35,12 +36,11 @@ import {
 import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
 import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
-import { generateCategoriesArray } from '../../customtypes/jobCategories';
+import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
 import LogoUploader from './form-elements/LogoUploader';
 import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
-import { Job } from 'customtypes/job/Job';
 
 function Form() {
   // Form step management

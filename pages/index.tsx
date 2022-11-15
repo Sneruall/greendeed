@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
+import { Job } from '../types/types';
 import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import Footer from '../components/Footer';
-import { Job } from 'customtypes/job/Job';
 
 /*
 Todo:

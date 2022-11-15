@@ -1,7 +1,6 @@
 import clientPromise from '../../lib/mongodb';
-import { jobCategory } from '../../customtypes/jobCategories';
-import { Company, jobTypes } from '../../customtypes/types';
-import { Job } from 'customtypes/job/Job';
+import { jobCategory } from '../../types/jobCategories';
+import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (category?: jobCategory) => {
   const client = await clientPromise;

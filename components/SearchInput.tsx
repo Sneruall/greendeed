@@ -1,7 +1,7 @@
 import { NextRouter, useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { searchInputCallback } from '../helpers/search';
-import { SearchInputType } from '../customtypes/jobCategories';
+import { SearchInputType } from '../types/jobCategories';
 import { useRef } from 'react';
 
 const SearchInput = () => {

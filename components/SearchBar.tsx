@@ -6,7 +6,7 @@ import { searchInputCallback } from '../helpers/search';
 import {
   getJobCategoriesListWithPlaceholder,
   SearchInputType,
-} from '../customtypes/jobCategories';
+} from '../types/jobCategories';
 import CategoryDropdown from './CategoryDropdown';
 import HeroText from './HeroText';
 import SearchInput from './SearchInput';

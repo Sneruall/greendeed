@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
-  convertTagsAndLocations,
+  convertLocations,
   createCategoryObject,
   postJob,
   setCompanyId,
@@ -43,7 +43,6 @@ function Form() {
   const [formStep, setFormStep] = useState(1);
 
   const changeFormStep = (step: number) => {
-    console.log(step);
     if (step === 0 || step === 5) {
       return;
     } else {
@@ -108,7 +107,7 @@ function Form() {
   async function onSubmit(formData: Job) {
     // Todo: shrink this function.
     setDefaultJobAttributes(formData);
-    convertTagsAndLocations(formData);
+    convertLocations(formData);
     formData.category = createCategoryObject(
       formData.category as unknown as string
     )!;
@@ -306,14 +305,6 @@ function Form() {
               register={register}
               title="Category*"
               options={generateCategoriesArray()}
-            />
-            {/* TAGS */}
-            <FormFieldString
-              title="Tags"
-              placeholder="Separated by comma, e.g. tech stack or industry"
-              errors={errors.tags}
-              id="tags"
-              register={register}
             />
             {/* JOB TYPES */}
             <FormFieldDropdown

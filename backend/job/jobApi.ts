@@ -22,7 +22,6 @@ export const setDefaultJobAttributes = (formData: Job) => {
   // Set other job data attributes
   formData.timestamp = registerJobTimestamp();
   formData.id = setJobId();
-  // formData.sdg = ['1', '2', '3'];
   formData.price = 50; // set the price
   formData.paid = true; // set the payment status
   formData.hidden = false; // determine if the job is hidden from the platform overal
@@ -40,10 +39,7 @@ export const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 
-export const convertTagsAndLocations = (formData: Job) => {
-  if (formData.tags) {
-    formData.tags = convertCommaSeparatedStringToArray(formData.tags);
-  }
+export const convertLocations = (formData: Job) => {
   if (formData.locationInfo.onSiteLocation) {
     formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
       formData.locationInfo.onSiteLocation

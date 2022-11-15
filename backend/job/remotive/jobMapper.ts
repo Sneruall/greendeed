@@ -9,7 +9,6 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     companyId: 'external',
     jobTitle: remotiveJob.title,
     category: mapRemotiveCategoryToJobCategory(remotiveJob.category),
-    tags: remotiveJob.tags,
     jobDescription: remotiveJob.description,
     jobType: mapRemotiveJobTypesToJobTypes(remotiveJob.job_type),
     salary: {

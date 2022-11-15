@@ -17,7 +17,6 @@ export interface Job {
   jobTitle: string;
   category: jobCategory;
   sdg: string[];
-  tags?: string[];
   jobDescription: string;
   jobType: jobType;
   salary?: {

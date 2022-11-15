@@ -13,14 +13,6 @@ Todo:
 - add try catch blocks in SSR, see e.g. https://ellismin.com/2020/05/next-infinite-scroll/
 */
 
-const convertTagsToLowercase = (tags: string[] | undefined): string[] => {
-  if (tags) {
-    return tags.map((tag) => tag.toLowerCase());
-  } else {
-    return [];
-  }
-};
-
 const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   const [jobs, setJobs] = useState<Job[]>(allJobs);
   const [query, setQuery] = useState<{
@@ -56,9 +48,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
             job.category.slug == query.category &&
             (job.jobTitle.toLowerCase().includes(query.search) ||
               job.companyData.name.toLowerCase().includes(query.search) ||
-              job.jobDescription.toLowerCase().includes(query.search) ||
-              convertTagsToLowercase(job.tags).includes(query.search)) //double check if this works with uppercase
-            // job.tags?.includes(search)
+              job.jobDescription.toLowerCase().includes(query.search))
           ) {
             return true;
           }
@@ -76,9 +66,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           if (
             job.jobTitle.toLowerCase().includes(query.search) ||
             job.companyData.name.toLowerCase().includes(query.search) ||
-            job.jobDescription.toLowerCase().includes(query.search) ||
-            convertTagsToLowercase(job.tags).includes(query.search) //double check if this works with uppercase
-            // job.tags?.includes(search)
+            job.jobDescription.toLowerCase().includes(query.search)
           ) {
             return true;
           }

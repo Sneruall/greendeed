@@ -59,6 +59,7 @@ function Form() {
   // logo upload
   const [imagePublicId, setImagePublicId] = useState('');
 
+  // company website tracking
   const [website, setWebsite] = useState('');
 
   // Location fields tracking
@@ -107,8 +108,6 @@ function Form() {
   });
 
   async function onSubmit(formData: Job) {
-    // Todo: shrink this function.
-    // editFormData(formData)
     setDefaultJobAttributes(formData);
     convertLocationsToArrays(formData);
     mapCategoryToObject(formData);
@@ -123,7 +122,7 @@ function Form() {
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(
-        'an error occurred when posting job and company data into DB'
+        'an error occurred when posting job and company data into our database'
       );
     }
     reset();

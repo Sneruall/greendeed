@@ -92,9 +92,29 @@ export async function setLogo(
  * @param category - jobCategory['name']
  * @returns An object with the name and color of the category.
  */
-export const createCategoryObject = (category: jobCategory['name']) => {
+const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
+export async function setSalary(
+  formData: Job,
+  minSalaryValues?: {
+    float: number | null;
+    formatted: string;
+    value: string;
+  },
+  maxSalaryValues?: {
+    float: number | null;
+    formatted: string;
+    value: string;
+  }
+) {
+  if (minSalaryValues) {
+    formData.salary!.min = minSalaryValues;
+  }
+  if (maxSalaryValues) {
+    formData.salary!.max = maxSalaryValues;
+  }
+}
 
 export async function postJob(formData: Job) {
   // Post the job data in the Database

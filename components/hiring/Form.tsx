@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
   convertLocationsToArrays,
-  createCategoryObject,
   mapCategoryToObject,
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
   setHTMLDescription,
   setLogo,
+  setSalary,
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
@@ -116,13 +116,7 @@ function Form() {
     setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
-    if (minSalaryValues) {
-      formData.salary!.min = minSalaryValues;
-    }
-    if (maxSalaryValues) {
-      formData.salary!.max = maxSalaryValues;
-    }
-    console.log(formData);
+    setSalary(formData, minSalaryValues, maxSalaryValues);
     try {
       await postJob(formData);
       await postCompany(formData, retrievedCompanyData);

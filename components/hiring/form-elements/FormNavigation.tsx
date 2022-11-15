@@ -1,17 +1,16 @@
 import React from 'react';
 
 type Props = {
-  previousStep: () => void;
-  nextStep: () => void;
+  changeFormStep: (step: number) => void;
   formStep: number;
 };
 
-const FormNavigation = ({ previousStep, nextStep, formStep }: Props) => {
+const FormNavigation = ({ changeFormStep, formStep }: Props) => {
   return (
     <>
       <div className="flex-1">
         <button
-          onClick={previousStep}
+          onClick={() => changeFormStep(formStep - 1)}
           className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
             formStep === 1 && 'hidden'
           }`}
@@ -21,7 +20,7 @@ const FormNavigation = ({ previousStep, nextStep, formStep }: Props) => {
       </div>
 
       <button
-        onClick={nextStep}
+        onClick={() => changeFormStep(formStep + 1)}
         className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
           formStep === 4 && 'hidden'
         }`}

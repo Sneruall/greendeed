@@ -4,6 +4,7 @@ import { jobCategory } from './jobCategories';
 // Todo:
 // - consider converting into separate smaller type files (per type) like fr does
 // -  make more use of object types (with id, value and title), like Location const
+// - make use of absolute imports: https://blog.logrocket.com/understanding-relative-absolute-imports-next-js/
 
 export interface Job {
   companyId: string;

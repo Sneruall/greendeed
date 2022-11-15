@@ -19,22 +19,18 @@ import {
   SalaryPeriod,
   LocationObject,
   Location as LocationOptions,
-  LocationInfo,
   ApplicationMethods,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
-import LocationElement from './form-elements/LocationElement';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
 import CurrencyInput, { formatValue } from 'react-currency-input-field';
 import {
   CurrencyInputProps,
   CurrencyInputOnChangeValues,
 } from 'react-currency-input-field/dist/components/CurrencyInputProps';
-import FormFieldBoolCheckbox from './FormFieldBoolCheckbox';
-import FormFieldRadio from './FormFieldRadio';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
 import SdgElement from './form-elements/SdgElement';
@@ -46,19 +42,12 @@ function Form() {
   // Form step management
   const [formStep, setFormStep] = useState(1);
 
-  const previousStep = () => {
-    if (formStep === 1) {
+  const changeFormStep = (step: number) => {
+    console.log(step);
+    if (step === 0 || step === 5) {
       return;
     } else {
-      setFormStep(formStep - 1);
-    }
-  };
-
-  const nextStep = () => {
-    if (formStep === 4) {
-      return;
-    } else {
-      setFormStep(formStep + 1);
+      setFormStep(step);
     }
   };
 
@@ -534,11 +523,7 @@ function Form() {
       </form>
       <div className="mx-auto flex max-w-xl space-x-4">
         {/* FORM NAVIGATION */}
-        <FormNavigation
-          formStep={formStep}
-          previousStep={previousStep}
-          nextStep={nextStep}
-        />
+        <FormNavigation formStep={formStep} changeFormStep={changeFormStep} />
       </div>
 
       {/* RESET */}

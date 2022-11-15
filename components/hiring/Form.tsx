@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
-  convertLocations,
+  convertLocationsToArrays,
   createCategoryObject,
+  mapCategoryToObject,
   postJob,
   setCompanyId,
   setDefaultJobAttributes,
   setHTMLDescription,
+  setLogo,
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
@@ -106,15 +108,12 @@ function Form() {
 
   async function onSubmit(formData: Job) {
     // Todo: shrink this function.
+    // editFormData(formData)
     setDefaultJobAttributes(formData);
-    convertLocations(formData);
-    formData.category = createCategoryObject(
-      formData.category as unknown as string
-    )!;
+    convertLocationsToArrays(formData);
+    mapCategoryToObject(formData);
     setCompanyId(formData, retrievedCompanyData?.id);
-    if (imagePublicId || retrievedCompanyData?.logo) {
-      formData.companyData.logo = imagePublicId || retrievedCompanyData?.logo;
-    }
+    setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
     if (minSalaryValues) {

@@ -30,16 +30,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.external = false; // determine if the job is external (e.g. from remotive)
 };
 
-/**
- * It takes a category name as a string and returns the corresponding jobCategory object
- * @param category - jobCategory['name']
- * @returns An object with the name and color of the category.
- */
-export const createCategoryObject = (category: jobCategory['name']) => {
-  return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
-};
-
-export const convertLocations = (formData: Job) => {
+export const convertLocationsToArrays = (formData: Job) => {
   if (formData.locationInfo.onSiteLocation) {
     formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
       formData.locationInfo.onSiteLocation
@@ -78,6 +69,31 @@ export const setCompanyId = (
     // If it does not exist:
     formData.companyId = nanoid();
   }
+};
+
+export async function mapCategoryToObject(formData: Job) {
+  formData.category = createCategoryObject(
+    formData.category as unknown as string
+  )!;
+}
+
+export async function setLogo(
+  formData: Job,
+  imagePublicId: string,
+  retrievedLogo: string | undefined
+) {
+  if (imagePublicId || retrievedLogo) {
+    formData.companyData.logo = imagePublicId || retrievedLogo;
+  }
+}
+
+/**
+ * It takes a category name as a string and returns the corresponding jobCategory object
+ * @param category - jobCategory['name']
+ * @returns An object with the name and color of the category.
+ */
+export const createCategoryObject = (category: jobCategory['name']) => {
+  return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 
 export async function postJob(formData: Job) {

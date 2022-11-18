@@ -12,6 +12,7 @@ import {
   setHTMLDescription,
   setLogo,
   setSalary,
+  transformFormData,
 } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
@@ -118,19 +119,27 @@ function Form() {
   });
 
   async function onSubmit(formData: Form) {
-    setDefaultJobAttributes(formData);
-    convertLocationsToArrays(formData);
-    mapCategoryToObject(formData);
-    setCompanyId(formData, retrievedCompanyData?.id);
-    setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
-    setHTMLDescription(formData, jobDescriptionHtml, 'job');
-    setHTMLDescription(formData, companyDescriptionHtml, 'company');
-    setSalary(formData, salaryValues);
+    const transformedFormData: Job = await transformFormData(
+      formData,
+      jobDescriptionHtml,
+      companyDescriptionHtml,
+      salaryValues,
+      retrievedCompanyData,
+      imagePublicId
+    );
+    // setDefaultJobAttributes(formData);
+    // convertLocationsToArrays(formData);
+    // mapCategoryToObject(formData);
+    // setCompanyId(formData, retrievedCompanyData?.id);
+    // setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
+    // setHTMLDescription(formData, jobDescriptionHtml, 'job');
+    // setHTMLDescription(formData, companyDescriptionHtml, 'company');
+    // setSalary(formData, salaryValues);
     filterSdgData(formData);
     // Todo: function to leave out the false sdg data.
     try {
-      await postJob(formData);
-      await postCompany(formData, retrievedCompanyData);
+      await postJob(transformedFormData);
+      await postCompany(transformedFormData, retrievedCompanyData);
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(

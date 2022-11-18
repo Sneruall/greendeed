@@ -1,8 +1,9 @@
 import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
-import { Form, Job, sdgList } from '../../types/types';
+import { Company, Form, Job, LocationInfo, sdgList } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
+import { max } from '@cloudinary/url-gen/actions/roundCorners';
 
 /* Creating a random string of 7 characters from the alphabet. */
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
@@ -19,6 +20,50 @@ export const setJobId = () => {
   return nanoid();
 };
 
+export async function transformFormData(
+  formData: Form,
+  jobDescriptionHtml: string,
+  companyDescriptionHtml: string,
+  salaryValues: {
+    minSalary: CurrencyInputOnChangeValues;
+    maxSalary: CurrencyInputOnChangeValues;
+  },
+  retrievedCompanyData?: Company,
+  imagePublicId?: string
+) {
+  let result: Job = {
+    category: formData.category,
+    email: formData.email,
+    apply: formData.apply,
+    applicationMethod: formData.applicationMethod,
+    companyId: setCompanyId(retrievedCompanyData?.id),
+    jobTitle: formData.jobTitle,
+    jobDescription: formData.jobDescription,
+    jobType: formData.jobType,
+    id: setJobId(),
+    price: 50,
+    paid: true,
+    closed: false,
+    external: false,
+    hidden: false,
+    listed: true,
+    locationInfo: formData.locationInfo,
+    timestamp: registerJobTimestamp(),
+    salary: formData.salary,
+    companyData: formData.companyData,
+    sdg: ['1'],
+  };
+
+  convertLocationsToArrays(result.locationInfo);
+  mapCategoryToObject(result.category);
+  setLogo(result.companyData.logo, imagePublicId, retrievedCompanyData?.logo);
+  setHTMLDescription(jobDescriptionHtml, result.jobDescription);
+  setHTMLDescription(companyDescriptionHtml, result.companyData.description);
+  setSalary(result.salary?.min, result.salary?.max, salaryValues);
+
+  return result;
+}
+
 export const setDefaultJobAttributes = (formData: Form) => {
   // Set other job data attributes
   formData.sdg = ['1'];
@@ -32,60 +77,47 @@ export const setDefaultJobAttributes = (formData: Form) => {
   formData.external = false; // determine if the job is external (e.g. from remotive)
 };
 
-export const convertLocationsToArrays = (formData: Form) => {
-  if (formData.locationInfo.onSiteLocation) {
-    formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
-      formData.locationInfo.onSiteLocation
+export const convertLocationsToArrays = (locationInfo: LocationInfo) => {
+  if (locationInfo.onSiteLocation) {
+    locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
+      locationInfo.onSiteLocation
     );
   }
-  if (formData.locationInfo.geoRestrictionOther) {
-    formData.locationInfo.geoRestrictionOther =
-      convertCommaSeparatedStringToArray(
-        formData.locationInfo.geoRestrictionOther
-      );
+  if (locationInfo.geoRestrictionOther) {
+    locationInfo.geoRestrictionOther = convertCommaSeparatedStringToArray(
+      locationInfo.geoRestrictionOther
+    );
   }
 };
 
-export const setHTMLDescription = (
-  formData: Form,
-  descriptionHtml: string,
-  descriptionType: 'job' | 'company'
-) => {
-  if (descriptionType === 'job') {
-    formData.jobDescription = descriptionHtml;
-  }
-  if (descriptionType === 'company') {
-    formData.companyData.description = descriptionHtml;
-  }
+export const setHTMLDescription = (descriptionHtml: string, data?: string) => {
+  data = descriptionHtml;
 };
 
 export const setCompanyId = (
-  formData: Form,
   retrievedCompanyId: Job['companyId'] | undefined
 ) => {
   // Check if the company already exists in the database
   // If it exists take over the id and assign it to the job posting
   if (retrievedCompanyId) {
-    formData.companyId = retrievedCompanyId;
+    return retrievedCompanyId;
   } else {
     // If it does not exist:
-    formData.companyId = nanoid();
+    return nanoid();
   }
 };
 
-export async function mapCategoryToObject(formData: Form) {
-  formData.category = createCategoryObject(
-    formData.category as unknown as string
-  )!;
+export async function mapCategoryToObject(category: jobCategory) {
+  category = createCategoryObject(category as unknown as string)!;
 }
 
 export async function setLogo(
-  formData: Form,
-  imagePublicId: string,
+  logo: string | undefined,
+  imagePublicId: string | undefined,
   retrievedLogo: string | undefined
 ) {
   if (imagePublicId || retrievedLogo) {
-    formData.companyData.logo = imagePublicId || retrievedLogo;
+    logo = imagePublicId || retrievedLogo;
   }
 }
 
@@ -102,6 +134,7 @@ export async function filterSdgData(formData: Form) {
     }
   }
   console.log('filteredSdgData ' + JSON.stringify(filteredSdgData));
+  return filteredSdgData;
 }
 
 /**
@@ -113,17 +146,18 @@ const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 export async function setSalary(
-  formData: Form,
+  minSalary: CurrencyInputOnChangeValues | undefined,
+  maxSalary: CurrencyInputOnChangeValues | undefined,
   salaryValues: {
     minSalary: CurrencyInputOnChangeValues;
     maxSalary: CurrencyInputOnChangeValues;
   }
 ) {
   if (salaryValues.minSalary) {
-    formData.salary!.min = salaryValues.minSalary;
+    minSalary = salaryValues.minSalary;
   }
   if (salaryValues.maxSalary) {
-    formData.salary!.max = salaryValues.maxSalary;
+    maxSalary = salaryValues.maxSalary;
   }
 }
 

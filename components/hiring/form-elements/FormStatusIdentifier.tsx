@@ -36,8 +36,14 @@ const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
         setFormStep={setFormStep}
       />
       <FormStep
-        errors={[errors.jobTitle, errors.jobDescription]}
+        errors={errors.sdg}
         step={2}
+        formStep={formStep}
+        setFormStep={setFormStep}
+      />
+      <FormStep
+        errors={[errors.jobTitle, errors.jobDescription]}
+        step={3}
         formStep={formStep}
         setFormStep={setFormStep}
       />
@@ -50,12 +56,6 @@ const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
           errors.applicationMethod,
           errors.apply,
         ]}
-        step={3}
-        formStep={formStep}
-        setFormStep={setFormStep}
-      />
-      <FormStep
-        errors={[errors.sdg]}
         step={4}
         formStep={formStep}
         setFormStep={setFormStep}

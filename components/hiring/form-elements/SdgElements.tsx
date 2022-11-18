@@ -11,7 +11,12 @@ type Props = {
 
 function SdgElements({ errors, register }: Props) {
   const optionList = sdgList.map((option) => (
-    <SdgElement errors={errors} register={register} option={option} />
+    <SdgElement
+      key={option.code}
+      errors={errors}
+      register={register}
+      option={option}
+    />
   ));
 
   return <ul className="flex flex-wrap gap-6">{optionList}</ul>;

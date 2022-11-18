@@ -20,15 +20,15 @@ const SdgElement = ({ errors, register, option }: Props) => {
   };
 
   return (
-    <li className="flex" key={option.code}>
+    <li className="flex">
       <div className="">
         <input
           value={option.code}
           type="checkbox"
           id={option.code}
-          {...register('sdg')}
           className="peer hidden"
-          onChange={handleChange}
+          onClick={handleChange}
+          {...register(`sdg.${option.code}.id`)}
         />
         <label
           htmlFor={option.code}
@@ -49,11 +49,14 @@ const SdgElement = ({ errors, register, option }: Props) => {
               {option.name}
             </div>
             {isChecked && (
-              <textarea className="my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none" />
+              <textarea
+                {...register(`sdg.${option.code}.text`)}
+                className="my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
+              />
             )}
           </div>
         </label>
-        <div className="text-red-500">{errors?.sdgs?.message}</div>
+        <div className="text-red-500">{errors?.message}</div>
       </div>
     </li>
   );

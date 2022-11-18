@@ -51,7 +51,7 @@ export interface Company {
 }
 
 export interface OrganizationSdg {
-  id: number;
+  id: string;
   text: string;
 }
 

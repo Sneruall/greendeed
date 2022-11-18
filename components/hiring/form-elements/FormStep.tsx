@@ -9,7 +9,7 @@ type Props = {
 
 const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
   const oneIsTrue = (errors: any[]) => {
-    if (errors !== undefined) {
+    if (errors?.some) {
       return errors.some((error) => error !== undefined);
     }
   };

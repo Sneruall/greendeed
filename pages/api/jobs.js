@@ -18,6 +18,7 @@ export default async function handler(req, res) {
     const yourCollection = db.collection(process.env.MONGODB_COLLECTION);
     const result = await yourCollection.insertOne(data);
     console.log(result);
+    console.log(data);
     res.status(201).json({ message: 'Data inserted successfully in Job DB!' });
   }
 }

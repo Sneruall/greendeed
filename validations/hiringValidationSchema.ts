@@ -87,8 +87,12 @@ export default Yup.object().shape({
     }),
   }),
   sdg: Yup.array()
-    .required('req')
-    .min(1, 'required')
-    .of(Yup.object({ id: Yup.string(), text: Yup.string() })),
+    .min(1, 'At least one SDG is required')
+    .max(5, 'Max 5 SDGs allowed')
+    .of(Yup.string().required('At least one SDG is required'))
+    .required('At least one SDG is required')
+    .nullable(false)
+    .typeError('At least one SDG is required'),
+  // .of(Yup.object({ id: Yup.string(), text: Yup.string() })),
   // sdg: Yup.array().required('req').min(1, 'required').of(Yup.object()),
 });

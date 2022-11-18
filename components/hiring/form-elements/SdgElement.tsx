@@ -1,16 +1,25 @@
 import Image from 'next/image';
-import React from 'react';
-import { LocationObject, sdgList } from '../../../types/types';
-import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
+import React, { useState } from 'react';
 
 type Props = {
   register: any;
   errors: any;
-  setSdgs: React.Dispatch<React.SetStateAction<string[]>>;
+  option: any;
 };
 
-function SdgElement({ errors, register, setSdgs }: Props) {
-  const optionList = sdgList.map((option) => (
+const SdgElement = ({ errors, register, option }: Props) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      console.log('✅ Checkbox is checked');
+    } else {
+      console.log('⛔️ Checkbox is NOT checked');
+    }
+    setIsChecked((current) => !current);
+  };
+
+  return (
     <li className="flex" key={option.code}>
       <div className="">
         <input
@@ -19,6 +28,7 @@ function SdgElement({ errors, register, setSdgs }: Props) {
           id={option.code}
           {...register('sdg')}
           className="peer hidden"
+          onChange={handleChange}
         />
         <label
           htmlFor={option.code}
@@ -38,14 +48,15 @@ function SdgElement({ errors, register, setSdgs }: Props) {
             <div className="w-full font-bold text-custom-brown1">
               {option.name}
             </div>
+            {isChecked && (
+              <textarea className="my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none" />
+            )}
           </div>
         </label>
         <div className="text-red-500">{errors?.sdgs?.message}</div>
       </div>
     </li>
-  ));
-
-  return <ul className="flex flex-wrap gap-6">{optionList}</ul>;
-}
+  );
+};
 
 export default SdgElement;

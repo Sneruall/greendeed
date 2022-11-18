@@ -35,10 +35,10 @@ import {
 } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import RichTextEditor from './form-elements/richtext/RichTextEditor';
 import { generateCategoriesArray } from '../../types/jobCategories';
-import SdgElement from './form-elements/SdgElement';
 import LogoUploader from './form-elements/LogoUploader';
 import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
+import SdgElements from './form-elements/SdgElements';
 
 function Form() {
   // Form step management
@@ -67,9 +67,6 @@ function Form() {
     location: 'remote',
     otherGeoRestriction: false,
   });
-
-  // SDG fields tracking
-  const [sdgs, setSdgs] = useState<string[]>([]);
 
   // Application method tracking
   const [applicationMethod, setApplicationMethod] =
@@ -263,11 +260,7 @@ function Form() {
               </p>
             )}
             <div className="my-2">
-              <SdgElement
-                errors={errors?.locationInfo?.geoRestriction}
-                register={register}
-                setSdgs={setSdgs}
-              />
+              <SdgElements errors={errors?.sdg} register={register} />
             </div>
 
             <div className="text-red-500">{(errors.sdg as any)?.message}</div>

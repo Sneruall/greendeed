@@ -1,4 +1,5 @@
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
+import { string } from 'yup';
 import { jobCategory } from './jobCategories';
 
 // Todo:
@@ -46,6 +47,12 @@ export interface Company {
   description?: string;
   website?: string;
   logo?: string;
+  sdgs?: OrganizationSdg[];
+}
+
+export interface OrganizationSdg {
+  id: number;
+  text: string;
 }
 
 export interface LocationInfo {

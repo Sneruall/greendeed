@@ -50,6 +50,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
             </div>
             {isChecked && (
               <textarea
+                placeholder="Tell us about your goal"
                 {...register(`sdgtext${option.code}`)}
                 className="my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
               />

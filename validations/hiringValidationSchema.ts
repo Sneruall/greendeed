@@ -86,6 +86,7 @@ export default Yup.object().shape({
       excludeEmptyString: true,
     }),
   }),
+  sdgtext1: Yup.string().required('req'),
   sdg: Yup.array()
     .min(1, 'At least one SDG is required')
     .max(5, 'Max 5 SDGs allowed')

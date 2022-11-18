@@ -1,6 +1,6 @@
 import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
-import { Form, Job } from '../../types/types';
+import { Form, Job, sdgList } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 
@@ -87,6 +87,21 @@ export async function setLogo(
   if (imagePublicId || retrievedLogo) {
     formData.companyData.logo = imagePublicId || retrievedLogo;
   }
+}
+
+export async function filterSdgData(formData: Form) {
+  const sdgData = formData.companyData.sdgInfo;
+  const filteredSdgData: {}[] = [];
+
+  for (const key in sdgData) {
+    console.log(`${key}: ${sdgData[key as keyof Boolean]}`);
+    if (sdgData[key as keyof Boolean]) {
+      let object: any = {};
+      object[key] = sdgData[key as keyof Boolean];
+      filteredSdgData.push(object);
+    }
+  }
+  console.log('filteredSdgData ' + JSON.stringify(filteredSdgData));
 }
 
 /**

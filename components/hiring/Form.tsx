@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
   convertLocationsToArrays,
+  filterSdgData,
   mapCategoryToObject,
   postJob,
   setCompanyId,
@@ -125,6 +126,7 @@ function Form() {
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
     setSalary(formData, salaryValues);
+    filterSdgData(formData);
     // Todo: function to leave out the false sdg data.
     try {
       await postJob(formData);
@@ -137,7 +139,7 @@ function Form() {
     }
     reset();
   }
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <div className="">

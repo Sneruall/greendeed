@@ -7,6 +7,74 @@ import { jobCategory } from './jobCategories';
 // -  make more use of object types (with id, value and title), like Location const
 // - make use of absolute imports: https://blog.logrocket.com/understanding-relative-absolute-imports-next-js/
 
+export interface Form {
+  companyId: string;
+  companyData: {
+    name: string;
+    description?: string;
+    website?: string;
+    logo?: string;
+    sdg2?: boolean;
+    sdg1?: boolean;
+    sdg3?: boolean;
+    sdg4?: boolean;
+    sdg5?: boolean;
+    sdg6?: boolean;
+    sdg7?: boolean;
+    sdg8?: boolean;
+    sdg9?: boolean;
+    sdg10?: boolean;
+    sdg11?: boolean;
+    sdg12?: boolean;
+    sdg13?: boolean;
+    sdg14?: boolean;
+    sdg15?: boolean;
+    sdg16?: boolean;
+    sdg17?: boolean;
+    sdg1text?: string;
+    sdg2text?: string;
+    sdg3text?: string;
+    sdg4text?: string;
+    sdg5text?: string;
+    sdg6text?: string;
+    sdg7text?: string;
+    sdg8text?: string;
+    sdg9text?: string;
+    sdg10text?: string;
+    sdg11text?: string;
+    sdg12text?: string;
+    sdg13text?: string;
+    sdg14text?: string;
+    sdg15text?: string;
+    sdg16text?: string;
+    sdg17text?: string;
+  };
+  jobTitle: string;
+  category: jobCategory;
+  sdg: string[];
+  jobDescription: string;
+  jobType: jobType;
+  salary?: {
+    currency?: Currency;
+    period?: SalaryPeriod;
+    min?: CurrencyInputOnChangeValues;
+    max?: CurrencyInputOnChangeValues;
+    string?: string;
+  };
+  locationInfo: LocationInfo;
+  email: string;
+  timestamp: number;
+  id: string;
+  price: number;
+  paid: boolean;
+  hidden: boolean;
+  listed: boolean;
+  closed: boolean;
+  applicationMethod: ApplicationMethod;
+  apply: string;
+  external: boolean;
+}
+
 export interface Job {
   companyId: string;
   companyData: {

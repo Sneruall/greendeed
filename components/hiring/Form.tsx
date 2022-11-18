@@ -22,6 +22,7 @@ import {
   LocationObject,
   Location as LocationOptions,
   ApplicationMethods,
+  Form,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -115,7 +116,7 @@ function Form() {
     mode: 'all',
   });
 
-  async function onSubmit(formData: Job) {
+  async function onSubmit(formData: Form) {
     setDefaultJobAttributes(formData);
     convertLocationsToArrays(formData);
     mapCategoryToObject(formData);
@@ -124,6 +125,7 @@ function Form() {
     setHTMLDescription(formData, jobDescriptionHtml, 'job');
     setHTMLDescription(formData, companyDescriptionHtml, 'company');
     setSalary(formData, salaryValues);
+    // Todo: function to leave out the false sdg data.
     try {
       await postJob(formData);
       await postCompany(formData, retrievedCompanyData);
@@ -135,6 +137,7 @@ function Form() {
     }
     reset();
   }
+  console.log(errors);
 
   return (
     <div className="">

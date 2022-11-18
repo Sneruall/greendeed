@@ -1,6 +1,6 @@
 import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
-import { Job } from '../../types/types';
+import { Form, Job } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 
@@ -19,8 +19,9 @@ export const setJobId = () => {
   return nanoid();
 };
 
-export const setDefaultJobAttributes = (formData: Job) => {
+export const setDefaultJobAttributes = (formData: Form) => {
   // Set other job data attributes
+  formData.sdg = ['1'];
   formData.timestamp = registerJobTimestamp();
   formData.id = setJobId();
   formData.price = 50; // set the price
@@ -31,7 +32,7 @@ export const setDefaultJobAttributes = (formData: Job) => {
   formData.external = false; // determine if the job is external (e.g. from remotive)
 };
 
-export const convertLocationsToArrays = (formData: Job) => {
+export const convertLocationsToArrays = (formData: Form) => {
   if (formData.locationInfo.onSiteLocation) {
     formData.locationInfo.onSiteLocation = convertCommaSeparatedStringToArray(
       formData.locationInfo.onSiteLocation
@@ -46,7 +47,7 @@ export const convertLocationsToArrays = (formData: Job) => {
 };
 
 export const setHTMLDescription = (
-  formData: Job,
+  formData: Form,
   descriptionHtml: string,
   descriptionType: 'job' | 'company'
 ) => {
@@ -59,7 +60,7 @@ export const setHTMLDescription = (
 };
 
 export const setCompanyId = (
-  formData: Job,
+  formData: Form,
   retrievedCompanyId: Job['companyId'] | undefined
 ) => {
   // Check if the company already exists in the database
@@ -72,14 +73,14 @@ export const setCompanyId = (
   }
 };
 
-export async function mapCategoryToObject(formData: Job) {
+export async function mapCategoryToObject(formData: Form) {
   formData.category = createCategoryObject(
     formData.category as unknown as string
   )!;
 }
 
 export async function setLogo(
-  formData: Job,
+  formData: Form,
   imagePublicId: string,
   retrievedLogo: string | undefined
 ) {
@@ -97,7 +98,7 @@ const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 export async function setSalary(
-  formData: Job,
+  formData: Form,
   salaryValues: {
     minSalary: CurrencyInputOnChangeValues;
     maxSalary: CurrencyInputOnChangeValues;
@@ -111,12 +112,13 @@ export async function setSalary(
   }
 }
 
-export async function postJob(formData: Job) {
+export async function postJob(formData: Form) {
   // Post the job data in the Database
   //todo no console log and nothing is done with data?
+
   const response = await fetch('/api/jobs', {
     method: 'POST',
-    body: JSON.stringify(formData),
+    body: JSON.stringify(formData), //todo only save what we need, like postCompany does, convert Form to Job.
     headers: {
       'Content-Type': 'application/json',
     },

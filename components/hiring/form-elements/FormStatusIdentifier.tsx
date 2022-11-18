@@ -36,7 +36,7 @@ const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
         setFormStep={setFormStep}
       />
       <FormStep
-        errors={errors.sdg}
+        errors={errors?.sdg}
         step={2}
         formStep={formStep}
         setFormStep={setFormStep}

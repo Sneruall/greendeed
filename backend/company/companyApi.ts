@@ -1,9 +1,10 @@
-import { Company, Job } from '../../types/types';
+import { Company, Form, Job } from '../../types/types';
 
 let timer: ReturnType<typeof setTimeout>;
 
+// Todo: convert Formdata into Company type.
 export async function postCompany(
-  formData: Job,
+  formData: Form,
   retrievedCompanyData: Company | undefined
 ) {
   const companyFormData: Company = {

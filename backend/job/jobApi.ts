@@ -56,7 +56,7 @@ export async function transformFormData(
 
   convertLocationsToArrays(result.locationInfo);
   mapCategoryToObject(result.category);
-  setLogo(result.companyData.logo, imagePublicId, retrievedCompanyData?.logo);
+  setLogo(result, imagePublicId, retrievedCompanyData?.logo);
   setHTMLDescription(jobDescriptionHtml, result.jobDescription);
   setHTMLDescription(companyDescriptionHtml, result.companyData.description);
   setSalary(result, salaryValues);
@@ -112,12 +112,12 @@ export async function mapCategoryToObject(category: jobCategory) {
 }
 
 export async function setLogo(
-  logo: string | undefined,
+  result: Job,
   imagePublicId: string | undefined,
   retrievedLogo: string | undefined
 ) {
   if (imagePublicId || retrievedLogo) {
-    logo = imagePublicId || retrievedLogo;
+    result.companyData.logo = imagePublicId || retrievedLogo;
   }
 }
 

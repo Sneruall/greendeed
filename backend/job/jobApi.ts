@@ -57,8 +57,8 @@ export async function transformFormData(
   convertLocationsToArrays(result.locationInfo);
   mapCategoryToObject(result.category);
   setLogo(result, imagePublicId, retrievedCompanyData?.logo);
-  setHTMLDescription(jobDescriptionHtml, result.jobDescription);
-  setHTMLDescription(companyDescriptionHtml, result.companyData.description);
+  setHTMLDescription(result, jobDescriptionHtml, 'job');
+  setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
 
   return result;
@@ -90,8 +90,17 @@ export const convertLocationsToArrays = (locationInfo: LocationInfo) => {
   }
 };
 
-export const setHTMLDescription = (descriptionHtml: string, data?: string) => {
-  data = descriptionHtml;
+export const setHTMLDescription = (
+  result: Job,
+  descriptionHtml: string,
+  descriptionType: 'job' | 'company'
+) => {
+  if (descriptionType === 'job') {
+    result.jobDescription = descriptionHtml;
+  }
+  if (descriptionType === 'company') {
+    result.companyData.description = descriptionHtml;
+  }
 };
 
 export const setCompanyId = (

@@ -59,7 +59,7 @@ export async function transformFormData(
   setLogo(result.companyData.logo, imagePublicId, retrievedCompanyData?.logo);
   setHTMLDescription(jobDescriptionHtml, result.jobDescription);
   setHTMLDescription(companyDescriptionHtml, result.companyData.description);
-  setSalary(result.salary?.min, result.salary?.max, salaryValues);
+  setSalary(result, salaryValues);
 
   return result;
 }
@@ -146,18 +146,17 @@ const createCategoryObject = (category: jobCategory['name']) => {
   return jobCategoriesList.find((jobCategory) => jobCategory.name === category);
 };
 export async function setSalary(
-  minSalary: CurrencyInputOnChangeValues | undefined,
-  maxSalary: CurrencyInputOnChangeValues | undefined,
+  result: Job,
   salaryValues: {
     minSalary: CurrencyInputOnChangeValues;
     maxSalary: CurrencyInputOnChangeValues;
   }
 ) {
   if (salaryValues.minSalary) {
-    minSalary = salaryValues.minSalary;
+    result.salary!.min = salaryValues.minSalary;
   }
   if (salaryValues.maxSalary) {
-    maxSalary = salaryValues.maxSalary;
+    result.salary!.max = salaryValues.maxSalary;
   }
 }
 

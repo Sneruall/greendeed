@@ -196,26 +196,41 @@ export const jobTypes = [
 export const geoRestrictions = [
   {
     id: 1,
+    value: 'africa',
+    title: 'Africa',
+  },
+  {
+    id: 2,
+    value: 'asia',
+    title: 'Asia',
+  },
+  {
+    id: 3,
     value: 'europe',
     title: 'Europe',
   },
   {
-    id: 2,
-    value: 'us',
-    title: 'US',
-  },
-  {
-    id: 3,
-    value: 'emea',
-    title: 'EMEA',
-  },
-  {
     id: 4,
-    value: 'apac',
-    title: 'APAC',
+    value: 'latin-america',
+    title: 'Latin America',
   },
   {
     id: 5,
+    value: 'middle-east',
+    title: 'Middle East',
+  },
+  {
+    id: 6,
+    value: 'north-america',
+    title: 'North America',
+  },
+  {
+    id: 7,
+    value: 'oceania',
+    title: 'Oceania',
+  },
+  {
+    id: 8,
     value: 'other',
     title: 'Specific countries...',
   },

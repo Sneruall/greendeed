@@ -14,7 +14,7 @@ function GeoRestrictionElement({ errors, register, setLocationObject }: Props) {
       key={option.id}
       errors={errors?.locationInfo?.geoRestriction}
       registerId="locationInfo.geoRestriction"
-      value={option.title}
+      value={option.value}
       register={register}
       checkboxText={option.title}
       callback={() => {

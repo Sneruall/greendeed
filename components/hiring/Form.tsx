@@ -176,7 +176,7 @@ function Form() {
             {/* COMPANY NAME */}
             <FormFieldString
               id="companyData.name"
-              title="Organization name*"
+              title="Organization name"
               errors={errors.companyData?.name}
               placeholder="e.g. Greenpeace"
               register={register}
@@ -288,7 +288,7 @@ function Form() {
             {/* JOB TITLE */}
             <FormFieldString
               id="jobTitle"
-              title="Job Title*"
+              title="Job Title"
               placeholder="e.g. Senior Product Manager"
               register={register}
               errors={errors.jobTitle}
@@ -296,7 +296,7 @@ function Form() {
 
             {/* JOB DESCRIPTION  */}
             <div>
-              <h2 className="text-base font-bold">Job description*</h2>
+              <h2 className="text-base font-bold">Job description</h2>
               <RichTextEditor
                 placeholder="Write a good job description..."
                 state={setjobDescriptionHtml}
@@ -313,7 +313,7 @@ function Form() {
               errors={errors.category}
               id="category"
               register={register}
-              title="Category*"
+              title="Category"
               options={generateCategoriesArray()}
             />
             {/* JOB TYPES */}

@@ -3,7 +3,6 @@ import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
 import { Company, Form, Job, LocationInfo, sdgList } from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
-import { max } from '@cloudinary/url-gen/actions/roundCorners';
 
 /* Creating a random string of 7 characters from the alphabet. */
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
@@ -53,7 +52,7 @@ export async function transformFormData(
     companyData: formData.companyData,
     sdg: ['1'],
   };
-
+  // todo: checken of deze functies wel async moeten worden gemarked...
   convertLocationsToArrays(result.locationInfo);
   mapCategoryToObject(result.category);
   setLogo(result, imagePublicId, retrievedCompanyData?.logo);

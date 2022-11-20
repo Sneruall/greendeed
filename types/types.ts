@@ -195,14 +195,19 @@ export const jobTypes = [
 // todo: ook worldwide toevoegen (en die speciaal maken, kan alleen enkel worden ingevuld)
 export const geoRestrictions = [
   {
+    id: 0,
+    value: 'worldwide',
+    title: '🗺️ Worldwide',
+  },
+  {
     id: 1,
     value: 'africa',
-    title: 'Africa',
+    title: '🌍 Africa',
   },
   {
     id: 2,
     value: 'asia',
-    title: 'Asia',
+    title: '🌏 Asia',
   },
   {
     id: 3,
@@ -228,11 +233,6 @@ export const geoRestrictions = [
     id: 7,
     value: 'oceania',
     title: 'Oceania',
-  },
-  {
-    id: 8,
-    value: 'other',
-    title: 'Specific countries...',
   },
 ];
 

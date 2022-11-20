@@ -4,16 +4,18 @@ let timer: ReturnType<typeof setTimeout>;
 
 // Todo: convert Formdata into Company type.
 export async function postCompany(
-  formData: Form,
+  transformedFormData: Job,
   retrievedCompanyData: Company | undefined
 ) {
   const companyFormData: Company = {
-    name: formData.companyData.name,
-    id: formData.companyId,
+    name: transformedFormData.companyData.name,
+    id: transformedFormData.companyId,
     description:
-      formData.companyData.description || retrievedCompanyData?.description,
-    website: formData.companyData.website || retrievedCompanyData?.website,
-    logo: formData.companyData.logo || retrievedCompanyData?.logo,
+      transformedFormData.companyData.description ||
+      retrievedCompanyData?.description,
+    website:
+      transformedFormData.companyData.website || retrievedCompanyData?.website,
+    logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
   };
   const companyResponse = await fetch('/api/update-company', {
     method: 'POST',

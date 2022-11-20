@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import Autocomplete from '@mui/material/Autocomplete';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
@@ -25,6 +26,7 @@ import {
   Location as LocationOptions,
   ApplicationMethods,
   Form,
+  geoRestrictions,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -42,6 +44,8 @@ import LogoUploader from './form-elements/LogoUploader';
 import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 import SdgElements from './form-elements/SdgElements';
+import { Chip, TextField } from '@mui/material';
+import { countriesAndContinents } from '../../types/countriesAndContinents';
 
 function Form() {
   // Form step management
@@ -113,7 +117,7 @@ function Form() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Job>({
+  } = useForm<Form>({
     resolver: yupResolver(hiringValidationSchema),
     mode: 'all',
   });
@@ -149,6 +153,13 @@ function Form() {
     reset();
   }
   // console.log(errors);
+
+  const HandleGeoRestrictionsChange = (
+    event: React.SyntheticEvent<Element, Event>,
+    values: string[]
+  ) => {
+    console.log(values);
+  };
 
   return (
     <div className="">
@@ -398,6 +409,32 @@ function Form() {
                 )}
               </div>
             )}
+
+            {/* Updated geo restriction field */}
+
+            <Autocomplete
+              multiple
+              id="tags-filled"
+              options={countriesAndContinents.map((option) => option.name)}
+              defaultValue={[geoRestrictions[0].title]}
+              freeSolo
+              renderTags={(value: readonly string[], getTagProps) =>
+                value.map((option: string, index: number) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  placeholder="Continent or country..."
+                />
+              )}
+            />
             {/* SALARY */}
             <div>
               <h3 className="font-bold text-custom-brown1">

@@ -473,7 +473,7 @@ function Form() {
                       }`}
                     />
                   </div>
-                  <div className="text-red-500">{errors?.salary?.min}</div>
+                  {/* <div className="text-red-500">{errors?.salary?.min}</div> */}
                 </div>
                 <div className="my-auto">-</div>
 
@@ -493,7 +493,7 @@ function Form() {
                         : 'border-gray-300  focus:border-blue-500 focus:ring-blue-500'
                     }`}
                   />
-                  <div className="text-red-500">{errors?.salary?.max}</div>
+                  {/* <div className="text-red-500">{errors?.salary?.max}</div> */}
                 </div>
                 <FormFieldDropdown
                   id="salary.period"

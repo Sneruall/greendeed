@@ -14,7 +14,12 @@ module.exports = {
         ict: ['itc-avant-garde-gothic-pro', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        custom: { brown1: '#402C06', yellow1: '#F3D45A', green1: '#CDF68227' },
+        custom: {
+          brown1: '#402C06',
+          yellow1: '#F3D45A',
+          green1: '#CDF68227',
+          grey1: '#0000001F',
+        },
       },
     },
   },

@@ -12,6 +12,9 @@
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;
   }
+  .heading-wide {
+    @apply font-century font-bold uppercase tracking-[10px] text-custom-brown1;
+  }
   .text-main {
     @apply font-century leading-6 tracking-wide text-custom-brown1;
   }

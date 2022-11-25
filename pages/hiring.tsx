@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';
 
@@ -25,9 +26,9 @@ function Hiring() {
       </Head>
       <Header />
       <div className="mx-auto">
-        {/* Hero */}
         <HiringHero />
-        {/* Companies */}
+        <CompanyLogos />
+
         {/* Pricing */}
         {/* How it works */}
         <Form />

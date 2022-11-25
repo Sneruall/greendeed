@@ -2,9 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { BiChevronsDown } from 'react-icons/bi';
 
-type Props = {};
-
-function HiringHero({}: Props) {
+function HiringHero() {
   return (
     <div className="bg-custom-green1">
       <div className="mx-auto max-w-3xl pt-32">

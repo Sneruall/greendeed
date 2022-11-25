@@ -3,6 +3,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Form from '../components/hiring/Form';
+import HiringHero from '../components/hiring/HiringHero';
 
 /*
 TODO
@@ -23,8 +24,14 @@ function Hiring() {
         ></script>
       </Head>
       <Header />
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto">
+        {/* Hero */}
+        <HiringHero />
+        {/* Companies */}
+        {/* Pricing */}
+        {/* How it works */}
         <Form />
+        {/* Logos/ reviews */}
       </div>
       <Footer />
     </>

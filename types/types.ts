@@ -212,7 +212,7 @@ export const geoRestrictions = [
   {
     id: 3,
     value: 'europe',
-    title: 'Europe',
+    title: '🌍 Europe',
   },
   {
     id: 4,

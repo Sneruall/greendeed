@@ -162,7 +162,7 @@ function Form() {
   };
 
   return (
-    <div className="">
+    <div id="post-job" className="mx-auto max-w-3xl">
       <div className="my-12 lg:my-24">
         <h1 className="mx-auto max-w-xl text-center font-alfa text-xl text-custom-brown1 sm:text-3xl md:text-5xl md:leading-snug lg:max-w-3xl lg:text-6xl lg:leading-snug">
           Find your next employee with us

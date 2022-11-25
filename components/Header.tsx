@@ -3,7 +3,7 @@ import React from 'react';
 
 function Header() {
   return (
-    <div className="z-50 bg-white py-4 shadow-[0_3px_20px_0px_rgba(0,0,0,0.11)]">
+    <div className="absolute top-0 z-50 w-full py-4">
       <nav className="mx-auto flex max-w-screen-2xl justify-between px-4 md:px-10 2xl:px-0">
         <div className="self-center">
           <Link href="/">

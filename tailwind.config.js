@@ -4,16 +4,17 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-  ],  
+  ],
   theme: {
     extend: {
       fontFamily: {
         sans: ['century-gothic', ...defaultTheme.fontFamily.sans],
-        alfa: ['Alfa Slab One'],
-        century: ['century-gothic', 'sans-serif'],
+        alfa: ['Alfa Slab One', ...defaultTheme.fontFamily.sans],
+        century: ['century-gothic', ...defaultTheme.fontFamily.sans],
+        ict: ['itc-avant-garde-gothic-pro', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        custom: { brown1: '#402C06', yellow1: '#F3D45A' },
+        custom: { brown1: '#402C06', yellow1: '#F3D45A', green1: '#CDF68227' },
       },
     },
   },

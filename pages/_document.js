@@ -3,9 +3,10 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className="scroll-smooth">
         <Head>
           {/* eslint-disable-next-line */}
+          {/* Todo: delete unused fonts */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Staatliches"
@@ -14,6 +15,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One"
             rel="stylesheet"
           />
+          <link rel="stylesheet" href="https://use.typekit.net/nue7njm.css" />
           <link href="https://use.typekit.net/nue7njm.css" rel="stylesheet" />
           <link
             rel="stylesheet"

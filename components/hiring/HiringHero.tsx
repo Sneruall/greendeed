@@ -31,7 +31,7 @@ function HiringHero({}: Props) {
         </p>
         <Link href="#post-job">
           <a>
-            <button className="button-1 my-10">
+            <button className="button-with-icon my-10">
               <div className="flex items-center justify-center gap-2">
                 <span>Post Job</span>
                 <BiChevronsDown className="h-5 w-5" />

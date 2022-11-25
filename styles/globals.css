@@ -7,16 +7,16 @@
     @apply font-sans text-xl leading-relaxed text-black;
   }
   .heading-xl {
-    @apply font-alfa text-4xl;
+    @apply font-alfa text-4xl text-custom-brown1;
   }
   .heading-sm {
-    @apply mb-2 font-century text-sm font-bold;
+    @apply mb-2 font-century font-bold text-custom-brown1;
   }
   .text-main {
-    @apply font-century text-sm leading-6 tracking-wide;
+    @apply font-century leading-6 tracking-wide text-custom-brown1;
   }
-  .button-1 {
-    @apply rounded-full bg-custom-yellow1 py-2 px-8 font-ict text-xs tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
+  .button-with-icon {
+    @apply rounded-full bg-custom-yellow1 py-2 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
   }
   /* Todo: make sure this only applies to the job description part */
   /* p {

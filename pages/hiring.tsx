@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';
+import Pricing from '../components/hiring/Pricing';
 
 /*
 TODO
@@ -28,8 +29,7 @@ function Hiring() {
       <div className="mx-auto">
         <HiringHero />
         <CompanyLogos />
-
-        {/* Pricing */}
+        <Pricing />
         {/* How it works */}
         <Form />
         {/* Logos/ reviews */}

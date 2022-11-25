@@ -3,7 +3,7 @@ import React from 'react';
 
 function CompanyLogos() {
   return (
-    <>
+    <div className="my-20">
       <div className="my-16 flex items-start justify-center gap-10">
         <div className="my-auto w-full border border-custom-grey1"></div>
         <div className="flex-none text-center">
@@ -76,7 +76,7 @@ function CompanyLogos() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

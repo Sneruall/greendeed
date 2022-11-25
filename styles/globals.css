@@ -9,8 +9,14 @@
   .heading-xl {
     @apply font-alfa text-4xl text-custom-brown1;
   }
+  .heading-lg {
+    @apply font-alfa text-3xl text-custom-brown1;
+  }
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;
+  }
+  .heading-sm-ict {
+    @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
   }
   .heading-wide {
     @apply font-century font-bold uppercase tracking-[10px] text-custom-brown1;
@@ -18,8 +24,14 @@
   .text-main {
     @apply font-century leading-6 tracking-wide text-custom-brown1;
   }
+  .button-1 {
+    @apply rounded-full bg-custom-yellow1 py-3 px-8 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
+  }
   .button-with-icon {
-    @apply rounded-full bg-custom-yellow1 py-2 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
+    @apply rounded-full bg-custom-yellow1 py-3 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
+  }
+  .shadow-1 {
+    @apply shadow-[0_10px_30px_0px_rgba(0,0,0,0.05)];
   }
   /* Todo: make sure this only applies to the job description part */
   /* p {

@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';
+import HowItWorks from '../components/hiring/HowItWorks';
 import Pricing from '../components/hiring/Pricing';
 
 /*
@@ -30,9 +31,9 @@ function Hiring() {
         <HiringHero />
         <CompanyLogos />
         <Pricing />
-        {/* How it works */}
+        <HowItWorks />
         <Form />
-        {/* Logos/ reviews */}
+        <CompanyLogos />
       </div>
       <Footer />
     </>

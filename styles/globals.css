@@ -22,7 +22,7 @@
     @apply font-century font-bold uppercase tracking-[10px] text-custom-brown1;
   }
   .text-main {
-    @apply font-century leading-6 tracking-wide text-custom-brown1;
+    @apply font-century leading-8 tracking-wide text-custom-brown1;
   }
   .button-1 {
     @apply rounded-full bg-custom-yellow1 py-3 px-8 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;

@@ -5,7 +5,7 @@ import { BiChevronsDown } from 'react-icons/bi';
 function HiringHero() {
   return (
     <div className="bg-custom-green1">
-      <div className="mx-auto max-w-3xl pt-32">
+      <div className="mx-auto max-w-4xl pt-32">
         <h1 className="heading-xl mb-14">Find your next employee with us</h1>
         <h2 className="heading-sm">
           Target a large sustainable oriented audience

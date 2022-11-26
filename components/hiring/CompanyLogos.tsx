@@ -16,7 +16,7 @@ function CompanyLogos() {
         </div>
         <div className="my-auto w-full border border-custom-grey1"></div>
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 grayscale sm:flex-row">
+      <div className="mx-auto flex max-w-6xl flex-col justify-between gap-8 text-center grayscale sm:flex-row">
         <div>
           <Image
             src={'/images/hiring/company1.png'}

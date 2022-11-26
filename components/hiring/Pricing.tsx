@@ -4,7 +4,7 @@ import React from 'react';
 function Pricing() {
   return (
     <div>
-      <div className="shadow-1 mx-auto my-32 max-w-xl bg-custom-green1">
+      <div className="shadow-1 mx-auto my-20 max-w-xl bg-custom-green1">
         <div className="mb-16 pt-16 text-center">
           <h2 className="heading-lg">What you get / included</h2>
         </div>

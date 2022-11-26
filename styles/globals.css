@@ -22,7 +22,7 @@
     @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
   }
   .heading-wide {
-    @apply font-century text-xs font-bold uppercase tracking-[10px] text-custom-brown1 sm:text-base;
+    @apply font-century text-xs font-bold uppercase tracking-[10px] text-custom-brown1 md:text-sm lg:text-base;
   }
   .text-main {
     @apply font-century leading-8 tracking-wide text-custom-brown1;

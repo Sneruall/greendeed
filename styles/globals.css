@@ -6,6 +6,9 @@
   article {
     @apply font-sans text-xl leading-relaxed text-black;
   }
+  a {
+    @apply hover:text-current;
+  }
   .site-margins {
     @apply px-4 sm:px-10 2xl:px-0;
   }
@@ -14,6 +17,9 @@
   }
   .heading-lg {
     @apply font-alfa text-xl text-custom-brown1 sm:text-2xl md:text-3xl;
+  }
+  .heading-md {
+    @apply font-alfa tracking-wider text-custom-brown1;
   }
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;

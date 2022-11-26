@@ -5,13 +5,13 @@ type Props = {};
 
 function Footer({}: Props) {
   return (
-    <footer className="z-50 mt-10 bg-custom-brown1 pt-10 text-white">
-      <div className="site-margins mx-auto grid max-w-screen-2xl gap-6 py-10 md:grid-cols-2">
+    <footer className="z-50 mt-10 bg-custom-brown1 py-10 text-white">
+      <div className="site-margins mx-auto my-10 grid max-w-6xl gap-6 md:grid-cols-2 md:gap-10">
         <div>
           <Link href="/">
             <a className="my-auto text-4xl font-bold text-white">Greendeed</a>
           </Link>
-          <div>
+          <div className="mt-4 max-w-md italic">
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut
@@ -19,20 +19,42 @@ function Footer({}: Props) {
           </div>
         </div>
 
-        <div>
-          <div>
-            <h2 className="heading-lg text-white">Information</h2>
-            <Link href="/">
-              <a className="footer-link">Hiring</a>
-            </Link>
+        <div className="md:grid md:grid-cols-2">
+          <div className="mb-4 flex flex-col gap-2">
+            <h2 className="heading-md text-white">Information</h2>
+            <div>
+              <Link href="/">
+                <a className="footer-link">Hiring</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/">
+                <a className="footer-link">Blog</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/">
+                <a className="footer-link">Sustainable Goals</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/">
+                <a className="footer-link">Terms & Conditions</a>
+              </Link>
+            </div>
           </div>
-          <div>
-            <h2 className="heading-lg text-white">Contact</h2>
+          <div className="flex flex-col gap-2">
+            <h2 className="heading-md text-white">Contact</h2>
+            <div>
+              <Link href="mailto:info@greendeed.io">
+                <a className="footer-link">info@greendeed.io</a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <div className="pt-20 text-center text-sm">
-        <p>Copyright Greendeed</p>
+      <div className="text-center text-sm">
+        <p>© 2023 greendeed | Made sustainably</p>
       </div>
     </footer>
   );

@@ -3,8 +3,10 @@ import React from 'react';
 
 function HowItWorks() {
   return (
-    <div className="mx-auto my-32 max-w-6xl">
-      <h1 className="heading-xl mx-auto mb-14 max-w-4xl">How it works</h1>
+    <div className="site-margins mx-auto my-32 max-w-6xl">
+      <h1 className="heading-xl mx-auto mb-14 max-w-4xl text-center md:text-left">
+        How it works
+      </h1>
       <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row">
         <div className="flex max-w-xs flex-col gap-4">
           <div>

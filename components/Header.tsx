@@ -16,7 +16,7 @@ function Header() {
               Blog
             </a>
           </Link>
-          <Link href="/hiring">
+          <Link href="/hiring#post-job">
             <a>
               <button className="rounded-lg bg-custom-yellow1 py-2 px-6 font-alfa text-custom-brown1 hover:opacity-70">
                 Post a job

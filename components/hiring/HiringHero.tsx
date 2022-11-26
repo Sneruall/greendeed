@@ -4,9 +4,11 @@ import { BiChevronsDown } from 'react-icons/bi';
 
 function HiringHero() {
   return (
-    <div className="bg-custom-green1">
-      <div className="mx-auto max-w-4xl pt-32">
-        <h1 className="heading-xl mb-14">Find your next employee with us</h1>
+    <div className="site-margins bg-custom-green1">
+      <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
+        <h1 className="heading-xl mb-6 sm:mb-14">
+          Find your next employee with us
+        </h1>
         <h2 className="heading-sm">
           Target a large sustainable oriented audience
         </h2>
@@ -15,11 +17,9 @@ function HiringHero() {
           vacancy/recruitment platforms. And also to other green/sustainable
           platforms. Tell shortly how greendeed works, and why the SDG are so
           beneficial to use (from the perspective of the employer (narrowed down
-          the search (sus is so broad it’s hard to loose overview for the job
-          seekers), attract the right people, trustworthy appeal also because
-          our team of experts check whether it’s true.
+          the search (sus is so broad it’s har
         </p>
-        <h2 className="heading-sm mt-8">
+        <h2 className="heading-sm mt-6 sm:mt-8">
           Find the right candidate sooner because of the SDG’s
         </h2>
         <p className="text-main">

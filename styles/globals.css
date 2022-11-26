@@ -6,8 +6,11 @@
   article {
     @apply font-sans text-xl leading-relaxed text-black;
   }
+  .site-margins {
+    @apply px-4 sm:px-10 2xl:px-0;
+  }
   .heading-xl {
-    @apply font-alfa text-4xl text-custom-brown1;
+    @apply font-alfa text-2xl text-custom-brown1 sm:text-3xl md:text-4xl;
   }
   .heading-lg {
     @apply font-alfa text-3xl text-custom-brown1;

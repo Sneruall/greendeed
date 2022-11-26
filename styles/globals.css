@@ -13,7 +13,7 @@
     @apply font-alfa text-2xl text-custom-brown1 sm:text-3xl md:text-4xl;
   }
   .heading-lg {
-    @apply font-alfa text-3xl text-custom-brown1;
+    @apply font-alfa text-xl text-custom-brown1 sm:text-2xl md:text-3xl;
   }
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;

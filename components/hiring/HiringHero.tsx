@@ -28,12 +28,10 @@ function HiringHero() {
           platforms. Tell shortly how greendeed works, and why the SDG are so
         </p>
         <Link href="#post-job">
-          <a>
+          <a className="hover:no-underline">
             <button className="button-with-icon my-10">
-              <div className="flex items-center justify-center gap-2">
-                <span>Post Job</span>
-                <BiChevronsDown className="h-5 w-5" />
-              </div>
+              <span className="w-full">Post Job</span>
+              <BiChevronsDown className="ml-2 h-6 w-6" />
             </button>
           </a>
         </Link>

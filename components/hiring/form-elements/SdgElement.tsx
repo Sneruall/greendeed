@@ -20,38 +20,37 @@ const SdgElement = ({ errors, register, option }: Props) => {
   };
 
   return (
-    <li className="flex">
-      <div className="">
-        <input
-          type="checkbox"
-          id={option.code}
-          className="peer hidden"
-          onClick={handleChange}
-          {...register(`companyData.sdgInfo.sdg${option.code}`)}
-        />
-        <label
-          htmlFor={option.code}
-          className="inline-flex w-full  cursor-pointer items-center justify-between rounded-lg border border-[#D5D3D3] bg-white p-5 text-gray-500 shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] hover:bg-gray-50 hover:text-gray-600 peer-checked:border-green-600 peer-checked:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-gray-300"
-        >
-          <div className="block">
-            <div className="inline-flex cursor-pointer self-center border-2 transition duration-200 ease-in-out hover:scale-110">
-              {' '}
+    <li className={`${isChecked && 'col-span-2 row-span-2'}`}>
+      <div
+        className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
+      >
+        <label htmlFor={option.code} className="w-full cursor-pointer">
+          <div className="mb-2 flex">
+            <input
+              type="checkbox"
+              id={option.code}
+              className="peer h-4 w-4 cursor-pointer rounded-full bg-transparent text-black focus:ring-0"
+              onClick={handleChange}
+              {...register(`companyData.sdgInfo.sdg${option.code}`)}
+            />
+            <div className="w-full"></div>
+          </div>
+
+          <div className="m-1 block">
+            <div className="inline-flex cursor-pointer self-center transition duration-200 ease-in-out">
               <Image
                 src={'/images/icons/sdg-icons/' + option.code + '.png'}
-                width={40}
-                height={40}
+                width={100}
+                height={100}
                 objectFit="contain"
                 layout="intrinsic"
               />
             </div>
-            <div className="w-full font-bold text-custom-brown1">
-              {option.name}
-            </div>
             {isChecked && (
               <textarea
-                placeholder="Tell us about your goal"
+                placeholder="Tell us about your goal..."
                 {...register(`companyData.sdgInfo.sdg${option.code}text`)}
-                className="my-2 block w-full rounded-lg border border-[#D5D3D3] bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
+                className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
               />
             )}
           </div>

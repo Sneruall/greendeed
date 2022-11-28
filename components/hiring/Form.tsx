@@ -175,7 +175,7 @@ function Form() {
         />
 
         <form
-          className="mx-auto max-w-xl"
+          className="mx-auto max-w-2xl"
           id="form"
           onSubmit={handleSubmit(onSubmit)}
         >
@@ -277,9 +277,6 @@ function Form() {
           <div className={`${formStep !== 2 && 'hidden'}`}>
             {/* SDG */}
             <div className="">
-              <h2 className="font-bold text-custom-brown1">
-                Sustainable development goals (select max 5) We will verify.
-              </h2>
               {retrievedCompanyData && (
                 <p className="text-green-500">
                   Hey, we found the below data already, you can adjust but we

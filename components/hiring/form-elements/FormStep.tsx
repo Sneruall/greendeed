@@ -26,7 +26,7 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
       className="flex items-center gap-3 hover:cursor-pointer"
     >
       <div
-        className={`flex-none rounded-full bg-custom-green2 p-2
+        className={`rounded-full bg-custom-green2 p-2 
        ${oneIsTrue(errors) ? 'border-2 border-red-500' : 'border-none'}`}
       >
         {step === 1 && (
@@ -36,7 +36,7 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
         {step === 3 && <HiOutlinePencil className="h-7 w-7 text-black" />}
         {step === 4 && <HiOutlineBriefcase className="h-7 w-7 text-black" />}
       </div>
-      <div className="w-32 flex-none text-xs">
+      <div className="text-xs">
         <div className="heading-sm-ict mb-0">
           {step === formStep && `Step ${step}/4`}
         </div>

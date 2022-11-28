@@ -20,6 +20,7 @@ module.exports = {
           green1: '#CDF68227',
           green2: '#CDF682',
           grey1: '#0000001F',
+          grey2: '#F7F6F2',
         },
       },
     },

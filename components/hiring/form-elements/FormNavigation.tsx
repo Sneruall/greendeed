@@ -1,4 +1,9 @@
 import React from 'react';
+import { BiChevronsDown } from 'react-icons/bi';
+import {
+  HiOutlineArrowNarrowLeft,
+  HiOutlineArrowNarrowRight,
+} from 'react-icons/hi';
 
 type Props = {
   changeFormStep: (step: number) => void;
@@ -11,24 +16,33 @@ const FormNavigation = ({ changeFormStep, formStep }: Props) => {
       <div className="flex-1">
         <button
           onClick={() => changeFormStep(formStep - 1)}
-          className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
-            formStep === 1 && 'hidden'
-          }`}
+          className={`button-with-icon-3 ${formStep === 1 && 'hidden'}`}
         >
-          Previous
+          <HiOutlineArrowNarrowLeft className="mr-2 h-6 w-10" />
+          <span className="w-full">Previous</span>
         </button>
       </div>
 
       <button
         onClick={() => changeFormStep(formStep + 1)}
-        className={`rounded-full bg-green-400 px-4 py-2 hover:bg-opacity-30 ${
-          formStep === 4 && 'hidden'
-        }`}
+        className={`button-with-icon-2  ${formStep === 4 && 'hidden'}`}
       >
-        Next
+        <span className="w-full">Next</span>
+        <HiOutlineArrowNarrowRight className="ml-2 h-6 w-10" />
       </button>
     </>
   );
 };
+
+{
+  /* <Link href="#post-job">
+<a className="hover:no-underline">
+  <button className="button-with-icon my-10">
+    <span className="w-full">Post Job</span>
+    <BiChevronsDown className="ml-2 h-6 w-6" />
+  </button>
+</a>
+</Link> */
+}
 
 export default FormNavigation;

@@ -23,7 +23,7 @@ type Props = {
 
 const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
   return (
-    <div className="my-10 flex justify-between rounded-full bg-white px-10 py-2">
+    <div className="my-10 flex justify-around rounded-full bg-white py-2">
       <FormStep
         errors={[
           errors.companyName,

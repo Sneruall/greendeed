@@ -162,7 +162,7 @@ function Form() {
   };
 
   return (
-    <div id="post-job" className="site-margins bg-custom-green1">
+    <div id="post-job" className="site-margins bg-custom-green1 py-16">
       <div className="mx-auto max-w-3xl ">
         <div className="my-12 lg:my-24">
           <h1 className="heading-xl">
@@ -566,7 +566,7 @@ function Form() {
             </button>{' '}
           </div>
         </form>
-        <div className="mx-auto flex max-w-xl space-x-4">
+        <div className="mx-auto my-10 flex max-w-xl space-x-4">
           {/* FORM NAVIGATION */}
           <FormNavigation formStep={formStep} changeFormStep={changeFormStep} />
         </div>

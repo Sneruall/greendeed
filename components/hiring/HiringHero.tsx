@@ -6,9 +6,7 @@ function HiringHero() {
   return (
     <div className="site-margins bg-custom-green1">
       <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
-        <h1 className="heading-xl mb-6 sm:mb-14">
-          Find your next employee with us
-        </h1>
+        <h1 className="heading-2xl mb-6 sm:mb-14">Find your next employee</h1>
         <h2 className="heading-sm">
           Target a large sustainable oriented audience
         </h2>

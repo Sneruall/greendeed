@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  HiOutlineBriefcase,
+  HiOutlineGlobe,
+  HiOutlineOfficeBuilding,
+  HiOutlinePencil,
+} from 'react-icons/hi';
 
 type Props = {
   step: number;
@@ -17,11 +23,28 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
   return (
     <div
       onClick={() => setFormStep(step)}
-      className={`border-2 bg-green-400 p-4 hover:cursor-pointer hover:bg-opacity-100 ${
-        formStep !== step && 'bg-opacity-30'
-      } ${oneIsTrue(errors) ? 'border-red-500' : 'border-black'}`}
+      className="flex items-center gap-3 hover:cursor-pointer"
     >
-      <span>{step}</span>
+      <div
+        className={`flex-none rounded-full bg-custom-green2 p-2
+       ${oneIsTrue(errors) ? 'border-2 border-red-500' : 'border-none'}`}
+      >
+        {step === 1 && (
+          <HiOutlineOfficeBuilding className="h-7 w-7 text-black" />
+        )}
+        {step === 2 && <HiOutlineGlobe className="h-7 w-7 text-black" />}
+        {step === 3 && <HiOutlinePencil className="h-7 w-7 text-black" />}
+        {step === 4 && <HiOutlineBriefcase className="h-7 w-7 text-black" />}
+      </div>
+      <div className="w-32 flex-none text-xs">
+        <div className="heading-sm-ict mb-0">
+          {step === formStep && `Step ${step}/4`}
+        </div>
+        <div>{step === 1 && formStep === 1 && 'Company details'}</div>
+        <div>{step === 2 && formStep === 2 && 'Company details'}</div>
+        <div>{step === 3 && formStep === 3 && 'Company details'}</div>
+        <div>{step === 4 && formStep === 4 && 'Company details'}</div>
+      </div>
     </div>
   );
 };

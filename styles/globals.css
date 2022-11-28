@@ -12,6 +12,9 @@
   .site-margins {
     @apply px-4 sm:px-10 2xl:px-0;
   }
+  .heading-2xl {
+    @apply font-alfa text-2xl text-custom-brown1 sm:text-4xl md:text-5xl;
+  }
   .heading-xl {
     @apply font-alfa text-2xl text-custom-brown1 sm:text-3xl md:text-4xl;
   }

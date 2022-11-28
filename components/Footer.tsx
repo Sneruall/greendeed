@@ -6,7 +6,7 @@ type Props = {};
 function Footer({}: Props) {
   return (
     <footer className="z-50 mt-10 bg-custom-brown1 py-10 text-white">
-      <div className="site-margins mx-auto my-10 grid max-w-6xl gap-6 md:grid-cols-2 md:gap-10">
+      <div className="site-margins mx-auto my-10 grid max-w-screen-2xl gap-6 md:grid-cols-2 md:gap-10">
         <div>
           <Link href="/">
             <a className="my-auto text-4xl font-bold text-white">Greendeed</a>

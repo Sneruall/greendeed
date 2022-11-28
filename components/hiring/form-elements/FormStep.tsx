@@ -30,20 +30,22 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
        ${oneIsTrue(errors) ? 'border-2 border-red-500' : 'border-none'}`}
       >
         {step === 1 && (
-          <HiOutlineOfficeBuilding className="h-7 w-7 text-black" />
+          <HiOutlineOfficeBuilding className="text-black sm:h-7 sm:w-7" />
         )}
-        {step === 2 && <HiOutlineGlobe className="h-7 w-7 text-black" />}
-        {step === 3 && <HiOutlinePencil className="h-7 w-7 text-black" />}
-        {step === 4 && <HiOutlineBriefcase className="h-7 w-7 text-black" />}
+        {step === 2 && <HiOutlineGlobe className="text-black sm:h-7 sm:w-7" />}
+        {step === 3 && <HiOutlinePencil className="text-black sm:h-7 sm:w-7" />}
+        {step === 4 && (
+          <HiOutlineBriefcase className="text-black sm:h-7 sm:w-7" />
+        )}
       </div>
       <div className="text-xs">
         <div className="heading-sm-ict mb-0">
           {step === formStep && `Step ${step}/4`}
         </div>
         <div>{step === 1 && formStep === 1 && 'Company details'}</div>
-        <div>{step === 2 && formStep === 2 && 'Company details'}</div>
-        <div>{step === 3 && formStep === 3 && 'Company details'}</div>
-        <div>{step === 4 && formStep === 4 && 'Company details'}</div>
+        <div>{step === 2 && formStep === 2 && 'Sustainable goals'}</div>
+        <div>{step === 3 && formStep === 3 && 'Job Description'}</div>
+        <div>{step === 4 && formStep === 4 && 'Job Details'}</div>
       </div>
     </div>
   );

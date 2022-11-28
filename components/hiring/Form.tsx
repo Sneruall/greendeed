@@ -168,11 +168,6 @@ function Form() {
       className="site-margins bg-custom-green1 py-16"
     >
       <div className="mx-auto max-w-3xl ">
-        <div className="my-12 lg:my-24">
-          <h1 className="heading-xl">
-            Start by filling in your company details
-          </h1>
-        </div>
         <FormStatusIdentifier
           setFormStep={setFormStep}
           formStep={formStep}

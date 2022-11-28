@@ -46,17 +46,17 @@ import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 import SdgElements from './form-elements/SdgElements';
 import { Chip, TextField } from '@mui/material';
 import { countriesAndContinents } from '../../types/countriesAndContinents';
+import { useRef } from 'react';
 
 function Form() {
   // Form step management
   const [formStep, setFormStep] = useState(1);
 
+  const formRef = useRef<null | HTMLDivElement>(null);
+
   const changeFormStep = (step: number) => {
-    if (step === 0 || step === 5) {
-      return;
-    } else {
-      setFormStep(step);
-    }
+    setFormStep(step);
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Checking the entered company name with what is already in the DB
@@ -162,7 +162,11 @@ function Form() {
   };
 
   return (
-    <div id="post-job" className="site-margins bg-custom-green1 py-16">
+    <div
+      id="post-job"
+      ref={formRef}
+      className="site-margins bg-custom-green1 py-16"
+    >
       <div className="mx-auto max-w-3xl ">
         <div className="my-12 lg:my-24">
           <h1 className="heading-xl">

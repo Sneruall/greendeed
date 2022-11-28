@@ -31,9 +31,18 @@ const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
           {formStep === 3 && 'Tell us about the Job'}
           {formStep === 4 && 'Finalize the Job Listing'}
         </h1>
-        <p className="text-main">Some description...</p>
+        <p className="text-main">
+          {formStep === 1 &&
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+          {formStep === 2 &&
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+          {formStep === 3 &&
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+          {formStep === 4 &&
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+        </p>
       </div>
-      <div className="my-10 flex justify-around rounded-full bg-white py-2">
+      <div className="shadow-1 my-16 flex justify-around rounded-full bg-white py-2">
         <FormStep
           errors={[
             errors.companyName,

@@ -20,53 +20,16 @@ const Index = ({ posts }) => {
         <title>Greendeed Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
-      <main className="mx-auto">
-        <BlogHero latestPost={posts[1]} />
-        <BlogPosts posts={posts} />
-        {/* BlogPosts */}
-        {/* Latest jobs section */}
-
-        {posts.length > 0 &&
-          posts.map(
-            ({
-              _id,
-              title = '',
-              excerpt = '',
-              slug = '',
-              publishedAt = '',
-              mainImage,
-            }) =>
-              slug && (
-                <div key={_id} className="border-b py-3">
-                  <div className="grid grid-cols-4 items-center gap-2">
-                    <div className="col-span-3">
-                      <p className="text-sm text-gray-500">
-                        {new Date(publishedAt).toDateString()}
-                      </p>
-                      <Link href="/blog/[slug]" as={`/blog/${slug.current}`}>
-                        <a className="mt-6 text-xl font-bold leading-snug">
-                          {title}
-                        </a>
-                      </Link>
-                      <p className="mt-2">{excerpt}</p>
-                    </div>
-                    {mainImage && (
-                      <div className="">
-                        <Image
-                          {...useNextSanityImage(client, mainImage)}
-                          layout="responsive"
-                          sizes="(max-width: 800px) 100vw, 800px"
-                          alt={mainImage.alt}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-          )}
-      </main>
+      {posts.length > 0 ? (
+        <main className="mx-auto">
+          <BlogHero latestPost={posts[1]} />
+          <BlogPosts posts={posts} />{' '}
+        </main>
+      ) : (
+        <div className="site-margins my-32">Retrieving blog posts failed</div>
+      )}
+      {/* Latest jobs section */}
       <Footer />
     </>
   );

@@ -429,3 +429,17 @@ export const sdgList = [
     img: '',
   },
 ];
+
+export interface blog {
+  _id: number;
+  title: string;
+  excerpt: string;
+  slug: string;
+  publishedAt: string;
+  mainImage: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+}

@@ -16,6 +16,7 @@ module.exports = {
       colors: {
         custom: {
           brown1: '#402C06',
+          brown2: '#b3ab9b',
           yellow1: '#F3D45A',
           green1: '#CDF68227',
           green2: '#CDF682',
@@ -23,6 +24,8 @@ module.exports = {
           grey2: '#F7F6F2',
           grey3: '#00000012',
           grey4: '#402C06',
+          grey5: '#363636',
+          grey6: '#FDFFF8',
         },
       },
     },

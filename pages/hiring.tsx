@@ -27,14 +27,14 @@ function Hiring() {
         ></script>
       </Head>
       <Header />
-      <div className="mx-auto">
+      <main className="mx-auto">
         <HiringHero />
         <CompanyLogos />
         <Pricing />
         <HowItWorks />
         <Form />
         <CompanyLogos />
-      </div>
+      </main>
       <Footer />
     </>
   );

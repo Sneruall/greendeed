@@ -27,8 +27,14 @@
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;
   }
+  .heading-md-ict {
+    @apply mb-2 font-ict text-xl font-bold tracking-wide text-custom-brown2;
+  }
   .heading-sm-ict {
     @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
+  }
+  .heading-lg-century {
+    @apply font-century text-2xl text-custom-grey6;
   }
   .heading-wide {
     @apply font-century text-xs font-bold uppercase tracking-[10px] text-custom-brown1 md:text-sm lg:text-base;

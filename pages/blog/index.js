@@ -6,6 +6,9 @@ import Image from 'next/image';
 import Header from '../../components/Header';
 import { useNextSanityImage } from 'next-sanity-image';
 import Footer from '../../components/Footer';
+import BlogHero from '../../components/blog/BlogHero';
+
+// Todo: convert to typescript
 
 const Index = ({ posts }) => {
   console.log(posts);
@@ -18,7 +21,11 @@ const Index = ({ posts }) => {
       </Head>
 
       <Header />
-      <main className="mx-auto max-w-2xl">
+      <main className="mx-auto">
+        <BlogHero latestPost={posts[0]} />
+        {/* BlogPosts */}
+        {/* Latest jobs section */}
+
         {posts.length > 0 &&
           posts.map(
             ({

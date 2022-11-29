@@ -19,7 +19,11 @@ function SdgElements({ errors, register }: Props) {
     />
   ));
 
-  return <ul className="grid auto-rows-max grid-cols-5 gap-4">{optionList}</ul>;
+  return (
+    <ul className="grid auto-rows-max grid-cols-5 gap-1 sm:gap-4">
+      {optionList}
+    </ul>
+  );
 }
 
 export default SdgElements;

@@ -34,7 +34,7 @@
     @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
   }
   .heading-lg-century {
-    @apply font-century text-2xl font-bold text-custom-grey6;
+    @apply font-century text-xl font-bold text-custom-grey6 sm:text-2xl;
   }
   .heading-wide {
     @apply font-century text-xs font-bold uppercase tracking-[10px] text-custom-brown1 md:text-sm lg:text-base;

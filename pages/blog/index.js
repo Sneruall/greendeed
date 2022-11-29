@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import { useNextSanityImage } from 'next-sanity-image';
 import Footer from '../../components/Footer';
 import BlogHero from '../../components/blog/BlogHero';
+import BlogPosts from '../../components/blog/BlogPosts';
 
 // Todo: convert to typescript
 
@@ -23,6 +24,7 @@ const Index = ({ posts }) => {
       <Header />
       <main className="mx-auto">
         <BlogHero latestPost={posts[1]} />
+        <BlogPosts />
         {/* BlogPosts */}
         {/* Latest jobs section */}
 

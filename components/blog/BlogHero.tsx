@@ -29,15 +29,16 @@ function BlogHero({ latestPost }: Props) {
                   sizes="(max-width: 800px) 100vw, 800px"
                   alt={latestPost.title}
                 />
-                <div className="absolute bottom-0 w-full bg-custom-grey5 bg-opacity-60 px-12 py-6 text-white">
+                <div className="absolute bottom-0 w-full bg-custom-grey5 bg-opacity-60 px-8 py-4 text-white sm:px-12 sm:py-6">
                   <p className="text-sm italic">
                     {new Date(latestPost.publishedAt).toDateString()}
                   </p>
-                  <h2 className="heading-lg-century my-2">
-                    {' '}
+                  <h2 className="heading-lg-century sm:my-2">
                     {latestPost.title}
                   </h2>
-                  <p className="line-clamp-4">{latestPost.excerpt}</p>
+                  <p className="text-sm line-clamp-2 sm:text-base sm:line-clamp-3 lg:line-clamp-4">
+                    {latestPost.excerpt}
+                  </p>
                 </div>
               </div>
             </Link>

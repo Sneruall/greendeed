@@ -48,10 +48,10 @@ const SdgElement = ({ errors, register, option }: Props) => {
             </div>
             <div className="invisible absolute bottom-[110px] z-20 w-96 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 peer-hover:visible dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 lg:peer-hover:opacity-100">
               <div className="space-y-2 p-3">
-                <h3 className="font-semibold text-custom-grey4">
+                <h3 className="font-semibold text-custom-brown1">
                   {option.name}
                 </h3>
-                <p className="text-xs text-custom-grey4">
+                <p className="text-xs text-custom-brown1">
                   {option.description}
                 </p>
                 {/* <a

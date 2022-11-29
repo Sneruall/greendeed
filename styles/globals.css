@@ -33,8 +33,23 @@
   .heading-sm-ict {
     @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
   }
-  .heading-lg-century {
-    @apply font-century text-xl font-bold text-custom-grey6 sm:text-2xl;
+  .blog-heading {
+    @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl;
+  }
+  .blog-date {
+    @apply text-xs font-bold italic tracking-wide text-custom-brown3;
+  }
+  .blog-continue-reading {
+    @apply font-century text-xs font-bold uppercase tracking-wider text-custom-brown3 hover:underline;
+  }
+  .card-zoom {
+    @apply relative overflow-hidden;
+  }
+  .card-zoom-image {
+    @apply absolute h-full w-full transform bg-cover bg-center transition-all duration-500 ease-in-out;
+  }
+  .card-zoom:hover .card-zoom-image {
+    @apply scale-125;
   }
   .heading-wide {
     @apply font-century text-xs font-bold uppercase tracking-[10px] text-custom-brown1 md:text-sm lg:text-base;
@@ -59,6 +74,9 @@
   }
   .shadow-1 {
     @apply shadow-[0_10px_30px_0px_rgba(0,0,0,0.05)];
+  }
+  .shadow-2 {
+    @apply shadow-[0_8px_20px_0px_rgba(0,0,0,0.07)];
   }
   /* Todo: make sure this only applies to the job description part */
   /* p {

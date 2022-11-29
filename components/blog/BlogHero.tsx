@@ -11,7 +11,7 @@ type Props = {
 
 function BlogHero({ latestPost }: Props) {
   return (
-    <div className="site-margins">
+    <section className="site-margins">
       <div className="mx-auto max-w-7xl pt-24 sm:pt-32">
         <div>
           <h1 className="heading-2xl mb-4">Sustainable Jobs Blog</h1>
@@ -22,20 +22,20 @@ function BlogHero({ latestPost }: Props) {
         <div className="my-10">
           {latestPost.mainImage && (
             <Link href="/blog/[slug]" as={`/blog/${latestPost.slug.current}`}>
-              <div className="relative cursor-pointer">
-                <Image
-                  {...useNextSanityImage(client, latestPost.mainImage)}
-                  layout="responsive"
-                  sizes="(max-width: 800px) 100vw, 800px"
-                  alt={latestPost.title}
-                />
-                <div className="absolute bottom-0 w-full bg-custom-grey5 bg-opacity-60 px-8 py-4 text-white sm:px-12 sm:py-6">
-                  <p className="text-sm italic">
+              <div className="card-zoom relative h-[500px] cursor-pointer lg:h-[620px]">
+                <div className="card-zoom-image">
+                  <Image
+                    {...useNextSanityImage(client, latestPost.mainImage)}
+                    layout="fill"
+                    objectFit="cover"
+                    alt={latestPost.title}
+                  />
+                </div>
+                <div className="absolute bottom-0 w-full bg-custom-grey4 bg-opacity-60 px-8 py-4 text-white sm:px-12 sm:py-6">
+                  <p className="blog-date text-white">
                     {new Date(latestPost.publishedAt).toDateString()}
                   </p>
-                  <h2 className="heading-lg-century sm:my-2">
-                    {latestPost.title}
-                  </h2>
+                  <h2 className="blog-heading sm:my-2">{latestPost.title}</h2>
                   <p className="text-sm line-clamp-2 sm:text-base sm:line-clamp-3 lg:line-clamp-4">
                     {latestPost.excerpt}
                   </p>
@@ -45,7 +45,7 @@ function BlogHero({ latestPost }: Props) {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

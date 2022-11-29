@@ -10,15 +10,18 @@ type Props = { post: blog };
 function BlogPostCard({ post }: Props) {
   return (
     <Link href="/blog/[slug]" as={`/blog/${post.slug.current}`}>
-      <div className="shadow-2 flex h-full cursor-pointer flex-col bg-custom-green3">
-        <div className="relative h-56 w-full">
-          <Image
-            {...useNextSanityImage(client, post.mainImage)}
-            layout="fill"
-            objectFit="cover"
-            alt={post.title}
-          />
+      <div className="shadow-2 hover:shadow-2-extra group flex h-full cursor-pointer flex-col bg-custom-green3">
+        <div className="card-zoom h-56">
+          <div className="card-zoom-image absolute h-56 w-full group-hover:scale-110">
+            <Image
+              {...useNextSanityImage(client, post.mainImage)}
+              layout="fill"
+              objectFit="cover"
+              alt={post.title}
+            />
+          </div>
         </div>
+
         <div className="p-8">
           <div>
             <p className="blog-date">

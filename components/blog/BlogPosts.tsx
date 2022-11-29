@@ -16,7 +16,6 @@ function BlogPosts({ posts }: Props) {
       <ul className="my-10 mx-auto grid max-w-7xl grid-cols-3 gap-10 lg:gap-14">
         {blogItems}
       </ul>
-      ;
     </section>
   );
 }

@@ -24,7 +24,7 @@ type Props = {
 const FormStatusIdentifier = ({ setFormStep, errors, formStep }: Props) => {
   return (
     <div>
-      <div className="my-12 text-center lg:my-24">
+      <div className="my-12 text-center lg:my-16">
         <h1 className="heading-xl my-8">
           {formStep === 1 && 'Start by filling in your company details'}
           {formStep === 2 && 'Sustainable Development Goals'}

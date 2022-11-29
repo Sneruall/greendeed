@@ -46,18 +46,15 @@ const SdgElement = ({ errors, register, option }: Props) => {
                 layout="intrinsic"
               />
             </div>
-            <div className="invisible absolute -top-[140px] z-20 h-32 w-64 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 peer-hover:visible dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 lg:peer-hover:opacity-100">
+            <div className="invisible absolute bottom-[110px] z-20 w-96 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 peer-hover:visible dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 lg:peer-hover:opacity-100">
               <div className="space-y-2 p-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white">
+                <h3 className="font-semibold text-custom-grey4">
                   {option.name}
                 </h3>
-                <p>
-                  Report helps navigate cumulative growth of community
-                  activities. Ideally, the chart should have a growing trend, as
-                  stagnating chart signifies a significant decrease of community
-                  activity.
+                <p className="text-xs text-custom-grey4">
+                  {option.description}
                 </p>
-                <a
+                {/* <a
                   href="#"
                   className="flex items-center font-medium text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-600"
                 >
@@ -70,12 +67,12 @@ const SdgElement = ({ errors, register, option }: Props) => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                </a>
+                </a> */}
               </div>
               <div data-popper-arrow></div>
               <div data-popper-arrow></div>

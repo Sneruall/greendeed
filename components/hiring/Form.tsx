@@ -283,11 +283,20 @@ function Form() {
                   will then need to reverify your SDGs
                 </p>
               )}
+              <h2 className="font-bold text-custom-brown1">
+                Sustainable Development Goals
+              </h2>
+              <p className="text-sm text-gray-500">
+                Select one or more Sustainable Development Goals that fit your
+                organization (max. 5) and describe how you contribute to achieve
+                this goal.
+              </p>
+
+              <div className="text-red-500">{(errors.sdg as any)?.message}</div>
+
               <div className="my-2">
                 <SdgElements errors={errors?.sdg} register={register} />
               </div>
-
-              <div className="text-red-500">{(errors.sdg as any)?.message}</div>
             </div>
           </div>
 

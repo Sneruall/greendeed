@@ -22,7 +22,7 @@ const Index = ({ posts }) => {
 
       <Header />
       <main className="mx-auto">
-        <BlogHero latestPost={posts[0]} />
+        <BlogHero latestPost={posts[1]} />
         {/* BlogPosts */}
         {/* Latest jobs section */}
 

@@ -434,7 +434,7 @@ export interface blog {
   _id: number;
   title: string;
   excerpt: string;
-  slug: string;
+  slug: any;
   publishedAt: string;
   mainImage: {
     asset: {

@@ -3,6 +3,7 @@ import React from 'react';
 import { blog } from '../../types/types';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '../../client';
+import Link from 'next/link';
 
 type Props = {
   latestPost: blog;
@@ -20,17 +21,26 @@ function BlogHero({ latestPost }: Props) {
         </div>
         <div className="my-10">
           {latestPost.mainImage && (
-            <div className="relative">
-              <Image
-                {...useNextSanityImage(client, latestPost.mainImage)}
-                layout="responsive"
-                sizes="(max-width: 800px) 100vw, 800px"
-                alt={latestPost.title}
-              />
-              <div className="absolute bottom-0 w-full bg-custom-grey5 bg-opacity-60 text-white">
-                <h2 className="heading-lg-century"> {latestPost.title}</h2>
+            <Link href="/blog/[slug]" as={`/blog/${latestPost.slug.current}`}>
+              <div className="relative cursor-pointer">
+                <Image
+                  {...useNextSanityImage(client, latestPost.mainImage)}
+                  layout="responsive"
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  alt={latestPost.title}
+                />
+                <div className="absolute bottom-0 w-full bg-custom-grey5 bg-opacity-60 px-12 py-6 text-white">
+                  <p className="text-sm italic">
+                    {new Date(latestPost.publishedAt).toDateString()}
+                  </p>
+                  <h2 className="heading-lg-century my-2">
+                    {' '}
+                    {latestPost.title}
+                  </h2>
+                  <p className="line-clamp-4">{latestPost.excerpt}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           )}
         </div>
       </div>

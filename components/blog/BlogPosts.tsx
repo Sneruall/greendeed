@@ -1,13 +1,18 @@
 import React from 'react';
 import BlogPostCard from './BlogPostCard';
 import { blog } from '../../types/types';
+import BlogPostCardFeatured from './BlogPostCardFeatured';
 
 type Props = { posts: blog[] };
 
 function BlogPosts({ posts }: Props) {
   const blogItems = posts.map((post) => (
     <li key={post._id}>
-      <BlogPostCard post={post} />
+      {post.title === 'Duurzaam bedrijf' ? (
+        <BlogPostCardFeatured post={post} />
+      ) : (
+        <BlogPostCard post={post} />
+      )}
     </li>
   ));
 

@@ -22,7 +22,7 @@ function BlogHero({ latestPost }: Props) {
         <div className="my-10">
           {latestPost.mainImage && (
             <Link href="/blog/[slug]" as={`/blog/${latestPost.slug.current}`}>
-              <div className="card-zoom relative h-[500px] cursor-pointer lg:h-[620px]">
+              <div className="card-zoom relative h-[500px] cursor-pointer rounded-2xl lg:h-[620px]">
                 <div className="card-zoom-image">
                   <Image
                     {...useNextSanityImage(client, latestPost.mainImage)}

@@ -10,14 +10,14 @@ type Props = { post: blog };
 function BlogPostCardFeatured({ post }: Props) {
   return (
     <Link href="/blog/[slug]" as={`/blog/${post.slug.current}`}>
-      <div className="shadow-2 hover:shadow-2-extra group relative flex h-full w-full cursor-pointer flex-col overflow-hidden bg-custom-green3">
-        <div className="card-zoom-image absolute z-10 h-full w-full bg-black group-hover:scale-110">
+      <div className="shadow-2 hover:shadow-2-extra group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-custom-green3">
+        <div className="card-zoom-image absolute z-10 h-full w-full rounded-t-2xl bg-black group-hover:scale-110">
           <Image
             {...useNextSanityImage(client, post.mainImage)}
             layout="fill"
             objectFit="cover"
             alt={post.title}
-            className="opacity-60"
+            className="rounded-t-2xl opacity-60"
           />
         </div>
 

@@ -288,7 +288,7 @@ const JobPage: NextPage<{
             </div>
             {categoryJobs.length === 5 && (
               <div className="my-5 text-center">
-                <Link href="/">
+                <Link href="/#jobs">
                   <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
                     More {job.category.name} Jobs
                   </button>
@@ -317,7 +317,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     company = await getCompanyFromMongo(job.companyId);
   }
 
-  const categoryJobs = await getJobsFromMongo(job.category);
+  const categoryJobs = await getJobsFromMongo(5, job.category);
 
   // If there is no job for the given queryId
   if (!job) {

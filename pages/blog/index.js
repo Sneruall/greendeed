@@ -62,7 +62,7 @@ export async function getStaticProps() {
   const posts = await client.fetch(groq`
       *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
     `);
-  const jobs = await getJobsFromMongo();
+  const jobs = await getJobsFromMongo(3);
 
   return {
     props: {

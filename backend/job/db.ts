@@ -2,7 +2,10 @@ import clientPromise from '../../lib/mongodb';
 import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
-export const getJobsFromMongo = async (category?: jobCategory) => {
+export const getJobsFromMongo = async (
+  limit?: number,
+  category?: jobCategory
+) => {
   const client = await clientPromise;
 
   const db = client.db();
@@ -18,7 +21,7 @@ export const getJobsFromMongo = async (category?: jobCategory) => {
         category: category,
       })
       .sort({ _id: -1 })
-      .limit(5)
+      .limit(limit || 5)
       .toArray();
   } else {
     jobs = await db
@@ -26,6 +29,7 @@ export const getJobsFromMongo = async (category?: jobCategory) => {
       .find({
         hidden: false,
       })
+      .limit(limit || 0)
       .sort({ _id: -1 })
       .toArray();
   }

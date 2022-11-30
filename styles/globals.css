@@ -61,7 +61,7 @@
     @apply text-white hover:underline;
   }
   .button-1 {
-    @apply rounded-full bg-custom-yellow1 py-3 px-8 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
+    @apply rounded-full bg-custom-green2 py-3 px-8 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
   }
   .button-with-icon {
     @apply inline-flex items-center justify-center rounded-full bg-custom-yellow1 py-3 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;

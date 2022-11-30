@@ -34,13 +34,13 @@
     @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
   }
   .blog-heading {
-    @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl;
+    @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl lg:text-3xl;
   }
   .blog-date {
     @apply text-xs font-bold italic tracking-wide text-custom-brown3;
   }
   .blog-continue-reading {
-    @apply font-century text-xs font-bold uppercase tracking-wider text-custom-brown3 hover:underline;
+    @apply font-century text-xs font-bold uppercase tracking-wider text-custom-brown3 hover:underline lg:text-base;
   }
   .card-zoom {
     @apply relative overflow-hidden;

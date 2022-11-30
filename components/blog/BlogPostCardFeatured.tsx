@@ -21,17 +21,22 @@ function BlogPostCardFeatured({ post }: Props) {
           />
         </div>
 
-        <div className="z-20 p-8">
+        <div className="z-20 p-6 lg:p-10">
           <div>
-            <p className="blog-date text-custom-grey5">
-              {new Date(post.publishedAt).toDateString()}
-            </p>
+            <div className="my-10 w-32 rounded-full bg-custom-green2 text-center">
+              <p className="font-ict font-bold text-custom-brown1">Featured</p>
+            </div>
           </div>
           <div className="my-2">
             <h2 className="blog-heading text-custom-grey5">{post.title}</h2>
           </div>
           <div>
-            <p className="text-xs leading-normal text-custom-grey5">
+            <p className="blog-date mt-4 text-custom-grey5">
+              {new Date(post.publishedAt).toDateString()}
+            </p>
+          </div>
+          <div>
+            <p className="my-10 text-xs leading-normal text-custom-grey5 md:text-base">
               {post.excerpt}
             </p>
           </div>

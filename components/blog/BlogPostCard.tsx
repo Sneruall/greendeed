@@ -22,7 +22,7 @@ function BlogPostCard({ post }: Props) {
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-6 lg:p-10">
           <div>
             <p className="blog-date">
               {new Date(post.publishedAt).toDateString()}
@@ -32,7 +32,7 @@ function BlogPostCard({ post }: Props) {
             <h2 className="blog-heading text-custom-brown1">{post.title}</h2>
           </div>
           <div>
-            <p className="text-xs leading-normal line-clamp-6">
+            <p className="text-xs leading-normal line-clamp-6 md:text-base">
               {post.excerpt}
             </p>
           </div>

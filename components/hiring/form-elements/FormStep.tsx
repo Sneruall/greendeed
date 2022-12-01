@@ -39,7 +39,7 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
         )}
       </div>
       <div className="text-xs">
-        <div className="heading-sm-ict mb-0">
+        <div className="heading-sm-omnes mb-0">
           {step === formStep && `Step ${step}/4`}
         </div>
         <div>{step === 1 && formStep === 1 && 'Company details'}</div>

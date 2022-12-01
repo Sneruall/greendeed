@@ -27,11 +27,11 @@
   .heading-sm {
     @apply mb-2 font-century font-bold text-custom-brown1;
   }
-  .heading-md-ict {
-    @apply mb-2 font-ict text-xl font-bold tracking-wide text-custom-brown2;
+  .heading-md-omnes {
+    @apply mb-2 font-omnes text-2xl tracking-wide text-custom-brown2 md:text-3xl;
   }
-  .heading-sm-ict {
-    @apply mb-2 font-ict font-bold tracking-wide text-custom-brown1;
+  .heading-sm-omnes {
+    @apply mb-2 font-omnes font-bold tracking-wide text-custom-brown1;
   }
   .blog-heading {
     @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl lg:text-3xl;

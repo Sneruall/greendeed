@@ -19,7 +19,7 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-ict">1. Post your job</h3>
+            <h3 className="heading-sm-omnes">1. Post your job</h3>
             <p className="text-main">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut
@@ -37,7 +37,7 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-ict">2. Get validated</h3>
+            <h3 className="heading-sm-omnes">2. Get validated</h3>
             <p className="text-main">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut
@@ -55,7 +55,7 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-ict">3. Get candidates</h3>
+            <h3 className="heading-sm-omnes">3. Get candidates</h3>
             <p className="text-main">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut

@@ -9,15 +9,17 @@ function Pricing() {
           <h2 className="heading-lg">What you get / included</h2>
         </div>
         <div className="mt-20 flex flex-col gap-4 text-center">
-          <h3 className="heading-sm-ict">Upload company logo + web link</h3>
+          <h3 className="heading-sm-omnes">Upload company logo + web link</h3>
           <div className="mx-auto w-20 border border-custom-grey1"></div>
-          <h3 className="heading-sm-ict">60 days visible</h3>
+          <h3 className="heading-sm-omnes">60 days visible</h3>
           <div className="mx-auto w-20 border border-custom-grey1"></div>
-          <h3 className="heading-sm-ict">Own unique company page</h3>
+          <h3 className="heading-sm-omnes">Own unique company page</h3>
           <div className="mx-auto w-20 border border-custom-grey1"></div>
-          <h3 className="heading-sm-ict">Premium customer support</h3>
+          <h3 className="heading-sm-omnes">Premium customer support</h3>
           <div className="mx-auto w-20 border border-custom-grey1"></div>
-          <h3 className="heading-sm-ict">% discount for volunteer vacancies</h3>
+          <h3 className="heading-sm-omnes">
+            % discount for volunteer vacancies
+          </h3>
           <div className="my-16">
             <Link href="#post-job">
               <a>

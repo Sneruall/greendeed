@@ -15,7 +15,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="https://use.typekit.net/nue7njm.css" />
           <link href="https://use.typekit.net/nue7njm.css" rel="stylesheet" />
           <link
             rel="stylesheet"

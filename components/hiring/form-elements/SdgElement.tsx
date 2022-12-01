@@ -46,7 +46,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
                 layout="intrinsic"
               />
             </div>
-            <div className="invisible absolute bottom-[110px] z-20 w-96 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 peer-hover:visible dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 lg:peer-hover:opacity-100">
+            <div className="absolute bottom-[110px] z-20 hidden w-56 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 md:invisible md:-left-[62px] md:block md:peer-hover:visible md:peer-hover:opacity-100 lg:-left-[142px] lg:w-96 xl:left-0">
               <div className="space-y-2 p-3">
                 <h3 className="font-semibold text-custom-brown1">
                   {option.name}

@@ -68,31 +68,46 @@ const Post = ({ post }) => {
         </Head>
 
         <Header />
-        <article className="mx-auto max-w-2xl">
-          <div className="mb-3">
+        <article className="relative">
+          <div className="absolute h-[600px] w-full bg-black">
             <Image
               {...imageProps}
-              layout="responsive"
-              sizes="(max-width: 800px) 100vw, 800px"
+              layout="fill"
+              objectFit="cover"
               alt={post?.mainImage.alt}
+              className="opacity-60"
             />
           </div>
-          <div>
-            <span className="text-sm">
-              {new Date(post?.publishedAt).toDateString()}
-            </span>
+          <div className="relative mx-auto flex h-[600px] flex-col justify-center gap-4 text-center">
+            <div className="mt-24">
+              <h1 className="mx-auto max-w-2xl text-5xl font-extrabold leading-tight text-white">
+                {post?.title}
+              </h1>
+            </div>
+            <div className="">
+              <div className="my-16 flex items-start justify-center gap-10">
+                <div className="my-auto w-full border border-white"></div>
+                <div className="flex-none text-center">
+                  <p className="heading-wide text-white">
+                    {new Date(post?.publishedAt).toDateString()}
+                  </p>
+                </div>
+                <div className="my-auto w-full border border-white"></div>
+              </div>
+              {/* <span className="text-sm text-white">
+                {new Date(post?.publishedAt).toDateString()}
+              </span> */}
+            </div>
           </div>
-
-          <h1 className="text-5xl font-extrabold leading-tight">
-            {post?.title}
-          </h1>
-          <PortableText value={post?.body} components={ptComponents} />
-          {new Date(post?._updatedAt).toDateString() !==
-            new Date(post?.publishedAt).toDateString() && (
-            <span className="text-sm italic">
-              Article updated at: {new Date(post?._updatedAt).toDateString()}
-            </span>
-          )}
+          <div className="relative mx-auto max-w-2xl">
+            <PortableText value={post?.body} components={ptComponents} />
+            {new Date(post?._updatedAt).toDateString() !==
+              new Date(post?.publishedAt).toDateString() && (
+              <span className="text-sm italic">
+                Article updated at: {new Date(post?._updatedAt).toDateString()}
+              </span>
+            )}
+          </div>
         </article>
       </main>
       <Footer />

@@ -94,7 +94,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
               onClick={() => {
                 setPage(page + 1);
               }}
-              className="rounded-full bg-yellow-400 py-2 px-4 text-sm text-black hover:opacity-70"
+              className="button-1"
             >
               More jobs
             </button>

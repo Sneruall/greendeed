@@ -30,7 +30,7 @@ function Header() {
         <div>
           <Link href="/hiring#post-job">
             <a>
-              <button className="button-1">Post a Job - $250</button>
+              <button className="button-1 text-base">Post a Job - $250</button>
             </a>
           </Link>
         </div>

@@ -10,7 +10,7 @@ const JobListing: React.FC<{
   page: Number;
   resultsPerPage: Number;
 }> = ({ jobs, search, page, resultsPerPage }) => {
-  const joblist = jobs.slice(0, +page * +resultsPerPage).map((job) => (
+  const joblist = jobs?.slice(0, +page * +resultsPerPage).map((job) => (
     <li className="list-none" key={job.id}>
       <JobItem job={job} />
     </li>

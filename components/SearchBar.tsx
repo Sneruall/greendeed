@@ -29,7 +29,7 @@ export const SearchBar = () => {
           </div>
           <div className="flex-1"></div>
         </div>
-        <div className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-custom-green2 px-10 font-omnes font-semibold text-custom-brown4">
+        <div className="shadow-4 flex h-14 w-full items-center justify-center gap-2 rounded-full bg-custom-green2 px-10 font-omnes font-semibold text-custom-brown4">
           <SearchInput />
           <div className="mr-4 h-1/2 w-1 border-l border-black"></div>
           <CategoryDropdown />

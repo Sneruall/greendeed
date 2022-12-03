@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { searchInputCallback } from '../helpers/search';
 import { SearchInputType } from '../types/jobCategories';
 import { useRef } from 'react';
+// @ts-ignore
+import InputHints from 'react-input-hints';
 
 const SearchInput = () => {
   const router = useRouter();
@@ -30,10 +32,17 @@ const SearchInput = () => {
           <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </span>
-      <input
-        placeholder="Search sustainable jobs..."
+      <InputHints
+        placeholders={[
+          'Project manager',
+          'Graphic designer',
+          'Sales representative',
+          'Marketing director',
+          'Customer support',
+          'Accountant',
+        ]}
         ref={ref}
-        onChange={(e) => {
+        onChange={(e: any) => {
           searchInputCallback(e.target.value.toLowerCase(), 'search', router);
         }}
         type="text"

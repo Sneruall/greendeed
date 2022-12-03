@@ -87,7 +87,12 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       <main className="mx-auto">
         <SearchBar />
         {/* Listing of jobs */}
-        <JobListing page={page} resultsPerPage={RESULTS_PER_PAGE} jobs={jobs} />
+        <JobListing
+          search={query?.search}
+          page={page}
+          resultsPerPage={RESULTS_PER_PAGE}
+          jobs={jobs}
+        />
         {page * RESULTS_PER_PAGE < jobs.length && (
           <div className="mt-10 text-center">
             <button

@@ -16,15 +16,15 @@ const SearchInput = () => {
   }, [router.asPath]);
 
   return (
-    <div>
+    <div className="mr-4 w-full">
       <input
-        placeholder="search"
+        placeholder="Search sustainable jobs..."
         ref={ref}
         onChange={(e) => {
           searchInputCallback(e.target.value.toLowerCase(), 'search', router);
         }}
         type="text"
-        className="my-3 border"
+        className="my-3 w-full border-none bg-transparent text-custom-brown4 placeholder-custom-brown4"
       />
     </div>
   );

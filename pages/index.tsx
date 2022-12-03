@@ -48,7 +48,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
             job.category.slug == query.category &&
             (job.jobTitle.toLowerCase().includes(query.search) ||
               job.companyData.name.toLowerCase().includes(query.search) ||
-              job.jobDescription.toLowerCase().includes(query.search))
+              job.jobDescription?.toLowerCase().includes(query.search))
           ) {
             return true;
           }
@@ -66,7 +66,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           if (
             job.jobTitle.toLowerCase().includes(query.search) ||
             job.companyData.name.toLowerCase().includes(query.search) ||
-            job.jobDescription.toLowerCase().includes(query.search)
+            job.jobDescription?.toLowerCase().includes(query.search)
           ) {
             return true;
           }
@@ -84,7 +84,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       </Head>
 
       <Header />
-      <main className="site-margins mx-auto max-w-screen-2xl">
+      <main className="mx-auto">
         <SearchBar />
         {/* Listing of jobs */}
         <JobListing page={page} resultsPerPage={RESULTS_PER_PAGE} jobs={jobs} />

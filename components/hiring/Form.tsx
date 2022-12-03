@@ -4,15 +4,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import {
-  convertLocationsToArrays,
   filterSdgData,
-  mapCategoryToObject,
   postJob,
-  setCompanyId,
-  setDefaultJobAttributes,
-  setHTMLDescription,
-  setLogo,
-  setSalary,
   transformFormData,
 } from '../../backend/job/jobApi';
 import {
@@ -33,7 +26,7 @@ import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
 import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
-import CurrencyInput, { formatValue } from 'react-currency-input-field';
+import CurrencyInput from 'react-currency-input-field';
 import {
   CurrencyInputProps,
   CurrencyInputOnChangeValues,

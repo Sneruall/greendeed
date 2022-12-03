@@ -19,7 +19,7 @@ const JobListing: React.FC<{
   return (
     <div id="jobs" className="site-margins mx-auto mb-10 -mt-8 max-w-7xl">
       <div className="flex flex-col gap-3">{joblist}</div>
-      {jobs.length < 1 && (
+      {jobs?.length < 1 && (
         <div className="text-center">
           <p>No jobs found for {search}</p>
         </div>

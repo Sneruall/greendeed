@@ -56,32 +56,31 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   <div className="h-10 w-10 rounded-full bg-gray-50"></div>
                 )}
               </div>
-              <div className="my-auto flex flex-col gap-1">
-                <h2 className="text-sm font-bold line-clamp-1 sm:hidden">
+              <div className="my-auto flex flex-col gap-1 font-omnes text-black">
+                <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
                   {job.jobTitle}
                 </h2>
-                <h2 className="text-sm line-clamp-1 sm:hidden">
+                <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
                   {job.companyData.name}
                 </h2>
                 <h2 className="hidden font-semibold sm:block">
                   {/* company data below not retrieved from company db */}
-                  {job.jobTitle} | {job.companyData.name}
+                  {job.jobTitle} - {job.companyData.name}
                 </h2>
-                <ul className="my-auto flex flex-row gap-2 text-sm text-black">
-                  <li className="">
+                <div className="my-auto flex flex-row gap-2 font-century text-xs">
+                  <p className="line-clamp-1">
                     {job.locationInfo?.location == 'onSite' &&
                       job.locationInfo?.onSiteLocation &&
-                      '🏢 ' + job.locationInfo?.onSiteLocation?.join(', ')}
-                    {job.locationInfo?.location == 'remote' && '🏠 Remote'}
-                    {job.locationInfo?.location == 'onSiteOrRemote' &&
-                      '🏘️ Hybrid'}
-                  </li>
-                  {/* todo georestrictionother */}
+                      job.locationInfo?.onSiteLocation?.join(', ')}
+                    {job.locationInfo?.location == 'remote' && 'Remote'}
+                    {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
+                  </p>
+                  {/* todo georestrictionother
                   <li>
                     {job.locationInfo.geoRestriction &&
                       '🌐 ' + job.locationInfo.geoRestriction?.join(', ')}
-                  </li>
-                </ul>
+                  </li> */}
+                </div>
                 <div className="flex gap-4 sm:hidden">{sdgList}</div>
               </div>
             </div>

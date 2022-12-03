@@ -4,7 +4,7 @@
 
 @layer base {
   article {
-    @apply font-sans text-xl leading-relaxed text-black;
+    @apply font-sans leading-relaxed tracking-wide text-custom-brown1 first-letter:text-4xl;
   }
   a {
     @apply hover:text-current;
@@ -41,6 +41,15 @@
   }
   .blog-continue-reading {
     @apply font-century text-xs font-bold uppercase tracking-wider text-custom-brown3 hover:underline lg:text-base;
+  }
+  .blog-h2 {
+    @apply mt-6 text-2xl font-bold leading-relaxed tracking-wide text-custom-brown1 md:text-3xl;
+  }
+  .blog-h3 {
+    @apply mt-6 text-xl font-bold leading-relaxed tracking-wide text-custom-brown1 md:text-2xl;
+  }
+  .blog-h4 {
+    @apply mt-6 text-xl font-bold leading-relaxed tracking-wide text-custom-brown1;
   }
   .card-zoom {
     @apply relative overflow-hidden;
@@ -80,6 +89,9 @@
   }
   .shadow-2-extra {
     @apply shadow-[0_8px_20px_0px_rgba(0,0,0,0.15)];
+  }
+  .shadow-3 {
+    @apply shadow-[0_3px_20px_0px_rgba(0,0,0,0.16)];
   }
   /* Todo: make sure this only applies to the job description part */
   /* p {

@@ -4,6 +4,7 @@ import client from '../../client';
 import Head from 'next/head';
 import Image from 'next/image';
 import Header from '../../components/Header';
+import LatestJobs from '../../components/LatestJobs';
 import JobListing from '../../components/JobListing';
 import { useNextSanityImage } from 'next-sanity-image';
 import Footer from '../../components/Footer';
@@ -38,21 +39,8 @@ const Index = ({ posts, jobs }) => {
             to report the issue, thanks!
           </div>
         )}
-        <div className="site-margins">
-          <h2 className="heading-xl mt-16 mb-10">
-            Latest sustainable jobs on Greendeed
-          </h2>
-          <JobListing page={1} resultsPerPage={3} jobs={jobs} />
-          <div className="text-center">
-            <Link href="/#jobs">
-              <a>
-                <button className="button-1">See all jobs</button>
-              </a>
-            </Link>
-          </div>
-        </div>
+        <LatestJobs jobs={jobs} />
       </main>
-      {/* Latest jobs section */}
       <Footer />
     </>
   );

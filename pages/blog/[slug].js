@@ -7,6 +7,8 @@ import { useNextSanityImage } from 'next-sanity-image';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { getJobsFromMongo } from '../../backend/job/db';
+import LatestJobs from '../../components/LatestJobs';
 
 const ptComponents = {
   // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:
@@ -15,15 +17,9 @@ const ptComponents = {
     h1: ({ children }) => (
       <h1 className="mt-6 text-4xl font-bold leading-relaxed">{children}</h1>
     ),
-    h2: ({ children }) => (
-      <h2 className="mt-6 text-3xl font-bold leading-relaxed">{children}</h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="mt-6 text-2xl font-bold leading-relaxed">{children}</h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="mt-6 text-xl font-bold leading-relaxed">{children}</h4>
-    ),
+    h2: ({ children }) => <h2 className="blog-h2">{children}</h2>,
+    h3: ({ children }) => <h3 className="blog-h3">{children}</h3>,
+    h4: ({ children }) => <h4 className="blog-h4">{children}</h4>,
   },
   marks: {
     // Ex. 1: custom renderer for the em / italics decorator
@@ -56,7 +52,7 @@ const ptComponents = {
   },
 };
 
-const Post = ({ post }) => {
+const Post = ({ post, jobs }) => {
   console.log(post);
   const imageProps = useNextSanityImage(client, post?.mainImage);
   return (
@@ -80,26 +76,26 @@ const Post = ({ post }) => {
           </div>
           <div className="relative mx-auto flex h-[600px] flex-col justify-center gap-4 text-center">
             <div className="mt-24">
-              <h1 className="mx-auto max-w-2xl text-5xl font-extrabold leading-tight text-white">
+              <h1 className="heading-2xl mx-auto max-w-2xl leading-relaxed text-white">
                 {post?.title}
               </h1>
             </div>
             <div className="">
-              <div className="my-16 flex items-start justify-center gap-10">
-                <div className="my-auto w-full border border-white"></div>
+              <div className="my-16 flex items-start justify-center gap-8 md:gap-16">
+                <div className="my-auto w-full border-t border-t-white border-opacity-50"></div>
                 <div className="flex-none text-center">
                   <p className="heading-wide text-white">
                     {new Date(post?.publishedAt).toDateString()}
                   </p>
                 </div>
-                <div className="my-auto w-full border border-white"></div>
+                <div className="my-auto w-full border-t border-t-white border-opacity-50"></div>
               </div>
               {/* <span className="text-sm text-white">
                 {new Date(post?.publishedAt).toDateString()}
               </span> */}
             </div>
           </div>
-          <div className="relative mx-auto max-w-2xl">
+          <div className="shadow-3 site-margins relative mx-auto -mt-24 max-w-3xl border-t-4 border-custom-green2 bg-white py-16 lg:max-w-5xl lg:px-24 xl:max-w-6xl xl:px-40">
             <PortableText value={post?.body} components={ptComponents} />
             {new Date(post?._updatedAt).toDateString() !==
               new Date(post?.publishedAt).toDateString() && (
@@ -109,6 +105,7 @@ const Post = ({ post }) => {
             )}
           </div>
         </article>
+        <LatestJobs jobs={jobs} />
       </main>
       <Footer />
     </>
@@ -137,9 +134,12 @@ export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = context.params;
   const post = await client.fetch(query, { slug });
+  const jobs = await getJobsFromMongo(3);
+
   return {
     props: {
       post,
+      jobs: JSON.parse(JSON.stringify(jobs)),
     },
     revalidate: 300,
   };

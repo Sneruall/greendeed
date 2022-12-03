@@ -1,10 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { searchInputCallback } from '../helpers/search';
-import {
-  getJobCategoriesListWithPlaceholder,
-  SearchInputType,
-} from '../types/jobCategories';
+import { getJobCategoriesListWithPlaceholder } from '../types/jobCategories';
 
 const CategoryDropdown = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -29,7 +26,7 @@ const CategoryDropdown = () => {
           searchInputCallback(e.target.value, 'category', router);
         }}
         id="category"
-        className="block w-full border-none bg-transparent focus:outline-none focus:ring-0"
+        className="block w-full border-none bg-transparent text-sm focus:outline-none focus:ring-0 sm:text-base "
       >
         {getJobCategoriesListWithPlaceholder('All categories').map((option) => (
           <option value={option.slug} key={option.id}>

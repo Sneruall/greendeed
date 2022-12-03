@@ -10,17 +10,27 @@ function Header() {
             <a className="my-auto text-xl font-bold text-black">Greendeed</a>
           </Link>
         </div>
-        <div className="flex gap-4 sm:gap-12">
+        <div className="hidden flex-1 justify-center gap-4 self-center text-custom-brown1 sm:flex md:gap-12 lg:gap-24 xl:gap-32">
+          <Link href="/hiring">
+            <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              Hiring
+            </a>
+          </Link>
+          <Link href="/sustainability">
+            <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              Sustainability
+            </a>
+          </Link>
           <Link href="/blog">
-            <a className="my-auto self-center font-alfa text-base text-custom-brown1">
+            <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
               Blog
             </a>
           </Link>
+        </div>
+        <div>
           <Link href="/hiring#post-job">
             <a>
-              <button className="rounded-lg bg-custom-yellow1 py-2 px-6 font-alfa text-custom-brown1 hover:opacity-70">
-                Post a job
-              </button>
+              <button className="button-1">Post a Job - $250</button>
             </a>
           </Link>
         </div>

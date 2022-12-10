@@ -47,14 +47,14 @@ export const options: HTMLReactParserOptions = {
       }
       if (domNode.name === 'ul') {
         return (
-          <ul className="list-outside list-disc">
+          <ul className="list-inside list-disc">
             {domToReact(domNode.children, options)}
           </ul>
         );
       }
       if (domNode.name === 'ol') {
         return (
-          <ul className="list-outside list-decimal">
+          <ul className="list-inside list-decimal">
             {domToReact(domNode.children, options)}
           </ul>
         );

@@ -96,6 +96,9 @@
   .shadow-4 {
     @apply shadow-[0_10px_30px_0px_rgba(0,0,0,0.08)];
   }
+  .shadow-4 {
+    @apply shadow-[0_10px_20px_0px_rgba(0,0,0,0.05)];
+  }
   /* Todo: make sure this only applies to the job description part */
   /* p {
     @apply mt-6;

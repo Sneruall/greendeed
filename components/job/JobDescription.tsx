@@ -40,7 +40,7 @@ function JobDescription({ job, company }: Props) {
           <h1 className="font-omnes text-lg font-normal text-custom-brown1 md:text-2xl xl:text-4xl">
             {company?.name || job.companyData?.name} is hiring a
             <span className="block font-alfa text-xl font-bold md:text-2xl xl:my-4 xl:text-5xl xl:leading-tight">
-              Product Manager First Class Bullshit
+              {job.jobTitle}
             </span>
           </h1>
         </div>

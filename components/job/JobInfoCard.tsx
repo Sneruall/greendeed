@@ -16,7 +16,7 @@ function JobInfoCard({ job, company }: Props) {
   const timeAgo = new TimeAgo('en_US');
 
   return (
-    <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-[#CDF682]/75">
+    <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-custom-green2/30 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}

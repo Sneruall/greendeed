@@ -35,9 +35,5 @@ module.exports = {
     },
   },
 
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
-  ],
+  plugins: [require('@tailwindcss/line-clamp'), require('@tailwindcss/forms')],
 };

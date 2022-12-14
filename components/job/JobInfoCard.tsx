@@ -18,13 +18,13 @@ function JobInfoCard({ job, company }: Props) {
   return (
     <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-[#CDF682]/75">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
-        <ul className="flex h-full w-full justify-center gap-3">
+        <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
           {job?.sdg?.map((num) => {
             return (
-              <Link href={'#sdg' + num}>
+              <Link href={'#sdg' + num} key={num}>
                 <a>
-                  <li className="relative h-full w-10" key={1}>
+                  <li className="relative h-full w-10 hover:opacity-90">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 100 200"

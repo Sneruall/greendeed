@@ -28,6 +28,7 @@ const JobPage: NextPage<{
   categoryJobs: Job[];
 }> = ({ job, company, categoryJobs }) => {
   console.log(job);
+  console.log(company);
   const mappedSdg = job.sdg.map((num) => {
     return (
       <div
@@ -61,7 +62,7 @@ const JobPage: NextPage<{
           </div>
 
           {/* SDG INFO */}
-          <div className="my-24">
+          <div id="sdg" className="my-24">
             <div className="my-10 text-center text-2xl font-bold text-custom-brown1">
               Sustainability at{' '}
               {!job.external ? (
@@ -80,9 +81,13 @@ const JobPage: NextPage<{
               )}
             </div>
             <ul className="mx-auto flex max-w-2xl flex-col gap-8">
+              {/* todo use company sdg instead of job sdg */}
               {job.sdg.map((num) => {
                 return (
-                  <li className="flex flex-row items-center justify-center gap-10">
+                  <li
+                    id={'sdg' + num}
+                    className="flex flex-row items-center justify-center gap-10"
+                  >
                     <div
                       key={num}
                       className="flex-shrink-0 cursor-pointer transition duration-200 ease-in-out hover:scale-110"

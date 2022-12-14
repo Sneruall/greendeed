@@ -19,78 +19,39 @@ function JobInfoCard({ job, company }: Props) {
     <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-[#CDF682]/75">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full justify-center gap-3">
-          <li className="relative h-full w-10" key={1}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
-              <polygon
-                points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                fill="#e6253a"
-              />
-            </svg>
-            <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
-              <Image
-                src={'/images/icons/sdg-icons/' + 1 + '.png'}
-                width={50}
-                height={50}
-                objectFit="contain"
-                layout="intrinsic"
-              />
-            </div>
-          </li>
-          <li className="h-full w-10" key={2}>
-            <svg
-              className=""
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 200"
-            >
-              <polygon
-                points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                fill="#ff69b4"
-              />
-            </svg>
-          </li>
-          <li className="h-full w-10" key={3}>
-            <svg
-              className=""
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 200"
-            >
-              <polygon
-                // points="0 0, 200 0, 150 50, 200, 100, 0 100"
-                points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                fill="#ff69b4"
-              />
-            </svg>
-          </li>
-          <li className="h-full w-10" key={4}>
-            <svg
-              className=""
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 200"
-            >
-              <polygon
-                // points="0 0, 200 0, 150 50, 200, 100, 0 100"
-                points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                fill="#ff69b4"
-              />
-            </svg>
-          </li>
-          <li className="h-full w-10" key={5}>
-            <svg
-              className=""
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 200"
-            >
-              <polygon
-                // points="0 0, 200 0, 150 50, 200, 100, 0 100"
-                points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                fill="#ff69b4"
-              />
-            </svg>
-          </li>
+          {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
+          {job?.sdg?.map((num) => {
+            return (
+              <Link href={'#sdg' + num}>
+                <a>
+                  <li className="relative h-full w-10" key={1}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 100 200"
+                    >
+                      <polygon
+                        points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
+                        fill="#e6253a"
+                      />
+                    </svg>
+                    <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
+                      <Image
+                        src={'/images/icons/sdg-icons/' + num + '.png'}
+                        width={50}
+                        height={50}
+                        objectFit="contain"
+                        layout="intrinsic"
+                      />
+                    </div>
+                  </li>
+                </a>
+              </Link>
+            );
+          })}
         </ul>
       </div>
 
-      <div className="m-10 flex flex-col gap-10">
+      <div className="mx-10 mt-28 flex flex-col gap-10">
         {/* Logo, name and date */}
         <div className="text-center">
           <div className="text-2xl font-bold text-custom-brown1">

@@ -14,28 +14,24 @@ function JobDescription({ job, company }: Props) {
     <div className="flex-1">
       {/* top bar */}
       <div className="flex flex-row flex-wrap items-center gap-4 border-b border-b-[#CBCBCB] pb-4 lg:gap-8 xl:flex-nowrap">
-        <div className="hidden flex-shrink-0 lg:block">
-          {company && company.logo ? (
-            <Image
-              src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-              width={100}
-              height={100}
-            />
-          ) : (
-            <div className="h-[100px] w-[100px] rounded-full bg-gray-50"></div>
-          )}
-        </div>
-        <div className="flex-shrink-0 lg:hidden">
-          {company && company.logo ? (
-            <Image
-              src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-              width={50}
-              height={50}
-            />
-          ) : (
-            <div className="h-[50px] w-[50px] rounded-full bg-gray-50"></div>
-          )}
-        </div>
+        {company && company.logo && (
+          <>
+            <div className="hidden flex-shrink-0 lg:block">
+              <Image
+                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="flex-shrink-0 lg:hidden">
+              <Image
+                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                width={50}
+                height={50}
+              />
+            </div>
+          </>
+        )}
         <div className="">
           <h1 className="font-omnes text-lg font-normal text-custom-brown1 md:text-2xl xl:text-4xl">
             {company?.name || job.companyData?.name} is hiring a

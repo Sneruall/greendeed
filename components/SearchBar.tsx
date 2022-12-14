@@ -5,7 +5,8 @@ import SearchInput from './SearchInput';
 
 export const SearchBar = () => {
   return (
-    <div className="site-margins bg-gray-100 pb-44">
+    // todo: consider prevent use of bg-[url] to exploit next image
+    <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat pb-44">
       <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
         <h1 className="heading-2xl mx-auto mb-6 max-w-2xl text-center leading-relaxed">
           Let's find your next Sustainable Job
@@ -13,7 +14,7 @@ export const SearchBar = () => {
       </div>
       <div className="mx-auto h-32 max-w-xl">
         <div className="flex h-full w-full text-center">
-          <div className="flex-1"></div>
+          <div className="flex-1"></div>s
           <div className="relative h-full w-64 flex-initial">
             <Image
               src={'/images/home/temp.png'}

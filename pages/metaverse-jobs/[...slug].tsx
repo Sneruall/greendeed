@@ -63,7 +63,7 @@ const JobPage: NextPage<{
 
           {/* SDG INFO */}
           <div id="sdg" className="my-24">
-            <div className="my-10 text-center text-2xl font-bold text-custom-brown1">
+            <div className="heading-xl my-10 text-center">
               Sustainability at{' '}
               {!job.external ? (
                 <Link

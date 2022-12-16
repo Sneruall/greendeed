@@ -127,7 +127,7 @@ function JobInfoCard({ job, company }: Props) {
         </ul>
         {/* Button */}
         <div>
-          <div className="my-2">
+          <div className="my-10">
             <Link href={job.apply}>
               <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
                 Apply for the position

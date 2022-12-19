@@ -73,13 +73,13 @@
     @apply shadow-1 rounded-full bg-custom-green2 py-2 px-8 font-omnes text-sm font-bold tracking-wide text-custom-brown1 hover:opacity-70;
   }
   .button-with-icon {
-    @apply shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] inline-flex items-center justify-center rounded-full bg-custom-yellow1 py-3 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 hover:opacity-70;
+    @apply inline-flex items-center justify-center rounded-full bg-custom-yellow1 py-3 pl-8 pr-6 font-ict text-sm tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:opacity-70;
   }
   .button-with-icon-2 {
-    @apply shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] inline-flex items-center justify-center rounded-full border-4 border-custom-brown1 bg-custom-brown1 pl-4 pr-3 font-ict text-base tracking-wide text-custom-grey2 hover:bg-transparent hover:text-custom-brown1;
+    @apply inline-flex items-center justify-center rounded-full border-4 border-custom-brown1 bg-custom-brown1 pl-4 pr-3 font-ict text-base tracking-wide text-custom-grey2 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:bg-transparent hover:text-custom-brown1;
   }
   .button-with-icon-3 {
-    @apply shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] inline-flex items-center justify-center rounded-full border-4 border-custom-brown1 pl-4 pr-3 font-ict text-base tracking-wide text-custom-brown1 hover:bg-custom-brown1 hover:text-custom-grey2;
+    @apply inline-flex items-center justify-center rounded-full border-4 border-custom-brown1 pl-4 pr-3 font-ict text-base tracking-wide text-custom-brown1 shadow-[0_10px_20px_0px_rgba(75,72,72,0.06)] hover:bg-custom-brown1 hover:text-custom-grey2;
   }
   .shadow-1 {
     @apply shadow-[0_10px_30px_0px_rgba(0,0,0,0.05)];
@@ -99,6 +99,12 @@
   .shadow-4 {
     @apply shadow-[0_10px_20px_0px_rgba(0,0,0,0.05)];
   }
+  .sdgListOdd {
+    @apply mr-4 rounded-r-3xl sm:mr-10 md:mr-0 md:w-5/6 lg:w-3/4;
+  }
+  .sdgListEven {
+    @apply ml-4 self-end rounded-l-3xl sm:ml-10 md:ml-0 md:w-5/6 lg:w-3/4;
+  }
   /* Todo: make sure this only applies to the job description part */
   /* p {
     @apply mt-6;
@@ -110,7 +116,7 @@
   @apply rounded-t-lg border border-b-0 border-[#D5D3D3] bg-white;
 }
 .ql-container.ql-snow {
-  @apply shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] rounded-b-lg border border-[#D5D3D3] bg-white;
+  @apply rounded-b-lg border border-[#D5D3D3] bg-white shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)];
 }
 .ql-container.ql-snow {
   @apply h-96;

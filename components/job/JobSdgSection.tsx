@@ -30,10 +30,20 @@ function JobSdgSection({ job, company }: Props) {
             <li
               id={'sdg' + num}
               key={num}
-              className="mr-4 max-w-screen-2xl flex-row rounded-r-3xl bg-red-500 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat text-white sm:mr-10 md:mr-0 md:w-5/6 lg:w-3/4"
+              className={`${
+                +num % 2 == 0 ? 'sdgListEven' : 'sdgListOdd'
+              } max-w-screen-2xl flex-row bg-red-500 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat text-white`}
             >
-              <div className="ml-auto flex max-w-3xl flex-row items-center justify-center gap-10 p-8">
-                <div className="min-w-[100px] md:flex-shrink-0">
+              <div
+                className={`${
+                  +num % 2 !== 0 && 'ml-auto'
+                } flex max-w-3xl flex-row items-center justify-center gap-10 p-8`}
+              >
+                <div
+                  className={`${
+                    +num % 2 == 0 && 'order-2'
+                  } min-w-[100px] md:flex-shrink-0`}
+                >
                   <Image
                     src={'/images/icons/sdg-icons/' + num + '.png'}
                     width={150}

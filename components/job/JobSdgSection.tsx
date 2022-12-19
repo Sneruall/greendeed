@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { sdgBgClassCalculator } from '../../helpers/sdgBgClassCalculator';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job, sdgList } from '../../types/types';
 
@@ -32,7 +33,9 @@ function JobSdgSection({ job, company }: Props) {
               key={num}
               className={`${
                 +num % 2 == 0 ? 'sdgListEven' : 'sdgListOdd'
-              } max-w-screen-2xl flex-row bg-red-500 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat text-white`}
+              } max-w-screen-2xl flex-row ${sdgBgClassCalculator(
+                num
+              )} text-white`}
             >
               <div
                 className={`${

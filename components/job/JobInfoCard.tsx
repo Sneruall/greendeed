@@ -3,6 +3,7 @@ import en from 'javascript-time-ago/locale/en.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
 
@@ -31,7 +32,7 @@ function JobInfoCard({ job, company }: Props) {
                     >
                       <polygon
                         points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                        fill="#e6253a"
+                        fill={`${sdgHexCalculator(num)}`}
                       />
                     </svg>
                     <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">

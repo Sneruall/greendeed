@@ -30,10 +30,10 @@ function JobSdgSection({ job, company }: Props) {
             <li
               id={'sdg' + num}
               key={num}
-              className="w-3/4 flex-row rounded-3xl bg-red-500 text-white"
+              className="mr-4 max-w-screen-2xl flex-row rounded-r-3xl bg-red-500 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat text-white sm:mr-10 md:mr-0 md:w-5/6 lg:w-3/4"
             >
               <div className="ml-auto flex max-w-3xl flex-row items-center justify-center gap-10 p-8">
-                <div className="flex-shrink-0">
+                <div className="min-w-[100px] md:flex-shrink-0">
                   <Image
                     src={'/images/icons/sdg-icons/' + num + '.png'}
                     width={150}
@@ -42,7 +42,7 @@ function JobSdgSection({ job, company }: Props) {
                     layout="intrinsic"
                   />
                 </div>
-                <div>
+                <div className="">
                   <p>
                     No poverty Lorem ipsum dolor sit amet, consetetur sadipscing
                     elitr, sed diam nonumy eirmod tempor invidunt ut labore et

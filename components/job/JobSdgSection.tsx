@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { sdgBgClassCalculator } from '../../helpers/sdgBgClassCalculator';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
-import { Company, Job, sdgList } from '../../types/types';
+import { Company, Job } from '../../types/types';
 
 type Props = { job: Job; company: Company };
 
@@ -24,27 +23,41 @@ function JobSdgSection({ job, company }: Props) {
           </Link>
         )}
       </div>
+
       <ul className="mx-auto flex flex-col gap-8">
         {/* todo use company sdg instead of job sdg */}
-        {job.sdg.map((num) => {
+        {job.sdg.map((num, i) => {
           return (
             <li
               id={'sdg' + num}
               key={num}
-              className={`${
-                +num % 2 == 0 ? 'sdgListEven' : 'sdgListOdd'
-              } max-w-screen-2xl flex-row ${sdgBgClassCalculator(
-                num
-              )} text-white`}
+              className={`${i % 2 !== 0 ? 'sdgListEven' : 'sdgListOdd'} ${
+                num === '3' && 'bg-custom-sdg3'
+              } ${num === '4' && 'bg-custom-sdg4'} ${
+                num === '5' && 'bg-custom-sdg5'
+              } ${num === '6' && 'bg-custom-sdg6'} ${
+                num === '7' && 'bg-custom-sdg7'
+              } ${num === '8' && 'bg-custom-sdg8'} ${
+                num === '9' && 'bg-custom-sdg9'
+              } ${num === '10' && 'bg-custom-sdg10'} ${
+                num === '11' && 'bg-custom-sdg11'
+              } ${num === '12' && 'bg-custom-sdg12'} ${
+                num === '13' && 'bg-custom-sdg13'
+              } ${num === '14' && 'bg-custom-sdg14'} ${
+                num === '15' && 'bg-custom-sdg15'
+              } ${num === '16' && 'bg-custom-sdg16'} ${
+                num === '17' && 'bg-custom-sdg17'
+              }
+              max-w-screen-2xl flex-row text-white`}
             >
               <div
                 className={`${
-                  +num % 2 !== 0 && 'ml-auto'
+                  i % 2 === 0 && 'ml-auto'
                 } flex max-w-3xl flex-row items-center justify-center gap-10 p-8`}
               >
                 <div
                   className={`${
-                    +num % 2 == 0 && 'order-2'
+                    i % 2 !== 0 && 'order-2'
                   } min-w-[100px] md:flex-shrink-0`}
                 >
                   <Image
@@ -68,6 +81,7 @@ function JobSdgSection({ job, company }: Props) {
           );
         })}
       </ul>
+
       <div className="my-10 text-center">
         <Link href={job.apply}>
           <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">

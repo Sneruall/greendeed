@@ -16,7 +16,7 @@ import Footer from '../../components/Footer';
 import JobItem from '../../components/JobItem';
 import JobInfoCard from '../../components/job/JobInfoCard';
 import JobDescription from '../../components/job/JobDescription';
-import LatestJobs from '../../components/LatestJobs';
+import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
 
 /*
@@ -62,11 +62,14 @@ const JobPage: NextPage<{
             <JobInfoCard job={job} company={company} />
           </div>
         </div>
-
         {/* SDG INFO */}
         <JobSdgSection job={job} company={company} />
 
-        <LatestJobs jobs={categoryJobs} />
+        {/* SIMILAR JOBS 2 */}
+        {(categoryJobs.length > 1 ||
+          (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
+          <SimilarJobs jobs={categoryJobs} currentJob={job} />
+        )}
 
         {/* SIMILAR JOBS */}
         {(categoryJobs.length > 1 ||

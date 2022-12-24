@@ -32,6 +32,8 @@ function JobSdgSection({ job, company }: Props) {
               id={'sdg' + num}
               key={num}
               className={`${i % 2 !== 0 ? 'sdgListEven' : 'sdgListOdd'} ${
+                num === '1' && 'bg-custom-sdg1'
+              } ${num === '2' && 'bg-custom-sdg2'}  ${
                 num === '3' && 'bg-custom-sdg3'
               } ${num === '4' && 'bg-custom-sdg4'} ${
                 num === '5' && 'bg-custom-sdg5'

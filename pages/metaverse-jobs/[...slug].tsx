@@ -68,7 +68,7 @@ const JobPage: NextPage<{
         {/* SIMILAR JOBS 2 */}
         {(categoryJobs.length > 1 ||
           (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
-          <SimilarJobs jobs={categoryJobs} currentJobId={job.id} />
+          <SimilarJobs similarJobs={categoryJobs} currentJobId={job.id} />
         )}
 
         {/* SIMILAR JOBS */}

@@ -1,22 +1,13 @@
 import React from 'react';
-// import 'react-alice-carousel/lib/alice-carousel.css';
 import SimilarJobItem from './SimilarJobItem';
-import ReactDOM from 'react-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-};
-
-// todo: not pass currentjob, but simply get the cur job id from the url query param?
-function SimilarJobs({ jobs, currentJob }) {
+function SimilarJobs({ jobs, currentJobId }) {
   const similarJobs = [];
 
   for (let index = 0; index < jobs.length; index++) {
-    if (jobs[index].id === currentJob.id) {
+    if (jobs[index].id === currentJobId) {
       continue;
     }
     similarJobs.push(<SimilarJobItem job={jobs[index]} key={index} />);
@@ -26,12 +17,11 @@ function SimilarJobs({ jobs, currentJob }) {
     <SimilarJobItem job={jobs[index]} key={index} />
   ));
 
-  console.log('curjob id = ' + currentJob.id);
-
+  console.log('curjob id = ' + currentJobId);
   return (
     <Carousel>
       {jobs
-        ?.filter((job) => job.id !== currentJob.id)
+        ?.filter((job) => job.id !== currentJobId)
         .map((job, index) => {
           // if (currenjobtJob.id === job.id) return;
           return <SimilarJobItem job={jobs[index]} key={job.id} />;

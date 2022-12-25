@@ -26,7 +26,7 @@ function SimilarJobItem({ job }: Props) {
         job.id
       )}
     >
-      <div className="shadow-4 border-green4 relative mx-auto flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+      <div className="shadow-4 border-green4 relative mx-8 flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
@@ -58,7 +58,7 @@ function SimilarJobItem({ job }: Props) {
           {/* Logo, name and date */}
           <div className="text-center">
             <div className="text-2xl font-bold text-custom-brown1">
-              <h3 className="hover:underline">{job.jobTitle}</h3>
+              <h3 className="">{job.jobTitle}</h3>
             </div>
             <div>
               <div className="text-center">

@@ -69,39 +69,8 @@ const JobPage: NextPage<{
         {(categoryJobs.length > 1 ||
           (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
           <div className="site-margins mx-auto max-w-7xl pt-4 sm:pt-12 lg:pt-20">
+            <h2 className="heading-xl my-20">Similar Jobs</h2>
             <SimilarJobs similarJobs={categoryJobs} currentJobId={job.id} />
-          </div>
-        )}
-
-        {/* SIMILAR JOBS */}
-        {(categoryJobs.length > 1 ||
-          (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
-          <div className="my-24">
-            <div className="my-3">
-              <h4 className="text-2xl font-bold">Similar Jobs</h4>
-              <p className="text-sm">
-                Latest jobs from the {job.category.name} category
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              {categoryJobs.map((categoryJob) => {
-                if (categoryJob.id === job.id) return;
-                return (
-                  <li className="list-none" key={categoryJob.id}>
-                    <JobItem job={categoryJob} />
-                  </li>
-                );
-              })}
-            </div>
-            {categoryJobs.length === 5 && (
-              <div className="my-5 text-center">
-                <Link href="/#jobs">
-                  <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-                    More {job.category.name} Jobs
-                  </button>
-                </Link>
-              </div>
-            )}
           </div>
         )}
       </main>

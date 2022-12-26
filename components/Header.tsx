@@ -11,6 +11,11 @@ function Header() {
           </Link>
         </div>
         <div className="hidden flex-1 justify-center gap-4 self-center text-custom-brown1 sm:flex md:gap-12 lg:gap-24 xl:gap-32">
+          <Link href="/#jobs">
+            <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              Jobs
+            </a>
+          </Link>
           <Link href="/hiring">
             <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
               Hiring
@@ -18,7 +23,7 @@ function Header() {
           </Link>
           <Link href="/sustainability">
             <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
-              Sustainability
+              The 17 Goals
             </a>
           </Link>
           <Link href="/blog">

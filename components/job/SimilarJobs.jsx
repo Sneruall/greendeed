@@ -39,9 +39,9 @@ function SimilarJobs({ similarJobs, currentJobId }) {
         <div className="my-5 text-center">
           {/* <Link href={`/?category=${similarJobs[0].category.slug}#jobs`}> */}
           <Link href="/#jobs">
-            <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
+            <button className="button-1">
               {/* More {similarJobs[0].category.name} Jobs */}
-              All jobs
+              See all jobs
             </button>
           </Link>
         </div>

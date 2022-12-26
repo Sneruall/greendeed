@@ -37,9 +37,11 @@ function SimilarJobs({ similarJobs, currentJobId }) {
       </Carousel>
       {similarJobs.length > 4 && (
         <div className="my-5 text-center">
-          <Link href={`/?category=${similarJobs[0].category}#jobs`}>
+          {/* <Link href={`/?category=${similarJobs[0].category.slug}#jobs`}> */}
+          <Link href="/#jobs">
             <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-              More {similarJobs[0].category} Jobs
+              {/* More {similarJobs[0].category.name} Jobs */}
+              All jobs
             </button>
           </Link>
         </div>

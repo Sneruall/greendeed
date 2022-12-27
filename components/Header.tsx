@@ -21,7 +21,7 @@ function Header() {
               Hiring
             </a>
           </Link>
-          <Link href="/sustainability">
+          <Link href="/working-for-the-sustainable-development-goals">
             <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
               The 17 Goals
             </a>

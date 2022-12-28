@@ -68,6 +68,7 @@ function JobSdgSection({ job, company }: Props) {
                     height={150}
                     objectFit="contain"
                     layout="intrinsic"
+                    // todo add alt={sdg.title}
                   />
                 </div>
                 <div className="">

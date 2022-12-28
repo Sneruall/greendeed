@@ -50,6 +50,7 @@ function SdgPageList({}: Props) {
                     height={150}
                     objectFit="contain"
                     layout="intrinsic"
+                    alt={sdg.name}
                   />
                 </div>
                 <div className="">

@@ -18,8 +18,8 @@ function SdgPageHero({}: Props) {
           </h2>
         </div>
         <div className="my-20">
-          <div className="my-4 flex justify-center gap-24">
-            <div className="text-right">
+          <div className="my-4 flex flex-wrap gap-2 md:flex-nowrap md:justify-center md:gap-8 lg:gap-24">
+            <div className="md:text-right">
               <h3 className="heading-sm-omnes2">Advantages of using them</h3>
               <p className="font-century italic leading-relaxed text-custom-brown1">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
@@ -49,7 +49,7 @@ function SdgPageHero({}: Props) {
               </p>
             </div>
           </div>
-          <ul className="flex gap-2">
+          <ul className="my-10 flex flex-wrap justify-center gap-2">
             {/* {sdglist.map((similarJob) => {
           return <SimilarJobItem job={similarJob} key={similarJob.id} />;
         })} */}
@@ -62,10 +62,11 @@ function SdgPageHero({}: Props) {
                   <Link href={`#sdg${sdg.code}`}>
                     <Image
                       src={`/images/icons/sdg-icons/${sdg.code}.png`}
-                      height={100}
-                      width={100}
+                      height={60}
+                      width={60}
                       objectFit="contain"
                       layout="intrinsic"
+                      alt={sdg.name}
                     />
                   </Link>
                 </li>

@@ -42,15 +42,21 @@ import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 
 function Form() {
+  /* FORM STEP REGISTRATION */
+
   // Registering which form step is currently active
   const [activeFormStep, setActiveFormStep] = useState(1);
 
+  // Reference to the form element
   const formRef = useRef<null | HTMLDivElement>(null);
 
+  // Change Current Form Step method, including smooth scroll top part into view after changing steps
   const changeFormStep = (step: number) => {
     setActiveFormStep(step);
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  /* COMPANY DATA REGISTRATION */
 
   // Checking the entered company name with what is already in the DB
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();

@@ -34,15 +34,4 @@ const FormNavigation = ({ changeFormStep, activeFormStep }: Props) => {
   );
 };
 
-{
-  /* <Link href="#post-job">
-<a className="hover:no-underline">
-  <button className="button-with-icon my-10">
-    <span className="w-full">Post Job</span>
-    <BiChevronsDown className="ml-2 h-6 w-6" />
-  </button>
-</a>
-</Link> */
-}
-
 export default FormNavigation;

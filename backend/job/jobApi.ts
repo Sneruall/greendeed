@@ -19,8 +19,18 @@ export const setJobId = () => {
   return nanoid();
 };
 
+/**
+ * It transforms the form data into a job object
+ * @param {Form} retrievedFormData - Form
+ * @param {string} jobDescriptionHtml - string,
+ * @param {string} companyDescriptionHtml - string
+ * @param salaryValues - {
+ * @param {Company} [retrievedCompanyData] - Company | undefined
+ * @param {string} [imagePublicId] - the public id of the image that was uploaded to cloudinary
+ * @returns The result of the function is a Job object.
+ */
 export async function transformFormData(
-  transformedFormData: Form,
+  retrievedFormData: Form,
   jobDescriptionHtml: string,
   companyDescriptionHtml: string,
   salaryValues: {
@@ -31,14 +41,14 @@ export async function transformFormData(
   imagePublicId?: string
 ) {
   let result: Job = {
-    category: transformedFormData.category,
-    email: transformedFormData.email,
-    apply: transformedFormData.apply,
-    applicationMethod: transformedFormData.applicationMethod,
+    category: retrievedFormData.category,
+    email: retrievedFormData.email,
+    apply: retrievedFormData.apply,
+    applicationMethod: retrievedFormData.applicationMethod,
     companyId: setCompanyId(retrievedCompanyData?.id),
-    jobTitle: transformedFormData.jobTitle,
-    jobDescription: transformedFormData.jobDescription,
-    jobType: transformedFormData.jobType,
+    jobTitle: retrievedFormData.jobTitle,
+    jobDescription: retrievedFormData.jobDescription,
+    jobType: retrievedFormData.jobType,
     id: setJobId(),
     price: 50,
     paid: true,
@@ -46,10 +56,10 @@ export async function transformFormData(
     external: false,
     hidden: false,
     listed: true,
-    locationInfo: transformedFormData.locationInfo,
+    locationInfo: retrievedFormData.locationInfo,
     timestamp: registerJobTimestamp(),
-    salary: transformedFormData.salary,
-    companyData: transformedFormData.companyData,
+    salary: retrievedFormData.salary,
+    companyData: retrievedFormData.companyData,
     sdg: ['1'],
   };
   // todo: checken of deze functies wel async moeten worden gemarked...
@@ -63,17 +73,17 @@ export async function transformFormData(
   return result;
 }
 
-export const setDefaultJobAttributes = (transformedFormData: Form) => {
+export const setDefaultJobAttributes = (retrievedFormData: Form) => {
   // Set other job data attributes
-  transformedFormData.sdg = ['1'];
-  transformedFormData.timestamp = registerJobTimestamp();
-  transformedFormData.id = setJobId();
-  transformedFormData.price = 50; // set the price
-  transformedFormData.paid = true; // set the payment status
-  transformedFormData.hidden = false; // determine if the job is hidden from the platform overal
-  transformedFormData.listed = true; // determine if the job is listed in the jobs lists
-  transformedFormData.closed = false; // determine if the job is marked as closed
-  transformedFormData.external = false; // determine if the job is external (e.g. from remotive)
+  retrievedFormData.sdg = ['1'];
+  retrievedFormData.timestamp = registerJobTimestamp();
+  retrievedFormData.id = setJobId();
+  retrievedFormData.price = 50; // set the price
+  retrievedFormData.paid = true; // set the payment status
+  retrievedFormData.hidden = false; // determine if the job is hidden from the platform overal
+  retrievedFormData.listed = true; // determine if the job is listed in the jobs lists
+  retrievedFormData.closed = false; // determine if the job is marked as closed
+  retrievedFormData.external = false; // determine if the job is external (e.g. from remotive)
 };
 
 export const convertLocationsToArrays = (locationInfo: LocationInfo) => {
@@ -129,8 +139,8 @@ export async function setLogo(
   }
 }
 
-export async function filterSdgData(transformedFormData: Form) {
-  const sdgData = transformedFormData.companyData.sdgInfo;
+export async function filterSdgData(retrievedFormData: Form) {
+  const sdgData = retrievedFormData.companyData.sdgInfo;
   const filteredSdgData: {}[] = [];
 
   for (const key in sdgData) {
@@ -168,13 +178,13 @@ export async function setSalary(
   }
 }
 
-export async function postJob(transformedFormData: Job) {
+export async function postJob(retrievedFormData: Job) {
   // Post the job data in the Database
   //todo no console log and nothing is done with data?
 
   const response = await fetch('/api/jobs', {
     method: 'POST',
-    body: JSON.stringify(transformedFormData), //todo only save what we need, like postCompany does, convert Form to Job.
+    body: JSON.stringify(retrievedFormData), //todo only save what we need, like postCompany does, convert Form to Job.
     headers: {
       'Content-Type': 'application/json',
     },

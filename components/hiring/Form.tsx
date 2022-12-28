@@ -42,7 +42,7 @@ import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 
 function Form() {
-  /* FORM STEP REGISTRATION */
+  /* ------ FORM STEP REGISTRATION ------ */
 
   // Registering which form step is currently active
   const [activeFormStep, setActiveFormStep] = useState(1);
@@ -56,29 +56,34 @@ function Form() {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  /* COMPANY DATA REGISTRATION */
+  /* ------ COMPANY DATA REGISTRATION ------ */
 
-  // Checking the entered company name with what is already in the DB
+  // Checking the entered company name with what is already in the DB and storing that in state
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
-  // logo upload
+  // Soring rich field company description html in state
+  const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');
+
+  // Storing the image public id from cloudinary in state
   const [imagePublicId, setImagePublicId] = useState('');
 
-  // company website tracking
+  // Storing company website url in state
   const [website, setWebsite] = useState('');
 
-  // Location fields tracking
+  /* ------ STORING OTHER FIELDS IN STATE ------ */
+
+  // Storing location fields in state
   const [locationInfo, setLocationObject] = useState<LocationObject>({
     location: 'remote',
     otherGeoRestriction: false,
   });
 
-  // Application method tracking
+  // Storing application method in state
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
 
-  //Currency tracking
+  // Storing currency and salary values in state
   const [currency, setCurrency] = useState<string>('US$');
   const [salaryValues, setSalaryValues] = useState<{
     minSalary: CurrencyInputOnChangeValues;
@@ -88,6 +93,7 @@ function Form() {
     maxSalary: { float: null, formatted: '', value: '' },
   });
 
+  // Method for storing salary values in state
   const handleOnValueChange: CurrencyInputProps['onValueChange'] = (
     value,
     name,
@@ -108,9 +114,11 @@ function Form() {
     }
   };
 
+  // Storing rich field job description html in state
   const [jobDescriptionHtml, setjobDescriptionHtml] = useState('');
-  const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');
 
+  /* Using the useForm hook from react-hook-form to register the form, handle the submit, reset the form,
+and get the form state. */
   const {
     register,
     handleSubmit,
@@ -121,6 +129,11 @@ function Form() {
     mode: 'all',
   });
 
+  /**
+   * Method for handling the form submission: It takes in a formData object of type Form, and returns a transformedFormData object of type Job.
+   * In the method, fields are added or transformed.
+   * @param {Form} formData - Form
+   */
   async function onSubmit(formData: Form) {
     const transformedFormData: Job = await transformFormData(
       formData,
@@ -130,14 +143,6 @@ function Form() {
       retrievedCompanyData,
       imagePublicId
     );
-    // setDefaultJobAttributes(formData);
-    // convertLocationsToArrays(formData);
-    // mapCategoryToObject(formData);
-    // setCompanyId(formData, retrievedCompanyData?.id);
-    // setLogo(formData, imagePublicId, retrievedCompanyData?.logo);
-    // setHTMLDescription(formData, jobDescriptionHtml, 'job');
-    // setHTMLDescription(formData, companyDescriptionHtml, 'company');
-    // setSalary(formData, salaryValues);
     filterSdgData(formData);
     // Todo: function to leave out the false sdg data.
     try {
@@ -151,7 +156,6 @@ function Form() {
     }
     reset();
   }
-  // console.log(errors);
 
   const HandleGeoRestrictionsChange = (
     event: React.SyntheticEvent<Element, Event>,

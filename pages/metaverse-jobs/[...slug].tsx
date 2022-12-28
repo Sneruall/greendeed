@@ -1,11 +1,9 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import Header from '../../components/Header';
 import { Company, Job, sdgList } from '../../types/types';
 import {
-  generateCompanyUrl,
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
@@ -13,7 +11,6 @@ import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/db';
 import { getCompanyFromMongo } from '../../backend/company/companyDB';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
-import JobItem from '../../components/JobItem';
 import JobInfoCard from '../../components/job/JobInfoCard';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';

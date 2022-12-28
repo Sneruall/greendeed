@@ -298,9 +298,16 @@ and get the form state. */
               <div className="text-red-500">{(errors.sdg as any)?.message}</div>
 
               <div className="my-2">
-                <SdgElements errors={errors?.sdg} register={register} />
+                <SdgElements
+                  errors={errors?.companyData?.sdgs}
+                  register={register}
+                />
               </div>
             </div>
+            {/* <div className="text-red-500">{JSON.stringify(errors)}</div> */}
+            {/* <div className="text-red-500">
+              {errors?.locationInfo?.location?.message}
+            </div> */}
           </div>
 
           {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}

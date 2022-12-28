@@ -16,6 +16,7 @@ export async function postCompany(
     website:
       transformedFormData.companyData.website || retrievedCompanyData?.website,
     logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
+    // sdgs:
   };
   const companyResponse = await fetch('/api/update-company', {
     method: 'POST',

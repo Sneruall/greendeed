@@ -69,6 +69,7 @@ export async function transformFormData(
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
+  // result.companyData.sdgs = filterSdgData(retrievedFormData);
 
   return result;
 }
@@ -140,7 +141,7 @@ export async function setLogo(
 }
 
 export async function filterSdgData(retrievedFormData: Form) {
-  const sdgData = retrievedFormData.companyData.sdgInfo;
+  const sdgData = retrievedFormData.companyData.sdgs;
   const filteredSdgData: {}[] = [];
 
   for (const key in sdgData) {
@@ -152,7 +153,22 @@ export async function filterSdgData(retrievedFormData: Form) {
     }
   }
   console.log('filteredSdgData ' + JSON.stringify(filteredSdgData));
+
+  // let convertedData = [];
+
+  // filteredSdgData.forEach(element => {
+
+  //   });
+
   return filteredSdgData;
+  // filteredSdgData [{"sdg2":true},{"sdg6":true},{"sdg2text":"22"},{"sdg6text":"666"}]
+  /* array of 
+
+export interface OrganizationSdg {
+  id: string;
+  text: string;
+}
+  */
 }
 
 /**

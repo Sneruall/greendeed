@@ -42,13 +42,13 @@ import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 
 function Form() {
-  // Form step management
-  const [formStep, setFormStep] = useState(1);
+  // Registering which form step is currently active
+  const [activeFormStep, setActiveFormStep] = useState(1);
 
   const formRef = useRef<null | HTMLDivElement>(null);
 
   const changeFormStep = (step: number) => {
-    setFormStep(step);
+    setActiveFormStep(step);
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -162,8 +162,8 @@ function Form() {
     >
       <div className="mx-auto max-w-3xl ">
         <FormStatusIdentifier
-          setFormStep={setFormStep}
-          formStep={formStep}
+          setActiveFormStep={setActiveFormStep}
+          activeFormStep={activeFormStep}
           errors={errors}
         />
 
@@ -175,7 +175,7 @@ function Form() {
           {/* ////-------/////------////------- STEP 1 -----////------////---////----//// */}
 
           {/* COMPANY FIELDS */}
-          <div className={`${formStep !== 1 && 'hidden'}`}>
+          <div className={`${activeFormStep !== 1 && 'hidden'}`}>
             <div className="mb-6">
               {/* COMPANY NAME */}
               <FormFieldString
@@ -267,7 +267,7 @@ function Form() {
 
           {/* SUSTAINABLE DEVELOPMENT GOALS (SDG) */}
 
-          <div className={`${formStep !== 2 && 'hidden'}`}>
+          <div className={`${activeFormStep !== 2 && 'hidden'}`}>
             {/* SDG */}
             <div className="">
               {retrievedCompanyData && (
@@ -295,7 +295,7 @@ function Form() {
 
           {/* ////-------/////------////------- STEP 3 -----////------////---////----//// */}
 
-          <div className={`${formStep !== 3 && 'hidden'}`}>
+          <div className={`${activeFormStep !== 3 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
               {/* JOB TITLE */}
               <FormFieldString
@@ -318,7 +318,7 @@ function Form() {
           </div>
 
           {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
-          <div className={`${formStep !== 4 && 'hidden'}`}>
+          <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
               {/* CATEGORY */}
               <FormFieldDropdown
@@ -552,7 +552,7 @@ function Form() {
           {/* SUBMIT */}
           <div
             className={`flex justify-end space-x-4 ${
-              formStep !== 4 && 'hidden'
+              activeFormStep !== 4 && 'hidden'
             }`}
           >
             <button
@@ -566,7 +566,10 @@ function Form() {
         </form>
         <div className="mx-auto my-10 flex max-w-xl space-x-4">
           {/* FORM NAVIGATION */}
-          <FormNavigation formStep={formStep} changeFormStep={changeFormStep} />
+          <FormNavigation
+            activeFormStep={activeFormStep}
+            changeFormStep={changeFormStep}
+          />
         </div>
 
         {/* RESET */}

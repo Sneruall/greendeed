@@ -8,12 +8,12 @@ import {
 
 type Props = {
   step: number;
-  formStep: number;
-  setFormStep: React.Dispatch<React.SetStateAction<number>>;
+  activeFormStep: number;
+  setActiveFormStep: React.Dispatch<React.SetStateAction<number>>;
   errors: any[];
 };
 
-const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
+const Step = ({ step, errors, activeFormStep, setActiveFormStep }: Props) => {
   const oneIsTrue = (errors: any[]) => {
     if (errors?.some) {
       return errors.some((error) => error !== undefined);
@@ -22,7 +22,7 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
 
   return (
     <div
-      onClick={() => setFormStep(step)}
+      onClick={() => setActiveFormStep(step)}
       className="flex items-center gap-3 hover:cursor-pointer"
     >
       <div
@@ -40,15 +40,15 @@ const FormStep = ({ step, errors, formStep, setFormStep }: Props) => {
       </div>
       <div className="text-xs">
         <div className="heading-sm-omnes mb-0">
-          {step === formStep && `Step ${step}/4`}
+          {step === activeFormStep && `Step ${step}/4`}
         </div>
-        <div>{step === 1 && formStep === 1 && 'Company details'}</div>
-        <div>{step === 2 && formStep === 2 && 'Sustainable goals'}</div>
-        <div>{step === 3 && formStep === 3 && 'Job Description'}</div>
-        <div>{step === 4 && formStep === 4 && 'Job Details'}</div>
+        <div>{step === 1 && activeFormStep === 1 && 'Company details'}</div>
+        <div>{step === 2 && activeFormStep === 2 && 'Sustainable goals'}</div>
+        <div>{step === 3 && activeFormStep === 3 && 'Job Description'}</div>
+        <div>{step === 4 && activeFormStep === 4 && 'Job Details'}</div>
       </div>
     </div>
   );
 };
 
-export default FormStep;
+export default Step;

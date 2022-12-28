@@ -3,6 +3,8 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SdgPageHero from '../components/sdgs/SdgPageHero';
+import SdgPageList from '../components/sdgs/SdgPageList';
+import { sdgList } from '../../types/types';
 
 type Props = {};
 
@@ -17,6 +19,7 @@ function workingForTheSDGs({}: Props) {
       <Header />
       <main className="mx-auto">
         <SdgPageHero />
+        <SdgPageList />
       </main>
       <Footer />
     </div>

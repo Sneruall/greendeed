@@ -59,7 +59,7 @@ function SdgPageHero({}: Props) {
                   key={sdg.code}
                   className="cursor-pointer transition duration-200 ease-in-out hover:scale-110"
                 >
-                  <Link href={`#${sdg.code}`}>
+                  <Link href={`#sdg${sdg.code}`}>
                     <Image
                       src={`/images/icons/sdg-icons/${sdg.code}.png`}
                       height={100}

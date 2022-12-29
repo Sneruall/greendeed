@@ -69,7 +69,7 @@ export async function transformFormData(
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
-  // result.companyData.sdgs = filterSdgData(retrievedFormData);
+  filterSdgData(result);
 
   return result;
 }
@@ -140,9 +140,9 @@ export async function setLogo(
   }
 }
 
-export async function filterSdgData(retrievedFormData: Form) {
-  const sdgs = retrievedFormData.companyData.sdgs;
-  let sdgsInfo = retrievedFormData.companyData.sdgsInfo;
+export async function filterSdgData(result: Job) {
+  const sdgs = result.companyData.sdgs;
+  let sdgsInfo = result.companyData.sdgsInfo;
 
   // The final desired array of objects that we return
   const sdgsResult: { sdg: boolean; text?: string }[] = [];
@@ -175,7 +175,8 @@ export async function filterSdgData(retrievedFormData: Form) {
     element.text = filteredSdgsData![i];
   });
 
-  return sdgsResult;
+  console.log('filtered sdg data: ' + JSON.stringify(sdgsResult));
+  result.companyData.thesdgs = sdgsResult;
 }
 
 /**

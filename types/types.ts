@@ -51,6 +51,10 @@ export interface Job {
     logo?: string;
     sdgs?: boolean[];
     sdgsInfo?: string[];
+    thesdgs?: {
+      sdg: boolean;
+      text?: string | undefined;
+    }[];
   };
   jobTitle: string;
   category: jobCategory;

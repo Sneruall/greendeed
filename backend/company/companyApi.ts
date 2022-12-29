@@ -8,6 +8,7 @@ export async function postCompany(
   retrievedCompanyData: Company | undefined
 ) {
   const companyFormData: Company = {
+    // take over the fields we want to store in company database (note also must be included in /api/update-company)
     name: transformedFormData.companyData.name,
     id: transformedFormData.companyId,
     description:
@@ -16,7 +17,8 @@ export async function postCompany(
     website:
       transformedFormData.companyData.website || retrievedCompanyData?.website,
     logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
-    // sdgs:
+    sdgs: transformedFormData.companyData.sdgs,
+    sdgsInfo: transformedFormData.companyData.sdgsInfo,
   };
   const companyResponse = await fetch('/api/update-company', {
     method: 'POST',

@@ -85,9 +85,9 @@ export default Yup.object().shape({
       message: 'URL is not valid, try this format: website.com',
       excludeEmptyString: true,
     }),
-    sdgs: Yup.array().required('Required'),
     // Todo, add proper validation for the sdg data
-    sdgsInfo: Yup.array().required('Req'),
+    sdgs: Yup.array().required('Required'),
+    sdgsInfo: Yup.array().nullable(false).required('Req'),
   }),
 
   //   sdg: Yup.array()

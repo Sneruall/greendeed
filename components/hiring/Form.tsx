@@ -295,7 +295,9 @@ and get the form state. */
                 this goal.
               </p>
 
-              <div className="text-red-500">{(errors.sdg as any)?.message}</div>
+              <div className="text-red-500">
+                {(errors?.companyData?.sdgs as any)?.message}
+              </div>
 
               <div className="my-2">
                 <SdgElements

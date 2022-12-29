@@ -13,44 +13,8 @@ export interface Form {
     description?: string;
     website?: string;
     logo?: string;
-    sdgs?: {
-      1?: boolean;
-      2?: boolean;
-      3?: boolean;
-      4?: boolean;
-      5?: boolean;
-      6?: boolean;
-      7?: boolean;
-      8?: boolean;
-      9?: boolean;
-      10?: boolean;
-      11?: boolean;
-      12?: boolean;
-      13?: boolean;
-      14?: boolean;
-      15?: boolean;
-      16?: boolean;
-      17?: boolean;
-    };
-    sdgsInfo?: {
-      1?: string;
-      2?: string;
-      3?: string;
-      4?: string;
-      5?: string;
-      6?: string;
-      7?: string;
-      8?: string;
-      9?: string;
-      10?: string;
-      11?: string;
-      12?: string;
-      13?: string;
-      14?: string;
-      15?: string;
-      16?: string;
-      17?: string;
-    };
+    sdgs?: boolean[];
+    sdgsInfo?: string[];
   };
   jobTitle: string;
   category: jobCategory;
@@ -85,7 +49,8 @@ export interface Job {
     description?: string;
     website?: string;
     logo?: string;
-    sdgsConverted?: OrganizationSdg[];
+    sdgs?: boolean[];
+    sdgsInfo?: string[];
   };
   jobTitle: string;
   category: jobCategory;
@@ -119,9 +84,11 @@ export interface Company {
   description?: string;
   website?: string;
   logo?: string;
-  sdgs?: OrganizationSdg[];
+  sdgs?: boolean[];
+  sdgsInfo?: string[];
 }
 
+// todo, check not being used atm
 export interface OrganizationSdg {
   id: string;
   text: string;

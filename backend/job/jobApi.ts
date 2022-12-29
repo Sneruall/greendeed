@@ -161,7 +161,9 @@ export async function filterSdgData(retrievedFormData: Form) {
   //   });
 
   return filteredSdgData;
-  // filteredSdgData [{"sdg2":true},{"sdg6":true},{"sdg2text":"22"},{"sdg6text":"666"}]
+  // filteredSdgData [{"1":true},{"3":true}]
+  // filteredSdgData2 [{"1":'fdfdsfds'},{"3":'fdfdsf'}]
+  
   /* array of 
 
 export interface OrganizationSdg {

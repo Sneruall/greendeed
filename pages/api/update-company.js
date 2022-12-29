@@ -34,11 +34,11 @@ export default async function handler(req, res) {
       const db = client.db();
       const companies = db.collection(process.env.MONGODB_COMPANY_COLLECTION);
 
-      // create a filter for a movie to update
+      // create a filter for a company to update
       const filter = { id: data.id };
       // this option instructs the method to create a document if no documents match the filter
       const options = { upsert: true };
-      // create a document that sets the plot of the movie
+      // create a document that sets the company
       const updateDoc = {
         $set: {
           id: data.id,
@@ -46,6 +46,8 @@ export default async function handler(req, res) {
           description: data.description,
           website: data.website,
           logo: data.logo,
+          sdgs: data.sdgs,
+          sdgsInfo: data.sdgsInfo,
         },
       };
       const result = await companies.updateOne(filter, updateDoc, options);

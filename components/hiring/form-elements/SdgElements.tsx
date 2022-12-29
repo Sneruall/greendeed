@@ -20,9 +20,12 @@ function SdgElements({ errors, register }: Props) {
   ));
 
   return (
-    <ul className="grid auto-rows-max grid-cols-5 gap-1 sm:gap-4">
-      {optionList}
-    </ul>
+    <>
+      <ul className="grid auto-rows-max grid-cols-5 gap-1 sm:gap-4">
+        {optionList}
+      </ul>
+      <div className="text-red-500">{errors?.message}</div>
+    </>
   );
 }
 

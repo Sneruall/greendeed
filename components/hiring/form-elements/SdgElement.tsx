@@ -31,7 +31,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
               id={option.code}
               className="peer h-3 w-3 cursor-pointer rounded border-2 bg-transparent text-black focus:ring-0"
               onClick={handleChange}
-              {...register(`companyData.sdgs.${option.code - 1}`)}
+              {...register(`companyData.sdgs.${option.code}`)}
             />
             <div className="w-full"></div>
           </div>
@@ -81,7 +81,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
           {isChecked && (
             <textarea
               placeholder="Tell us about your goal..."
-              {...register(`companyData.sdgsInfo.${option.code - 1}`)}
+              {...register(`companyData.sdgsInfo.${option.code}`)}
               className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
             />
           )}

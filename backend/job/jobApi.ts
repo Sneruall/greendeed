@@ -142,91 +142,40 @@ export async function setLogo(
 
 export async function filterSdgData(retrievedFormData: Form) {
   const sdgs = retrievedFormData.companyData.sdgs;
-  let sdgsData = retrievedFormData.companyData.sdgsInfo;
+  let sdgsInfo = retrievedFormData.companyData.sdgsInfo;
 
-  console.log(sdgsData);
+  // The final desired array of objects that we return
+  const sdgsResult: { sdg: boolean; text?: string }[] = [];
 
-  const filteredSdgs: { sdg: boolean; text?: string }[] = [];
+  // Helper array containing the sdgs that were selected
+  const sdgsNumbers: number[] = [];
 
-  const sdgNumbers: number[] = [];
-
+  // Including the checked sdgs in the sdgsResult array and storing the numbers
   for (const key in sdgs) {
-    console.log(`${key}: ${sdgs[key as keyof Boolean]}`);
     if (sdgs[key as keyof Boolean]) {
       let object: any = {};
       object[key] = sdgs[key as keyof Boolean];
-      filteredSdgs.push(object);
-      sdgNumbers.push(+key);
+      sdgsResult.push(object);
+      sdgsNumbers.push(+key);
     }
   }
-  console.log('sdgnumbers: ' + sdgNumbers);
-  console.log('filteredSdgs: ' + JSON.stringify(filteredSdgs));
 
-  // Keep only the data for which the sdg was checked (true value) on submit:
-
-  /* Filtering the sdgsData array. */
-  sdgsData = sdgsData?.filter((element, i) => {
-    console.log('checking for ' + i + ' ...' + sdgNumbers.includes(i));
-    return sdgNumbers.includes(i);
+  // Keep only the data for which the sdg was checked (true value) on submit (and not checked and directly unchecked):
+  sdgsInfo = sdgsInfo?.filter((el, i) => {
+    return sdgsNumbers.includes(i);
   });
 
-  console.log(
-    'sdgData after removing those not included in the sdgNumbers array = ' +
-      JSON.stringify(sdgsData)
-  );
-
-  const filteredSdgsData = sdgsData?.filter((elements) => {
+  // Removing the other null values from the array
+  const filteredSdgsData = sdgsInfo?.filter((elements) => {
     return elements !== null;
   });
 
-  console.log('filteredSdgsData ' + JSON.stringify(filteredSdgsData));
-
-  // const filteredSdgsData = sdgsData?.filter(Boolean);
-
-  // const removeNullValues = (sdgsData) => {
-  //   for (let i = 0; i < sdgsData.length; ) {
-  //     // null's datatype is object and it is a false value
-  //     // so only falsy object that exists in JavaScript is null
-  //     if (typeof sdgsData[i] === 'object' && !sdgsData[i]) {
-  //       sdgsData.splice(i, 1);
-  //     } else {
-  //       i++;
-  //       continue;
-  //     }
-  //   }
-  // };
-
-  filteredSdgs.forEach((element, i) => {
+  // Adding the texts to the corresponding objects in the result array
+  sdgsResult.forEach((element, i) => {
     element.text = filteredSdgsData![i];
   });
 
-  console.log('filteredSdgs combined: ' + JSON.stringify(filteredSdgs));
-
-  // let convertedData = [];
-
-  // filteredSdgData.forEach(element => {
-
-  //   });
-
-  return filteredSdgs;
-  // filteredSdgData [{"1":true},{"3":true}]
-  // filteredSdgData2 [{"1":'fdfdsfds'},{"3":'fdfdsf'}]
-
-  /*
-OUTPUT:
-
-  filteredSdgs: [{"1":true},{"4":true},{"5":true}]
-filteredSdgsData ["No poverty is the 1st","And this is number 4, the next one will be empty string."]
-filteredSdgs combined: [{"1":true,"text":"No poverty is the 1st"},{"4":true,"text":"And this is number 4, the next one will be empty string."},{"5":true}]
-  */
-
-  /* array of 
-
-export interface OrganizationSdg {
-  id: string;
-  text: string;
-}
-  */
+  return sdgsResult;
 }
 
 /**

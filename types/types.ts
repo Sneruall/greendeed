@@ -49,7 +49,7 @@ export interface Job {
     description?: string;
     website?: string;
     logo?: string;
-    thesdgs?: {
+    sdgs?: {
       sdg?: number;
       text?: string | undefined;
     }[];
@@ -86,8 +86,10 @@ export interface Company {
   description?: string;
   website?: string;
   logo?: string;
-  sdgs?: boolean[];
-  sdgsInfo?: string[];
+  sdgs?: {
+    sdg?: number;
+    text?: string | undefined;
+  }[];
 }
 
 // todo, check not being used atm

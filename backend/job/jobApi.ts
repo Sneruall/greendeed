@@ -64,11 +64,11 @@ export async function transformFormData(
       description: retrievedFormData.companyData.description,
       logo: retrievedFormData.companyData.logo,
       website: retrievedFormData.companyData.website,
-      thesdgs: await filterSdgData(retrievedFormData),
+      sdgs: await filterSdgData(retrievedFormData),
     },
     sdg: ['1'],
   };
-  // todo: checken of deze functies wel async moeten worden gemarked...
+  // todo: move these methods up to result object creation, like done for filterSdgData method.
   convertLocationsToArrays(result.locationInfo);
   mapCategoryToObject(result.category);
   setLogo(result, imagePublicId, retrievedCompanyData?.logo);
@@ -148,7 +148,6 @@ export async function setLogo(
 
 export async function filterSdgData(formData: Form) {
   const sdgs = formData.companyData.sdgs;
-  console.log('sdgs unfiltered: ' + sdgs);
   let sdgsInfo = formData.companyData.sdgsInfo;
 
   // The final desired array of objects that we return
@@ -181,7 +180,6 @@ export async function filterSdgData(formData: Form) {
     element.text = filteredSdgsData![i];
   });
 
-  console.log('filtered sdg data: ' + JSON.stringify(sdgsResult));
   return sdgsResult;
 }
 

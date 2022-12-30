@@ -47,7 +47,6 @@ export default async function handler(req, res) {
           website: data.website,
           logo: data.logo,
           sdgs: data.sdgs,
-          sdgsInfo: data.sdgsInfo,
         },
       };
       const result = await companies.updateOne(filter, updateDoc, options);

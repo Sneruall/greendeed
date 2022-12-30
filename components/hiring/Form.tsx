@@ -241,7 +241,6 @@ and get the form state. */
                   Company website (optional)
                 </label>
                 <input
-                  key={retrievedCompanyData?.website}
                   id="companyData.website"
                   type="text"
                   placeholder="www.yourcompany.com"

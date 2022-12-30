@@ -7,7 +7,9 @@ const CompanyChecker: React.FC<{
   companyNameIsLoading: boolean | undefined;
   retrievedCompanyData: Company | undefined;
 }> = ({ companyNameIsLoading, retrievedCompanyData }) => {
-  console.log('retrieved company data: ' + retrievedCompanyData);
+  console.log(
+    'retrieved company data: ' + JSON.stringify(retrievedCompanyData)
+  );
 
   return (
     <div>

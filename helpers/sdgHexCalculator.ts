@@ -1,4 +1,7 @@
-export const sdgHexCalculator = (num: string) => {
+export const sdgHexCalculator = (num?: string) => {
+  if (!num) {
+    return '#fff';
+  }
   switch (+num) {
     case 1:
       return '#e5243b';

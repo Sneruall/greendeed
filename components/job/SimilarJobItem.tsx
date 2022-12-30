@@ -30,18 +30,21 @@ function SimilarJobItem({ job }: Props) {
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
-            {job?.sdg?.map((num) => {
+            {job?.companyData?.sdgs?.map((sdgObject) => {
               return (
-                <li className="relative h-full w-10 hover:opacity-90" key={num}>
+                <li
+                  className="relative h-full w-10 hover:opacity-90"
+                  key={sdgObject?.sdg}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
                     <polygon
                       points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                      fill={`${sdgHexCalculator(num)}`}
+                      fill={`${sdgHexCalculator(sdgObject?.sdg?.toString())}`}
                     />
                   </svg>
                   <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
                     <Image
-                      src={'/images/icons/sdg-icons/' + num + '.png'}
+                      src={'/images/icons/sdg-icons/' + sdgObject?.sdg + '.png'}
                       width={50}
                       height={50}
                       objectFit="contain"

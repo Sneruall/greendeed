@@ -32,7 +32,7 @@ function JobInfoCard({ job, company }: Props) {
                     >
                       <polygon
                         points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                        fill={`${sdgHexCalculator(sdgObject!.sdg!.toString())}`}
+                        fill={`${sdgHexCalculator(sdgObject?.sdg?.toString())}`}
                       />
                     </svg>
                     <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">

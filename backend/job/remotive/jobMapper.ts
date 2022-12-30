@@ -5,6 +5,12 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
     companyData: {
       name: remotiveJob.company_name,
+      sdgs: [
+        {
+          sdg: 1,
+          text: 'Default sdg text',
+        },
+      ],
     },
     companyId: 'external',
     jobTitle: remotiveJob.title,

@@ -6,8 +6,9 @@ import { generateCompanyUrl } from '../../helpers/urlGeneration';
 const CompanyChecker: React.FC<{
   companyNameIsLoading: boolean | undefined;
   retrievedCompanyData: Company | undefined;
-  errorsCompanyName: any;
-}> = ({ companyNameIsLoading, retrievedCompanyData, errorsCompanyName }) => {
+}> = ({ companyNameIsLoading, retrievedCompanyData }) => {
+  console.log('retrieved company data: ' + retrievedCompanyData);
+
   return (
     <div>
       {!companyNameIsLoading &&

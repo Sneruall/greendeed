@@ -29,6 +29,7 @@ const FormFieldString: React.FC<{
   max,
   step,
 }) => {
+  console.log('the id is: ' + id);
   return (
     <div className="">
       <label htmlFor={id} className="font-bold text-custom-brown1">

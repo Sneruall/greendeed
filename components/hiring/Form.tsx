@@ -156,12 +156,12 @@ and get the form state. */
     reset();
   }
 
-  const HandleGeoRestrictionsChange = (
-    event: React.SyntheticEvent<Element, Event>,
-    values: string[]
-  ) => {
-    console.log(values);
-  };
+  // const HandleGeoRestrictionsChange = (
+  //   event: React.SyntheticEvent<Element, Event>,
+  //   values: string[]
+  // ) => {
+  //   console.log(values);
+  // };
 
   return (
     <div
@@ -206,14 +206,13 @@ and get the form state. */
               />
               <CompanyChecker
                 companyNameIsLoading={companyNameIsLoading}
-                errorsCompanyName={errors.companyData?.name}
                 retrievedCompanyData={retrievedCompanyData}
               />
             </div>
             {/* EMAIL */}
             <div className="mb-6">
               <FormFieldString
-                errors={errors.email}
+                errors={errors?.email}
                 id="email"
                 register={register}
                 title="Email"

@@ -59,7 +59,12 @@ export async function transformFormData(
     locationInfo: retrievedFormData.locationInfo,
     timestamp: registerJobTimestamp(),
     salary: retrievedFormData.salary,
-    companyData: retrievedFormData.companyData,
+    companyData: {
+      name: retrievedFormData.companyData.name,
+      description: retrievedFormData.companyData.description,
+      logo: retrievedFormData.companyData.logo,
+      website: retrievedFormData.companyData.website,
+    },
     sdg: ['1'],
   };
   // todo: checken of deze functies wel async moeten worden gemarked...

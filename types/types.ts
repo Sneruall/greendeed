@@ -50,7 +50,7 @@ export interface Job {
     website?: string;
     logo?: string;
     thesdgs?: {
-      sdg: number;
+      sdg?: number;
       text?: string | undefined;
     }[];
   };

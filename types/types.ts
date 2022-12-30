@@ -49,10 +49,7 @@ export interface Job {
     description?: string;
     website?: string;
     logo?: string;
-    sdgs: {
-      sdg: number;
-      text?: string | undefined;
-    }[];
+    sdgs: sdgs;
   };
   jobTitle: string;
   category: jobCategory;
@@ -86,11 +83,13 @@ export interface Company {
   description?: string;
   website?: string;
   logo?: string;
-  sdgs: {
-    sdg: number;
-    text?: string | undefined;
-  }[];
+  sdgs: sdgs;
 }
+
+export type sdgs = {
+  sdg: number;
+  text?: string | undefined;
+}[];
 
 // todo, check not being used atm
 export interface OrganizationSdg {

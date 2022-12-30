@@ -4,11 +4,28 @@ import React, { useState } from 'react';
 type Props = {
   register: any;
   errors: any;
-  option: any;
+  // todo, no any below
+  sdg: any;
+  retrievedSdgs?: any;
 };
 
-const SdgElement = ({ errors, register, option }: Props) => {
+// {retrievedSdgs?.find((sdgObj) => {
+//   return sdgObj.sdg === +sdg.code;
+// })}
+
+const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
+  console.log(retrievedSdgs);
+
+  // console.log(
+  //   retrievedSdgs?.find((sdgObj: any) => {
+  //     return sdgObj.sdg === +sdg.code;
+  //   })
+  // );
+
+  // if (retrievedSdgs?.some((e) => e.sdg === +sdg.code)) {
+  //   console.log('yeah');
+  // }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -24,14 +41,15 @@ const SdgElement = ({ errors, register, option }: Props) => {
       <div
         className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
       >
-        <label htmlFor={option.code} className="w-full cursor-pointer">
+        <p>{'retrieved:' + retrievedSdgs}</p>
+        <label htmlFor={sdg.code} className="w-full cursor-pointer">
           <div className="mb-2 flex">
             <input
               type="checkbox"
-              id={option.code}
+              id={sdg.code}
               className="peer h-3 w-3 cursor-pointer rounded border-2 bg-transparent text-black focus:ring-0"
               onClick={handleChange}
-              {...register(`companyData.sdgs.${option.code}`)}
+              {...register(`companyData.sdgs.${sdg.code}`)}
             />
             <div className="w-full"></div>
           </div>
@@ -39,7 +57,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
           <div className="relative m-1">
             <div className="peer inline-flex cursor-pointer self-center transition duration-200 ease-in-out">
               <Image
-                src={'/images/icons/sdg-icons/' + option.code + '.png'}
+                src={'/images/icons/sdg-icons/' + sdg.code + '.png'}
                 width={100}
                 height={100}
                 objectFit="contain"
@@ -48,12 +66,8 @@ const SdgElement = ({ errors, register, option }: Props) => {
             </div>
             <div className="absolute bottom-[110px] z-20 hidden w-56 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 md:invisible md:-left-[62px] md:block md:peer-hover:visible md:peer-hover:opacity-100 lg:-left-[142px] lg:w-96 xl:left-0">
               <div className="space-y-2 p-3">
-                <h3 className="font-semibold text-custom-brown1">
-                  {option.name}
-                </h3>
-                <p className="text-xs text-custom-brown1">
-                  {option.description}
-                </p>
+                <h3 className="font-semibold text-custom-brown1">{sdg.name}</h3>
+                <p className="text-xs text-custom-brown1">{sdg.description}</p>
                 {/* <a
                   href="#"
                   className="flex items-center font-medium text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-600"
@@ -81,7 +95,7 @@ const SdgElement = ({ errors, register, option }: Props) => {
           {isChecked && (
             <textarea
               placeholder="Tell us about your goal..."
-              {...register(`companyData.sdgsInfo.${option.code}`)}
+              {...register(`companyData.sdgsInfo.${sdg.code}`)}
               className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
             />
           )}

@@ -1,23 +1,30 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { LocationObject, sdgList } from '../../../types/types';
+import { LocationObject, sdgList, sdgs } from '../../../types/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 import SdgElement from './SdgElement';
 
 type Props = {
   register: any;
   errors: any;
+  retrievedSdgs?: sdgs;
 };
 
-function SdgElements({ errors, register }: Props) {
-  const optionList = sdgList.map((option) => (
+function SdgElements({ errors, register, retrievedSdgs }: Props) {
+  console.log('retrieved sdgs: ' + JSON.stringify(retrievedSdgs));
+
+  const optionList = sdgList.map((sdg) => (
     <SdgElement
-      key={option.code}
       errors={errors}
       register={register}
-      option={option}
+      sdg={sdg}
+      retrievedSdgs={retrievedSdgs}
     />
   ));
+
+  // {retrievedSdgs?.find((sdgObj) => {
+  //   return sdgObj.sdg === +sdg.code;
+  // })}
 
   return (
     <>

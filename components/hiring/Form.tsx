@@ -3,11 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
-import {
-  filterSdgData,
-  postJob,
-  transformFormData,
-} from '../../backend/job/jobApi';
+import { postJob, transformFormData } from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
   Job,
@@ -143,7 +139,6 @@ and get the form state. */
       retrievedCompanyData,
       imagePublicId
     );
-    // Todo: function to leave out the false sdg data.
     try {
       await postJob(transformedFormData);
       await postCompany(transformedFormData, retrievedCompanyData);
@@ -267,7 +262,7 @@ and get the form state. */
           <div className={`${activeFormStep !== 2 && 'hidden'}`}>
             {/* SDG */}
             <div className="">
-              {retrievedCompanyData && (
+              {retrievedCompanyData?.sdgs && (
                 <p className="text-green-500">
                   Hey, we found the below data already, you can adjust but we
                   will then need to reverify your SDGs
@@ -288,6 +283,7 @@ and get the form state. */
 
               <div className="my-2">
                 <SdgElements
+                  retrievedSdgs={retrievedCompanyData?.sdgs}
                   errors={errors?.companyData?.sdgs}
                   register={register}
                 />

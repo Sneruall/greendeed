@@ -64,6 +64,7 @@ export async function transformFormData(
       description: retrievedFormData.companyData.description,
       logo: retrievedFormData.companyData.logo,
       website: retrievedFormData.companyData.website,
+      thesdgs: await filterSdgData(retrievedFormData),
     },
     sdg: ['1'],
   };
@@ -74,7 +75,7 @@ export async function transformFormData(
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
-  filterSdgData(retrievedFormData, result);
+  // filterSdgData(retrievedFormData, result);
 
   return result;
 }
@@ -145,7 +146,7 @@ export async function setLogo(
   }
 }
 
-export async function filterSdgData(formData: Form, result: Job) {
+export async function filterSdgData(formData: Form) {
   const sdgs = formData.companyData.sdgs;
   console.log('sdgs unfiltered: ' + sdgs);
   let sdgsInfo = formData.companyData.sdgsInfo;
@@ -181,7 +182,7 @@ export async function filterSdgData(formData: Form, result: Job) {
   });
 
   console.log('filtered sdg data: ' + JSON.stringify(sdgsResult));
-  result.companyData.thesdgs = sdgsResult;
+  return sdgsResult;
 }
 
 /**

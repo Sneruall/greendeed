@@ -41,15 +41,17 @@ export const checkCompany = (
   >,
   setWebsite: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  // if value is 2 or more...
-  setCompanyNameIsLoading(true);
-  if (timer) {
-    clearTimeout(timer);
+  // todo if value is 2 or more...
+  if (value.length > 1) {
+    setCompanyNameIsLoading(true);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      findCompany(value, setRetrievedCompanyData, setWebsite);
+      setCompanyNameIsLoading(false);
+    }, 2000);
   }
-  timer = setTimeout(() => {
-    findCompany(value, setRetrievedCompanyData, setWebsite);
-    setCompanyNameIsLoading(false);
-  }, 2000);
 };
 
 // Making the call to the DB to check if the company name exists
@@ -62,7 +64,7 @@ async function findCompany(
 ) {
   if (value.length < 2 || !value) {
     setRetrievedCompanyData({
-      name: 'x',
+      name: '',
       id: '',
       description: '',
       website: '',
@@ -73,13 +75,14 @@ async function findCompany(
   }
   const res = await fetch(`/api/find-company/${value}`);
   const data = await res.json();
+  console.log(data);
   setRetrievedCompanyData({
-    name: await data.name,
-    id: await data.id,
-    description: await data.description,
-    website: await data.website,
-    logo: await data.logo,
-    sdgs: await data.sdgs,
+    name: data.name,
+    id: data.id,
+    description: data.description,
+    website: data.website,
+    logo: data.logo,
+    sdgs: data.sdgs,
   });
   setWebsite(data.website);
 }

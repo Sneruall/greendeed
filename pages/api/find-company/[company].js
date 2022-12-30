@@ -30,11 +30,16 @@ export default async function handler(req, res) {
         description: company.description,
         logo: company.logo,
         website: company.website,
+        sdgs: company.sdgs,
       });
     } else {
-      res
-        .status(400)
-        .json({ id: undefined, name: undefined, description: undefined });
+      res.status(200).json({
+        id: undefined,
+        name: undefined,
+        description: undefined,
+        logo: undefined,
+        website: undefined,
+      });
     }
   }
 }

@@ -26,29 +26,29 @@ function JobSdgSection({ job, company }: Props) {
 
       <ul className="mx-auto flex flex-col gap-8">
         {/* todo use company sdg instead of job sdg */}
-        {job.sdg.map((num, i) => {
+        {company.sdgs?.map((sdgObject, i) => {
           return (
             <li
-              id={'sdg' + num}
-              key={num}
+              id={'sdg' + sdgObject.sdg}
+              key={sdgObject.sdg}
               className={`${i % 2 !== 0 ? 'sdgListEven' : 'sdgListOdd'} ${
-                num === '1' && 'bg-custom-sdg1'
-              } ${num === '2' && 'bg-custom-sdg2'}  ${
-                num === '3' && 'bg-custom-sdg3'
-              } ${num === '4' && 'bg-custom-sdg4'} ${
-                num === '5' && 'bg-custom-sdg5'
-              } ${num === '6' && 'bg-custom-sdg6'} ${
-                num === '7' && 'bg-custom-sdg7'
-              } ${num === '8' && 'bg-custom-sdg8'} ${
-                num === '9' && 'bg-custom-sdg9'
-              } ${num === '10' && 'bg-custom-sdg10'} ${
-                num === '11' && 'bg-custom-sdg11'
-              } ${num === '12' && 'bg-custom-sdg12'} ${
-                num === '13' && 'bg-custom-sdg13'
-              } ${num === '14' && 'bg-custom-sdg14'} ${
-                num === '15' && 'bg-custom-sdg15'
-              } ${num === '16' && 'bg-custom-sdg16'} ${
-                num === '17' && 'bg-custom-sdg17'
+                sdgObject.sdg == 1 && 'bg-custom-sdg1'
+              } ${sdgObject.sdg == 2 && 'bg-custom-sdg2'}  ${
+                sdgObject.sdg == 3 && 'bg-custom-sdg3'
+              } ${sdgObject.sdg == 4 && 'bg-custom-sdg4'} ${
+                sdgObject.sdg == 5 && 'bg-custom-sdg5'
+              } ${sdgObject.sdg == 6 && 'bg-custom-sdg6'} ${
+                sdgObject.sdg == 7 && 'bg-custom-sdg7'
+              } ${sdgObject.sdg == 8 && 'bg-custom-sdg8'} ${
+                sdgObject.sdg == 9 && 'bg-custom-sdg9'
+              } ${sdgObject.sdg == 10 && 'bg-custom-sdg10'} ${
+                sdgObject.sdg == 11 && 'bg-custom-sdg11'
+              } ${sdgObject.sdg == 12 && 'bg-custom-sdg12'} ${
+                sdgObject.sdg == 13 && 'bg-custom-sdg13'
+              } ${sdgObject.sdg == 14 && 'bg-custom-sdg14'} ${
+                sdgObject.sdg == 15 && 'bg-custom-sdg15'
+              } ${sdgObject.sdg == 16 && 'bg-custom-sdg16'} ${
+                sdgObject.sdg == 17 && 'bg-custom-sdg17'
               }
               max-w-screen-2xl flex-row text-white`}
             >
@@ -63,7 +63,7 @@ function JobSdgSection({ job, company }: Props) {
                   } min-w-[100px] md:flex-shrink-0`}
                 >
                   <Image
-                    src={'/images/icons/sdg-icons/' + num + '.png'}
+                    src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
                     width={150}
                     height={150}
                     objectFit="contain"
@@ -74,9 +74,10 @@ function JobSdgSection({ job, company }: Props) {
                 <div className="">
                   <p>
                     No poverty Lorem ipsum dolor sit amet, consetetur sadipscing
-                    elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                    dolore magna aliquyam erat, sed diam voluptua. At vero eos
-                    et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                    elitr, sed diam nosdgObject.sdgy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At
+                    vero eos et accusam et justo duo dolores et ea rebum. Stet
+                    clita kasd
                   </p>
                 </div>
               </div>

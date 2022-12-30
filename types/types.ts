@@ -49,10 +49,8 @@ export interface Job {
     description?: string;
     website?: string;
     logo?: string;
-    sdgs?: boolean[];
-    sdgsInfo?: string[];
     thesdgs?: {
-      sdg: boolean; // this should be changed into sdg: number (instead of e.g. {12: true, text: 'hoi'})
+      sdg: number;
       text?: string | undefined;
     }[];
   };

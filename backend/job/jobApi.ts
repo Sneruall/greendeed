@@ -69,7 +69,7 @@ export async function transformFormData(
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
-  filterSdgData(result);
+  filterSdgData(retrievedFormData, result);
 
   return result;
 }
@@ -140,13 +140,13 @@ export async function setLogo(
   }
 }
 
-export async function filterSdgData(result: Job) {
-  const sdgs = result.companyData.sdgs;
+export async function filterSdgData(formData: Form, result: Job) {
+  const sdgs = formData.companyData.sdgs;
   console.log('sdgs unfiltered: ' + sdgs);
-  let sdgsInfo = result.companyData.sdgsInfo;
+  let sdgsInfo = formData.companyData.sdgsInfo;
 
   // The final desired array of objects that we return
-  const sdgsResult: { sdg: boolean; text?: string }[] = [];
+  const sdgsResult: { sdg: number; text?: string }[] = [];
 
   // Helper array containing the sdgs that were selected
   const sdgsNumbers: number[] = [];

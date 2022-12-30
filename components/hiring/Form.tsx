@@ -209,16 +209,6 @@ and get the form state. */
                 retrievedCompanyData={retrievedCompanyData}
               />
             </div>
-            {/* EMAIL */}
-            <div className="mb-6">
-              <FormFieldString
-                errors={errors?.email}
-                id="email"
-                register={register}
-                title="Email"
-                description="Stays private, for verification/invoice delivery only."
-              />
-            </div>
 
             <div className="flex flex-col gap-5">
               {/* DESCRIPTION */}
@@ -553,7 +543,9 @@ and get the form state. */
 
               <FormFieldString
                 title={
-                  applicationMethod === 'email' ? 'E-mail' : 'Website Link'
+                  applicationMethod === 'email'
+                    ? 'Apply E-mail'
+                    : 'Website Link'
                 }
                 errors={errors.apply}
                 id="apply"
@@ -564,6 +556,16 @@ and get the form state. */
                     : 'www.yourcompany.com/apply'
                 }
               />
+              {/* EMAIL */}
+              <div className="mb-6">
+                <FormFieldString
+                  errors={errors?.email}
+                  id="email"
+                  register={register}
+                  title="Your E-mail"
+                  description="Stays private, for verification/invoice delivery only."
+                />
+              </div>
             </div>
           </div>
           {/* SUBMIT */}

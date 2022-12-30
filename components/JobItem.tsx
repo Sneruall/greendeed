@@ -13,17 +13,17 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
-  const sdgList = job.sdg
-    .sort(function (a, b) {
-      return +a - +b;
-    })
-    .map((sdg) => (
+  const sdgList = job.companyData.sdgs
+    // .sort(function (a, b) {
+    //   return +a - +b;
+    // })
+    .map((sdgObject) => (
       <div
-        key={sdg}
+        key={sdgObject.sdg}
         className="cursor-pointer self-center transition duration-200 ease-in-out hover:scale-110"
       >
         <Image
-          src={'/images/icons/sdg-icons/' + sdg + '.png'}
+          src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
           width={40}
           height={40}
           objectFit="contain"

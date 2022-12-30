@@ -21,7 +21,7 @@ function JobInfoCard({ job, company }: Props) {
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
-          {company?.sdgs?.map((sdgObject) => {
+          {company.sdgs.map((sdgObject) => {
             return (
               <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
                 <a>
@@ -32,7 +32,7 @@ function JobInfoCard({ job, company }: Props) {
                     >
                       <polygon
                         points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                        fill={`${sdgHexCalculator(sdgObject?.sdg?.toString())}`}
+                        fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
                       />
                     </svg>
                     <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">

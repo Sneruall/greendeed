@@ -49,8 +49,8 @@ export interface Job {
     description?: string;
     website?: string;
     logo?: string;
-    sdgs?: {
-      sdg?: number;
+    sdgs: {
+      sdg: number;
       text?: string | undefined;
     }[];
   };
@@ -86,8 +86,8 @@ export interface Company {
   description?: string;
   website?: string;
   logo?: string;
-  sdgs?: {
-    sdg?: number;
+  sdgs: {
+    sdg: number;
     text?: string | undefined;
   }[];
 }

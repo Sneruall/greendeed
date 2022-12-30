@@ -143,7 +143,6 @@ and get the form state. */
       retrievedCompanyData,
       imagePublicId
     );
-    filterSdgData(formData);
     // Todo: function to leave out the false sdg data.
     try {
       await postJob(transformedFormData);

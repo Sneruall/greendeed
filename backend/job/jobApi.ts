@@ -142,6 +142,7 @@ export async function setLogo(
 
 export async function filterSdgData(result: Job) {
   const sdgs = result.companyData.sdgs;
+  console.log('sdgs unfiltered: ' + sdgs);
   let sdgsInfo = result.companyData.sdgsInfo;
 
   // The final desired array of objects that we return
@@ -153,8 +154,7 @@ export async function filterSdgData(result: Job) {
   // Including the checked sdgs in the sdgsResult array and storing the numbers
   for (const key in sdgs) {
     if (sdgs[key as keyof Boolean]) {
-      let object: any = {};
-      object[key] = sdgs[key as keyof Boolean];
+      const object: any = { sdg: key };
       sdgsResult.push(object);
       sdgsNumbers.push(+key);
     }

@@ -52,7 +52,7 @@ export interface Job {
     sdgs?: boolean[];
     sdgsInfo?: string[];
     thesdgs?: {
-      sdg: boolean;
+      sdg: boolean; // this should be changed into sdg: number (instead of e.g. {12: true, text: 'hoi'})
       text?: string | undefined;
     }[];
   };

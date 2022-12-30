@@ -12,13 +12,13 @@ export const generateJobUrl = (
   jobTitle: string,
   id: string
 ) => {
-  return `/metaverse-jobs/${replaceCharactersByDash(
+  return `/greendeed-jobs/${replaceCharactersByDash(
     accents.remove(companyName)
   )}/${replaceCharactersByDash(accents.remove(jobTitle))}-${id}`;
 };
 
 export const generateCompanyUrl = (name: string, id: string) => {
-  return `/metaverse-companies/${replaceCharactersByDash(
+  return `/greendeed-companies/${replaceCharactersByDash(
     accents.remove(name)
   )}-${id}`;
 };

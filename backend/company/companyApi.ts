@@ -18,7 +18,6 @@ export async function postCompany(
       transformedFormData.companyData.website || retrievedCompanyData?.website,
     logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
     sdgs: transformedFormData.companyData.sdgs,
-    sdgsInfo: transformedFormData.companyData.sdgsInfo,
   };
   const companyResponse = await fetch('/api/update-company', {
     method: 'POST',
@@ -68,6 +67,7 @@ async function findCompany(
       description: '',
       website: '',
       logo: '',
+      sdgs: [],
     });
     return;
   }
@@ -79,6 +79,7 @@ async function findCompany(
     description: await data.description,
     website: await data.website,
     logo: await data.logo,
+    sdgs: await data.sdgs,
   });
   setWebsite(data.website);
 }

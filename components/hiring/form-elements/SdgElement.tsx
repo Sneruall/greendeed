@@ -23,19 +23,9 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
 
   useEffect(() => {
     setIsChecked(matchedSdg2() || false);
+    // register(`companyData.sdgs.${sdg.code}`);
+    // register(`companyData.sdgsInfo.${sdg.code}`);
   }, [retrievedSdgs]);
-
-  // console.log(sdg.code == retrievedSdg()?.sdg);
-
-  // console.log(
-  //   retrievedSdgs?.find((sdgObj: any) => {
-  //     return sdgObj.sdg === +sdg.code;
-  //   })
-  // );
-
-  // if (retrievedSdgs?.some((e) => e.sdg === +sdg.code)) {
-  //   console.log('yeah');
-  // }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -55,7 +45,7 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
         <label htmlFor={sdg.code} className="w-full cursor-pointer">
           <div className="mb-2 flex">
             <input
-              defaultChecked={isChecked}
+              checked={isChecked}
               type="checkbox"
               id={sdg.code}
               className="peer h-3 w-3 cursor-pointer rounded border-2 bg-transparent text-black focus:ring-0"

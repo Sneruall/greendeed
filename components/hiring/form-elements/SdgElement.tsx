@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { sdgs } from '../../../types/types';
 
 type Props = {
@@ -15,16 +15,15 @@ type Props = {
 // })}
 
 const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
-  const matchedSdg = () =>
-    retrievedSdgs?.find((sdgObj) => {
-      return sdgObj?.sdg == sdg.code;
-    });
-
   const matchedSdg2 = () => {
     return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code); // true or false
   };
 
-  const [isChecked, setIsChecked] = useState(matchedSdg2());
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(matchedSdg2() || false);
+  }, [retrievedSdgs]);
 
   // console.log(sdg.code == retrievedSdg()?.sdg);
 
@@ -52,11 +51,11 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
       <div
         className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
       >
-        <p>{matchedSdg() ? 'match' : 'no match'}</p>
+        <p>{matchedSdg2() ? 'match' : 'no match'}</p>
         <label htmlFor={sdg.code} className="w-full cursor-pointer">
           <div className="mb-2 flex">
             <input
-              defaultChecked={matchedSdg2()}
+              defaultChecked={isChecked}
               type="checkbox"
               id={sdg.code}
               className="peer h-3 w-3 cursor-pointer rounded border-2 bg-transparent text-black focus:ring-0"

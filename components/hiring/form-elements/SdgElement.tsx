@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { sdgs } from '../../../types/types';
 
 type Props = {
   register: any;
   errors: any;
   // todo, no any below
   sdg: any;
-  retrievedSdgs?: any;
+  retrievedSdgs?: sdgs;
 };
 
 // {retrievedSdgs?.find((sdgObj) => {
@@ -14,8 +15,18 @@ type Props = {
 // })}
 
 const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
-  const [isChecked, setIsChecked] = useState(false);
-  console.log(retrievedSdgs);
+  const matchedSdg = () =>
+    retrievedSdgs?.find((sdgObj) => {
+      return sdgObj?.sdg == sdg.code;
+    });
+
+  const matchedSdg2 = () => {
+    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code); // true or false
+  };
+
+  const [isChecked, setIsChecked] = useState(matchedSdg2());
+
+  // console.log(sdg.code == retrievedSdg()?.sdg);
 
   // console.log(
   //   retrievedSdgs?.find((sdgObj: any) => {
@@ -41,10 +52,11 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
       <div
         className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
       >
-        <p>{'retrieved:' + retrievedSdgs}</p>
+        <p>{matchedSdg() ? 'match' : 'no match'}</p>
         <label htmlFor={sdg.code} className="w-full cursor-pointer">
           <div className="mb-2 flex">
             <input
+              defaultChecked={matchedSdg2()}
               type="checkbox"
               id={sdg.code}
               className="peer h-3 w-3 cursor-pointer rounded border-2 bg-transparent text-black focus:ring-0"

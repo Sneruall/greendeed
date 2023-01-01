@@ -157,13 +157,12 @@ and get the form state. */
       sdgs: transformedFormData.companyData.sdgs,
     };
     try {
+      // Post the job in job database
       await postJob(transformedFormData);
+      // Post or update the company database
       await postCompany(companyFormData);
+      // Sync company data to all company jobs in jobs database (job.companyData object)
       await updateJobs(companyFormData);
-      // todo: if company data (name, sdgs, website etc) has been updated, update it too for the
-      // jobs from the same company. So set job.companyData to Company object.
-      // OR
-      // don't use Job type for this, but rely fully on Company type (db)
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(

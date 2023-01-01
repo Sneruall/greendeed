@@ -64,7 +64,7 @@ export async function transformFormData(
       description: retrievedFormData.companyData.description,
       logo: retrievedFormData.companyData.logo,
       website: retrievedFormData.companyData.website,
-      sdgs: await filterSdgData(retrievedFormData),
+      sdgs: await filterSdgData(retrievedFormData, retrievedCompanyData),
     },
     sdg: ['1'],
   };
@@ -146,8 +146,35 @@ export async function setLogo(
   }
 }
 
-export async function filterSdgData(formData: Form) {
+export async function filterSdgData(
+  formData: Form,
+  retrievedCompanyData?: Company
+) {
   const sdgs = formData.companyData.sdgs;
+  console.log('sdgs: ' + sdgs);
+  // todo: make sure to set the sdg to true if it is retrieved from db
+  // voeg degene toe die uit de retrievedSdg array komen
+  // tenzij hij in het proces in het formulier unchecked is (ze willen hem niet meer)
+
+  /*
+    Momenteel hebben we checkedSdg array toegevoegd voor tracking... is dit wel nodig?
+    Kunnen ook de retrievedCompanyData.sdgs gewoon toevoegen hier en zorgen dat het geupdate wordt 
+    in sdgElement op het moment dat er eentje ge-unchecked wordt (verwijderen uit de array)?
+  */
+
+  // retrievedCompanydata.sdgs toevoegen hier:
+
+  const pulledSdgs = retrievedCompanyData?.sdgs;
+
+  if (pulledSdgs && sdgs) {
+    for (let index = 0; index < pulledSdgs.length; index++) {
+      sdgs[pulledSdgs[index].sdg] = true;
+      // sdgsArray.push(pulledSdgs[index].sdg);
+    }
+  }
+
+  console.log('sdgs after matching retrieved ones: ' + sdgs);
+
   let sdgsInfo = formData.companyData.sdgsInfo;
 
   console.log('sdgs from form: ' + sdgs);

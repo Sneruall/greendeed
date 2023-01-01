@@ -46,6 +46,7 @@ const SdgElement = ({
       console.log('✅ Checkbox is checked');
     } else {
       console.log('⛔️ Checkbox is NOT checked');
+      // todo: make sure to delete from checkedSdg array if present
     }
     setIsChecked((current) => !current);
   };

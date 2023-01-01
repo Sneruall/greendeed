@@ -139,9 +139,26 @@ and get the form state. */
       retrievedCompanyData,
       imagePublicId
     );
+    const companyFormData: Company = {
+      // take over the fields we want to store in company database (note also must be included in /api/update-company)
+      name: transformedFormData.companyData.name,
+      id: transformedFormData.companyId,
+      description:
+        transformedFormData.companyData.description ||
+        retrievedCompanyData?.description,
+      website:
+        transformedFormData.companyData.website ||
+        retrievedCompanyData?.website,
+      logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
+      sdgs: transformedFormData.companyData.sdgs,
+    };
     try {
       await postJob(transformedFormData);
-      await postCompany(transformedFormData, retrievedCompanyData);
+      await postCompany(companyFormData);
+      // todo: if company data (name, sdgs, website etc) has been updated, update it too for the
+      // jobs from the same company. So set job.companyData to Company object.
+      // OR
+      // don't use Job type for this, but rely fully on Company type (db)
     } catch {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(

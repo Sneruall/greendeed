@@ -2,23 +2,7 @@ import { Company, Form, Job } from '../../types/types';
 
 let timer: ReturnType<typeof setTimeout>;
 
-// Todo: convert Formdata into Company type.
-export async function postCompany(
-  transformedFormData: Job,
-  retrievedCompanyData: Company | undefined
-) {
-  const companyFormData: Company = {
-    // take over the fields we want to store in company database (note also must be included in /api/update-company)
-    name: transformedFormData.companyData.name,
-    id: transformedFormData.companyId,
-    description:
-      transformedFormData.companyData.description ||
-      retrievedCompanyData?.description,
-    website:
-      transformedFormData.companyData.website || retrievedCompanyData?.website,
-    logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
-    sdgs: transformedFormData.companyData.sdgs,
-  };
+export async function postCompany(companyFormData: Company) {
   const companyResponse = await fetch('/api/update-company', {
     method: 'POST',
     body: JSON.stringify(companyFormData),
@@ -41,7 +25,6 @@ export const checkCompany = (
   >,
   setWebsite: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  // todo if value is 2 or more...
   if (value.length > 1) {
     setCompanyNameIsLoading(true);
     if (timer) {

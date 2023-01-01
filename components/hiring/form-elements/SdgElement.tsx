@@ -20,9 +20,18 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
   };
 
   const [isChecked, setIsChecked] = useState(false);
+  const [sdgText, setSdgText] = useState('');
 
   useEffect(() => {
-    setIsChecked(retrievedSdgsIncludesThisSdg() || false);
+    if (retrievedSdgsIncludesThisSdg()) {
+      setIsChecked(true);
+
+      const matchedSdg = retrievedSdgs?.find((sdgObj) => {
+        return sdgObj?.sdg == sdg.code;
+      });
+
+      setSdgText(matchedSdg?.text || '');
+    }
     // register(`companyData.sdgs.${sdg.code}`); WERKT NIET
     // register(`companyData.sdgsInfo.${sdg.code}`);
   }, [retrievedSdgs]);
@@ -94,6 +103,8 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
           </div>
           {isChecked && (
             <textarea
+              required={isChecked}
+              defaultValue={sdgText}
               placeholder="Tell us about your goal..."
               {...register(`companyData.sdgsInfo.${sdg.code}`)}
               className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"

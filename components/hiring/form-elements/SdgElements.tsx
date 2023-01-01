@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { LocationObject, sdgList, sdgs } from '../../../types/types';
+import { Company, LocationObject, sdgList, sdgs } from '../../../types/types';
 import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
 import SdgElement from './SdgElement';
 
@@ -8,14 +8,16 @@ type Props = {
   register: any;
   errors: any;
   retrievedSdgs?: sdgs;
-  setCheckedSdgs: React.Dispatch<React.SetStateAction<number[]>>;
+  setRetrievedCompanyData: React.Dispatch<
+    React.SetStateAction<Company | undefined>
+  >;
 };
 
 function SdgElements({
   errors,
   register,
   retrievedSdgs,
-  setCheckedSdgs,
+  setRetrievedCompanyData,
 }: Props) {
   console.log('retrieved sdgs: ' + JSON.stringify(retrievedSdgs));
 
@@ -25,7 +27,7 @@ function SdgElements({
       register={register}
       sdg={sdg}
       retrievedSdgs={retrievedSdgs}
-      setCheckedSdgs={setCheckedSdgs}
+      setRetrievedCompanyData={setRetrievedCompanyData}
     />
   ));
 

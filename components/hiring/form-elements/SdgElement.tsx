@@ -1,25 +1,31 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { sdgs } from '../../../types/types';
+import { sdgs, sdgList, Company } from '../../../types/types';
+
+// todo, consider making sdg.code of type number instead of string (and apply everywhere it is being used)
 
 type Props = {
   register: any;
   errors: any;
   // todo, no any below
-  sdg: any;
+  sdg: typeof sdgList[number];
   retrievedSdgs?: sdgs;
-  setCheckedSdgs: React.Dispatch<React.SetStateAction<number[]>>;
+  setRetrievedCompanyData: React.Dispatch<
+    React.SetStateAction<Company | undefined>
+  >;
 };
+
+let updatedRetrievedSdgs: sdgs | undefined;
 
 const SdgElement = ({
   errors,
   register,
   sdg,
   retrievedSdgs,
-  setCheckedSdgs,
+  setRetrievedCompanyData,
 }: Props) => {
   const retrievedSdgsIncludesThisSdg = () => {
-    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code);
+    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == +sdg.code);
   };
 
   const [isChecked, setIsChecked] = useState(false);
@@ -29,10 +35,10 @@ const SdgElement = ({
     if (retrievedSdgsIncludesThisSdg()) {
       setIsChecked(true);
       // setCheckedSdgs(sdg.code);
-      setCheckedSdgs((sdgs) => [...sdgs, +sdg.code]);
+      // setCheckedSdgs((sdgs) => [...sdgs, +sdg.code]);
 
       const matchedSdg = retrievedSdgs?.find((sdgObj) => {
-        return sdgObj?.sdg == sdg.code;
+        return sdgObj?.sdg == +sdg.code;
       });
 
       setSdgText(matchedSdg?.text || '');
@@ -46,8 +52,27 @@ const SdgElement = ({
       console.log('✅ Checkbox is checked');
     } else {
       console.log('⛔️ Checkbox is NOT checked');
-      // todo: make sure to delete from checkedSdg array if present
+
+      // Code block to run when the SDG that is unchecked is currently stored in the DB
+      // To make sure it won't be retained.
+      if (retrievedSdgsIncludesThisSdg()) {
+        // set updatedRetrievedSdgs to retrievedSdgs if it is still undefined (no existing sdg has been deleted yet)
+        if (!updatedRetrievedSdgs) {
+          updatedRetrievedSdgs = retrievedSdgs;
+        }
+
+        // Update it to only keep those that were not unchecked.
+        updatedRetrievedSdgs = updatedRetrievedSdgs?.filter((el) => {
+          return el.sdg != +sdg.code;
+        });
+
+        // Update retrievedSdgs
+        // setRetrievedCompanyData.sdg={updatedRetrievedSdgs}
+        retrievedSdgs = updatedRetrievedSdgs;
+        console.log(retrievedSdgs);
+      }
     }
+    // uncheck the box.
     setIsChecked((current) => !current);
   };
 

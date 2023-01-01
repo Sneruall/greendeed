@@ -162,13 +162,9 @@ export async function filterSdgData(
     in sdgElement op het moment dat er eentje ge-unchecked wordt (verwijderen uit de array)?
   */
 
-  // retrievedCompanydata.sdgs toevoegen hier:
-
-  const pulledSdgs = retrievedCompanyData?.sdgs;
-
-  if (pulledSdgs && sdgs) {
-    for (let index = 0; index < pulledSdgs.length; index++) {
-      sdgs[pulledSdgs[index].sdg] = true;
+  if (retrievedCompanyData?.sdgs && sdgs) {
+    for (let index = 0; index < retrievedCompanyData?.sdgs.length; index++) {
+      sdgs[retrievedCompanyData?.sdgs[index].sdg] = true;
       // sdgsArray.push(pulledSdgs[index].sdg);
     }
   }

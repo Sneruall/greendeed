@@ -67,6 +67,7 @@ function Form() {
   // Storing company website url in state
   const [website, setWebsite] = useState('');
 
+  // Todo: Dit en alle references erheen kunnen weg:
   const [checkedSdgs, setCheckedSdgs] = useState<number[]>([]);
   console.log(checkedSdgs);
 

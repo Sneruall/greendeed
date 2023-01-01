@@ -8,7 +8,7 @@ type Props = {
   register: any;
   errors: any;
   retrievedSdgs?: sdgs;
-  setCheckedSdgs: React.Dispatch<React.SetStateAction<number>>;
+  setCheckedSdgs: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 function SdgElements({

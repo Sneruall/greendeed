@@ -8,9 +8,10 @@ type Props = {
   register: any;
   errors: any;
   retrievedSdgs?: sdgs;
+  checkedSdgs: number[];
 };
 
-function SdgElements({ errors, register, retrievedSdgs }: Props) {
+function SdgElements({ errors, register, retrievedSdgs, checkedSdgs }: Props) {
   console.log('retrieved sdgs: ' + JSON.stringify(retrievedSdgs));
 
   const optionList = sdgList.map((sdg) => (
@@ -19,6 +20,7 @@ function SdgElements({ errors, register, retrievedSdgs }: Props) {
       register={register}
       sdg={sdg}
       retrievedSdgs={retrievedSdgs}
+      checkedSdgs={checkedSdgs}
     />
   ));
 

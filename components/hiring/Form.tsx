@@ -67,6 +67,8 @@ function Form() {
   // Storing company website url in state
   const [website, setWebsite] = useState('');
 
+  const [checkedSdgs, setCheckedSdgs] = useState<number[]>([]);
+
   /* ------ STORING OTHER FIELDS IN STATE ------ */
 
   // Storing location fields in state
@@ -286,6 +288,7 @@ and get the form state. */
                   retrievedSdgs={retrievedCompanyData?.sdgs}
                   errors={errors?.companyData?.sdgs}
                   register={register}
+                  checkedSdgs={checkedSdgs}
                 />
               </div>
             </div>

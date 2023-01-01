@@ -8,15 +8,18 @@ type Props = {
   // todo, no any below
   sdg: any;
   retrievedSdgs?: sdgs;
+  checkedSdgs: number[];
 };
 
-// {retrievedSdgs?.find((sdgObj) => {
-//   return sdgObj.sdg === +sdg.code;
-// })}
-
-const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
+const SdgElement = ({
+  errors,
+  register,
+  sdg,
+  retrievedSdgs,
+  checkedSdgs,
+}: Props) => {
   const retrievedSdgsIncludesThisSdg = () => {
-    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code); // true or false
+    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code);
   };
 
   const [isChecked, setIsChecked] = useState(false);
@@ -25,6 +28,8 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
   useEffect(() => {
     if (retrievedSdgsIncludesThisSdg()) {
       setIsChecked(true);
+      checkedSdgs.push(+sdg.code);
+      console.log('checkedSdgs: ' + checkedSdgs);
 
       const matchedSdg = retrievedSdgs?.find((sdgObj) => {
         return sdgObj?.sdg == sdg.code;

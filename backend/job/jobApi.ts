@@ -150,6 +150,9 @@ export async function filterSdgData(formData: Form) {
   const sdgs = formData.companyData.sdgs;
   let sdgsInfo = formData.companyData.sdgsInfo;
 
+  console.log('sdgs from form: ' + sdgs);
+  console.log('sdgs text from form: ' + sdgsInfo);
+
   // The final desired array of objects that we return
   const sdgsResult: { sdg: number; text?: string }[] = [];
 

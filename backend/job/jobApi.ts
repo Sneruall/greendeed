@@ -230,3 +230,15 @@ export async function postJob(retrievedFormData: Job) {
   const data = await response.json();
   console.log(data);
 }
+
+export async function updateJobs(updatedCompanyData: Company) {
+  const companyResponse = await fetch('/api/update-jobs', {
+    method: 'PUT',
+    body: JSON.stringify(updatedCompanyData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const updatedJobs = await companyResponse.json();
+  console.log(updatedJobs);
+}

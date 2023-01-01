@@ -11,6 +11,7 @@ TODO:
 */
 
 export default async function handler(req, res) {
+  console.log('started post job api');
   if (req.method === 'POST') {
     const data = req.body;
     const client = await clientPromise;

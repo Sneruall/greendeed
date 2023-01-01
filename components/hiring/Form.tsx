@@ -3,7 +3,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
-import { postJob, transformFormData } from '../../backend/job/jobApi';
+import {
+  postJob,
+  transformFormData,
+  updateJobs,
+} from '../../backend/job/jobApi';
 import {
   ApplicationMethod,
   Job,
@@ -155,6 +159,7 @@ and get the form state. */
     try {
       await postJob(transformedFormData);
       await postCompany(companyFormData);
+      await updateJobs(companyFormData);
       // todo: if company data (name, sdgs, website etc) has been updated, update it too for the
       // jobs from the same company. So set job.companyData to Company object.
       // OR

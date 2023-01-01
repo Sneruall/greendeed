@@ -15,15 +15,15 @@ type Props = {
 // })}
 
 const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
-  const matchedSdg2 = () => {
+  const retrievedSdgsIncludesThisSdg = () => {
     return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code); // true or false
   };
 
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setIsChecked(matchedSdg2() || false);
-    // register(`companyData.sdgs.${sdg.code}`);
+    setIsChecked(retrievedSdgsIncludesThisSdg() || false);
+    // register(`companyData.sdgs.${sdg.code}`); WERKT NIET
     // register(`companyData.sdgsInfo.${sdg.code}`);
   }, [retrievedSdgs]);
 
@@ -41,7 +41,6 @@ const SdgElement = ({ errors, register, sdg, retrievedSdgs }: Props) => {
       <div
         className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
       >
-        <p>{matchedSdg2() ? 'match' : 'no match'}</p>
         <label htmlFor={sdg.code} className="w-full cursor-pointer">
           <div className="mb-2 flex">
             <input

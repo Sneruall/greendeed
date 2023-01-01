@@ -66,10 +66,26 @@ const SdgElement = ({
           return el.sdg != +sdg.code;
         });
 
-        // Update retrievedSdgs
-        // setRetrievedCompanyData.sdg={updatedRetrievedSdgs}
-        retrievedSdgs = updatedRetrievedSdgs;
-        console.log(retrievedSdgs);
+        console.log(
+          'updatedRetrievedSdgs: ' + JSON.stringify(updatedRetrievedSdgs)
+        );
+
+        // setRetrievedCompanyData(undefined); Dit werkt, maar die hieronder met prevstate lijkt van niet.
+
+        // Update retrievedSdgs --> dit of het effect hierna lijkt nog niet te werken
+
+        // setRetrievedCompanyData = (prevState) => ({
+        //   ...prevState,
+        //   sdgs: updatedRetrievedSdgs,
+        // });
+
+        setRetrievedCompanyData(
+          (prevState) =>
+            ({
+              ...prevState,
+              sdgs: updatedRetrievedSdgs,
+            } as Company)
+        );
       }
     }
     // uncheck the box.

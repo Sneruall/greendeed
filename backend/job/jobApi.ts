@@ -152,6 +152,8 @@ export async function filterSdgData(
 ) {
   const sdgs = formData.companyData.sdgs;
   console.log('sdgs: ' + sdgs);
+  console.log('HAHAHAH');
+  console.log('rCD: ' + JSON.stringify(retrievedCompanyData));
   // todo: make sure to set the sdg to true if it is retrieved from db
   // voeg degene toe die uit de retrievedSdg array komen
   // tenzij hij in het proces in het formulier unchecked is (ze willen hem niet meer)
@@ -163,6 +165,9 @@ export async function filterSdgData(
   */
 
   if (retrievedCompanyData?.sdgs && sdgs) {
+    console.log(
+      'retrievedCompanyData.sdgs = ' + JSON.stringify(retrievedCompanyData.sdgs)
+    );
     for (let index = 0; index < retrievedCompanyData?.sdgs.length; index++) {
       sdgs[retrievedCompanyData?.sdgs[index].sdg] = true;
       // sdgsArray.push(pulledSdgs[index].sdg);

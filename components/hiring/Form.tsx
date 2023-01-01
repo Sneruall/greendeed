@@ -135,6 +135,7 @@ and get the form state. */
    * @param {Form} formData - Form
    */
   async function onSubmit(formData: Form) {
+    console.log('Form submitted with: ' + JSON.stringify(retrievedCompanyData));
     const transformedFormData: Job = await transformFormData(
       formData,
       jobDescriptionHtml,
@@ -290,7 +291,7 @@ and get the form state. */
                   retrievedSdgs={retrievedCompanyData?.sdgs}
                   errors={errors?.companyData?.sdgs}
                   register={register}
-                  setCheckedSdgs={setCheckedSdgs}
+                  setRetrievedCompanyData={setRetrievedCompanyData}
                 />
               </div>
             </div>

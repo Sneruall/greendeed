@@ -151,35 +151,14 @@ export async function filterSdgData(
   retrievedCompanyData?: Company
 ) {
   const sdgs = formData.companyData.sdgs;
-  console.log('sdgs: ' + sdgs);
-  console.log('HAHAHAH');
-  console.log('rCD: ' + JSON.stringify(retrievedCompanyData));
-  // todo: make sure to set the sdg to true if it is retrieved from db
-  // voeg degene toe die uit de retrievedSdg array komen
-  // tenzij hij in het proces in het formulier unchecked is (ze willen hem niet meer)
-
-  /*
-    Momenteel hebben we checkedSdg array toegevoegd voor tracking... is dit wel nodig?
-    Kunnen ook de retrievedCompanyData.sdgs gewoon toevoegen hier en zorgen dat het geupdate wordt 
-    in sdgElement op het moment dat er eentje ge-unchecked wordt (verwijderen uit de array)?
-  */
-
-  if (retrievedCompanyData?.sdgs && sdgs) {
-    console.log(
-      'retrievedCompanyData.sdgs = ' + JSON.stringify(retrievedCompanyData.sdgs)
-    );
-    for (let index = 0; index < retrievedCompanyData?.sdgs.length; index++) {
-      sdgs[retrievedCompanyData?.sdgs[index].sdg] = true;
-      // sdgsArray.push(pulledSdgs[index].sdg);
-    }
-  }
-
-  console.log('sdgs after matching retrieved ones: ' + sdgs);
-
   let sdgsInfo = formData.companyData.sdgsInfo;
 
-  console.log('sdgs from form: ' + sdgs);
-  console.log('sdgs text from form: ' + sdgsInfo);
+  // If sdg data was retrieved from database for the company, add the data to sdgs
+  if (retrievedCompanyData?.sdgs && sdgs) {
+    for (let index = 0; index < retrievedCompanyData?.sdgs.length; index++) {
+      sdgs[retrievedCompanyData?.sdgs[index].sdg] = true;
+    }
+  }
 
   // The final desired array of objects that we return
   const sdgsResult: { sdg: number; text?: string }[] = [];

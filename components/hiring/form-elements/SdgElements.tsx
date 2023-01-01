@@ -1,7 +1,5 @@
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { Company, LocationObject, sdgList, sdgs } from '../../../types/types';
-import FormFieldBoolCheckbox from '../FormFieldBoolCheckbox';
+import React from 'react';
+import { Company, sdgList, sdgs } from '../../../types/types';
 import SdgElement from './SdgElement';
 
 type Props = {
@@ -30,10 +28,6 @@ function SdgElements({
       setRetrievedCompanyData={setRetrievedCompanyData}
     />
   ));
-
-  // {retrievedSdgs?.find((sdgObj) => {
-  //   return sdgObj.sdg === +sdg.code;
-  // })}
 
   return (
     <>

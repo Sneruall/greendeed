@@ -67,10 +67,6 @@ function Form() {
   // Storing company website url in state
   const [website, setWebsite] = useState('');
 
-  // Todo: Dit en alle references erheen kunnen weg:
-  const [checkedSdgs, setCheckedSdgs] = useState<number[]>([]);
-  console.log(checkedSdgs);
-
   /* ------ STORING OTHER FIELDS IN STATE ------ */
 
   // Storing location fields in state
@@ -135,7 +131,6 @@ and get the form state. */
    * @param {Form} formData - Form
    */
   async function onSubmit(formData: Form) {
-    console.log('Form submitted with: ' + JSON.stringify(retrievedCompanyData));
     const transformedFormData: Job = await transformFormData(
       formData,
       jobDescriptionHtml,

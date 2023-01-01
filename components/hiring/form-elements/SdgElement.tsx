@@ -7,7 +7,6 @@ import { sdgs, sdgList, Company } from '../../../types/types';
 type Props = {
   register: any;
   errors: any;
-  // todo, no any below
   sdg: typeof sdgList[number];
   retrievedSdgs?: sdgs;
   setRetrievedCompanyData: React.Dispatch<
@@ -34,8 +33,6 @@ const SdgElement = ({
   useEffect(() => {
     if (retrievedSdgsIncludesThisSdg()) {
       setIsChecked(true);
-      // setCheckedSdgs(sdg.code);
-      // setCheckedSdgs((sdgs) => [...sdgs, +sdg.code]);
 
       const matchedSdg = retrievedSdgs?.find((sdgObj) => {
         return sdgObj?.sdg == +sdg.code;
@@ -43,8 +40,6 @@ const SdgElement = ({
 
       setSdgText(matchedSdg?.text || '');
     }
-    // register(`companyData.sdgs.${sdg.code}`); WERKT NIET
-    // register(`companyData.sdgsInfo.${sdg.code}`);
   }, [retrievedSdgs]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,19 +61,7 @@ const SdgElement = ({
           return el.sdg != +sdg.code;
         });
 
-        console.log(
-          'updatedRetrievedSdgs: ' + JSON.stringify(updatedRetrievedSdgs)
-        );
-
-        // setRetrievedCompanyData(undefined); Dit werkt, maar die hieronder met prevstate lijkt van niet.
-
-        // Update retrievedSdgs --> dit of het effect hierna lijkt nog niet te werken
-
-        // setRetrievedCompanyData = (prevState) => ({
-        //   ...prevState,
-        //   sdgs: updatedRetrievedSdgs,
-        // });
-
+        // Update it back to the Form component so it is used on submission.
         setRetrievedCompanyData(
           (prevState) =>
             ({

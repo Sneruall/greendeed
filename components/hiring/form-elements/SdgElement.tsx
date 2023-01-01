@@ -8,7 +8,7 @@ type Props = {
   // todo, no any below
   sdg: any;
   retrievedSdgs?: sdgs;
-  checkedSdgs: number[];
+  setCheckedSdgs: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const SdgElement = ({
@@ -16,7 +16,7 @@ const SdgElement = ({
   register,
   sdg,
   retrievedSdgs,
-  checkedSdgs,
+  setCheckedSdgs,
 }: Props) => {
   const retrievedSdgsIncludesThisSdg = () => {
     return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code);
@@ -28,8 +28,7 @@ const SdgElement = ({
   useEffect(() => {
     if (retrievedSdgsIncludesThisSdg()) {
       setIsChecked(true);
-      checkedSdgs.push(+sdg.code);
-      console.log('checkedSdgs: ' + checkedSdgs);
+      setCheckedSdgs(sdg.code);
 
       const matchedSdg = retrievedSdgs?.find((sdgObj) => {
         return sdgObj?.sdg == sdg.code;

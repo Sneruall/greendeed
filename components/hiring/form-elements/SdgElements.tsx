@@ -8,10 +8,15 @@ type Props = {
   register: any;
   errors: any;
   retrievedSdgs?: sdgs;
-  checkedSdgs: number[];
+  setCheckedSdgs: React.Dispatch<React.SetStateAction<number>>;
 };
 
-function SdgElements({ errors, register, retrievedSdgs, checkedSdgs }: Props) {
+function SdgElements({
+  errors,
+  register,
+  retrievedSdgs,
+  setCheckedSdgs,
+}: Props) {
   console.log('retrieved sdgs: ' + JSON.stringify(retrievedSdgs));
 
   const optionList = sdgList.map((sdg) => (
@@ -20,7 +25,7 @@ function SdgElements({ errors, register, retrievedSdgs, checkedSdgs }: Props) {
       register={register}
       sdg={sdg}
       retrievedSdgs={retrievedSdgs}
-      checkedSdgs={checkedSdgs}
+      setCheckedSdgs={setCheckedSdgs}
     />
   ));
 

@@ -2,7 +2,10 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
-import { getJobsFromMongo, getremotiveJobsFromMongo } from '../backend/job/db';
+import {
+  getJobsFromMongo,
+  getremotiveJobsFromMongo,
+} from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import Footer from '../components/Footer';

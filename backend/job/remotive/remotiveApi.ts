@@ -1,5 +1,5 @@
 import { Job, remotiveJob, remotiveJobSelection } from '../../../types/types';
-import { getremotiveJobSelectionFromMongo } from '../db';
+import { getremotiveJobSelectionFromMongo } from '../jobDb';
 import { mapRemotiveJobtoJob } from './jobMapper';
 
 export async function getRemotiveJobs() {

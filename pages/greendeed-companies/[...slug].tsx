@@ -10,8 +10,8 @@ import {
   redirectToCorrectCompanyUrl,
 } from '../../helpers/urlGeneration';
 import parse from 'html-react-parser';
-import { getCompanyFromMongo } from '../../backend/company/companyDB';
-import { getJobsFromCompanyFromMongo } from '../../backend/job/db';
+import { getCompanyFromMongo } from '../../backend/company/companyDb';
+import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import Image from 'next/image';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({

@@ -7,8 +7,8 @@ import {
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
-import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/db';
-import { getCompanyFromMongo } from '../../backend/company/companyDB';
+import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
+import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 import JobInfoCard from '../../components/job/JobInfoCard';

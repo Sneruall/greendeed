@@ -46,13 +46,13 @@ Here's the main folder structure of the repository with some small description:
 📦backend               # Root backend directory
  ┣ 📂company            # Company related backend functions
  ┃ ┣ 📜companyApi.ts    # Company API functions and helpers
- ┃ ┗ 📜companyDB.ts     # Company Database functions and helpers
+ ┃ ┗ 📜companyDb.ts     # Company Database functions and helpers
  ┗ 📂job                # Job related backend functions
  ┃ ┣ 📂remotive         # Remotive jobs related functions
- ┃ ┃ ┣ 📜apiCall.ts     # Getting jobs from remotive
- ┃ ┃ ┗ 📜jobMapper.ts   # Mapping remotive jobs to greendeed jobs
- ┃ ┣ 📜db.ts            # Job Database functions and helpers
- ┃ ┗ 📜jobApi.ts        # Job API functions and helpers
+ ┃ ┃ ┣ 📜jobMapper.ts   # Mapping remotive jobs to greendeed jobs
+ ┃ ┃ ┗ 📜remotiveApi.ts # Getting jobs from remotive
+ ┃ ┣ 📜jobApi.ts        # Job API functions and helpers
+ ┃ ┗ 📜jobDb.ts         # Job Database functions and helpers
 ```
 
 ## References

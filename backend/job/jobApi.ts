@@ -216,13 +216,13 @@ export async function setSalary(
   }
 }
 
-export async function postJob(retrievedFormData: Job) {
+export async function postJob(transformedFormData: Job) {
   // Post the job data in the Database
   //todo no console log and nothing is done with data?
 
   const response = await fetch('/api/jobs', {
     method: 'POST',
-    body: JSON.stringify(retrievedFormData), //todo only save what we need, like postCompany does, convert Form to Job.
+    body: JSON.stringify(transformedFormData), //todo only save what we need, like postCompany does, convert Form to Job.
     headers: {
       'Content-Type': 'application/json',
     },

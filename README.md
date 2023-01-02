@@ -55,6 +55,81 @@ Here's the main folder structure of the repository with some small description:
  ┃ ┗ 📜jobDb.ts         # Job Database functions and helpers
 ```
 
+## REST API
+
+The application consists of a REST API which is described below.
+
+### Post a Job
+
+POST request made after completing the Post a Job form. The form input data is used to create the request body which is sent along with the request.
+
+#### Request
+
+`POST /api/jobs`
+
+    curl -H 'Content-Type: application/json' http://localhost:3000/api/jobs -d '{"companyId": "123abc", "companyData": { "name": "Company Name", "description": "<p>Company description</p>", "website": "example.com", "logo": "greendeed/dev/organization-logos/raowzm9ekp5uigojuupa", "sdgs": [ { "sdg": 1, "text": "We fight poverty" } ] }, "jobTitle": "Job title here", "category": { "id": 1, "name": "Software Development", "slug": "software-development" }, "jobDescription": "<p>Job description HTML formatted text here</p>", "jobType": "Full-Time", "salary": { "currency": "USD", "period": "Annual", "min": { "float": 40000, "formatted": "US$40,000", "value": "40000" }, "max": { "float": 60000, "formatted": "US$60,000", "value": "60000" }, "string": "$110 - $190 hourly" //optional, usually from external jobs that were mported }, "locationInfo": { "location": "onSiteOrRemote", "geoRestriction": ["worldwide", "africa"], "onSiteLocation": ["Amsterdam", "London"] }, "email": "info@email.com", "timestamp": 1672690240025, "id": "123abc", "price": 50, "paid": true, "hidden": false, "listed": true, "closed": false, "applicationMethod": "email", "apply": "info@company.com", "external": false}'
+
+```json
+// Example POST request body
+{
+  "companyId": "123abc",
+  "companyData": {
+    "name": "Company Name",
+    "description": "<p>Company description</p>",
+    "website": "example.com",
+    "logo": "greendeed/dev/organization-logos/raowzm9ekp5uigojuupa",
+    "sdgs": [
+      {
+        "sdg": 1,
+        "text": "We fight poverty"
+      }
+    ]
+  },
+  "jobTitle": "Job title here",
+  "category": {
+    "id": 1,
+    "name": "Software Development",
+    "slug": "software-development"
+  },
+  "jobDescription": "<p>Job description HTML formatted text here</p>",
+  "jobType": "Full-Time",
+  "salary": {
+    "currency": "USD",
+    "period": "Annual",
+    "min": { "float": 40000, "formatted": "US$40,000", "value": "40000" },
+    "max": { "float": 60000, "formatted": "US$60,000", "value": "60000" },
+    "string": "$110 - $190 hourly" //optional, usually from external jobs that were mported
+  },
+  "locationInfo": {
+    "location": "onSiteOrRemote",
+    "geoRestriction": ["worldwide", "africa"],
+    "onSiteLocation": ["Amsterdam", "London"]
+  },
+  "email": "info@email.com",
+  "timestamp": 1672690240025,
+  "id": "123abc",
+  "price": 50,
+  "paid": true,
+  "hidden": false,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "email",
+  "apply": "info@company.com",
+  "external": false
+}
+```
+
+#### Response
+
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    []
+
 ## References
 
 - [Greendeed](http://greendeed.io/)

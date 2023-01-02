@@ -50,6 +50,7 @@ export default async function handler(req, res) {
         },
       };
       const result = await companies.updateOne(filter, updateDoc, options);
+      console.log(data);
       console.log(
         `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
       );

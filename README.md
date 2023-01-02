@@ -1,47 +1,60 @@
-Use:
-Run `yarn dev` and `yarn sanity` from root.
+# Greendeed documentation
 
-Create listing website for (remote) VR jobs.
-Like web3.career or remoteOK. Specialized in VR,/meta.
+## Description
 
-Basically same concept as web3.career
+This repository contains the code for [Greendeed](https://greendeed.io/), an online Job Board focussing on sustainability by utilizing the Sustainable Development Goals.
 
-Naming
-Jobs: Metaverse, VR, AR, MR, Virtual Worlds
-Metaversed.careers
+### Features
 
-Features
-[ ] Remote VR jobs listing like web3.career and remoteOK
-[ ] Free mailing list with notifications / alerts eventually
-[ ] Post a job (like web3.career)
-[ ] Allow for updating a job?
-[ ] Import job listing, see remotive add job
-[ ] Algolia searchbar
+- [x] Ability to browse through Job listing on Greendeed
+- [x] Ability to browse through Companies on Greendeed
+- [x] Ability to post a job and add your company
+- [ ] Ability to edit a job
+- [ ] Subscribe to free newsletter mailing list with notifications / alerts eventually
+- [ ] Importing jobs to the platform, see remotive add job API.
+- [ ] Algolia advanced search
 
-Startup
-[ ] Free/cheap job posting. (It is free but paid options to get pinned at top e.g.) Or paid and offer free listings by reaching out to recruitors.
-[ ] Use APIs and filter for metaverse/VR related jobs. RemoteOK api, workingnomads api, remotive api.
-[ ] Ez360 jobs
-[ ] Approach other VR companies to repost their jobs on the platform (linkedin) for free.
+### Tech stack
 
-Tech stack
-[ ] Algolia (search)
-[ ] Adyen (payment)
-[v] Nextjs (frontend)
-[v] Typescript
-[ ] Next Auth (authorization)
-[ ] Nodejs (backend)
-[ ] MongoDB (database)
-[ ] Sendgrid (emails)
-[v] Something for NextJS/React forms
-[ ] Netlify (frontend hosting, no vercel?)
-[ ] Testing tool (cypress?)
+- [x] Nextjs (frontend)
+- [x] Nodejs (backend)
+- [x] MongoDB (database)
+- [x] Sanity (blog backend)
+- [x] Typescript (JavaScript With Syntax For Types)
+- [x] Tailwind CSS (A utility-first CSS framework)
+- [x] Yup and react-hook-form (form validation)
+- [ ] Netlify (hosting)
+- [ ] Algolia (search)
+- [ ] Adyen or Stripe (payment)
+- [ ] Sendgrid (emails)
+- [ ] Testing tool (cypress?)
 
-Competition
-[ ] Themetaversejobs.com
+## Usage
 
-Domains (careers/career)
-[ ] Virtualworlds.career
-[ ] Virtualreality.career
-[ ] Metaversed.careers
-[ ] Remotemetaverse.careers
+If you want to play around with the code or contribute feel free to do so.
+
+### Installing
+
+Run `yarn install`, `yarn dev` (and `yarn sanity` for the blog section) from root.
+
+## Folder structure (WIP)
+
+Here's the main folder structure of the repository with some small description:
+
+```
+📦admin/.../...         # Sanity Blogging Content Studio
+📦backend               # Root backend directory
+ ┣ 📂company            # Company related backend functions
+ ┃ ┣ 📜companyApi.ts    # Company API functions and helpers
+ ┃ ┗ 📜companyDB.ts     # Company Database functions and helpers
+ ┗ 📂job                # Job related backend functions
+ ┃ ┣ 📂remotive         # Remotive jobs related functions
+ ┃ ┃ ┣ 📜apiCall.ts     # Getting jobs from remotive
+ ┃ ┃ ┗ 📜jobMapper.ts   # Mapping remotive jobs to greendeed jobs
+ ┃ ┣ 📜db.ts            # Job Database functions and helpers
+ ┃ ┗ 📜jobApi.ts        # Job API functions and helpers
+```
+
+## References
+
+- [Greendeed](http://greendeed.io/)

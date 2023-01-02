@@ -6,7 +6,7 @@ import { options } from '../../helpers/htmlReactParserOptions';
 
 type Props = {
   job: Job;
-  company: Company;
+  company?: Company;
 };
 
 function JobDescription({ job, company }: Props) {

@@ -27,22 +27,6 @@ const JobPage: NextPage<{
 }> = ({ job, company, categoryJobs }) => {
   console.log(job);
   console.log(company);
-  const mappedSdg = job.sdg.map((num) => {
-    return (
-      <div
-        key={num}
-        className="cursor-pointer transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Image
-          src={'/images/icons/sdg-icons/' + num + '.png'}
-          width={50}
-          height={50}
-          objectFit="contain"
-          layout="intrinsic"
-        />
-      </div>
-    );
-  });
 
   return (
     <>

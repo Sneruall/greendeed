@@ -9,7 +9,7 @@ import { Company, Job } from '../../types/types';
 
 type Props = {
   job: Job;
-  company: Company;
+  company?: Company;
 };
 
 function JobInfoCard({ job, company }: Props) {
@@ -20,8 +20,8 @@ function JobInfoCard({ job, company }: Props) {
     <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
-          {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
-          {company.sdgs.map((sdgObject) => {
+          {/* Todo: bg alignen met sdg bg */}
+          {company?.sdgs.map((sdgObject) => {
             return (
               <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
                 <a>
@@ -58,14 +58,14 @@ function JobInfoCard({ job, company }: Props) {
         {/* Logo, name and date */}
         <div className="text-center">
           <div className="text-2xl font-bold text-custom-brown1">
-            {!job.external ? (
+            {!job.external && company ? (
               <Link
                 href={generateCompanyUrl(
                   company.name.toLowerCase(),
                   job.companyId
                 )}
               >
-                <a className="hover:underline">{company.name}</a>
+                <a className="hover:underline">{company?.name}</a>
               </Link>
             ) : (
               <Link href={job.apply}>

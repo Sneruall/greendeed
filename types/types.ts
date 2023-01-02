@@ -43,7 +43,7 @@ export interface Form {
 }
 
 export interface Job {
-  companyId: string;
+  companyId: string; // Todo: This causes a mismatch when using update-jobs api, causing it to always update it right away after creation, which an be prevented: remove it and add 'id' to companyData (and ensure that everything keeps working)
   companyData: {
     name: string;
     description?: string;

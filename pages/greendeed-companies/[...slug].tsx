@@ -33,6 +33,12 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <main className="">
+        <div className="site-margins mx-auto max-w-7xl pt-4 sm:pt-12 lg:pt-20">
+          <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24"></div>
+        </div>
+      </main>
+
       <p>Company name: {company.name}</p>
       {company.logo && (
         <Image

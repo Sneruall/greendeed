@@ -61,7 +61,9 @@ export const options: HTMLReactParserOptions = {
       }
       if (domNode.name === 'em') {
         return (
-          <p className="italic">{domToReact(domNode.children, options)}</p>
+          <span className="italic">
+            {domToReact(domNode.children, options)}
+          </span>
         );
       }
     }

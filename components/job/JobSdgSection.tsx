@@ -4,16 +4,16 @@ import React from 'react';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
 
-type Props = { job: Job; company: Company };
+type Props = { job: Job; company?: Company };
 
 function JobSdgSection({ job, company }: Props) {
   return (
     <div id="sdg" className="bg-custom-yellow2 py-24">
       <div className="heading-xl mb-10 text-center">
         Sustainability at{' '}
-        {!job.external ? (
+        {!job.external && company ? (
           <Link
-            href={generateCompanyUrl(company.name.toLowerCase(), job.companyId)}
+            href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
           >
             <a className="underline">{company.name}</a>
           </Link>
@@ -26,7 +26,7 @@ function JobSdgSection({ job, company }: Props) {
 
       <ul className="mx-auto flex flex-col gap-8">
         {/* todo use company sdg instead of job sdg */}
-        {company.sdgs?.map((sdgObject, i) => {
+        {company?.sdgs?.map((sdgObject, i) => {
           return (
             <li
               id={'sdg' + sdgObject.sdg}

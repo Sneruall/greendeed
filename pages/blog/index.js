@@ -10,7 +10,7 @@ import { useNextSanityImage } from 'next-sanity-image';
 import Footer from '../../components/Footer';
 import BlogHero from '../../components/blog/BlogHero';
 import BlogPosts from '../../components/blog/BlogPosts';
-import { getJobsFromMongo } from '../../backend/job/db';
+import { getJobsFromMongo } from '../../backend/job/jobDb';
 
 // Todo: convert to typescript
 

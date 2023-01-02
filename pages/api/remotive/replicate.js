@@ -1,5 +1,5 @@
 import clientPromise from '../../../lib/mongodb';
-import { getRemotiveJobs } from '../../../backend/job/remotive/apiCall';
+import { getRemotiveJobs } from '../../../backend/job/remotive/remotiveApi';
 
 // replicates what is in the remotive database (db with id, sdg and timestamp) to the job database.
 

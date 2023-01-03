@@ -10,7 +10,7 @@ import {
   redirectToCorrectCompanyUrl,
 } from '../../helpers/urlGeneration';
 import parse from 'html-react-parser';
-import { getCompanyFromMongo } from '../../backend/company/companyDb2';
+import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import Image from 'next/image';
 

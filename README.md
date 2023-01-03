@@ -29,14 +29,6 @@ This repository contains the code for [Greendeed](https://greendeed.io/), an onl
 - [ ] Sendgrid (emails)
 - [ ] Testing tool (cypress?)
 
-## Usage
-
-If you want to play around with the code or contribute feel free to do so.
-
-### Installing
-
-Run `yarn install`, `yarn dev` (and `yarn sanity` for the blog section) from root.
-
 ## Folder structure (WIP)
 
 Here's the main folder structure of the repository with some small description:

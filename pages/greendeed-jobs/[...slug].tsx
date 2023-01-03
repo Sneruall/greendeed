@@ -8,7 +8,7 @@ import {
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
 import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
-import { getCompanyFromMongo } from '../../backend/company/companyDb';
+import { getCompanyFromMongo } from '../../backend/company/companyDb2';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 import JobInfoCard from '../../components/job/JobInfoCard';

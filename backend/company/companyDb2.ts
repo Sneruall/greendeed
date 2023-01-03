@@ -20,3 +20,4 @@ export const getCompanyFromMongo = async (queryId: string) => {
 
   return company;
 };
+// test

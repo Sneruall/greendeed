@@ -15,6 +15,7 @@ import JobInfoCard from '../../components/job/JobInfoCard';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
+import Link from 'next/link';
 
 /*
 Todo:

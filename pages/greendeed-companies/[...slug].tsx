@@ -12,6 +12,7 @@ import {
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
+import JobSdgSection from '../../components/job/JobSdgSection';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -34,9 +35,13 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       <Header />
       <main className="">
         <CompanyInfo company={company} />
+        {/* SDG INFO */}
+        <JobSdgSection company={company} />
       </main>
 
-      <div className="flex flex-col gap-3">{joblist}</div>
+      <div id="sustainable-jobs" className="flex flex-col gap-3">
+        {joblist}
+      </div>
     </div>
   );
 };

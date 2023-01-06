@@ -4,22 +4,28 @@ import React from 'react';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
 
-type Props = { job: Job; company?: Company };
+type Props = { job?: Job; company?: Company };
 
 function JobSdgSection({ job, company }: Props) {
   return (
     <div id="sdg" className="bg-custom-yellow2 py-24">
       <div className="heading-xl mb-10 text-center">
         Sustainability at{' '}
-        {!job.external && company ? (
+        {!job?.external && company ? (
           <Link
             href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
           >
             <a className="underline">{company.name}</a>
           </Link>
         ) : (
-          <Link href={job.apply}>
-            <a className="underline">{job.companyData.name}</a>
+          <Link
+            href={
+              job?.applicationMethod === 'website'
+                ? 'job?.apply'
+                : `mailto:${job?.apply}` || '#'
+            }
+          >
+            <a className="underline">{job?.companyData.name}</a>
           </Link>
         )}
       </div>
@@ -87,7 +93,15 @@ function JobSdgSection({ job, company }: Props) {
       </ul>
 
       <div className="my-10 text-center">
-        <Link href={job.apply}>
+        <Link
+          href={
+            (job?.apply &&
+              (job?.applicationMethod === 'website'
+                ? job?.apply
+                : `mailto:${job?.apply}`)) ||
+            '#sustainable-jobs'
+          }
+        >
           <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
             Apply
           </button>

@@ -58,6 +58,7 @@ export const getJobFromMongo = async (queryId: string) => {
 };
 
 export const getJobsFromCompanyFromMongo = async (company: Company) => {
+  // todo, add limit
   const client = await clientPromise;
 
   const db = client.db();

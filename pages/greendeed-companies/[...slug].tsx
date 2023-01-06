@@ -13,6 +13,7 @@ import parse from 'html-react-parser';
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -34,23 +35,38 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       </Head>
       <Header />
       <main className="">
-        <div className="site-margins mx-auto max-w-7xl pt-4 sm:pt-12 lg:pt-20">
-          <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24"></div>
+        <div className="site-margins mx-auto max-w-7xl pt-12 lg:pt-20">
+          <div
+            className={`${
+              company.description && 'border-b border-b-[#CBCBCB] '
+            }mt-16 pb-4`}
+          >
+            {company.logo && (
+              <div className="text-center">
+                <Image
+                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                  width={100}
+                  height={100}
+                />
+              </div>
+            )}
+            <div className="heading-2xl my-6 text-center">
+              <h1 className="company-name">{company.name}</h1>
+            </div>
+          </div>
+          {company.description && (
+            <div className="my-4 font-century text-custom-brown1">
+              {parse(company.description, options)}
+            </div>
+          )}
+          {company.website && (
+            <div className="text-center">
+              <Link href={`https://${company.website}`}>{company.website}</Link>
+            </div>
+          )}
         </div>
       </main>
 
-      <p>Company name: {company.name}</p>
-      {company.logo && (
-        <Image
-          src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-          width={40}
-          height={40}
-        />
-      )}
-      <span>Company description: </span>
-      {company.description && parse(company.description, options)}
-      <span>Company site:</span>
-      {company.website}
       <div className="flex flex-col gap-3">{joblist}</div>
     </div>
   );

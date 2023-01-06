@@ -9,7 +9,7 @@ type Props = { company: Company };
 
 function CompanyInfo({ company }: Props) {
   return (
-    <div className="site-margins mx-auto max-w-7xl pt-12 lg:pt-20">
+    <div className="site-margins mx-auto my-32 max-w-5xl">
       <div
         className={`${
           company.description && 'border-b border-b-[#CBCBCB] '
@@ -27,17 +27,24 @@ function CompanyInfo({ company }: Props) {
         <div className="heading-2xl my-6 text-center">
           <h1 className="company-name">{company.name}</h1>
         </div>
+        {company.website && (
+          <div className="text-center">
+            <Link href={`https://${company.website}`}>{company.website}</Link>
+          </div>
+        )}
       </div>
       {company.description && (
         <div className="my-4 font-century text-custom-brown1">
           {parse(company.description, options)}
         </div>
       )}
-      {company.website && (
-        <div className="text-center">
-          <Link href={`https://${company.website}`}>{company.website}</Link>
-        </div>
-      )}
+      <div className="my-4 text-center">
+        <Link href="#sustainable-jobs">
+          <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
+            {`Jobs at ${company?.name}`}
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

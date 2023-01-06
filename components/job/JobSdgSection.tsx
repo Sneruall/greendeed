@@ -103,7 +103,7 @@ function JobSdgSection({ job, company }: Props) {
           }
         >
           <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-            Apply
+            {job?.apply ? 'Apply' : `Jobs at ${company?.name}`}
           </button>
         </Link>
       </div>

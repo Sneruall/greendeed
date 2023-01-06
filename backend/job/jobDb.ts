@@ -57,8 +57,10 @@ export const getJobFromMongo = async (queryId: string) => {
   return job;
 };
 
-export const getJobsFromCompanyFromMongo = async (company: Company) => {
-  // todo, add limit
+export const getJobsFromCompanyFromMongo = async (
+  company: Company,
+  limit?: number
+) => {
   const client = await clientPromise;
 
   const db = client.db();
@@ -73,8 +75,8 @@ export const getJobsFromCompanyFromMongo = async (company: Company) => {
   const companyJobs = await db
     .collection(process.env.MONGODB_COLLECTION)
     .find({ hidden: false, companyId: company.id })
-    // .sort({ metacritic: -1 })
-    // .limit(20)
+    .sort({ _id: -1 })
+    .limit(limit || 0)
     .toArray();
 
   return companyJobs;

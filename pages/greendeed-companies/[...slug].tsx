@@ -37,11 +37,12 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
         <CompanyInfo company={company} />
         {/* SDG INFO */}
         <JobSdgSection company={company} />
+        <div className="site-margins mx-auto my-32 max-w-6xl">
+          <div id="sustainable-jobs" className="flex flex-col gap-3">
+            {joblist}
+          </div>
+        </div>
       </main>
-
-      <div id="sustainable-jobs" className="flex flex-col gap-3">
-        {joblist}
-      </div>
     </div>
   );
 };

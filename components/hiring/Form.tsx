@@ -448,7 +448,11 @@ and get the form state. */
                     defaultValue={[geoRestrictions[0].title]}
                     value={geoRestrictionValues}
                     onChange={(event: any, newValue: string[] | undefined) => {
-                      setGeoRestrictionValues(newValue);
+                      if (newValue?.length === 0) {
+                        setGeoRestrictionValues(['🗺️ Worldwide']);
+                      } else {
+                        setGeoRestrictionValues(newValue);
+                      }
                     }}
                     freeSolo
                     renderTags={(value: readonly string[], getTagProps) =>

@@ -477,7 +477,7 @@ and get the form state. */
                       <TextField
                         {...params}
                         variant="outlined"
-                        placeholder="Continent or country..."
+                        placeholder="Continent, country, timezone..."
                       />
                     )}
                   />{' '}

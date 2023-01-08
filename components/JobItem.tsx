@@ -53,7 +53,12 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                     className="rounded-full bg-white"
                   />
                 ) : (
-                  <div className="h-10 w-10 rounded-full bg-gray-50"></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-center">
+                    {/* todo: Replace by first letter of the company name */}
+                    <span className="font-omnes text-xl capitalize text-gray-300">
+                      {job.companyData.name[0]}
+                    </span>
+                  </div>
                 )}
               </div>
               <div className="my-auto flex flex-col gap-1 font-omnes text-black">

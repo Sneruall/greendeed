@@ -450,6 +450,15 @@ and get the form state. */
                     onChange={(event: any, newValue: string[] | undefined) => {
                       if (newValue?.length === 0) {
                         setGeoRestrictionValues(['🗺️ Worldwide']);
+                      } else if (newValue && newValue.length > 1) {
+                        const index = newValue.indexOf('🗺️ Worldwide');
+                        if (index > -1) {
+                          // only splice array when item is found
+                          newValue.splice(index, 1); // 2nd parameter means remove one item only
+                          setGeoRestrictionValues(newValue);
+                        } else {
+                          setGeoRestrictionValues(newValue);
+                        }
                       } else {
                         setGeoRestrictionValues(newValue);
                       }

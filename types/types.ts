@@ -101,7 +101,6 @@ export interface LocationInfo {
   location: Location;
   onSiteLocation?: string[];
   geoRestriction?: string[];
-  geoRestrictionOther?: string[];
 }
 
 export type Location = 'remote' | 'onSite' | 'onSiteOrRemote';

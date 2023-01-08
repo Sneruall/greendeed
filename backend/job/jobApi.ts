@@ -103,11 +103,6 @@ export const convertLocationsToArrays = (locationInfo: LocationInfo) => {
       locationInfo.onSiteLocation
     );
   }
-  if (locationInfo.geoRestrictionOther) {
-    locationInfo.geoRestrictionOther = convertCommaSeparatedStringToArray(
-      locationInfo.geoRestrictionOther
-    );
-  }
 };
 
 export const setHTMLDescription = (

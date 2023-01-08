@@ -101,7 +101,6 @@ function JobInfoCard({ job, company }: Props) {
                 : '🏢 ' + job.locationInfo?.onSiteLocation}
             </li>
           )}
-          {/* todo georestrictionother */}
           {job.locationInfo?.geoRestriction && (
             <li>
               {typeof job.locationInfo?.geoRestriction == 'object'

@@ -1,4 +1,5 @@
 export const countriesAndContinents = [
+  { name: '🗺️ Worldwide', code: 'WW' },
   { name: '🌍 Africa', code: 'C-AF' },
   { name: '🌏 Asia', code: 'C-AS' },
   { name: '🌍 Europe', code: 'C-EU' },

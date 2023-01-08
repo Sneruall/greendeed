@@ -246,8 +246,11 @@ async function setLocationInfo(
   locationInfo: LocationInfo,
   geoRestrictionValues: string[] | undefined
 ) {
-  const result = locationInfo;
-  result.geoRestriction = geoRestrictionValues;
-
-  return result;
+  if (locationInfo.location === 'onSite') {
+    return locationInfo;
+  } else {
+    const result = locationInfo;
+    result.geoRestriction = geoRestrictionValues;
+    return result;
+  }
 }

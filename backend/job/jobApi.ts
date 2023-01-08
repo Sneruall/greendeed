@@ -38,7 +38,8 @@ export async function transformFormData(
     maxSalary: CurrencyInputOnChangeValues;
   },
   retrievedCompanyData?: Company,
-  imagePublicId?: string
+  imagePublicId?: string,
+  geoRestrictionValues?: string[] | undefined
 ) {
   let result: Job = {
     category: retrievedFormData.category,
@@ -56,7 +57,10 @@ export async function transformFormData(
     external: false,
     hidden: false,
     listed: true,
-    locationInfo: retrievedFormData.locationInfo,
+    locationInfo: await setLocationInfo(
+      retrievedFormData.locationInfo,
+      geoRestrictionValues
+    ),
     timestamp: registerJobTimestamp(),
     salary: retrievedFormData.salary,
     companyData: {
@@ -241,4 +245,14 @@ export async function updateJobs(updatedCompanyData: Company) {
   });
   const updatedJobs = await companyResponse.json();
   console.log(updatedJobs);
+}
+
+async function setLocationInfo(
+  locationInfo: LocationInfo,
+  geoRestrictionValues: string[] | undefined
+) {
+  const result = locationInfo;
+  result.geoRestriction = geoRestrictionValues;
+
+  return result;
 }

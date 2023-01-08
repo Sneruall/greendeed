@@ -79,11 +79,11 @@ function Form() {
     otherGeoRestriction: false,
   });
 
-  const [value, setValue] = React.useState<string[] | undefined>([
-    geoRestrictions[0].title,
-  ]);
+  const [geoRestrictionValues, setGeoRestrictionValues] = React.useState<
+    string[] | undefined
+  >([geoRestrictions[0].title]);
 
-  console.log('NEW GEORESTRICTION VALUE: ' + value);
+  console.log('NEW GEORESTRICTION VALUE: ' + geoRestrictionValues);
 
   // Storing application method in state
   const [applicationMethod, setApplicationMethod] =
@@ -147,7 +147,8 @@ and get the form state. */
       companyDescriptionHtml,
       salaryValues,
       retrievedCompanyData,
-      imagePublicId
+      imagePublicId,
+      geoRestrictionValues
     );
     const companyFormData: Company = {
       // take over the fields we want to store in company database (note also must be included in /api/update-company)
@@ -420,23 +421,23 @@ and get the form state. */
                       Hiring worldwide or for specific areas?
                     </p>
 
-                    <GeoRestrictionElement
+                    {/* <GeoRestrictionElement
                       errors={errors?.locationInfo?.geoRestriction}
                       register={register}
                       setLocationObject={setLocationObject}
                     />
                     <div className="text-red-500">
                       {(errors.locationInfo?.geoRestriction as any)?.message}
-                    </div>
+                    </div> */}
                   </div>
-                  {locationInfo.otherGeoRestriction && (
+                  {/* {locationInfo.otherGeoRestriction && (
                     <FormFieldString
                       errors={errors.locationInfo?.geoRestrictionOther}
                       id="locationInfo.geoRestrictionOther"
                       register={register}
                       placeholder="e.g. Switzerland"
                     />
-                  )}
+                  )} */}
                   {/* Updated geo restriction field */}
                   <Autocomplete
                     multiple
@@ -445,9 +446,9 @@ and get the form state. */
                       (option) => option.name
                     )}
                     defaultValue={[geoRestrictions[0].title]}
-                    value={value}
+                    value={geoRestrictionValues}
                     onChange={(event: any, newValue: string[] | undefined) => {
-                      setValue(newValue);
+                      setGeoRestrictionValues(newValue);
                     }}
                     freeSolo
                     renderTags={(value: readonly string[], getTagProps) =>

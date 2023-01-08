@@ -69,11 +69,20 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 </h2>
                 <div className="my-auto flex flex-row gap-2 font-century text-xs">
                   <p className="line-clamp-1">
+                    {/* If remote */}
+                    {job.locationInfo?.location == 'remote' && 'Remote'}
+                    {/* If Hybrid */}
+                    {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
+                    {/* If onSite and single location */}
                     {job.locationInfo?.location == 'onSite' &&
                       job.locationInfo?.onSiteLocation &&
+                      !(job.locationInfo?.onSiteLocation instanceof Array) &&
+                      job.locationInfo?.onSiteLocation}
+                    {/* If onSite and multiple locations */}
+                    {job.locationInfo?.location == 'onSite' &&
+                      job.locationInfo?.onSiteLocation &&
+                      job.locationInfo?.onSiteLocation instanceof Array &&
                       job.locationInfo?.onSiteLocation?.join(', ')}
-                    {job.locationInfo?.location == 'remote' && 'Remote'}
-                    {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
                   </p>
                   {/* todo georestrictionother
                   <li>

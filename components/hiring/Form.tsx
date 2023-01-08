@@ -79,6 +79,12 @@ function Form() {
     otherGeoRestriction: false,
   });
 
+  const [value, setValue] = React.useState<string[] | undefined>([
+    geoRestrictions[0].title,
+  ]);
+
+  console.log('NEW GEORESTRICTION VALUE: ' + value);
+
   // Storing application method in state
   const [applicationMethod, setApplicationMethod] =
     useState<ApplicationMethod>('email');
@@ -423,7 +429,6 @@ and get the form state. */
                       {(errors.locationInfo?.geoRestriction as any)?.message}
                     </div>
                   </div>
-
                   {locationInfo.otherGeoRestriction && (
                     <FormFieldString
                       errors={errors.locationInfo?.geoRestrictionOther}
@@ -432,34 +437,39 @@ and get the form state. */
                       placeholder="e.g. Switzerland"
                     />
                   )}
+                  {/* Updated geo restriction field */}
+                  <Autocomplete
+                    multiple
+                    id="tags-filled"
+                    options={countriesAndContinents.map(
+                      (option) => option.name
+                    )}
+                    defaultValue={[geoRestrictions[0].title]}
+                    value={value}
+                    onChange={(event: any, newValue: string[] | undefined) => {
+                      setValue(newValue);
+                    }}
+                    freeSolo
+                    renderTags={(value: readonly string[], getTagProps) =>
+                      value.map((option: string, index: number) => (
+                        <Chip
+                          variant="outlined"
+                          label={option}
+                          {...getTagProps({ index })}
+                        />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="outlined"
+                        placeholder="Continent or country..."
+                      />
+                    )}
+                  />{' '}
                 </div>
               )}
 
-              {/* Updated geo restriction field */}
-
-              <Autocomplete
-                multiple
-                id="tags-filled"
-                options={countriesAndContinents.map((option) => option.name)}
-                defaultValue={[geoRestrictions[0].title]}
-                freeSolo
-                renderTags={(value: readonly string[], getTagProps) =>
-                  value.map((option: string, index: number) => (
-                    <Chip
-                      variant="outlined"
-                      label={option}
-                      {...getTagProps({ index })}
-                    />
-                  ))
-                }
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    placeholder="Continent or country..."
-                  />
-                )}
-              />
               {/* SALARY */}
               <div>
                 <h3 className="font-bold text-custom-brown1">

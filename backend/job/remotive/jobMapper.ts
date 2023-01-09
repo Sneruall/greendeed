@@ -5,6 +5,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
     companyData: {
       name: remotiveJob.company_name,
+      // Todo, map sdgs to correct attribute
       sdgs: [
         {
           sdg: 1,
@@ -22,7 +23,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     },
     locationInfo: {
       location: 'remote',
-      geoRestrictionOther: mapRemotiveLocationToJobLocation(
+      geoRestriction: mapRemotiveLocationToJobLocation(
         remotiveJob.candidate_required_location
       ),
     },
@@ -81,8 +82,8 @@ const mapRemotiveJobTypesToJobTypes = (remotiveJobType: string): jobType => {
 
 const mapRemotiveLocationToJobLocation = (
   geoRestrictedLocation: string
-): LocationInfo['geoRestrictionOther'] => {
-  const geoRestrictionOther = [];
-  geoRestrictionOther.push(geoRestrictedLocation);
-  return geoRestrictionOther;
+): LocationInfo['geoRestriction'] => {
+  const geoRestriction = [];
+  geoRestriction.push(geoRestrictedLocation);
+  return geoRestriction;
 };

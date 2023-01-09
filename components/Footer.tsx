@@ -23,22 +23,27 @@ function Footer({}: Props) {
           <div className="mb-4 flex flex-col gap-2">
             <h2 className="heading-md text-white">Information</h2>
             <div>
-              <Link href="/">
+              <Link href="/#jobs">
+                <a className="footer-link">Jobs</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/hiring">
                 <a className="footer-link">Hiring</a>
               </Link>
             </div>
             <div>
-              <Link href="/">
+              <Link href="/blog">
                 <a className="footer-link">Blog</a>
               </Link>
             </div>
             <div>
-              <Link href="/">
+              <Link href="/working-for-the-sustainable-development-goals">
                 <a className="footer-link">Sustainable Goals</a>
               </Link>
             </div>
             <div>
-              <Link href="/">
+              <Link href="#">
                 <a className="footer-link">Terms & Conditions</a>
               </Link>
             </div>

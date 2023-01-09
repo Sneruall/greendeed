@@ -310,6 +310,7 @@ and get the form state. */
               </div>
 
               <div className="my-2">
+                {/* Todo: apply a max of 5 SDGS only */}
                 <SdgElements
                   retrievedSdgs={retrievedCompanyData?.sdgs}
                   errors={errors?.companyData?.sdgs}

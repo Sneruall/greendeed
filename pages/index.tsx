@@ -42,6 +42,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     }
   }
 
+  // Todo: add filter for SDGS (and the UI for it)
   const filteredJobs = () => {
     return allJobs.filter(function (job) {
       if (query) {
@@ -95,6 +96,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           page={page}
           resultsPerPage={RESULTS_PER_PAGE}
           jobs={jobs}
+          category={query?.category}
         />
         {page * RESULTS_PER_PAGE < jobs.length && (
           <div className="mt-10 text-center">

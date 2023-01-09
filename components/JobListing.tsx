@@ -9,7 +9,8 @@ const JobListing: React.FC<{
   search?: string;
   page: Number;
   resultsPerPage: Number;
-}> = ({ jobs, search, page, resultsPerPage }) => {
+  category?: string;
+}> = ({ jobs, search, page, resultsPerPage, category }) => {
   const joblist = jobs?.slice(0, +page * +resultsPerPage).map((job) => (
     <li className="list-none" key={job.id}>
       <JobItem job={job} />
@@ -17,14 +18,19 @@ const JobListing: React.FC<{
   ));
 
   return (
-    <div id="jobs" className="site-margins relative mx-auto mb-16 max-w-7xl">
+    <div
+      id="jobs"
+      className="site-margins relative mx-auto mb-8 max-w-7xl sm:mb-16"
+    >
       <div
         className="absolute left-1/2 -top-[46px] mb-4 -translate-x-1/2
 -translate-y-1/2 transform text-center"
       >
         {jobs?.length > 0 && search && (
           <>
-            <span className="text-xs">Results for:</span>
+            <span className="text-xs">
+              Results {category && ' in ' + category + ' category'} for:
+            </span>
             <h2 className="heading-lg first-letter:capitalize">{search}</h2>
           </>
         )}
@@ -36,12 +42,13 @@ const JobListing: React.FC<{
 -translate-x-1/2 -translate-y-1/2 transform text-center"
         >
           <h2 className="heading-md ">
-            No sustainable jobs found for '{search}'.
+            No jobs found{search && ' for ' + search}
+            {category && ' in ' + category + ' category'}.
           </h2>
-          <p>
+          {/* todo: <p>
             Try another search, set an alert or sign up for our newsletter to
             stay tuned!
-          </p>
+          </p> */}
         </div>
       )}
     </div>

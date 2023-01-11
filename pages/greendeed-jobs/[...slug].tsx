@@ -16,6 +16,7 @@ import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import Link from 'next/link';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 /*
 Todo:
@@ -77,7 +78,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     company = await getCompanyFromMongo(job.companyId);
   }
 
-  const categoryJobs = await getJobsFromMongo(5, job.category);
+  const millisecondsSince1970 = new Date().getTime();
+  const categoryJobs = await getJobsFromMongo(
+    5,
+    job.category,
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+  );
 
   // If there is no job for the given queryId
   if (!job) {

@@ -13,6 +13,7 @@ import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -67,7 +68,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return redirectToCorrectCompanyUrl(company);
   }
 
-  const companyJobs = await getJobsFromCompanyFromMongo(company);
+  const millisecondsSince1970 = new Date().getTime();
+  const companyJobs = await getJobsFromCompanyFromMongo(
+    company,
+    undefined,
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+  );
 
   // Render the page with the company and job data as props
   return {

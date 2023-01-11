@@ -4,7 +4,8 @@ import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (
   limit?: number,
-  category?: jobCategory
+  category?: jobCategory,
+  minTimestampInMs?: number
 ) => {
   const client = await clientPromise;
 
@@ -19,6 +20,7 @@ export const getJobsFromMongo = async (
       .find({
         hidden: false,
         category: category,
+        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
       .sort({ _id: -1 })
       .limit(limit || 5)
@@ -28,6 +30,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         hidden: false,
+        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
       .limit(limit || 0)
       .sort({ _id: -1 })
@@ -59,7 +62,8 @@ export const getJobFromMongo = async (queryId: string) => {
 
 export const getJobsFromCompanyFromMongo = async (
   company: Company,
-  limit?: number
+  limit?: number,
+  minTimestampInMs?: number
 ) => {
   const client = await clientPromise;
 
@@ -74,7 +78,11 @@ export const getJobsFromCompanyFromMongo = async (
 
   const companyJobs = await db
     .collection(process.env.MONGODB_COLLECTION)
-    .find({ hidden: false, companyId: company.id })
+    .find({
+      hidden: false,
+      companyId: company.id,
+      timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+    })
     .sort({ _id: -1 })
     .limit(limit || 0)
     .toArray();

@@ -134,7 +134,12 @@ export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = context.params;
   const post = await client.fetch(query, { slug });
-  const jobs = await getJobsFromMongo(3);
+  const millisecondsSince1970 = new Date().getTime();
+  const jobs = await getJobsFromMongo(
+    3,
+    undefined,
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+  );
 
   return {
     props: {

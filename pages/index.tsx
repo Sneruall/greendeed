@@ -2,13 +2,11 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
 import { Job } from '../types/types';
-import {
-  getJobsFromMongo,
-  getremotiveJobsFromMongo,
-} from '../backend/job/jobDb';
+import { getJobsFromMongo } from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import Footer from '../components/Footer';
+import { JOB_EXPIRATION_TIME_MS } from '../helpers/constants';
 
 /*
 Todo:
@@ -116,7 +114,12 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   );
 };
 export async function getServerSideProps(context: any) {
-  const jobs = await getJobsFromMongo();
+  const millisecondsSince1970 = new Date().getTime();
+  const jobs = await getJobsFromMongo(
+    undefined,
+    undefined,
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+  );
 
   return {
     props: {

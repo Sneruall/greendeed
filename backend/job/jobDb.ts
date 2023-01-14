@@ -3,9 +3,10 @@ import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (
+  minTimestampInMs?: number,
   limit?: number,
   category?: jobCategory,
-  minTimestampInMs?: number
+  sdgs?: number[]
 ) => {
   const client = await clientPromise;
 
@@ -16,41 +17,29 @@ export const getJobsFromMongo = async (
   let jobs;
 
   // Map the sdg input for mongodb query
-  const sdgs = [1, 2];
-  let resultation: {
+  let sdgQuery: {
     'companyData.sdgs.sdg': string;
   }[] = [];
-  // const test = [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }]
-  // const mappedSdgs = sdgs.join(' && ');
 
-  // const mappedSdgs = sdgs.map((sdg) => {
-  //   return sdg + ' ' + '&&' + ' ';
-  // });
+  if (sdgs) {
+    sdgs.forEach((element) => {
+      sdgQuery.push({ 'companyData.sdgs.sdg': `${element}` });
+    });
+  }
 
-  sdgs.forEach((element) => {
-    // resultation = [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }];
-    resultation.push({ 'companyData.sdgs.sdg': `${element}` });
-  });
-
-  console.log(resultation);
-
-  // while(sdgs.length) {
-  //   resultation.push(years.pop());
-
-  // for(i = 0; i < sdgs.length; i++) {
-  //   resultation.push({ 'companyData.sdgs.sdg': `${sdgs[i]}` });
-
-  // }
-
-  // console.log(mappedSdgs);
-  // const finalres = "'2' && '3'";
-  // console.log(mappedSdgs === finalres);
-
-  // '2' && '1'
-
-  // [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }]
-
-  if (category) {
+  if (category && sdgs) {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        hidden: false,
+        category: category,
+        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+        $or: sdgQuery,
+      })
+      .sort({ _id: -1 })
+      .limit(limit || 5)
+      .toArray();
+  } else if (category) {
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
@@ -61,16 +50,23 @@ export const getJobsFromMongo = async (
       .sort({ _id: -1 })
       .limit(limit || 5)
       .toArray();
+  } else if (sdgs) {
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        hidden: false,
+        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+        $or: sdgQuery,
+      })
+      .limit(limit || 0)
+      .sort({ _id: -1 })
+      .toArray();
   } else {
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         hidden: false,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
-        // 'companyData.sdgs.sdg': '2' || '1',
-        // 'companyData.sdgs': { $elemMatch: { sdg: '2' } },
-        // $or: [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }],
-        $or: resultation,
       })
       .limit(limit || 0)
       .sort({ _id: -1 })

@@ -116,9 +116,10 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
 export async function getServerSideProps(context: any) {
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,
     undefined,
     undefined,
-    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+    [1, 2]
   );
 
   return {

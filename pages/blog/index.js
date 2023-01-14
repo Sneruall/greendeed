@@ -53,9 +53,8 @@ export async function getStaticProps() {
     `);
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
-    3,
-    undefined,
-    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,
+    3
   );
 
   return {

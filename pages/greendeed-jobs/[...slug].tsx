@@ -80,9 +80,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const millisecondsSince1970 = new Date().getTime();
   const categoryJobs = await getJobsFromMongo(
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,
     5,
-    job.category,
-    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
+    job.category
   );
 
   // If there is no job for the given queryId

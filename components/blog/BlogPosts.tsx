@@ -18,7 +18,7 @@ function BlogPosts({ posts }: Props) {
 
   return (
     <section className="site-margins">
-      <ul className="my-10 mx-auto grid max-w-7xl grid-cols-3 gap-10 lg:my-16 lg:gap-14">
+      <ul className="my-10 mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:my-16 lg:grid-cols-3 lg:gap-14">
         {blogItems}
       </ul>
     </section>

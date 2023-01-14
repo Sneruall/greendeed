@@ -11,6 +11,7 @@ import Footer from '../../components/Footer';
 import BlogHero from '../../components/blog/BlogHero';
 import BlogPosts from '../../components/blog/BlogPosts';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 // Todo: convert to typescript
 

@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import LatestJobs from '../../components/LatestJobs';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 const ptComponents = {
   // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:

@@ -3,7 +3,7 @@ import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (
-  minTimestampInMs?: number,
+  minTimestampInMs?: number, //todo: consider just adding this to each query (it is always required) and not as a parameter (apply also to getJobsFromCompany method below)
   limit?: number,
   category?: jobCategory,
   sdgs?: number[]
@@ -97,8 +97,8 @@ export const getJobFromMongo = async (queryId: string) => {
 
 export const getJobsFromCompanyFromMongo = async (
   company: Company,
-  limit?: number,
-  minTimestampInMs?: number
+  minTimestampInMs?: number,
+  limit?: number
 ) => {
   const client = await clientPromise;
 

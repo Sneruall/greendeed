@@ -77,7 +77,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const millisecondsSince1970 = new Date().getTime();
   const companyJobs = await getJobsFromCompanyFromMongo(
     company,
-    undefined,
     millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
   );
 

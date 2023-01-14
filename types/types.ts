@@ -87,7 +87,7 @@ export interface Company {
 }
 
 export type sdgs = {
-  sdg: number;
+  sdg: string;
   text?: string | undefined;
 }[];
 

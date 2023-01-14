@@ -8,7 +8,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
       // Todo, map sdgs to correct attribute
       sdgs: [
         {
-          sdg: 1,
+          sdg: '1',
           text: 'Default sdg text',
         },
       ],

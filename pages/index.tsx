@@ -85,11 +85,22 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         }
         // if only sdgs is used
         else if (query.sdgs) {
-          console.log('filtering for sdg query');
           // This if block always returns true now... todo: fix it.
-          if (job.companyData.sdgs.filter((e) => e.sdg === +query.sdgs!)) {
-            return true;
+          // if (job.companyData.sdgs.filter((e) => e.sdg === +query.sdgs!)) {
+          //   return true;
+          // }
+          const paramArr = query.sdgs.split('-');
+          // console.log(paramArr);
+
+          for (let index = 0; index < paramArr.length; index++) {
+            if (
+              job.companyData.sdgs.every((el) => el.sdg === paramArr[index]!)
+            ) {
+              console.log('yes for: ' + JSON.stringify(job.companyData.sdgs));
+              return true;
+            }
           }
+
           return false;
         }
       }
@@ -102,7 +113,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         <title>Metaversed Careers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      {/* {'sdg query: ' + query.sdgs} */}
       <Header />
       <main className="mx-auto">
         <SearchBar />

@@ -14,6 +14,42 @@ export const getJobsFromMongo = async (
     throw new Error('Please add your Mongo URI to .env.local');
   }
   let jobs;
+
+  // Map the sdg input for mongodb query
+  const sdgs = [1, 2];
+  let resultation: {
+    'companyData.sdgs.sdg': string;
+  }[] = [];
+  // const test = [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }]
+  // const mappedSdgs = sdgs.join(' && ');
+
+  // const mappedSdgs = sdgs.map((sdg) => {
+  //   return sdg + ' ' + '&&' + ' ';
+  // });
+
+  sdgs.forEach((element) => {
+    // resultation = [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }];
+    resultation.push({ 'companyData.sdgs.sdg': `${element}` });
+  });
+
+  console.log(resultation);
+
+  // while(sdgs.length) {
+  //   resultation.push(years.pop());
+
+  // for(i = 0; i < sdgs.length; i++) {
+  //   resultation.push({ 'companyData.sdgs.sdg': `${sdgs[i]}` });
+
+  // }
+
+  // console.log(mappedSdgs);
+  // const finalres = "'2' && '3'";
+  // console.log(mappedSdgs === finalres);
+
+  // '2' && '1'
+
+  // [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }]
+
   if (category) {
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
@@ -31,6 +67,10 @@ export const getJobsFromMongo = async (
       .find({
         hidden: false,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+        // 'companyData.sdgs.sdg': '2' || '1',
+        // 'companyData.sdgs': { $elemMatch: { sdg: '2' } },
+        // $or: [{ 'companyData.sdgs.sdg': '2' }, { 'companyData.sdgs.sdg': '1' }],
+        $or: resultation,
       })
       .limit(limit || 0)
       .sort({ _id: -1 })

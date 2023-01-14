@@ -19,12 +19,13 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   const [query, setQuery] = useState<{
     search?: string;
     category?: string;
+    sdgs?: string;
   }>({});
   const [page, setPage] = useState(1);
   const RESULTS_PER_PAGE = 10; //set to 20?
 
   useEffect(() => {
-    if (query.search || query.category) {
+    if (query.search || query.category || query.sdgs) {
       const newJobs = filteredJobs();
       setJobs(newJobs);
     } else if (jobs !== allJobs) {
@@ -35,7 +36,11 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   if (typeof window !== 'undefined') {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    if (params.search !== query.search || params.category !== query.category) {
+    if (
+      params.search !== query.search ||
+      params.category !== query.category ||
+      params.sdgs !== query.sdgs
+    ) {
       setQuery(params);
     }
   }
@@ -46,6 +51,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       if (query) {
         // if both category and search is used
         if (query.category && query.search) {
+          console.log('filtering for search and cat query');
           if (
             job.category.slug == query.category &&
             (job.jobTitle.toLowerCase().includes(query.search) ||
@@ -56,20 +62,32 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           }
           return false;
         }
-        // if only category is used
-        if (query.category) {
-          if (job.category.slug == query.category) {
-            return true;
-          }
-          return false;
-        }
         // if only search is used.
-        if (query.search) {
+        else if (query.search) {
+          console.log('filtering for search query');
           if (
             job.jobTitle.toLowerCase().includes(query.search) ||
             job.companyData.name.toLowerCase().includes(query.search) ||
             job.jobDescription?.toLowerCase().includes(query.search)
           ) {
+            return true;
+          }
+          return false;
+        }
+        // if only category is used
+        else if (query.category) {
+          console.log('filtering for cat query');
+
+          if (job.category.slug == query.category) {
+            return true;
+          }
+          return false;
+        }
+        // if only sdgs is used
+        else if (query.sdgs) {
+          console.log('filtering for sdg query');
+          // This if block always returns true now... todo: fix it.
+          if (job.companyData.sdgs.filter((e) => e.sdg === +query.sdgs!)) {
             return true;
           }
           return false;
@@ -116,10 +134,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
 export async function getServerSideProps(context: any) {
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
-    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,
-    undefined,
-    undefined,
-    [1, 2]
+    millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
   );
 
   return {

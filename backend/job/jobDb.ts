@@ -28,6 +28,7 @@ export const getJobsFromMongo = async (
   }
 
   if (category && sdgs) {
+    console.log('cat and sdgs query');
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
@@ -40,6 +41,7 @@ export const getJobsFromMongo = async (
       .limit(limit || 5)
       .toArray();
   } else if (category) {
+    console.log('cat query');
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
@@ -51,6 +53,7 @@ export const getJobsFromMongo = async (
       .limit(limit || 5)
       .toArray();
   } else if (sdgs) {
+    console.log('sdg query');
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
@@ -62,6 +65,8 @@ export const getJobsFromMongo = async (
       .sort({ _id: -1 })
       .toArray();
   } else {
+    console.log('else query');
+
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({

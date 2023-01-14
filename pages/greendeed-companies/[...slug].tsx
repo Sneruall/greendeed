@@ -14,6 +14,7 @@ import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
+import Footer from '../../components/Footer';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -38,12 +39,17 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
         <CompanyInfo company={company} />
         {/* SDG INFO */}
         <JobSdgSection company={company} />
-        <div className="site-margins mx-auto my-32 max-w-6xl">
-          <div id="sustainable-jobs" className="flex flex-col gap-3">
-            {joblist}
-          </div>
+        <div
+          id="sustainable-jobs"
+          className="site-margins mx-auto my-32 max-w-6xl"
+        >
+          <h2 className="heading-lg mb-10">
+            Current Job Openings at {company.name}
+          </h2>
+          <div className="flex flex-col gap-3">{joblist}</div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

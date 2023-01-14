@@ -18,10 +18,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
     //   return +a - +b;
     // })
     .map((sdgObject) => (
-      <div
-        key={sdgObject.sdg}
-        className="cursor-pointer self-center transition duration-200 ease-in-out hover:scale-110"
-      >
+      <div key={sdgObject.sdg} className="self-center">
         <Image
           src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
           width={40}

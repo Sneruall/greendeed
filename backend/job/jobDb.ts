@@ -36,7 +36,6 @@ export const getJobsFromMongo = async (
       .sort({ _id: -1 })
       .toArray();
   }
-
   return jobs;
 };
 

@@ -1,33 +1,24 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { searchInputCallback } from '../helpers/search';
-import { useRef } from 'react';
 // @ts-ignore
 import InputHints from 'react-input-hints';
 
 const SearchInput = () => {
   const router = useRouter();
-  const ref = useRef<HTMLInputElement | null>(null);
-
-  // useEffect(() => {
-  //   // if there is no search in query but input is set, reset input field
-  //   if (!router.asPath.includes('search') && ref.current != null) {
-  //     console.log('true');
-  //     ref.current.value = '';
-  //   }
-  // }, [router.asPath]);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     if (router.query.search) {
-      if (ref.current) {
-        console.log('hahaha');
-        ref.current.value = router.query.search.toString();
-      }
-    } else if (!router.query.search && ref.current) {
-      console.log('hohoho');
-      ref.current.value = '';
+      setInputValue(router.query.search.toString());
+    } else if (!router.query.search) {
+      setInputValue('');
     }
-  }, [router.asPath, router.query.search]);
+  }, [router.basePath]);
+
+  useEffect(() => {
+    searchInputCallback(inputValue.toLowerCase(), 'search', router);
+  }, [inputValue]);
 
   return (
     <div className="relative mr-2 w-full sm:mr-4">
@@ -53,11 +44,10 @@ const SearchInput = () => {
           'Customer support',
           'Accountant',
         ]}
-        ref={ref}
+        value={inputValue}
         onChange={(e: any) => {
-          searchInputCallback(e.target.value.toLowerCase(), 'search', router);
+          setInputValue(e.target.value);
         }}
-        type="text"
         className="w-ful my-3 border-none bg-transparent pl-10 text-sm text-custom-brown4 placeholder-custom-brown4 focus:outline-none focus:ring-0 sm:text-base"
       />
     </div>

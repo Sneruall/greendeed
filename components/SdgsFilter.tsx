@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { searchInputCallback } from '../helpers/search';
 import { sdgList } from '../types/types';
 
@@ -10,6 +10,12 @@ type Props = {};
 function SdgsFilter({}: Props) {
   const router = useRouter();
 
+  const [selectedSdgs, setSelectedSdgs] = useState<string[]>([]);
+
+  useEffect(() => {
+    searchInputCallback(selectedSdgs.join('-'), 'sdgs', router);
+  }, [selectedSdgs]);
+
   return (
     <div className="mt-20">
       <div className="flex flex-wrap justify-center gap-2">
@@ -17,10 +23,8 @@ function SdgsFilter({}: Props) {
           return (
             <button
               key={sdg.code}
-              id={sdg.code}
               onClick={() => {
-                console.log('click ' + sdg.code);
-                searchInputCallback(sdg.code, 'sdgs', router);
+                setSelectedSdgs((prevSdgs) => [...prevSdgs, sdg.code]);
               }}
               className="cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150"
             >

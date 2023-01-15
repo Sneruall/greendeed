@@ -16,6 +16,16 @@ function SdgsFilter({}: Props) {
     searchInputCallback(selectedSdgs.join('-'), 'sdgs', router);
   }, [selectedSdgs]);
 
+  function handleButtonClick(sdg: string) {
+    if (selectedSdgs.includes(sdg)) {
+      // Remove the id from the array
+      setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg));
+    } else {
+      // Add the id to the array
+      setSelectedSdgs([...selectedSdgs, sdg]);
+    }
+  }
+
   return (
     <div className="mt-20">
       <div className="flex flex-wrap justify-center gap-2">
@@ -24,7 +34,7 @@ function SdgsFilter({}: Props) {
             <button
               key={sdg.code}
               onClick={() => {
-                setSelectedSdgs((prevSdgs) => [...prevSdgs, sdg.code]);
+                handleButtonClick(sdg.code);
               }}
               className="cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150"
             >

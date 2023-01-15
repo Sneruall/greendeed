@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import JobListing from '../components/JobListing';
-import { Job } from '../types/types';
+import { Job, sdgs } from '../types/types';
 import { getJobsFromMongo } from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
@@ -85,22 +85,14 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         }
         // if only sdgs is used
         else if (query.sdgs) {
-          // This if block always returns true now... todo: fix it.
-          // if (job.companyData.sdgs.filter((e) => e.sdg === +query.sdgs!)) {
-          //   return true;
-          // }
-          const paramArr = query.sdgs.split('-');
-          // console.log(paramArr);
+          const sdgsInQueryArray = query.sdgs.split('-');
 
-          for (let index = 0; index < paramArr.length; index++) {
-            if (
-              job.companyData.sdgs.every((el) => el.sdg === paramArr[index]!)
-            ) {
-              console.log('yes for: ' + JSON.stringify(job.companyData.sdgs));
-              return true;
-            }
-          }
+          const checkValuesExist = (arr: sdgs, values: string[]) => {
+            return arr.some((obj) => values.includes(obj.sdg));
+          };
 
+          return checkValuesExist(job.companyData.sdgs, sdgsInQueryArray);
+        } else {
           return false;
         }
       }

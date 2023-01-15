@@ -12,6 +12,20 @@ function SdgsFilter({}: Props) {
 
   const [selectedSdgs, setSelectedSdgs] = useState<string[]>([]);
 
+  /* When component first renders: Checking the URL for the query string and if it finds it, it will add the query string to the
+selectedSdgs array. */
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const itemsToSelect: string[] = [];
+    queryParams.forEach((value, key) => {
+      if (key === 'sdgs') {
+        itemsToSelect.push(...value.split('-'));
+      }
+    });
+    setSelectedSdgs([...selectedSdgs, ...itemsToSelect]);
+  }, []);
+
+  /* Updating the URL with the selected SDGs. */
   useEffect(() => {
     searchInputCallback(selectedSdgs.join('-'), 'sdgs', router);
   }, [selectedSdgs]);

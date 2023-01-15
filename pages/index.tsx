@@ -14,90 +14,69 @@ Todo:
 - add try catch blocks in SSR, see e.g. https://ellismin.com/2020/05/next-infinite-scroll/
 */
 
+interface IQuery {
+  search?: string;
+  category?: string;
+  sdgs?: string;
+}
+
 const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   const [jobs, setJobs] = useState<Job[]>(allJobs);
-  const [query, setQuery] = useState<{
-    search?: string;
-    category?: string;
-    sdgs?: string;
-  }>({});
+  const [query, setQuery] = useState<IQuery>({});
   const [page, setPage] = useState(1);
   const RESULTS_PER_PAGE = 10; //set to 20?
 
   useEffect(() => {
     if (query.search || query.category || query.sdgs) {
-      const newJobs = filteredJobs();
+      const newJobs = filterJobs();
       setJobs(newJobs);
     } else if (jobs !== allJobs) {
       setJobs(allJobs);
     }
   }, [query]);
 
-  if (typeof window !== 'undefined') {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-    if (
-      params.search !== query.search ||
-      params.category !== query.category ||
-      params.sdgs !== query.sdgs
-    ) {
-      setQuery(params);
-    }
+  const queryParams = new URLSearchParams(
+    typeof window !== 'undefined' ? window.location.search : ''
+  );
+
+  const params = Object.fromEntries(queryParams.entries());
+  if (
+    params.search !== query.search ||
+    params.category !== query.category ||
+    params.sdgs !== query.sdgs
+  ) {
+    setQuery(params);
   }
 
-  // Todo: add filter for SDGS (and the UI for it)
-  const filteredJobs = () => {
-    return allJobs.filter(function (job) {
-      if (query) {
-        // if both category and search is used
-        if (query.category && query.search) {
-          console.log('filtering for search and cat query');
-          if (
-            job.category.slug == query.category &&
-            (job.jobTitle.toLowerCase().includes(query.search) ||
-              job.companyData.name.toLowerCase().includes(query.search) ||
-              job.jobDescription?.toLowerCase().includes(query.search))
-          ) {
-            return true;
-          }
-          return false;
-        }
-        // if only search is used.
-        else if (query.search) {
-          console.log('filtering for search query');
-          if (
-            job.jobTitle.toLowerCase().includes(query.search) ||
-            job.companyData.name.toLowerCase().includes(query.search) ||
-            job.jobDescription?.toLowerCase().includes(query.search)
-          ) {
-            return true;
-          }
-          return false;
-        }
-        // if only category is used
-        else if (query.category) {
-          console.log('filtering for cat query');
-
-          if (job.category.slug == query.category) {
-            return true;
-          }
-          return false;
-        }
-        // if only sdgs is used
-        else if (query.sdgs) {
-          const sdgsInQueryArray = query.sdgs.split('-');
-
-          const checkValuesExist = (arr: sdgs, values: string[]) => {
-            return arr.some((obj) => values.includes(obj.sdg));
-          };
-
-          return checkValuesExist(job.companyData.sdgs, sdgsInQueryArray);
-        } else {
-          return false;
-        }
+  function filterJobs(): Job[] {
+    let filteredJobs = [...allJobs];
+    if (query) {
+      if (query.search) {
+        filteredJobs = filteredJobs.filter(
+          (job) =>
+            job.jobTitle.toLowerCase().includes(query.search!) ||
+            job.companyData.name.toLowerCase().includes(query.search!) ||
+            job.jobDescription?.toLowerCase().includes(query.search!)
+        );
       }
-    });
-  };
+
+      if (query.category) {
+        filteredJobs = filteredJobs.filter(
+          (job) => job.category.slug == query.category
+        );
+      }
+
+      if (query.sdgs) {
+        filteredJobs = filteredJobs.filter((job) =>
+          job.companyData.sdgs.some((sdg) =>
+            query.sdgs!.split('-').includes(sdg.sdg)
+          )
+        );
+      }
+    }
+
+    return filteredJobs;
+  }
 
   return (
     <div>

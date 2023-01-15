@@ -7,14 +7,27 @@ import InputHints from 'react-input-hints';
 
 const SearchInput = () => {
   const router = useRouter();
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement | null>(null);
+
+  // useEffect(() => {
+  //   // if there is no search in query but input is set, reset input field
+  //   if (!router.asPath.includes('search') && ref.current != null) {
+  //     console.log('true');
+  //     ref.current.value = '';
+  //   }
+  // }, [router.asPath]);
 
   useEffect(() => {
-    // if there is no search in query but input is set, reset input field
-    if (!router.asPath.includes('search') && ref.current != null) {
+    if (router.query.search) {
+      if (ref.current) {
+        console.log('hahaha');
+        ref.current.value = router.query.search.toString();
+      }
+    } else if (!router.query.search && ref.current) {
+      console.log('hohoho');
       ref.current.value = '';
     }
-  }, [router.asPath]);
+  }, [router.asPath, router.query.search]);
 
   return (
     <div className="relative mr-2 w-full sm:mr-4">

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { sdgList } from '../types/types';
 import CategoryDropdown from './CategoryDropdown';
+import SdgsFilter from './SdgsFilter';
 import SearchInput from './SearchInput';
 
 export const SearchBar = () => {
@@ -32,29 +33,7 @@ export const SearchBar = () => {
           <CategoryDropdown />
         </div>
       </div>
-      <div className="mt-20">
-        <ul className="flex flex-wrap justify-center gap-2">
-          {sdgList.map((sdg) => {
-            return (
-              <li
-                key={sdg.code}
-                className="cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150"
-              >
-                <Link href={`#sdg${sdg.code}`}>
-                  <Image
-                    src={`/images/icons/sdg-icons/${sdg.code}.png`}
-                    height={60}
-                    width={60}
-                    objectFit="contain"
-                    layout="intrinsic"
-                    alt={sdg.name}
-                  />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <SdgsFilter />
     </div>
   );
 };

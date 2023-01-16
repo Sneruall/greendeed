@@ -24,7 +24,7 @@ const SdgElement = ({
   setRetrievedCompanyData,
 }: Props) => {
   const retrievedSdgsIncludesThisSdg = () => {
-    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == +sdg.code);
+    return retrievedSdgs?.some((sdgObj) => sdgObj.sdg == sdg.code);
   };
 
   const [isChecked, setIsChecked] = useState(false);
@@ -35,7 +35,7 @@ const SdgElement = ({
       setIsChecked(true);
 
       const matchedSdg = retrievedSdgs?.find((sdgObj) => {
-        return sdgObj?.sdg == +sdg.code;
+        return sdgObj?.sdg == sdg.code;
       });
 
       setSdgText(matchedSdg?.text || '');
@@ -58,7 +58,7 @@ const SdgElement = ({
 
         // Update it to only keep those that were not unchecked.
         updatedRetrievedSdgs = updatedRetrievedSdgs?.filter((el) => {
-          return el.sdg != +sdg.code;
+          return el.sdg != sdg.code;
         });
 
         // Update it back to the Form component so it is used on submission.

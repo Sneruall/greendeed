@@ -42,7 +42,7 @@ export async function transformFormData(
   geoRestrictionValues?: string[] | undefined
 ) {
   let result: Job = {
-    category: retrievedFormData.category,
+    category: await mapCategoryToObject(retrievedFormData.category),
     email: retrievedFormData.email,
     apply: retrievedFormData.apply,
     applicationMethod: retrievedFormData.applicationMethod,
@@ -74,7 +74,7 @@ export async function transformFormData(
   };
   // todo: move these methods up to result object creation, like done for filterSdgData method.
   convertLocationsToArrays(result.locationInfo);
-  mapCategoryToObject(result.category);
+  // mapCategoryToObject(result.category);
   setLogo(result, imagePublicId, retrievedCompanyData?.logo);
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
@@ -131,8 +131,9 @@ export const setCompanyId = (
   }
 };
 
-export async function mapCategoryToObject(category: jobCategory) {
-  category = createCategoryObject(category as unknown as string)!;
+export async function mapCategoryToObject(category: jobCategory['name']) {
+  console.log('mapCategoryToObject function runs');
+  return createCategoryObject(category)!;
 }
 
 export async function setLogo(

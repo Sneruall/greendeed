@@ -17,7 +17,7 @@ export interface Form {
     sdgsInfo?: string[];
   };
   jobTitle: string;
-  category: jobCategory;
+  category: keyof jobCategory;
   sdg: string[];
   jobDescription: string;
   jobType: jobType;

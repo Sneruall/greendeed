@@ -155,12 +155,12 @@ export async function filterSdgData(
   // If sdg data was retrieved from database for the company, add the data to sdgs
   if (retrievedCompanyData?.sdgs && sdgs) {
     for (let index = 0; index < retrievedCompanyData?.sdgs.length; index++) {
-      sdgs[retrievedCompanyData?.sdgs[index].sdg] = true;
+      sdgs[+retrievedCompanyData?.sdgs[index].sdg] = true;
     }
   }
 
   // The final desired array of objects that we return
-  const sdgsResult: { sdg: number; text?: string }[] = [];
+  const sdgsResult: { sdg: string; text?: string }[] = [];
 
   // Helper array containing the sdgs that were selected
   const sdgsNumbers: number[] = [];

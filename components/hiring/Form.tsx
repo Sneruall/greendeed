@@ -308,7 +308,6 @@ and get the form state. */
               <div className="text-red-500">
                 {(errors?.companyData?.sdgs as any)?.message}
               </div>
-
               <div className="my-2">
                 {/* Todo: apply a max of 5 SDGS only */}
                 <SdgElements

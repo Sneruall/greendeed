@@ -20,12 +20,16 @@ export const searchInputCallback = (
       router.replace({ pathname, query: params.toString() }, undefined);
       // if there is a value, then we want to add the query param that belongs to it.
     } else {
-      router.push({
-        query: {
-          ...router.query,
-          [searchInputType]: value.toString(),
+      router.push(
+        {
+          query: {
+            ...router.query,
+            [searchInputType]: value.toString(),
+          },
         },
-      });
+        undefined,
+        { scroll: false }
+      );
     }
   }, 300);
 };

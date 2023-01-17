@@ -50,7 +50,9 @@ selectedSdgs array. */
               onClick={() => {
                 handleButtonClick(sdg.code);
               }}
-              className="cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150"
+              className={`${
+                selectedSdgs.includes(sdg.code) && 'ring-2 ring-lime-500 '
+              }cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150`}
             >
               <Image
                 src={`/images/icons/sdg-icons/${sdg.code}.png`}

@@ -99,7 +99,8 @@ selectedSdgs array. */
                   <Image
                     src={`/images/icons/sdg-icons/${sdg.code}.png`}
                     objectFit="cover"
-                    layout="fill"
+                    width="48"
+                    height="48"
                     alt={sdg.name}
                     title={sdg.name}
                   />

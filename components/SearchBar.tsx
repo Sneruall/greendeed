@@ -33,7 +33,6 @@ export const SearchBar = () => {
           <CategoryDropdown />
         </div>
       </div>
-
       <SdgsFilter />
     </div>
   );

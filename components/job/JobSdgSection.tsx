@@ -31,7 +31,6 @@ function JobSdgSection({ job, company }: Props) {
       </div>
 
       <ul className="mx-auto flex flex-col gap-8">
-        {/* todo use company sdg instead of job sdg */}
         {company?.sdgs?.map((sdgObject, i) => {
           return (
             <li

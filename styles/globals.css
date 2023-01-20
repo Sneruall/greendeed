@@ -39,6 +39,9 @@
   .heading-sm-omnes2 {
     @apply mb-2 font-omnes font-semibold tracking-wide text-custom-brown1;
   }
+  .heading-md-omnes {
+    @apply mb-2 font-omnes text-base font-extralight tracking-wider text-custom-brown1 sm:text-xl md:text-2xl lg:text-3xl;
+  }
   .blog-heading {
     @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl lg:text-3xl;
   }

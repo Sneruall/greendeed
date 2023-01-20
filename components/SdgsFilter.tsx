@@ -23,11 +23,13 @@ selectedSdgs array. */
       }
     });
     setSelectedSdgs([...selectedSdgs, ...itemsToSelect]);
+    console.log('USE EFFECT 1 RUNS' + selectedSdgs + itemsToSelect);
   }, []);
 
   /* Updating the URL with the selected SDGs. */
   useEffect(() => {
     searchInputCallback(selectedSdgs.join('-'), 'sdgs', router);
+    console.log('USE EFFECT 2 RUNS');
   }, [selectedSdgs]);
 
   function handleButtonClick(sdg: string) {
@@ -42,30 +44,31 @@ selectedSdgs array. */
 
   return (
     <div className="mt-20">
-      <div className="flex flex-wrap justify-center gap-2">
+      <ul className="flex flex-wrap justify-center gap-2">
         {sdgList.map((sdg) => {
           return (
-            <button
+            <li
               key={sdg.code}
               onClick={() => {
                 handleButtonClick(sdg.code);
               }}
               className={`${
-                selectedSdgs.includes(sdg.code) && 'ring-2 ring-lime-500 '
-              }cursor-pointer transition duration-200 ease-in-out hover:z-10 hover:scale-150`}
+                selectedSdgs.includes(sdg.code)
+                  ? 'border-blue-600 '
+                  : 'border-gray-200 '
+              }cursor-pointer relative h-16 w-16 border-4 transition duration-200 ease-in-out hover:border-blue-600`}
             >
               <Image
                 src={`/images/icons/sdg-icons/${sdg.code}.png`}
-                height={60}
-                width={60}
-                objectFit="contain"
-                layout="intrinsic"
+                objectFit="cover"
+                layout="fill"
                 alt={sdg.name}
+                title={sdg.name}
               />
-            </button>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }

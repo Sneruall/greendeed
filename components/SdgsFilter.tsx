@@ -46,6 +46,17 @@ selectedSdgs array. */
 
   return (
     <div className="mt-20">
+      <div className="my-2 text-center">
+        <p>
+          Filter for{' '}
+          <span className="text-custom-brown1 underline opacity-70 hover:opacity-100">
+            <Link href="/working-for-the-sustainable-development-goals">
+              <a className="">Sustainable Developent Goals</a>
+            </Link>
+          </span>
+          :
+        </p>
+      </div>
       <div className="flex flex-wrap justify-center gap-2">
         {sdgList.map((sdg) => {
           return (
@@ -83,7 +94,7 @@ selectedSdgs array. */
                     selectedSdgs.includes(sdg.code)
                       ? 'border-custom-brown1 '
                       : 'border-gray-100 '
-                  }cursor-pointer relative h-16 w-16 border-2`}
+                  }cursor-pointer relative h-12 w-12 border-2`}
                 >
                   <Image
                     src={`/images/icons/sdg-icons/${sdg.code}.png`}

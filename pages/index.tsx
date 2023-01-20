@@ -90,6 +90,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         <SearchBar />
         {/* Listing of jobs */}
         <JobListing
+          sdgs={query?.sdgs}
           search={query?.search}
           page={page}
           resultsPerPage={RESULTS_PER_PAGE}

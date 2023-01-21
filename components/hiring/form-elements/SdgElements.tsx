@@ -21,6 +21,7 @@ function SdgElements({
 
   const optionList = sdgList.map((sdg) => (
     <SdgElement
+      key={sdg.code}
       errors={errors}
       register={register}
       sdg={sdg}

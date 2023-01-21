@@ -76,7 +76,7 @@ const SdgElement = ({
   };
 
   return (
-    <li key={sdg.code} className={`${isChecked && 'col-span-2 row-span-2'}`}>
+    <li className={`${isChecked && 'col-span-2 row-span-2'}`}>
       <div
         className={`shadow-1 h-full rounded-lg border-2 border-custom-grey3 bg-white p-1`}
       >

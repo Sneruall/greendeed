@@ -102,7 +102,6 @@ selectedSdgs array. */
                     width="48"
                     height="48"
                     alt={sdg.name}
-                    title={sdg.name}
                   />
                   {selectedSdgs.includes(sdg.code) && (
                     <div className="absolute -right-2 -top-2">

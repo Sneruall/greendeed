@@ -9,13 +9,15 @@ function HowItWorks() {
       </h1>
       <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row">
         <div className="flex max-w-xs flex-col gap-4">
-          <div>
+          <div className="">
             <Image
-              src="/images/hiring/step2.png"
+              src="/images/hiring/step3.png"
               height={150}
               width={200}
               objectFit="contain"
               layout="intrinsic"
+              className="-scale-x-100 transform"
+              alt="Step 1"
             />
           </div>
           <div>
@@ -34,6 +36,7 @@ function HowItWorks() {
               width={200}
               objectFit="contain"
               layout="intrinsic"
+              alt="Step 2"
             />
           </div>
           <div>
@@ -47,11 +50,12 @@ function HowItWorks() {
         <div className="flex max-w-xs flex-col gap-4">
           <div>
             <Image
-              src="/images/hiring/step2.png"
+              src="/images/hiring/step3.png"
               height={150}
               width={200}
               objectFit="contain"
               layout="intrinsic"
+              alt="Step 3"
             />
           </div>
           <div>

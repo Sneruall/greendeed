@@ -3,9 +3,9 @@ import React from 'react';
 
 function CompanyLogos() {
   return (
-    <div className="my-20">
+    <div className="lg:my-20">
       <div className="my-16 flex items-start justify-center gap-10">
-        <div className="my-auto w-full border border-custom-grey1"></div>
+        <div className="my-auto w-full border border-custom-green2"></div>
         <div className="flex-none text-center">
           <h2 className="heading-wide">
             Companies already{' '}
@@ -14,7 +14,7 @@ function CompanyLogos() {
             <span className="sm:hidden">on greendeed</span>
           </h2>
         </div>
-        <div className="my-auto w-full border border-custom-grey1"></div>
+        <div className="my-auto w-full border border-custom-green2"></div>
       </div>
       <div className="mx-auto flex max-w-6xl flex-col justify-between gap-8 text-center grayscale sm:flex-row">
         <div>

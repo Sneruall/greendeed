@@ -3,7 +3,7 @@ import React from 'react';
 
 function HowItWorks() {
   return (
-    <div className="site-margins mx-auto my-32 max-w-6xl">
+    <div className="site-margins mx-auto max-w-6xl lg:my-32">
       <h1 className="heading-xl mx-auto mb-14 max-w-4xl text-center md:text-left">
         How it works
       </h1>

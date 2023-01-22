@@ -46,7 +46,7 @@ selectedSdgs array. */
 
   return (
     <div className="mt-20">
-      <div className="my-2 text-center">
+      <div className="my-2 text-center text-sm">
         <p>
           Filter for{' '}
           <span className="text-custom-brown1 underline opacity-70 hover:opacity-100">

@@ -34,13 +34,15 @@ const JobListing: React.FC<{
     >
       <div className="mb-4">
         {/* todo: add case when no search category or sdgs (jobs targeting the SDGs) and change when no sdg selected but search (targeting instead of fighting) */}
-        {jobs?.length > 0 && (search || category || sdgs) && (
-          <h2 className="heading-sm-omnes font-bold first-letter:capitalize">
-            {search} jobs fighting for{' '}
-            {!sdgNames && 'the Sustainable Development Goals'}
-            {sdgNames?.map((name, i) => (
-              <React.Fragment key={name}>
+        {jobs?.length > 0 && (search || category || sdgs) ? (
+          <>
+            <h2 className="heading-sm-omnes inline text-sm font-bold first-letter:capitalize sm:text-base">
+              {!search && category && category} {search} Jobs{' '}
+              {!sdgNames && ' targeting the Sustainable Development Goals'}
+              {sdgNames && ' figthing for '}
+              {sdgNames?.map((name, i) => (
                 <span
+                  key={name}
                   className={`${name == 'No Poverty' && 'bg-custom-sdg1'} ${
                     name == 'Zero Hunger' && 'bg-custom-sdg2'
                   }  ${
@@ -73,13 +75,19 @@ const JobListing: React.FC<{
                     'bg-custom-sdg16'
                   } ${
                     name == 'Partnerships for the Goals' && 'bg-custom-sdg17'
-                  } mx-1 rounded-full p-2 font-normal leading-loose text-white`}
+                  } mx-1 my-1 inline-block rounded-full p-1 font-normal text-white sm:p-2`}
                 >
                   {name}{' '}
                 </span>
-              </React.Fragment>
-            ))}
-          </h2>
+              ))}
+            </h2>
+          </>
+        ) : (
+          jobs?.length > 0 && (
+            <h2 className="heading-sm-omnes text-sm font-bold first-letter:capitalize sm:text-base">
+              Jobs targeting the Sustainable Development Goals
+            </h2>
+          )
         )}
       </div>
       <div className="flex flex-col gap-3">{joblist}</div>

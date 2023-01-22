@@ -18,7 +18,7 @@ export const SearchBar = () => {
       <div className="mx-auto h-32 max-w-xl">
         <div className="flex h-full w-full text-center">
           <div className="flex-1"></div>
-          <div className="relative h-full w-64 flex-initial">
+          <div id="search" className="relative h-full w-64 flex-initial">
             <Image
               src={'/images/home/finding-a-sustainable-job.png'}
               objectFit="contain"

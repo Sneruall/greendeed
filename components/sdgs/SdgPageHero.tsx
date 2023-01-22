@@ -55,6 +55,7 @@ function SdgPageHero({}: Props) {
               return (
                 <Tooltip
                   textClassname=""
+                  key={sdg.code}
                   className={`w-32 text-white ${
                     sdg.code == '1' && 'bg-custom-sdg1'
                   } ${sdg.code == '2' && 'bg-custom-sdg2'}  ${

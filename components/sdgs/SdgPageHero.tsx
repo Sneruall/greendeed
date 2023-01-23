@@ -50,7 +50,7 @@ function SdgPageHero({}: Props) {
               </p>
             </div>
           </div>
-          <div className="my-10 flex flex-wrap justify-center gap-2">
+          <div className="my-10 mx-auto flex max-w-6xl flex-wrap justify-center">
             {sdgList.map((sdg) => {
               return (
                 <Tooltip
@@ -82,7 +82,7 @@ function SdgPageHero({}: Props) {
                     <button
                       key={sdg.code}
                       className="relative
-                  h-12 w-12 cursor-pointer border-2 border-gray-100 hover:scale-105 hover:border-custom-brown1"
+                  mx-1 h-12 w-12 cursor-pointer border-2 border-gray-100 hover:scale-105 hover:border-custom-brown1"
                     >
                       <Link href={`#sdg${sdg.code}`}>
                         <Image

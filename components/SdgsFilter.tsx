@@ -61,6 +61,7 @@ selectedSdgs array. */
         {sdgList.map((sdg) => {
           return (
             <Tooltip
+              key={sdg.code}
               textClassname=""
               className={`w-32 text-white ${
                 sdg.code == '1' && 'bg-custom-sdg1'

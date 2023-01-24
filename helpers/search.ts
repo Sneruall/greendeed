@@ -13,11 +13,15 @@ export const searchInputCallback = (
   }
   timer = setTimeout(() => {
     // if there is no value, then we want to remove the query param that belongs to it.
+    console.log('searchInputCallback runs');
     if (!value) {
+      console.log('no value');
       const { pathname } = router;
       const params = new URLSearchParams(window.location.search);
       params.delete(searchInputType);
-      router.replace({ pathname, query: params.toString() }, undefined);
+      router.replace({ pathname, query: params.toString() }, undefined, {
+        scroll: false,
+      });
       // if there is a value, then we want to add the query param that belongs to it.
     } else {
       router.push(

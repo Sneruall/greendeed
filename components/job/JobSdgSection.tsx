@@ -77,13 +77,7 @@ function JobSdgSection({ job, company }: Props) {
                   />
                 </div>
                 <div className="">
-                  <p>
-                    {sdgObject.text} And some hardcoded lorum ipsum: No poverty
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nosdgObject.sdgy eirmod tempor invidunt ut labore et
-                    dolore magna aliquyam erat, sed diam voluptua. At vero eos
-                    et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                  </p>
+                  <p>{sdgObject.text}</p>
                 </div>
               </div>
             </li>

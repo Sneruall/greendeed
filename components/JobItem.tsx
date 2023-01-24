@@ -13,26 +13,24 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
-  const sdgList = job.companyData.sdgs
-    // .sort(function (a, b) {
-    //   return +a - +b;
-    // })
-    .map((sdgObject) => (
-      <div key={sdgObject.sdg} className="self-center">
-        <Image
-          src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
-          width={40}
-          height={40}
-          objectFit="contain"
-          layout="intrinsic"
-        />
-      </div>
-    ));
+  const sdgList = job.companyData.sdgs.slice(0, 5).map((sdgObject) => (
+    <div key={sdgObject.sdg} className="self-center">
+      <Image
+        src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
+        width={40}
+        height={40}
+        objectFit="contain"
+        layout="intrinsic"
+        alt={sdgObject.sdg}
+        title={'SDG ' + sdgObject.sdg}
+      />
+    </div>
+  ));
 
   return (
     <Link
       href={generateJobUrl(
-        job.companyData.name.toLowerCase(), //consequence: if name changes a redirect will occur
+        job.companyData.name.toLowerCase(),
         job.jobTitle.toLowerCase(),
         job.id
       )}
@@ -42,7 +40,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
           <div className="flex flex-col sm:grid sm:grid-cols-6 sm:gap-3 lg:grid-cols-3 xl:grid-cols-5">
             <div className="flex gap-4 sm:col-span-3 lg:col-span-1 xl:col-span-2">
               <div className="flex flex-shrink-0 self-center">
-                {job.companyData.logo ? ( //consequence: if name changes a redirect will occur
+                {job.companyData.logo ? (
                   <Image
                     src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
                     width={40}
@@ -51,7 +49,6 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   />
                 ) : (
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-center">
-                    {/* todo: Replace by first letter of the company name */}
                     <span className="font-omnes text-xl capitalize text-gray-300">
                       {job.companyData.name[0]}
                     </span>
@@ -66,7 +63,6 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   {job.companyData.name}
                 </h2>
                 <h2 className="hidden font-semibold sm:block">
-                  {/* company data below not retrieved from company db */}
                   {job.jobTitle} - {job.companyData.name}
                 </h2>
                 <div className="my-auto flex flex-row gap-2 font-century text-xs">
@@ -86,18 +82,39 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                       job.locationInfo?.onSiteLocation instanceof Array &&
                       job.locationInfo?.onSiteLocation?.join(', ')}
                   </p>
-                  {/* todo georestrictionother
-                  <li>
-                    {job.locationInfo.geoRestriction &&
-                      '🌐 ' + job.locationInfo.geoRestriction?.join(', ')}
-                  </li> */}
                 </div>
-                <div className="flex gap-4 sm:hidden">{sdgList}</div>
+                <div className="flex justify-center gap-4 sm:hidden">
+                  {sdgList}
+                  {sdgList.length > 4 && (
+                    <div className="self-center">
+                      <Image
+                        src={'/images/icons/sdg-icons/plus.png'}
+                        width={40}
+                        height={40}
+                        objectFit="contain"
+                        layout="intrinsic"
+                        title="More SDGs"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="flex justify-end sm:col-span-2 lg:col-span-1">
-              <div className="hidden justify-around gap-2 sm:grid sm:grid-cols-5">
+              <div className="hidden justify-around gap-2 sm:grid sm:grid-cols-6">
                 {sdgList}
+                {sdgList.length > 4 && (
+                  <div className="self-center">
+                    <Image
+                      src={'/images/icons/sdg-icons/plus.png'}
+                      width={40}
+                      height={40}
+                      objectFit="contain"
+                      layout="intrinsic"
+                      title="More SDGs"
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="hidden justify-end gap-8 self-center font-omnes font-semibold text-black sm:flex xl:col-span-2">

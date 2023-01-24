@@ -301,8 +301,8 @@ and get the form state. */
               </h2>
               <p className="text-sm text-gray-500">
                 Select one or more Sustainable Development Goals that fit your
-                organization (max. 5) and describe how you contribute to achieve
-                this goal.
+                organization (usually max. 5) and describe how you contribute to
+                achieve this goal.
               </p>
 
               <div className="text-red-500">

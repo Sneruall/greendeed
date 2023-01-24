@@ -4,11 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
-import {
-  generateCompanyUrl,
-  generateJobUrl,
-} from '../../helpers/urlGeneration';
-import { Company, Job } from '../../types/types';
+import { generateJobUrl } from '../../helpers/urlGeneration';
+import { Job } from '../../types/types';
 
 type Props = {
   job: Job;
@@ -21,7 +18,7 @@ function SimilarJobItem({ job }: Props) {
   return (
     <Link
       href={generateJobUrl(
-        job.companyData.name.toLowerCase(), //consequence: if name changes a redirect will occur
+        job.companyData.name.toLowerCase(),
         job.jobTitle.toLowerCase(),
         job.id
       )}
@@ -30,10 +27,10 @@ function SimilarJobItem({ job }: Props) {
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
-            {job.companyData.sdgs.map((sdgObject) => {
+            {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
               return (
                 <li
-                  className="relative h-full w-10 hover:opacity-90"
+                  className="relative h-full w-8 hover:opacity-90"
                   key={sdgObject.sdg}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
@@ -54,6 +51,25 @@ function SimilarJobItem({ job }: Props) {
                 </li>
               );
             })}
+            {job && job.companyData.sdgs.length > 4 && (
+              <li className="relative h-full w-8 hover:opacity-90">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
+                  <polygon
+                    points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
+                    fill="#999999"
+                  />
+                </svg>
+                <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
+                  <Image
+                    src={'/images/icons/sdg-icons/plus.png'}
+                    width={50}
+                    height={50}
+                    objectFit="contain"
+                    layout="intrinsic"
+                  />
+                </div>
+              </li>
+            )}
           </ul>
         </div>
 

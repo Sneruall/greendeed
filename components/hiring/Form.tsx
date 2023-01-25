@@ -194,7 +194,7 @@ and get the form state. */
     <div
       id="post-job"
       ref={formRef}
-      className="site-margins bg-custom-green1 py-16"
+      className="site-margins bg-custom-green1 py-12 lg:py-24"
     >
       <div className="mx-auto max-w-3xl ">
         <FormStatusIdentifier

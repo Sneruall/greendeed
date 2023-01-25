@@ -622,10 +622,16 @@ and get the form state. */
             <button
               disabled={companyNameIsLoading}
               type="submit"
+              onClick={() => {
+                formRef.current?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                });
+              }}
               className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
             >
               Post Job - $200
-            </button>{' '}
+            </button>
           </div>
         </form>
         <div className="mx-auto my-10 flex max-w-xl space-x-4">

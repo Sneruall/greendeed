@@ -3,6 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
+import { useRouter } from 'next/router';
 import {
   postJob,
   transformFormData,
@@ -42,6 +43,8 @@ import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 
 function Form() {
+  const router = useRouter();
+
   /* ------ FORM STEP REGISTRATION ------ */
 
   // Registering which form step is currently active
@@ -177,6 +180,7 @@ and get the form state. */
       );
     }
     reset();
+    router.push('/success');
   }
 
   // const HandleGeoRestrictionsChange = (

@@ -5,7 +5,7 @@ type Props = {
   activeFormStep: number;
   setActiveFormStep: React.Dispatch<React.SetStateAction<number>>;
   errors: {
-    companyName?: any;
+    companyData?: any;
     companyDescription?: any;
     companyWebsite?: any;
     email?: any;
@@ -31,9 +31,8 @@ const FormStatusIdentifier = ({
       <div className="shadow-1 flex justify-around rounded-full bg-white py-2">
         <Step
           errors={[
-            errors.companyName,
+            errors.companyData?.name,
             errors.companyDescription,
-            errors.email,
             errors.companyWebsite,
           ]}
           step={1}

@@ -83,7 +83,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                       job.locationInfo?.onSiteLocation?.join(', ')}
                   </p>
                 </div>
-                <div className="flex justify-center gap-4 sm:hidden">
+                <div className="flex gap-1 sm:hidden">
                   {sdgList}
                   {sdgList.length > 4 && (
                     <div className="self-center">
@@ -101,7 +101,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
               </div>
             </div>
             <div className="flex justify-end sm:col-span-2 lg:col-span-1">
-              <div className="hidden justify-around gap-2 sm:grid sm:grid-cols-6">
+              <div className="hidden justify-around gap-1 sm:grid sm:grid-cols-6 md:gap-2">
                 {sdgList}
                 {sdgList.length > 4 && (
                   <div className="self-center">

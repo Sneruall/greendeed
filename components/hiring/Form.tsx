@@ -635,20 +635,21 @@ and get the form state. */
                   title="Coupon Code"
                   onChangeMethod={(e: any) => {
                     const value = e.target.value;
-                    if (value === '2023') {
+                    if (value === '2030') {
                       setPrice(0);
-                      setCoupon('2023');
+                      setCoupon('2030');
                     }
                   }}
                   description="Enter your coupon code if you have any and receive discount"
                 />
                 {coupon && (
-                  <div className="flex justify-center gap-2">
+                  <div className="flex justify-center gap-2 text-sm">
                     <HiCheck className="my-auto h-6 w-6 stroke-custom-brown4 stroke-2 text-custom-brown4" />
                     <p className="text-custom-brown">
                       Coupon code{' '}
                       <span className="font-bold uppercase">{coupon} </span>
-                      applied!
+                      applied! Price is now{' '}
+                      <span className="font-bold">€ {price}</span>
                     </p>
                   </div>
                 )}
@@ -656,7 +657,7 @@ and get the form state. */
 
               {/* CHECKBOX PAYMENT PROMISE */}
               {price > 0 && (
-                <div className="mb-6 flex">
+                <div className="flex">
                   <div className="flex h-5 items-center">
                     <input
                       id="payment-checkbox"
@@ -693,7 +694,7 @@ and get the form state. */
           </div>
           {/* SUBMIT */}
           <div
-            className={`flex justify-end space-x-4 ${
+            className={`my-4 flex justify-end space-x-4 ${
               activeFormStep !== 4 && 'hidden'
             }`}
           >

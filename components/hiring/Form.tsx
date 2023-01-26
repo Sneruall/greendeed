@@ -611,6 +611,39 @@ and get the form state. */
                   description="Stays private, for verification/invoice delivery only."
                 />
               </div>
+              {/* CHECKBOX PAYMENT PROMISE */}
+
+              <div className="mb-4 -mt-6 flex">
+                <div className="flex h-5 items-center">
+                  <input
+                    id="payment-checkbox"
+                    aria-describedby="payment-checkbox-text"
+                    type="checkbox"
+                    value=""
+                    className="h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                    {...register('acceptedPaymentTerms')}
+                  />
+                </div>
+                <div className="ml-2 text-sm">
+                  <label
+                    htmlFor="payment-checkbox"
+                    className="font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    I agree that I have an obligation to pay after the job has
+                    been posted.
+                  </label>
+                  <p
+                    id="payment-checkbox-text"
+                    className="text-xs font-normal text-gray-500 dark:text-gray-300"
+                  >
+                    You will receive an invoice, which can be completed via wire
+                    tranfer or one of the payment methods below.
+                  </p>
+                  <p className="text-base text-red-500">
+                    {errors?.acceptedPaymentTerms?.message}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           {/* SUBMIT */}

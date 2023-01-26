@@ -34,6 +34,7 @@ export interface Form {
   id: string;
   price: number;
   paid: boolean;
+  acceptedPaymentTerms: boolean;
   hidden: boolean;
   listed: boolean;
   closed: boolean;

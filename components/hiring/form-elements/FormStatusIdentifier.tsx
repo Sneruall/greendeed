@@ -18,6 +18,7 @@ type Props = {
     applicationMethod?: any;
     apply?: any;
     sdg?: any;
+    acceptedPaymentTerms?: any;
   };
 };
 
@@ -59,6 +60,7 @@ const FormStatusIdentifier = ({
             errors.salary,
             errors.applicationMethod,
             errors.apply,
+            errors.acceptedPaymentTerms,
           ]}
           step={4}
           activeFormStep={activeFormStep}

@@ -157,6 +157,7 @@ and get the form state. */
       jobDescriptionHtml,
       companyDescriptionHtml,
       salaryValues,
+      price,
       retrievedCompanyData,
       imagePublicId,
       geoRestrictionValues
@@ -623,6 +624,7 @@ and get the form state. */
                   register={register}
                   title="Your E-mail"
                   description="Stays private, for verification/invoice delivery only."
+                  placeholder="johndoe@company.com"
                 />
               </div>
 
@@ -640,7 +642,7 @@ and get the form state. */
                       setCoupon('2030');
                     }
                   }}
-                  description="Enter your coupon code if you have any and receive discount"
+                  description="Receive discount by entering a valid coupon code."
                 />
                 {coupon && (
                   <div className="flex justify-center gap-2 text-sm">

@@ -21,6 +21,7 @@ import {
   ApplicationMethods,
   Form,
   geoRestrictions,
+  jobType,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -44,6 +45,9 @@ import { useRef } from 'react';
 
 function Form() {
   const router = useRouter();
+
+  /* ------ KEEP TRACK OF PRICING ------ */
+  const [price, setPrice] = useState(250);
 
   /* ------ FORM STEP REGISTRATION ------ */
 
@@ -370,6 +374,12 @@ and get the form state. */
                 errors={errors.jobType}
                 title="Type of Employment"
                 options={jobTypes}
+                onChangeMethod={(e: any) => {
+                  const value = e.target.value as jobType;
+                  if (value === 'Internship') {
+                    setPrice(125);
+                  } else setPrice(250);
+                }}
               />
 
               <div>
@@ -637,7 +647,8 @@ and get the form state. */
                     className="text-xs font-normal text-gray-500 dark:text-gray-300"
                   >
                     You will receive an invoice, which can be completed via wire
-                    tranfer or one of the payment methods below.
+                    tranfer or one of many payment methods such as credit or
+                    debit card, iDeal, EPS, Giropay or Sofort.
                   </p>
                   <p className="text-base text-red-500">
                     {errors?.acceptedPaymentTerms?.message}
@@ -663,7 +674,7 @@ and get the form state. */
               }}
               className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
             >
-              Post Job - $200
+              Submit Job - ${price}
             </button>
           </div>
         </form>

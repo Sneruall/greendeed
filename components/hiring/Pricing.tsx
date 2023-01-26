@@ -50,7 +50,7 @@ function Pricing() {
               </a>
             </Link>
             <div>
-              <p className="my-2 text-sm tracking-wide">For only $250</p>
+              <p className="my-2 text-sm tracking-wide">For only €250</p>
             </div>
           </div>
         </div>

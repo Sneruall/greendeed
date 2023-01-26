@@ -639,8 +639,8 @@ and get the form state. */
                     htmlFor="payment-checkbox"
                     className="font-medium text-gray-900 dark:text-gray-300"
                   >
-                    I agree that I have an obligation to pay after the job has
-                    been posted.
+                    I agree that I have an obligation to pay €{price} within 14
+                    days after the job has been approved and posted.
                   </label>
                   <p
                     id="payment-checkbox-text"
@@ -674,7 +674,7 @@ and get the form state. */
               }}
               className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
             >
-              Submit Job - ${price}
+              Submit Job - €{price}
             </button>
           </div>
         </form>

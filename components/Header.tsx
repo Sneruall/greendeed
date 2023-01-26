@@ -81,7 +81,7 @@ function Header() {
             <Link href="/hiring#post-job">
               <a>
                 <button className="button-1 px-4 text-base sm:px-8">
-                  Post a Job - $250
+                  Post a Job - €250
                 </button>
               </a>
             </Link>

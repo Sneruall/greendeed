@@ -12,11 +12,18 @@ import BlogHero from '../../components/blog/BlogHero';
 import BlogPosts from '../../components/blog/BlogPosts';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
+import JobItem from '../../components/JobItem';
 
 // Todo: convert to typescript
 
 const Index = ({ posts, jobs }) => {
   console.log(posts);
+
+  const joblist = jobs?.map((job) => (
+    <li className="list-none" key={job.id}>
+      <JobItem job={job} />
+    </li>
+  ));
 
   return (
     <>
@@ -40,7 +47,19 @@ const Index = ({ posts, jobs }) => {
             to report the issue, thanks!
           </div>
         )}
-        <LatestJobs jobs={jobs} />
+        <div className="site-margins mx-auto max-w-screen-xl">
+          <h2 className="heading-xl mt-16 mb-10">
+            Latest sustainable jobs on Greendeed
+          </h2>
+          <div className="flex flex-col gap-3">{joblist}</div>
+          <div className="my-4 text-center">
+            <Link href="/#jobs">
+              <a>
+                <button className="button-1">See all jobs</button>
+              </a>
+            </Link>
+          </div>
+        </div>
       </main>
       <Footer />
     </>
@@ -54,7 +73,7 @@ export async function getStaticProps() {
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
     millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,
-    3
+    5
   );
 
   return {

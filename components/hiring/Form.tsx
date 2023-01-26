@@ -42,12 +42,16 @@ import SdgElements from './form-elements/SdgElements';
 import { Chip, TextField } from '@mui/material';
 import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
+import { HiCheck } from 'react-icons/hi';
 
 function Form() {
   const router = useRouter();
 
   /* ------ KEEP TRACK OF PRICING ------ */
   const [price, setPrice] = useState(250);
+
+  /* ------ KEEP TRACK OF COUPON ------ */
+  const [coupon, setCoupon] = useState('');
 
   /* ------ FORM STEP REGISTRATION ------ */
 
@@ -612,7 +616,7 @@ and get the form state. */
                 }
               />
               {/* EMAIL */}
-              <div className="mb-6">
+              <div>
                 <FormFieldString
                   errors={errors?.email}
                   id="email"
@@ -621,40 +625,70 @@ and get the form state. */
                   description="Stays private, for verification/invoice delivery only."
                 />
               </div>
-              {/* CHECKBOX PAYMENT PROMISE */}
 
-              <div className="mb-4 -mt-6 flex">
-                <div className="flex h-5 items-center">
-                  <input
-                    id="payment-checkbox"
-                    aria-describedby="payment-checkbox-text"
-                    type="checkbox"
-                    value=""
-                    className="h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                    {...register('acceptedPaymentTerms')}
-                  />
-                </div>
-                <div className="ml-2 text-sm">
-                  <label
-                    htmlFor="payment-checkbox"
-                    className="font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I agree that I have an obligation to pay €{price} within 14
-                    days after the job has been approved and posted.
-                  </label>
-                  <p
-                    id="payment-checkbox-text"
-                    className="text-xs font-normal text-gray-500 dark:text-gray-300"
-                  >
-                    You will receive an invoice, which can be completed via wire
-                    tranfer or one of many payment methods such as credit or
-                    debit card, iDeal, EPS, Giropay or Sofort.
-                  </p>
-                  <p className="text-base text-red-500">
-                    {errors?.acceptedPaymentTerms?.message}
-                  </p>
-                </div>
+              {/* COUPON CODE FIELD */}
+              <div>
+                <FormFieldString
+                  errors={errors?.coupon}
+                  id="coupon"
+                  register={register}
+                  title="Coupon Code"
+                  onChangeMethod={(e: any) => {
+                    const value = e.target.value;
+                    if (value === '2023') {
+                      setPrice(0);
+                      setCoupon('2023');
+                    }
+                  }}
+                  description="Enter your coupon code if you have any and receive discount"
+                />
+                {coupon && (
+                  <div className="flex justify-center gap-2">
+                    <HiCheck className="my-auto h-6 w-6 stroke-custom-brown4 stroke-2 text-custom-brown4" />
+                    <p className="text-custom-brown">
+                      Coupon code{' '}
+                      <span className="font-bold uppercase">{coupon} </span>
+                      applied!
+                    </p>
+                  </div>
+                )}
               </div>
+
+              {/* CHECKBOX PAYMENT PROMISE */}
+              {price > 0 && (
+                <div className="mb-6 flex">
+                  <div className="flex h-5 items-center">
+                    <input
+                      id="payment-checkbox"
+                      aria-describedby="payment-checkbox-text"
+                      type="checkbox"
+                      value=""
+                      className="h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                      {...register('acceptedPaymentTerms')}
+                    />
+                  </div>
+                  <div className="ml-2 text-sm">
+                    <label
+                      htmlFor="payment-checkbox"
+                      className="font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      I agree that I have an obligation to pay €{price} within
+                      14 days after the job has been approved and posted.
+                    </label>
+                    <p
+                      id="payment-checkbox-text"
+                      className="text-xs font-normal text-gray-500 dark:text-gray-300"
+                    >
+                      You will receive an invoice, which can be completed via
+                      wire tranfer or one of many payment methods such as credit
+                      or debit card, iDeal, EPS, Giropay or Sofort.
+                    </p>
+                    <p className="text-base text-red-500">
+                      {errors?.acceptedPaymentTerms?.message}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           {/* SUBMIT */}

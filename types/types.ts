@@ -41,6 +41,7 @@ export interface Form {
   applicationMethod: ApplicationMethod;
   apply: string;
   external: boolean;
+  coupon: string;
 }
 
 export interface Job {

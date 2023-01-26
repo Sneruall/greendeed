@@ -89,6 +89,7 @@ export default Yup.object().shape({
     sdgs: Yup.array().required('Required'),
     sdgsInfo: Yup.array().nullable(false).required('Req'),
   }),
+  coupon: Yup.string(),
   acceptedPaymentTerms: Yup.boolean()
     .required('The terms and conditions must be accepted.')
     .oneOf([true], 'The terms and conditions must be accepted.'),

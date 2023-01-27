@@ -186,10 +186,13 @@ and get the form state. */
       sdgs: transformedFormData.companyData.sdgs,
     };
     try {
-      // console.log("sending order confirmation");
       console.log('sending order confirmation');
       try {
-        await axios.post('/api/order-confirmation-email');
+        await axios.post('/api/order-confirmation-email', {
+          jobTitle: transformedFormData.jobTitle,
+          email: transformedFormData.email,
+          companyName: transformedFormData.companyData.name,
+        });
       } catch (err) {
         console.log('an error occurred');
         console.log(err);

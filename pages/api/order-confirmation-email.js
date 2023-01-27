@@ -5,57 +5,27 @@ mail.setApiKey(process.env.SENDGRID_API_KEY);
 async function handler(req, res) {
   //   const shipping = req.body.sessionData.total - req.body.sessionData.subtotal;
 
-  const order = {
-    order_number: '123',
-    order_date: '123',
-    name: 'name',
-    email: 'email',
-    line1: 'line1',
-    line2: 'line2',
-    postal_code: '2323',
-    city: 'city',
-    country: 'netherlands',
-    products: JSON.stringify({}),
-    subtotal: 12,
-    total: 12,
-    shipping: 12,
-  };
-
   const data = {
     from: 'noreply@soloswim.nl',
-    templateId: 'd-924d5ca262a4459493df9909ebe332d9',
+    templateId: 'd-f7f18c73dac342408b74f103bd4afdf0',
     personalizations: [
       {
         to: {
-          name: `laurens`,
-          email: `laurens@vr-house.nl`,
+          name: req.body.companyName,
+          email: `${req.body.email}`,
         },
         bcc: {
-          email: 'info@soloswim.nl',
+          email: 'l.c.vanroomen@gmail.com',
         },
         dynamic_template_data: {
-          subject: `Bedankt voor je bestelling ${order.name}`,
-          order_number: `${order.order_number}`,
-          order_date: `${order.order_date}`,
-          name: `${order.name}`,
-          line1: `${order.line1}`,
-          line2: `${order.line2}`,
-          postal_code: `${order.postal_code}`,
-          city: `${order.city}`,
-          country: `${order.country}`,
-          subtotal: `${order.subtotal.toFixed(2)}`,
-          total: `${order.total.toFixed(2)}`,
-          shipping: `${order.shipping.toFixed(2)}`,
-          products: JSON.parse(order.products),
+          subject: `Job submitted successfully: ${req.body.jobTitle}`,
+          companyName: req.body.companyName,
+          jobTitle: req.body.jobTitle,
+          jobType: 'Full-Time',
         },
       },
     ],
   };
-
-  // Checking to see whether line2 value is equal to null
-  //   if (data.personalizations[0].dynamic_template_data.line2 === 'null') {
-  //     delete data.personalizations[0].dynamic_template_data.line2;
-  //   }
 
   mail
     .send(data)

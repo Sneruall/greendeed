@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Autocomplete from '@mui/material/Autocomplete';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
@@ -72,6 +72,15 @@ function Form() {
   // Checking the entered company name with what is already in the DB and storing that in state
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
+
+  // todo remove, debugging purpose only
+  useEffect(() => {
+    console.log(
+      'retrievedCompanyData is: ' +
+        JSON.stringify(retrievedCompanyData) +
+        retrievedCompanyData?.id
+    );
+  }, [retrievedCompanyData]);
 
   // Soring rich field company description html in state
   const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');

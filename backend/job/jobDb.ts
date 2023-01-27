@@ -32,7 +32,7 @@ export const getJobsFromMongo = async (
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        hidden: false,
+        published: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
         $or: sdgQuery,
@@ -45,7 +45,7 @@ export const getJobsFromMongo = async (
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        hidden: false,
+        published: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
@@ -57,7 +57,7 @@ export const getJobsFromMongo = async (
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        hidden: false,
+        published: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
         $or: sdgQuery,
       })
@@ -70,7 +70,7 @@ export const getJobsFromMongo = async (
     jobs = await db
       .collection(process.env.MONGODB_COLLECTION)
       .find({
-        hidden: false,
+        published: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
       .limit(limit || 0)
@@ -119,7 +119,7 @@ export const getJobsFromCompanyFromMongo = async (
   const companyJobs = await db
     .collection(process.env.MONGODB_COLLECTION)
     .find({
-      hidden: false,
+      published: true,
       companyId: company.id,
       timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
     })

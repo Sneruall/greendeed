@@ -15,6 +15,7 @@ import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
@@ -46,7 +47,20 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
           <h2 className="heading-lg mb-10">
             Current Job Openings at {company.name}
           </h2>
-          <div className="flex flex-col gap-3">{joblist}</div>
+          {jobs.length > 0 ? (
+            <div className="flex flex-col gap-3">{joblist}</div>
+          ) : (
+            <>
+              <h3 className="heading-md text-center ">No active jobs found.</h3>
+            </>
+          )}
+          <div className="my-4 text-center">
+            <Link href="/#jobs">
+              <a>
+                <button className="button-1">Back to all jobs</button>
+              </a>
+            </Link>
+          </div>
         </div>
       </main>
       <Footer />

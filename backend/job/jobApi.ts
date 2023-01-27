@@ -56,8 +56,8 @@ export async function transformFormData(
     paid: true,
     closed: false,
     external: false,
-    hidden: false,
     listed: true,
+    published: retrievedCompanyData?.id ? true : false,
     locationInfo: await setLocationInfo(
       retrievedFormData.locationInfo,
       geoRestrictionValues
@@ -84,19 +84,6 @@ export async function transformFormData(
 
   return result;
 }
-
-export const setDefaultJobAttributes = (retrievedFormData: Form) => {
-  // Set other job data attributes
-  retrievedFormData.sdg = ['1'];
-  retrievedFormData.timestamp = registerJobTimestamp();
-  retrievedFormData.id = setJobId();
-  retrievedFormData.price = 50; // set the price
-  retrievedFormData.paid = true; // set the payment status
-  retrievedFormData.hidden = false; // determine if the job is hidden from the platform overal
-  retrievedFormData.listed = true; // determine if the job is listed in the jobs lists
-  retrievedFormData.closed = false; // determine if the job is marked as closed
-  retrievedFormData.external = false; // determine if the job is external (e.g. from remotive)
-};
 
 export const convertLocationsToArrays = (locationInfo: LocationInfo) => {
   if (locationInfo.onSiteLocation) {

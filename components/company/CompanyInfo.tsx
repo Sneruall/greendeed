@@ -40,9 +40,7 @@ function CompanyInfo({ company }: Props) {
       )}
       <div className="my-4 text-center">
         <Link href="#sustainable-jobs">
-          <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-            {`Jobs at ${company?.name}`}
-          </button>
+          <button className="button-2">{`Jobs at ${company?.name}`}</button>
         </Link>
       </div>
     </div>

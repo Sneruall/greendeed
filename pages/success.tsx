@@ -20,19 +20,19 @@ function Success() {
         <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat">
           <div className="mx-auto max-w-5xl pt-24 sm:pt-36">
             <h1 className="heading-2xl mb-6 text-center sm:mb-14">
-              Thank you for posting a job!
+              Thank you for submitting a job!
             </h1>
             <div className="text-center">
               <p className="text-main">
                 If it is the first job that your organization is posting to
                 Greendeed, we will first verify the job post and the Sustainable
                 Development Goals that were submitted. Within 24 hours your job
-                will be posted or we will contact you if we have questions.
+                will be posted and the invoice will be sent.
               </p>
               <p className="text-main">
                 If your organization is already known to us and your Sustainable
-                Development Goals have not changed, the job will be posted right
-                away!
+                Development Goals have not changed, the job has been posted
+                already! You will receive an invoice within 24 hours.
               </p>
             </div>
 

@@ -33,7 +33,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     price: 0,
     paid: true,
     sdg: remotiveJob.sdg,
-    hidden: false,
+    published: true,
     listed: true,
     closed: false,
     applicationMethod: 'website',

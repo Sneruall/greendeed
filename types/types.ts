@@ -33,11 +33,7 @@ export interface Form {
   timestamp: number;
   id: string;
   price: number;
-  paid: boolean;
   acceptedPaymentTerms: boolean;
-  hidden: boolean;
-  listed: boolean;
-  closed: boolean;
   applicationMethod: ApplicationMethod;
   apply: string;
   external: boolean;
@@ -70,10 +66,10 @@ export interface Job {
   timestamp: number;
   id: string;
   price: number;
-  paid: boolean;
-  hidden: boolean;
-  listed: boolean;
-  closed: boolean;
+  paid: boolean; // Paid for job placement or not
+  published: boolean; // published on the platform or not
+  listed: boolean; // listed in the jobLists or not
+  closed: boolean; // Position already fulfilled or not
   applicationMethod: ApplicationMethod;
   apply: string;
   external: boolean;

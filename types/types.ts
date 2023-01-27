@@ -80,8 +80,8 @@ export interface Company {
   id: string;
   description?: string;
   website?: string;
-  logo?: string;
   sdgs: sdgs;
+  logo?: string;
 }
 
 export type sdgs = {

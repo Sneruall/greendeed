@@ -276,6 +276,8 @@ export const sdgList = [
       'Goal 4 focuses on the acquisition of foundational and higher-order skills; greater and more equitable access to technical and vocational education and training and higher education; training throughout life; and the knowledge, skills and values needed to function well and contribute to society.',
     uri: '/v1/sdg/Goal/4',
     img: '',
+    greendeedDescription:
+      'The fourth sustainable development goal is to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all. This goal aims to ensure that all individuals, regardless of their background, have access to education and opportunities for skill development. Sustainable jobs in various industries such as education, technology, and sustainable development play a critical role in achieving this goal. In education, jobs such as teachers, curriculum developers, and education administrators provide access to quality education. In technology, jobs such as software developers, data analysts, and digital literacy trainers help to bridge the digital divide and provide access to digital skills. In sustainable development, jobs such as sustainable design engineers, and environmental educators promote sustainable practices and raise awareness about environmental issues. Together, we can create a world where inclusive and equitable education and lifelong learning opportunities are accessible to all, with sustainable jobs playing a key role in achieving this goal.',
   },
   {
     code: '5',
@@ -285,6 +287,8 @@ export const sdgList = [
       'Goal 5 aims to empower women and girls to reach their full potential, which requires eliminating all forms of discrimination and violence against them, including harmful practices. It seeks to ensure that they have every opportunity for sexual and reproductive health and reproductive rights; receive due recognition for their unpaid work; have full access to productive resources; and enjoy equal participation with men in political, economic and public life.',
     uri: '/v1/sdg/Goal/5',
     img: '',
+    greendeedDescription:
+      'The fifth sustainable development goal is to achieve gender equality and empower all women and girls. This goal aims to eliminate all forms of discrimination and violence against women and girls, and to ensure their full participation and leadership in all spheres of life. Sustainable jobs in various industries such as healthcare, social services, education, and technology all contribute to achieving this goal. Jobs such as health workers, social workers, and counselors provide support for women and girls who have experienced violence, and create a safe environment for them. Jobs in education and technology, such as teachers, trainers, and digital literacy facilitators, provide access to education and digital skills for women and girls, thereby increasing their economic and social opportunities. Jobs in leadership, such as policymakers, managers, and business leaders, provide opportunities for women to take on leadership roles and make decisions that affect their lives and communities. Together we can create a world where gender equality is a reality, with sustainable jobs playing a key role in achieving this goal.',
   },
   {
     code: '6',
@@ -295,6 +299,8 @@ export const sdgList = [
       'Goal 6 goes beyond drinking water, sanitation and hygiene to also address the quality and sustainability of water resources. Achieving this Goal, which is critical to the survival of people and the planet, means expanding international cooperation and garnering the support of local communities in improving water and sanitation management.',
     uri: '/v1/sdg/Goal/6',
     img: '',
+    greendeedDescription:
+      'The sixth sustainable development goal is to ensure availability and sustainable management of water and sanitation for all. This goal aims to ensure the availability of safe and affordable water for all, and to improve the management of water resources by implementing sustainable practices. Sustainable jobs in various industries such as water management, engineering, and environmental protection all contribute to achieving this goal. Jobs such as water treatment plant operators, water resource managers, and hydrologists ensure the availability of safe and clean water. Jobs in engineering, such as water infrastructure engineers, help to design and maintain sustainable water systems. Jobs in environmental protection, such as conservation biologists, and ecologists, help to protect and restore ecosystems and natural resources that support water availability. Together, we can create a world where everyone has access to safe and sustainable water, with jobs in these fields playing a key role in achieving this goal.',
   },
   {
     code: '7',
@@ -305,6 +311,8 @@ export const sdgList = [
       'Goal 7 seeks to promote broader energy access and increased use of renewable energy, including through enhanced international cooperation and expanded infrastructure and technology for clean energy.',
     uri: '/v1/sdg/Goal/7',
     img: '',
+    greendeedDescription:
+      'The seventh sustainable development goal is to ensure access to affordable, reliable, sustainable and modern energy for all. This goal aims to increase the use of renewable energy sources, improve energy efficiency, and increase access to energy in developing countries. Sustainable jobs in various industries such as renewable energy, energy efficiency, and energy management all contribute to achieving this goal. Jobs such as solar panel installers, wind turbine technicians, and energy efficiency consultants help to increase the use of renewable energy and improve energy efficiency. Jobs in energy management, such as energy analysts and energy traders, help to ensure the reliable and sustainable supply of energy.',
   },
   {
     code: '8',
@@ -315,6 +323,8 @@ export const sdgList = [
       'Goal 8 aims to provide opportunities for full and productive employment and decent work for all while eradicating forced labour, human trafficking and child labour.',
     uri: '/v1/sdg/Goal/8',
     img: '',
+    greendeedDescription:
+      'The eighth sustainable development goal is to promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all, while eradicating forced labour, human trafficking, and child labour. This goal aims to create jobs, reduce poverty and inequality, and promote economic growth in a sustainable way, while protecting the rights of workers and eliminating practices that exploit them. Sustainable jobs in various industries such as sustainable finance, sustainable agriculture, and sustainable tourism all contribute to achieving this goal. Jobs such as sustainable investment analysts, organic farmers, and ecotourism guides help to promote sustainable economic growth, create jobs and protect the environment. Jobs such as labor rights advocates, fair trade coordinators, and social entrepreneurs promote fair trade and decent work for all, while working to eliminate forced labour, human trafficking, and child labour. Together, we can create a world where sustained, inclusive, and sustainable economic growth is possible for all, with sustainable jobs playing a key role in achieving this goal.',
   },
   {
     code: '9',
@@ -325,6 +335,8 @@ export const sdgList = [
       'Goal 9 focuses on the promotion of infrastructure development, industrialization and innovation. This can be accomplished through enhanced international and domestic financial, technological and technical support, research and innovation, and increased access to information and communication technology.',
     uri: '/v1/sdg/Goal/9',
     img: '',
+    greendeedDescription:
+      'The ninth sustainable development goal focuses on building resilient infrastructure, promoting inclusive and sustainable industrialization and fostering innovation. This goal aims to improve access to infrastructure and technology, spur economic growth and create jobs in a sustainable way. Sustainable jobs in industries such as renewable energy, green infrastructure, and sustainable manufacturing all contribute to achieving this goal. Jobs such as solar panel installers, green architects, and sustainable product designers all play a role in building resilient infrastructure and promoting sustainable industrialization. Jobs such as renewable energy engineers, sustainable transportation planners, and green building consultants help to increase access to clean energy, sustainable transportation and sustainable buildings. Additionally, jobs such as sustainable innovation consultants and sustainable technology researchers help to foster sustainable innovation and research. Together, we can create a world where sustainable infrastructure, industrialization and innovation are possible for all, with sustainable jobs playing a key role in achieving this goal.',
   },
   {
     code: '10',

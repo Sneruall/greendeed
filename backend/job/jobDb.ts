@@ -33,6 +33,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        listed: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
         $or: sdgQuery,
@@ -46,6 +47,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        listed: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
@@ -58,6 +60,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        listed: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
         $or: sdgQuery,
       })
@@ -95,7 +98,7 @@ export const getJobFromMongo = async (queryId: string) => {
 
   const job = (await db
     .collection(collection)
-    .findOne({ id: queryId })) as unknown as Job;
+    .findOne({ id: queryId, published: true })) as unknown as Job;
 
   return job;
 };

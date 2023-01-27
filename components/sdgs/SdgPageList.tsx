@@ -55,7 +55,7 @@ function SdgPageList({}: Props) {
                 </div>
                 <div className="">
                   <h2 className="heading-md-omnes text-white">{sdg.title}</h2>
-                  <p>{sdg.description}</p>
+                  <p>{sdg.greendeedDescription}</p>
                 </div>
               </div>
             </li>

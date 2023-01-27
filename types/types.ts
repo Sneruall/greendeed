@@ -241,6 +241,8 @@ export const sdgList = [
       'Goal 1 calls for an end to poverty in all its manifestations, including extreme poverty, over the next 15 years. All people everywhere, including the poorest and most vulnerable, should enjoy a basic standard of living and social protection benefits.',
     uri: '/v1/sdg/Goal/1',
     img: '',
+    greendeedDescription:
+      'The first sustainable development goal, to end poverty in all its forms, is an ambitious and noble goal that can change lives for the better. As stated by the United Nations, this goal calls for an end to poverty, including extreme poverty, over the next 15 years. It emphasizes on ensuring that all people everywhere, including the poorest and most vulnerable, should enjoy a basic standard of living and social protection benefits. This can be achieved through sustainable jobs, such as those in renewable energy and sustainable agriculture, which not only provide economic opportunities, but also help to lift individuals and communities out of poverty, giving them hope and a brighter future. Together, we can create a world where no one is left behind and everyone has access to basic standard of living and social protection.',
   },
   {
     code: '2',
@@ -251,6 +253,8 @@ export const sdgList = [
       'Goal 2 seeks to end hunger and all forms of malnutrition and to achieve sustainable food production by 2030. It is premised on the idea that everyone should have access to sufficient nutritious food, which will require widespread promotion of sustainable agriculture, a doubling of agricultural productivity, increased investments and properly functioning food markets.',
     uri: '/v1/sdg/Goal/2',
     img: '',
+    greendeedDescription:
+      'The second sustainable development goal is to end hunger, achieve food security and improved nutrition and promote sustainable agriculture. Sustainable jobs, such as those in organic farming, agroforestry, permaculture, and regenerative agriculture, can contribute to achieving this goal by providing healthy and nutritious food, reducing environmental impact of agriculture and increasing rural livelihoods. These jobs can also promote food security, by providing access to healthy food for communities and reducing the vulnerability of farming systems to climate change and environmental degradation. Together, we can create a world where everyone has access to nutritious and healthy food, and sustainable jobs are a key driver for achieving this goal.',
   },
   {
     code: '3',
@@ -260,6 +264,8 @@ export const sdgList = [
       'Goal 3 aims to ensure health and well-being for all at all ages by improving reproductive, maternal and child health; ending the epidemics of major communicable diseases; reducing non-communicable and environmental diseases; achieving universal health coverage; and ensuring access to safe, affordable and effective medicines and vaccines for all.',
     uri: '/v1/sdg/Goal/3',
     img: '',
+    greendeedDescription:
+      'The third sustainable development goal is to ensure good health and well-being for all at all ages. This goal aims to improve reproductive, maternal and child health, end epidemics of major communicable diseases, reduce non-communicable and environmental diseases, achieve universal health coverage, and ensure access to safe, affordable, and effective medicines and vaccines for all. Sustainable jobs in various industries such as healthcare, environmental protection, sustainable agriculture, renewable energy, and sustainable transportation all contribute to achieving this goal. These jobs provide access to quality health care services, reduce environmental health hazards, provide access to healthy and nutritious food, reduce environmental impact, increase rural livelihoods, provide clean energy and promote active and healthy lifestyles. Together we can create a world where good health and well-being is accessible to all, with sustainable jobs playing a key role.',
   },
   {
     code: '4',

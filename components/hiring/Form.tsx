@@ -188,11 +188,14 @@ and get the form state. */
     try {
       console.log('sending order confirmation');
       try {
-        await axios.post('/api/order-confirmation-email', {
-          jobTitle: transformedFormData.jobTitle,
-          email: transformedFormData.email,
-          companyName: transformedFormData.companyData.name,
-        });
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_HOST}/api/order-confirmation-email`,
+          {
+            jobTitle: transformedFormData.jobTitle,
+            email: transformedFormData.email,
+            companyName: transformedFormData.companyData.name,
+          }
+        );
       } catch (err) {
         console.log('an error occurred');
         console.log(err);

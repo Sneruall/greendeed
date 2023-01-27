@@ -74,6 +74,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        listed: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
       .limit(limit || 0)

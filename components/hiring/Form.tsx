@@ -43,6 +43,7 @@ import { Chip, TextField } from '@mui/material';
 import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
+import axios from 'axios';
 
 function Form() {
   const router = useRouter();
@@ -185,6 +186,14 @@ and get the form state. */
       sdgs: transformedFormData.companyData.sdgs,
     };
     try {
+      // console.log("sending order confirmation");
+      console.log('sending order confirmation');
+      try {
+        await axios.post('/api/order-confirmation-email');
+      } catch (err) {
+        console.log('an error occurred');
+        console.log(err);
+      }
       // Post the job in job database
       await postJob(transformedFormData);
       // Post or update the company database

@@ -74,13 +74,13 @@ function Form() {
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
   // todo remove, debugging purpose only
-  useEffect(() => {
-    console.log(
-      'retrievedCompanyData is: ' +
-        JSON.stringify(retrievedCompanyData) +
-        retrievedCompanyData?.id
-    );
-  }, [retrievedCompanyData]);
+  // useEffect(() => {
+  //   console.log(
+  //     'retrievedCompanyData is: ' +
+  //       JSON.stringify(retrievedCompanyData) +
+  //       retrievedCompanyData?.id
+  //   );
+  // }, [retrievedCompanyData]);
 
   // Soring rich field company description html in state
   const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');

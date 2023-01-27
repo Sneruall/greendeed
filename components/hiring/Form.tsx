@@ -386,6 +386,16 @@ and get the form state. */
                   } else setPrice(250);
                 }}
               />
+              {price === 125 && (
+                <div className="flex justify-center gap-2 text-sm">
+                  <HiCheck className="my-auto h-6 w-6 stroke-custom-brown4 stroke-2 text-custom-brown4" />
+                  <p className="text-custom-brown">
+                    <span className="font-bold">50% discount</span> for
+                    internship job applied! Price is now{' '}
+                    <span className="font-bold">€ {price}</span>
+                  </p>
+                </div>
+              )}
 
               <div>
                 <label
@@ -634,7 +644,7 @@ and get the form state. */
                   errors={errors?.coupon}
                   id="coupon"
                   register={register}
-                  title="Coupon Code"
+                  title="Coupon Code (optional)"
                   onChangeMethod={(e: any) => {
                     const value = e.target.value;
                     if (value === '2030') {

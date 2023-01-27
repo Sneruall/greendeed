@@ -85,21 +85,23 @@ function JobSdgSection({ job, company }: Props) {
         })}
       </ul>
 
-      <div className="my-10 text-center">
-        <Link
-          href={
-            (job?.apply &&
-              (job?.applicationMethod === 'website'
-                ? job?.apply
-                : `mailto:${job?.apply}`)) ||
-            '#sustainable-jobs'
-          }
-        >
-          <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-            {job?.apply ? 'Apply' : `Jobs at ${company?.name}`}
-          </button>
-        </Link>
-      </div>
+      {job && (
+        <div className="my-10 text-center">
+          <Link
+            href={
+              (job?.apply &&
+                (job?.applicationMethod === 'website'
+                  ? job?.apply
+                  : `mailto:${job?.apply}`)) ||
+              '#sustainable-jobs'
+            }
+          >
+            <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
+              Apply
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

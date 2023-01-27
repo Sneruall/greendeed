@@ -24,15 +24,10 @@ function Success() {
             </h1>
             <div className="text-center">
               <p className="text-main">
-                If it is the first job that your organization is posting to
-                Greendeed, we will first verify the job post and the Sustainable
-                Development Goals that were submitted. Within 24 hours your job
-                will be posted and the invoice will be sent.
-              </p>
-              <p className="text-main">
-                If your organization is already known to us and your Sustainable
-                Development Goals have not changed, the job has been posted
-                already! You will receive an invoice within 24 hours.
+                The job is posted automatically unless your organization is new
+                to Greendeed. We will then validate the job and organization
+                details within 24 hours and try to have the job published as
+                soon as possible.
               </p>
             </div>
 

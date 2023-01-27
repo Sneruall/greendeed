@@ -700,9 +700,10 @@ and get the form state. */
                     id="payment-checkbox-text"
                     className="text-xs font-normal text-gray-500 dark:text-gray-300"
                   >
-                    You will receive an invoice, which can be completed via wire
-                    tranfer or one of many payment methods such as credit or
-                    debit card, iDeal, EPS, Giropay or Sofort.
+                    You will receive an invoice within 24 hours after submitting
+                    the job. The invoice can be paid via wire transfer or
+                    through various payment methods such as Credit Card, PayPal
+                    or iDeal.
                   </p>
                   <p className="text-base text-red-500">
                     {errors?.acceptedPaymentTerms?.message}

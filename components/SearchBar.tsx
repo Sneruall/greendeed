@@ -11,9 +11,9 @@ export const SearchBar = () => {
     // todo: consider prevent use of bg-[url] to exploit next image
     <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat pb-24">
       <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
-        <h1 className="heading-2xl mx-auto mb-6 max-w-2xl text-center leading-relaxed">
+        <h2 className="heading-2xl mx-auto mb-6 max-w-2xl text-center leading-relaxed">
           Let's find your next Sustainable Job
-        </h1>
+        </h2>
       </div>
       <div className="mx-auto h-32 max-w-xl">
         <div className="flex h-full w-full text-center">

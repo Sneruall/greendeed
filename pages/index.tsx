@@ -81,7 +81,25 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   return (
     <div>
       <Head>
-        <title>Metaversed Careers</title>
+        <title>Find a job where you support the SDGs | Greendeed</title>
+        <meta
+          name="description"
+          content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
+          key="desc"
+        />
+        <meta
+          property="og:title"
+          content="Find a job where you support the SDGs | Greendeed"
+        />
+        <meta
+          property="og:description"
+          content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
+        />
+        {/* Todo: add cool og:image */}
+        {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* {'sdg query: ' + query.sdgs} */}

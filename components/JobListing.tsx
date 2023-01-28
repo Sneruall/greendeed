@@ -3,6 +3,7 @@ import React from 'react';
 import { Job } from '../types/types';
 import JobItem from './JobItem';
 import { sdgList } from '../types/types';
+import { capitalizeFirstLetter } from '../helpers/stringManipulations';
 
 //Todo, convert to setup like FormFieldDropdown.tsx (with props at top separate)
 
@@ -36,8 +37,9 @@ const JobListing: React.FC<{
         {/* todo: add case when no search category or sdgs (jobs targeting the SDGs) and change when no sdg selected but search (targeting instead of fighting) */}
         {jobs?.length > 0 && (search || category || sdgs) ? (
           <>
-            <h2 className="heading-sm-omnes inline text-sm font-bold first-letter:capitalize sm:text-base">
-              {!search && category && category} {search} Jobs{' '}
+            <h1 className="heading-sm-omnes inline text-sm font-bold first-letter:capitalize sm:text-base">
+              {!search && category && capitalizeFirstLetter(category)}{' '}
+              {capitalizeFirstLetter(search)} jobs{' '}
               {!sdgNames && ' targeting the Sustainable Development Goals'}
               {sdgNames && ' figthing for '}
               {sdgNames?.map((name, i) => (
@@ -80,7 +82,7 @@ const JobListing: React.FC<{
                   {name}{' '}
                 </span>
               ))}
-            </h2>
+            </h1>
           </>
         ) : (
           jobs?.length > 0 && (

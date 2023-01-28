@@ -28,7 +28,32 @@ const Index = ({ posts, jobs }) => {
   return (
     <>
       <Head>
-        <title>Greendeed Blog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>
+          Explore how to make a positive impact with your job | Greendeed
+        </title>
+        <meta
+          name="description"
+          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          key="desc"
+        />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content="Explore how to make a positive impact with your job | Greendeed"
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          key="ogdesc"
+        />
+        {/* Todo: add cool og:image */}
+        {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

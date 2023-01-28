@@ -11,6 +11,8 @@ import { getJobsFromMongo } from '../../backend/job/jobDb';
 import LatestJobs from '../../components/LatestJobs';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
+// Todo, make TS file and use blog type
+
 const ptComponents = {
   // TODO: CUSTOMIZE COMPONENTS FOR TAILWIND, GUIDE:
   // https://github.com/portabletext/react-portabletext#customizing-components
@@ -60,7 +62,26 @@ const Post = ({ post, jobs }) => {
     <>
       <main>
         <Head>
-          <title>{post?.title}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta charSet="utf-8" />
+          <title>{post?.title} | Greendeed Blog</title>
+          <meta name="description" content={post?.excerpt} key="desc" />
+          <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+          <meta
+            property="og:title"
+            content={`${post?.title} | Greendeed`}
+            key="ogtitle"
+          />
+          <meta
+            property="og:description"
+            content={post?.excerpt}
+            key="ogdesc"
+          />
+          {/* Todo: add cool og:image */}
+          {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

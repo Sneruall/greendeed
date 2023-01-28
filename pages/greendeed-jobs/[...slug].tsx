@@ -33,7 +33,31 @@ const JobPage: NextPage<{
   return (
     <>
       <Head>
-        <title>Metaversed Careers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>
+          {job?.jobTitle} at {job?.companyData.name} | Greendeed Job
+        </title>
+        <meta
+          name="description"
+          content={`${job?.companyData.name} is hiring a ${job?.jobTitle}`}
+          key="desc"
+        />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content={`${job?.jobTitle} at ${job?.companyData.name} | Greendeed Job`}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={`${job?.companyData.name} is hiring a ${job?.jobTitle}`}
+          key="ogdesc"
+        />
+        <meta
+          property="og:image"
+          content={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

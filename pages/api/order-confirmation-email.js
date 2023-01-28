@@ -23,7 +23,7 @@ async function handler(req, res) {
           jobTitle: req.body.jobTitle,
           jobType: req.body.jobType,
           id: req.body.id,
-          companyId: req.body.id,
+          companyId: req.body.companyId,
         },
       },
     ],

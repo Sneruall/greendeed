@@ -23,6 +23,7 @@ import {
   Form,
   geoRestrictions,
   jobType,
+  emailData,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
@@ -186,33 +187,30 @@ and get the form state. */
       logo: transformedFormData.companyData.logo || retrievedCompanyData?.logo,
       sdgs: transformedFormData.companyData.sdgs,
     };
+
+    const emailData: emailData = {
+      jobTitle: transformedFormData.jobTitle,
+      email: transformedFormData.email,
+      companyName: transformedFormData.companyData.name,
+      jobType: transformedFormData.jobType,
+      id: transformedFormData.id,
+      companyId: transformedFormData.companyId,
+    };
+
     try {
-      console.log('sending order confirmation');
-      const emailData = {
-        jobTitle: transformedFormData.jobTitle,
-        email: transformedFormData.email,
-        companyName: transformedFormData.companyData.name,
-        jobType: transformedFormData.jobType,
-        id: transformedFormData.id,
-        companyId: transformedFormData.companyId,
-      };
-      console.log(JSON.stringify(emailData));
-      try {
-        await sendConfirmationEmail(emailData);
-      } catch (err) {
-        console.log('an error occurred');
-        console.log(err);
-      }
       // Post the job in job database
       await postJob(transformedFormData);
       // Post or update the company database
       await postCompany(companyFormData);
       // Sync company data to all company jobs in jobs database (job.companyData object)
       await updateJobs(companyFormData);
+      // Send order confirmation
+      console.log('sending order confirmation');
+      await sendConfirmationEmail(emailData);
     } catch (err) {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(
-        'an error occurred when posting job and/or company data into our database / or updating jobs'
+        'an error occurred when posting job and/or company data into our database / or updating jobs / sending email confirmation'
       );
       console.log(err);
     }

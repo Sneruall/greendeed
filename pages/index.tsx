@@ -81,19 +81,29 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   return (
     <div>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
         <title>Find a job where you support the SDGs | Greendeed</title>
         <meta
           name="description"
           content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
           key="desc"
         />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
           content="Find a job where you support the SDGs | Greendeed"
+          key="ogtitle"
         />
         <meta
           property="og:description"
           content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
+          key="ogdesc"
+        />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_HOST}
+          key="ogurl"
         />
         {/* Todo: add cool og:image */}
         {/* <meta
@@ -102,7 +112,6 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* {'sdg query: ' + query.sdgs} */}
       <Header />
       <main className="mx-auto">
         <SearchBar />

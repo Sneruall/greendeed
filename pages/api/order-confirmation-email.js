@@ -22,6 +22,8 @@ async function handler(req, res) {
           companyName: req.body.companyName,
           jobTitle: req.body.jobTitle,
           jobType: req.body.jobType,
+          id: req.body.id,
+          companyId: req.body.id,
         },
       },
     ],

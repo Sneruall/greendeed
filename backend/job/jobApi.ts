@@ -1,6 +1,13 @@
 import { customAlphabet } from 'nanoid';
 import { jobCategoriesList, jobCategory } from '../../types/jobCategories';
-import { Company, Form, Job, LocationInfo, sdgList } from '../../types/types';
+import {
+  Company,
+  emailData,
+  Form,
+  Job,
+  LocationInfo,
+  sdgList,
+} from '../../types/types';
 import { convertCommaSeparatedStringToArray } from '../../helpers/arrayConversions';
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 
@@ -230,7 +237,8 @@ export async function updateJobs(updatedCompanyData: Company) {
   const updatedJobs = await companyResponse.json();
   console.log(updatedJobs);
 }
-export async function sendConfirmationEmail(emailData: any) {
+
+export async function sendConfirmationEmail(emailData: emailData) {
   const emailResponse = await fetch(
     `${process.env.NEXT_PUBLIC_HOST}/api/order-confirmation-email`,
     {

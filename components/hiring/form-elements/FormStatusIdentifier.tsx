@@ -19,6 +19,7 @@ type Props = {
     apply?: any;
     sdg?: any;
     acceptedPaymentTerms?: any;
+    sdgsInfo?: any;
   };
 };
 
@@ -41,7 +42,7 @@ const FormStatusIdentifier = ({
           setActiveFormStep={setActiveFormStep}
         />
         <Step
-          errors={errors?.sdg}
+          errors={errors?.sdgsInfo}
           step={2}
           activeFormStep={activeFormStep}
           setActiveFormStep={setActiveFormStep}

@@ -232,6 +232,13 @@ export type remotiveJobSelection = [
   }
 ];
 
+export type emailData = {
+  jobTitle: string;
+  email: string;
+  companyName: string;
+  jobType: jobType;
+};
+
 export const sdgList = [
   {
     code: '1',

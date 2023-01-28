@@ -6,6 +6,9 @@ module.exports = {
     domains: ['localhost', 'cdn.sanity.io', 'res.cloudinary.com'],
   },
   rewrites: () => [STUDIO_REWRITE],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 };
 
 const STUDIO_REWRITE = {

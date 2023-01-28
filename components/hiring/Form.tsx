@@ -6,6 +6,7 @@ import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
 import {
   postJob,
+  sendConfirmationEmail,
   transformFormData,
   updateJobs,
 } from '../../backend/job/jobApi';
@@ -187,16 +188,14 @@ and get the form state. */
     };
     try {
       console.log('sending order confirmation');
+      const emailData = {
+        jobTitle: transformedFormData.jobTitle,
+        email: transformedFormData.email,
+        companyName: transformedFormData.companyData.name,
+        jobType: transformedFormData.jobType,
+      };
       try {
-        await axios.post(
-          `${process.env.NEXT_PUBLIC_HOST}/api/order-confirmation-email`,
-          {
-            jobTitle: transformedFormData.jobTitle,
-            email: transformedFormData.email,
-            companyName: transformedFormData.companyData.name,
-            jobType: transformedFormData.jobType,
-          }
-        );
+        await sendConfirmationEmail(emailData);
       } catch (err) {
         console.log('an error occurred');
         console.log(err);
@@ -207,11 +206,12 @@ and get the form state. */
       await postCompany(companyFormData);
       // Sync company data to all company jobs in jobs database (job.companyData object)
       await updateJobs(companyFormData);
-    } catch {
+    } catch (err) {
       // todo: log errors here, based on what is returned from the APIs.
       console.log(
-        'an error occurred when posting job and company data into our database'
+        'an error occurred when posting job and/or company data into our database / or updating jobs'
       );
+      console.log(err);
     }
     reset();
     router.push('/success');

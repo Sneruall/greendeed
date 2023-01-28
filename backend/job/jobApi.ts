@@ -230,6 +230,20 @@ export async function updateJobs(updatedCompanyData: Company) {
   const updatedJobs = await companyResponse.json();
   console.log(updatedJobs);
 }
+export async function sendConfirmationEmail(emailData: any) {
+  const emailResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/order-confirmation-email`,
+    {
+      method: 'POST',
+      body: JSON.stringify(emailData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  const email = await emailResponse.json();
+  console.log(email);
+}
 
 async function setLocationInfo(
   locationInfo: LocationInfo,

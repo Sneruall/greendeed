@@ -193,6 +193,8 @@ and get the form state. */
         email: transformedFormData.email,
         companyName: transformedFormData.companyData.name,
         jobType: transformedFormData.jobType,
+        id: transformedFormData.id,
+        companyId: transformedFormData.companyId,
       };
       try {
         await sendConfirmationEmail(emailData);

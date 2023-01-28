@@ -238,6 +238,7 @@ export async function updateJobs(updatedCompanyData: Company) {
   console.log(updatedJobs);
 }
 
+// todo: replace fetch by axios like with soloswim (and do everywhere see https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#:~:text=With%20Axios%2C%20the%20data%20response,can%20be%20named%20any%20variable)
 export async function sendConfirmationEmail(emailData: emailData) {
   const emailResponse = await fetch(
     `${process.env.NEXT_PUBLIC_HOST}/api/order-confirmation-email`,

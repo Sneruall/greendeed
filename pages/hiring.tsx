@@ -18,9 +18,31 @@ function Hiring() {
   return (
     <>
       <Head>
-        <title>Hire</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
+        <title>Post your job to our SDG focussed job board | Greendeed</title>
+        <meta
+          name="description"
+          content="Post jobs based on the Sustainable Development Goals and find sustainability minded employees!"
+          key="desc"
+        />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content="Post your job to our SDG focussed job board | Greendeed"
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content="Post jobs based on the Sustainable Development Goals and find sustainability minded employees!"
+          key="ogdesc"
+        />
+        {/* Todo: add cool og:image */}
+        {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
+        <link rel="icon" href="/favicon.ico" />
         <script
           src="https://widget.Cloudinary.com/v2.0/global/all.js"
           type="text/javascript"

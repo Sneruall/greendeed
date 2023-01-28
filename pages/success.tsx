@@ -11,9 +11,15 @@ function Success() {
   return (
     <>
       <Head>
-        <title>Thank you</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
+        <title>Job submitted successfully | Greendeed</title>
+        <meta
+          name="description"
+          content="You have successfully submitted a job to Greendeed!"
+          key="desc"
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main className="mx-auto">

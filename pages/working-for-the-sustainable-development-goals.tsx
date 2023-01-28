@@ -11,7 +11,32 @@ function workingForTheSDGs({}: Props) {
   return (
     <div>
       <Head>
-        <title>Metaversed Careers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>
+          Explore the SDGs and how jobs can make a difference | Greendeed
+        </title>
+        <meta
+          name="description"
+          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your work!"
+          key="desc"
+        />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content="Explore the SDGs and how jobs can make a difference | Greendeed"
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your work!"
+          key="ogdesc"
+        />
+        {/* Todo: add cool og:image */}
+        {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

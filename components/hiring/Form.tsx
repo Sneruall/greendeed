@@ -196,6 +196,7 @@ and get the form state. */
         id: transformedFormData.id,
         companyId: transformedFormData.companyId,
       };
+      console.log(JSON.stringify(emailData));
       try {
         await sendConfirmationEmail(emailData);
       } catch (err) {

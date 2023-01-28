@@ -194,6 +194,7 @@ and get the form state. */
             jobTitle: transformedFormData.jobTitle,
             email: transformedFormData.email,
             companyName: transformedFormData.companyData.name,
+            jobType: transformedFormData.jobType,
           }
         );
       } catch (err) {

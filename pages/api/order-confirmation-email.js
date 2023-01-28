@@ -21,7 +21,7 @@ async function handler(req, res) {
           subject: `Job submitted successfully: ${req.body.jobTitle}`,
           companyName: req.body.companyName,
           jobTitle: req.body.jobTitle,
-          jobType: 'Full-Time',
+          jobType: req.body.jobType,
         },
       },
     ],

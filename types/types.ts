@@ -205,7 +205,7 @@ export const geoRestrictions = [
   },
 ];
 
-export const currencies = ['$', '€', '£', 'CA$', 'AU$'];
+export const currencies = ['€', '$', '£', 'CA$', 'AU$'];
 
 export interface remotiveJob {
   id: string;

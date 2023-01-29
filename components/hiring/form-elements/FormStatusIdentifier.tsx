@@ -48,21 +48,22 @@ const FormStatusIdentifier = ({
           setActiveFormStep={setActiveFormStep}
         />
         <Step
-          errors={[errors.jobTitle, errors.jobDescription]}
-          step={3}
-          activeFormStep={activeFormStep}
-          setActiveFormStep={setActiveFormStep}
-        />
-        <Step
           errors={[
+            errors.jobTitle,
+            errors.jobDescription,
             errors.category,
             errors.jobType,
             errors.locationInfo,
             errors.salary,
             errors.applicationMethod,
             errors.apply,
-            errors.acceptedPaymentTerms,
           ]}
+          step={3}
+          activeFormStep={activeFormStep}
+          setActiveFormStep={setActiveFormStep}
+        />
+        <Step
+          errors={[errors.acceptedPaymentTerms]}
           step={4}
           activeFormStep={activeFormStep}
           setActiveFormStep={setActiveFormStep}

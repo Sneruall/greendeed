@@ -279,7 +279,7 @@ and get the form state. */
               {/* DESCRIPTION */}
               <div>
                 <h2 className="font-bold text-custom-brown1">
-                  Organization description
+                  Organization mission / vision
                 </h2>
                 <RichTextEditor
                   key={retrievedCompanyData?.id}
@@ -387,12 +387,6 @@ and get the form state. */
                   state={setjobDescriptionHtml}
                 />
               </div>
-            </div>
-          </div>
-
-          {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
-          <div className={`${activeFormStep !== 4 && 'hidden'}`}>
-            <div className="flex flex-col gap-5">
               {/* CATEGORY */}
               <FormFieldDropdown
                 errors={errors.category}
@@ -611,7 +605,7 @@ and get the form state. */
                     htmlFor={applicationMethod}
                     className="font-bold text-custom-brown1"
                   >
-                    How can People Apply?
+                    How can people apply for this job?
                   </label>
                   <select
                     {...register('applicationMethod')}
@@ -649,6 +643,12 @@ and get the form state. */
                     : 'www.yourcompany.com/apply'
                 }
               />
+            </div>
+          </div>
+
+          {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
+          <div className={`${activeFormStep !== 4 && 'hidden'}`}>
+            <div className="flex flex-col gap-5">
               {/* EMAIL */}
               <div>
                 <FormFieldString

@@ -43,9 +43,13 @@ const Step = ({ step, errors, activeFormStep, setActiveFormStep }: Props) => {
           {step === activeFormStep && `Step ${step}/4`}
         </div>
         <div>{step === 1 && activeFormStep === 1 && 'Company details'}</div>
-        <div>{step === 2 && activeFormStep === 2 && 'Sustainable goals'}</div>
-        <div>{step === 3 && activeFormStep === 3 && 'Job Description'}</div>
-        <div>{step === 4 && activeFormStep === 4 && 'Job Details'}</div>
+        <div>
+          {step === 2 &&
+            activeFormStep === 2 &&
+            'Sustainable development goals'}
+        </div>
+        <div>{step === 3 && activeFormStep === 3 && 'Job Details'}</div>
+        <div>{step === 4 && activeFormStep === 4 && 'Checkout'}</div>
       </div>
     </div>
   );

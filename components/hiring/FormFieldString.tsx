@@ -15,6 +15,7 @@ const FormFieldString: React.FC<{
   min?: number;
   max?: number;
   step?: number;
+  className?: string;
 }> = ({
   id,
   title,
@@ -28,9 +29,10 @@ const FormFieldString: React.FC<{
   min,
   max,
   step,
+  className,
 }) => {
   return (
-    <div className="">
+    <div className={className}>
       <label htmlFor={id} className="font-bold text-custom-brown1">
         {title}
       </label>

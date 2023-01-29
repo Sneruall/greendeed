@@ -124,24 +124,6 @@ function Form() {
     maxSalary: { float: null, formatted: '', value: '' },
   });
 
-  // Check coupon input
-  const checkCoupon = async (input: string): Promise<boolean> => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(() => {
-        if (input === '2030') {
-          setPrice(0);
-          setCoupon('2030');
-          resolve(true);
-        } else {
-          reject();
-        }
-      }, 2000);
-    });
-  };
-
   // Method for storing salary values in state
   const handleOnValueChange: CurrencyInputProps['onValueChange'] = (
     value,
@@ -432,20 +414,10 @@ and get the form state. */
                     toast.success('50% discount applied!');
                   } else if (price === 125) {
                     setPrice(250);
-                    toast.error('Discount removed!');
+                    toast.error('Internship discount removed!');
                   }
                 }}
               />
-              {price === 125 && (
-                <div className="flex justify-center gap-2 text-sm">
-                  <HiCheck className="my-auto h-6 w-6 stroke-custom-brown4 stroke-2 text-custom-brown4" />
-                  <p className="text-custom-brown">
-                    <span className="font-bold">50% discount</span> for
-                    internship job applied! Price is now{' '}
-                    <span className="font-bold">€ {price}</span>
-                  </p>
-                </div>
-              )}
 
               <div>
                 <label
@@ -689,55 +661,33 @@ and get the form state. */
               </div>
 
               {/* COUPON CODE FIELD */}
-              <div>
+
+              <div className="flex gap-2">
                 <FormFieldString
+                  className="flex-1"
                   errors={errors?.coupon}
                   id="coupon"
                   register={register}
                   title="Coupon Code (optional)"
                   onChangeMethod={(e: any) => {
-                    toast.promise(checkCoupon(e.target.value), {
-                      loading: 'Saving...',
-                      success: <b>Settings saved!</b>,
-                      error: <b>Could not save.</b>,
-                    });
+                    setCoupon(e.target.value);
                   }}
-                  // onChangeMethod={(e: any) => {
-                  //   if (timer) {
-                  //     clearTimeout(timer);
-                  //   }
-                  //   timer = setTimeout(() => {
-                  //     const value = e.target.value;
-                  //     if (value === '2030') {
-                  //       setPrice(0);
-                  //       setCoupon('2030');
-                  //       toast.success('Coupon applied');
-                  //     } else {
-                  //       toast.error('Invalid coupon code');
-                  //     }
-                  //   }, 2000);
-                  // }}
-                  // toast.promise(
-                  //   saveSettings(settings),
-                  //    {
-                  //      loading: 'Saving...',
-                  //      success: <b>Settings saved!</b>,
-                  //      error: <b>Could not save.</b>,
-                  //    }
-                  //  );
                   description="Receive discount by entering a valid coupon code."
                 />
-                {coupon && (
-                  <div className="flex justify-center gap-2 text-sm">
-                    <HiCheck className="my-auto h-6 w-6 stroke-custom-brown4 stroke-2 text-custom-brown4" />
-                    <p className="text-custom-brown">
-                      Coupon code{' '}
-                      <span className="font-bold uppercase">{coupon} </span>
-                      applied! Price is now{' '}
-                      <span className="font-bold">€ {price}</span>
-                    </p>
-                  </div>
-                )}
+                <button
+                  type="button"
+                  className="button-1 mt-auto mb-2 h-12"
+                  onClick={() => {
+                    if (coupon === '2030') {
+                      setPrice(0);
+                      toast.success('Coupon code applied!');
+                    } else {
+                      toast.error('Invalid coupon code');
+                    }
+                  }}
+                >
+                  Validate
+                </button>
               </div>
 
               {/* CHECKBOX PAYMENT PROMISE */}

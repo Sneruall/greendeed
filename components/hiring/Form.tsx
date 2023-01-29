@@ -198,6 +198,7 @@ and get the form state. */
       id: transformedFormData.id,
       companyId: transformedFormData.companyId,
       price: transformedFormData.price,
+      invoiceInfo: transformedFormData.invoiceInfo,
     };
 
     try {

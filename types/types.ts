@@ -252,6 +252,7 @@ export type emailData = {
   id: string;
   companyId: string;
   price: number;
+  invoiceInfo?: InvoiceInfo;
 };
 
 export const sdgList = [

@@ -239,6 +239,7 @@ export type emailData = {
   jobType: jobType;
   id: string;
   companyId: string;
+  price: number;
 };
 
 export const sdgList = [

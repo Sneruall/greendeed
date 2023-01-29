@@ -197,6 +197,7 @@ and get the form state. */
       jobType: transformedFormData.jobType,
       id: transformedFormData.id,
       companyId: transformedFormData.companyId,
+      price: transformedFormData.price,
     };
 
     try {
@@ -655,7 +656,7 @@ and get the form state. */
                   id="email"
                   register={register}
                   title="Your E-mail"
-                  description="Stays private, for verification/invoice delivery only."
+                  description="Stays private, for order confirmation and invoice delivery only."
                   placeholder="johndoe@company.com"
                 />
               </div>

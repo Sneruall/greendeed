@@ -1,5 +1,4 @@
 export const countriesAndContinents = [
-  // { name: '🗺️ Worldwide', code: 'WW' },
   { name: '🌍 Africa', code: 'C-AF' },
   { name: '🌏 Asia', code: 'C-AS' },
   { name: '🌍 Europe', code: 'C-EU' },
@@ -187,7 +186,7 @@ export const countriesAndContinents = [
   { name: 'Reunion', code: 'RE' },
   { name: 'Romania', code: 'RO' },
   { name: 'Russian Federation', code: 'RU' },
-  { name: 'RWANDA', code: 'RW' },
+  { name: 'Rwanda', code: 'RW' },
   { name: 'Saint Helena', code: 'SH' },
   { name: 'Saint Kitts and Nevis', code: 'KN' },
   { name: 'Saint Lucia', code: 'LC' },

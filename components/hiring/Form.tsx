@@ -649,6 +649,16 @@ and get the form state. */
           {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
           <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
+              {/* NAME */}
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.name}
+                  id="invoiceInfo.name"
+                  register={register}
+                  title="Your name"
+                  placeholder="John Doe"
+                />
+              </div>
               {/* EMAIL */}
               <div>
                 <FormFieldString
@@ -658,6 +668,68 @@ and get the form state. */
                   title="Your E-mail"
                   description="Stays private, for order confirmation and invoice delivery only."
                   placeholder="johndoe@company.com"
+                />
+              </div>
+              {/* todo: make optional with checkbox (email is same as invoice) */}
+              {/* EMAIL */}
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.email}
+                  id="invoiceInfo.email"
+                  register={register}
+                  title="Invoice e-mail"
+                  description="Stays private, for invoice delivery only."
+                  placeholder="invoices@company.com"
+                />
+              </div>
+              {/* ADDRESS LINE 1 */}
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.addressLine1}
+                  id="invoiceInfo.addressLine1"
+                  register={register}
+                  title="Address Line 1"
+                  placeholder="Streetname 1"
+                />
+              </div>
+              {/* ADDRESS LINE 2 */}
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.addressLine2}
+                  id="invoiceInfo.addressLine2"
+                  register={register}
+                  title="Address Line 2 (optional)"
+                  placeholder="Address specification"
+                />
+              </div>
+              {/* POSTAL CODE */}
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.postalCode}
+                  id="invoiceInfo.postalCode"
+                  register={register}
+                  title="Postal Code"
+                  placeholder="90001"
+                />
+              </div>
+              <div>
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.city}
+                  id="invoiceInfo.city"
+                  register={register}
+                  title="City"
+                  placeholder="Amsterdam"
+                />
+              </div>
+              <div>
+                <FormFieldDropdown
+                  errors={errors?.invoiceInfo?.country}
+                  id="invoiceInfo.country"
+                  register={register}
+                  title="Country"
+                  options={countriesAndContinents
+                    .slice(6)
+                    .map((option) => option.name)}
                 />
               </div>
 

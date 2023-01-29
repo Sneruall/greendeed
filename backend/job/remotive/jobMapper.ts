@@ -32,7 +32,6 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
     id: remotiveJob.id.toString(),
     price: 0,
     paid: true,
-    sdg: remotiveJob.sdg,
     published: true,
     listed: true,
     closed: false,

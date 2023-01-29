@@ -10,7 +10,7 @@ const FormFieldString: React.FC<{
   defaultValue?: string;
   onChangeMethod?: Function;
   register: any;
-  errors: any;
+  errors?: any;
   inputType?: React.HTMLInputTypeAttribute | undefined;
   min?: number;
   max?: number;

@@ -38,6 +38,17 @@ export interface Form {
   apply: string;
   external: boolean;
   coupon: string;
+  invoiceInfo: InvoiceInfo;
+}
+
+export interface InvoiceInfo {
+  name: string;
+  email: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postalCode: string;
+  city: string;
+  country: string;
 }
 
 export interface Job {
@@ -51,7 +62,6 @@ export interface Job {
   };
   jobTitle: string;
   category: jobCategory;
-  sdg: string[];
   jobDescription: string;
   jobType: jobType;
   salary?: {
@@ -73,6 +83,8 @@ export interface Job {
   applicationMethod: ApplicationMethod;
   apply: string;
   external: boolean;
+  coupon?: string;
+  invoiceInfo?: InvoiceInfo;
 }
 
 export interface Company {

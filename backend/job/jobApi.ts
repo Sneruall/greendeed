@@ -78,7 +78,8 @@ export async function transformFormData(
       website: retrievedFormData.companyData.website,
       sdgs: await filterSdgData(retrievedFormData, retrievedCompanyData),
     },
-    sdg: ['1'],
+    coupon: retrievedFormData.coupon,
+    invoiceInfo: retrievedFormData.invoiceInfo,
   };
   // todo: move these methods up to result object creation, like done for filterSdgData method.
   convertLocationsToArrays(result.locationInfo);

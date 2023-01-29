@@ -86,12 +86,21 @@ export default Yup.object().shape({
       excludeEmptyString: true,
     }),
     // Todo, add proper validation for the sdg data
-    sdgs: Yup.array().required('Required'),
-    sdgsInfo: Yup.array().nullable(false).required('Req'),
+    sdgs: Yup.array().required(REQUIRED_FIELD),
+    sdgsInfo: Yup.array().nullable(false).required(REQUIRED_FIELD),
   }),
   acceptedPaymentTerms: Yup.boolean()
     .required('These conditions must be accepted.')
     .oneOf([true], 'These conditions must be accepted.'),
+  invoiceInfo: Yup.object().shape({
+    name: Yup.string().required(REQUIRED_FIELD),
+    email: Yup.string().email('invalid email'),
+    addressLine1: Yup.string().required(REQUIRED_FIELD),
+    addressLine2: Yup.string(),
+    postalCode: Yup.string().required(REQUIRED_FIELD),
+    city: Yup.string().required(REQUIRED_FIELD),
+    country: Yup.string().required(REQUIRED_FIELD),
+  }),
 
   //   sdg: Yup.array()
   //     .min(1, 'At least one SDG is required')

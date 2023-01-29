@@ -39,6 +39,7 @@
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.14.7",
     "react-hook-form": "^7.29.0",
+    "react-hot-toast": "^2.4.0",
     "react-icons": "^4.4.0",
     "react-input-hints": "^3.0.0",
     "react-markdown": "^8.0.3",

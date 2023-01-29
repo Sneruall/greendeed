@@ -45,7 +45,9 @@ import { Chip, TextField } from '@mui/material';
 import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
+import { toast } from 'react-hot-toast';
 import axios from 'axios';
+let timer: ReturnType<typeof setTimeout>;
 
 function Form() {
   const router = useRouter();
@@ -409,7 +411,11 @@ and get the form state. */
                   const value = e.target.value as jobType;
                   if (value === 'Internship') {
                     setPrice(125);
-                  } else setPrice(250);
+                    toast.success('50% discount applied!');
+                  } else if (price === 125) {
+                    setPrice(250);
+                    toast.error('Discount removed!');
+                  }
                 }}
               />
               {price === 125 && (
@@ -672,12 +678,32 @@ and get the form state. */
                   register={register}
                   title="Coupon Code (optional)"
                   onChangeMethod={(e: any) => {
-                    const value = e.target.value;
-                    if (value === '2030') {
-                      setPrice(0);
-                      setCoupon('2030');
+                    if (timer) {
+                      clearTimeout(timer);
                     }
+                    timer = setTimeout(() => {
+                      const value = e.target.value;
+                      if (value === '2030') {
+                        setPrice(0);
+                        setCoupon('2030');
+                        toast.success('Coupon applied');
+                      } else {
+                        toast.error('Invalid coupon code');
+                      }
+                    }, 2000);
                   }}
+                  // {
+                  //   if (value.length > 1) {
+                  //     setCompanyNameIsLoading(true);
+                  //     if (timer) {
+                  //       clearTimeout(timer);
+                  //     }
+                  //     timer = setTimeout(() => {
+                  //       findCompany(value, setRetrievedCompanyData, setWebsite);
+                  //       setCompanyNameIsLoading(false);
+                  //     }, 2000);
+                  //   }
+                  // };
                   description="Receive discount by entering a valid coupon code."
                 />
                 {coupon && (

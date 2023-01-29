@@ -124,6 +124,24 @@ function Form() {
     maxSalary: { float: null, formatted: '', value: '' },
   });
 
+  // Check coupon input
+  const checkCoupon = async (input: string): Promise<boolean> => {
+    return new Promise<boolean>((resolve, reject) => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        if (input === '2030') {
+          setPrice(0);
+          setCoupon('2030');
+          resolve(true);
+        } else {
+          reject();
+        }
+      }, 2000);
+    });
+  };
+
   // Method for storing salary values in state
   const handleOnValueChange: CurrencyInputProps['onValueChange'] = (
     value,
@@ -678,32 +696,35 @@ and get the form state. */
                   register={register}
                   title="Coupon Code (optional)"
                   onChangeMethod={(e: any) => {
-                    if (timer) {
-                      clearTimeout(timer);
-                    }
-                    timer = setTimeout(() => {
-                      const value = e.target.value;
-                      if (value === '2030') {
-                        setPrice(0);
-                        setCoupon('2030');
-                        toast.success('Coupon applied');
-                      } else {
-                        toast.error('Invalid coupon code');
-                      }
-                    }, 2000);
+                    toast.promise(checkCoupon(e.target.value), {
+                      loading: 'Saving...',
+                      success: <b>Settings saved!</b>,
+                      error: <b>Could not save.</b>,
+                    });
                   }}
-                  // {
-                  //   if (value.length > 1) {
-                  //     setCompanyNameIsLoading(true);
-                  //     if (timer) {
-                  //       clearTimeout(timer);
-                  //     }
-                  //     timer = setTimeout(() => {
-                  //       findCompany(value, setRetrievedCompanyData, setWebsite);
-                  //       setCompanyNameIsLoading(false);
-                  //     }, 2000);
+                  // onChangeMethod={(e: any) => {
+                  //   if (timer) {
+                  //     clearTimeout(timer);
                   //   }
-                  // };
+                  //   timer = setTimeout(() => {
+                  //     const value = e.target.value;
+                  //     if (value === '2030') {
+                  //       setPrice(0);
+                  //       setCoupon('2030');
+                  //       toast.success('Coupon applied');
+                  //     } else {
+                  //       toast.error('Invalid coupon code');
+                  //     }
+                  //   }, 2000);
+                  // }}
+                  // toast.promise(
+                  //   saveSettings(settings),
+                  //    {
+                  //      loading: 'Saving...',
+                  //      success: <b>Settings saved!</b>,
+                  //      error: <b>Could not save.</b>,
+                  //    }
+                  //  );
                   description="Receive discount by entering a valid coupon code."
                 />
                 {coupon && (

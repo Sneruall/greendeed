@@ -389,74 +389,64 @@ and get the form state. */
                   state={setjobDescriptionHtml}
                 />
               </div>
-              {/* CATEGORY */}
-              <FormFieldDropdown
-                errors={errors.category}
-                id="category"
-                register={register}
-                title="Category*"
-                options={generateCategoriesArray()}
-              />
-              {/* JOB TYPES */}
-              <FormFieldDropdown
-                id="jobType"
-                register={register}
-                errors={errors.jobType}
-                title="Type of Employment*"
-                options={jobTypes}
-                onChangeMethod={(e: any) => {
-                  const value = e.target.value as jobType;
-                  if (value === 'Internship') {
-                    setPrice(125);
-                    toast.success('50% discount applied!');
-                  } else if (price === 125) {
-                    setPrice(250);
-                    toast.error('Internship discount removed!');
-                  }
-                }}
-              />
-
-              <div>
-                <label
-                  htmlFor={locationInfo.location}
-                  className="font-bold text-custom-brown1"
-                >
-                  Location*
-                </label>
-                <select
-                  {...register('locationInfo.location')}
-                  onChange={(e) => {
-                    const value = e.target.value as LocationOptions;
-                    setLocationObject((prevState) => ({
-                      ...prevState,
-                      location: value,
-                    }));
+              <div className="grid content-end gap-4 sm:grid-cols-3">
+                {/* CATEGORY */}
+                <FormFieldDropdown
+                  errors={errors.category}
+                  id="category"
+                  register={register}
+                  title="Category*"
+                  options={generateCategoriesArray()}
+                />
+                {/* JOB TYPES */}
+                <FormFieldDropdown
+                  id="jobType"
+                  register={register}
+                  errors={errors.jobType}
+                  title="Type of Employment*"
+                  options={jobTypes}
+                  onChangeMethod={(e: any) => {
+                    const value = e.target.value as jobType;
+                    if (value === 'Internship') {
+                      setPrice(125);
+                      toast.success('50% discount applied!');
+                    } else if (price === 125) {
+                      setPrice(250);
+                      toast.error('Internship discount removed!');
+                    }
                   }}
-                  id={locationInfo.location}
-                  className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none`}
-                >
-                  {LocationOptions.map((option) => (
-                    <option value={option.value} key={option.id}>
-                      {option.title}
-                    </option>
-                  ))}
-                </select>
-                <div className="text-red-500">
-                  {errors?.locationInfo?.location?.message}
+                />
+
+                <div>
+                  <label
+                    htmlFor={locationInfo.location}
+                    className="font-bold text-custom-brown1"
+                  >
+                    Location*
+                  </label>
+                  <select
+                    {...register('locationInfo.location')}
+                    onChange={(e) => {
+                      const value = e.target.value as LocationOptions;
+                      setLocationObject((prevState) => ({
+                        ...prevState,
+                        location: value,
+                      }));
+                    }}
+                    id={locationInfo.location}
+                    className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none`}
+                  >
+                    {LocationOptions.map((option) => (
+                      <option value={option.value} key={option.id}>
+                        {option.title}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="text-red-500">
+                    {errors?.locationInfo?.location?.message}
+                  </div>
                 </div>
               </div>
-
-              {/* ON SITE LOCATION */}
-              {locationInfo.location !== 'remote' && (
-                <FormFieldString
-                  errors={errors.locationInfo?.onSiteLocation}
-                  id="locationInfo.onSiteLocation"
-                  register={register}
-                  title="On Site Location(s)*"
-                  placeholder="e.g. Amsterdam, London, New York"
-                  description="Please use a comma to separate multiple locations."
-                />
-              )}
 
               {/* GEOGRAPHIC RESTRICTION */}
               {locationInfo.location !== 'onSite' && (
@@ -532,6 +522,18 @@ and get the form state. */
                 </div>
               )}
 
+              {/* ON SITE LOCATION */}
+              {locationInfo.location !== 'remote' && (
+                <FormFieldString
+                  errors={errors.locationInfo?.onSiteLocation}
+                  id="locationInfo.onSiteLocation"
+                  register={register}
+                  title="On Site Location(s)*"
+                  placeholder="e.g. Amsterdam, London, New York"
+                  description="Please use a comma to separate multiple locations."
+                />
+              )}
+
               {/* SALARY */}
               <div>
                 <h3 className="font-bold text-custom-brown1">Base Salary</h3>
@@ -598,51 +600,54 @@ and get the form state. */
                   />
                 </div>
               </div>
-              {/* APPLY BY: todo: add form as option */}
-              <div className="">
-                <div>
-                  <label
-                    htmlFor={applicationMethod}
-                    className="font-bold text-custom-brown1"
-                  >
-                    How can people apply for this job?*
-                  </label>
-                  <select
-                    {...register('applicationMethod')}
-                    onChange={(e) => {
-                      const value = e.target.value as ApplicationMethod;
-                      setApplicationMethod(value);
-                    }}
-                    id={applicationMethod}
-                    className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none`}
-                  >
-                    {ApplicationMethods.map((option) => (
-                      <option value={option.value} key={option.id}>
-                        {option.title}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="text-red-500">
-                    {errors?.applicationMethod?.message}
+
+              <div className="grid content-end gap-4 sm:grid-cols-2">
+                {/* APPLY BY: todo: add form as option */}
+                <div className="">
+                  <div>
+                    <label
+                      htmlFor={applicationMethod}
+                      className="font-bold text-custom-brown1"
+                    >
+                      How can people apply for this job?*
+                    </label>
+                    <select
+                      {...register('applicationMethod')}
+                      onChange={(e) => {
+                        const value = e.target.value as ApplicationMethod;
+                        setApplicationMethod(value);
+                      }}
+                      id={applicationMethod}
+                      className={`my-2 block w-full rounded-lg border bg-white py-3 px-4 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none`}
+                    >
+                      {ApplicationMethods.map((option) => (
+                        <option value={option.value} key={option.id}>
+                          {option.title}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="text-red-500">
+                      {errors?.applicationMethod?.message}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <FormFieldString
-                title={
-                  applicationMethod === 'email'
-                    ? 'Apply E-mail*'
-                    : 'Website Link*'
-                }
-                errors={errors.apply}
-                id="apply"
-                register={register}
-                placeholder={
-                  applicationMethod === 'email'
-                    ? 'hiring@company.com'
-                    : 'www.yourcompany.com/apply'
-                }
-              />
+                <FormFieldString
+                  title={
+                    applicationMethod === 'email'
+                      ? 'Apply E-mail*'
+                      : 'Website Link*'
+                  }
+                  errors={errors.apply}
+                  id="apply"
+                  register={register}
+                  placeholder={
+                    applicationMethod === 'email'
+                      ? 'hiring@company.com'
+                      : 'www.yourcompany.com/apply'
+                  }
+                />
+              </div>
             </div>
           </div>
 
@@ -651,7 +656,7 @@ and get the form state. */
             <div className="flex flex-col gap-5">
               <h2 className="heading-md">Order information</h2>
               {/* NAME */}
-              <div className="grid grid-cols-2 content-end gap-4">
+              <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
                   errors={errors?.fullName}
                   id="fullName"
@@ -672,7 +677,7 @@ and get the form state. */
               <h2 className="heading-md">Invoice information</h2>
 
               {/* Invoice company name */}
-              <div className="grid grid-cols-2 content-end gap-4">
+              <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.companyName}
                   id="invoiceInfo.companyName"
@@ -702,7 +707,7 @@ and get the form state. */
                 />
               </div>
               {/* ADDRESS LINE 1 */}
-              <div className="grid grid-cols-2 content-end gap-4">
+              <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.addressLine1}
                   id="invoiceInfo.addressLine1"
@@ -720,7 +725,7 @@ and get the form state. */
                 />
               </div>
               {/* POSTAL CODE */}
-              <div className="grid grid-cols-3 content-end gap-4">
+              <div className="grid content-end gap-4 sm:grid-cols-3">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.postalCode}
                   id="invoiceInfo.postalCode"
@@ -741,6 +746,7 @@ and get the form state. */
                   id="invoiceInfo.country"
                   register={register}
                   title="Country*"
+                  placeholder="Select country..."
                   options={countriesAndContinents
                     .slice(6)
                     .map((option) => option.name)}

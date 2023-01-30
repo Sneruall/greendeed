@@ -9,6 +9,7 @@ type Props = {
   onChangeMethod?: Function;
   twinleft?: boolean;
   twinright?: boolean;
+  placeholder?: string;
 };
 
 const FormFieldDropdown = ({
@@ -20,6 +21,7 @@ const FormFieldDropdown = ({
   onChangeMethod,
   twinleft,
   twinright,
+  placeholder,
 }: Props) => {
   const optionList = options.map((option) => (
     <option value={option} key={option}>
@@ -40,6 +42,11 @@ const FormFieldDropdown = ({
           twinleft && 'rounded-r-none'
         } ${twinright && 'rounded-l-none'}`}
       >
+        {placeholder && (
+          <option value="" disabled selected hidden>
+            {placeholder}
+          </option>
+        )}
         {optionList}
       </select>
       <div className="text-red-500">{errors?.message}</div>

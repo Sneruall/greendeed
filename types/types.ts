@@ -128,7 +128,7 @@ export const Location = [
     value: 'onSite',
     title: 'On Site',
   },
-  { id: 3, value: 'onSiteOrRemote', title: 'Hybrid (On Site or Remote)' },
+  { id: 3, value: 'onSiteOrRemote', title: 'Hybrid (Remote & On Site)' },
 ];
 
 export interface LocationObject {

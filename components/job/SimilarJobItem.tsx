@@ -9,9 +9,10 @@ import { Job } from '../../types/types';
 
 type Props = {
   job: Job;
+  isCurrent?: boolean;
 };
 
-function SimilarJobItem({ job }: Props) {
+function SimilarJobItem({ job, isCurrent }: Props) {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
@@ -23,32 +24,45 @@ function SimilarJobItem({ job }: Props) {
         job.id
       )}
     >
-      <div className="shadow-4 hover:shadow-2-extra border-green4 relative mx-8 h-full flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+      <div
+        className={`${
+          !isCurrent ? 'mx-8 ' : ''
+        }shadow-4 hover:shadow-2-extra border-green4 relative h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat`}
+      >
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
             {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
               return (
-                <li
-                  className="relative h-full w-8 hover:opacity-90"
-                  key={sdgObject.sdg}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
-                    <polygon
-                      points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                      fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
-                    />
-                  </svg>
-                  <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
-                    <Image
-                      src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
-                      width={50}
-                      height={50}
-                      objectFit="contain"
-                      layout="intrinsic"
-                    />
-                  </div>
-                </li>
+                <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
+                  <a>
+                    <li
+                      className="relative h-full w-8 hover:opacity-90"
+                      key={sdgObject.sdg}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 100 200"
+                      >
+                        <polygon
+                          points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
+                          fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
+                        />
+                      </svg>
+                      <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
+                        <Image
+                          src={
+                            '/images/icons/sdg-icons/' + sdgObject.sdg + '.png'
+                          }
+                          width={50}
+                          height={50}
+                          objectFit="contain"
+                          layout="intrinsic"
+                        />
+                      </div>
+                    </li>
+                  </a>
+                </Link>
               );
             })}
             {job && job.companyData.sdgs.length > 4 && (
@@ -134,7 +148,7 @@ function SimilarJobItem({ job }: Props) {
               {job.salary?.string && '💰 ' + job.salary.string}
             </li>
           </ul>
-          <div className="mb-10 text-center">
+          <div className={`${!isCurrent && 'mb-10'} text-center`}>
             {/* todo, job.companyData.logo vervangen door company.logo */}
             {job.companyData.logo ? (
               <>
@@ -155,6 +169,16 @@ function SimilarJobItem({ job }: Props) {
                 <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
               </div>
             )}
+          </div>
+          {/* Button */}
+          <div className={`${!isCurrent ? 'hidden ' : ''}text-center mb-10`}>
+            <div className="">
+              <Link href={job.apply}>
+                <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
+                  Apply for the position
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

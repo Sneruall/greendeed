@@ -17,7 +17,7 @@ function JobInfoCard({ job, company }: Props) {
   const timeAgo = new TimeAgo('en_US');
 
   return (
-    <div className="shadow-4 border-green4 relative mx-auto flex-initial rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+    <div className="shadow-4 border-green4 relative mx-auto max-w-sm flex-initial rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {/* Todo: bg alignen met sdg bg */}
@@ -151,10 +151,10 @@ function JobInfoCard({ job, company }: Props) {
           </li>
         </ul>
         {/* Button */}
-        <div>
+        <div className="text-center">
           <div className="my-10">
             <Link href={job.apply}>
-              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
+              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
                 Apply for the position
               </button>
             </Link>

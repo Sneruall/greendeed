@@ -17,6 +17,7 @@ import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import Link from 'next/link';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
+import SimilarJobItem from '../../components/job/SimilarJobItem';
 
 /*
 Todo:
@@ -54,10 +55,13 @@ const JobPage: NextPage<{
           content={`${job?.companyData.name} is hiring a ${job?.jobTitle}`}
           key="ogdesc"
         />
-        <meta
-          property="og:image"
-          content={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-        />
+        {company?.logo && (
+          <meta
+            property="og:image"
+            content={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+          />
+        )}
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -66,7 +70,8 @@ const JobPage: NextPage<{
           <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
             {/* JOB DESCRIPTION */}
             <JobDescription job={job} company={company} />
-            <JobInfoCard job={job} company={company} />
+            <SimilarJobItem isCurrent job={job} />
+            {/* <JobInfoCard job={job} company={company} /> */}
           </div>
         </div>
         {/* SDG INFO */}

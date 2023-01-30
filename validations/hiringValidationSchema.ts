@@ -95,7 +95,7 @@ export default Yup.object().shape({
   invoiceInfo: Yup.object().shape({
     name: Yup.string(),
     companyName: Yup.string().required(REQUIRED_FIELD),
-    email: Yup.string().email('invalid email'),
+    email: Yup.string().email('invalid email').required(REQUIRED_FIELD),
     addressLine1: Yup.string().required(REQUIRED_FIELD),
     addressLine2: Yup.string(),
     postalCode: Yup.string().required(REQUIRED_FIELD),

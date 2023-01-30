@@ -193,6 +193,7 @@ and get the form state. */
     const emailData: emailData = {
       jobTitle: transformedFormData.jobTitle,
       email: transformedFormData.email,
+      fullName: transformedFormData.fullName,
       companyName: transformedFormData.companyData.name,
       jobType: transformedFormData.jobType,
       id: transformedFormData.id,
@@ -255,7 +256,7 @@ and get the form state. */
               {/* COMPANY NAME */}
               <FormFieldString
                 id="companyData.name"
-                title="Organization name"
+                title="Organization name*"
                 errors={errors.companyData?.name}
                 placeholder="e.g. Greenpeace"
                 register={register}
@@ -280,7 +281,7 @@ and get the form state. */
               {/* DESCRIPTION */}
               <div>
                 <h2 className="font-bold text-custom-brown1">
-                  Organization mission / vision
+                  Organization mission / vision*
                 </h2>
                 <RichTextEditor
                   key={retrievedCompanyData?.id}
@@ -304,7 +305,7 @@ and get the form state. */
                   htmlFor="companyData.website"
                   className="font-bold text-custom-brown1"
                 >
-                  Company website (optional)
+                  Company website
                 </label>
                 <input
                   id="companyData.website"
@@ -340,7 +341,7 @@ and get the form state. */
                 </p>
               )}
               <h2 className="font-bold text-custom-brown1">
-                Sustainable Development Goals
+                Sustainable Development Goals*
               </h2>
               <p className="text-sm text-gray-500">
                 Select one or more Sustainable Development Goals that fit your
@@ -374,7 +375,7 @@ and get the form state. */
               {/* JOB TITLE */}
               <FormFieldString
                 id="jobTitle"
-                title="Job Title"
+                title="Job Title*"
                 placeholder="e.g. Senior Product Manager"
                 register={register}
                 errors={errors.jobTitle}
@@ -382,7 +383,7 @@ and get the form state. */
 
               {/* JOB DESCRIPTION  */}
               <div>
-                <h2 className="text-base font-bold">Job description</h2>
+                <h2 className="text-base font-bold">Job description*</h2>
                 <RichTextEditor
                   placeholder="Write a good job description..."
                   state={setjobDescriptionHtml}
@@ -393,7 +394,7 @@ and get the form state. */
                 errors={errors.category}
                 id="category"
                 register={register}
-                title="Category"
+                title="Category*"
                 options={generateCategoriesArray()}
               />
               {/* JOB TYPES */}
@@ -401,7 +402,7 @@ and get the form state. */
                 id="jobType"
                 register={register}
                 errors={errors.jobType}
-                title="Type of Employment"
+                title="Type of Employment*"
                 options={jobTypes}
                 onChangeMethod={(e: any) => {
                   const value = e.target.value as jobType;
@@ -420,7 +421,7 @@ and get the form state. */
                   htmlFor={locationInfo.location}
                   className="font-bold text-custom-brown1"
                 >
-                  Location
+                  Location*
                 </label>
                 <select
                   {...register('locationInfo.location')}
@@ -451,7 +452,7 @@ and get the form state. */
                   errors={errors.locationInfo?.onSiteLocation}
                   id="locationInfo.onSiteLocation"
                   register={register}
-                  title="On Site Location(s)"
+                  title="On Site Location(s)*"
                   placeholder="e.g. Amsterdam, London, New York"
                   description="Please use a comma to separate multiple locations."
                 />
@@ -462,7 +463,7 @@ and get the form state. */
                 <div>
                   <div className="">
                     <label className="font-bold text-custom-brown1">
-                      Remote Areas
+                      Remote Areas*
                     </label>
                     <p className="text-sm text-gray-500">
                       Hiring worldwide or for specific areas?
@@ -533,9 +534,7 @@ and get the form state. */
 
               {/* SALARY */}
               <div>
-                <h3 className="font-bold text-custom-brown1">
-                  Base Salary (optional)
-                </h3>
+                <h3 className="font-bold text-custom-brown1">Base Salary</h3>
                 <div className="flex gap-2">
                   <div className="flex">
                     <div className="flex-none">
@@ -606,7 +605,7 @@ and get the form state. */
                     htmlFor={applicationMethod}
                     className="font-bold text-custom-brown1"
                   >
-                    How can people apply for this job?
+                    How can people apply for this job?*
                   </label>
                   <select
                     {...register('applicationMethod')}
@@ -632,8 +631,8 @@ and get the form state. */
               <FormFieldString
                 title={
                   applicationMethod === 'email'
-                    ? 'Apply E-mail'
-                    : 'Website Link'
+                    ? 'Apply E-mail*'
+                    : 'Website Link*'
                 }
                 errors={errors.apply}
                 id="apply"
@@ -650,27 +649,47 @@ and get the form state. */
           {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
           <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
+              <h2 className="heading-md">Order information</h2>
               {/* NAME */}
-              <div>
+              <div className="grid grid-cols-2 content-end gap-4">
                 <FormFieldString
-                  errors={errors?.invoiceInfo?.name}
-                  id="invoiceInfo.name"
+                  errors={errors?.fullName}
+                  id="fullName"
                   register={register}
-                  title="Your name"
+                  title="Your name*"
                   placeholder="John Doe"
                 />
-              </div>
-              {/* EMAIL */}
-              <div>
+                {/* EMAIL */}
                 <FormFieldString
                   errors={errors?.email}
                   id="email"
                   register={register}
-                  title="Your E-mail"
-                  description="Stays private, for order confirmation and invoice delivery only."
+                  title="Your E-mail*"
                   placeholder="johndoe@company.com"
                 />
               </div>
+
+              <h2 className="heading-md">Invoice information</h2>
+
+              {/* Invoice company name */}
+              <div className="grid grid-cols-2 content-end gap-4">
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.companyName}
+                  id="invoiceInfo.companyName"
+                  register={register}
+                  title="Company name on invoice*"
+                  placeholder="Company Ltd"
+                />
+                {/* Invoice tav */}
+                <FormFieldString
+                  errors={errors?.invoiceInfo?.name}
+                  id="invoiceInfo.name"
+                  register={register}
+                  title="Name on invoice"
+                  placeholder="John Doe"
+                />
+              </div>
+
               {/* todo: make optional with checkbox (email is same as invoice) */}
               {/* EMAIL */}
               <div>
@@ -678,56 +697,50 @@ and get the form state. */
                   errors={errors?.invoiceInfo?.email}
                   id="invoiceInfo.email"
                   register={register}
-                  title="Invoice e-mail"
-                  description="Stays private, for invoice delivery only."
+                  title="Invoice e-mail*"
                   placeholder="invoices@company.com"
                 />
               </div>
               {/* ADDRESS LINE 1 */}
-              <div>
+              <div className="grid grid-cols-2 content-end gap-4">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.addressLine1}
                   id="invoiceInfo.addressLine1"
                   register={register}
-                  title="Address Line 1"
+                  title="Address Line 1*"
                   placeholder="Streetname 1"
                 />
-              </div>
-              {/* ADDRESS LINE 2 */}
-              <div>
+                {/* ADDRESS LINE 2 */}
                 <FormFieldString
                   errors={errors?.invoiceInfo?.addressLine2}
                   id="invoiceInfo.addressLine2"
                   register={register}
-                  title="Address Line 2 (optional)"
-                  placeholder="Address specification"
+                  title="Address Line 2"
+                  placeholder="Optional address specification"
                 />
               </div>
               {/* POSTAL CODE */}
-              <div>
+              <div className="grid grid-cols-3 content-end gap-4">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.postalCode}
                   id="invoiceInfo.postalCode"
                   register={register}
-                  title="Postal Code"
+                  title="Postal Code*"
                   placeholder="90001"
                 />
-              </div>
-              <div>
+
                 <FormFieldString
                   errors={errors?.invoiceInfo?.city}
                   id="invoiceInfo.city"
                   register={register}
-                  title="City"
+                  title="City*"
                   placeholder="Amsterdam"
                 />
-              </div>
-              <div>
                 <FormFieldDropdown
                   errors={errors?.invoiceInfo?.country}
                   id="invoiceInfo.country"
                   register={register}
-                  title="Country"
+                  title="Country*"
                   options={countriesAndContinents
                     .slice(6)
                     .map((option) => option.name)}
@@ -742,7 +755,7 @@ and get the form state. */
                   errors={errors?.coupon}
                   id="coupon"
                   register={register}
-                  title="Coupon Code (optional)"
+                  title="Coupon Code"
                   onChangeMethod={(e: any) => {
                     setCoupon(e.target.value);
                   }}
@@ -782,7 +795,7 @@ and get the form state. */
                     className="font-medium text-gray-900 dark:text-gray-300"
                   >
                     I agree that I have an obligation to pay €{price} within 14
-                    days after the job has been approved and posted.
+                    days after the job has been approved and posted.*
                   </label>
                   <p
                     id="payment-checkbox-text"

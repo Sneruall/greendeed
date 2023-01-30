@@ -30,6 +30,7 @@ export interface Form {
   };
   locationInfo: LocationInfo;
   email: string;
+  fullName: string;
   timestamp: number;
   id: string;
   price: number;
@@ -43,6 +44,7 @@ export interface Form {
 
 export interface InvoiceInfo {
   name: string;
+  companyName: string;
   email: string;
   addressLine1: string;
   addressLine2?: string;
@@ -73,6 +75,7 @@ export interface Job {
   };
   locationInfo: LocationInfo;
   email: string;
+  fullName: string;
   timestamp: number;
   id: string;
   price: number;
@@ -247,6 +250,7 @@ export type remotiveJobSelection = [
 export type emailData = {
   jobTitle: string;
   email: string;
+  fullName: string;
   companyName: string;
   jobType: jobType;
   id: string;

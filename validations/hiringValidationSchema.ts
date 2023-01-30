@@ -93,7 +93,8 @@ export default Yup.object().shape({
     .required('These conditions must be accepted.')
     .oneOf([true], 'These conditions must be accepted.'),
   invoiceInfo: Yup.object().shape({
-    name: Yup.string().required(REQUIRED_FIELD),
+    name: Yup.string(),
+    companyName: Yup.string().required(REQUIRED_FIELD),
     email: Yup.string().email('invalid email'),
     addressLine1: Yup.string().required(REQUIRED_FIELD),
     addressLine2: Yup.string(),
@@ -101,6 +102,7 @@ export default Yup.object().shape({
     city: Yup.string().required(REQUIRED_FIELD),
     country: Yup.string().required(REQUIRED_FIELD),
   }),
+  fullName: Yup.string().required(REQUIRED_FIELD),
 
   //   sdg: Yup.array()
   //     .min(1, 'At least one SDG is required')

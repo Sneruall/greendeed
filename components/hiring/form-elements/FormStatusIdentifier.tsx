@@ -86,6 +86,7 @@ const FormStatusIdentifier = ({
           {activeFormStep === 4 &&
             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
         </p>
+        <p className="my-2 text-sm">*Required field</p>
       </div>
     </div>
   );

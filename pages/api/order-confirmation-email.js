@@ -26,6 +26,7 @@ async function handler(req, res) {
           companyId: req.body.companyId,
           price: req.body.price,
           invoiceInfo: req.body.invoiceInfo,
+          fullName: req.body.fullName,
         },
       },
     ],

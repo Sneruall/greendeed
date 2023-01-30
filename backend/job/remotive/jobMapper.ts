@@ -28,6 +28,7 @@ export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
       ),
     },
     email: '',
+    fullName: '',
     timestamp: +remotiveJob.publication_date,
     id: remotiveJob.id.toString(),
     price: 0,

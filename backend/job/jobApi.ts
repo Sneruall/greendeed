@@ -52,6 +52,7 @@ export async function transformFormData(
   let result: Job = {
     category: await mapCategoryToObject(retrievedFormData.category),
     email: retrievedFormData.email,
+    fullName: retrievedFormData.fullName,
     apply: retrievedFormData.apply,
     applicationMethod: retrievedFormData.applicationMethod,
     companyId: setCompanyId(retrievedCompanyData?.id),

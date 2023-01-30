@@ -695,7 +695,7 @@ and get the form state. */
                 />
               </div>
 
-              {/* todo: make optional with checkbox (email is same as invoice) */}
+              {/* todo: make optional ("leave blank to use your email from above") */}
               {/* EMAIL */}
               <div>
                 <FormFieldString

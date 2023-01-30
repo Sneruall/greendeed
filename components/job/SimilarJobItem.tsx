@@ -134,16 +134,26 @@ function SimilarJobItem({ job }: Props) {
               {job.salary?.string && '💰 ' + job.salary.string}
             </li>
           </ul>
-          <div className="text-center">
+          <div className="mb-10 text-center">
             {/* todo, job.companyData.logo vervangen door company.logo */}
             {job.companyData.logo ? (
-              <Image
-                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
-                width={50}
-                height={50}
-              />
+              <>
+                <Image
+                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
+                  width={50}
+                  height={50}
+                />
+                <h3 className="heading-sm-omnes">{job.companyData.name}</h3>{' '}
+              </>
             ) : (
-              <h3 className="heading-sm-omnes mb-10">{job.companyData.name}</h3>
+              <div>
+                <div className="mx-auto mb-2 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-custom-brown1 text-center">
+                  <span className="font-omnes text-xl capitalize text-gray-200">
+                    {job.companyData.name[0]}
+                  </span>
+                </div>
+                <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
+              </div>
             )}
           </div>
         </div>

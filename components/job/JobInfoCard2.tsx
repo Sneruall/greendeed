@@ -177,7 +177,7 @@ function JobInfoCard2({ job, company }: Props) {
             <Link
               href={
                 job?.applicationMethod === 'website'
-                  ? `${job?.apply}`
+                  ? job?.apply
                   : `mailto:${job?.apply}` || '#'
               }
             >

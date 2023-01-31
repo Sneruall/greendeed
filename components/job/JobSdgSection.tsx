@@ -21,7 +21,7 @@ function JobSdgSection({ job, company }: Props) {
           <Link
             href={
               job?.applicationMethod === 'website'
-                ? 'job?.apply'
+                ? job?.apply
                 : `mailto:${job?.apply}` || '#'
             }
           >
@@ -31,7 +31,7 @@ function JobSdgSection({ job, company }: Props) {
       </div>
 
       <ul className="mx-auto flex flex-col gap-8">
-        {company?.sdgs?.map((sdgObject, i) => {
+        {job?.companyData?.sdgs?.map((sdgObject, i) => {
           return (
             <li
               id={'sdg' + sdgObject.sdg}

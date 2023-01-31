@@ -7,6 +7,8 @@ import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
 
+// Todo remove (and probably create container component for JobInfoCard2 and Similar Job item (look a like))
+
 type Props = {
   job: Job;
   company?: Company;

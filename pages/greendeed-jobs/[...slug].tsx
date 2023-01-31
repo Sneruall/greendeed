@@ -12,6 +12,7 @@ import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 import JobInfoCard from '../../components/job/JobInfoCard';
+import JobInfoCard2 from '../../components/job/JobInfoCard2';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
@@ -70,7 +71,7 @@ const JobPage: NextPage<{
           <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
             {/* JOB DESCRIPTION */}
             <JobDescription job={job} company={company} />
-            <SimilarJobItem isCurrent job={job} />
+            <JobInfoCard2 job={job} company={company} />
             {/* <JobInfoCard job={job} company={company} /> */}
           </div>
         </div>

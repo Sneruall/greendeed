@@ -9,10 +9,9 @@ import { Job } from '../../types/types';
 
 type Props = {
   job: Job;
-  isCurrent?: boolean;
 };
 
-function SimilarJobItem({ job, isCurrent }: Props) {
+function SimilarJobItem({ job }: Props) {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en_US');
 
@@ -24,11 +23,7 @@ function SimilarJobItem({ job, isCurrent }: Props) {
         job.id
       )}
     >
-      <div
-        className={`${
-          !isCurrent ? 'mx-8 ' : ''
-        }shadow-4 hover:shadow-2-extra border-green4 relative h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat`}
-      >
+      <div className="shadow-4 hover:shadow-2-extra border-green4 relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
@@ -148,7 +143,7 @@ function SimilarJobItem({ job, isCurrent }: Props) {
               {job.salary?.string && '💰 ' + job.salary.string}
             </li>
           </ul>
-          <div className={`${!isCurrent && 'mb-10'} text-center`}>
+          <div className="mb-10 text-center">
             {/* todo, job.companyData.logo vervangen door company.logo */}
             {job.companyData.logo ? (
               <>
@@ -169,16 +164,6 @@ function SimilarJobItem({ job, isCurrent }: Props) {
                 <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
               </div>
             )}
-          </div>
-          {/* Button */}
-          <div className={`${!isCurrent ? 'hidden ' : ''}text-center mb-10`}>
-            <div className="">
-              <Link href={job.apply}>
-                <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
-                  Apply for the position
-                </button>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

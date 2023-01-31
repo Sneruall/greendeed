@@ -47,6 +47,8 @@ import { useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
+import countries from 'countries-list';
+
 let timer: ReturnType<typeof setTimeout>;
 
 function Form() {
@@ -747,9 +749,9 @@ and get the form state. */
                   register={register}
                   title="Country*"
                   placeholder="Select country..."
-                  options={countriesAndContinents
-                    .slice(6)
-                    .map((option) => option.name)}
+                  options={Object.values(countries.countries).map(
+                    (value) => value.name
+                  )}
                 />
               </div>
 

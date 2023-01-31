@@ -24,7 +24,7 @@ export async function getRemotiveJobs() {
       (r) => r.id === el.id.toString()
     );
     el.publication_date = matchInDB!.timestamp.toString();
-    el.sdg = matchInDB!.sdg;
+    el.sdgs = matchInDB!.sdgs;
   });
 
   // Map remotive jobs to jobs

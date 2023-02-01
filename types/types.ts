@@ -176,7 +176,6 @@ export const jobTypes = [
   'Other',
 ];
 
-// todo: ook worldwide toevoegen (en die speciaal maken, kan alleen enkel worden ingevuld)
 export const geoRestrictions = [
   {
     id: 0,

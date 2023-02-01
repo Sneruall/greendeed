@@ -42,12 +42,11 @@ import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 import SdgElements from './form-elements/SdgElements';
 import { Chip, TextField } from '@mui/material';
-import { countriesAndContinents } from '../../types/countriesAndContinents';
 import { useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import countries from 'countries-list';
+import countries, { continents } from 'countries-list';
 
 let timer: ReturnType<typeof setTimeout>;
 
@@ -108,7 +107,7 @@ function Form() {
 
   const [geoRestrictionValues, setGeoRestrictionValues] = React.useState<
     string[] | undefined
-  >([geoRestrictions[0].title]);
+  >(['Worldwide']);
 
   console.log('NEW GEORESTRICTION VALUE: ' + geoRestrictionValues);
 
@@ -458,40 +457,27 @@ and get the form state. */
                       Remote Areas*
                     </label>
                     <p className="text-sm text-gray-500">
-                      Hiring worldwide or for specific areas?
+                      Hiring worldwide or for specific areas? Feel free to enter
+                      your custom area.
                     </p>
-
-                    {/* <GeoRestrictionElement
-                      errors={errors?.locationInfo?.geoRestriction}
-                      register={register}
-                      setLocationObject={setLocationObject}
-                    />
-                    <div className="text-red-500">
-                      {(errors.locationInfo?.geoRestriction as any)?.message}
-                    </div> */}
                   </div>
-                  {/* {locationInfo.otherGeoRestriction && (
-                    <FormFieldString
-                      errors={errors.locationInfo?.geoRestrictionOther}
-                      id="locationInfo.geoRestrictionOther"
-                      register={register}
-                      placeholder="e.g. Switzerland"
-                    />
-                  )} */}
                   {/* Updated geo restriction field */}
                   <Autocomplete
                     multiple
                     id="tags-filled"
-                    options={countriesAndContinents.map(
-                      (option) => option.name
-                    )}
-                    defaultValue={[geoRestrictions[0].title]}
+                    options={[
+                      ...Object.values(continents).map((value) => value),
+                      ...Object.values(countries.countries).map(
+                        (value) => value.name
+                      ),
+                    ]}
+                    defaultValue={['Worldwide']}
                     value={geoRestrictionValues}
                     onChange={(event: any, newValue: string[] | undefined) => {
                       if (newValue?.length === 0) {
-                        setGeoRestrictionValues(['🗺️ Worldwide']);
+                        setGeoRestrictionValues(['Worldwide']);
                       } else if (newValue && newValue.length > 1) {
-                        const index = newValue.indexOf('🗺️ Worldwide');
+                        const index = newValue.indexOf('Worldwide');
                         if (index > -1) {
                           // only splice array when item is found
                           newValue.splice(index, 1); // 2nd parameter means remove one item only
@@ -520,7 +506,7 @@ and get the form state. */
                         placeholder="Continent, country, timezone..."
                       />
                     )}
-                  />{' '}
+                  />
                 </div>
               )}
 

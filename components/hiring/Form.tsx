@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Autocomplete from '@mui/material/Autocomplete';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
@@ -43,9 +43,7 @@ import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 import SdgElements from './form-elements/SdgElements';
 import { Chip, TextField } from '@mui/material';
 import { useRef } from 'react';
-import { HiCheck } from 'react-icons/hi';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
 import countries, { continents } from 'countries-list';
 
 let timer: ReturnType<typeof setTimeout>;
@@ -195,12 +193,13 @@ and get the form state. */
       jobTitle: transformedFormData.jobTitle,
       email: transformedFormData.email,
       fullName: transformedFormData.fullName,
-      companyName: transformedFormData.companyData.name,
+      // companyName: transformedFormData.companyData.name,
       jobType: transformedFormData.jobType,
       id: transformedFormData.id,
-      companyId: transformedFormData.companyId,
+      // companyId: transformedFormData.companyId,
       price: transformedFormData.price,
       invoiceInfo: transformedFormData.invoiceInfo,
+      companyData: companyFormData,
     };
 
     try {

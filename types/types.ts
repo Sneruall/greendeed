@@ -250,11 +250,10 @@ export type emailData = {
   jobTitle: string;
   email: string;
   fullName: string;
-  companyName: string;
   jobType: jobType;
   id: string;
-  companyId: string;
   price: number;
+  companyData: Company;
   invoiceInfo?: InvoiceInfo;
 };
 

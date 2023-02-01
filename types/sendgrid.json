@@ -1,0 +1,26 @@
+{
+  "fullName": "Laurens van Roomen",
+  "id": "a3mfmm9",
+  "jobTitle": "Sustainability Engineer",
+  "jobType": "Full-Time",
+  "subject": "Job submitted succesfully: Sustainability Engineer",
+  "email": "fdfd@fds.nl",
+  "price": "250",
+  "invoiceInfo": {
+    "name": "Laurens",
+    "email": "laurens@vr-house.nl",
+    "addressLine1": "Straatlaan 1",
+    "addressLine2": "Optional Line",
+    "postalCode": "1111AA",
+    "city": "Amsterdam",
+    "country": "The Netherlands"
+  },
+  "companyData": {
+    "name": "Greenpeace",
+    "id": "id2323",
+    "description": "Company description we're in this together.",
+    "website": "www.hoi.nl",
+    "sdgs": [{ "text": "hoi", "sdg": "2" }],
+    "logo": "logo-url"
+  }
+}

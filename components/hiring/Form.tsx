@@ -114,7 +114,7 @@ function Form() {
     useState<ApplicationMethod>('email');
 
   // Storing currency and salary values in state
-  const [currency, setCurrency] = useState<string>('US$');
+  const [currency, setCurrency] = useState<string>('€');
   const [salaryValues, setSalaryValues] = useState<{
     minSalary: CurrencyInputOnChangeValues;
     maxSalary: CurrencyInputOnChangeValues;

@@ -31,7 +31,7 @@ function JobSdgSection({ job, company }: Props) {
       </div>
 
       <ul className="mx-auto flex flex-col gap-8">
-        {job?.companyData?.sdgs?.map((sdgObject, i) => {
+        {(job?.companyData?.sdgs || company?.sdgs)?.map((sdgObject, i) => {
           return (
             <li
               id={'sdg' + sdgObject.sdg}

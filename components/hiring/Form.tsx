@@ -211,6 +211,7 @@ and get the form state. */
       await updateJobs(companyFormData);
       // Send order confirmation
       console.log('sending order confirmation');
+      console.log(JSON.stringify(emailData));
       await sendConfirmationEmail(emailData);
     } catch (err) {
       // todo: log errors here, based on what is returned from the APIs.

@@ -37,11 +37,11 @@ function SdgPageList({}: Props) {
               <div
                 className={`${
                   i % 2 === 0 && 'ml-auto'
-                } flex max-w-3xl flex-row items-center justify-center gap-10 p-8`}
+                } flex max-w-3xl flex-col items-center justify-center gap-10 p-8 sm:flex-row`}
               >
                 <div
                   className={`${
-                    i % 2 !== 0 && 'order-2'
+                    i % 2 !== 0 && 'sm:order-2'
                   } min-w-[100px] md:flex-shrink-0`}
                 >
                   <Image

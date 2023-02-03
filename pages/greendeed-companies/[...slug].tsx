@@ -14,7 +14,6 @@ import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
-import Footer from '../../components/Footer';
 import Link from 'next/link';
 
 const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({

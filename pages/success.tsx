@@ -1,12 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import React, { Fragment } from 'react';
 
 function Success() {
   return (
-    <>
+    <Fragment>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -51,7 +49,7 @@ function Success() {
           </div>
         </div>
       </div>
-    </>
+    </Frag>
   );
 }
 

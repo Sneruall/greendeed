@@ -36,7 +36,7 @@ function SdgPageList({}: Props) {
             <div
               className={`${
                 i % 2 === 0 && 'ml-auto'
-              } flex max-w-3xl flex-col items-center justify-center gap-10 p-8 sm:flex-row`}
+              } flex max-w-4xl flex-col items-center justify-center gap-10 p-8 sm:flex-row`}
             >
               <div
                 className={`${

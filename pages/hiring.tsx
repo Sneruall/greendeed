@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';

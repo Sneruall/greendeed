@@ -2,8 +2,6 @@ import Link from 'next/link';
 import groq from 'groq';
 import client from '../../client';
 import Head from 'next/head';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import BlogHero from '../../components/blog/BlogHero';
 import BlogPosts from '../../components/blog/BlogPosts';
 import { getJobsFromMongo } from '../../backend/job/jobDb';

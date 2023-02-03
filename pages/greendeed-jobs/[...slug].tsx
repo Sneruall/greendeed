@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Header from '../../components/Header';
 import { Company, Job } from '../../types/types';
 import {
   redirectToCorrectJobUrl,
@@ -9,7 +8,6 @@ import {
 } from '../../helpers/urlGeneration';
 import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
-import Footer from '../../components/Footer';
 import JobInfoCard2 from '../../components/job/JobInfoCard2';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';

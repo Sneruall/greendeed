@@ -5,8 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useNextSanityImage } from 'next-sanity-image';
 import Head from 'next/head';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import LatestJobs from '../../components/LatestJobs';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';

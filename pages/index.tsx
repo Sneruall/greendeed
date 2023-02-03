@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import Header from '../components/Header';
 import JobListing from '../components/JobListing';
-import { Job, sdgs } from '../types/types';
+import { Job } from '../types/types';
 import { getJobsFromMongo } from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
-import Footer from '../components/Footer';
 import { JOB_EXPIRATION_TIME_MS } from '../helpers/constants';
 
 interface IQuery {

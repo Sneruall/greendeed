@@ -61,12 +61,12 @@ function Header() {
             </Link>
             <Link href="/hiring">
               <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
-                Hiring
+                Employers
               </a>
             </Link>
             <Link href="/working-for-the-sustainable-development-goals">
               <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
-                The 17 Goals
+                Working for the SDGs
               </a>
             </Link>
             <Link href="/blog">

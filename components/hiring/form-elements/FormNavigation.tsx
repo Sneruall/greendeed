@@ -1,5 +1,4 @@
 import React from 'react';
-import { BiChevronsDown } from 'react-icons/bi';
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,

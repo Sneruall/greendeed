@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { BiChevronsDown } from 'react-icons/bi';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import HiringHero from '../components/hiring/HiringHero';
 
 function Success() {
   return (

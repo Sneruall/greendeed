@@ -3,8 +3,6 @@ const mail = require('@sendgrid/mail');
 mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 async function handler(req, res) {
-  //   const shipping = req.body.sessionData.total - req.body.sessionData.subtotal;
-
   const data = {
     from: 'noreply@soloswim.nl',
     templateId: 'd-f7f18c73dac342408b74f103bd4afdf0',

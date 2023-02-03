@@ -2,22 +2,19 @@ import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../../components/Header';
-import { Company, Job, sdgList } from '../../types/types';
+import { Company, Job } from '../../types/types';
 import {
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
 import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
-import Image from 'next/image';
 import Footer from '../../components/Footer';
 import JobInfoCard2 from '../../components/job/JobInfoCard2';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
-import Link from 'next/link';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
-import SimilarJobItem from '../../components/job/SimilarJobItem';
 
 const JobPage: NextPage<{
   job: Job;

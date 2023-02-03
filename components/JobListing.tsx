@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import { Job } from '../types/types';
 import JobItem from './JobItem';

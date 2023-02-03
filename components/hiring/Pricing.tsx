@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { HiCheck, HiOutlineCheck } from 'react-icons/hi';
+import { HiCheck } from 'react-icons/hi';
 
 function Pricing() {
   return (

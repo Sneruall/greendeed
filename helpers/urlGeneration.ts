@@ -1,4 +1,3 @@
-import { WithId } from 'mongodb';
 import { Company, Job } from '../types/types';
 import {
   replaceCharactersByWhitespace,

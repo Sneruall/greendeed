@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {

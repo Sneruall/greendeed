@@ -29,7 +29,6 @@ import hiringValidationSchema from '../../validations/hiringValidationSchema';
 import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
-import GeoRestrictionElement from './form-elements/GeoRestrictionElement';
 import CurrencyInput from 'react-currency-input-field';
 import {
   CurrencyInputProps,

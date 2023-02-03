@@ -4,10 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
-import {
-  generateCompanyUrl,
-  generateJobUrl,
-} from '../../helpers/urlGeneration';
+import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
 
 type Props = {

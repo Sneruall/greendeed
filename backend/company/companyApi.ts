@@ -56,7 +56,7 @@ async function findCompany(
     });
     return;
   }
-  const res = await fetch(`/api/find-company/${value}`);
+  const res = await fetch(`/api/company?name=${value}`);
   const data = await res.json();
   console.log(data);
   setRetrievedCompanyData({

@@ -3,16 +3,6 @@ import clientPromise from '../../../lib/mongodb';
 // Send POST request to /api/remotive to add a remotive job selection from the database,
 // attach the id and sdg to the request body.
 
-/*
-TODO:
-- Convert this to TS
-- Add validation of incoming body
-- Add Server Side validation (now only client side)
-- Add authentication
-- Prevent duplication of jobs
-
-*/
-
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const data = req.body;
@@ -30,22 +20,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
-// [
-//     {
-//        "id":"1294241",
-//        "sdg":[
-//           1,
-//           2,
-//           3
-//        ]
-//     },
-//     {
-//        "id":"1275809",
-//        "sdg":[
-//           1,
-//           2,
-//           3
-//        ]
-//     }
-//  ]

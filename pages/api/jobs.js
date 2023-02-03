@@ -1,15 +1,5 @@
 import clientPromise from '../../lib/mongodb';
 
-/*
-TODO:
-- Convert this to TS
-- Add validation of incoming body
-- Add Server Side validation (now only client side)
-- Add authentication
-- Prevent duplication of jobs from server side
-
-*/
-
 export default async function handler(req, res) {
   console.log('started post job api');
   if (req.method === 'POST') {

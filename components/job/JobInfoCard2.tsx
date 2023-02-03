@@ -23,7 +23,6 @@ function JobInfoCard2({ job, company }: Props) {
     <div className="shadow-4 border-green4 relative h-full max-w-sm flex-initial rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
-          {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
           {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
             return (
               <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
@@ -140,7 +139,6 @@ function JobInfoCard2({ job, company }: Props) {
           </li>
         </ul>
         <div className="text-center">
-          {/* todo, job.companyData.logo vervangen door company.logo */}
           {company?.logo ? (
             <Link
               href={generateCompanyUrl(

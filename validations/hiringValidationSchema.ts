@@ -23,10 +23,10 @@ export default Yup.object().shape({
       CHARACTERS_NOT_ALLOWED
     )
     .max(50, MAX_50_CHARACTERS),
-  category: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
-  jobType: Yup.string().required(REQUIRED_FIELD), //todo: check if it is one of the options from our types.ts file?
+  category: Yup.string().required(REQUIRED_FIELD),
+  jobType: Yup.string().required(REQUIRED_FIELD),
   locationInfo: Yup.object().shape({
-    location: Yup.string().required(REQUIRED_FIELD), //here and also maybe other fields: check if it is of type Location!
+    location: Yup.string().required(REQUIRED_FIELD),
     onSiteLocation: Yup.string()
       .when('location', {
         is: 'onSite',
@@ -85,7 +85,6 @@ export default Yup.object().shape({
       message: 'URL is not valid, try this format: website.com',
       excludeEmptyString: true,
     }),
-    // Todo, add proper validation for the sdg data
     sdgs: Yup.array().required(REQUIRED_FIELD),
     sdgsInfo: Yup.array().nullable(false).required(REQUIRED_FIELD),
   }),

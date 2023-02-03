@@ -32,11 +32,6 @@ function workingForTheSDGs({}: Props) {
           content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your work!"
           key="ogdesc"
         />
-        {/* Todo: add cool og:image */}
-        {/* <meta
-          property="og:image"
-          content="https://example.com/images/cool-page.jpg"
-        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

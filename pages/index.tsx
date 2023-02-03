@@ -8,12 +8,6 @@ import { SearchBar } from '../components/SearchBar';
 import Footer from '../components/Footer';
 import { JOB_EXPIRATION_TIME_MS } from '../helpers/constants';
 
-/*
-Todo:
-- Make sure apis can only be called from our server? (post apis) prevent curl from working,..
-- add try catch blocks in SSR, see e.g. https://ellismin.com/2020/05/next-infinite-scroll/
-*/
-
 interface IQuery {
   search?: string;
   category?: string;
@@ -105,11 +99,6 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           content={process.env.NEXT_PUBLIC_HOST}
           key="ogurl"
         />
-        {/* Todo: add cool og:image */}
-        {/* <meta
-          property="og:image"
-          content="https://example.com/images/cool-page.jpg"
-        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

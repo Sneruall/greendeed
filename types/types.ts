@@ -1,11 +1,6 @@
 import { CurrencyInputOnChangeValues } from 'react-currency-input-field/dist/components/CurrencyInputProps';
 import { jobCategory } from './jobCategories';
 
-// Todo:
-// - consider converting into separate smaller type files (per type) like fr does
-// -  make more use of object types (with id, value and title), like Location const
-// - make use of absolute imports: https://blog.logrocket.com/understanding-relative-absolute-imports-next-js/
-
 export interface Form {
   companyId: string;
   companyData: {
@@ -54,7 +49,7 @@ export interface InvoiceInfo {
 }
 
 export interface Job {
-  companyId: string; // Todo: This causes a mismatch when using update-jobs api, causing it to always update it right away after creation, which an be prevented: remove it and add 'id' to companyData (and ensure that everything keeps working)
+  companyId: string;
   companyData: {
     name: string;
     description?: string;
@@ -103,12 +98,6 @@ export type sdgs = {
   sdg: string;
   text?: string | undefined;
 }[];
-
-// todo, check not being used atm
-export interface OrganizationSdg {
-  id: string;
-  text: string;
-}
 
 export interface LocationInfo {
   location: Location;

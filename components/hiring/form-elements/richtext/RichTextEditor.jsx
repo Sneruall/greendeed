@@ -1,5 +1,3 @@
-//Todo convert to typescript
-
 import React, { Component, useState } from 'react';
 import dynamic from 'next/dynamic';
 

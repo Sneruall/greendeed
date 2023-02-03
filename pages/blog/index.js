@@ -14,8 +14,6 @@ import { getJobsFromMongo } from '../../backend/job/jobDb';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import JobItem from '../../components/JobItem';
 
-// Todo: convert to typescript
-
 const Index = ({ posts, jobs }) => {
   console.log(posts);
 
@@ -49,11 +47,6 @@ const Index = ({ posts, jobs }) => {
           content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
           key="ogdesc"
         />
-        {/* Todo: add cool og:image */}
-        {/* <meta
-          property="og:image"
-          content="https://example.com/images/cool-page.jpg"
-        /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

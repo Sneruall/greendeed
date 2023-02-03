@@ -123,10 +123,6 @@
   .sdgListEven {
     @apply ml-4 self-end rounded-l-3xl sm:ml-10 md:ml-0 md:w-5/6 lg:w-3/4;
   }
-  /* Todo: make sure this only applies to the job description part */
-  /* p {
-    @apply mt-6;
-  } */
 }
 
 /* QUILL RICH TEXT EDITOR */

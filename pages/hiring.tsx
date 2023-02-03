@@ -8,13 +8,7 @@ import HiringHero from '../components/hiring/HiringHero';
 import HowItWorks from '../components/hiring/HowItWorks';
 import Pricing from '../components/hiring/Pricing';
 
-/*
-TODO
-- 
-*/
-
 function Hiring() {
-  // THE JSX CODE, TODO: MAKE SEPARATE COMPONENT(S) OUT OF THE FORM.
   return (
     <>
       <Head>
@@ -37,11 +31,6 @@ function Hiring() {
           content="Post jobs based on the Sustainable Development Goals and find sustainability minded employees!"
           key="ogdesc"
         />
-        {/* Todo: add cool og:image */}
-        {/* <meta
-          property="og:image"
-          content="https://example.com/images/cool-page.jpg"
-        /> */}
         <link rel="icon" href="/favicon.ico" />
         <script
           src="https://widget.Cloudinary.com/v2.0/global/all.js"

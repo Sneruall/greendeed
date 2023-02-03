@@ -3,17 +3,6 @@ import { getRemotiveJobs } from '../../../backend/job/remotive/remotiveApi';
 
 // replicates what is in the remotive database (db with id, sdg and timestamp) to the job database.
 
-/*
-TODO:
-- Convert this to TS
-- Add validation of incoming body
-- Add Server Side validation (now only client side)
-- Add authentication
-- Prevent duplication of jobs
-- Add try catch blocks
-
-*/
-
 export default async function handler(req, res) {
   if (req.method === 'PATCH') {
     // Fetch all desired jobs from remotive

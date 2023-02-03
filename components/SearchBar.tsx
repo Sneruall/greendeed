@@ -1,14 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import { sdgList } from '../types/types';
 import CategoryDropdown from './CategoryDropdown';
 import SdgsFilter from './SdgsFilter';
 import SearchInput from './SearchInput';
 
 export const SearchBar = () => {
   return (
-    // todo: consider prevent use of bg-[url] to exploit next image
     <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat pb-24">
       <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
         <h2 className="heading-2xl mx-auto mb-6 max-w-2xl text-center leading-relaxed">

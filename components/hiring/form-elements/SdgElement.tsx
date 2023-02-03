@@ -2,8 +2,6 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { sdgs, sdgList, Company } from '../../../types/types';
 
-// todo, consider making sdg.code of type number instead of string (and apply everywhere it is being used)
-
 type Props = {
   register: any;
   errors: any;

@@ -77,15 +77,6 @@ function Form() {
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
 
-  // todo remove, debugging purpose only
-  // useEffect(() => {
-  //   console.log(
-  //     'retrievedCompanyData is: ' +
-  //       JSON.stringify(retrievedCompanyData) +
-  //       retrievedCompanyData?.id
-  //   );
-  // }, [retrievedCompanyData]);
-
   // Soring rich field company description html in state
   const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');
 
@@ -214,7 +205,6 @@ and get the form state. */
       console.log(JSON.stringify(emailData));
       await sendConfirmationEmail(emailData);
     } catch (err) {
-      // todo: log errors here, based on what is returned from the APIs.
       console.log(
         'an error occurred when posting job and/or company data into our database / or updating jobs / sending email confirmation'
       );
@@ -354,7 +344,6 @@ and get the form state. */
                 {(errors?.companyData?.sdgs as any)?.message}
               </div>
               <div className="my-2">
-                {/* Todo: apply a max of 5 SDGS only */}
                 <SdgElements
                   retrievedSdgs={retrievedCompanyData?.sdgs}
                   errors={errors?.companyData?.sdgs}
@@ -590,7 +579,6 @@ and get the form state. */
               </div>
 
               <div className="grid content-end gap-4 sm:grid-cols-2">
-                {/* APPLY BY: todo: add form as option */}
                 <div className="">
                   <div>
                     <label
@@ -683,7 +671,6 @@ and get the form state. */
                 />
               </div>
 
-              {/* todo: make optional ("leave blank to use your email from above") */}
               {/* EMAIL */}
               <div>
                 <FormFieldString

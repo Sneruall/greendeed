@@ -11,7 +11,6 @@ import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
-import JobInfoCard from '../../components/job/JobInfoCard';
 import JobInfoCard2 from '../../components/job/JobInfoCard2';
 import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
@@ -19,10 +18,6 @@ import JobSdgSection from '../../components/job/JobSdgSection';
 import Link from 'next/link';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import SimilarJobItem from '../../components/job/SimilarJobItem';
-
-/*
-Todo:
-*/
 
 const JobPage: NextPage<{
   job: Job;
@@ -72,7 +67,6 @@ const JobPage: NextPage<{
             {/* JOB DESCRIPTION */}
             <JobDescription job={job} company={company} />
             <JobInfoCard2 job={job} company={company} />
-            {/* <JobInfoCard job={job} company={company} /> */}
           </div>
         </div>
         {/* SDG INFO */}

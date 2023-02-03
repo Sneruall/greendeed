@@ -6,7 +6,6 @@ class MyDocument extends Document {
       <Html className="scroll-smooth">
         <Head>
           {/* eslint-disable-next-line */}
-          {/* Todo: delete unused fonts */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Staatliches"

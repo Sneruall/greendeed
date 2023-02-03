@@ -26,7 +26,6 @@ function SimilarJobItem({ job }: Props) {
       <div className="shadow-4 hover:shadow-2-extra border-green4 relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
-            {/* Todo: vervangen door company.sdgs en in image src num.id, bg alignen met sdg bg */}
             {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
               return (
                 <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
@@ -53,6 +52,7 @@ function SimilarJobItem({ job }: Props) {
                           height={50}
                           objectFit="contain"
                           layout="intrinsic"
+                          alt={'SDG' + sdgObject.sdg}
                         />
                       </div>
                     </li>
@@ -116,7 +116,6 @@ function SimilarJobItem({ job }: Props) {
                   : '🏢 ' + job.locationInfo?.onSiteLocation}
               </li>
             )}
-            {/* todo georestrictionother */}
             {job.locationInfo?.geoRestriction && (
               <li>
                 {typeof job.locationInfo?.geoRestriction == 'object'
@@ -144,7 +143,6 @@ function SimilarJobItem({ job }: Props) {
             </li>
           </ul>
           <div className="mb-10 text-center">
-            {/* todo, job.companyData.logo vervangen door company.logo */}
             {job.companyData.logo ? (
               <>
                 <Image

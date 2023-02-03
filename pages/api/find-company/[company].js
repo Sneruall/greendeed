@@ -1,13 +1,5 @@
 import clientPromise from '../../../lib/mongodb';
 
-/*
-TODO:
-- Convert this to TS
-- what if the call fails? account for errros
-- add validation
-- add authentication
-*/
-
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const data = req.query;

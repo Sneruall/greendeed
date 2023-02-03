@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import 'react-quill/dist/quill.snow.css';
 import ScrollToTop from '../components/ScrollToTop';
 import { Fragment } from 'react';
-import { Toaster } from 'react-hot-toast'; //todo consider importing dynamic or to specific page only
+import { Toaster } from 'react-hot-toast';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

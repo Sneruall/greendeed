@@ -360,6 +360,8 @@ export const sdgList = [
       'Goal 10 calls for reducing inequalities in income, as well as those based on sex, age, disability, race, class, ethnicity, religion and opportunity—both within and among countries. It also aims to ensure safe, orderly and regular migration and addresses issues related to representation of developing countries in global decision-making and development assistance.',
     uri: '/v1/sdg/Goal/10',
     img: '',
+    greendeedDescription:
+      'The goal of reducing inequalities requires collaboration and coordination from various sectors, including government organizations, non-government organizations (NGOs), international development agencies, and the private sector. Government organizations, such as the United Nations Development Programme (UNDP), design and implement policies to address inequality, promote inclusive growth, and empower marginalized communities. NGOs, such as Oxfam and Amnesty International, work to raise awareness and advocate for policies to address inequalities. International development agencies, such as the World Bank, provide funding and support to governments and organizations working to reduce inequalities. The private sector has a role to play in reducing inequalities by promoting fair labor practices, supporting sustainable development, and investing in marginalized communities. Through their efforts, these organizations work towards creating a more equal world where everyone has the opportunity to succeed, regardless of their background.',
   },
   {
     code: '11',
@@ -370,6 +372,8 @@ export const sdgList = [
       'Goal 11 aims to renew and plan cities and other human settlements in a way that fosters community cohesion and personal security while stimulating innovation and employment.',
     uri: '/v1/sdg/Goal/11',
     img: '',
+    greendeedDescription:
+      'Goal 11 focuses on making cities and human settlements inclusive, safe, resilient, and sustainable. To achieve this, efforts are needed from various sectors, including local and national governments, international organizations, non-profit organizations, and the private sector. Local and national governments play a crucial role in urban planning and development, while international organizations such as the United Nations Human Settlements Programme (UN-Habitat) provide technical assistance and support to governments in these efforts. Non-profit organizations, such as Habitat for Humanity, work towards creating affordable housing and promoting safe and inclusive communities. The private sector, through investment in sustainable and resilient infrastructure, can also play a key role in realizing this goal. Through these collective efforts, the aim is to create cities and human settlements that are inclusive, safe, resilient, and sustainable for all.',
   },
   {
     code: '12',
@@ -379,6 +383,8 @@ export const sdgList = [
       'Goal 12 aims to promote sustainable consumption and production patterns through measures such as specific policies and international agreements on the management of materials that are toxic to the environment.',
     uri: '/v1/sdg/Goal/12',
     img: '',
+    greendeedDescription:
+      'Goal 12 aims to ensure sustainable consumption and production patterns. To achieve this goal, various sectors, including businesses, governments, and international organizations, must take action. Businesses can take a lead in promoting sustainable production methods, reducing waste, and improving resource efficiency. Governments can implement policies that encourage sustainable consumption and production, such as product labeling and eco-taxation. International organizations can support the implementation of sustainable consumption and production by providing technical assistance and funding to governments and businesses. Through their efforts, these sectors can help shift society towards more sustainable consumption and production patterns, promoting economic growth while minimizing environmental impact and preserving natural resources for future generations.',
   },
   {
     code: '13',

@@ -6,7 +6,10 @@ const handlePost = async (req, res) => {
   const db = client.db();
   const collection = db.collection(process.env.MONGODB_COLLECTION);
   await collection.insertOne(data);
-  res.status(201).json({ message: 'Data inserted successfully in Job DB!' });
+  res
+    .status(201)
+    .json({ message: 'Data inserted successfully in Job DB!' })
+    .end();
 };
 
 const handlePut = async (req, res) => {
@@ -22,7 +25,10 @@ const handlePut = async (req, res) => {
   console.log(
     `${updateResult.matchedCount} document(s) matched the filter, updated ${updateResult.modifiedCount} document(s)`
   );
-  res.status(201).json({ message: 'Data updated successfully in Job DB!' });
+  res
+    .status(201)
+    .json({ message: 'Data updated successfully in Job DB!' })
+    .end();
 };
 
 const handleDelete = async (req, res) => {
@@ -32,7 +38,7 @@ const handleDelete = async (req, res) => {
   const collection = db.collection(process.env.MONGODB_COLLECTION);
   const deleteResult = await collection.deleteOne({ id: id });
   console.log(deleteResult);
-  res.status(204).end();
+  res.status(204).json({ message: 'Data deleted successfully!' }).end();
 };
 
 export default async function handler(req, res) {

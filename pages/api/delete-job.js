@@ -1,6 +1,6 @@
 import clientPromise from '../../lib/mongodb';
 
-// Send DELETE request to /api/remotive/delete?id=123456 to delete a remotive job selection from the database.
+// Send DELETE request to /api/delete-job?id=123456 to delete a job selection from the database.
 
 export default async function handler(req, res) {
   if (req.method === 'DELETE') {

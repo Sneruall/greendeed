@@ -224,7 +224,7 @@ export async function postJob(transformedFormData: Job) {
 }
 
 export async function updateJobs(updatedCompanyData: Company) {
-  const companyResponse = await fetch('/api/update-jobs', {
+  const companyResponse = await fetch('/api/jobs', {
     method: 'PUT',
     body: JSON.stringify(updatedCompanyData),
     headers: {

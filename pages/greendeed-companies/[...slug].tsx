@@ -32,7 +32,21 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   return (
     <div>
       <Head>
-        <title>Metaversed Careers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>{`${company?.name} | Greendeed`}</title>
+        <meta name="description" content={company?.description} key="desc" />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content={`${company?.name} | Greendeed`}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={company?.description}
+          key="ogdesc"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

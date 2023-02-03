@@ -19,8 +19,8 @@ function Success() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="mx-auto">
-        <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat">
+      <div className="mx-auto h-screen">
+        <div className="site-margins h-full bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat">
           <div className="mx-auto max-w-5xl pt-24 sm:pt-36">
             <h1 className="heading-2xl mb-6 text-center sm:mb-14">
               Thank you for submitting a job!

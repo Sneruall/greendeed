@@ -101,8 +101,8 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="mx-auto">
+
+      <div className="mx-auto">
         <SearchBar />
         {/* Listing of jobs */}
         <JobListing
@@ -125,8 +125,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
             </button>
           </div>
         )}
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 };

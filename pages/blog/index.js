@@ -45,8 +45,8 @@ const Index = ({ posts, jobs }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="mx-auto">
+
+      <div className="mx-auto">
         {posts.length > 1 ? (
           <>
             <BlogHero latestPost={posts[1]} />
@@ -74,8 +74,7 @@ const Index = ({ posts, jobs }) => {
             </Link>
           </div>
         </div>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 };

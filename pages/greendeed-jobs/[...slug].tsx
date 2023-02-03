@@ -57,8 +57,8 @@ const JobPage: NextPage<{
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="">
+
+      <div className="">
         <div className="site-margins mx-auto max-w-7xl pt-4 sm:pt-12 lg:pt-20">
           <div className="my-16 flex flex-col items-start gap-8 lg:flex-row xl:gap-24">
             {/* JOB DESCRIPTION */}
@@ -79,8 +79,7 @@ const JobPage: NextPage<{
             <SimilarJobs similarJobs={categoryJobs} currentJobId={job.id} />
           </div>
         )}
-      </main>
-      <Footer />
+      </div>
     </>
   );
 };

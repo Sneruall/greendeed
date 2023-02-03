@@ -35,12 +35,10 @@ function workingForTheSDGs({}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-      <main className="mx-auto">
+      <div className="mx-auto">
         <SdgPageHero />
         <SdgPageList />
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 }

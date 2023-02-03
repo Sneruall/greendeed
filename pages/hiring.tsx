@@ -37,16 +37,15 @@ function Hiring() {
           type="text/javascript"
         ></script>
       </Head>
-      <Header />
-      <main className="mx-auto">
+
+      <div className="mx-auto">
         <HiringHero />
         <CompanyLogos />
         <Pricing />
         <HowItWorks />
         <Form />
         <CompanyLogos />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

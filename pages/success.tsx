@@ -18,8 +18,8 @@ function Success() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="mx-auto">
+
+      <div className="mx-auto">
         <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat">
           <div className="mx-auto max-w-5xl pt-24 sm:pt-36">
             <h1 className="heading-2xl mb-6 text-center sm:mb-14">
@@ -50,8 +50,7 @@ function Success() {
             </div>
           </div>
         </div>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

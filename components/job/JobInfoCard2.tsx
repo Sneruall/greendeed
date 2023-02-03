@@ -136,21 +136,32 @@ function JobInfoCard2({ job, company }: Props) {
           </li>
         </ul>
         <div className="text-center">
-          {company?.logo ? (
+          {company ? (
             <Link
               href={generateCompanyUrl(
                 company.name.toLowerCase(),
                 job.companyId
               )}
             >
-              <a>
-                <Image
-                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
-                  width={50}
-                  height={50}
-                />
-                <h3 className="heading-sm-omnes">{job.companyData.name}</h3>{' '}
-              </a>
+              {company?.logo ? (
+                <a>
+                  <Image
+                    src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
+                    width={50}
+                    height={50}
+                  />
+                  <h3 className="heading-sm-omnes">{job.companyData.name}</h3>{' '}
+                </a>
+              ) : (
+                <a>
+                  <div className="mx-auto mb-2 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-custom-brown1 text-center">
+                    <span className="font-omnes text-xl capitalize text-gray-200">
+                      {job.companyData.name[0]}
+                    </span>
+                  </div>
+                  <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
+                </a>
+              )}
             </Link>
           ) : (
             <Link href={job?.apply}>

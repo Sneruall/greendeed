@@ -394,6 +394,8 @@ export const sdgList = [
       'Climate change presents the single biggest threat to development, and its widespread, unprecedented effects disproportionately burden the poorest and the most vulnerable. Urgent action is needed not only to combat climate change and its impacts, but also to build resilience in responding to climate-related hazards and natural disasters.',
     uri: '/v1/sdg/Goal/13',
     img: '',
+    greendeedDescription:
+      'Goal 13 aims to take urgent action to combat climate change and its impacts. To achieve this goal, various sectors must work together, including governments, businesses, civil society organizations, and individuals. Governments play a crucial role in establishing policies and regulations to reduce greenhouse gas emissions and mitigate the impacts of climate change. Businesses can contribute by implementing sustainable practices, investing in renewable energy, and improving energy efficiency. Civil society organizations can raise awareness and advocate for action on climate change. Individuals can make changes in their daily lives to reduce their carbon footprint, such as using public transportation, reducing energy usage, and reducing waste. Through their collective efforts, these sectors can help to mitigate the impacts of climate change and achieve a more sustainable future.',
   },
   {
     code: '14',
@@ -404,6 +406,8 @@ export const sdgList = [
       'Goal 14 seeks to promote the conservation and sustainable use of marine and coastal ecosystems, prevent marine pollution and increase the economic benefits to small island developing States and LDCs from the sustainable use of marine resources.',
     uri: '/v1/sdg/Goal/14',
     img: '',
+    greendeedDescription:
+      'Goal 14 focuses on conserving and sustainably using the oceans, seas, and marine resources for sustainable development. Governments, businesses, civil society organizations, and individuals all have a role to play in achieving this goal. Governments can implement policies and regulations to protect marine ecosystems and prevent overfishing. Businesses can adopt sustainable fishing practices and reduce their impact on the ocean. Civil society organizations can raise awareness about the importance of ocean conservation and advocate for action. Individuals can make changes in their daily lives to reduce their impact on the ocean, such as reducing single-use plastics and choosing sustainable seafood. Through their collective efforts, these sectors can help to conserve and sustainably use the ocean for future generations.',
   },
   {
     code: '15',
@@ -414,6 +418,8 @@ export const sdgList = [
       'Goal 15 focuses on managing forests sustainably, restoring degraded lands and successfully combating desertification, reducing degraded natural habitats and ending biodiversity loss. All of these efforts in combination will help ensure that livelihoods are preserved for those that depend directly on forests and other ecosystems, that biodiversity will thrive, and that the benefits of these natural resources will be enjoyed for generations to come.',
     uri: '/v1/sdg/Goal/15',
     img: '',
+    greendeedDescription:
+      'Goal 15 focuses on protecting, restoring, and promoting the sustainable use of terrestrial ecosystems, forests, mountains, and deserts, as well as ensuring the conservation of biodiversity. Organizations play a crucial role in achieving this goal by implementing sustainable land use practices, restoring degraded ecosystems, and conserving important habitats and species. This can be achieved through initiatives such as reforestation, afforestation, and agroforestry projects, as well as conservation programs for threatened species and habitats. Governments, non-governmental organizations (NGOs), and businesses can collaborate to promote sustainable land use and biodiversity conservation, which not only benefits the environment but also supports livelihoods and promotes sustainable economic growth. Through their efforts, they work towards a world where the balance between humans and nature is restored and the vital role that terrestrial ecosystems play in our lives is recognized and protected.',
   },
   {
     code: '16',
@@ -424,6 +430,8 @@ export const sdgList = [
       'Goal 16 envisages peaceful and inclusive societies based on respect for human rights, the rule of law, good governance at all levels, and transparent, effective and accountable institutions. Many countries still face protracted violence and armed conflict, and far too many people are poorly supported by weak institutions and lack access to justice, information and other fundamental freedoms.',
     uri: '/v1/sdg/Goal/16',
     img: '',
+    greendeedDescription:
+      'Goal 16 aims to promote just, peaceful, and inclusive societies by supporting the rule of law, human rights, and effective, accountable, and transparent institutions at all levels. Achieving this goal requires the collaboration of various organizations, including governmental bodies, civil society organizations, international organizations, and the private sector. Governments play a critical role in creating a legal framework that protects human rights and ensures accountability. Civil society organizations raise awareness and advocate for human rights and justice, while international organizations provide technical assistance and support to strengthen institutions. The private sector can contribute by promoting transparency and integrity in their own operations and by advocating for inclusive business practices that support sustainable development. Through their combined efforts, these organizations can work towards building just, peaceful, and inclusive societies, thereby contributing to the sustainable development of communities and nations.',
   },
   {
     code: '17',
@@ -434,6 +442,8 @@ export const sdgList = [
       'The 2030 Agenda requires a revitalized and enhanced global partnership that mobilizes all available resources from Governments, civil society, the private sector, the United Nations system and other actors. Increasing support to developing countries, in particular LDCs, landlocked developing countries and small island developing States is fundamental to equitable progress for all.',
     uri: '/v1/sdg/Goal/17',
     img: '',
+    greendeedDescription:
+      'Goal 17 aims to strengthen the means of implementation and revitalize the global partnership for sustainable development. To achieve this, organizations across various sectors must work together to enhance cooperation and collaboration at all levels. These organizations include international organizations, government agencies, civil society organizations, the private sector, and philanthropic organizations. Through partnerships and collaboration, they can exchange knowledge, expertise, and resources to support sustainable development initiatives and build a more sustainable future. It is important that these organizations promote inclusive and transparent decision-making processes, ensuring that all voices are heard and that sustainable development priorities are effectively addressed. By working together, they can help to create a world where sustainable development is not just a dream, but a reality for all people.',
   },
 ];
 

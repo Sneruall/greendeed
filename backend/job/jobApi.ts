@@ -82,14 +82,11 @@ export async function transformFormData(
     coupon: retrievedFormData.coupon,
     invoiceInfo: retrievedFormData.invoiceInfo,
   };
-  // todo: move these methods up to result object creation, like done for filterSdgData method.
   convertLocationsToArrays(result.locationInfo);
-  // mapCategoryToObject(result.category);
   setLogo(result, imagePublicId, retrievedCompanyData?.logo);
   setHTMLDescription(result, jobDescriptionHtml, 'job');
   setHTMLDescription(result, companyDescriptionHtml, 'company');
   setSalary(result, salaryValues);
-  // filterSdgData(retrievedFormData, result);
 
   return result;
 }
@@ -215,11 +212,9 @@ export async function setSalary(
 
 export async function postJob(transformedFormData: Job) {
   // Post the job data in the Database
-  //todo no console log and nothing is done with data?
-
   const response = await fetch('/api/jobs', {
     method: 'POST',
-    body: JSON.stringify(transformedFormData), //todo only save what we need, like postCompany does, convert Form to Job.
+    body: JSON.stringify(transformedFormData),
     headers: {
       'Content-Type': 'application/json',
     },

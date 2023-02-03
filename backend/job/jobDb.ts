@@ -3,7 +3,7 @@ import { jobCategory } from '../../types/jobCategories';
 import { Company, Job, jobTypes } from '../../types/types';
 
 export const getJobsFromMongo = async (
-  minTimestampInMs?: number, //todo: consider just adding this to each query (it is always required) and not as a parameter (apply also to getJobsFromCompany method below)
+  minTimestampInMs?: number,
   limit?: number,
   category?: jobCategory,
   sdgs?: number[]

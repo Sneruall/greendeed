@@ -9,7 +9,6 @@ const CategoryDropdown = () => {
 
   useEffect(() => {
     // if there is no category in query but input is set, reset input field
-    // todo: add case when aspath includes category but selectedcategory does not?
     if (
       !router.asPath.includes('category') &&
       selectedCategory != 'All Categories'

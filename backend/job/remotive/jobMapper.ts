@@ -3,10 +3,8 @@ import { Job, jobType, LocationInfo, remotiveJob } from '../../../types/types';
 
 export const mapRemotiveJobtoJob = (remotiveJob: remotiveJob): Job => {
   const job: Job = {
-    // Todo, add logo, see remotiveJob type?
     companyData: {
       name: remotiveJob.company_name,
-      // Todo, map sdgs to correct attribute
       sdgs: remotiveJob.sdgs,
     },
     companyId: 'external',

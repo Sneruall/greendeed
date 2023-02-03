@@ -31,7 +31,7 @@ async function handler(req, res) {
     ],
   };
 
-  mail
+  return mail
     .send(data)
     .then((response) => {
       if (response[0].statusCode == '202') {

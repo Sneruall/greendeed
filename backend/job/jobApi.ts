@@ -212,7 +212,7 @@ export async function setSalary(
 
 export async function postJob(transformedFormData: Job) {
   // Post the job data in the Database
-  const response = await fetch('/api/jobs', {
+  const response = await fetch('/api/job', {
     method: 'POST',
     body: JSON.stringify(transformedFormData),
     headers: {
@@ -224,7 +224,7 @@ export async function postJob(transformedFormData: Job) {
 }
 
 export async function updateJobs(updatedCompanyData: Company) {
-  const companyResponse = await fetch('/api/jobs', {
+  const companyResponse = await fetch('/api/job', {
     method: 'PUT',
     body: JSON.stringify(updatedCompanyData),
     headers: {

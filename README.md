@@ -57,7 +57,7 @@ POST request made after completing the Post a Job form. The form input data is u
 
 #### Request
 
-`POST /api/jobs`
+`POST /api/job`
 
     curl -H 'Content-Type: application/json' http://localhost:3000/api/jobs -d '{"companyId": "123abc", "companyData": { "name": "Company Name", "description": "<p>Company description</p>", "website": "example.com", "logo": "greendeed/dev/organization-logos/raowzm9ekp5uigojuupa", "sdgs": [ { "sdg": 1, "text": "We fight poverty" } ] }, "jobTitle": "Job title here", "category": { "id": 1, "name": "Software Development", "slug": "software-development" }, "jobDescription": "<p>Job description HTML formatted text here</p>", "jobType": "Full-Time", "salary": { "currency": "USD", "period": "Annual", "min": { "float": 40000, "formatted": "US$40,000", "value": "40000" }, "max": { "float": 60000, "formatted": "US$60,000", "value": "60000" }, "string": "$110 - $190 hourly" //optional, usually from external jobs that were mported }, "locationInfo": { "location": "onSiteOrRemote", "geoRestriction": ["worldwide", "africa"], "onSiteLocation": ["Amsterdam", "London"] }, "email": "info@email.com", "timestamp": 1672690240025, "id": "123abc", "price": 50, "paid": true, "hidden": false, "listed": true, "closed": false, "applicationMethod": "email", "apply": "info@company.com", "external": false}'
 

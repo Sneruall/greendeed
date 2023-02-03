@@ -9,19 +9,24 @@ function Footer({}: Props) {
       <div className="site-margins mx-auto my-10 grid max-w-screen-2xl gap-6 md:grid-cols-2 md:gap-10">
         <div>
           <Link href="/">
-            <a className="my-auto text-4xl font-bold text-white">Greendeed</a>
+            <a className="my-auto text-4xl font-bold text-white hover:no-underline">
+              Greendeed
+            </a>
           </Link>
           <div className="mt-4 max-w-md italic">
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut
+              At Greendeed, we believe that sustainable job opportunities should
+              be accessible to everyone, and that the SDGs provide a clear and
+              comprehensive guide for doing so. Join us in our mission to create
+              a better future for all by exploring the sustainable job
+              opportunities on our platform today.
             </p>
           </div>
         </div>
 
         <div className="md:grid md:grid-cols-2">
           <div className="mb-4 flex flex-col gap-2">
-            <h2 className="heading-md text-white">Information</h2>
+            <h3 className="heading-md text-white">Information</h3>
             <div>
               <Link href="/#jobs">
                 <a className="footer-link">Jobs</a>

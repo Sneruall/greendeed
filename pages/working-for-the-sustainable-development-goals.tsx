@@ -35,7 +35,7 @@ function workingForTheSDGs({}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="mx-auto">
+      <div className="mx-auto mb-10">
         <SdgPageHero />
         <SdgPageList />
       </div>

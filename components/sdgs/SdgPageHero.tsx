@@ -11,23 +11,26 @@ function SdgPageHero({}: Props) {
     <div className="site-margins">
       <div className="mx-auto max-w-6xl pt-24 sm:pt-32">
         <div>
-          <h1 className="heading-2xl mb-6">Working for sustainable goals</h1>
+          <h1 className="heading-xl mb-6">
+            Working for the Sustainable Development Goals
+          </h1>
           <h2 className="heading-md-omnes">
-            The 17 Sustainable Development Goals Lorem ipsum dolor sit amet,
-            consetetur sadipscing elitr, sed diam Lorem ipsum dolor sit amet,
-            What is it
+            By aligning with the SDGs, we ensure that the organizations and job
+            positions featured on the platform are making meaningful
+            contributions towards a sustainable future. Read more about each SDG
+            and how you can make a contribution with your work below.
           </h2>
         </div>
-        <div className="my-20">
-          <div className="my-4 flex flex-wrap gap-2 md:flex-nowrap md:justify-center md:gap-8 lg:gap-24">
-            <div className="md:text-right">
-              <h3 className="heading-sm-omnes2">Advantages of using them</h3>
+        <div className="my-16">
+          <div className="my-4 flex flex-wrap gap-2 md:flex-nowrap md:justify-center md:gap-8 lg:gap-16">
+            <div className="">
+              <h3 className="heading-sm-omnes2">Sustainable Job Seekers</h3>
               <p className="font-century italic leading-relaxed text-custom-brown1">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata
+                Greendeed provides a comprehensive framework for exploring
+                sustainable job opportunities. The labeling of companies
+                according to the 17 SDGs allows job seekers to target
+                organizations that align with their values and interests, making
+                informed decisions about their desired impact.
               </p>
             </div>
             <div className="flex-none">
@@ -39,14 +42,16 @@ function SdgPageHero({}: Props) {
                 layout="intrinsic"
               />
             </div>
-            <div className="">
-              <h3 className="heading-sm-omnes2">Advantages of using them</h3>
+            <div className="md:text-right">
+              <h3 className="heading-sm-omnes2">Sustainable Employers</h3>
               <p className="font-century italic leading-relaxed text-custom-brown1">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata
+                Greendeed offers a valuable platform to connect with job seekers
+                who share their values and mission. The labeling of companies
+                according to the 17 SDGs provides a useful framework for
+                employers to target job seekers with specific sustainability
+                interests. This approach allows companies to reach a highly
+                engaged and relevant audience, increasing the likelihood of
+                attracting top talent who share their values and mission.
               </p>
             </div>
           </div>

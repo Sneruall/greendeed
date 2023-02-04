@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { HiCheckCircle } from 'react-icons/hi';
+import { TbArrowBearLeft, TbArrowBearRight } from 'react-icons/tb';
 import { searchInputCallback } from '../helpers/search';
 import { sdgList } from '../types/types';
 import Tooltip from './Tooltip';
@@ -45,7 +46,7 @@ selectedSdgs array. */
 
   return (
     <div className="mx-2 mt-20">
-      <div className="mx-auto flex max-w-6xl flex-wrap justify-center">
+      <div className="relative mx-auto flex max-w-6xl flex-wrap justify-center">
         {sdgList.map((sdg) => {
           return (
             <Tooltip
@@ -102,6 +103,16 @@ selectedSdgs array. */
             />
           );
         })}
+        <div className="absolute right-0 bottom-0 translate-y-16 transform font-omnes text-sm font-semibold text-custom-brown4 md:translate-y-4 lg:translate-y-16 xl:-translate-x-10 xl:-translate-y-16">
+          <div className="xl:hidden">
+            <TbArrowBearLeft className="mx-auto h-10 w-10" />
+          </div>
+          <p className="xl:hidden">Select your favorite goals</p>
+          <p className="hidden xl:block">Select your favorite goals</p>
+          <div className="hidden xl:block">
+            <TbArrowBearRight className="mx-auto h-10 w-10 rotate-180" />
+          </div>
+        </div>
       </div>
     </div>
   );

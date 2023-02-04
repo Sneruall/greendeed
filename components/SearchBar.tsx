@@ -7,7 +7,7 @@ import { TbArrowBearLeft, TbArrowBearRight } from 'react-icons/tb';
 
 export const SearchBar = () => {
   return (
-    <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat pb-24">
+    <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat pb-32 sm:pb-24">
       <div className="mx-auto max-w-4xl pt-24 sm:pt-32">
         <h2 className="heading-2xl mx-auto mb-6 max-w-2xl text-center leading-relaxed">
           Let's find your next Sustainable Job
@@ -29,16 +29,10 @@ export const SearchBar = () => {
           <SearchInput />
           <div className="mr-1 h-1/2 w-1 border-l border-black sm:mr-4"></div>
           <CategoryDropdown />
-          <div className="absolute left-0 -translate-y-16 transform text-center text-sm md:-translate-y-14 md:-translate-x-20">
+          <div className="absolute left-0 -translate-y-20 transform text-center text-sm md:-translate-y-14 md:-translate-x-20">
             <p className="max-w-[100px]">Search in your field of work</p>
             <div className="">
               <TbArrowBearLeft className="mx-auto h-10 w-10 rotate-180" />
-            </div>
-          </div>
-          <div className="absolute right-0 translate-x-52 translate-y-4 transform font-omnes text-sm font-semibold text-custom-brown4">
-            <p>Select your favorite goals</p>
-            <div className="">
-              <TbArrowBearRight className="mx-auto h-10 w-10 rotate-180" />
             </div>
           </div>
         </div>

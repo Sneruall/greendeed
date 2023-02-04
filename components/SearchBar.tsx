@@ -3,6 +3,7 @@ import React from 'react';
 import CategoryDropdown from './CategoryDropdown';
 import SdgsFilter from './SdgsFilter';
 import SearchInput from './SearchInput';
+import { TbArrowBearLeft, TbArrowBearRight } from 'react-icons/tb';
 
 export const SearchBar = () => {
   return (
@@ -24,10 +25,22 @@ export const SearchBar = () => {
           </div>
           <div className="flex-1"></div>
         </div>
-        <div className="shadow-4 flex h-14 w-full items-center justify-center rounded-full bg-custom-green2 px-2 font-omnes font-semibold text-custom-brown4 sm:gap-2 sm:px-10">
+        <div className="shadow-4 relative flex h-14 w-full items-center justify-center rounded-full bg-custom-green2 px-2 font-omnes font-semibold text-custom-brown4 sm:gap-2 sm:px-10">
           <SearchInput />
           <div className="mr-1 h-1/2 w-1 border-l border-black sm:mr-4"></div>
           <CategoryDropdown />
+          <div className="absolute left-0 -translate-x-24 -translate-y-12 transform text-center text-sm">
+            <p>Search for your expertise</p>
+            <div className="">
+              <TbArrowBearLeft className="mx-auto h-10 w-10 rotate-180" />
+            </div>
+          </div>
+          <div className="absolute right-0 translate-x-52 translate-y-4 transform font-omnes text-sm font-semibold text-custom-brown4">
+            <p>Select your favorite goals</p>
+            <div className="">
+              <TbArrowBearRight className="mx-auto h-10 w-10 rotate-180" />
+            </div>
+          </div>
         </div>
       </div>
       <SdgsFilter />

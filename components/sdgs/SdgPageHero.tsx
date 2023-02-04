@@ -18,8 +18,13 @@ function SdgPageHero({}: Props) {
             By aligning with the SDGs, we ensure that the organizations and job
             positions featured on the platform are making meaningful
             contributions towards a sustainable future.{' '}
-            <span className="underline hover:text-custom-brown4">
+            <span className="hidden underline hover:text-custom-brown4 lg:inline">
               <Link href="#sdg1">
+                <a>Read more</a>
+              </Link>
+            </span>{' '}
+            <span className="underline hover:text-custom-brown4 lg:hidden">
+              <Link href="#goals">
                 <a>Read more</a>
               </Link>
             </span>{' '}

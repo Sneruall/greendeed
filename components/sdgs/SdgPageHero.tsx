@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { sdgList } from '../../types/types';
 import Tooltip from '../Tooltip';
 
@@ -19,7 +19,7 @@ function SdgPageHero({}: Props) {
             positions featured on the platform are making meaningful
             contributions towards a sustainable future.{' '}
             <span className="underline hover:text-custom-brown4">
-              <Link href="#goals">
+              <Link href="#sdg1">
                 <a>Read more</a>
               </Link>
             </span>{' '}
@@ -61,7 +61,7 @@ function SdgPageHero({}: Props) {
               </p>
             </div>
           </div>
-          <div id="goals" className="my-10">
+          <div id="goals" className="my-10 lg:hidden">
             <div className="heading-sm-omnes2 mb-2 text-center">
               <h3>Which goals would you like to support with your job?</h3>
             </div>

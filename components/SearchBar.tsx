@@ -29,8 +29,8 @@ export const SearchBar = () => {
           <SearchInput />
           <div className="mr-1 h-1/2 w-1 border-l border-black sm:mr-4"></div>
           <CategoryDropdown />
-          <div className="absolute left-0 -translate-x-24 -translate-y-12 transform text-center text-sm">
-            <p>Search for your expertise</p>
+          <div className="absolute left-0 -translate-y-16 transform text-center text-sm md:-translate-y-14 md:-translate-x-20">
+            <p className="max-w-[100px]">Search in your field of work</p>
             <div className="">
               <TbArrowBearLeft className="mx-auto h-10 w-10 rotate-180" />
             </div>

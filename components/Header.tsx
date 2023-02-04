@@ -61,7 +61,7 @@ function Header() {
             </Link>
             <Link href="/hiring">
               <a className="my-auto self-center font-omnes font-bold text-custom-brown1">
-                Employers
+                Hiring
               </a>
             </Link>
             <Link href="/working-for-the-sustainable-development-goals">
@@ -109,7 +109,7 @@ function Header() {
             <Link href="/hiring">
               <a>
                 <li className="border-b border-opacity-25 py-3 hover:bg-custom-brown1">
-                  <span className="ml-3">Employers</span>
+                  <span className="ml-3">Hiring</span>
                 </li>
               </a>
             </Link>

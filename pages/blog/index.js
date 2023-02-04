@@ -45,18 +45,18 @@ const Index = ({ posts, jobs }) => {
       </Head>
 
       <div className="mx-auto">
-        {posts.length > 1 ? (
+        {posts.length > 100 ? (
           <>
             <BlogHero latestPost={posts[1]} />
             <BlogPosts posts={posts} />
           </>
         ) : (
           <div className="site-margins my-32">
-            Retrieving blog posts failed... Try again or{' '}
+            No Blog posts found... Come back later or{' '}
             <Link href="mailto:info@greendeed.io">
               <a className="font-bold text-custom-brown1">contact us</a>
-            </Link>{' '}
-            to report the issue, thanks!
+            </Link>
+            .
           </div>
         )}
         <div className="site-margins mx-auto max-w-screen-xl">

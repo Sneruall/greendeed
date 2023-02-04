@@ -65,7 +65,7 @@ function SdgPageHero({}: Props) {
             <div className="heading-sm-omnes2 mb-2 text-center">
               <h3>Which goals would you like to support with your job?</h3>
             </div>
-            <div className="mx-auto flex max-w-6xl flex-wrap justify-center">
+            <div className="mx-4 flex max-w-6xl flex-wrap justify-center sm:mx-auto">
               {sdgList.map((sdg) => {
                 return (
                   <Tooltip

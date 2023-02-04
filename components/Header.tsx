@@ -109,14 +109,14 @@ function Header() {
             <Link href="/hiring">
               <a>
                 <li className="border-b border-opacity-25 py-3 hover:bg-custom-brown1">
-                  <span className="ml-3">Hiring</span>
+                  <span className="ml-3">Employers</span>
                 </li>
               </a>
             </Link>
             <Link href="/working-for-the-sustainable-development-goals">
               <a>
                 <li className="border-b border-opacity-25 py-3 hover:bg-custom-brown1">
-                  <span className="ml-3">The 17 Goals</span>
+                  <span className="ml-3">Working for the SDGs</span>
                 </li>
               </a>
             </Link>

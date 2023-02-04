@@ -53,24 +53,24 @@ function Header() {
             </Link>
           </div>
           {/* Desktop Navigation */}
-          <div className="hidden flex-1 justify-center gap-4 self-center text-custom-brown1 sm:flex md:gap-12 lg:gap-24 xl:gap-32">
+          <div className="hidden flex-1 justify-center gap-4 self-center text-sm text-custom-brown1 sm:flex md:gap-6 md:text-base lg:gap-16 xl:gap-20">
             <Link href="/#jobs">
-              <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              <a className="my-auto self-center font-omnes font-bold text-custom-brown1">
                 Jobs
               </a>
             </Link>
             <Link href="/hiring">
-              <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              <a className="my-auto self-center font-omnes font-bold text-custom-brown1">
                 Employers
               </a>
             </Link>
             <Link href="/working-for-the-sustainable-development-goals">
-              <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
-                Working for the SDGs
+              <a className="my-auto self-center font-omnes font-bold text-custom-brown1">
+                The Goals
               </a>
             </Link>
             <Link href="/blog">
-              <a className="my-auto self-center font-omnes text-base font-bold text-custom-brown1">
+              <a className="my-auto self-center font-omnes  font-bold text-custom-brown1">
                 Blog
               </a>
             </Link>
@@ -80,7 +80,7 @@ function Header() {
           <div>
             <Link href="/hiring#post-job">
               <a>
-                <button className="button-1 px-4 text-base sm:px-8">
+                <button className="button-1 px-4 text-base md:px-8">
                   Post a Job - €250
                 </button>
               </a>
@@ -116,7 +116,7 @@ function Header() {
             <Link href="/working-for-the-sustainable-development-goals">
               <a>
                 <li className="border-b border-opacity-25 py-3 hover:bg-custom-brown1">
-                  <span className="ml-3">Working for the SDGs</span>
+                  <span className="ml-3">The Goals</span>
                 </li>
               </a>
             </Link>

@@ -116,7 +116,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
             </div>
             <div className="hidden justify-end gap-8 self-center font-omnes font-semibold text-black sm:flex xl:col-span-2">
               <span className="hidden self-center text-sm lg:block">
-                {job.salary?.max?.formatted && job.salary?.currency}
+                {job.salary?.max?.formatted && '💰 ' + job.salary?.currency}
                 {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
                 {job.salary?.max?.formatted && '- '}
                 {job.salary?.max?.formatted?.replace(/US|CA|AU/g, '')}{' '}

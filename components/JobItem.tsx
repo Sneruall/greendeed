@@ -68,17 +68,33 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                     {job.locationInfo?.location == 'remote' && 'Remote'}
                     {/* If Hybrid */}
                     {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
-                    {/* If onSite and single location */}
-                    {job.locationInfo?.location == 'onSite' &&
-                      job.locationInfo?.onSiteLocation &&
-                      !(job.locationInfo?.onSiteLocation instanceof Array) &&
-                      job.locationInfo?.onSiteLocation}
-                    {/* If onSite and multiple locations */}
-                    {job.locationInfo?.location == 'onSite' &&
-                      job.locationInfo?.onSiteLocation &&
-                      job.locationInfo?.onSiteLocation instanceof Array &&
-                      job.locationInfo?.onSiteLocation?.join(', ')}
                   </p>
+                </div>
+                <div className="font-century text-xs line-clamp-1">
+                  {/* If onSite and single location */}
+                  {job.locationInfo?.location == 'onSite' &&
+                    job.locationInfo?.onSiteLocation &&
+                    !(job.locationInfo?.onSiteLocation instanceof Array) &&
+                    job.locationInfo?.onSiteLocation}
+                  {/* If onSite and multiple locations */}
+                  {job.locationInfo?.location == 'onSite' &&
+                    job.locationInfo?.onSiteLocation &&
+                    job.locationInfo?.onSiteLocation instanceof Array &&
+                    job.locationInfo?.onSiteLocation?.join(', ')}
+                  {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
+                  {/* If onSite and single location */}
+                  {job.locationInfo?.location == 'onSiteOrRemote' &&
+                    job.locationInfo?.onSiteLocation &&
+                    !(job.locationInfo?.onSiteLocation instanceof Array) &&
+                    job.locationInfo?.onSiteLocation}
+                  {/* If onSite and multiple locations */}
+                  {job.locationInfo?.location == 'onSiteOrRemote' &&
+                    job.locationInfo?.onSiteLocation &&
+                    job.locationInfo?.onSiteLocation instanceof Array &&
+                    job.locationInfo?.onSiteLocation?.join(', ')}
+                </div>
+                <div className="font-century text-xs line-clamp-1">
+                  {job.locationInfo.geoRestriction}
                 </div>
                 <div className="flex gap-1 sm:hidden">
                   {sdgList}

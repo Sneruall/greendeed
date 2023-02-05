@@ -78,11 +78,11 @@ const FormStatusIdentifier = ({
         </h1>
         <p className="text-main">
           {activeFormStep === 1 &&
-            "Tell us about your company's mission, values, and achievements and share adding your company logo and website link."}
+            "Tell us about your company's mission, values, and achievements and share your company logo and website link."}
           {activeFormStep === 2 &&
-            "Choose the sustainable development goals that align with your company's mission and share how you are contributing to each goal."}
+            "Choose one or more sustainable development goals that align with your company's mission and share how your company contributes to the goals you selected. This is not job specific but company wide."}
           {activeFormStep === 3 &&
-            'Provide a detailed description of the job including job title, responsibilities, salary, job type, and location to attract the best fit for your company.'}
+            'Provide as much details of the job as possible to attract the best fit for the position.'}
           {activeFormStep === 4 &&
             'Enter your administrative details and complete your job posting. Our dedicated support team will assist you with any questions or concerns.'}
         </p>

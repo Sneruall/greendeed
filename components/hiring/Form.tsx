@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Autocomplete from '@mui/material/Autocomplete';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
@@ -21,12 +21,10 @@ import {
   Location as LocationOptions,
   ApplicationMethods,
   Form,
-  geoRestrictions,
   jobType,
   emailData,
 } from '../../types/types';
 import hiringValidationSchema from '../../validations/hiringValidationSchema';
-import CompanyChecker from './CompanyChecker';
 import FormFieldString from './FormFieldString';
 import FormFieldDropdown from './FormFieldDropdown';
 import CurrencyInput from 'react-currency-input-field';
@@ -75,6 +73,15 @@ function Form() {
   // Checking the entered company name with what is already in the DB and storing that in state
   const [retrievedCompanyData, setRetrievedCompanyData] = useState<Company>();
   const [companyNameIsLoading, setCompanyNameIsLoading] = useState<boolean>();
+
+  useEffect(() => {
+    if (typeof retrievedCompanyData?.name !== 'undefined') {
+      toast.success('Welcome back ' + retrievedCompanyData.name + '!', {
+        duration: 4000,
+      });
+    }
+    return () => {};
+  }, [retrievedCompanyData]);
 
   // Soring rich field company description html in state
   const [companyDescriptionHtml, setcompanyDescriptionHtml] = useState('');
@@ -261,21 +268,17 @@ and get the form state. */
                   );
                 }}
               />
-              <CompanyChecker
-                companyNameIsLoading={companyNameIsLoading}
-                retrievedCompanyData={retrievedCompanyData}
-              />
             </div>
 
             <div className="flex flex-col gap-5">
               {/* DESCRIPTION */}
               <div>
                 <h2 className="font-bold text-custom-brown1">
-                  Organization mission / vision*
+                  Company mission*
                 </h2>
                 <RichTextEditor
                   key={retrievedCompanyData?.id}
-                  placeholder="Write something about your oganization..."
+                  placeholder="Tell us about your company and mission."
                   state={setcompanyDescriptionHtml}
                   defaultValue={
                     retrievedCompanyData ? retrievedCompanyData.description : ''
@@ -324,20 +327,9 @@ and get the form state. */
           <div className={`${activeFormStep !== 2 && 'hidden'}`}>
             {/* SDG */}
             <div className="">
-              {retrievedCompanyData?.sdgs && (
-                <p className="text-green-500">
-                  Hey, we found the below data already, you can adjust but we
-                  will then need to reverify your SDGs
-                </p>
-              )}
               <h2 className="font-bold text-custom-brown1">
                 Sustainable Development Goals*
               </h2>
-              <p className="text-sm text-gray-500">
-                Select one or more Sustainable Development Goals that fit your
-                company (usually max. 5) and describe how you contribute to
-                achieve this goal.
-              </p>
 
               <div className="text-red-500">
                 {(errors?.companyData?.sdgs as any)?.message}
@@ -374,7 +366,7 @@ and get the form state. */
               <div>
                 <h2 className="text-base font-bold">Job description*</h2>
                 <RichTextEditor
-                  placeholder="Write a good job description..."
+                  placeholder="Provide a detailed description of the job..."
                   state={setjobDescriptionHtml}
                 />
               </div>
@@ -705,7 +697,7 @@ and get the form state. */
                   id="invoiceInfo.postalCode"
                   register={register}
                   title="Postal Code*"
-                  placeholder="90001"
+                  placeholder="1234AB"
                 />
 
                 <FormFieldString

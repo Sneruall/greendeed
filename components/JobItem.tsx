@@ -62,40 +62,38 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 <h2 className="hidden font-semibold sm:block">
                   {job.jobTitle} - {job.companyData.name}
                 </h2>
-                <div className="my-auto flex flex-row gap-2 font-century text-xs">
-                  <p className="line-clamp-1">
-                    {/* If remote */}
-                    {job.locationInfo?.location == 'remote' && 'Remote'}
-                    {/* If Hybrid */}
-                    {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
-                  </p>
-                </div>
-                <div className="font-century text-xs line-clamp-1">
-                  {/* If onSite and single location */}
-                  {job.locationInfo?.location == 'onSite' &&
-                    job.locationInfo?.onSiteLocation &&
-                    !(job.locationInfo?.onSiteLocation instanceof Array) &&
-                    job.locationInfo?.onSiteLocation}
-                  {/* If onSite and multiple locations */}
-                  {job.locationInfo?.location == 'onSite' &&
-                    job.locationInfo?.onSiteLocation &&
-                    job.locationInfo?.onSiteLocation instanceof Array &&
-                    job.locationInfo?.onSiteLocation?.join(', ')}
-                  {job.locationInfo?.location == 'onSiteOrRemote' && 'Hybrid'}
-                  {/* If onSite and single location */}
-                  {job.locationInfo?.location == 'onSiteOrRemote' &&
-                    job.locationInfo?.onSiteLocation &&
-                    !(job.locationInfo?.onSiteLocation instanceof Array) &&
-                    job.locationInfo?.onSiteLocation}
-                  {/* If onSite and multiple locations */}
-                  {job.locationInfo?.location == 'onSiteOrRemote' &&
-                    job.locationInfo?.onSiteLocation &&
-                    job.locationInfo?.onSiteLocation instanceof Array &&
-                    job.locationInfo?.onSiteLocation?.join(', ')}
-                </div>
-                <div className="font-century text-xs line-clamp-1">
-                  {job.locationInfo.geoRestriction}
-                </div>
+                {job.locationInfo?.location !== 'onSite' && (
+                  <div className="my-auto flex flex-row gap-2 font-century text-xs">
+                    <p className="line-clamp-1">
+                      {job.locationInfo?.location === 'remote'
+                        ? '🏠 Remote'
+                        : job.locationInfo?.location === 'onSiteOrRemote'
+                        ? '🏘️ Hybrid'
+                        : null}
+                    </p>
+                  </div>
+                )}
+                {job.locationInfo?.location !== 'remote' && (
+                  <div className="font-century text-xs line-clamp-1">
+                    🏢{' '}
+                    {job.locationInfo?.location === 'onSite'
+                      ? Array.isArray(job.locationInfo?.onSiteLocation)
+                        ? job.locationInfo?.onSiteLocation?.join(', ')
+                        : job.locationInfo?.onSiteLocation
+                      : job.locationInfo?.location === 'onSiteOrRemote' &&
+                        (Array.isArray(job.locationInfo?.onSiteLocation)
+                          ? job.locationInfo?.onSiteLocation?.join(', ')
+                          : job.locationInfo?.onSiteLocation)}
+                  </div>
+                )}
+                {job.locationInfo.geoRestriction && (
+                  <div className="font-century text-xs line-clamp-1">
+                    🌐{' '}
+                    {Array.isArray(job.locationInfo.geoRestriction)
+                      ? job.locationInfo.geoRestriction.join(', ')
+                      : job.locationInfo.geoRestriction}
+                  </div>
+                )}
                 <div className="flex gap-1 sm:hidden">
                   {sdgList}
                   {sdgList.length > 4 && (

@@ -53,12 +53,6 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 )}
               </div>
               <div className="my-auto flex flex-col gap-1 font-omnes text-black">
-                {/* <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
-                  {job.jobTitle}
-                </h2>
-                <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
-                  {job.companyData.name}
-                </h2> */}
                 <h2 className="text-sm font-semibold sm:text-base">
                   {job.jobTitle} - {job.companyData.name}
                 </h2>
@@ -68,24 +62,19 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                   }my-auto flex font-century text-xs`}
                 >
                   <div>
-                    {job.locationInfo?.location === 'remote'
-                      ? '🏠 Remote'
-                      : job.locationInfo?.location === 'onSiteOrRemote'
-                      ? '🏘️ Hybrid'
-                      : null}
+                    {job.locationInfo?.location === 'remote' && '🏠 Remote'}
+                    {job.locationInfo?.location === 'onSiteOrRemote' &&
+                      '🏘️ Hybrid'}
                   </div>
-                  <div>
-                    {job.locationInfo?.location !== 'remote' && (
-                      <span>
-                        🏢{' '}
-                        {Array.isArray(job.locationInfo?.onSiteLocation)
-                          ? job.locationInfo?.onSiteLocation?.join(', ')
-                          : job.locationInfo?.onSiteLocation}
-                      </span>
-                    )}
-                  </div>
+                  {job.locationInfo?.location !== 'remote' && (
+                    <div>
+                      🏢{' '}
+                      {Array.isArray(job.locationInfo?.onSiteLocation)
+                        ? job.locationInfo?.onSiteLocation?.join(', ')
+                        : job.locationInfo?.onSiteLocation}
+                    </div>
+                  )}
                 </div>
-
                 {job.locationInfo.geoRestriction && (
                   <div className="font-century text-xs line-clamp-1">
                     🌐{' '}

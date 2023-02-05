@@ -18,7 +18,7 @@ export const SearchBar = () => {
           <div className="flex-1"></div>
           <div
             id="search"
-            className="relative z-50 h-full w-64 flex-initial translate-y-1 transform"
+            className="relative z-10 h-full w-64 flex-initial translate-y-1 transform"
           >
             <Image
               src={'/images/home/finding-a-sustainable-job.png'}

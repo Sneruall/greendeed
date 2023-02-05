@@ -41,7 +41,7 @@ const CompanyChecker: React.FC<{
         !retrievedCompanyData?.name &&
         'Welcome to Greendeed!'}
       {companyNameIsLoading &&
-        'Checking for existing organizations at Greendeed...'}
+        'Checking for existing companies at Greendeed...'}
     </div>
   );
 };

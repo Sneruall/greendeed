@@ -17,31 +17,21 @@ function Pricing() {
         <div className="mt-20 flex flex-col gap-4 text-center">
           <div className="flex justify-center gap-4">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
-            <h3 className="heading-sm-omnes my-auto">
-              Upload company logo + web link
-            </h3>
+            <h3 className="heading-sm-omnes my-auto">60-Day Visibility</h3>
           </div>
           <div className="flex justify-center gap-2">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
-            <h3 className="heading-sm-omnes my-auto">60 days visible</h3>
-          </div>
-          <div className="flex justify-center gap-2">
-            <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
-            <h3 className="heading-sm-omnes my-auto">
-              Own unique company page
-            </h3>
+            <h3 className="heading-sm-omnes my-auto">Custom Company Page</h3>
           </div>
           <div className="flex justify-center gap-2">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
             <h3 className="heading-sm-omnes my-auto">
-              Premium customer support
+              Dedicated Customer Support
             </h3>
           </div>
           <div className="flex justify-center gap-2">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
-            <h3 className="heading-sm-omnes my-auto">
-              % discount for volunteer vacancies
-            </h3>
+            <h3 className="heading-sm-omnes my-auto">50% off Volunteer Jobs</h3>
           </div>
           <div className="my-16">
             <Link href="#post-job">

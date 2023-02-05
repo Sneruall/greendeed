@@ -21,10 +21,10 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-omnes">1. Post your job</h3>
+            <h3 className="heading-sm-omnes">1. Post Your Job</h3>
             <p className="text-main">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut
+              Share your company's sustainability mission and describe your job
+              opening to attract purpose-driven talent.
             </p>
           </div>
         </div>
@@ -40,10 +40,10 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-omnes">2. Get validated</h3>
+            <h3 className="heading-sm-omnes">2. Get Validated</h3>
             <p className="text-main">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut
+              Your first job listing is thoroughly evaluated by our team to
+              ensure your company supports one or more SDGs.
             </p>
           </div>
         </div>
@@ -59,10 +59,10 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-omnes">3. Get candidates</h3>
+            <h3 className="heading-sm-omnes">3. Get Candidates</h3>
             <p className="text-main">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut
+              Connect with purpose-driven talent dedicated to making a
+              difference and are a perfect fit for your company.
             </p>
           </div>
         </div>

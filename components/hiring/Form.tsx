@@ -246,7 +246,7 @@ and get the form state. */
               {/* COMPANY NAME */}
               <FormFieldString
                 id="companyData.name"
-                title="Organization name*"
+                title="Company name*"
                 errors={errors.companyData?.name}
                 placeholder="e.g. Greenpeace"
                 register={register}
@@ -335,7 +335,7 @@ and get the form state. */
               </h2>
               <p className="text-sm text-gray-500">
                 Select one or more Sustainable Development Goals that fit your
-                organization (usually max. 5) and describe how you contribute to
+                company (usually max. 5) and describe how you contribute to
                 achieve this goal.
               </p>
 
@@ -814,7 +814,11 @@ and get the form state. */
             </button>
           </div>
         </form>
-        <div className="mx-auto my-10 flex max-w-xl space-x-4">
+        <div className="mx-auto max-w-2xl">
+          <p className="my-2 mt-4 text-left text-sm">*Required field</p>
+        </div>
+
+        <div className="mx-auto my-6 flex max-w-xl space-x-4">
           {/* FORM NAVIGATION */}
           <FormNavigation
             activeFormStep={activeFormStep}

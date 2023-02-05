@@ -33,7 +33,9 @@ const JobListing: React.FC<{
           <>
             <h1 className="heading-sm-omnes inline text-sm font-bold first-letter:capitalize sm:text-base">
               {!search && category && capitalizeFirstLetter(category)}{' '}
-              {capitalizeFirstLetter(search + ' ')}jobs
+              {search && capitalizeFirstLetter(search + ' jobs')}
+              {(!search || (sdgNames && !category && !search)) &&
+                capitalizeFirstLetter('jobs')}
               {!sdgNames && ' targeting the Sustainable Development Goals'}
               {sdgNames && ' figthing for '}
               {sdgNames?.map((name, i) => (

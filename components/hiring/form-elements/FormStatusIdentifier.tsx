@@ -71,22 +71,21 @@ const FormStatusIdentifier = ({
       </div>
       <div className="my-12 text-center lg:my-16">
         <h1 className="heading-xl my-8">
-          {activeFormStep === 1 && 'Start by filling in your company details'}
+          {activeFormStep === 1 && 'Start by Showcasing Your Company'}
           {activeFormStep === 2 && 'Sustainable Development Goals'}
-          {activeFormStep === 3 && 'Tell us about the Job'}
+          {activeFormStep === 3 && 'Tell us About the Job'}
           {activeFormStep === 4 && 'Finalize the Job Listing'}
         </h1>
         <p className="text-main">
           {activeFormStep === 1 &&
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+            "Tell us about your company's mission, values, and achievements and share adding your company logo and website link."}
           {activeFormStep === 2 &&
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+            "Choose the sustainable development goals that align with your company's mission and share how you are contributing to each goal."}
           {activeFormStep === 3 &&
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+            'Provide a detailed description of the job including job title, responsibilities, salary, job type, and location to attract the best fit for your company.'}
           {activeFormStep === 4 &&
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimat'}
+            'Enter your administrative details and complete your job posting. Our dedicated support team will assist you with any questions or concerns.'}
         </p>
-        <p className="my-2 text-sm">*Required field</p>
       </div>
     </div>
   );

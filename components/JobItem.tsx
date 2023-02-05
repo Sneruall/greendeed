@@ -53,39 +53,39 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 )}
               </div>
               <div className="my-auto flex flex-col gap-1 font-omnes text-black">
-                <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
+                {/* <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
                   {job.jobTitle}
                 </h2>
                 <h2 className="text-sm font-semibold line-clamp-1 sm:hidden">
                   {job.companyData.name}
-                </h2>
-                <h2 className="hidden font-semibold sm:block">
+                </h2> */}
+                <h2 className="text-sm font-semibold sm:text-base">
                   {job.jobTitle} - {job.companyData.name}
                 </h2>
-                {job.locationInfo?.location !== 'onSite' && (
-                  <div className="my-auto flex flex-row gap-2 font-century text-xs">
-                    <p className="line-clamp-1">
-                      {job.locationInfo?.location === 'remote'
-                        ? '🏠 Remote'
-                        : job.locationInfo?.location === 'onSiteOrRemote'
-                        ? '🏘️ Hybrid'
-                        : null}
-                    </p>
+                <div
+                  className={`${
+                    job.locationInfo?.location === 'onSite' ? '' : 'gap-2 '
+                  }my-auto flex font-century text-xs`}
+                >
+                  <div>
+                    {job.locationInfo?.location === 'remote'
+                      ? '🏠 Remote'
+                      : job.locationInfo?.location === 'onSiteOrRemote'
+                      ? '🏘️ Hybrid'
+                      : null}
                   </div>
-                )}
-                {job.locationInfo?.location !== 'remote' && (
-                  <div className="font-century text-xs line-clamp-1">
-                    🏢{' '}
-                    {job.locationInfo?.location === 'onSite'
-                      ? Array.isArray(job.locationInfo?.onSiteLocation)
-                        ? job.locationInfo?.onSiteLocation?.join(', ')
-                        : job.locationInfo?.onSiteLocation
-                      : job.locationInfo?.location === 'onSiteOrRemote' &&
-                        (Array.isArray(job.locationInfo?.onSiteLocation)
+                  <div>
+                    {job.locationInfo?.location !== 'remote' && (
+                      <span>
+                        🏢{' '}
+                        {Array.isArray(job.locationInfo?.onSiteLocation)
                           ? job.locationInfo?.onSiteLocation?.join(', ')
-                          : job.locationInfo?.onSiteLocation)}
+                          : job.locationInfo?.onSiteLocation}
+                      </span>
+                    )}
                   </div>
-                )}
+                </div>
+
                 {job.locationInfo.geoRestriction && (
                   <div className="font-century text-xs line-clamp-1">
                     🌐{' '}

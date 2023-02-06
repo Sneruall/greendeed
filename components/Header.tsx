@@ -39,7 +39,7 @@ function Header() {
               <HiMenu className="text-main h-8 w-8" />
             )}
           </div>
-          <div className="self-center">
+          <div className="self-center sm:w-40 md:w-52">
             <Link href="/">
               <a
                 className={`${
@@ -77,10 +77,10 @@ function Header() {
           </div>
 
           {/* Post a Job button */}
-          <div>
+          <div className="sm:w-40 md:w-48 lg:w-52">
             <Link href="/hiring#post-job">
               <a>
-                <button className="button-1 px-4 text-base md:px-8">
+                <button className="button-1 px-4 md:px-6 md:text-base lg:px-8">
                   Post a Job - €250
                 </button>
               </a>

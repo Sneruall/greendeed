@@ -3,6 +3,7 @@ import React from 'react';
 import { Company, Job } from '../../types/types';
 import parse from 'html-react-parser';
 import { options } from '../../helpers/htmlReactParserOptions';
+import Link from 'next/link';
 
 type Props = {
   job: Job;
@@ -40,16 +41,22 @@ function JobDescription({ job, company }: Props) {
             </span>
           </h1>
         </div>
-        {/* <div className="flex flex-row items-center gap-4 sm:gap-8 xl:gap-10">
-                  <Link href={job.apply}>
-                    <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-                      Apply
-                    </button>
-                  </Link>
-                  <div className="flex flex-row gap-2 md:flex-shrink-0">
-                    {mappedSdg}
-                  </div>
-                </div> */}
+      </div>
+      {/* button mobile */}
+      <div className="mt-4 lg:hidden">
+        <div className="">
+          <Link
+            href={
+              job?.applicationMethod === 'website'
+                ? job?.apply
+                : `mailto:${job?.apply}` || '#'
+            }
+          >
+            <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
+              Apply now
+            </button>
+          </Link>
+        </div>
       </div>
       {/* job description */}
       <div className="my-10">

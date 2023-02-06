@@ -2,7 +2,6 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import 'react-quill/dist/quill.snow.css';
 import ScrollToTop from '../components/ScrollToTop';
-import { Fragment } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Layout from '../components/Layout';
 

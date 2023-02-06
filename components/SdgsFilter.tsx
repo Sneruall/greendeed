@@ -46,7 +46,7 @@ selectedSdgs array. */
 
   return (
     <div className="mx-2 mt-20">
-      <div className="relative mx-auto flex max-w-6xl flex-wrap justify-center">
+      <div className="relative mx-4 flex max-w-6xl flex-wrap justify-center sm:mx-auto">
         {sdgList.map((sdg) => {
           return (
             <Tooltip

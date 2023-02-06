@@ -9,7 +9,7 @@ type Props = {
 
 function LatestJobs({ jobs }: Props) {
   return (
-    <div className="site-margins mx-auto max-w-screen-xl">
+    <div className="site-margins mx-auto mb-10 max-w-screen-xl">
       <h2 className="heading-xl mt-16 mb-10">
         Latest sustainable jobs on Greendeed
       </h2>

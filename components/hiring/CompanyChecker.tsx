@@ -23,14 +23,12 @@ const CompanyChecker: React.FC<{
                 retrievedCompanyData.name.toLowerCase(),
                 retrievedCompanyData.id
               )}
-            >
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                {retrievedCompanyData.name}
-              </a>
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline">
+
+              {retrievedCompanyData.name}
+
             </Link>
             , we retrieved the below information from previous job posts made by
             you, feel free to update it.

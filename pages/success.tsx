@@ -33,16 +33,16 @@ function Success() {
             </div>
 
             <div className="text-center">
-              <Link href="/">
-                <a className="hover:no-underline">
-                  <button className="button-2 mt-10">
-                    <span className="w-full">Go to Home</span>
-                  </button>
-                </a>
+              <Link href="/" className="hover:no-underline">
+
+                <button className="button-2 mt-10">
+                  <span className="w-full">Go to Home</span>
+                </button>
+
               </Link>
               <div className="my-2 text-custom-brown1 underline opacity-70 hover:opacity-100">
-                <Link href="/hiring#post-job">
-                  <a className="">Or post another job</a>
+                <Link href="/hiring#post-job" className="">
+                  Or post another job
                 </Link>
               </div>
             </div>

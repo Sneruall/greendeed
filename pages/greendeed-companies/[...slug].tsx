@@ -69,9 +69,9 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
           )}
           <div className="my-4 text-center">
             <Link href="/#jobs">
-              <a>
-                <button className="button-1">Back to all jobs</button>
-              </a>
+
+              <button className="button-1">Back to all jobs</button>
+
             </Link>
           </div>
         </div>

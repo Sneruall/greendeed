@@ -9,7 +9,7 @@ type Props = { post: blog };
 
 function BlogPostCardFeatured({ post }: Props) {
   return (
-    <Link href="/blog/[slug]" as={`/blog/${post.slug.current}`}>
+    <Link href="/blog/[slug]" as={`/blog/${post.slug.current}`} legacyBehavior>
       <div className="shadow-2 hover:shadow-2-extra group relative flex h-full w-full cursor-pointer flex-col overflow-hidden bg-custom-green3">
         <div className="card-zoom-image absolute z-10 h-full w-full bg-black group-hover:scale-110">
           <Image

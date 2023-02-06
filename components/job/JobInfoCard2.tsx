@@ -22,35 +22,35 @@ function JobInfoCard2({ job, company }: Props) {
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
             return (
-              <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
-                <a>
-                  <li
-                    className="relative h-full w-8 hover:opacity-90"
-                    key={sdgObject.sdg}
+              (<Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
+
+                <li
+                  className="relative h-full w-8 hover:opacity-90"
+                  key={sdgObject.sdg}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 200"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 100 200"
-                    >
-                      <polygon
-                        points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                        fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
-                      />
-                    </svg>
-                    <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
-                      <Image
-                        src={
-                          '/images/icons/sdg-icons/' + sdgObject.sdg + '.png'
-                        }
-                        width={50}
-                        height={50}
-                        objectFit="contain"
-                        layout="intrinsic"
-                      />
-                    </div>
-                  </li>
-                </a>
-              </Link>
+                    <polygon
+                      points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
+                      fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
+                    />
+                  </svg>
+                  <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
+                    <Image
+                      src={
+                        '/images/icons/sdg-icons/' + sdgObject.sdg + '.png'
+                      }
+                      width={50}
+                      height={50}
+                      objectFit="contain"
+                      layout="intrinsic"
+                    />
+                  </div>
+                </li>
+
+              </Link>)
             );
           })}
           {job && job.companyData.sdgs.length > 4 && (
@@ -143,22 +143,22 @@ function JobInfoCard2({ job, company }: Props) {
                 : job?.apply
             }
           >
-            <a>
-              {company?.logo ? (
-                <Image
-                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
-                  width={50}
-                  height={50}
-                />
-              ) : (
-                <div className="mx-auto mb-2 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-custom-brown1 text-center">
-                  <span className="font-omnes text-xl capitalize text-gray-200">
-                    {job.companyData.name[0]}
-                  </span>
-                </div>
-              )}
-              <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
-            </a>
+
+            {company?.logo ? (
+              <Image
+                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
+                width={50}
+                height={50}
+              />
+            ) : (
+              <div className="mx-auto mb-2 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-custom-brown1 text-center">
+                <span className="font-omnes text-xl capitalize text-gray-200">
+                  {job.companyData.name[0]}
+                </span>
+              </div>
+            )}
+            <h3 className="heading-sm-omnes">{job.companyData.name}</h3>
+
           </Link>
         </div>
         {/* Button */}
@@ -170,7 +170,7 @@ function JobInfoCard2({ job, company }: Props) {
                   ? job?.apply
                   : `mailto:${job?.apply}` || '#'
               }
-            >
+              legacyBehavior>
               <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
                 Apply for the position
               </button>

@@ -26,7 +26,7 @@ const ptComponents = {
   link: ({ children, value }) => {
     return (
       <Link href={value.href}>
-        <a>{children}</a>
+        {children}
       </Link>
     );
   },

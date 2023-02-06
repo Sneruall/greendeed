@@ -21,7 +21,10 @@ function BlogHero({ latestPost }: Props) {
         </div>
         <div className="my-10">
           {latestPost.mainImage && (
-            <Link href="/blog/[slug]" as={`/blog/${latestPost.slug.current}`}>
+            <Link
+              href="/blog/[slug]"
+              as={`/blog/${latestPost.slug.current}`}
+              legacyBehavior>
               <div className="card-zoom relative h-[500px] cursor-pointer lg:h-[620px]">
                 <div className="card-zoom-image">
                   <Image

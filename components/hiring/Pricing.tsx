@@ -35,9 +35,9 @@ function Pricing() {
           </div>
           <div className="my-16">
             <Link href="#post-job">
-              <a>
-                <button className="button-1">Post Job Now!</button>
-              </a>
+
+              <button className="button-1">Post Job Now!</button>
+
             </Link>
             <div>
               <p className="my-2 text-sm tracking-wide">For only €250</p>

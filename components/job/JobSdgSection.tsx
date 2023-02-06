@@ -14,8 +14,8 @@ function JobSdgSection({ job, company }: Props) {
         {!job?.external && company ? (
           <Link
             href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
-          >
-            <a className="underline">{company.name}</a>
+            className="underline">
+            {company.name}
           </Link>
         ) : (
           <Link
@@ -24,8 +24,8 @@ function JobSdgSection({ job, company }: Props) {
                 ? job?.apply
                 : `mailto:${job?.apply}` || '#'
             }
-          >
-            <a className="underline">{job?.companyData.name}</a>
+            className="underline">
+            {job?.companyData.name}
           </Link>
         )}
       </div>
@@ -95,7 +95,7 @@ function JobSdgSection({ job, company }: Props) {
                   : `mailto:${job?.apply}`)) ||
               '#sustainable-jobs'
             }
-          >
+            legacyBehavior>
             <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
               Apply
             </button>

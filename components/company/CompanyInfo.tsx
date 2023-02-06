@@ -29,7 +29,7 @@ function CompanyInfo({ company }: Props) {
         </div>
         {company.website && (
           <div className="text-center">
-            <Link href={`https://${company.website}`}>{company.website}</Link>
+            <Link href={`https://${company.website}`} legacyBehavior>{company.website}</Link>
           </div>
         )}
       </div>
@@ -39,7 +39,7 @@ function CompanyInfo({ company }: Props) {
         </div>
       )}
       <div className="my-4 text-center">
-        <Link href="#sustainable-jobs">
+        <Link href="#sustainable-jobs" legacyBehavior>
           <button className="button-2">{`Jobs at ${company?.name}`}</button>
         </Link>
       </div>

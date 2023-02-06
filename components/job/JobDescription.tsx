@@ -51,7 +51,7 @@ function JobDescription({ job, company }: Props) {
                 ? job?.apply
                 : `mailto:${job?.apply}` || '#'
             }
-          >
+            legacyBehavior>
             <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
               Apply now
             </button>

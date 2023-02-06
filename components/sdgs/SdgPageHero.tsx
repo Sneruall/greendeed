@@ -20,12 +20,12 @@ function SdgPageHero({}: Props) {
             contributions towards a sustainable future.{' '}
             <span className="hidden underline hover:text-custom-brown4 lg:inline">
               <Link href="#sdg1">
-                <a>Read more</a>
+                Read more
               </Link>
             </span>{' '}
             <span className="underline hover:text-custom-brown4 lg:hidden">
               <Link href="#goals">
-                <a>Read more</a>
+                Read more
               </Link>
             </span>{' '}
             about each goal and how you can make a difference with your job
@@ -104,7 +104,7 @@ function SdgPageHero({}: Props) {
                         className="relative
                   mx-1 h-12 w-12 cursor-pointer border-2 border-gray-100 hover:scale-105 hover:border-custom-brown1"
                       >
-                        <Link href={`#sdg${sdg.code}`}>
+                        <Link href={`#sdg${sdg.code}`} legacyBehavior>
                           <Image
                             src={`/images/icons/sdg-icons/${sdg.code}.png`}
                             objectFit="cover"

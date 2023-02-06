@@ -37,7 +37,7 @@ function SimilarJobs({ similarJobs, currentJobId }) {
       </Carousel>
       {similarJobs.length > 0 && (
         <div className="my-5 text-center">
-          <Link href={`/?category=${similarJobs[0].category.slug}#jobs`}>
+          <Link href={`/?category=${similarJobs[0].category.slug}#jobs`} legacyBehavior>
             <button className="button-1">
               More {similarJobs[0].category.name} Jobs
             </button>

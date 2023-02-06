@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import React from 'react';
 import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
@@ -9,6 +10,14 @@ import Pricing from '../components/hiring/Pricing';
 function Hiring() {
   return (
     <>
+      <Script
+        src="https://widget.Cloudinary.com/v2.0/global/all.js"
+        type="text/javascript"
+      ></Script>
+      <Script
+        async
+        src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"
+      />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -30,10 +39,6 @@ function Hiring() {
           key="ogdesc"
         />
         <link rel="icon" href="/favicon.ico" />
-        <script
-          src="https://widget.Cloudinary.com/v2.0/global/all.js"
-          type="text/javascript"
-        ></script>
       </Head>
 
       <div className="mx-auto">

@@ -4,7 +4,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
 import { generateJobUrl } from '../helpers/urlGeneration';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);

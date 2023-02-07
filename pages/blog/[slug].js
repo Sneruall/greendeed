@@ -2,7 +2,7 @@ import groq from 'groq';
 import { PortableText } from '@portabletext/react';
 import client from '../../client';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useNextSanityImage } from 'next-sanity-image';
 import Head from 'next/head';
 import { getJobsFromMongo } from '../../backend/job/jobDb';

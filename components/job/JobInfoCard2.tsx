@@ -1,6 +1,6 @@
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import React from 'react';
 import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';

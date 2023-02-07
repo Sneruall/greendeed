@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import React from 'react';
 import { blog } from '../../types/types';
 import { useNextSanityImage } from 'next-sanity-image';

@@ -10,7 +10,7 @@ interface Props {
 export default function AltLayout({ children }: Props) {
   return (
     <Fragment>
-      <Header />
+      <Header darkmode={true} />
       <main>{children}</main>
       <Footer />
     </Fragment>

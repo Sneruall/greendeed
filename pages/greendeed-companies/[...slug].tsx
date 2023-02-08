@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
 import { Company, Job } from '../../types/types';
 import {

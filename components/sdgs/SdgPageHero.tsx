@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 import { sdgList } from '../../types/types';
@@ -19,14 +19,10 @@ function SdgPageHero({}: Props) {
             positions featured on the platform are making meaningful
             contributions towards a sustainable future.{' '}
             <span className="hidden underline hover:text-custom-brown4 lg:inline">
-              <Link href="#sdg1">
-                Read more
-              </Link>
+              <Link href="#sdg1">Read more</Link>
             </span>{' '}
             <span className="underline hover:text-custom-brown4 lg:hidden">
-              <Link href="#goals">
-                Read more
-              </Link>
+              <Link href="#goals">Read more</Link>
             </span>{' '}
             about each goal and how you can make a difference with your job
             below.
@@ -51,6 +47,7 @@ function SdgPageHero({}: Props) {
                 width={250}
                 objectFit="contain"
                 layout="intrinsic"
+                alt="step 2"
               />
             </div>
             <div className="md:text-right">

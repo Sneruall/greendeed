@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 import { BiChevronsDown } from 'react-icons/bi';
@@ -37,6 +37,7 @@ function HiringHero() {
                 height={480}
                 objectFit="contain"
                 layout="intrinsic"
+                alt="Two ladies having a job interview"
               />
             </div>
           </div>
@@ -44,12 +45,10 @@ function HiringHero() {
 
         <div className="text-center">
           <Link href="#post-job" className="hover:no-underline">
-
             <button className="button-with-icon-4 my-10">
               <span className="w-full">Post Job</span>
               <BiChevronsDown className="ml-2 h-6 w-6" />
             </button>
-
           </Link>
         </div>
       </div>

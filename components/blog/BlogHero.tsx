@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import React from 'react';
 import { blog } from '../../types/types';
 import { useNextSanityImage } from 'next-sanity-image';
@@ -24,7 +24,8 @@ function BlogHero({ latestPost }: Props) {
             <Link
               href="/blog/[slug]"
               as={`/blog/${latestPost.slug.current}`}
-              legacyBehavior>
+              legacyBehavior
+            >
               <div className="card-zoom relative h-[500px] cursor-pointer lg:h-[620px]">
                 <div className="card-zoom-image">
                   <Image

@@ -47,6 +47,7 @@ function LogoUploader({ imagePublicId, setImagePublicId, retrievedLogo }) {
             src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${retrievedLogo}?_a=AJE+xWI0`}
             width={100}
             height={100}
+            alt="logo"
           />
         )}
       </div>

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import React from 'react';
 
 function CompanyLogos() {
@@ -24,6 +24,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -33,6 +34,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -42,6 +44,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -51,6 +54,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -60,6 +64,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -69,6 +74,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
         <div>
@@ -78,6 +84,7 @@ function CompanyLogos() {
             height={50}
             objectFit="contain"
             layout="intrinsic"
+            alt=""
           />
         </div>
       </div>

@@ -7,6 +7,7 @@ import BlogPosts from '../../components/blog/BlogPosts';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import JobItem from '../../components/JobItem';
+import MainLayout from '../../layouts/MainLayout';
 
 const Index = ({ posts, jobs }) => {
   console.log(posts);
@@ -17,62 +18,65 @@ const Index = ({ posts, jobs }) => {
     </li>
   ));
 
-  return <>
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="utf-8" />
-      <title>
-        Explore how to make a positive impact with your job | Greendeed
-      </title>
-      <meta
-        name="description"
-        content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
-        key="desc"
-      />
-      <meta property="og:site_name" content="Greendeed" key="ogsitename" />
-      <meta
-        property="og:title"
-        content="Explore how to make a positive impact with your job | Greendeed"
-        key="ogtitle"
-      />
-      <meta
-        property="og:description"
-        content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
-        key="ogdesc"
-      />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>
+          Explore how to make a positive impact with your job | Greendeed
+        </title>
+        <meta
+          name="description"
+          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          key="desc"
+        />
+        <meta property="og:site_name" content="Greendeed" key="ogsitename" />
+        <meta
+          property="og:title"
+          content="Explore how to make a positive impact with your job | Greendeed"
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          key="ogdesc"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-    <div className="mx-auto">
-      {posts.length > 1 ? (
-        <>
-          <BlogHero latestPost={posts[1]} />
-          <BlogPosts posts={posts} />
-        </>
-      ) : (
-        <div className="site-margins my-32">
-          Retrieving blog posts failed... Try again or{' '}
-          <Link href="mailto:info@greendeed.io" className="font-bold text-custom-brown1">
-            contact us
-          </Link>{' '}
-          to report the issue, thanks!
-        </div>
-      )}
-      <div className="site-margins mx-auto max-w-screen-xl">
-        <h2 className="heading-xl mt-16 mb-10">
-          Latest sustainable jobs on Greendeed
-        </h2>
-        <div className="flex flex-col gap-3">{joblist}</div>
-        <div className="my-4 text-center">
-          <Link href="/#jobs">
-
-            <button className="button-1">See all jobs</button>
-
-          </Link>
+      <div className="mx-auto">
+        {posts.length > 1 ? (
+          <>
+            <BlogHero latestPost={posts[1]} />
+            <BlogPosts posts={posts} />
+          </>
+        ) : (
+          <div className="site-margins my-32">
+            Retrieving blog posts failed... Try again or{' '}
+            <Link
+              href="mailto:info@greendeed.io"
+              className="font-bold text-custom-brown1"
+            >
+              contact us
+            </Link>{' '}
+            to report the issue, thanks!
+          </div>
+        )}
+        <div className="site-margins mx-auto max-w-screen-xl">
+          <h2 className="heading-xl mt-16 mb-10">
+            Latest sustainable jobs on Greendeed
+          </h2>
+          <div className="flex flex-col gap-3">{joblist}</div>
+          <div className="my-4 text-center">
+            <Link href="/#jobs">
+              <button className="button-1">See all jobs</button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  </>;
+    </>
+  );
 };
 
 export async function getStaticProps() {
@@ -93,5 +97,9 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
+
+Index.getLayout = function getLayout(page) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 export default Index;

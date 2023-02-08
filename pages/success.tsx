@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 function Success() {
   return (
@@ -34,11 +35,9 @@ function Success() {
 
             <div className="text-center">
               <Link href="/" className="hover:no-underline">
-
                 <button className="button-2 mt-10">
                   <span className="w-full">Go to Home</span>
                 </button>
-
               </Link>
               <div className="my-2 text-custom-brown1 underline opacity-70 hover:opacity-100">
                 <Link href="/hiring#post-job" className="">
@@ -52,5 +51,9 @@ function Success() {
     </Fragment>
   );
 }
+
+(Success as any).getLayout = function getLayout(page: React.ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 export default Success;

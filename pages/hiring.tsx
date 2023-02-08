@@ -6,6 +6,7 @@ import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';
 import HowItWorks from '../components/hiring/HowItWorks';
 import Pricing from '../components/hiring/Pricing';
+import MainLayout from '../layouts/MainLayout';
 
 function Hiring() {
   return (
@@ -48,5 +49,9 @@ function Hiring() {
     </>
   );
 }
+
+(Hiring as any).getLayout = function getLayout(page: React.ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 export default Hiring;

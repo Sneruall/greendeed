@@ -1,11 +1,12 @@
 import Head from 'next/head';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 import SdgMenu from '../components/SdgMenu';
 import SdgPageHero from '../components/sdgs/SdgPageHero';
 import SdgPageList from '../components/sdgs/SdgPageList';
 import Tooltip from '../components/Tooltip';
+import MainLayout from '../layouts/MainLayout';
 import { sdgList } from '../types/types';
 
 type Props = {};
@@ -45,5 +46,11 @@ function workingForTheSDGs({}: Props) {
     </div>
   );
 }
+
+(workingForTheSDGs as any).getLayout = function getLayout(
+  page: React.ReactElement
+) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 export default workingForTheSDGs;

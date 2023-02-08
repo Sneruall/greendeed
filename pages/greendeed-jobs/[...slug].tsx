@@ -13,6 +13,7 @@ import JobDescription from '../../components/job/JobDescription';
 import SimilarJobs from '../../components/job/SimilarJobs';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
+import MainLayout from '../../layouts/MainLayout';
 
 const JobPage: NextPage<{
   job: Job;
@@ -80,6 +81,10 @@ const JobPage: NextPage<{
       </div>
     </>
   );
+};
+
+(JobPage as any).getLayout = function getLayout(page: React.ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
 };
 
 export default JobPage;

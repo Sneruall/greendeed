@@ -1,14 +1,17 @@
 import Head from 'next/head';
 import Script from 'next/script';
-import React from 'react';
+import React, { useRef } from 'react';
 import CompanyLogos from '../components/hiring/CompanyLogos';
 import Form from '../components/hiring/Form';
 import HiringHero from '../components/hiring/HiringHero';
 import HowItWorks from '../components/hiring/HowItWorks';
 import Pricing from '../components/hiring/Pricing';
 import MainLayout from '../layouts/MainLayout';
+import { TargetRefContext } from '../context/TargetRefContext';
 
 function Hiring() {
+  const targetRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
       <Script
@@ -39,12 +42,14 @@ function Hiring() {
       </Head>
 
       <div className="mx-auto">
-        <HiringHero />
-        <CompanyLogos />
-        <Pricing />
-        <HowItWorks />
-        <Form />
-        <CompanyLogos />
+        <TargetRefContext.Provider value={targetRef}>
+          <HiringHero />
+          <CompanyLogos />
+          <Pricing />
+          <HowItWorks />
+          <Form />
+          <CompanyLogos />
+        </TargetRefContext.Provider>
       </div>
     </>
   );

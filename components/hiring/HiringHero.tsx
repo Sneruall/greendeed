@@ -12,7 +12,7 @@ function HiringHero() {
         </h1>
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <h2 className="heading-md-omnes">
+            <h2 className="heading-md-omnes2">
               Empower Your Hiring with a Sustainable-Focused Audience
             </h2>
             <p className="text-main">
@@ -20,7 +20,7 @@ function HiringHero() {
               a highly-targeted and engaged audience of candidates who are
               committed to making a difference.
             </p>
-            <h2 className="heading-md-omnes mt-6 sm:mt-8">
+            <h2 className="heading-md-omnes2 mt-6 sm:mt-8">
               Find the Right Candidate Sooner
             </h2>
             <p className="text-main">

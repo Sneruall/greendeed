@@ -11,14 +11,14 @@ function SdgPageHero({}: Props) {
     <div className="site-margins">
       <div className="mx-auto max-w-6xl pt-24 sm:pt-32">
         <div>
-          <h1 className="heading-xl mb-6">
+          <h1 className="heading-xl mb-6 font-normal">
             Working for the Sustainable Development Goals
           </h1>
-          <h2 className="heading-md-omnes">
+          <h2 className="heading-md-omnes2 font-light">
             By aligning with the SDGs, we ensure that the organizations and job
             positions featured on the platform are making meaningful
             contributions towards a sustainable future.{' '}
-            <span className="hidden underline hover:text-custom-brown4 lg:inline">
+            <span className="hidden font-normal underline hover:text-custom-brown4 lg:inline">
               <Link href="#sdg1">Read more</Link>
             </span>{' '}
             <span className="underline hover:text-custom-brown4 lg:hidden">

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import React from 'react';
 import { sdgList } from '../../types/types';
 
@@ -53,7 +53,7 @@ function SdgPageList({}: Props) {
                 />
               </div>
               <div className="">
-                <h2 className="heading-md-omnes text-white">{sdg.title}</h2>
+                <h2 className="heading-md-omnes2 text-white">{sdg.title}</h2>
                 <p>{sdg.greendeedDescription}</p>
               </div>
             </div>

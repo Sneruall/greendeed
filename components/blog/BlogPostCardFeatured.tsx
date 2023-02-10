@@ -2,7 +2,7 @@ import React from 'react';
 import { blog } from '../../types/types';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '../../client';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 
 type Props = { post: blog };
@@ -24,7 +24,9 @@ function BlogPostCardFeatured({ post }: Props) {
         <div className="z-20 p-6 lg:p-10">
           <div>
             <div className="my-10 w-32 rounded-full bg-custom-green2 text-center">
-              <p className="font-ict font-bold text-custom-brown1">Featured</p>
+              <p className="font-omnes font-bold text-custom-brown1">
+                Featured
+              </p>
             </div>
           </div>
           <div className="my-2">

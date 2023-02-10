@@ -11,7 +11,6 @@ module.exports = {
         sans: ['century-gothic', ...defaultTheme.fontFamily.sans],
         alfa: ['Alfa Slab One', ...defaultTheme.fontFamily.sans],
         century: ['century-gothic', ...defaultTheme.fontFamily.sans],
-        ict: ['itc-avant-garde-gothic-pro', ...defaultTheme.fontFamily.sans],
         omnes: ['omnes-pro', ...defaultTheme.fontFamily.sans],
       },
       colors: {

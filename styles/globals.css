@@ -81,6 +81,9 @@
   .footer-link {
     @apply text-white hover:underline;
   }
+  .button-yellow {
+    @apply rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70;
+  }
   .button-1 {
     @apply shadow-1 rounded-full bg-custom-green2 py-2 px-8 font-omnes text-sm font-bold tracking-wide text-custom-brown1 hover:opacity-70;
   }

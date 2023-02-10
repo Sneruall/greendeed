@@ -53,7 +53,7 @@ function LogoUploader({ imagePublicId, setImagePublicId, retrievedLogo }) {
       </div>
       <button
         type="button"
-        className="mr-2 inline-flex items-center rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70"
+        className="button-yellow mr-2 inline-flex items-center rounded-full"
         onClick={openWidget}
       >
         {loadingSpinner && (

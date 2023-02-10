@@ -735,7 +735,7 @@ and get the form state. */
                 />
                 <button
                   type="button"
-                  className="button-1 mt-auto mb-2 h-12"
+                  className="button-yellow mt-auto mb-3"
                   onClick={() => {
                     if (coupon === '2030') {
                       setPrice(0);
@@ -786,7 +786,7 @@ and get the form state. */
             </div>
           </div>
 
-          <div className="mx-auto my-6 flex max-w-xl space-x-4">
+          <div className="mx-auto my-10 flex max-w-2xl space-x-4">
             {/* FORM NAVIGATION */}
             <FormNavigation
               activeFormStep={activeFormStep}

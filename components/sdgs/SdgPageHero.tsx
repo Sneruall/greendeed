@@ -42,12 +42,12 @@ function SdgPageHero({}: Props) {
             </div>
             <div className="flex-none">
               <Image
-                src="/images/hiring/step2.png"
+                src="/images/sdgs/sdg-wheel.png"
                 height={250}
                 width={250}
                 objectFit="contain"
                 layout="intrinsic"
-                alt="step 2"
+                alt="SDG Wheel"
               />
             </div>
             <div className="md:text-right">

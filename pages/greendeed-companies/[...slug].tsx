@@ -69,7 +69,7 @@ const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
           )}
           <div className="my-4 text-center">
             <Link href="/#jobs">
-              <button className="button-1">Back to all jobs</button>
+              <button className="button-2">Back to all jobs</button>
             </Link>
           </div>
         </div>

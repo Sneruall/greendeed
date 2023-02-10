@@ -14,9 +14,9 @@ function BlogHero({ latestPost }: Props) {
     <section className="site-margins">
       <div className="mx-auto max-w-7xl pt-24 sm:pt-32">
         <div>
-          <h1 className="heading-2xl mb-4">Sustainable Jobs Blog</h1>
-          <h2 className="heading-md-omnes">
-            Ondertitle: Tips and Tricks for working sustainable
+          <h1 className="heading-2xl mb-4">Greendeed Blog</h1>
+          <h2 className="heading-md-omnes2">
+            Navigating Your Career for a Better World
           </h2>
         </div>
         <div className="my-10">

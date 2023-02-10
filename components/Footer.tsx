@@ -43,21 +43,16 @@ function Footer({}: Props) {
               </Link>
             </div>
             <div>
-              <Link href="/blog" className="footer-link">
-                Blog
-              </Link>
-            </div>
-            <div>
               <Link
                 href="/working-for-the-sustainable-development-goals"
                 className="footer-link"
               >
-                Sustainable Goals
+                SDGs
               </Link>
             </div>
             <div>
-              <Link href="#" className="footer-link">
-                Terms & Conditions
+              <Link href="/blog" className="footer-link">
+                Blog
               </Link>
             </div>
           </div>
@@ -105,7 +100,7 @@ function Footer({}: Props) {
                   mx-[3px] h-12 w-12 cursor-pointer border-2 border-custom-brown1 hover:scale-105 hover:border-gray-100"
                   >
                     <Link
-                      href={`working-for-the-sustainable-development-goals#sdg${sdg.code}`}
+                      href={`/working-for-the-sustainable-development-goals#sdg${sdg.code}`}
                       legacyBehavior
                     >
                       <Image
@@ -124,7 +119,18 @@ function Footer({}: Props) {
         </div>
       </div>
       <div className="text-center text-sm">
-        <p>© 2023 greendeed | Made sustainably</p>
+        <p>
+          © 2023 greendeed |{' '}
+          <span className="hover:underline">
+            <Link
+              href="https://www.websitecarbon.com/website/greendeed-io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check our website's footprint
+            </Link>
+          </span>
+        </p>
       </div>
     </footer>
   );

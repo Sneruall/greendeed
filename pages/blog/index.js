@@ -70,7 +70,7 @@ const Index = ({ posts, jobs }) => {
           <div className="flex flex-col gap-3">{joblist}</div>
           <div className="my-4 text-center">
             <Link href="/#jobs">
-              <button className="button-1">See all jobs</button>
+              <button className="button-2">See all jobs</button>
             </Link>
           </div>
         </div>

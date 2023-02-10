@@ -113,7 +113,7 @@ function JobInfoCard2({ job, company }: Props) {
           )}
           <li>⏰ {job.jobType}</li>
           <li>
-            {job.salary?.min?.formatted && '💰'}
+            {job.salary?.min?.formatted && '💰 '}
             {job.salary?.max?.formatted && job.salary?.currency}
             {job.salary?.min?.formatted?.replace(/US/g, '')}{' '}
             {job.salary?.max?.formatted && '- '}

@@ -31,7 +31,7 @@ function SdgPageHero({}: Props) {
         <div className="my-16">
           <div className="my-4 flex flex-wrap gap-2 md:flex-nowrap md:justify-center md:gap-8 lg:gap-16">
             <div className="">
-              <h3 className="heading-sm-omnes2">Sustainable Job Seekers</h3>
+              <h3 className="heading-sm-omnes3">Sustainable Job Seekers</h3>
               <p className="font-century text-sm italic leading-relaxed text-custom-brown1">
                 Greendeed provides a comprehensive framework for exploring
                 sustainable job opportunities. The labeling of companies
@@ -51,7 +51,7 @@ function SdgPageHero({}: Props) {
               />
             </div>
             <div className="md:text-right">
-              <h3 className="heading-sm-omnes2">Sustainable Employers</h3>
+              <h3 className="heading-sm-omnes3">Sustainable Employers</h3>
               <p className="font-century text-sm italic leading-relaxed text-custom-brown1">
                 Greendeed offers a valuable platform to connect with job seekers
                 who share their values and mission. The labeling of companies

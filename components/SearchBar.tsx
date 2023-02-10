@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React from 'react';
 import CategoryDropdown from './CategoryDropdown';
 import SdgsFilter from './SdgsFilter';
@@ -24,6 +24,7 @@ export const SearchBar = () => {
               src={'/images/home/finding-a-sustainable-job.png'}
               objectFit="contain"
               layout="fill"
+              alt=""
             />
           </div>
           <div className="flex-1"></div>

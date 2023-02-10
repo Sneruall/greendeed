@@ -4,7 +4,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import Link from 'next/link';
 import { generateJobUrl } from '../helpers/urlGeneration';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 const JobItem: React.FC<{ job: Job }> = ({ job }) => {
   TimeAgo.addLocale(en);
@@ -31,6 +31,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
         job.jobTitle.toLowerCase(),
         job.id
       )}
+      legacyBehavior
     >
       <div className="w-full cursor-pointer rounded-2xl bg-white py-2 px-5 shadow-[0_2px_20px_0px_rgba(0,0,0,0.1)] transition duration-300 ease-in-out hover:bg-[#CDF682]">
         <div className="flex justify-between sm:block">
@@ -43,6 +44,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                     width={40}
                     height={40}
                     className="rounded-full bg-white"
+                    alt={job.companyData.name + ' logo'}
                   />
                 ) : (
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-center">
@@ -94,6 +96,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                         objectFit="contain"
                         layout="intrinsic"
                         title="More SDGs"
+                        alt=""
                       />
                     </div>
                   )}
@@ -112,6 +115,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                       objectFit="contain"
                       layout="intrinsic"
                       title="More SDGs"
+                      alt=""
                     />
                   </div>
                 )}

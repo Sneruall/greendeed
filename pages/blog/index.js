@@ -7,6 +7,7 @@ import BlogPosts from '../../components/blog/BlogPosts';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import JobItem from '../../components/JobItem';
+import MainLayout from '../../layouts/MainLayout';
 
 const Index = ({ posts, jobs }) => {
   console.log(posts);
@@ -66,9 +67,7 @@ const Index = ({ posts, jobs }) => {
           <div className="flex flex-col gap-3">{joblist}</div>
           <div className="my-4 text-center">
             <Link href="/#jobs">
-              <a>
-                <button className="button-1">See all jobs</button>
-              </a>
+              <button className="button-2">See all jobs</button>
             </Link>
           </div>
         </div>
@@ -95,5 +94,9 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
+
+Index.getLayout = function getLayout(page) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 export default Index;

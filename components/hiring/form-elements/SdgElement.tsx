@@ -97,8 +97,8 @@ const SdgElement = ({
                 src={'/images/icons/sdg-icons/' + sdg.code + '.png'}
                 width={100}
                 height={100}
-                objectFit="contain"
-                layout="intrinsic"
+                className="contain"
+                alt=""
               />
             </div>
             <div className="absolute bottom-[110px] z-20 hidden w-56 overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-light text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 md:invisible md:-left-[62px] md:block md:peer-hover:visible md:peer-hover:opacity-100 lg:-left-[142px] lg:w-96 xl:left-0">

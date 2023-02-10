@@ -5,6 +5,7 @@ import { getJobsFromMongo } from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { JOB_EXPIRATION_TIME_MS } from '../helpers/constants';
+import MainLayout from '../layouts/MainLayout';
 
 interface IQuery {
   search?: string;
@@ -127,6 +128,11 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     </div>
   );
 };
+
+(Home as any).getLayout = function getLayout(page: React.ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};
+
 export async function getServerSideProps(context: any) {
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(

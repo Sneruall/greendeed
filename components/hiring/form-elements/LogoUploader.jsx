@@ -47,12 +47,13 @@ function LogoUploader({ imagePublicId, setImagePublicId, retrievedLogo }) {
             src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${retrievedLogo}?_a=AJE+xWI0`}
             width={100}
             height={100}
+            alt="logo"
           />
         )}
       </div>
       <button
         type="button"
-        className="mr-2 inline-flex items-center rounded-full bg-custom-yellow1 py-2 px-6 font-century text-sm font-bold text-custom-brown1 hover:opacity-70"
+        className="button-yellow mr-2 inline-flex items-center rounded-full"
         onClick={openWidget}
       >
         {loadingSpinner && (

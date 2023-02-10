@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React from 'react';
 import { Company, Job } from '../../types/types';
 import parse from 'html-react-parser';
@@ -22,6 +22,7 @@ function JobDescription({ job, company }: Props) {
                 src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
                 width={100}
                 height={100}
+                alt={company.name + 'logo'}
               />
             </div>
             <div className="flex-shrink-0 lg:hidden">
@@ -29,6 +30,7 @@ function JobDescription({ job, company }: Props) {
                 src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
                 width={50}
                 height={50}
+                alt={company.name + 'logo'}
               />
             </div>
           </>
@@ -51,6 +53,7 @@ function JobDescription({ job, company }: Props) {
                 ? job?.apply
                 : `mailto:${job?.apply}` || '#'
             }
+            legacyBehavior
           >
             <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
               Apply now

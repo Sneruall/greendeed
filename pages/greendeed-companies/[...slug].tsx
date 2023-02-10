@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Header from '../../components/Header';
 import JobItem from '../../components/JobItem';
 import { Company, Job } from '../../types/types';
 import {
@@ -15,8 +14,9 @@ import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import Link from 'next/link';
+import MainLayout from '../../layouts/MainLayout';
 
-const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
+const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   company,
   jobs,
 }) => {
@@ -69,9 +69,7 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
           )}
           <div className="my-4 text-center">
             <Link href="/#jobs">
-              <a>
-                <button className="button-1">Back to all jobs</button>
-              </a>
+              <button className="button-2">Back to all jobs</button>
             </Link>
           </div>
         </div>
@@ -80,7 +78,11 @@ const JobPage: NextPage<{ company: Company; jobs: [Job] }> = ({
   );
 };
 
-export default JobPage;
+(CompanyPage as any).getLayout = function getLayout(page: React.ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};
+
+export default CompanyPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.query;

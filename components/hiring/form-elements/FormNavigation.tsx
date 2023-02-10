@@ -12,8 +12,9 @@ type Props = {
 const FormNavigation = ({ changeFormStep, activeFormStep }: Props) => {
   return (
     <>
-      <div className="flex-1">
+      <div className="flex-1 self-center">
         <button
+          type="button"
           onClick={() => changeFormStep(activeFormStep - 1)}
           className={`button-with-icon-3 ${activeFormStep === 1 && 'hidden'}`}
         >
@@ -23,6 +24,7 @@ const FormNavigation = ({ changeFormStep, activeFormStep }: Props) => {
       </div>
 
       <button
+        type="button"
         onClick={() => changeFormStep(activeFormStep + 1)}
         className={`button-with-icon-2  ${activeFormStep === 4 && 'hidden'}`}
       >

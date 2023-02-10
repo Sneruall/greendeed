@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React from 'react';
 import { sdgList } from '../../types/types';
 
@@ -36,24 +36,25 @@ function SdgPageList({}: Props) {
             <div
               className={`${
                 i % 2 === 0 && 'ml-auto'
-              } flex max-w-4xl flex-col items-center justify-center gap-10 p-8 sm:flex-row`}
+              } flex max-w-4xl flex-col justify-center p-8 sm:flex-row sm:gap-10`}
             >
               <div
                 className={`${
                   i % 2 !== 0 && 'sm:order-2'
-                } min-w-[100px] md:flex-shrink-0`}
+                } mx-auto min-w-[100px] max-w-[150px] sm:mx-0 sm:max-w-[250px] lg:flex-shrink-0`}
               >
                 <Image
                   src={'/images/icons/sdg-icons/' + sdg.code + '.png'}
-                  width={150}
-                  height={150}
+                  width={250}
+                  height={250}
                   objectFit="contain"
-                  layout="intrinsic"
                   alt={sdg.name}
                 />
               </div>
               <div className="">
-                <h2 className="heading-md-omnes text-white">{sdg.title}</h2>
+                <h2 className="heading-md-omnes2 mb-4 text-white">
+                  {sdg.title}
+                </h2>
                 <p>{sdg.greendeedDescription}</p>
               </div>
             </div>

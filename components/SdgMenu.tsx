@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 import { sdgList } from '../types/types';
@@ -43,7 +43,7 @@ function SdgMenu({}: Props) {
                   className="relative
                   mx-[3px] h-12 w-12 cursor-pointer border-2 border-custom-brown1 hover:scale-105 hover:border-gray-100"
                 >
-                  <Link href={`#sdg${sdg.code}`}>
+                  <Link href={`#sdg${sdg.code}`} legacyBehavior>
                     <Image
                       src={`/images/icons/sdg-icons/${sdg.code}.png`}
                       objectFit="cover"

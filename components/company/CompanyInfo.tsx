@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React from 'react';
 import { Company } from '../../types/types';
 import parse from 'html-react-parser';
@@ -21,6 +21,7 @@ function CompanyInfo({ company }: Props) {
               src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_100,w_100/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
               width={100}
               height={100}
+              alt={company.name + ' logo'}
             />
           </div>
         )}
@@ -29,7 +30,9 @@ function CompanyInfo({ company }: Props) {
         </div>
         {company.website && (
           <div className="text-center">
-            <Link href={`https://${company.website}`}>{company.website}</Link>
+            <Link href={`https://${company.website}`} legacyBehavior>
+              {company.website}
+            </Link>
           </div>
         )}
       </div>
@@ -39,7 +42,7 @@ function CompanyInfo({ company }: Props) {
         </div>
       )}
       <div className="my-4 text-center">
-        <Link href="#sustainable-jobs">
+        <Link href="#sustainable-jobs" legacyBehavior>
           <button className="button-2">{`Jobs at ${company?.name}`}</button>
         </Link>
       </div>

@@ -16,9 +16,9 @@ function LatestJobs({ jobs }: Props) {
       <JobListing page={1} resultsPerPage={3} jobs={jobs} />
       <div className="text-center">
         <Link href="/#jobs">
-          <a>
-            <button className="button-1">See all jobs</button>
-          </a>
+
+          <button className="button-1">See all jobs</button>
+
         </Link>
       </div>
     </div>

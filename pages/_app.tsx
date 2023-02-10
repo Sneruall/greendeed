@@ -3,17 +3,32 @@ import type { AppProps } from 'next/app';
 import 'react-quill/dist/quill.snow.css';
 import ScrollToTop from '../components/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
-import Layout from '../components/Layout';
+import { Fragment } from 'react';
+import type { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  const layout = getLayout(<Component {...pageProps} />);
   return (
-    <Layout>
+    <Fragment>
       <Toaster />
       <div className="h-full min-h-screen bg-[#FDFFF8]">
-        <Component {...pageProps} />
+        {layout}
         <ScrollToTop />
       </div>
-    </Layout>
+    </Fragment>
   );
 }
 

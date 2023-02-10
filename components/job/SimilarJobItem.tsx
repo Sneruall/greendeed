@@ -1,6 +1,6 @@
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
@@ -22,41 +22,40 @@ function SimilarJobItem({ job }: Props) {
         job.jobTitle.toLowerCase(),
         job.id
       )}
+      legacyBehavior
     >
-      <div className="shadow-4 hover:shadow-2-extra border-green4 relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+      <div className="shadow-4 hover:shadow-2-extra relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-4 border-custom-green5 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {
               return (
                 <Link href={'#sdg' + sdgObject.sdg} key={sdgObject.sdg}>
-                  <a>
-                    <li
-                      className="relative h-full w-8 hover:opacity-90"
-                      key={sdgObject.sdg}
+                  <li
+                    className="relative h-full w-8 hover:opacity-90"
+                    key={sdgObject.sdg}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 100 200"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 100 200"
-                      >
-                        <polygon
-                          points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
-                          fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
-                        />
-                      </svg>
-                      <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
-                        <Image
-                          src={
-                            '/images/icons/sdg-icons/' + sdgObject.sdg + '.png'
-                          }
-                          width={50}
-                          height={50}
-                          objectFit="contain"
-                          layout="intrinsic"
-                          alt={'SDG' + sdgObject.sdg}
-                        />
-                      </div>
-                    </li>
-                  </a>
+                      <polygon
+                        points="0 0, 100 0, 100 200, 50 150, 0 200, 0 0"
+                        fill={`${sdgHexCalculator(sdgObject.sdg.toString())}`}
+                      />
+                    </svg>
+                    <div className="absolute top-1/2 left-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform">
+                      <Image
+                        src={
+                          '/images/icons/sdg-icons/' + sdgObject.sdg + '.png'
+                        }
+                        width={50}
+                        height={50}
+                        objectFit="contain"
+                        layout="intrinsic"
+                        alt={'SDG' + sdgObject.sdg}
+                      />
+                    </div>
+                  </li>
                 </Link>
               );
             })}
@@ -75,6 +74,7 @@ function SimilarJobItem({ job }: Props) {
                     height={50}
                     objectFit="contain"
                     layout="intrinsic"
+                    alt=""
                   />
                 </div>
               </li>
@@ -149,6 +149,7 @@ function SimilarJobItem({ job }: Props) {
                   src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${job.companyData.logo}?_a=AJE+xWI0`}
                   width={50}
                   height={50}
+                  alt={job.companyData.name + ' logo'}
                 />
                 <h3 className="heading-sm-omnes">{job.companyData.name}</h3>{' '}
               </>

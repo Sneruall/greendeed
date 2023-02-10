@@ -2,12 +2,13 @@ import groq from 'groq';
 import { PortableText } from '@portabletext/react';
 import client from '../../client';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useNextSanityImage } from 'next-sanity-image';
 import Head from 'next/head';
 import { getJobsFromMongo } from '../../backend/job/jobDb';
 import LatestJobs from '../../components/LatestJobs';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
+import AltLayout from '../../layouts/AltLayout';
 
 const ptComponents = {
   block: {
@@ -24,11 +25,7 @@ const ptComponents = {
   },
   // Internal links: https://www.sanity.io/guides/portable-text-internal-and-external-links
   link: ({ children, value }) => {
-    return (
-      <Link href={value.href}>
-        <a>{children}</a>
-      </Link>
-    );
+    return <Link href={value.href}>{children}</Link>;
   },
   list: {
     // Ex. 1: customizing common list types
@@ -157,4 +154,9 @@ export async function getStaticProps(context) {
     revalidate: 300,
   };
 }
+
+Post.getLayout = function getLayout(page) {
+  return <AltLayout>{page}</AltLayout>;
+};
+
 export default Post;

@@ -735,7 +735,7 @@ and get the form state. */
                 />
                 <button
                   type="button"
-                  className="button-1 mt-auto mb-2 h-12"
+                  className="button-yellow mt-auto mb-3"
                   onClick={() => {
                     if (coupon === '2030') {
                       setPrice(0);
@@ -785,37 +785,37 @@ and get the form state. */
               </div>
             </div>
           </div>
-          {/* SUBMIT */}
-          <div
-            className={`my-4 flex justify-end space-x-4 ${
-              activeFormStep !== 4 && 'hidden'
-            }`}
-          >
-            <button
-              disabled={companyNameIsLoading}
-              type="submit"
-              onClick={() => {
-                formRef.current?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start',
-                });
-              }}
-              className="rounded-full bg-yellow-500 px-4 py-2 text-white hover:bg-opacity-80"
+
+          <div className="mx-auto my-10 flex max-w-2xl space-x-4">
+            {/* FORM NAVIGATION */}
+            <FormNavigation
+              activeFormStep={activeFormStep}
+              changeFormStep={changeFormStep}
+            />
+            {/* SUBMIT */}
+            <div
+              className={`flex justify-end space-x-4 ${
+                activeFormStep !== 4 && 'hidden'
+              }`}
             >
-              Submit Job - €{price}
-            </button>
+              <button
+                disabled={companyNameIsLoading}
+                type="submit"
+                onClick={() => {
+                  formRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                  });
+                }}
+                className="button-1 px-6 py-4 text-lg"
+              >
+                Submit Job - €{price}
+              </button>
+            </div>
           </div>
         </form>
         <div className="mx-auto max-w-2xl">
           <p className="my-2 mt-4 text-left text-sm">*Required field</p>
-        </div>
-
-        <div className="mx-auto my-6 flex max-w-xl space-x-4">
-          {/* FORM NAVIGATION */}
-          <FormNavigation
-            activeFormStep={activeFormStep}
-            changeFormStep={changeFormStep}
-          />
         </div>
 
         {/* RESET */}

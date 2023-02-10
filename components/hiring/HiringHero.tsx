@@ -1,16 +1,9 @@
 import Image from 'next/legacy/image';
-import React, { useContext, useRef } from 'react';
+import Link from 'next/link';
+import React from 'react';
 import { BiChevronsDown } from 'react-icons/bi';
-import { TargetRefContext } from '../../context/TargetRefContext';
 
 function HiringHero() {
-  const targetRef = useContext(TargetRefContext);
-
-  const scrollToTarget = () => {
-    if (targetRef.current) {
-      targetRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
   return (
     <div className="site-margins bg-[url('/images/main/bg-topo2x.png')] bg-cover bg-repeat">
       <div className="mx-auto max-w-5xl pt-24 sm:pt-24">
@@ -51,10 +44,12 @@ function HiringHero() {
         </div>
 
         <div className="text-center">
-          <button onClick={scrollToTarget} className="button-with-icon-4 my-10">
-            <span className="w-full">Post Job</span>
-            <BiChevronsDown className="ml-2 h-6 w-6" />
-          </button>
+          <Link href="#post-job" className="hover:no-underline">
+            <button className="button-with-icon-4 my-10">
+              <span className="w-full">Post Job</span>
+              <BiChevronsDown className="ml-2 h-6 w-6" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

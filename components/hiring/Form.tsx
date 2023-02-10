@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Autocomplete from '@mui/material/Autocomplete';
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
@@ -39,13 +39,13 @@ import FormNavigation from './form-elements/FormNavigation';
 import FormStatusIdentifier from './form-elements/FormStatusIdentifier';
 import SdgElements from './form-elements/SdgElements';
 import { Chip, TextField } from '@mui/material';
+import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import countries, { continents } from 'countries-list';
-import { TargetRefContext } from '../../context/TargetRefContext';
 
 let timer: ReturnType<typeof setTimeout>;
 
-const Form: React.FC = () => {
+function Form() {
   const router = useRouter();
 
   /* ------ KEEP TRACK OF PRICING ------ */
@@ -61,7 +61,6 @@ const Form: React.FC = () => {
 
   // Reference to the form element
   const formRef = useRef<null | HTMLDivElement>(null);
-  const targetRef = useContext(TargetRefContext);
 
   // Change Current Form Step method, including smooth scroll top part into view after changing steps
   const changeFormStep = (step: number) => {
@@ -231,7 +230,7 @@ and get the form state. */
   return (
     <div
       id="post-job"
-      ref={targetRef}
+      ref={formRef}
       className="site-margins bg-custom-green1 py-12 lg:py-24"
     >
       <div className="mx-auto max-w-3xl ">
@@ -818,9 +817,18 @@ and get the form state. */
             changeFormStep={changeFormStep}
           />
         </div>
+
+        {/* RESET */}
+        {/* <button
+        type="button"
+        onClick={() => reset()}
+        className="rounded-full bg-gray-400 px-4 py-2 text-white hover:bg-opacity-80"
+      >
+        Reset
+      </button> */}
       </div>
     </div>
   );
-};
+}
 
 export default Form;

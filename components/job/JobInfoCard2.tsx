@@ -17,7 +17,7 @@ function JobInfoCard2({ job, company }: Props) {
   const timeAgo = new TimeAgo('en_US');
 
   return (
-    <div className="shadow-4 border-green4 relative h-full max-w-sm flex-initial rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+    <div className="shadow-4  relative h-full max-w-sm flex-initial rounded-3xl border-4 border-custom-green5 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
       <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
         <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
           {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {

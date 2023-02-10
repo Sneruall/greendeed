@@ -24,7 +24,7 @@ function SimilarJobItem({ job }: Props) {
       )}
       legacyBehavior
     >
-      <div className="shadow-4 hover:shadow-2-extra border-green4 relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-2 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
+      <div className="shadow-4 hover:shadow-2-extra relative mx-8 h-full max-w-sm flex-initial cursor-pointer rounded-3xl border-4 border-custom-green5 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat">
         <div className="absolute left-1/2 h-20 w-full -translate-x-1/2 transform">
           <ul className="flex h-full w-full -translate-y-1 justify-center gap-3">
             {job.companyData.sdgs.slice(0, 5).map((sdgObject) => {

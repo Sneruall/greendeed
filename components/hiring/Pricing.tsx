@@ -10,7 +10,7 @@ function Pricing() {
         <div className="h-1/3 bg-custom-yellow2"></div>
         <div className="h-1/3"></div>
       </div>
-      <div className="shadow-5 mx-auto my-20 w-full rounded-3xl border-4 border-custom-green4 border-opacity-5 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat sm:col-span-4 md:col-span-2 lg:col-span-1">
+      <div className="shadow-5 mx-auto my-20 w-full rounded-3xl border-4 border-custom-green5 bg-custom-green3 bg-[url('/images/main/bg-topo.png')] bg-cover bg-repeat sm:col-span-4 md:col-span-2 lg:col-span-1">
         <div className="mb-16 pt-16 text-center">
           <h2 className="heading-lg">What’s included</h2>
         </div>
@@ -35,9 +35,7 @@ function Pricing() {
           </div>
           <div className="my-16">
             <Link href="#post-job">
-
               <button className="button-1">Post Job Now!</button>
-
             </Link>
             <div>
               <p className="my-2 text-sm tracking-wide">For only €250</p>

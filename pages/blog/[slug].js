@@ -23,10 +23,6 @@ const ptComponents = {
     // Ex. 1: custom renderer for the em / italics decorator
     em: ({ children }) => <em className="italic text-black">{children}</em>,
   },
-  // Internal links: https://www.sanity.io/guides/portable-text-internal-and-external-links
-  link: ({ children, value }) => {
-    return <Link href={value.href}>{children}</Link>;
-  },
   list: {
     // Ex. 1: customizing common list types
     bullet: ({ children }) => (
@@ -83,7 +79,7 @@ const Post = ({ post, jobs }) => {
           </div>
           <div className="relative mx-auto flex h-[600px] flex-col justify-center gap-4 text-center">
             <div className="mt-24">
-              <h1 className="heading-2xl mx-auto max-w-3xl leading-relaxed text-white">
+              <h1 className="heading-2xl mx-auto max-w-4xl leading-relaxed text-white">
                 {post?.title}
               </h1>
             </div>

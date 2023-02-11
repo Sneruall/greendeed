@@ -9,6 +9,9 @@
   article p {
     @apply my-4;
   }
+  article a {
+    @apply underline hover:opacity-80;
+  }
   a {
     @apply hover:text-current;
   }

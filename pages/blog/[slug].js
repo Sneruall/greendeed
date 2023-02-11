@@ -83,7 +83,7 @@ const Post = ({ post, jobs }) => {
           </div>
           <div className="relative mx-auto flex h-[600px] flex-col justify-center gap-4 text-center">
             <div className="mt-24">
-              <h1 className="heading-2xl mx-auto max-w-3xl leading-relaxed text-white">
+              <h1 className="heading-2xl mx-auto max-w-4xl leading-relaxed text-white">
                 {post?.title}
               </h1>
             </div>

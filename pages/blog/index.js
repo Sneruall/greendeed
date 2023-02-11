@@ -10,8 +10,6 @@ import JobItem from '../../components/JobItem';
 import MainLayout from '../../layouts/MainLayout';
 
 const Index = ({ posts, jobs }) => {
-  console.log(posts);
-
   const joblist = jobs?.map((job) => (
     <li className="list-none" key={job.id}>
       <JobItem job={job} />
@@ -48,8 +46,8 @@ const Index = ({ posts, jobs }) => {
       <div className="mx-auto">
         {posts.length > 1 ? (
           <>
-            <BlogHero latestPost={posts[1]} />
-            <BlogPosts posts={posts} />
+            <BlogHero latestPost={posts[0]} />
+            <BlogPosts posts={posts.slice(1)} />
           </>
         ) : (
           <div className="site-margins my-32">

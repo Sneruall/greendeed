@@ -459,4 +459,5 @@ export interface blog {
       _type: string;
     };
   };
+  featured?: boolean;
 }

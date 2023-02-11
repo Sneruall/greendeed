@@ -8,7 +8,7 @@ type Props = { posts: blog[] };
 function BlogPosts({ posts }: Props) {
   const blogItems = posts.map((post) => (
     <li key={post._id}>
-      {post.title === 'Duurzaam bedrijf' ? (
+      {post.featured ? (
         <BlogPostCardFeatured post={post} />
       ) : (
         <BlogPostCard post={post} />

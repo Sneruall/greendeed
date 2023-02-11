@@ -59,25 +59,25 @@ const Header: React.FC<{ darkmode?: Boolean }> = ({ darkmode }) => {
           >
             <Link
               href="/#jobs"
-              className="my-auto self-center font-omnes font-bold"
+              className="my-auto self-center font-omnes font-bold hover:opacity-80"
             >
               Jobs
             </Link>
             <Link
               href="/hiring"
-              className="my-auto self-center font-omnes font-bold"
+              className="my-auto self-center font-omnes font-bold hover:opacity-80"
             >
               Hiring
             </Link>
             <Link
               href="/working-for-the-sustainable-development-goals"
-              className="my-auto self-center font-omnes font-bold"
+              className="my-auto self-center font-omnes font-bold hover:opacity-80"
             >
               The Goals
             </Link>
             <Link
               href="/blog"
-              className="my-auto self-center font-omnes  font-bold"
+              className="my-auto self-center font-omnes font-bold hover:opacity-80"
             >
               Blog
             </Link>

@@ -23,10 +23,6 @@ const ptComponents = {
     // Ex. 1: custom renderer for the em / italics decorator
     em: ({ children }) => <em className="italic text-black">{children}</em>,
   },
-  // Internal links: https://www.sanity.io/guides/portable-text-internal-and-external-links
-  link: ({ children, value }) => {
-    return <Link href={value.href}>{children}</Link>;
-  },
   list: {
     // Ex. 1: customizing common list types
     bullet: ({ children }) => (

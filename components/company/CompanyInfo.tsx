@@ -30,7 +30,11 @@ function CompanyInfo({ company }: Props) {
         </div>
         {company.website && (
           <div className="text-center">
-            <Link href={`https://${company.website}`} legacyBehavior>
+            <Link
+              href={`https://${company.website}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {company.website}
             </Link>
           </div>

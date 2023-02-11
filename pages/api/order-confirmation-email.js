@@ -4,7 +4,7 @@ mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 async function handler(req, res) {
   const data = {
-    from: 'noreply@soloswim.nl',
+    from: 'noreply@greendeed.io',
     templateId: 'd-f7f18c73dac342408b74f103bd4afdf0',
     personalizations: [
       {
@@ -13,7 +13,7 @@ async function handler(req, res) {
           email: `${req.body.email}`,
         },
         bcc: {
-          email: 'l.c.vanroomen@gmail.com',
+          email: 'info@greendeed.io',
         },
         dynamic_template_data: {
           subject: `Job submitted successfully: ${req.body.jobTitle}`,

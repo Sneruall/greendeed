@@ -77,6 +77,11 @@ export default {
       title: 'Published at',
       type: 'datetime',
     },
+    {
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+    },
   ],
 
   preview: {

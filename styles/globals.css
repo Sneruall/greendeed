@@ -6,6 +6,9 @@
   article {
     @apply font-sans leading-relaxed tracking-wide text-custom-brown1 first-letter:text-4xl;
   }
+  article p {
+    @apply my-4;
+  }
   a {
     @apply hover:text-current;
   }

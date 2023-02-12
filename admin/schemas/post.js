@@ -61,6 +61,7 @@ export default {
           },
         },
       ],
+      validation: (Rule) => Rule.required(),
       options: {
         hotspot: true,
       },
@@ -76,10 +77,18 @@ export default {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'featured',
       title: 'Featured',
+      description: 'Mark blog post as featured on /blog page',
+      type: 'boolean',
+    },
+    {
+      name: 'listed',
+      title: 'Listed',
+      description: 'Include blog post in /blog page',
       type: 'boolean',
     },
   ],

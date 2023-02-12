@@ -460,4 +460,5 @@ export interface blog {
     };
   };
   featured?: boolean;
+  listed?: boolean;
 }

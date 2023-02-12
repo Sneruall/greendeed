@@ -76,7 +76,7 @@ const Index = ({ posts, jobs }) => {
 
 export async function getStaticProps() {
   const posts = await client.fetch(groq`
-      *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+      *[_type == "post" && listed == true && publishedAt < now()] | order(publishedAt desc)
     `);
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
@@ -89,7 +89,7 @@ export async function getStaticProps() {
       posts,
       jobs: JSON.parse(JSON.stringify(jobs)),
     },
-    revalidate: 60,
+    revalidate: 300,
   };
 }
 

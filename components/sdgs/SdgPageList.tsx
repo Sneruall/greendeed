@@ -45,9 +45,10 @@ function SdgPageList({}: Props) {
               >
                 <Image
                   src={'/images/icons/sdg-icons/' + sdg.code + '.png'}
-                  width={250}
-                  height={250}
+                  width={150}
+                  height={150}
                   objectFit="contain"
+                  layout="intrinsic"
                   alt={sdg.name}
                 />
               </div>

@@ -1,8 +1,8 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
-import { Company, Job } from '../../types/types';
+import { Company, Job, sdgList } from '../../types/types';
 
 type Props = { job?: Job; company?: Company };
 
@@ -14,7 +14,8 @@ function JobSdgSection({ job, company }: Props) {
         {!job?.external && company ? (
           <Link
             href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
-            className="underline">
+            className="underline"
+          >
             {company.name}
           </Link>
         ) : (
@@ -24,7 +25,8 @@ function JobSdgSection({ job, company }: Props) {
                 ? job?.apply
                 : `mailto:${job?.apply}` || '#'
             }
-            className="underline">
+            className="underline"
+          >
             {job?.companyData.name}
           </Link>
         )}
@@ -60,25 +62,28 @@ function JobSdgSection({ job, company }: Props) {
               <div
                 className={`${
                   i % 2 === 0 && 'ml-auto'
-                } flex max-w-3xl flex-row items-center justify-center gap-10 p-8`}
+                } flex max-w-4xl flex-col justify-center p-8 sm:flex-row sm:gap-10`}
               >
                 <div
                   className={`${
-                    i % 2 !== 0 && 'order-2'
-                  } min-w-[100px] md:flex-shrink-0`}
+                    i % 2 !== 0 && 'sm:order-2'
+                  } mx-auto min-w-[100px] max-w-[150px] sm:mx-0 sm:max-w-[250px] lg:flex-shrink-0`}
                 >
                   <Image
                     src={'/images/icons/sdg-icons/' + sdgObject.sdg + '.png'}
-                    width={150}
-                    height={150}
+                    width={250}
+                    height={250}
                     objectFit="contain"
-                    layout="intrinsic"
                     alt={'SDG' + sdgObject.sdg}
                   />
                 </div>
                 <div className="">
+                  <h2 className="heading-md-omnes2 mb-4 text-white">
+                    {sdgList[i].title}
+                  </h2>
                   <p>{sdgObject.text}</p>
                 </div>
+                <div className=""></div>
               </div>
             </li>
           );
@@ -95,7 +100,8 @@ function JobSdgSection({ job, company }: Props) {
                   : `mailto:${job?.apply}`)) ||
               '#sustainable-jobs'
             }
-            legacyBehavior>
+            legacyBehavior
+          >
             <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
               Apply
             </button>

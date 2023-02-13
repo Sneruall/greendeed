@@ -29,7 +29,7 @@ function CompanyInfo({ company }: Props) {
           <h1 className="company-name">{company.name}</h1>
         </div>
         {company.website && (
-          <div className="text-center">
+          <div className="text-center hover:underline">
             <Link
               href={`https://${company.website}`}
               target="_blank"
@@ -45,7 +45,7 @@ function CompanyInfo({ company }: Props) {
           {parse(company.description, options)}
         </div>
       )}
-      <div className="my-4 text-center">
+      <div className="my-8 text-center">
         <Link href="#sustainable-jobs" legacyBehavior>
           <button className="button-2">{`Jobs at ${company?.name}`}</button>
         </Link>

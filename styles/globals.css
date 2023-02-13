@@ -51,6 +51,9 @@
   .heading-md-omnes2 {
     @apply mb-2 font-omnes text-xl font-normal tracking-wider text-custom-brown1 md:text-2xl lg:text-3xl;
   }
+  .heading-lg-omnes2 {
+    @apply mb-2 font-omnes text-xl font-normal tracking-wider text-custom-brown1 md:text-3xl lg:text-4xl;
+  }
   .blog-heading {
     @apply font-century text-xl font-bold text-custom-grey5 sm:text-2xl lg:text-3xl;
   }

@@ -67,7 +67,7 @@ const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
               <h3 className="heading-md text-center ">No active jobs found.</h3>
             </>
           )}
-          <div className="my-4 text-center">
+          <div className="my-8 text-center">
             <Link href="/#jobs">
               <button className="button-2">Back to all jobs</button>
             </Link>

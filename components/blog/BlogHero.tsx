@@ -14,12 +14,12 @@ function BlogHero({ latestPost }: Props) {
     <section className="site-margins">
       <div className="mx-auto max-w-7xl pt-24 sm:pt-32">
         <div>
-          <h1 className="heading-2xl mb-4">Greendeed Blog</h1>
-          <h2 className="heading-md-omnes2">
+          <h1 className="heading-2xl">Greendeed Blog</h1>
+          <h2 className="heading-lg-omnes2 sm:my-2 md:my-4">
             Navigating Your Career for a Better World
           </h2>
         </div>
-        <div className="my-10">
+        <div className="my-4 sm:my-6 md:my-10">
           {latestPost.mainImage && (
             <Link
               href="/blog/[slug]"

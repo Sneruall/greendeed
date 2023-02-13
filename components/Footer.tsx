@@ -65,7 +65,7 @@ function Footer({}: Props) {
             </div>
           </div>
         </div>
-        <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:justify-start">
+        <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-0 md:max-w-md md:justify-start">
           {sdgList.map((sdg) => {
             return (
               <Tooltip
@@ -100,7 +100,7 @@ function Footer({}: Props) {
                   mx-[3px] h-12 w-12 cursor-pointer border-2 border-custom-brown1 hover:scale-105 hover:border-gray-100"
                   >
                     <Link
-                      href={`working-for-the-sustainable-development-goals#sdg${sdg.code}`}
+                      href={`/working-for-the-sustainable-development-goals#sdg${sdg.code}`}
                       legacyBehavior
                     >
                       <Image

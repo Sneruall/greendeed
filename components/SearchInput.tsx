@@ -48,7 +48,7 @@ const SearchInput = () => {
         onChange={(e: any) => {
           setInputValue(e.target.value);
         }}
-        className="w-ful my-3 border-none bg-transparent pl-10 text-sm text-custom-brown4 placeholder-custom-brown4 focus:outline-none focus:ring-0 sm:text-base"
+        className="w-ful my-3 border-none bg-transparent pl-10 text-sm font-semibold text-custom-brown4 placeholder-custom-brown4 focus:outline-none focus:ring-0 sm:text-base"
       />
     </div>
   );

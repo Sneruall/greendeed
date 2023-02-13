@@ -26,7 +26,7 @@ const CategoryDropdown = () => {
           searchInputCallback(e.target.value, 'category', router);
         }}
         id="category"
-        className="block w-full border-none bg-transparent text-sm focus:outline-none focus:ring-0 sm:text-base "
+        className="block w-full border-none bg-transparent text-sm font-semibold focus:outline-none focus:ring-0 sm:text-base"
       >
         {getJobCategoriesListWithPlaceholder('All categories').map((option) => (
           <option value={option.slug} key={option.id}>

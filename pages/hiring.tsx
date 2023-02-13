@@ -40,11 +40,11 @@ function Hiring() {
 
       <div className="mx-auto">
         <HiringHero />
-        <CompanyLogos />
+        {/* <CompanyLogos /> */}
         <Pricing />
         <HowItWorks />
         <Form />
-        <CompanyLogos />
+        {/* <CompanyLogos /> */}
       </div>
     </>
   );

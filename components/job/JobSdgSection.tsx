@@ -9,7 +9,7 @@ type Props = { job?: Job; company?: Company };
 function JobSdgSection({ job, company }: Props) {
   return (
     <div id="sdg" className="bg-custom-yellow2 py-24">
-      <div className="heading-xl mb-10 text-center">
+      <div className="heading-xl mx-4 mb-10 text-center">
         Sustainability at{' '}
         {!job?.external && company ? (
           <Link

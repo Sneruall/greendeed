@@ -1,9 +1,9 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import React from 'react';
 
 function HowItWorks() {
   return (
-    <div className="site-margins mx-auto my-24 max-w-6xl lg:my-32">
+    <div className="site-margins mx-auto my-8 max-w-6xl lg:my-16">
       <h1 className="heading-xl mx-auto mb-14 max-w-4xl text-center md:text-left">
         How it works
       </h1>

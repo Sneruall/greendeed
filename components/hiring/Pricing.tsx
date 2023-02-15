@@ -4,7 +4,7 @@ import { HiCheck } from 'react-icons/hi';
 
 function Pricing() {
   return (
-    <div className="grid px-4 sm:grid-cols-6 sm:px-0 md:grid-cols-4 lg:grid-cols-3">
+    <div className="my-8 grid px-4 sm:grid-cols-6 sm:px-0 md:grid-cols-4 lg:my-16 lg:grid-cols-3">
       <div className="flex h-full flex-col">
         <div className="h-1/3"></div>
         <div className="h-1/3 bg-custom-yellow2"></div>

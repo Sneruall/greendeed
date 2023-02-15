@@ -36,9 +36,9 @@ function JobDescription({ job, company }: Props) {
           </>
         )}
         <div className="">
-          <h1 className="font-omnes text-lg font-normal text-custom-brown1 md:text-2xl xl:text-4xl">
+          <h1 className="font-omnes text-lg font-normal text-custom-brown1 md:text-2xl lg:text-3xl xl:text-4xl">
             {company?.name || job.companyData?.name} is hiring a
-            <span className="block font-alfa text-xl font-bold md:text-2xl xl:my-4 xl:text-5xl xl:leading-tight">
+            <span className="block font-alfa text-xl font-bold md:text-2xl lg:text-3xl xl:my-4 xl:text-5xl xl:leading-tight">
               {job.jobTitle}
             </span>
           </h1>

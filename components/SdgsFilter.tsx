@@ -1,8 +1,7 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { HiCheckCircle } from 'react-icons/hi';
-import { TbArrowBearLeft, TbArrowBearRight } from 'react-icons/tb';
 import { searchInputCallback } from '../helpers/search';
 import { sdgList } from '../types/types';
 import Tooltip from './Tooltip';
@@ -105,12 +104,79 @@ selectedSdgs array. */
         })}
         <div className="absolute right-0 bottom-0 translate-y-16 transform font-omnes text-sm font-semibold text-custom-brown4 md:translate-y-4 lg:translate-y-16 xl:-translate-x-10 xl:-translate-y-16">
           <div className="xl:hidden">
-            <TbArrowBearLeft className="mx-auto h-10 w-10" />
+            <svg
+              className="mx-auto mb-1 -translate-x-1 rotate-[20deg] transform"
+              xmlns="http://www.w3.org/2000/svg"
+              width="42"
+              height="32"
+              viewBox="0 0 95.37 64.321"
+            >
+              <g
+                id="Group_247"
+                data-name="Group 247"
+                transform="matrix(1, 0.017, -0.017, 1, 4.662, 4.129)"
+              >
+                <path
+                  id="Path_368"
+                  data-name="Path 368"
+                  d="M86.461,54.429S63.876,23.24.781,12.259L0,12.125,21.914,0h0"
+                  transform="translate(0 0)"
+                  fill="none"
+                  stroke="#402C06"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="6"
+                />
+                <path
+                  id="Path_369"
+                  data-name="Path 369"
+                  d="M0,0,9.552,17.88"
+                  transform="translate(0 12.624)"
+                  fill="none"
+                  stroke="#402C06"
+                  stroke-linecap="round"
+                  stroke-width="6"
+                />
+              </g>
+            </svg>
           </div>
-          <p className="xl:hidden">Select your favorite goals</p>
-          <p className="hidden xl:block">Select your favorite goals</p>
+          <p className=" text-custom-brown1">Select your favorite goals</p>
           <div className="hidden xl:block">
-            <TbArrowBearRight className="mx-auto h-10 w-10 rotate-180" />
+            <svg
+              className="mx-auto mt-3 -translate-x-3 rotate-[-30deg] transform"
+              xmlns="http://www.w3.org/2000/svg"
+              width="42"
+              height="32"
+              viewBox="0 0 95.37 64.321"
+            >
+              <g
+                id="Group_245"
+                data-name="Group 245"
+                transform="translate(6 0)"
+              >
+                <path
+                  id="Path_368"
+                  data-name="Path 368"
+                  d="M86.461,0S63.875,31.19.781,42.17L0,42.3,21.914,54.429h0"
+                  transform="translate(0 0)"
+                  fill="none"
+                  stroke="#402C06"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="6"
+                />
+                <path
+                  id="Path_369"
+                  data-name="Path 369"
+                  d="M0,17.88,9.552,0"
+                  transform="translate(0 23.925)"
+                  fill="none"
+                  stroke="#402C06"
+                  stroke-linecap="round"
+                  stroke-width="6"
+                />
+              </g>
+            </svg>
           </div>
         </div>
       </div>

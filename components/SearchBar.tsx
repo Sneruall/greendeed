@@ -3,7 +3,6 @@ import React from 'react';
 import CategoryDropdown from './CategoryDropdown';
 import SdgsFilter from './SdgsFilter';
 import SearchInput from './SearchInput';
-import { TbArrowBearLeft, TbArrowBearRight } from 'react-icons/tb';
 
 export const SearchBar = () => {
   return (
@@ -33,10 +32,46 @@ export const SearchBar = () => {
           <SearchInput />
           <div className="mr-1 h-1/2 w-1 border-l border-black sm:mr-4"></div>
           <CategoryDropdown />
-          <div className="absolute left-0 -translate-y-20 transform text-center text-sm md:-translate-y-14 md:-translate-x-20">
-            <p className="max-w-[100px]">Search in your field of work</p>
+          <div className="md:-translate-y-18 absolute left-0 -translate-y-20 transform text-center text-sm md:-translate-x-24">
+            <p className="mb-1 max-w-[100px] text-custom-brown1">
+              Search in your field of work
+            </p>
             <div className="">
-              <TbArrowBearLeft className="mx-auto h-10 w-10 rotate-180" />
+              <svg
+                className="mx-auto translate-x-5 rotate-[200deg] transform"
+                xmlns="http://www.w3.org/2000/svg"
+                width="42"
+                height="32"
+                viewBox="0 0 95.37 64.321"
+              >
+                <g
+                  id="Group_247"
+                  data-name="Group 247"
+                  transform="matrix(1, 0.017, -0.017, 1, 4.662, 4.129)"
+                >
+                  <path
+                    id="Path_368"
+                    data-name="Path 368"
+                    d="M86.461,54.429S63.876,23.24.781,12.259L0,12.125,21.914,0h0"
+                    transform="translate(0 0)"
+                    fill="none"
+                    stroke="#402C06"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="6"
+                  />
+                  <path
+                    id="Path_369"
+                    data-name="Path 369"
+                    d="M0,0,9.552,17.88"
+                    transform="translate(0 12.624)"
+                    fill="none"
+                    stroke="#402C06"
+                    stroke-linecap="round"
+                    stroke-width="6"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
         </div>

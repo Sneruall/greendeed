@@ -76,7 +76,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>Find a job where you support the SDGs | Greendeed</title>
+        <title>Sustainable job board based on the SDGs | Greendeed</title>
         <meta
           name="description"
           content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
@@ -85,7 +85,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="Find a job where you support the SDGs | Greendeed"
+          content="Sustainable job board based on the SDGs | Greendeed"
           key="ogtitle"
         />
         <meta

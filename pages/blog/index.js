@@ -21,23 +21,21 @@ const Index = ({ posts, jobs }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>
-          Explore how to make a positive impact with your job | Greendeed
-        </title>
+        <title>Sustainability and Jobs Blog | Greendeed</title>
         <meta
           name="description"
-          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          content="Explore our blogs about sustainability, sustainable development goals and how you can make an impact with your job."
           key="desc"
         />
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="Explore how to make a positive impact with your job | Greendeed"
+          content="Sustainability and Jobs Blog | Greendeed"
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content="Explore our blogs about sustainability, sustainable development goals and how you can contribute with your job."
+          content="Explore our blogs about sustainability, sustainable development goals and how you can make an impact with your job."
           key="ogdesc"
         />
         <link rel="icon" href="/favicon.ico" />

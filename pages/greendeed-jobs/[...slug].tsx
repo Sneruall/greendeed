@@ -29,7 +29,7 @@ const JobPage: NextPage<{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <title>
-          {`${job?.jobTitle} at ${job?.companyData.name} | Greendeed Job`}
+          {`${job?.jobTitle} at ${job?.companyData.name} | Greendeed`}
         </title>
         <meta
           name="description"
@@ -39,7 +39,7 @@ const JobPage: NextPage<{
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content={`${job?.jobTitle} at ${job?.companyData.name} | Greendeed Job`}
+          content={`${job?.jobTitle} at ${job?.companyData.name} | Greendeed`}
           key="ogtitle"
         />
         <meta

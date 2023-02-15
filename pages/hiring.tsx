@@ -18,7 +18,9 @@ function Hiring() {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>Post your job to our SDG focussed job board | Greendeed</title>
+        <title>
+          Connect with Purpose-Driven Talent: Post Jobs on Greendeed
+        </title>
         <meta
           name="description"
           content="Post jobs based on the Sustainable Development Goals and find sustainability minded employees!"
@@ -27,7 +29,7 @@ function Hiring() {
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="Post your job to our SDG focussed job board | Greendeed"
+          content="Connect with Purpose-Driven Talent: Post Jobs on Greendeed"
           key="ogtitle"
         />
         <meta

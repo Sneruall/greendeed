@@ -17,23 +17,21 @@ function workingForTheSDGs({}: Props) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>
-          Explore the SDGs and how jobs can make a difference | Greendeed
-        </title>
+        <title>Where Jobs Meet SDGs | Greendeed</title>
         <meta
           name="description"
-          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your work!"
+          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your job!"
           key="desc"
         />
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="Explore the SDGs and how jobs can make a difference | Greendeed"
+          content="Where Jobs Meet SDGs | Greendeed"
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your work!"
+          content="Browse the Sustainable Development Goals and find out how you can make a positive impact with your job!"
           key="ogdesc"
         />
         <link rel="icon" href="/favicon.ico" />

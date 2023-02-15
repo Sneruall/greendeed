@@ -71,8 +71,8 @@ const JobPage: NextPage<{
         {/* SIMILAR JOBS 2 */}
         {(categoryJobs.length > 1 ||
           (categoryJobs.length === 1 && categoryJobs[0].id !== job.id)) && (
-          <div className="site-margins mx-auto max-w-7xl py-4 sm:py-12 lg:py-20">
-            <h2 className="heading-xl my-8 text-center md:text-left lg:my-16">
+          <div className="site-margins my-16 mx-auto max-w-7xl sm:my-24 lg:my-32">
+            <h2 className="heading-xl text-center md:text-left">
               Similar Jobs
             </h2>
             <SimilarJobs similarJobs={categoryJobs} currentJobId={job.id} />

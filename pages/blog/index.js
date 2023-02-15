@@ -61,7 +61,7 @@ const Index = ({ posts, jobs }) => {
             to report the issue, thanks!
           </div>
         )}
-        <div className="site-margins mx-auto max-w-screen-xl">
+        <div className="site-margins mx-auto my-16 max-w-screen-xl lg:my-32">
           <h2 className="heading-xl mt-16 mb-10">
             Latest sustainable jobs on Greendeed
           </h2>

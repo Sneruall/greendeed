@@ -41,7 +41,7 @@ function SdgPageHero({}: Props) {
                 impact. Start your journey with Greendeed now!
               </p>
             </div>
-            <div className="my-4 text-center md:my-auto">
+            <div className="relative my-4 text-center md:my-auto">
               <Image
                 src="/images/sdgs/sdg-wheel.png"
                 height={250}
@@ -50,6 +50,42 @@ function SdgPageHero({}: Props) {
                 layout="intrinsic"
                 alt="SDG Wheel"
               />
+              <div className="absolute right-0 top-0 hidden translate-x-8 transform md:block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="60"
+                  height="40"
+                  viewBox="0 0 95.37 64.321"
+                >
+                  <g
+                    id="Group_245"
+                    data-name="Group 245"
+                    transform="translate(91.657 58.55) rotate(179)"
+                  >
+                    <path
+                      id="Path_368"
+                      data-name="Path 368"
+                      d="M86.461,0S63.875,31.19.781,42.17L0,42.3,21.914,54.429h0"
+                      transform="translate(0 0)"
+                      fill="none"
+                      stroke="#3d2d0e"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="6"
+                    />
+                    <path
+                      id="Path_369"
+                      data-name="Path 369"
+                      d="M0,17.88,9.552,0"
+                      transform="translate(0 23.925)"
+                      fill="none"
+                      stroke="#3d2d0e"
+                      stroke-linecap="round"
+                      stroke-width="6"
+                    />
+                  </g>
+                </svg>
+              </div>
             </div>
             <div className="md:text-right">
               <h3 className="heading-sm-omnes3">For Sustainable Employers</h3>

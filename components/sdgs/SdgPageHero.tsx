@@ -49,7 +49,44 @@ function SdgPageHero({}: Props) {
                 objectFit="contain"
                 layout="intrinsic"
                 alt="SDG Wheel"
+                title="SDG Wheel"
               />
+              <div className="absolute left-0 top-0 hidden -translate-x-8 transform md:block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="60"
+                  height="40"
+                  viewBox="0 0 95.37 64.321"
+                >
+                  <g
+                    id="Group_247"
+                    data-name="Group 247"
+                    transform="matrix(1, 0.017, -0.017, 1, 4.662, 4.129)"
+                  >
+                    <path
+                      id="Path_368"
+                      data-name="Path 368"
+                      d="M86.461,54.429S63.876,23.24.781,12.259L0,12.125,21.914,0h0"
+                      transform="translate(0 0)"
+                      fill="none"
+                      stroke="#3d2d0e"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="6"
+                    />
+                    <path
+                      id="Path_369"
+                      data-name="Path 369"
+                      d="M0,0,9.552,17.88"
+                      transform="translate(0 12.624)"
+                      fill="none"
+                      stroke="#3d2d0e"
+                      stroke-linecap="round"
+                      stroke-width="6"
+                    />
+                  </g>
+                </svg>
+              </div>
               <div className="absolute right-0 top-0 hidden translate-x-8 transform md:block">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

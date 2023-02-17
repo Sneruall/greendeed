@@ -31,6 +31,7 @@ module.exports = {
           grey3: '#00000012',
           grey4: '#363636',
           grey5: '#FDFFF8',
+          grey6: '#6C696014',
           sdg1: '#e5243b',
           sdg2: '#DDA63A',
           sdg3: '#4C9F38',

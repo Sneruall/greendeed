@@ -11,13 +11,13 @@ function HowItWorks() {
         <div className="flex max-w-xs flex-col gap-4">
           <div className="">
             <Image
-              src="/images/hiring/step3.png"
+              src="/images/hiring/step1.png"
               height={150}
-              width={200}
+              width={150}
               objectFit="contain"
               layout="intrinsic"
-              className="-scale-x-100 transform"
-              alt="Step 1"
+              className=""
+              alt="Post job to job board"
             />
           </div>
           <div>
@@ -33,10 +33,10 @@ function HowItWorks() {
             <Image
               src="/images/hiring/step2.png"
               height={150}
-              width={200}
+              width={150}
               objectFit="contain"
               layout="intrinsic"
-              alt="Step 2"
+              alt="Post job to job board"
             />
           </div>
           <div>
@@ -52,14 +52,14 @@ function HowItWorks() {
             <Image
               src="/images/hiring/step3.png"
               height={150}
-              width={200}
+              width={150}
               objectFit="contain"
               layout="intrinsic"
-              alt="Step 3"
+              alt="Job candidates"
             />
           </div>
           <div>
-            <h3 className="heading-sm-omnes">3. Get Candidates</h3>
+            <h3 className="heading-sm-omnes">3. Welcome Candidates</h3>
             <p className="text-main">
               Connect with purpose-driven talent dedicated to making a
               difference and are a perfect fit for your company.

@@ -31,7 +31,7 @@ function SdgPageList({}: Props) {
             } ${sdg.code === '16' && 'bg-custom-sdg16'} ${
               sdg.code === '17' && 'bg-custom-sdg17'
             }
-          max-w-screen-2xl flex-row text-white`}
+            shadow-2-extra max-w-screen-2xl flex-row border-[5px] border-custom-grey6 text-white`}
           >
             <div
               className={`${

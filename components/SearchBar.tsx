@@ -32,13 +32,13 @@ export const SearchBar = () => {
           <SearchInput />
           <div className="mr-1 h-1/2 w-1 border-l border-black sm:mr-4"></div>
           <CategoryDropdown />
-          <div className="md:-translate-y-18 absolute left-0 -translate-y-20 transform text-center text-sm md:-translate-x-24">
+          <div className="md:-translate-y-18 absolute left-0 -translate-y-24 transform text-center text-sm sm:-translate-y-20 md:-translate-x-24">
             <p className="mb-1 max-w-[100px] text-custom-brown1">
               Search in your field of work
             </p>
             <div className="">
               <svg
-                className="mx-auto translate-x-5 rotate-[200deg] transform"
+                className="mx-auto translate-y-2 translate-x-2 rotate-[220deg] transform sm:translate-y-0 sm:translate-x-5 sm:rotate-[200deg]"
                 xmlns="http://www.w3.org/2000/svg"
                 width="42"
                 height="32"

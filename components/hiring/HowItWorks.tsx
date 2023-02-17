@@ -31,7 +31,7 @@ function HowItWorks() {
         <div className="flex max-w-xs flex-col gap-4">
           <div>
             <Image
-              src="/images/hiring/step1.png"
+              src="/images/hiring/step2.png"
               height={150}
               width={150}
               objectFit="contain"
@@ -59,7 +59,7 @@ function HowItWorks() {
             />
           </div>
           <div>
-            <h3 className="heading-sm-omnes">3. Get Candidates</h3>
+            <h3 className="heading-sm-omnes">3. Welcome Candidates</h3>
             <p className="text-main">
               Connect with purpose-driven talent dedicated to making a
               difference and are a perfect fit for your company.

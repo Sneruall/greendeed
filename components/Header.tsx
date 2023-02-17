@@ -42,26 +42,25 @@ const Header: React.FC<{ darkmode?: Boolean }> = ({ darkmode }) => {
               />
             )}
           </div>
-          <div className="flex items-center gap-1 self-center sm:w-40 md:w-52">
-            <div>
-              <Link
-                href="/"
+          <Link href="/">
+            <div className="flex items-center gap-1 self-center sm:w-40 md:w-52">
+              <div
                 className={`${
                   mobileMenuExtended || darkmode ? 'text-white' : 'text-black'
                 } my-auto text-xl font-bold hover:no-underline`}
               >
                 Greendeed
-              </Link>
+              </div>
+              <div className={`${darkmode && 'hidden'}`}>
+                <Image
+                  alt="Greendeed logo icon"
+                  src="/images/main/logo-icon.png"
+                  width={40}
+                  height={40}
+                />
+              </div>
             </div>
-            <div className={`${darkmode && 'hidden'}`}>
-              <Image
-                alt="Greendeed logo icon"
-                src="/images/main/logo-icon.png"
-                width={40}
-                height={40}
-              />
-            </div>
-          </div>
+          </Link>
           {/* Desktop Navigation */}
           <div
             className={`${

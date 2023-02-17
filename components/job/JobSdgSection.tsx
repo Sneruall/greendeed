@@ -57,7 +57,7 @@ function JobSdgSection({ job, company }: Props) {
               } ${sdgObject.sdg == '16' && 'bg-custom-sdg16'} ${
                 sdgObject.sdg == '17' && 'bg-custom-sdg17'
               }
-              max-w-screen-2xl flex-row text-white`}
+              shadow-2-extra max-w-screen-2xl flex-row border-[5px] border-custom-grey6 text-white`}
             >
               <div
                 className={`${

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -42,25 +41,15 @@ const Header: React.FC<{ darkmode?: Boolean }> = ({ darkmode }) => {
               />
             )}
           </div>
-          <div className="flex items-center gap-1 self-center sm:w-40 md:w-52">
-            <div>
-              <Link
-                href="/"
-                className={`${
-                  mobileMenuExtended || darkmode ? 'text-white' : 'text-black'
-                } my-auto text-xl font-bold hover:no-underline`}
-              >
-                Greendeed
-              </Link>
-            </div>
-            <div className={`${darkmode && 'hidden'}`}>
-              <Image
-                alt="Greendeed logo icon"
-                src="/images/main/logo-icon.png"
-                width={40}
-                height={40}
-              />
-            </div>
+          <div className="self-center sm:w-40 md:w-52">
+            <Link
+              href="/"
+              className={`${
+                mobileMenuExtended || darkmode ? 'text-white' : 'text-black'
+              } my-auto text-xl font-bold hover:no-underline`}
+            >
+              Greendeed
+            </Link>
           </div>
           {/* Desktop Navigation */}
           <div

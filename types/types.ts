@@ -354,7 +354,7 @@ export const sdgList = [
   },
   {
     code: '10',
-    name: 'Reduced Income and Improved Living Standards',
+    name: 'Reduced Inequalities',
     title: 'Reduce inequality within and among countries',
     description:
       'Goal 10 calls for reducing inequalities in income, as well as those based on sex, age, disability, race, class, ethnicity, religion and opportunity—both within and among countries. It also aims to ensure safe, orderly and regular migration and addresses issues related to representation of developing countries in global decision-making and development assistance.',

@@ -79,7 +79,7 @@ function JobSdgSection({ job, company }: Props) {
                 </div>
                 <div className="">
                   <h2 className="heading-md-omnes2 mb-4 text-white">
-                    {sdgList[i].title}
+                    {sdgList[+sdgObject.sdg].title}
                   </h2>
                   <p>{sdgObject.text}</p>
                 </div>

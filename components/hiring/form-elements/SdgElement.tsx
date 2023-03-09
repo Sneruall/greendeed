@@ -133,7 +133,7 @@ const SdgElement = ({
             <textarea
               required={isChecked}
               defaultValue={sdgText}
-              placeholder="Tell us about your goal..."
+              placeholder="Tell us about how you target this goal with your organization..."
               {...register(`companyData.sdgsInfo.${sdg.code}`)}
               className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
             />

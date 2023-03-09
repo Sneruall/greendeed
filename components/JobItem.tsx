@@ -87,7 +87,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 )}
                 <div className="flex gap-1 sm:hidden">
                   {sdgList}
-                  {job.companyData.sdgs.length > 4 && (
+                  {job.companyData.sdgs.length > 5 && (
                     <div className="self-center">
                       <Image
                         src={'/images/icons/sdg-icons/plus.png'}
@@ -106,7 +106,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
             <div className="flex justify-end sm:col-span-2 lg:col-span-1">
               <div className="hidden justify-around gap-1 sm:grid sm:grid-cols-6 md:gap-2">
                 {sdgList}
-                {job.companyData.sdgs.length > 4 && (
+                {job.companyData.sdgs.length > 5 && (
                   <div className="self-center">
                     <Image
                       src={'/images/icons/sdg-icons/plus.png'}

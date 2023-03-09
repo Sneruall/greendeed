@@ -47,7 +47,7 @@ function JobInfoCard2({ job, company }: Props) {
               </Link>
             );
           })}
-          {job && job.companyData.sdgs.length > 4 && (
+          {job && job.companyData.sdgs.length > 5 && (
             <li className="relative h-full w-8 hover:opacity-90">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200">
                 <polygon

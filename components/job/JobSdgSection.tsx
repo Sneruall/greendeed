@@ -74,13 +74,15 @@ function JobSdgSection({ job, company }: Props) {
                     width={250}
                     height={250}
                     objectFit="contain"
-                    alt={'SDG' + sdgObject.sdg}
+                    alt={
+                      'SDG ' +
+                      sdgObject.sdg +
+                      ' ' +
+                      sdgList[+sdgObject.sdg - 1].name
+                    }
                   />
                 </div>
-                <div className="">
-                  <h2 className="heading-md-omnes2 mb-4 text-white">
-                    {sdgList[+sdgObject.sdg - 1].title}
-                  </h2>
+                <div className="self-center">
                   <p>{sdgObject.text}</p>
                 </div>
                 <div className=""></div>

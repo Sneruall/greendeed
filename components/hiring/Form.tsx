@@ -504,7 +504,9 @@ and get the form state. */
 
               {/* SALARY */}
               <div>
-                <h3 className="font-bold text-custom-brown1">Base Salary</h3>
+                <h3 className="font-bold text-custom-brown1">
+                  Base Salary (recommended)
+                </h3>
                 <div className="flex gap-2">
                   <div className="flex">
                     <div className="flex-none">

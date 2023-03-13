@@ -64,7 +64,7 @@ export default Yup.object().shape({
     .when('applicationMethod', {
       is: 'website',
       then: Yup.string()
-        .url('URL is not valid, try this format: website.com/apply')
+        .url('URL is not valid, try this format: https://website.com/apply')
         .required(REQUIRED_FIELD),
     }),
   email: Yup.string()
@@ -78,7 +78,9 @@ export default Yup.object().shape({
         CHARACTERS_NOT_ALLOWED
       )
       .required(REQUIRED_FIELD),
-    website: Yup.string().url('URL is not valid, try this format: website.com'),
+    website: Yup.string().url(
+      'URL is not valid, try this format: https://website.com'
+    ),
     sdgs: Yup.array().required(REQUIRED_FIELD),
     sdgsInfo: Yup.array().nullable(false).required(REQUIRED_FIELD),
   }),

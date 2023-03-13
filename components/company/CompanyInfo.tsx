@@ -31,7 +31,7 @@ function CompanyInfo({ company }: Props) {
         {company.website && (
           <div className="text-center hover:underline">
             <Link
-              href={`https://${company.website}`}
+              href={company.website}
               target="_blank"
               rel="noopener noreferrer"
             >

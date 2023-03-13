@@ -33,6 +33,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        closed: false,
         listed: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
@@ -47,6 +48,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        closed: false,
         listed: true,
         category: category,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
@@ -60,6 +62,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        closed: false,
         listed: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
         $or: sdgQuery,
@@ -74,6 +77,7 @@ export const getJobsFromMongo = async (
       .collection(process.env.MONGODB_COLLECTION)
       .find({
         published: true,
+        closed: false,
         listed: true,
         timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
       })
@@ -97,9 +101,11 @@ export const getJobFromMongo = async (queryId: string) => {
     throw new Error('Please add your Mongo URI to .env.local');
   }
 
-  const job = (await db
-    .collection(collection)
-    .findOne({ id: queryId, published: true })) as unknown as Job;
+  const job = (await db.collection(collection).findOne({
+    id: queryId,
+    published: true,
+    closed: false,
+  })) as unknown as Job;
 
   return job;
 };
@@ -124,6 +130,8 @@ export const getJobsFromCompanyFromMongo = async (
     .collection(process.env.MONGODB_COLLECTION)
     .find({
       published: true,
+      listed: true,
+      closed: false,
       companyId: company.id,
       timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
     })

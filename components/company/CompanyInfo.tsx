@@ -35,7 +35,7 @@ function CompanyInfo({ company }: Props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {company.website.replace(/^https?:\/\//i, '')}
+              {company.website.replace(/^https?:\/\//i, '').replace(/\/$/, '')}
             </Link>
           </div>
         )}

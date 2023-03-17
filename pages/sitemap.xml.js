@@ -2,18 +2,25 @@ import { generateCompanyUrl, generateJobUrl } from '../helpers/urlGeneration';
 import { getJobsFromMongo } from '../backend/job/jobDb';
 import { getCompaniesFromMongo } from '../backend/company/companyDb';
 import { JOB_EXPIRATION_TIME_MS } from '../helpers/constants';
+import client from '../client';
+import groq from 'groq';
 
-const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-function generateSiteMap(jobs, companies) {
+function generateSiteMap(jobs, companies, posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
      <url>
-       <loc>https://jsonplaceholder.typicode.com</loc>
+       <loc>${process.env.NEXT_PUBLIC_HOST}</loc>
      </url>
      <url>
-       <loc>https://jsonplaceholder.typicode.com/guide</loc>
+       <loc>${process.env.NEXT_PUBLIC_HOST}/hiring</loc>
+     </url>
+     <url>
+       <loc>${
+         process.env.NEXT_PUBLIC_HOST
+       }/working-for-the-sustainable-development-goals</loc>
+     </url>
+     <url>
+       <loc>${process.env.NEXT_PUBLIC_HOST}/blog</loc>
      </url>
      ${jobs
        .map(({ companyData, jobTitle, id }) => {
@@ -40,6 +47,15 @@ function generateSiteMap(jobs, companies) {
      `;
        })
        .join('')}
+     ${posts
+       .map(({ slug }) => {
+         return `
+       <url>
+           <loc>${process.env.NEXT_PUBLIC_HOST}/blog/${`${slug.current}`}</loc>
+       </url>
+     `;
+       })
+       .join('')}
    </urlset>
  `;
 }
@@ -56,8 +72,12 @@ export async function getServerSideProps({ res }) {
   );
   const companies = await getCompaniesFromMongo();
 
+  const posts = await client.fetch(groq`
+  *[_type == "post" && listed == true && publishedAt < now()]{slug} | order(publishedAt desc)
+`);
+
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(jobs, companies);
+  const sitemap = generateSiteMap(jobs, companies, posts);
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser

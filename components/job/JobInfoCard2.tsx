@@ -165,10 +165,13 @@ function JobInfoCard2({ job, company }: Props) {
                   : `mailto:${job?.apply}` || '#'
               }
               legacyBehavior
+              passHref
             >
-              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
-                Apply for the position
-              </button>
+              <a target="_blank" rel="noopener noreferrer">
+                <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
+                  Apply for the position
+                </button>
+              </a>
             </Link>
           </div>
         </div>

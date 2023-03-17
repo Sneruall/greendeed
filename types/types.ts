@@ -134,7 +134,7 @@ export const ApplicationMethods = [
   {
     id: 2,
     value: 'website',
-    title: 'Via a link on our website',
+    title: 'Via a website link',
   },
 ];
 

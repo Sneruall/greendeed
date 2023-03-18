@@ -34,6 +34,8 @@ selectedSdgs array. */
   }, [selectedSdgs]);
 
   function handleButtonClick(sdg: typeof sdgList[number]) {
+    // Todo: refactor this function
+
     /* This is checking if the user is on a sdg route and not on the root route. If the user is on a sdg
 route, it will add the sdg code to the selectedSdgs array. */
     if (

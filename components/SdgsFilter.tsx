@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { HiCheckCircle } from 'react-icons/hi';
 import { searchInputCallback } from '../helpers/search';
-import { sdgList } from '../types/types';
+import { sdgList, sdgs } from '../types/types';
 import Tooltip from './Tooltip';
 
 type Props = {};
@@ -33,20 +33,43 @@ selectedSdgs array. */
     console.log('USE EFFECT 2 RUNS');
   }, [selectedSdgs]);
 
-  function handleButtonClick(sdg: string) {
-    if (selectedSdgs.includes(sdg)) {
+  function handleButtonClick(sdg: typeof sdgList[number]) {
+    if (selectedSdgs.includes(sdg.code)) {
       // Remove the id from the array
-      setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg));
+      setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
     } else {
       // Add the id to the array
-      setSelectedSdgs([...selectedSdgs, sdg]);
+      if (router.pathname != '/' && !router.asPath.includes('sdgs')) {
+        setSelectedSdgs([
+          sdgList.find(
+            (sdg) =>
+              `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs` ==
+              router.pathname
+          )?.code!,
+          sdg.code,
+        ]);
+      } else {
+        setSelectedSdgs([...selectedSdgs, sdg.code]);
+      }
     }
   }
+
+  // else if (
+  //   router.asPath == `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`
+  // ) {
+  //   router.replace('/');
+  // }
+
+  console.log(router);
 
   return (
     <div className="mx-2 mt-20">
       <div className="relative mx-4 flex max-w-6xl flex-wrap justify-center sm:mx-auto">
         {sdgList.map((sdg) => {
+          const matchingSdgRoute =
+            router.pathname ==
+            `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`;
+
           return (
             <Tooltip
               key={sdg.code}
@@ -77,7 +100,7 @@ selectedSdgs array. */
                 <button
                   key={sdg.code}
                   onClick={() => {
-                    handleButtonClick(sdg.code);
+                    handleButtonClick(sdg);
                   }}
                   className={`${
                     selectedSdgs.includes(sdg.code)
@@ -93,6 +116,11 @@ selectedSdgs array. */
                     alt={sdg.name}
                   />
                   {selectedSdgs.includes(sdg.code) && (
+                    <div className="absolute -right-2 -top-2">
+                      <HiCheckCircle className="h-5 w-5 rounded-full bg-custom-brown1 text-custom-green2" />
+                    </div>
+                  )}
+                  {matchingSdgRoute && (
                     <div className="absolute -right-2 -top-2">
                       <HiCheckCircle className="h-5 w-5 rounded-full bg-custom-brown1 text-custom-green2" />
                     </div>

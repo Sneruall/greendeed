@@ -33,7 +33,7 @@ selectedSdgs array. */
     console.log('USE EFFECT 2 RUNS');
   }, [selectedSdgs]);
 
-  function handleButtonClick(sdg: typeof sdgList[number]) {
+  function handleSdgButtonClick(sdg: typeof sdgList[number]) {
     let currentSdgPageCode: string | undefined = undefined;
     if (router.pathname != '/') {
       currentSdgPageCode = sdgList.find(
@@ -57,16 +57,10 @@ selectedSdgs array. */
       array. */
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
     } else if (currentSdgPageCode) {
-      const sdgArray: string[] = [];
-      sdgArray.push(sdg.code);
-      sdgArray.push(currentSdgPageCode);
-      router.replace(
-        '/',
-        { query: `sdgs=${sdgArray.join('-')}` },
-        {
-          scroll: false,
-        }
-      );
+      const sdgArray = [sdg.code, currentSdgPageCode];
+      const query = `sdgs=${sdgArray.join('-')}`;
+      const options = { scroll: false };
+      router.replace('/', { query }, options);
     } else {
       setSelectedSdgs([...selectedSdgs, sdg.code]);
     }
@@ -110,7 +104,7 @@ selectedSdgs array. */
                 <button
                   key={sdg.code}
                   onClick={() => {
-                    handleButtonClick(sdg);
+                    handleSdgButtonClick(sdg);
                   }}
                   className={`${
                     selectedSdgs.includes(sdg.code)

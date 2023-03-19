@@ -42,13 +42,16 @@ selectedSdgs array. */
     const selectedSdg = sdgList.find((sdgObj) => sdgObj.code === sdg.code);
     const currentPathIsSelectedSdg =
       router.pathname === sdgPathname && selectedSdg;
+
     if (currentPathIsSelectedSdg) {
       router.replace('/', undefined, { scroll: false });
+      return;
     }
+
+    const sdgArray = [sdg.code, currentSdgPageCode].filter(Boolean);
     if (selectedSdgs.includes(sdg.code)) {
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
-    } else if (currentSdgPageCode) {
-      const sdgArray = [sdg.code, currentSdgPageCode];
+    } else if (sdgArray.length > 1) {
       const query = `sdgs=${sdgArray.join('-')}`;
       const options = { scroll: false };
       router.replace('/', { query }, options);

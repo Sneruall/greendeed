@@ -10,26 +10,28 @@ function JobSdgSection({ job, company }: Props) {
   return (
     <div id="sdg" className="bg-custom-yellow2 py-24">
       <div className="heading-xl mx-4 mb-10 text-center">
-        Sustainability at{' '}
-        {!job?.external && company ? (
-          <Link
-            href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
-            className="underline"
-          >
-            {company.name}
-          </Link>
-        ) : (
-          <Link
-            href={
-              job?.applicationMethod === 'website'
-                ? job?.apply
-                : `mailto:${job?.apply}` || '#'
-            }
-            className="underline"
-          >
-            {job?.companyData.name}
-          </Link>
-        )}
+        <h2>
+          Sustainability at{' '}
+          {!job?.external && company ? (
+            <Link
+              href={generateCompanyUrl(company.name.toLowerCase(), company.id)}
+              className="underline"
+            >
+              {company.name}
+            </Link>
+          ) : (
+            <Link
+              href={
+                job?.applicationMethod === 'website'
+                  ? job?.apply
+                  : `mailto:${job?.apply}` || '#'
+              }
+              className="underline"
+            >
+              {job?.companyData.name}
+            </Link>
+          )}
+        </h2>
       </div>
 
       <ul className="mx-auto flex flex-col gap-8">

@@ -34,6 +34,12 @@ selectedSdgs array. */
   }, [selectedSdgs]);
 
   function handleButtonClick(sdg: typeof sdgList[number]) {
+    let currentSdgPageCode: string | undefined = undefined;
+    if (router.pathname != '/') {
+      currentSdgPageCode = sdgList.find(
+        (sdg) => sdg.uri === '/v1/sdg/Goal/1'
+      )?.code;
+    }
     // Todo: refactor this function
 
     /* This is checking if the user is on a sdg route and not on the root route. If the user is on a sdg
@@ -57,23 +63,18 @@ route, it will add the sdg code to the selectedSdgs array. */
       /* Checking if the selectedSdgs array includes the sdg.code. If it does, it will remove the id from the
       array. */
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
-    } else {
+    } else if (router.pathname != '/' && currentSdgPageCode) {
       /* This is checking if the user is on a sdg route and not on the root route. If the user is on a sdg
       route, it will add the sdg code to the selectedSdgs array. */
-      if (router.pathname != '/' && !router.asPath.includes('?sdgs')) {
-        setSelectedSdgs([
-          sdgList.find(
-            (sdg) =>
-              `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs` ==
-              router.pathname
-          )?.code!,
-          sdg.code,
-        ]);
-        // otherwise justdd the id to the array
-      } else {
-        /* Adding the sdg.code to the selectedSdgs array. */
-        setSelectedSdgs([...selectedSdgs, sdg.code]);
-      }
+
+      /* Adding the sdg.code to the selectedSdgs array. */
+      // setSelectedSdgs([...selectedSdgs, sdg.code]);
+      const sdgArray: string[] = [];
+      sdgArray.push(sdg.code);
+      sdgArray.push(currentSdgPageCode);
+      router.replace('/', { query: `sdgs=${sdgArray.join('-')}` });
+    } else {
+      setSelectedSdgs([...selectedSdgs, sdg.code]);
     }
   }
 
@@ -236,3 +237,5 @@ route, it will add the sdg code to the selectedSdgs array. */
 }
 
 export default SdgsFilter;
+/* Creating an array of objects. Each object has a code, name, title, description, uri, img, and
+greendeedDescription. */

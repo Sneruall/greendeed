@@ -40,21 +40,14 @@ selectedSdgs array. */
         (sdg) => sdg.uri === '/v1/sdg/Goal/1'
       )?.code;
     }
-    if (
-      sdg.code ==
-      sdgList.find(
-        (obj) =>
-          `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs` ==
-          router.pathname
-      )?.code!
-    ) {
-      router.replace('/', undefined, {
-        scroll: false,
-      });
+    const sdgPathname = `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`;
+    const selectedSdg = sdgList.find((sdgObj) => sdgObj.code === sdg.code);
+    const currentPathIsSelectedSdg =
+      router.pathname === sdgPathname && selectedSdg;
+    if (currentPathIsSelectedSdg) {
+      router.replace('/', undefined, { scroll: false });
     }
     if (selectedSdgs.includes(sdg.code)) {
-      /* Checking if the selectedSdgs array includes the sdg.code. If it does, it will remove the id from the
-      array. */
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
     } else if (currentSdgPageCode) {
       const sdgArray = [sdg.code, currentSdgPageCode];

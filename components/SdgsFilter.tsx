@@ -40,10 +40,6 @@ selectedSdgs array. */
         (sdg) => sdg.uri === '/v1/sdg/Goal/1'
       )?.code;
     }
-    // Todo: refactor this function
-
-    /* This is checking if the user is on a sdg route and not on the root route. If the user is on a sdg
-route, it will add the sdg code to the selectedSdgs array. */
     if (
       sdg.code ==
       sdgList.find(
@@ -52,23 +48,13 @@ route, it will add the sdg code to the selectedSdgs array. */
           router.pathname
       )?.code!
     ) {
-      // Remove the id from the array
-      const index = selectedSdgs.indexOf(sdg.code);
-      if (index !== -1) {
-        selectedSdgs.splice(index, 1);
-      }
-      router.replace('/', { query: `sdgs=${selectedSdgs.join('-')}` });
+      router.replace('/');
     }
     if (selectedSdgs.includes(sdg.code)) {
       /* Checking if the selectedSdgs array includes the sdg.code. If it does, it will remove the id from the
       array. */
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
-    } else if (router.pathname != '/' && currentSdgPageCode) {
-      /* This is checking if the user is on a sdg route and not on the root route. If the user is on a sdg
-      route, it will add the sdg code to the selectedSdgs array. */
-
-      /* Adding the sdg.code to the selectedSdgs array. */
-      // setSelectedSdgs([...selectedSdgs, sdg.code]);
+    } else if (currentSdgPageCode) {
       const sdgArray: string[] = [];
       sdgArray.push(sdg.code);
       sdgArray.push(currentSdgPageCode);

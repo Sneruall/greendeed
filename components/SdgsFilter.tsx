@@ -34,12 +34,10 @@ selectedSdgs array. */
   }, [selectedSdgs]);
 
   function handleSdgButtonClick(sdg: typeof sdgList[number]) {
-    let currentSdgPageCode: string | undefined = undefined;
-    if (router.pathname != '/') {
-      currentSdgPageCode = sdgList.find(
-        (sdg) => sdg.uri === '/v1/sdg/Goal/1'
-      )?.code;
-    }
+    const isHomePage = router.pathname === '/';
+    const currentSdgPage = sdgList.find((sdg) => sdg.uri === '/v1/sdg/Goal/1');
+    const currentSdgPageCode = isHomePage ? undefined : currentSdgPage?.code;
+
     const sdgPathname = `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`;
     const selectedSdg = sdgList.find((sdgObj) => sdgObj.code === sdg.code);
     const currentPathIsSelectedSdg =

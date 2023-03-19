@@ -48,7 +48,9 @@ selectedSdgs array. */
           router.pathname
       )?.code!
     ) {
-      router.replace('/');
+      router.replace('/', undefined, {
+        scroll: false,
+      });
     }
     if (selectedSdgs.includes(sdg.code)) {
       /* Checking if the selectedSdgs array includes the sdg.code. If it does, it will remove the id from the
@@ -58,19 +60,17 @@ selectedSdgs array. */
       const sdgArray: string[] = [];
       sdgArray.push(sdg.code);
       sdgArray.push(currentSdgPageCode);
-      router.replace('/', { query: `sdgs=${sdgArray.join('-')}` });
+      router.replace(
+        '/',
+        { query: `sdgs=${sdgArray.join('-')}` },
+        {
+          scroll: false,
+        }
+      );
     } else {
       setSelectedSdgs([...selectedSdgs, sdg.code]);
     }
   }
-
-  // else if (
-  //   router.asPath == `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`
-  // ) {
-  //   router.replace('/');
-  // }
-
-  console.log(router);
 
   return (
     <div className="mx-2 mt-20">

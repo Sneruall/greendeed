@@ -33,35 +33,44 @@ selectedSdgs array. */
     console.log('USE EFFECT 2 RUNS');
   }, [selectedSdgs]);
 
-  /**
-   * It takes in a single SDG object, and then it checks if the current page is the homepage, and if it
-   * is, it checks if the SDG is already selected, and if it is, it removes it from the selected SDGs
-   * array, and if it isn't, it adds it to the selected SDGs array
-   * @param sdg - typeof sdgList[number]
-   */
-  function handleSdgButtonClick(sdg: typeof sdgList[number]): void {
-    const currentSdgPage = sdgList.find(
-      (sdgObj) => sdgObj.uri === '/v1/sdg/Goal/1'
-    );
-    const currentSdgPageCode: string | undefined = currentSdgPage?.code;
-
-    const sdgPathname = `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`;
-    const selectedSdgIsAlreadySelected = selectedSdgs.includes(sdg.code);
-
+  function handleButtonClick(sdg: typeof sdgList[number]) {
+    let currentSdgPageCode: string | undefined = undefined;
+    if (router.pathname != '/') {
+      currentSdgPageCode = sdgList.find(
+        (sdg) => sdg.uri === '/v1/sdg/Goal/1'
+      )?.code;
+    }
     if (
-      router.pathname !== '/' &&
-      sdg.code === sdgList.find((sdgObj) => sdgObj.uri === sdgPathname)?.code
+      sdg.code ==
+      sdgList.find(
+        (obj) =>
+          `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs` ==
+          router.pathname
+      )?.code!
     ) {
       router.replace('/');
-    } else if (selectedSdgIsAlreadySelected) {
+    }
+    if (selectedSdgs.includes(sdg.code)) {
+      /* Checking if the selectedSdgs array includes the sdg.code. If it does, it will remove the id from the
+      array. */
       setSelectedSdgs(selectedSdgs.filter((buttonId) => buttonId !== sdg.code));
     } else if (currentSdgPageCode) {
-      const sdgArray: string[] = [sdg.code, currentSdgPageCode];
+      const sdgArray: string[] = [];
+      sdgArray.push(sdg.code);
+      sdgArray.push(currentSdgPageCode);
       router.replace('/', { query: `sdgs=${sdgArray.join('-')}` });
     } else {
       setSelectedSdgs([...selectedSdgs, sdg.code]);
     }
   }
+
+  // else if (
+  //   router.asPath == `/${sdg.name.replace(/\s+/g, '-').toLowerCase()}-jobs`
+  // ) {
+  //   router.replace('/');
+  // }
+
+  console.log(router);
 
   return (
     <div className="mx-2 mt-20">
@@ -101,7 +110,7 @@ selectedSdgs array. */
                 <button
                   key={sdg.code}
                   onClick={() => {
-                    handleSdgButtonClick(sdg);
+                    handleButtonClick(sdg);
                   }}
                   className={`${
                     selectedSdgs.includes(sdg.code)
@@ -214,3 +223,5 @@ selectedSdgs array. */
 }
 
 export default SdgsFilter;
+/* Creating an array of objects. Each object has a code, name, title, description, uri, img, and
+greendeedDescription. */

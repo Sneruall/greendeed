@@ -13,7 +13,7 @@ interface IQuery {
   sdgs?: string;
 }
 
-const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
+const NoPovertyJobs: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   const [jobs, setJobs] = useState<Job[]>(allJobs);
   const [query, setQuery] = useState<IQuery>({});
   const [page, setPage] = useState(1);
@@ -105,7 +105,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
         <SearchBar />
         {/* Listing of jobs */}
         <JobListing
-          sdgs={query?.sdgs}
+          sdgs={'1'}
           search={query?.search}
           page={page}
           resultsPerPage={RESULTS_PER_PAGE}
@@ -129,7 +129,9 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   );
 };
 
-(Home as any).getLayout = function getLayout(page: React.ReactElement) {
+(NoPovertyJobs as any).getLayout = function getLayout(
+  page: React.ReactElement
+) {
   return <MainLayout>{page}</MainLayout>;
 };
 
@@ -149,4 +151,4 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-export default Home;
+export default NoPovertyJobs;

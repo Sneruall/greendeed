@@ -101,7 +101,7 @@ selectedSdgs array. */
                     handleSdgButtonClick(sdg);
                   }}
                   className={`${
-                    selectedSdgs.includes(sdg.code)
+                    selectedSdgs.includes(sdg.code) || matchingSdgRoute
                       ? 'border-custom-brown1 '
                       : 'border-gray-100 '
                   }cursor-pointer relative mx-1 h-12 w-12 border-2`}

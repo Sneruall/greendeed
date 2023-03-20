@@ -37,7 +37,7 @@ const JobListing: React.FC<{
               {(!search || (sdgNames && !category && !search)) &&
                 capitalizeFirstLetter('jobs')}
               {!sdgNames && ' targeting the Sustainable Development Goals'}
-              {sdgNames && ' figthing for '}
+              {sdgNames && ' fighting for '}
               {sdgNames?.map((name, i) => (
                 <span
                   key={name}

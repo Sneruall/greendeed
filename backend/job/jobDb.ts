@@ -36,7 +36,7 @@ export const getJobsFromMongo = async (
         closed: false,
         listed: true,
         category: category,
-        timestamp: { $gt: minTimestampInMs } || {
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
           $gt: 0,
         },
         $or: sdgQuery,
@@ -53,7 +53,9 @@ export const getJobsFromMongo = async (
         closed: false,
         listed: true,
         category: category,
-        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
       })
       .sort({ _id: -1 })
       .limit(limit || 5)
@@ -66,7 +68,9 @@ export const getJobsFromMongo = async (
         published: true,
         closed: false,
         listed: true,
-        timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
         $or: sdgQuery,
       })
       .limit(limit || 0)

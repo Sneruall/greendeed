@@ -388,7 +388,7 @@ and get the form state. */
                   options={jobTypes}
                   onChangeMethod={(e: any) => {
                     const value = e.target.value as jobType;
-                    if (value === 'Internship') {
+                    if (value === 'Internship' || 'Volunteer') {
                       setPrice(125);
                       toast.success('50% discount applied!');
                     } else if (price === 125) {

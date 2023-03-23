@@ -54,7 +54,7 @@ export const options: HTMLReactParserOptions = {
       }
       if (domNode.name === 'ol') {
         return (
-          <ol className="list-outside list-decimal">
+          <ol className="list-inside list-decimal">
             {domToReact(domNode.children, options)}
           </ol>
         );

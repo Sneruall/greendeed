@@ -19,7 +19,7 @@
     @apply px-4 sm:px-10 2xl:px-0;
   }
   .site-margins ul {
-    @apply pl-6;
+    @apply pl-5;
   }
   .job-description {
     @apply leading-relaxed tracking-wide;
@@ -168,7 +168,9 @@
 .ql-editor p {
   @apply font-century text-sm leading-relaxed tracking-wide text-black;
 }
-.ql-editor ol li:not(.ql-direction-rtl),
 .ql-editor ul li:not(.ql-direction-rtl) {
-  @apply pl-0 leading-relaxed tracking-wide !important;
+  @apply -ml-3 pl-0 leading-relaxed tracking-wide !important;
+}
+.ql-editor ol li:not(.ql-direction-rtl) {
+  @apply -ml-1 pl-0 leading-relaxed tracking-wide !important;
 }

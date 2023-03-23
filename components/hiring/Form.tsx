@@ -108,7 +108,7 @@ function Form() {
 
   // Storing application method in state
   const [applicationMethod, setApplicationMethod] =
-    useState<ApplicationMethod>('email');
+    useState<ApplicationMethod>('website');
 
   // Storing currency and salary values in state
   const [currency, setCurrency] = useState<string>('€');
@@ -303,7 +303,7 @@ and get the form state. */
                 <input
                   id="companyData.website"
                   type="text"
-                  placeholder="www.yourcompany.com"
+                  placeholder="https://company.com"
                   value={website}
                   {...register('companyData.website')}
                   onChange={(e) => setWebsite(e?.target.value)}
@@ -613,7 +613,7 @@ and get the form state. */
                   placeholder={
                     applicationMethod === 'email'
                       ? 'hiring@company.com'
-                      : 'www.yourcompany.com/apply'
+                      : 'https://company.com/apply'
                   }
                 />
               </div>

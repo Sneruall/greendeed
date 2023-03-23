@@ -128,13 +128,13 @@ export interface LocationObject {
 export const ApplicationMethods = [
   {
     id: 1,
-    value: 'email',
-    title: 'Sending us an E-mail',
+    value: 'website',
+    title: 'Via a website link',
   },
   {
     id: 2,
-    value: 'website',
-    title: 'Via a website link',
+    value: 'email',
+    title: 'Sending us an E-mail',
   },
 ];
 

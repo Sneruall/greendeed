@@ -12,7 +12,7 @@ type Props = {
 
 function JobDescription({ job, company }: Props) {
   return (
-    <div className="flex-1">
+    <div className="job-description flex-1">
       {/* top bar */}
       <div className="flex flex-row flex-wrap items-center gap-4 border-b border-b-[#CBCBCB] pb-4 lg:gap-8 xl:flex-nowrap">
         {company && company.logo && (

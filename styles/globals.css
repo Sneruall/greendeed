@@ -18,6 +18,12 @@
   .site-margins {
     @apply px-4 sm:px-10 2xl:px-0;
   }
+  .job-description {
+    @apply leading-relaxed tracking-wide;
+  }
+  .job-description p {
+    @apply mt-3 min-h-[12px];
+  }
   .company-name {
     @apply font-alfa text-xl font-bold text-custom-brown1 md:text-2xl lg:text-3xl xl:my-4 xl:text-5xl xl:leading-tight;
   }
@@ -147,6 +153,9 @@
 .ql-container.ql-snow {
   @apply h-96;
 }
+.ql-container.ql-snow p {
+  @apply mt-3 min-h-[12px];
+}
 .ql-editor.ql-blank {
   @apply font-century text-sm not-italic text-gray-500;
 }
@@ -154,5 +163,9 @@
   @apply focus:outline-none;
 }
 .ql-editor p {
-  @apply font-century text-sm text-black;
+  @apply font-century text-sm leading-relaxed tracking-wide text-black;
+}
+.ql-editor ol li:not(.ql-direction-rtl),
+.ql-editor ul li:not(.ql-direction-rtl) {
+  @apply pl-0 leading-relaxed tracking-wide !important;
 }

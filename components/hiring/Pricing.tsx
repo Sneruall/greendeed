@@ -26,12 +26,14 @@ function Pricing() {
           <div className="flex justify-center gap-2">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
             <h3 className="heading-sm-omnes my-auto">
-              Dedicated Customer Support
+              High And Relevant Visibility
             </h3>
           </div>
           <div className="flex justify-center gap-2">
             <HiCheck className="my-auto h-6 w-6 stroke-custom-green2 stroke-2 text-custom-green2" />
-            <h3 className="heading-sm-omnes my-auto">50% off Volunteer Jobs</h3>
+            <h3 className="heading-sm-omnes my-auto">
+              50% off Volunteer/ Internship Jobs
+            </h3>
           </div>
           <div className="my-16">
             <Link href="#post-job">

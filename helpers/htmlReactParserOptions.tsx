@@ -47,16 +47,16 @@ export const options: HTMLReactParserOptions = {
       }
       if (domNode.name === 'ul') {
         return (
-          <ul className="list-inside list-disc">
+          <ul className="list-outside list-disc">
             {domToReact(domNode.children, options)}
           </ul>
         );
       }
       if (domNode.name === 'ol') {
         return (
-          <ul className="list-inside list-decimal">
+          <ol className="list-outside list-decimal">
             {domToReact(domNode.children, options)}
-          </ul>
+          </ol>
         );
       }
       if (domNode.name === 'em') {

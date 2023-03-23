@@ -18,6 +18,9 @@
   .site-margins {
     @apply px-4 sm:px-10 2xl:px-0;
   }
+  .site-margins ul {
+    @apply pl-6;
+  }
   .job-description {
     @apply leading-relaxed tracking-wide;
   }

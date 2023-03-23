@@ -65,7 +65,6 @@ function JobDescription({ job, company }: Props) {
       <div className="my-10">
         {job.jobDescription && parse(job.jobDescription, options)}
       </div>
-      {/* <li className="list-outside list-disc">fdsf</li> */}
     </div>
   );
 }

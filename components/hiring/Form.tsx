@@ -330,7 +330,6 @@ and get the form state. */
               <h2 className="font-bold text-custom-brown1">
                 Sustainable Development Goals*
               </h2>
-
               <div className="text-red-500">
                 {(errors?.companyData?.sdgs as any)?.message}
               </div>

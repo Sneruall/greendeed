@@ -105,25 +105,6 @@ const SdgElement = ({
               <div className="space-y-2 p-3">
                 <h3 className="font-semibold text-custom-brown1">{sdg.name}</h3>
                 <p className="text-xs text-custom-brown1">{sdg.description}</p>
-                {/* <a
-                  href="#"
-                  className="flex items-center font-medium text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-600"
-                >
-                  Read more{' '}
-                  <svg
-                    className="ml-1 h-4 w-4"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </a> */}
               </div>
               <div data-popper-arrow></div>
               <div data-popper-arrow></div>
@@ -131,9 +112,10 @@ const SdgElement = ({
           </div>
           {isChecked && (
             <textarea
+              maxLength={1000}
               required={isChecked}
               defaultValue={sdgText}
-              placeholder="Tell us about how you target this goal with your company..."
+              placeholder="How does your company target this goal? Be short and to the point. Max 1000 characters."
               {...register(`companyData.sdgsInfo.${sdg.code}`)}
               className="my-2 block h-36 w-full rounded-md border border-[#D5D3D3] bg-white p-2 text-sm text-black shadow-[0_9px_20px_0px_rgba(0,0,0,0.06)] focus:outline-none"
             />

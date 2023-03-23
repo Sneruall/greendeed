@@ -17,7 +17,7 @@ const NoPovertyJobs: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   const [jobs, setJobs] = useState<Job[]>(allJobs);
   const [query, setQuery] = useState<IQuery>({});
   const [page, setPage] = useState(1);
-  const RESULTS_PER_PAGE = 10; //set to 20?
+  const RESULTS_PER_PAGE = 20;
 
   useEffect(() => {
     if (query.search || query.category || query.sdgs) {
@@ -113,7 +113,7 @@ const NoPovertyJobs: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
           category={query?.category}
         />
         {page * RESULTS_PER_PAGE < jobs.length && (
-          <div className="mt-10 text-center">
+          <div className="my-10 text-center">
             <button
               onClick={() => {
                 setPage(page + 1);

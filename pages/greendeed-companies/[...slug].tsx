@@ -33,21 +33,21 @@ const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>{`Discover Sustainable Jobs at ${company?.name} | Greendeed`}</title>
+        <title>{`Discover Green Jobs at ${company?.name} | Greendeed`}</title>
         <meta
           name="description"
-          content={`Make a difference with a sustainable job at ${company?.name}. Discover their commitment to the SDGs and explore sustainable job opportunities.`}
+          content={`Make a difference with a green job at ${company?.name}. Discover their commitment to the SDGs and explore sustainable job opportunities.`}
           key="desc"
         />
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content={`Discover Sustainable Jobs at ${company?.name} | Greendeed`}
+          content={`Discover Green Jobs at ${company?.name} | Greendeed`}
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content={`Make a difference with a sustainable job at ${company?.name}. Discover their commitment to the SDGs and explore sustainable job opportunities.`}
+          content={`Make a difference with a green job at ${company?.name}. Discover their commitment to the SDGs and explore sustainable job opportunities.`}
           key="ogdesc"
         />
         <link rel="icon" href="/favicon.ico" />

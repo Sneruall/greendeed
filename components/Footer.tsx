@@ -65,6 +65,57 @@ function Footer({}: Props) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="site-margins mx-auto max-w-screen-2xl md:px-10 lg:px-16 xl:px-32">
+        <h2 className="heading-md text-white">Jobs Targeting the SDGs</h2>
+      </div>
+
+      <div className="site-margins mx-auto flex max-w-screen-2xl gap-10 md:px-10 lg:px-16 xl:px-32">
+        <ul>
+          {sdgList.slice(0, 6).map((sdgItem) => {
+            return (
+              <li key={sdgItem.code}>
+                <Link
+                  href={`/?sdgs=${sdgItem.code}#jobs`}
+                  className="footer-link"
+                >
+                  {sdgItem.name} Jobs
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <ul>
+          {sdgList.slice(6, 12).map((sdgItem) => {
+            return (
+              <li key={sdgItem.code}>
+                <Link
+                  href={`/?sdgs=${sdgItem.code}#jobs`}
+                  className="footer-link"
+                >
+                  {sdgItem.name} Jobs
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <ul>
+          {sdgList.slice(12, 17).map((sdgItem) => {
+            return (
+              <li key={sdgItem.code}>
+                <Link
+                  href={`/?sdgs=${sdgItem.code}#jobs`}
+                  className="footer-link"
+                >
+                  {sdgItem.name} Jobs
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div>
         <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-0 md:max-w-md md:justify-start">
           {sdgList.map((sdg) => {
             return (

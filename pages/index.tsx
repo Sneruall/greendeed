@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import JobListing from '../components/JobListing';
-import { Job } from '../types/types';
+import { Job, sdgList } from '../types/types';
 import { getJobsFromMongo } from '../backend/job/jobDb';
 import { useEffect, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
@@ -71,26 +71,54 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
     return filteredJobs;
   }
 
+  console.log('sdg params: ' + params.sdgs);
+
   return (
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>The Job Board With Green Jobs | Greendeed</title>
+        <title>
+          {params.sdgs && !params.sdgs.includes('-')
+            ? sdgList.find((sdg) => sdg.code == params.sdgs)?.name +
+              ' Jobs | Greendeed'
+            : 'The Job Board With Green Jobs | Greendeed'}
+        </title>
         <meta
           name="description"
-          content="Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values."
+          content={
+            params.sdgs && !params.sdgs.includes('-')
+              ? 'Browse jobs targeting SDG ' +
+                params.sdgs +
+                ': ' +
+                sdgList.find((sdg) => sdg.code == params.sdgs)?.name +
+                ' at our sustainability-focused job board | Greendeed'
+              : 'Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values.'
+          }
           key="desc"
         />
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="The Job Board With Green Jobs | Greendeed"
+          content={
+            params.sdgs && !params.sdgs.includes('-')
+              ? sdgList.find((sdg) => sdg.code == params.sdgs)?.name +
+                ' Jobs | Greendeed'
+              : 'The Job Board With Green Jobs | Greendeed'
+          }
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content="Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values."
+          content={
+            params.sdgs && !params.sdgs.includes('-')
+              ? 'Browse jobs targeting SDG ' +
+                params.sdgs +
+                ': ' +
+                sdgList.find((sdg) => sdg.code == params.sdgs)?.name +
+                ' at our sustainability-focused job board | Greendeed'
+              : 'Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values.'
+          }
           key="ogdesc"
         />
         <meta

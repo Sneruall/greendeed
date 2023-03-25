@@ -105,7 +105,7 @@ function Footer({}: Props) {
         </div>
       </div>
       <div>
-        <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-auto">
+        <div className="mx-auto my-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-auto">
           {sdgList.map((sdg) => {
             return (
               <Tooltip

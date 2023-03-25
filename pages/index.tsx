@@ -76,21 +76,21 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <title>Sustainable job board based on the SDGs | Greendeed</title>
+        <title>The Job Board With Green Jobs | Greendeed</title>
         <meta
           name="description"
-          content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
+          content="Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values."
           key="desc"
         />
         <meta property="og:site_name" content="Greendeed" key="ogsitename" />
         <meta
           property="og:title"
-          content="Sustainable job board based on the SDGs | Greendeed"
+          content="The Job Board With Green Jobs | Greendeed"
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content="Browse jobs based on the Sustainable Development Goals and make a positive impact with your work!"
+          content="Find a green job at our sustainability-focused job board. Our use of the Sustainable Development Goals connects you with green employers matching your values."
           key="ogdesc"
         />
         <meta

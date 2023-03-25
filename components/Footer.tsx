@@ -10,7 +10,7 @@ type Props = {};
 function Footer({}: Props) {
   return (
     <footer className="z-50 bg-custom-brown1 py-10 text-white">
-      <div className="site-margins mx-auto my-10 grid max-w-screen-2xl gap-6 md:grid-cols-2 md:gap-10 md:px-10 lg:px-16 xl:px-32">
+      <div className="site-margins mx-auto my-10 max-w-screen-2xl gap-6 md:flex md:gap-10 md:px-10 lg:px-16 xl:px-32">
         <div>
           <Link
             href="/"
@@ -18,7 +18,7 @@ function Footer({}: Props) {
           >
             Greendeed
           </Link>
-          <div className="mt-4 max-w-md italic">
+          <div className="my-2 max-w-md text-sm italic">
             <p>
               At Greendeed, we believe that sustainable job opportunities should
               be accessible to everyone, and that the SDGs provide a clear and
@@ -27,96 +27,85 @@ function Footer({}: Props) {
               opportunities on our platform today.
             </p>
           </div>
-        </div>
-
-        <div className="md:grid md:grid-cols-2">
-          <div className="mb-4 flex flex-col gap-2">
-            <h3 className="heading-md text-white">Information</h3>
-            <div>
-              <Link href="/#jobs" className="footer-link">
-                Jobs
-              </Link>
+          <div className="mt-4 flex gap-4 md:grid md:grid-cols-2">
+            <div className="mb-4 flex flex-col gap-2">
+              <h3 className="heading-md text-sm text-white">Navigation</h3>
+              <div className="text-sm">
+                <Link href="/#jobs" className="footer-link">
+                  Jobs
+                </Link>
+              </div>
+              <div className="text-sm">
+                <Link href="/hiring" className="footer-link">
+                  Hiring
+                </Link>
+              </div>
+              <div className="text-sm">
+                <Link
+                  href="/working-for-the-sustainable-development-goals"
+                  className="footer-link"
+                >
+                  SDGs
+                </Link>
+              </div>
+              <div className="text-sm">
+                <Link href="/blog" className="footer-link">
+                  Blog
+                </Link>
+              </div>
             </div>
-            <div>
-              <Link href="/hiring" className="footer-link">
-                Hiring
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="/working-for-the-sustainable-development-goals"
-                className="footer-link"
-              >
-                SDGs
-              </Link>
-            </div>
-            <div>
-              <Link href="/blog" className="footer-link">
-                Blog
-              </Link>
+            <div className="flex flex-col gap-2">
+              <h2 className="heading-md text-sm text-white">Contact</h2>
+              <div>
+                <Link
+                  href="mailto:info@greendeed.io"
+                  className="footer-link text-sm"
+                >
+                  info@greendeed.io
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="heading-md text-white">Contact</h2>
-            <div>
-              <Link href="mailto:info@greendeed.io" className="footer-link">
-                info@greendeed.io
-              </Link>
-            </div>
+        </div>
+
+        <div className="mt-3">
+          <h2 className="heading-md mb-2 text-sm text-white">
+            Jobs Targeting the SDGs
+          </h2>
+          <div className="flex flex-row gap-2 text-sm md:gap-10">
+            <ul>
+              {sdgList.slice(0, 9).map((sdgItem) => {
+                return (
+                  <li key={sdgItem.code} className="mt-1">
+                    <Link
+                      href={`/?sdgs=${sdgItem.code}#jobs`}
+                      className="footer-link"
+                    >
+                      {sdgItem.name} Jobs
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul>
+              {sdgList.slice(9, 17).map((sdgItem) => {
+                return (
+                  <li key={sdgItem.code} className="mt-1">
+                    <Link
+                      href={`/?sdgs=${sdgItem.code}#jobs`}
+                      className="footer-link"
+                    >
+                      {sdgItem.name} Jobs
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
-      </div>
-
-      <div className="site-margins mx-auto max-w-screen-2xl md:px-10 lg:px-16 xl:px-32">
-        <h2 className="heading-md text-white">Jobs Targeting the SDGs</h2>
-      </div>
-
-      <div className="site-margins mx-auto flex max-w-screen-2xl gap-10 md:px-10 lg:px-16 xl:px-32">
-        <ul>
-          {sdgList.slice(0, 6).map((sdgItem) => {
-            return (
-              <li key={sdgItem.code}>
-                <Link
-                  href={`/?sdgs=${sdgItem.code}#jobs`}
-                  className="footer-link"
-                >
-                  {sdgItem.name} Jobs
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <ul>
-          {sdgList.slice(6, 12).map((sdgItem) => {
-            return (
-              <li key={sdgItem.code}>
-                <Link
-                  href={`/?sdgs=${sdgItem.code}#jobs`}
-                  className="footer-link"
-                >
-                  {sdgItem.name} Jobs
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <ul>
-          {sdgList.slice(12, 17).map((sdgItem) => {
-            return (
-              <li key={sdgItem.code}>
-                <Link
-                  href={`/?sdgs=${sdgItem.code}#jobs`}
-                  className="footer-link"
-                >
-                  {sdgItem.name} Jobs
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
       </div>
       <div>
-        <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-0 md:max-w-md md:justify-start">
+        <div className="mx-auto mt-4 flex flex-wrap justify-center px-10 sm:px-0 md:mx-auto">
           {sdgList.map((sdg) => {
             return (
               <Tooltip

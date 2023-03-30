@@ -136,6 +136,11 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { slug = '' } = context.params;
   const post = await client.fetch(query, { slug });
+
+  if (!post) {
+    return { notFound: true };
+  }
+
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
     millisecondsSince1970 - JOB_EXPIRATION_TIME_MS,

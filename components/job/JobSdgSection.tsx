@@ -94,7 +94,7 @@ function JobSdgSection({ job, company }: Props) {
         })}
       </ul>
 
-      {job && (
+      {job && !job.closed && (
         <div className="my-10 text-center">
           <Link
             href={

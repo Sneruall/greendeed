@@ -42,25 +42,31 @@ function JobDescription({ job, company }: Props) {
               {job.jobTitle}
             </span>
           </h1>
+          {job.closed && (
+            <p className="font-bold uppercase text-red-500">Closed</p>
+          )}
         </div>
       </div>
       {/* button mobile */}
-      <div className="mt-4 lg:hidden">
-        <div className="">
-          <Link
-            href={
-              job?.applicationMethod === 'website'
-                ? job?.apply
-                : `mailto:${job?.apply}` || '#'
-            }
-            legacyBehavior
-          >
-            <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
-              Apply now
-            </button>
-          </Link>
+      {!job.closed && (
+        <div className="mt-4 lg:hidden">
+          <div className="">
+            <Link
+              href={
+                job?.applicationMethod === 'website'
+                  ? job?.apply
+                  : `mailto:${job?.apply}` || '#'
+              }
+              legacyBehavior
+            >
+              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
+                Apply now
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
+
       {/* job description */}
       <div className="my-10">
         {job.jobDescription && parse(job.jobDescription, options)}

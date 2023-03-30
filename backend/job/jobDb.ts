@@ -112,7 +112,6 @@ export const getJobFromMongo = async (queryId: string) => {
   const job = (await db.collection(collection).findOne({
     id: queryId,
     published: true,
-    closed: false,
   })) as unknown as Job;
 
   return job;

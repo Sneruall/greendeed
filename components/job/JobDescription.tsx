@@ -4,6 +4,7 @@ import { Company, Job } from '../../types/types';
 import parse from 'html-react-parser';
 import { options } from '../../helpers/htmlReactParserOptions';
 import Link from 'next/link';
+import { generateCompanyUrl } from '../../helpers/urlGeneration';
 
 type Props = {
   job: Job;
@@ -18,26 +19,52 @@ function JobDescription({ job, company }: Props) {
         {company && company.logo && (
           <>
             <div className="hidden flex-shrink-0 lg:block">
-              <Image
-                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-                width={100}
-                height={100}
-                alt={company.name + 'logo'}
-              />
+              <Link
+                href={generateCompanyUrl(
+                  company.name.toLowerCase(),
+                  job.companyId
+                )}
+              >
+                <Image
+                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                  width={100}
+                  height={100}
+                  alt={company.name + 'logo'}
+                />
+              </Link>
             </div>
             <div className="flex-shrink-0 lg:hidden">
-              <Image
-                src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
-                width={50}
-                height={50}
-                alt={company.name + 'logo'}
-              />
+              <Link
+                href={generateCompanyUrl(
+                  company.name.toLowerCase(),
+                  job.companyId
+                )}
+              >
+                <Image
+                  src={`https://res.cloudinary.com/diw9ouhky/image/upload/c_thumb,h_200,w_200/r_max/f_png/v1/${company.logo}?_a=AJE+xWI0`}
+                  width={50}
+                  height={50}
+                  alt={company.name + 'logo'}
+                />
+              </Link>
             </div>
           </>
         )}
         <div className="">
           <h1 className="font-omnes text-lg font-normal text-custom-brown1 md:text-2xl lg:text-3xl xl:text-4xl">
-            {company?.name || job.companyData?.name} is hiring a
+            {company ? (
+              <Link
+                href={generateCompanyUrl(
+                  company.name.toLowerCase(),
+                  job.companyId
+                )}
+              >
+                {company?.name}
+              </Link>
+            ) : (
+              job.companyData?.name
+            )}{' '}
+            is hiring a
             <span className="block font-alfa text-xl font-bold md:text-2xl lg:text-3xl xl:my-4 xl:text-5xl xl:leading-tight">
               {job.jobTitle}
             </span>

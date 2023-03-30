@@ -5,7 +5,7 @@ const REQUIRED_FIELD = 'This field is required.';
 const CHARACTERS_NOT_ALLOWED =
   'This field contains characters that are not allowed.';
 const MIN_2_CHARACTERS = 'This field must contain at least 2 characters.';
-const MAX_50_CHARACTERS = 'This field must not exceed 50 characters.';
+const MAX_60_CHARACTERS = 'This field must not exceed 60 characters.';
 
 // REGEX
 const ALPHANUMERIC_AND_SPECIFIC_CHARS =
@@ -22,7 +22,7 @@ export default Yup.object().shape({
       ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
       CHARACTERS_NOT_ALLOWED
     )
-    .max(50, MAX_50_CHARACTERS),
+    .max(60, MAX_60_CHARACTERS),
   category: Yup.string().required(REQUIRED_FIELD),
   jobType: Yup.string().required(REQUIRED_FIELD),
   locationInfo: Yup.object().shape({

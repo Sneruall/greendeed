@@ -49,40 +49,40 @@ export interface InvoiceInfo {
 }
 
 export interface Job {
-  companyId: string;
+  companyId: string; // Auto generated 7 character long id e.g. j8etpww, keep empty string as I will generate this in code.
   companyData: {
-    name: string;
-    description?: string;
-    website?: string;
-    logo?: string;
-    sdgs: sdgs;
+    name: string; // Name of the company
+    description?: string; // Short but detailed paragraph of minimal 500 characters of the mission of the company, extracted from the links I shared or the content I shared.
+    website?: string; // website home page url of the company, e.g. https://www.amber.com.au/
+    logo?: string; // Set to 'greendeed/production/organization-logos/'
+    sdgs: sdgs; // Array of objects consisting of the SDG number the company addresses and a detailed description of how the company addresses this SDG, one paragraph of minimal 400 characters. Written as if it was written by the company itself, use 'we' instead of 'the company'. type sdgs = { sdg: string; text?: string | undefined; }[];
   };
-  jobTitle: string;
-  category: jobCategory;
-  jobDescription: string;
-  jobType: jobType;
+  jobTitle: string; // Title of the job
+  category: jobCategory; // Greendeed job category, select most suitable category from category list provided. interface jobCategory { id: number; name: string; slug: string; }
+  jobDescription: string; // Keep as an empty string if you cannot retrieve the exact job description from the links or content I shared.
+  jobType: jobType; // Select most suitable job type for this job: type jobType = | 'Full-time' | 'Part-time' | 'Contract' | 'Freelance' | 'Internship' | 'Traineeship' | 'Volunteer' | 'Other';
   salary?: {
-    currency?: Currency;
-    period?: SalaryPeriod;
-    min?: CurrencyInputOnChangeValues;
-    max?: CurrencyInputOnChangeValues;
-    string?: string;
+    currency?: Currency; // If a salary (range) can be retrieved, select the currency. type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | '';
+    period?: SalaryPeriod; // If a salary (range) can be retrieved, select salary period. type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
+    min?: CurrencyInputOnChangeValues; // If a salary (range) can be retrieved, set the min salary. E.g. {float: 3500, formatted: 3.500, value: 3500}
+    max?: CurrencyInputOnChangeValues; // If a salary (range) can be retrieved, set the max salary. E.g. {float: 5000, formatted: 5.000, value: 5000}
+    string?: string; // Keep as an empty string
   };
-  locationInfo: LocationInfo;
-  email: string;
-  fullName: string;
-  timestamp: number;
-  id: string;
-  price: number;
-  paid: boolean; // Paid for job placement or not
-  published: boolean; // published on the platform or not
-  listed: boolean; // listed in the jobLists or not
-  closed: boolean; // Position already fulfilled or not
-  applicationMethod: ApplicationMethod;
-  apply: string;
-  external: boolean;
-  coupon?: string;
-  invoiceInfo?: InvoiceInfo;
+  locationInfo: LocationInfo; //Object containing the location (remote, onSite or onSiteOrRemote), here onSiteOrRemote is same as hybrid. interface LocationInfo { location: Location; onSiteLocation?: string[]; geoRestriction?: string[]; } type Location = 'remote' | 'onSite' | 'onSiteOrRemote'; OnSiteLocation is an array of strings containing the locations of the offices if applicable. geoRestriction is an array of strings containing potential restrictions from where to work remotely (e.g. United States or Europe)
+  email: string; // always use laurens@vr-house.nl
+  fullName: string; // always use Laurens van Roomen
+  timestamp: number; // Set as the current milliseconds since 1 jan 1970
+  id: string; // Auto generated 7 character long id e.g. j8etpww, keep empty string as I will generate this in code.
+  price: number; // Set as 0
+  paid: boolean; // Set to true
+  published: boolean; // Set to true
+  listed: boolean; // Set to true
+  closed: boolean; // Set to false
+  applicationMethod: ApplicationMethod; //How should applications apply, applying via email or through a website link? type ApplicationMethod = 'email' | 'website';
+  apply: string; // If the page with the job opportunity includes an email address that applications need to use for applying for the role, use this email address (as a string). If the page includes an 'apply' or 'apply now' button, use this url (as a string).
+  external: boolean; // Set to false
+  coupon?: string; // Set to empty string
+  invoiceInfo?: InvoiceInfo; // Set as empty object.
 }
 
 export interface Company {

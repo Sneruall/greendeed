@@ -24,21 +24,21 @@ export const options: HTMLReactParserOptions = {
           </span>
         );
       }
-      if (domNode.attribs.class === 'h1') {
+      if (domNode.name === 'h1') {
         return (
           <h2 className="mt-8 text-4xl font-bold leading-relaxed">
             {domToReact(domNode.children, options)}
           </h2>
         );
       }
-      if (domNode.attribs.class === 'h2') {
+      if (domNode.name === 'h2') {
         return (
           <h3 className="mt-6 text-3xl font-bold leading-relaxed">
             {domToReact(domNode.children, options)}
           </h3>
         );
       }
-      if (domNode.attribs.class === 'h3') {
+      if (domNode.name === 'h3') {
         return (
           <h4 className="mt-4 font-bold">
             {domToReact(domNode.children, options)}

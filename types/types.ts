@@ -48,6 +48,7 @@ export interface InvoiceInfo {
   country: string;
 }
 
+// instructions behind it for chatGPT
 export interface Job {
   companyId: string; // Auto generated 7 character long id e.g. j8etpww, keep empty string as I will generate this in code.
   companyData: {
@@ -71,7 +72,7 @@ export interface Job {
   locationInfo: LocationInfo; //Object containing the location (remote, onSite or onSiteOrRemote), here onSiteOrRemote is same as hybrid. interface LocationInfo { location: Location; onSiteLocation?: string[]; geoRestriction?: string[]; } type Location = 'remote' | 'onSite' | 'onSiteOrRemote'; OnSiteLocation is an array of strings containing the locations of the offices if applicable. geoRestriction is an array of strings containing potential restrictions from where to work remotely (e.g. United States or Europe)
   email: string; // always use laurens@vr-house.nl
   fullName: string; // always use Laurens van Roomen
-  timestamp: number; // Set as the current milliseconds since 1 jan 1970
+  timestamp: number; // Set as 0
   id: string; // Auto generated 7 character long id e.g. j8etpww, keep empty string as I will generate this in code.
   price: number; // Set as 0
   paid: boolean; // Set to true
@@ -79,7 +80,7 @@ export interface Job {
   listed: boolean; // Set to true
   closed: boolean; // Set to false
   applicationMethod: ApplicationMethod; //How should applications apply, applying via email or through a website link? type ApplicationMethod = 'email' | 'website';
-  apply: string; // If the page with the job opportunity includes an email address that applications need to use for applying for the role, use this email address (as a string). If the page includes an 'apply' or 'apply now' button, use this url (as a string).
+  apply: string; // If the page with the job opportunity includes an email address that applicants need to use for applying for the role (not only for asking questions), use this email address (as a string). If the page includes an 'apply' or 'apply now' button, use this url (as a string).
   external: boolean; // Set to false
   coupon?: string; // Set to empty string
   invoiceInfo?: InvoiceInfo; // Set as empty object.

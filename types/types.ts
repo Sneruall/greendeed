@@ -63,13 +63,13 @@ export interface Job {
   jobDescription: string; // Keep as an empty string if you cannot retrieve the exact job description from the links or content I shared.
   jobType: jobType; // Select most suitable job type for this job: type jobType = | 'Full-time' | 'Part-time' | 'Contract' | 'Freelance' | 'Internship' | 'Traineeship' | 'Volunteer' | 'Other';
   salary?: {
-    currency?: Currency; // If a salary (range) can be retrieved, select the currency. type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | '';
+    currency?: Currency; // If a salary (range) can be retrieved, select the currency. type Currency = 'US$' | '€' | '£' | 'CA$' | 'AU$' | '';
     period?: SalaryPeriod; // If a salary (range) can be retrieved, select salary period. type SalaryPeriod = 'Annual' | 'Monthly' | 'Hourly';
     min?: CurrencyInputOnChangeValues; // If a salary (range) can be retrieved, set the min salary. E.g. {float: 3500, formatted: 3.500, value: 3500}
     max?: CurrencyInputOnChangeValues; // If a salary (range) can be retrieved, set the max salary. E.g. {float: 5000, formatted: 5.000, value: 5000}
     string?: string; // Keep as an empty string
   };
-  locationInfo: LocationInfo; //Object containing the location (remote, onSite or onSiteOrRemote), here onSiteOrRemote is same as hybrid. interface LocationInfo { location: Location; onSiteLocation?: string[]; geoRestriction?: string[]; } type Location = 'remote' | 'onSite' | 'onSiteOrRemote'; OnSiteLocation is an array of strings containing the locations of the offices if applicable. geoRestriction is an array of strings containing potential restrictions from where to work remotely (e.g. United States or Europe)
+  locationInfo: LocationInfo; //Object containing the location (remote, onSite or onSiteOrRemote), here onSiteOrRemote is same as hybrid. interface LocationInfo { location: Location; onSiteLocation?: string[]; geoRestriction?: string[]; } type Location = 'remote' | 'onSite' | 'onSiteOrRemote'; OnSiteLocation is an array of strings containing the locations of the offices if applicable. geoRestriction is an array of strings containing potential restrictions from where to work remotely (e.g. United States or Europe), if not applicable omit this entire key value pair.
   email: string; // always use laurens@vr-house.nl
   fullName: string; // always use Laurens van Roomen
   timestamp: number; // Set as 0

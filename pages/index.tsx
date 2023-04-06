@@ -161,7 +161,7 @@ const Home: React.FC<{ jobs: Job[] }> = ({ jobs: allJobs }) => {
   return <MainLayout>{page}</MainLayout>;
 };
 
-export async function getServerSideProps(context: any) {
+export async function getStaticProps() {
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
     millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
@@ -171,6 +171,7 @@ export async function getServerSideProps(context: any) {
     props: {
       jobs: JSON.parse(JSON.stringify(jobs)),
     },
+    revalidate: 300, // 5 minutes in seconds
   };
 }
 

@@ -3,7 +3,7 @@ import { customAlphabet } from 'nanoid';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
 
-export const setJobId = () => {
+export const generateId = () => {
   return nanoid();
 };
 
@@ -13,10 +13,10 @@ const handlePost = async (req, res) => {
   const db = client.db();
   const collection = db.collection(process.env.MONGODB_COLLECTION);
   if (!data.companyId) {
-    data.companyId = setJobId();
+    data.companyId = generateId();
   }
   if (!data.id) {
-    data.id = setJobId();
+    data.id = generateId();
   }
   if (data.timestamp === 0) {
     data.timestamp = Date.now();
@@ -33,7 +33,7 @@ const handlePost = async (req, res) => {
     logo: data.companyData.logo,
   };
 
-  postCompany(companyData);
+  await postCompany(companyData);
 
   res
     .status(201)

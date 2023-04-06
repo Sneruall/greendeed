@@ -171,7 +171,7 @@ export async function getStaticProps() {
     props: {
       jobs: JSON.parse(JSON.stringify(jobs)),
     },
-    revalidate: 300, // 5 minutes in seconds
+    revalidate: 60, // 1 minute
   };
 }
 

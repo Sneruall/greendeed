@@ -26,7 +26,7 @@ const ptComponents = {
   list: {
     // Ex. 1: customizing common list types
     bullet: ({ children }) => (
-      <ul className="mt-xl list-inside list-disc">{children}</ul>
+      <ul className="mt-xl list-outside list-disc">{children}</ul>
     ),
     number: ({ children }) => (
       <ol className="mt-lg list-inside list-decimal">{children}</ol>

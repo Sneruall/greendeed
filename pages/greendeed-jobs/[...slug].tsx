@@ -1,12 +1,17 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { Company, Job } from '../../types/types';
 import {
+  generateJobUrl,
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
-import { getJobFromMongo, getJobsFromMongo } from '../../backend/job/jobDb';
+import {
+  getAllJobsFromMongo,
+  getJobFromMongo,
+  getJobsFromMongo,
+} from '../../backend/job/jobDb';
 import { getCompanyFromMongo } from '../../backend/company/companyDb';
 import JobInfoCard2 from '../../components/job/JobInfoCard2';
 import JobDescription from '../../components/job/JobDescription';
@@ -89,8 +94,26 @@ const JobPage: NextPage<{
 
 export default JobPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { slug } = context.query;
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Fetch all job slugs from the API
+  const jobs = await getAllJobsFromMongo();
+  const paths = jobs.map((job) => ({
+    // params: { slug: job.slug.split('-') },
+    params: {
+      slug: generateJobUrl(
+        job.companyData.name.toLowerCase(),
+        job.jobTitle.toLowerCase(),
+        job.id
+      ).split('/'),
+    },
+  }));
+
+  // Return the paths to Next.js
+  return { paths, fallback: 'blocking' };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params || {};
   if (!slug) return { notFound: true };
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };
@@ -114,12 +137,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } else if (!slugIsEqualToJob(job, slug, queryId)) {
     console.log('redirect');
     return redirectToCorrectJobUrl(job);
-  } else
+  } else {
     return {
       props: {
         job: JSON.parse(JSON.stringify(job)),
         company: JSON.parse(JSON.stringify(company)),
         categoryJobs: JSON.parse(JSON.stringify(categoryJobs)),
       },
+      revalidate: 3600, // 60 minutes in seconds
     };
+  }
 };

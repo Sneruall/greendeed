@@ -96,6 +96,34 @@ export const getJobsFromMongo = async (
   return jobs;
 };
 
+export const getAllJobsFromMongo = async (
+  minTimestampInMs?: number,
+  limit?: number
+) => {
+  const client = await clientPromise;
+
+  const db = client.db();
+  if (!process.env.MONGODB_COLLECTION) {
+    throw new Error('Please add your Mongo URI to .env.local');
+  }
+
+  const jobs = await db
+    .collection(process.env.MONGODB_COLLECTION)
+    .find({
+      published: true,
+      closed: false,
+      listed: true,
+      timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+        $gt: 0,
+      },
+    })
+    .limit(limit || 0)
+    .sort({ _id: -1 })
+    .toArray();
+
+  return jobs;
+};
+
 export const getJobFromMongo = async (queryId: string) => {
   /* Using the MongoDB driver to connect to the database and retrieve a job from the database. */
   const client = await clientPromise;

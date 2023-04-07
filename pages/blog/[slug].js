@@ -39,6 +39,8 @@ const ptComponents = {
   },
   listItem: {
     checkmarks: ({ children }) => <li>✅ {children}</li>,
+    bullet: ({ children }) => <li>{children}</li>,
+    number: ({ children }) => <li>{children}</li>,
   },
 };
 

@@ -8,8 +8,35 @@ import { getJobsFromMongo } from '../../backend/job/jobDb';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import JobItem from '../../components/JobItem';
 import MainLayout from '../../layouts/MainLayout';
+import { useState, useEffect } from 'react';
 
-const Index = ({ posts, jobs }) => {
+const Index = ({ initialPosts, jobs }) => {
+  const [page, setPage] = useState(1);
+  const [posts, setPosts] = useState(initialPosts);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
+
+  useEffect(() => {
+    setPosts(initialPosts);
+  }, [initialPosts]);
+
+  const loadMorePosts = async () => {
+    const nextPage = page + 1;
+    const nextPosts = await client.fetch(groq`
+      *[_type == "post" && listed == true && publishedAt < now()][${
+        nextPage * 9
+      }...${(nextPage + 1) * 9 - 1}] | order(publishedAt desc)
+    `);
+
+    if (nextPosts.length < 9) {
+      setHasMorePosts(false);
+    }
+
+    if (nextPosts.length > 0) {
+      setPosts([...posts, ...nextPosts]);
+      setPage(nextPage);
+    }
+  };
+
   const joblist = jobs?.map((job) => (
     <li className="list-none" key={job.id}>
       <JobItem job={job} />
@@ -46,6 +73,13 @@ const Index = ({ posts, jobs }) => {
           <>
             <BlogHero latestPost={posts[0]} />
             <BlogPosts posts={posts.slice(1)} />
+            <div className="text-center">
+              {hasMorePosts && (
+                <button onClick={loadMorePosts} className="button-1">
+                  Load more
+                </button>
+              )}
+            </div>
           </>
         ) : (
           <div className="site-margins my-32">
@@ -76,8 +110,8 @@ const Index = ({ posts, jobs }) => {
 };
 
 export async function getStaticProps() {
-  const posts = await client.fetch(groq`
-      *[_type == "post" && listed == true && publishedAt < now()] | order(publishedAt desc)
+  const initialPosts = await client.fetch(groq`
+      *[_type == "post" && listed == true && publishedAt < now()][0...10] | order(publishedAt desc)
     `);
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(
@@ -87,7 +121,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      initialPosts,
       jobs: JSON.parse(JSON.stringify(jobs)),
     },
     revalidate: 3600,

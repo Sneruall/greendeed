@@ -39,7 +39,9 @@ function BlogHero({ latestPost }: Props) {
                   <p className="blog-date text-white">
                     {new Date(latestPost.publishedAt).toDateString()}
                   </p>
-                  <h2 className="blog-heading sm:my-2">{latestPost.title}</h2>
+                  <h2 className="blog-heading-hero sm:my-2">
+                    {latestPost.title}
+                  </h2>
                   <p className="text-sm line-clamp-2 sm:text-base sm:line-clamp-3 lg:line-clamp-4">
                     {latestPost.excerpt}
                   </p>

@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import JobItem from '../../components/JobItem';
@@ -6,9 +6,13 @@ import { Company, Job } from '../../types/types';
 import {
   slugIsEqualToCompany,
   redirectToCorrectCompanyUrl,
+  generateCompanyUrl,
 } from '../../helpers/urlGeneration';
 
-import { getCompanyFromMongo } from '../../backend/company/companyDb';
+import {
+  getCompaniesFromMongo,
+  getCompanyFromMongo,
+} from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
@@ -88,8 +92,24 @@ const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
 
 export default CompanyPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { slug } = context.query;
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Fetch all job slugs from the API
+  const companies = await getCompaniesFromMongo();
+  const paths = companies.map((company) => ({
+    // params: { slug: job.slug.split('-') },
+    params: {
+      slug: generateCompanyUrl(company.name.toLowerCase(), company.id).split(
+        '/'
+      ),
+    },
+  }));
+
+  // Return the paths to Next.js
+  return { paths, fallback: 'blocking' };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params || {};
   if (!slug) return { notFound: true };
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };
@@ -118,5 +138,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       company: JSON.parse(JSON.stringify(company)),
       jobs: JSON.parse(JSON.stringify(companyJobs)),
     },
+    revalidate: 3600, // 60 minutes in seconds
   };
 };

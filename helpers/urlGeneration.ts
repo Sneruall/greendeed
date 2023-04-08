@@ -15,15 +15,6 @@ export const generateJobUrl = (
     accents.remove(companyName)
   )}/${replaceCharactersByDash(accents.remove(jobTitle))}-${id}`;
 };
-export const generateJobUrl2 = (
-  companyName: string,
-  jobTitle: string,
-  id: string
-) => {
-  return `${replaceCharactersByDash(
-    accents.remove(companyName)
-  )}/${replaceCharactersByDash(accents.remove(jobTitle))}-${id}`;
-};
 
 export const generateCompanyUrl = (name: string, id: string) => {
   return `/greendeed-companies/${replaceCharactersByDash(

@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { Company, Job } from '../../types/types';
 import {
-  generateJobUrl2,
+  generateJobUrl,
   redirectToCorrectJobUrl,
   slugIsEqualToJob,
 } from '../../helpers/urlGeneration';
@@ -99,7 +99,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const jobs = await getAllJobsFromMongo();
   const paths = jobs.map((job) => ({
     params: {
-      slug: generateJobUrl2(
+      slug: generateJobUrl(
         job.companyData.name.toLowerCase(),
         job.jobTitle.toLowerCase(),
         job.id

@@ -105,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 
   // Return the paths to Next.js
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {

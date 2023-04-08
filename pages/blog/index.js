@@ -11,6 +11,8 @@ import MainLayout from '../../layouts/MainLayout';
 import { useState, useEffect } from 'react';
 
 const Index = ({ initialPosts, jobs }) => {
+  console.log(initialPosts);
+
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState(initialPosts);
   const [hasMorePosts, setHasMorePosts] = useState(true);
@@ -21,10 +23,11 @@ const Index = ({ initialPosts, jobs }) => {
 
   const loadMorePosts = async () => {
     const nextPage = page + 1;
+    const startIndex = 10 + (nextPage - 2) * 9;
     const nextPosts = await client.fetch(groq`
-      *[_type == "post" && listed == true && publishedAt < now()][${
-        nextPage * 9
-      }...${(nextPage + 1) * 9 - 1}] | order(publishedAt desc)
+      *[_type == "post" && listed == true && publishedAt < now()] | order(publishedAt desc)[${startIndex}..${
+      startIndex + 8
+    }]
     `);
 
     if (nextPosts.length < 9) {
@@ -111,7 +114,7 @@ const Index = ({ initialPosts, jobs }) => {
 
 export async function getStaticProps() {
   const initialPosts = await client.fetch(groq`
-      *[_type == "post" && listed == true && publishedAt < now()][0...10] | order(publishedAt desc)
+      *[_type == "post" && listed == true && publishedAt < now()] | order(publishedAt desc)[0..9]
     `);
   const millisecondsSince1970 = new Date().getTime();
   const jobs = await getJobsFromMongo(

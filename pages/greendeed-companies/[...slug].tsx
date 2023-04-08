@@ -6,7 +6,7 @@ import { Company, Job } from '../../types/types';
 import {
   slugIsEqualToCompany,
   redirectToCorrectCompanyUrl,
-  generateCompanyUrl2,
+  generateCompanyUrl,
 } from '../../helpers/urlGeneration';
 
 import {
@@ -98,7 +98,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = companies.map((company) => ({
     // params: { slug: job.slug.split('-') },
     params: {
-      slug: generateCompanyUrl2(company.name.toLowerCase(), company.id).split(
+      slug: generateCompanyUrl(company.name.toLowerCase(), company.id).split(
         '/'
       ),
     },

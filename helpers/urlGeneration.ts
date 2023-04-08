@@ -31,10 +31,6 @@ export const generateCompanyUrl = (name: string, id: string) => {
   )}-${id}`;
 };
 
-export const generateCompanyUrl2 = (name: string, id: string) => {
-  return `${replaceCharactersByDash(accents.remove(name))}-${id}`;
-};
-
 export const slugIsEqualToJob = (
   job: Job,
   slug: string | string[],

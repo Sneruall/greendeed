@@ -12,6 +12,23 @@ const handlePost = async (req, res) => {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection(process.env.MONGODB_COLLECTION);
+
+  const retrievedCompany = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/company?name=${data.companyData.name}`
+  );
+
+  const thecompany = await retrievedCompany.json();
+
+  // Work with the data that already exists.
+  if (thecompany.id) {
+    data.companyId = thecompany.id;
+    data.companyData.name = thecompany.name;
+    data.companyData.description = thecompany.description;
+    data.companyData.logo = thecompany.logo;
+    data.companyData.website = thecompany.website;
+    data.companyData.sdgs = thecompany.sdgs;
+  }
+
   if (!data.companyId) {
     data.companyId = generateId();
   }
@@ -21,7 +38,6 @@ const handlePost = async (req, res) => {
   if (data.timestamp === 0) {
     data.timestamp = Date.now();
   }
-  console.log(data);
   await collection.insertOne(data);
 
   const companyData = {
@@ -52,7 +68,6 @@ async function postCompany(companyData) {
     }
   );
   const company = await companyResponse.json();
-  console.log(company);
 }
 
 export default async function handler(req, res) {

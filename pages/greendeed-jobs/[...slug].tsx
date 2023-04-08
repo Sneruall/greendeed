@@ -98,7 +98,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // Fetch all job slugs from the API
   const jobs = await getAllJobsFromMongo();
   const paths = jobs.map((job) => ({
-    // params: { slug: job.slug.split('-') },
     params: {
       slug: generateJobUrl(
         job.companyData.name.toLowerCase(),

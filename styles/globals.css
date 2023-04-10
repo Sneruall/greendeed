@@ -79,7 +79,7 @@
     @apply mt-6 text-2xl font-bold leading-relaxed tracking-wide text-custom-brown1 md:text-3xl;
   }
   .blog-h3 {
-    @apply mt-6 -mb-4 text-base font-bold text-custom-brown1;
+    @apply mt-6 -mb-4 text-xl font-bold text-custom-brown1;
   }
   .blog-h4 {
     @apply mt-6 -mb-4 text-base font-bold text-custom-brown1;

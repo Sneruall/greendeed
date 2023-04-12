@@ -95,14 +95,18 @@ export default CompanyPage;
 export const getStaticPaths: GetStaticPaths = async () => {
   // Fetch all job slugs from the API
   const companies = await getCompaniesFromMongo();
-  const paths = companies.map((company) => ({
-    // params: { slug: job.slug.split('-') },
-    params: {
-      slug: generateCompanyUrl(company.name.toLowerCase(), company.id).split(
-        '/'
-      ),
-    },
-  }));
+  const paths = companies.map((company) => {
+    const companyUrl = generateCompanyUrl(
+      company.name.toLowerCase(),
+      company.id
+    );
+    const slug = companyUrl.replace('/greendeed-companies/', '');
+    return {
+      params: {
+        slug: slug.split('/'),
+      },
+    };
+  });
 
   // Return the paths to Next.js
   return { paths, fallback: 'blocking' };

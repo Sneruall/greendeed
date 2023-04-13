@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import JobItem from '../../components/JobItem';
@@ -6,9 +6,13 @@ import { Company, Job } from '../../types/types';
 import {
   slugIsEqualToCompany,
   redirectToCorrectCompanyUrl,
+  generateCompanyUrl,
 } from '../../helpers/urlGeneration';
 
-import { getCompanyFromMongo } from '../../backend/company/companyDb';
+import {
+  getCompaniesFromMongo,
+  getCompanyFromMongo,
+} from '../../backend/company/companyDb';
 import { getJobsFromCompanyFromMongo } from '../../backend/job/jobDb';
 import CompanyInfo from '../../components/company/CompanyInfo';
 import JobSdgSection from '../../components/job/JobSdgSection';
@@ -138,5 +142,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       company: JSON.parse(JSON.stringify(company)),
       jobs: JSON.parse(JSON.stringify(companyJobs)),
     },
+    revalidate: 3600, // 60 minutes in seconds
   };
 };

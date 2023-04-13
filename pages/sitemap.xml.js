@@ -22,6 +22,18 @@ function generateSiteMap(jobs, companies, posts) {
      <url>
        <loc>${process.env.NEXT_PUBLIC_HOST}/blog</loc>
      </url>
+     ${companies
+       .map(({ name, id }) => {
+         return `
+      <url>
+          <loc>${process.env.NEXT_PUBLIC_HOST}${`${generateCompanyUrl(
+           name.toLowerCase(),
+           id
+         )}`}</loc>
+      </url>
+    `;
+       })
+       .join('')}
      ${jobs
        .map(({ companyData, jobTitle, id }) => {
          return `
@@ -29,18 +41,6 @@ function generateSiteMap(jobs, companies, posts) {
            <loc>${process.env.NEXT_PUBLIC_HOST}${`${generateJobUrl(
            companyData.name.toLowerCase(),
            jobTitle.toLowerCase(),
-           id
-         )}`}</loc>
-       </url>
-     `;
-       })
-       .join('')}
-     ${companies
-       .map(({ name, id }) => {
-         return `
-       <url>
-           <loc>${process.env.NEXT_PUBLIC_HOST}${`${generateCompanyUrl(
-           name.toLowerCase(),
            id
          )}`}</loc>
        </url>

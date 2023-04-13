@@ -102,7 +102,7 @@ const Post = ({ post, jobs }) => {
           </div>
           <div className="shadow-3 site-margins relative mx-auto -mt-24 max-w-3xl border-t-4 border-custom-green2 bg-white py-8 sm:py-16 lg:max-w-5xl lg:px-24 xl:max-w-6xl xl:px-40">
             <PortableText value={post?.body} components={ptComponents} />
-            {new Date(post?._updatedAt).toDateString() !==
+            {new Date(post?._updatedAt).toDateString() <
               new Date(post?.publishedAt).toDateString() && (
               <span className="text-sm italic">
                 Article updated at: {new Date(post?._updatedAt).toDateString()}

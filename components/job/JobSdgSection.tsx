@@ -80,7 +80,7 @@ function JobSdgSection({ job, company }: Props) {
                       'SDG ' +
                       sdgObject.sdg +
                       ' ' +
-                      sdgList[+sdgObject.sdg - 1].name
+                      sdgList[+sdgObject.sdg - 1]?.name
                     }
                   />
                 </div>

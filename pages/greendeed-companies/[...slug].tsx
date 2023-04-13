@@ -88,8 +88,28 @@ const CompanyPage: NextPage<{ company: Company; jobs: [Job] }> = ({
 
 export default CompanyPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { slug } = context.query;
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Fetch all job slugs from the API
+  const companies = await getCompaniesFromMongo();
+  const paths = companies.map((company) => {
+    const companyUrl = generateCompanyUrl(
+      company.name.toLowerCase(),
+      company.id
+    );
+    const slug = companyUrl.replace('/greendeed-companies/', '');
+    return {
+      params: {
+        slug: slug.split('/'),
+      },
+    };
+  });
+
+  // Return the paths to Next.js
+  return { paths, fallback: 'blocking' };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params || {};
   if (!slug) return { notFound: true };
   const queryId = slug.toString().split('-').pop();
   if (!queryId) return { notFound: true };

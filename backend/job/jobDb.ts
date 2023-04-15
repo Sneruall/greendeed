@@ -41,7 +41,7 @@ export const getJobsFromMongo = async (
         },
         $or: sdgQuery,
       })
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .limit(limit || 5)
       .toArray();
   } else if (category) {
@@ -57,7 +57,7 @@ export const getJobsFromMongo = async (
           $gt: 0,
         },
       })
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .limit(limit || 5)
       .toArray();
   } else if (sdgs) {
@@ -74,7 +74,7 @@ export const getJobsFromMongo = async (
         $or: sdgQuery,
       })
       .limit(limit || 0)
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .toArray();
   } else {
     console.log('else query');
@@ -90,7 +90,7 @@ export const getJobsFromMongo = async (
         },
       })
       .limit(limit || 0)
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .toArray();
   }
   return jobs;
@@ -118,7 +118,7 @@ export const getAllJobsFromMongo = async (
       },
     })
     .limit(limit || 0)
-    .sort({ _id: -1 })
+    .sort({ timestamp: -1 })
     .toArray();
 
   return jobs;
@@ -175,7 +175,7 @@ export const getJobsFromCompanyFromMongo = async (
         }) ||
         ({ $gt: 0 } && { $lt: new Date().getTime() }),
     })
-    .sort({ _id: -1 })
+    .sort({ timestamp: -1 })
     .limit(limit || 0)
     .toArray();
 

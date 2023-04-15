@@ -140,6 +140,7 @@ export const getJobFromMongo = async (queryId: string) => {
   const job = (await db.collection(collection).findOne({
     id: queryId,
     published: true,
+    timestamp: { $lt: new Date().getTime() },
   })) as unknown as Job;
 
   return job;
@@ -168,7 +169,11 @@ export const getJobsFromCompanyFromMongo = async (
       listed: true,
       closed: false,
       companyId: company.id,
-      timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+      timestamp:
+        ({ $gt: minTimestampInMs } && {
+          $lt: new Date().getTime(),
+        }) ||
+        ({ $gt: 0 } && { $lt: new Date().getTime() }),
     })
     .sort({ _id: -1 })
     .limit(limit || 0)

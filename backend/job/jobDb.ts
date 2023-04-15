@@ -41,7 +41,7 @@ export const getJobsFromMongo = async (
         },
         $or: sdgQuery,
       })
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .limit(limit || 5)
       .toArray();
   } else if (category) {
@@ -57,7 +57,7 @@ export const getJobsFromMongo = async (
           $gt: 0,
         },
       })
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .limit(limit || 5)
       .toArray();
   } else if (sdgs) {
@@ -74,7 +74,7 @@ export const getJobsFromMongo = async (
         $or: sdgQuery,
       })
       .limit(limit || 0)
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .toArray();
   } else {
     console.log('else query');
@@ -90,7 +90,7 @@ export const getJobsFromMongo = async (
         },
       })
       .limit(limit || 0)
-      .sort({ _id: -1 })
+      .sort({ timestamp: -1 })
       .toArray();
   }
   return jobs;
@@ -118,7 +118,7 @@ export const getAllJobsFromMongo = async (
       },
     })
     .limit(limit || 0)
-    .sort({ _id: -1 })
+    .sort({ timestamp: -1 })
     .toArray();
 
   return jobs;
@@ -140,6 +140,7 @@ export const getJobFromMongo = async (queryId: string) => {
   const job = (await db.collection(collection).findOne({
     id: queryId,
     published: true,
+    timestamp: { $lt: new Date().getTime() },
   })) as unknown as Job;
 
   return job;
@@ -168,9 +169,13 @@ export const getJobsFromCompanyFromMongo = async (
       listed: true,
       closed: false,
       companyId: company.id,
-      timestamp: { $gt: minTimestampInMs } || { $gt: 0 },
+      timestamp:
+        ({ $gt: minTimestampInMs } && {
+          $lt: new Date().getTime(),
+        }) ||
+        ({ $gt: 0 } && { $lt: new Date().getTime() }),
     })
-    .sort({ _id: -1 })
+    .sort({ timestamp: -1 })
     .limit(limit || 0)
     .toArray();
 

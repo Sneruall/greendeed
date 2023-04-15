@@ -7,46 +7,54 @@ export const generateId = () => {
   return nanoid();
 };
 
-const handlePost = async (req, res) => {
-  const data = req.body;
+const getCollection = async () => {
   const client = await clientPromise;
   const db = client.db();
-  const collection = db.collection(process.env.MONGODB_COLLECTION);
+  return db.collection(process.env.MONGODB_COLLECTION);
+};
 
-  const retrievedCompany = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST}/api/company?name=${data.companyData.name}`
+const fetchCompanyData = async (companyName) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/company?name=${companyName}`
   );
+  return await response.json();
+};
 
-  const thecompany = await retrievedCompany.json();
+const postCompany = async (companyData) => {
+  await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/company`, {
+    method: 'POST',
+    body: JSON.stringify(companyData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
 
-  // Work with the data that already exists.
-  if (thecompany.id) {
-    data.companyId = thecompany.id;
-    data.companyData.name = thecompany.name;
-    data.companyData.description = thecompany.description;
-    data.companyData.logo = thecompany.logo;
-    data.companyData.website = thecompany.website;
-    data.companyData.sdgs = thecompany.sdgs;
-  }
+const handlePost = async (req, res) => {
+  const data = req.body;
+  const collection = await getCollection();
 
-  if (!data.companyId) {
+  const existingCompany = await fetchCompanyData(data.companyData.name);
+
+  if (existingCompany.id) {
+    data.companyId = existingCompany.id;
+    Object.assign(data.companyData, existingCompany);
+  } else {
     data.companyId = generateId();
   }
+
   if (!data.id) {
     data.id = generateId();
   }
   if (data.timestamp === 0) {
     data.timestamp = Date.now();
   }
+
   await collection.insertOne(data);
 
   const companyData = {
-    name: data.companyData.name,
     id: data.companyId,
-    description: data.companyData.description,
-    website: data.companyData.website,
-    sdgs: data.companyData.sdgs,
-    logo: data.companyData.logo,
+    ...data.companyData,
   };
 
   await postCompany(companyData);
@@ -55,20 +63,6 @@ const handlePost = async (req, res) => {
     .status(201)
     .json({ message: 'Data inserted successfully in Job DB and Company DB!' });
 };
-
-async function postCompany(companyData) {
-  const companyResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST}/api/company`,
-    {
-      method: 'POST',
-      body: JSON.stringify(companyData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  const company = await companyResponse.json();
-}
 
 export default async function handler(req, res) {
   switch (req.method) {

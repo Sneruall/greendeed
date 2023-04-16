@@ -39,7 +39,7 @@ const handleGet = async (req, res) => {
   const companies = await getCollection();
 
   if (!companyName) {
-    res.status(400).json({ id: undefined });
+    res.status(400).json({ message: 'No company name given' });
     return;
   }
 
@@ -48,7 +48,7 @@ const handleGet = async (req, res) => {
   if (company) {
     res.status(200).json(company);
   } else {
-    res.status(404).json({ id: undefined });
+    res.status(202).json({ message: 'Company not found, unknown name' });
   }
 };
 

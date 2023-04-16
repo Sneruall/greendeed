@@ -33,11 +33,13 @@ const handleDelete = async (req, res) => {
   const { id } = req.query;
   const collection = await getCollection();
   const deleteResult = await collection.deleteOne({ id: id });
-  console.log(deleteResult.deletedCount);
-  if (!deleteResult.deletedCount !== 1) {
+  if (deleteResult.deletedCount === 1) {
+    console.log('Successfully deleted one document.');
+    res.status(200).json({ message: 'Data deleted successfully!' });
+  } else {
+    console.log('No documents matched the query. Deleted 0 documents.');
     res.status(404).json({ message: 'Company not found, unknown id' });
   }
-  res.status(200).json({ message: 'Data deleted successfully!' });
 };
 
 export default async function handler(req, res) {

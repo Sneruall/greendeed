@@ -10,10 +10,7 @@ const handlePost = async (req, res) => {
   const data = req.body;
   const collection = await getCollection();
   await collection.insertOne(data);
-  res
-    .status(201)
-    .json({ message: 'Data inserted successfully in Job DB!' })
-    .end();
+  res.status(201).json({ message: 'Data inserted successfully in Job DB!' });
 };
 
 const handlePut = async (req, res) => {
@@ -29,18 +26,18 @@ const handlePut = async (req, res) => {
     `${updateResult.matchedCount} document(s) matched the filter, updated ${updateResult.modifiedCount} document(s)`
   );
 
-  res
-    .status(201)
-    .json({ message: 'Data updated successfully in Job DB!' })
-    .end();
+  res.status(201).json({ message: 'Data updated successfully in Job DB!' });
 };
 
 const handleDelete = async (req, res) => {
   const { id } = req.query;
   const collection = await getCollection();
   const deleteResult = await collection.deleteOne({ id: id });
-  console.log(deleteResult);
-  res.status(204).json({ message: 'Data deleted successfully!' }).end();
+  console.log(deleteResult.deletedCount);
+  if (!deleteResult.deletedCount !== 1) {
+    res.status(404).json({ message: 'Company not found, unknown id' });
+  }
+  res.status(200).json({ message: 'Data deleted successfully!' });
 };
 
 export default async function handler(req, res) {

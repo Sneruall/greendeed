@@ -48,7 +48,7 @@ const handleGet = async (req, res) => {
   if (company) {
     res.status(200).json(company);
   } else {
-    res.status(200).json({ id: undefined });
+    res.status(404).json({ id: undefined });
   }
 };
 

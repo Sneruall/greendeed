@@ -127,7 +127,7 @@ export async function getStaticProps() {
       initialPosts,
       jobs: JSON.parse(JSON.stringify(jobs)),
     },
-    revalidate: 3600,
+    revalidate: 300,
   };
 }
 

@@ -59,9 +59,7 @@ const handlePost = async (req, res) => {
 
   await postCompany(companyData);
 
-  res
-    .status(201)
-    .json({ message: 'Data inserted successfully in Job DB and Company DB!' });
+  res.status(201).json({ message: 'Data inserted successfully in DB!' });
 };
 
 export default async function handler(req, res) {

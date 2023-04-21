@@ -30,18 +30,6 @@ export const slugIsEqualToJob = (
   const slugMinusQueryId = slug.toString().replace('-' + queryId, '');
   const queryTitle = slugMinusQueryId.split(',').pop();
   const queryCompany = slugMinusQueryId.replace(',' + queryTitle, '');
-  // console.log('querytitle: ' + replaceCharactersByWhitespace(queryTitle!));
-  // console.log(
-  //   'querytitle: ' +
-  //     replaceCharactersByWhitespace(accents.remove(job.jobTitle.toLowerCase()))
-  // );
-  // console.log('querycompany: ' + replaceCharactersByWhitespace(queryCompany));
-  // console.log(
-  //   'querycompany: ' +
-  //     replaceCharactersByWhitespace(
-  //       accents.remove(job.companyData.name.toLowerCase())
-  //     )
-  // );
 
   if (
     replaceCharactersByWhitespace(

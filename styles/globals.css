@@ -76,7 +76,7 @@
     @apply font-century text-xs font-bold uppercase tracking-wider text-custom-brown3 hover:underline lg:text-base;
   }
   .blog-h2 {
-    @apply mt-6 text-2xl font-bold leading-relaxed tracking-wide text-custom-brown1 md:text-3xl;
+    @apply mt-12 text-2xl font-bold leading-relaxed tracking-wide text-custom-brown1 md:text-3xl;
   }
   .blog-h3 {
     @apply mt-6 text-xl font-bold text-custom-brown1;

@@ -9,6 +9,7 @@ import { getJobsFromMongo } from '../../backend/job/jobDb';
 import LatestJobs from '../../components/LatestJobs';
 import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 import AltLayout from '../../layouts/AltLayout';
+import DocslyClient from '../../components/DocslyClient';
 
 const ptComponents = {
   block: {
@@ -68,7 +69,7 @@ const Post = ({ post, jobs }) => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
+        <DocslyClient />
         <article className="relative">
           <div className="absolute h-[600px] w-full bg-black">
             <Image

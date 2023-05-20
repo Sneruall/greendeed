@@ -10,9 +10,17 @@ const handleGet = async (req, res) => {
   try {
     const collection = await getCollection();
 
-    // Retrieve only the documents from the collection where 'published' and 'listed' are true, and 'closed' is false
+    // Calculate a timestamp for 60 days in the past
+    const sixtyDaysAgo = Date.now() - 60 * 24 * 60 * 60 * 1000;
+
+    // Retrieve only the documents from the collection where 'published' and 'listed' are true, 'closed' is false, and 'timestamp' is greater than sixtyDaysAgo
     const jobs = await collection
-      .find({ published: true, listed: true, closed: false })
+      .find({
+        published: true,
+        listed: true,
+        closed: false,
+        timestamp: { $gte: sixtyDaysAgo },
+      })
       .toArray();
 
     // Map over all jobs to get the 'apply' urls

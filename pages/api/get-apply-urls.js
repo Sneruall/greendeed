@@ -10,8 +10,10 @@ const handleGet = async (req, res) => {
   try {
     const collection = await getCollection();
 
-    // Retrieve all the documents from the collection
-    const jobs = await collection.find({}).toArray();
+    // Retrieve only the documents from the collection where 'published' and 'listed' are true, and 'closed' is false
+    const jobs = await collection
+      .find({ published: true, listed: true, closed: false })
+      .toArray();
 
     // Map over all jobs to get the 'apply' urls
     const applyUrls = jobs.map((job) => job.apply);

@@ -45,6 +45,20 @@ export const options: HTMLReactParserOptions = {
           </h4>
         );
       }
+      if (domNode.name === 'h4') {
+        return (
+          <h5 className="mt-4 font-bold">
+            {domToReact(domNode.children, options)}
+          </h5>
+        );
+      }
+      if (domNode.name === 'h5') {
+        return (
+          <h6 className="mt-4 font-bold">
+            {domToReact(domNode.children, options)}
+          </h6>
+        );
+      }
       if (domNode.name === 'ul') {
         return (
           <ul className="list-outside list-disc">

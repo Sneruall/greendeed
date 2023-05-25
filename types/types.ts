@@ -211,31 +211,6 @@ export const geoRestrictions = [
 
 export const currencies = ['€', '$', '£', 'CA$', 'AU$'];
 
-export interface remotiveJob {
-  id: string;
-  url: string;
-  title: string;
-  company_name: string;
-  company_logo: string;
-  category: string;
-  tags: string[];
-  job_type: string;
-  publication_date: string;
-  candidate_required_location: string;
-  salary: string;
-  description: string;
-  sdgs: sdgs;
-  external: boolean;
-}
-
-export type remotiveJobSelection = [
-  {
-    id: string;
-    sdgs: sdgs;
-    timestamp: number;
-  }
-];
-
 export type emailData = {
   jobTitle: string;
   email: string;

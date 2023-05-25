@@ -38,7 +38,7 @@ const handleDelete = async (req, res) => {
     res.status(200).json({ message: 'Data deleted successfully!' });
   } else {
     console.log('No documents matched the query. Deleted 0 documents.');
-    res.status(202).json({ message: 'Company not found, unknown id' });
+    res.status(202).json({ message: 'Job not found, unknown id' });
   }
 };
 

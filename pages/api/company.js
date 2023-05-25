@@ -52,12 +52,27 @@ const handleGet = async (req, res) => {
   }
 };
 
+const handleDelete = async (req, res) => {
+  const { id } = req.query;
+  const collection = await getCollection();
+  const deleteResult = await collection.deleteOne({ id: id });
+  if (deleteResult.deletedCount === 1) {
+    console.log('Successfully deleted one document.');
+    res.status(200).json({ message: 'Data deleted successfully!' });
+  } else {
+    console.log('No documents matched the query. Deleted 0 documents.');
+    res.status(202).json({ message: 'Company not found, unknown id' });
+  }
+};
+
 export default async function handler(req, res) {
   switch (req.method) {
     case 'POST':
       return handlePost(req, res);
     case 'GET':
       return handleGet(req, res);
+    case 'DELETE':
+      return handleDelete(req, res);
     default:
       return res.status(405).end();
   }

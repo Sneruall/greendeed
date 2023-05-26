@@ -29,6 +29,18 @@ const handlePut = async (req, res) => {
   res.status(201).json({ message: 'Data updated successfully in Job DB!' });
 };
 
+const handlePatch = async (req, res) => {
+  const { id } = req.query;
+  const collection = await getCollection();
+  const filter = { id: id };
+  const updateDoc = { $set: { closed: true } };
+  const result = await collection.updateOne(filter, updateDoc);
+  console.log(
+    `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
+  );
+  res.status(201).json({ message: 'Data updated successfully in Job DB!' });
+};
+
 const handleDelete = async (req, res) => {
   const { id } = req.query;
   const collection = await getCollection();
@@ -48,6 +60,8 @@ export default async function handler(req, res) {
       return handlePost(req, res);
     case 'PUT':
       return handlePut(req, res);
+    case 'PATCH':
+      return handlePatch(req, res);
     case 'DELETE':
       return handleDelete(req, res);
     default:

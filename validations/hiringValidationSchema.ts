@@ -18,10 +18,8 @@ export default Yup.object().shape({
   jobTitle: Yup.string()
     .required(REQUIRED_FIELD)
     .min(2, MIN_2_CHARACTERS)
-    .matches(
-      ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
-      CHARACTERS_NOT_ALLOWED
-    )
+    .matches(ALPHANUMERIC_AND_SPECIFIC_CHARS, CHARACTERS_NOT_ALLOWED)
+    .matches(NO_BACKWARD_SLASH, CHARACTERS_NOT_ALLOWED)
     .max(60, MAX_60_CHARACTERS),
   category: Yup.string().required(REQUIRED_FIELD),
   jobType: Yup.string().required(REQUIRED_FIELD),
@@ -73,10 +71,8 @@ export default Yup.object().shape({
   companyData: Yup.object().shape({
     name: Yup.string()
       .min(2, MIN_2_CHARACTERS)
-      .matches(
-        ALPHANUMERIC_AND_SPECIFIC_CHARS && NO_BACKWARD_SLASH,
-        CHARACTERS_NOT_ALLOWED
-      )
+      .matches(ALPHANUMERIC_AND_SPECIFIC_CHARS, CHARACTERS_NOT_ALLOWED)
+      .matches(NO_BACKWARD_SLASH, CHARACTERS_NOT_ALLOWED)
       .required(REQUIRED_FIELD),
     website: Yup.string().url(
       'URL is not valid, try this format: https://website.com'
@@ -98,14 +94,4 @@ export default Yup.object().shape({
     country: Yup.string().required(REQUIRED_FIELD),
   }),
   fullName: Yup.string().required(REQUIRED_FIELD),
-
-  //   sdg: Yup.array()
-  //     .min(1, 'At least one SDG is required')
-  //     .max(5, 'Max 5 SDGs allowed')
-  //     .of(Yup.string().required('At least one SDG is required'))
-  //     .required('At least one SDG is required')
-  //     .nullable(false)
-  //     .typeError('At least one SDG is required'),
-  //   // .of(Yup.object({ id: Yup.string(), text: Yup.string() })),
-  //   // sdg: Yup.array().required('req').min(1, 'required').of(Yup.object()),
 });

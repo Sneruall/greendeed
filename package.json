@@ -31,7 +31,7 @@
     "javascript-time-ago": "^2.3.13",
     "moment": "^2.29.3",
     "mongodb": "^4.5.0",
-    "nanoid": "^3.3.3",
+    "nanoid": "^4.0.2",
     "next": "^13.1.6",
     "next-sanity": "^4.3.3",
     "next-sanity-image": "^6.0.0",

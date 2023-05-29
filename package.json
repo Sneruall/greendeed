@@ -30,7 +30,7 @@
     "html-react-parser": "^1.4.14",
     "javascript-time-ago": "^2.3.13",
     "moment": "^2.29.3",
-    "mongodb": "^4.5.0",
+    "mongodb": "^5.5.0",
     "nanoid": "^4.0.2",
     "next": "^13.1.6",
     "next-sanity": "^4.3.3",

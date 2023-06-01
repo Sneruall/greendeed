@@ -1,3 +1,8 @@
+/*
+  Endpoint which can be used via Postman to post a new job directly to the DB.
+  This endpoint will also send a tweet to the Greendeed Twitter account.
+*/
+
 import clientPromise from '../../lib/mongodb';
 import { customAlphabet } from 'nanoid';
 import { TwitterApi } from 'twitter-api-v2';

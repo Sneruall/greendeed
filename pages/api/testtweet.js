@@ -11,8 +11,18 @@ const twitterClient = new TwitterApi({
 export default async (req, res) => {
   if (req.method === 'POST') {
     try {
-      // Compose your test tweet
-      const tweetText = `💡🌿 Looking for a job that makes a difference? ${req.body.companyName} is hiring a ${req.body.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io #Greendeed #EcoFriendlyJobs #Sustainability`;
+      // Array of tweet templates
+      const tweetTemplates = [
+        `🌱💼 New green opportunity alert! Check out the latest job post on #Greendeed: ${req.body.jobTitle} at ${req.body.companyName}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
+        `♻️🚀 Time to make a difference! ${req.body.companyName} is now hiring for the role of ${req.body.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
+        `🌍🌿 Ready to work towards a greener future? ${req.body.companyName} is looking for a ${req.body.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
+        `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${req.body.jobTitle} at ${req.body.companyName}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
+        `💡🌿 Looking for a job that makes a difference? ${req.body.companyName} is hiring a ${req.body.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
+      ];
+
+      // Choose a random tweet
+      const tweetText =
+        tweetTemplates[Math.floor(Math.random() * tweetTemplates.length)];
 
       // Send a tweet
       const response = await twitterClient.v2.tweet(tweetText);

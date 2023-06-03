@@ -169,11 +169,9 @@ export const getJobsFromCompanyFromMongo = async (
       listed: true,
       closed: false,
       companyId: company.id,
-      timestamp:
-        ({ $gt: minTimestampInMs } && {
-          $lt: new Date().getTime(),
-        }) ||
-        ({ $gt: 0 } && { $lt: new Date().getTime() }),
+      timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+        $gt: 0,
+      },
     })
     .sort({ timestamp: -1 })
     .limit(limit || 0)

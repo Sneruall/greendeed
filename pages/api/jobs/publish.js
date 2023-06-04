@@ -28,45 +28,56 @@ const resetTimestamp = () => {
 };
 
 const postTweet = async (job) => {
-  try {
-    // Array of tweet templates
-    const tweetTemplates = [
-      `🌱💼 New green opportunity alert! Check out the latest job post on #Greendeed: ${data.jobTitle} at ${data.companyData.name}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
-      `♻️🚀 Time to make a difference! ${data.companyData.name} is now hiring for the role of ${data.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
-      `🌍🌿 Ready to work towards a greener future? ${data.companyData.name} is looking for a ${data.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
-      `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${data.jobTitle} at ${data.companyData.name}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
-      `💡🌿 Looking for a job that makes a difference? ${data.companyData.name} is hiring a ${data.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
-    ];
+  // Array of tweet templates
+  const tweetTemplates = [
+    `🌱💼 New green opportunity alert! Check out the latest job post on #Greendeed: ${data.jobTitle} at ${data.companyData.name}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
+    `♻️🚀 Time to make a difference! ${data.companyData.name} is now hiring for the role of ${data.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
+    `🌍🌿 Ready to work towards a greener future? ${data.companyData.name} is looking for a ${data.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
+    `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${data.jobTitle} at ${data.companyData.name}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
+    `💡🌿 Looking for a job that makes a difference? ${data.companyData.name} is hiring a ${data.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
+  ];
 
-    // Choose a random tweet
-    const tweetText =
-      tweetTemplates[Math.floor(Math.random() * tweetTemplates.length)];
+  // Choose a random tweet
+  const tweetText =
+    tweetTemplates[Math.floor(Math.random() * tweetTemplates.length)];
 
-    // Send a tweet
-    await twitterClient.v2.tweet(tweetText);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'An error occurred' });
-  }
+  // Send a tweet
+  await twitterClient.v2.tweet(tweetText);
 };
 
 const handlePost = async (req, res) => {
-  const { id } = req.query;
-  const collection = await getCollection();
-  const filter = { id: id };
-  // Use the resetTimestamp function to set the new timestamp
-  const updateDoc = { $set: { published: true, timestamp: resetTimestamp() } };
-  const result = await collection.updateOne(filter, updateDoc);
+  try {
+    const { id } = req.query;
+    const collection = await getCollection();
+    const filter = { id: id };
+    const updateDoc = {
+      $set: { published: true, timestamp: resetTimestamp() },
+    };
 
-  // Post a tweet
-  await postTweet(job);
+    // Use the result object to ensure the operation was successful
+    const result = await collection.updateOne(filter, updateDoc);
 
-  console.log(
-    `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
-  );
-  res
-    .status(201)
-    .json({ message: 'Job published and timestamp updated successfully!' });
+    // If no document was found, send a 404 response
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: 'Job not found!' });
+    }
+
+    // Fetch the job data to send in the tweet
+    const job = await collection.findOne(filter);
+
+    // Post a tweet
+    await postTweet(job);
+
+    console.log(
+      `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
+    );
+    return res
+      .status(201)
+      .json({ message: 'Job published and timestamp updated successfully!' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
 
 export default async function handler(req, res) {

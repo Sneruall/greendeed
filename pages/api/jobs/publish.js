@@ -30,11 +30,11 @@ const resetTimestamp = () => {
 const postTweet = async (job) => {
   // Array of tweet templates
   const tweetTemplates = [
-    `🌱💼 New green opportunity alert! Check out the latest job post on #Greendeed: ${job.jobTitle} at ${job.companyjob.name}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
-    `♻️🚀 Time to make a difference! ${job.companyjob.name} is now hiring for the role of ${job.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
-    `🌍🌿 Ready to work towards a greener future? ${job.companyjob.name} is looking for a ${job.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
-    `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${job.jobTitle} at ${job.companyjob.name}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
-    `💡🌿 Looking for a job that makes a difference? ${job.companyjob.name} is hiring a ${job.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
+    `🌱💼 New green opportunity alert! Check out the latest job post on Greendeed: ${job.jobTitle} at ${job.companyData.name}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
+    `♻️🚀 Time to make a difference! ${job.companyData.name} is now hiring for the role of ${job.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
+    `🌍🌿 Ready to work towards a greener future? ${job.companyData.name} is looking for a ${job.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
+    `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${job.jobTitle} at ${job.companyData.name}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
+    `💡🌿 Looking for a job that makes a difference? ${job.companyData.name} is hiring a ${job.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
   ];
 
   // Choose a random tweet
@@ -71,12 +71,15 @@ const handlePost = async (req, res) => {
     console.log(
       `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
     );
-    return res
-      .status(201)
-      .json({ message: 'Job published and timestamp updated successfully!' });
+    return res.status(201).json({
+      message:
+        'Job published and timestamp updated successfully! Also posted to Twitter',
+    });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    return res
+      .status(500)
+      .json({ message: 'Internal Server Error', error: error });
   }
 };
 

@@ -1,19 +1,9 @@
 /*
   Endpoint which can be used via Postman to post a new job directly to the DB.
-  This endpoint will also send a tweet to the Greendeed Twitter account.
 */
 
 import clientPromise from '../../lib/mongodb';
 import { customAlphabet } from 'nanoid';
-import { TwitterApi } from 'twitter-api-v2';
-
-// Create a Twitter client
-const twitterClient = new TwitterApi({
-  appKey: process.env.TWITTER_API_KEY,
-  appSecret: process.env.TWITTER_API_SECRET,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-});
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 7);
 
@@ -74,24 +64,8 @@ const handlePost = async (req, res) => {
 
     await postCompany(companyData);
 
-    // Array of tweet templates
-    const tweetTemplates = [
-      `🌱💼 New green opportunity alert! Check out the latest job post on #Greendeed: ${data.jobTitle} at ${data.companyData.name}. Be a part of the change. More info: https://greendeed.io/#jobs #GreenJobs #EcoFriendly`,
-      `♻️🚀 Time to make a difference! ${data.companyData.name} is now hiring for the role of ${data.jobTitle}. Learn more and apply now: https://greendeed.io/#jobs #GreenJobs #Sustainability #Greendeed`,
-      `🌍🌿 Ready to work towards a greener future? ${data.companyData.name} is looking for a ${data.jobTitle}. Explore this exciting opportunity on #Greendeed: https://greendeed.io/#jobs #EcoCareers #GreenJobs`,
-      `🌳🏢 Interested in contributing to a greener world? Don't miss this new job opportunity: ${data.jobTitle} at ${data.companyData.name}. Apply now: https://greendeed.io/#jobs #Greendeed #GreenCareers #Sustainability`,
-      `💡🌿 Looking for a job that makes a difference? ${data.companyData.name} is hiring a ${data.jobTitle}. Let's build a more sustainable future together. Check it out: https://greendeed.io/#jobs #Greendeed #EcoFriendlyJobs #Sustainability`,
-    ];
-
-    // Choose a random tweet
-    const tweetText =
-      tweetTemplates[Math.floor(Math.random() * tweetTemplates.length)];
-
-    // Send a tweet
-    await twitterClient.v2.tweet(tweetText);
-
     res.status(201).json({
-      message: 'Data inserted successfully in DB and Tweeted successfully!',
+      message: 'Data inserted successfully in DB successfully!',
     });
   } catch (error) {
     console.error(error);

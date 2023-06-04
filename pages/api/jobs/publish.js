@@ -5,7 +5,7 @@
  * collection. If the request is successful, a JSON response with a message is returned. If the request
  * method is not POST, a 405 status code is returned.
  */
-import clientPromise from '../../lib/mongodb';
+import clientPromise from '../../../lib/mongodb';
 import { TwitterApi } from 'twitter-api-v2';
 
 // Create a Twitter client

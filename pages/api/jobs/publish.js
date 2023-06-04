@@ -83,10 +83,36 @@ const handlePost = async (req, res) => {
   }
 };
 
+const handleGet = async (req, res) => {
+  try {
+    const collection = await getCollection();
+    // Define the filter to find all jobs with "published" set to false
+    const filter = { published: false };
+    // Define the projection to return only the id of each job
+    const projection = { id: 1 };
+
+    // Find all jobs that match the filter
+    const jobsToBePublished = await collection
+      .find(filter, projection)
+      .toArray();
+
+    // Extract only the job IDs from the result
+    const jobIdsToBePublished = jobsToBePublished.map((job) => job._id);
+
+    // Respond with the list of job IDs
+    res.status(200).json({ jobIds: jobIdsToBePublished });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
 export default async function handler(req, res) {
   switch (req.method) {
     case 'POST':
       return handlePost(req, res);
+    case 'GET':
+      return handleGet(req, res);
     default:
       return res.status(405).end();
   }

@@ -96,8 +96,14 @@ const handleGet = async (req, res) => {
       .find(filter, projection)
       .toArray();
 
+    if (jobsToBePublished.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No jobs found with published = false.' });
+    }
+
     // Extract only the job IDs from the result
-    const jobIdsToBePublished = jobsToBePublished.map((job) => job._id);
+    const jobIdsToBePublished = jobsToBePublished.map((job) => job.id);
 
     // Respond with the list of job IDs
     res.status(200).json({ jobIds: jobIdsToBePublished });

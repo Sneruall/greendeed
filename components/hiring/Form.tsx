@@ -207,8 +207,10 @@ and get the form state. */
       await postCompany(companyFormData);
       // Sync company data to all company jobs in jobs database (job.companyData object)
       await updateJobs(companyFormData);
-      // Post a tweet about the job
-      await postTweet(transformedFormData);
+      // If published is set to TRUE (company already known): Post a tweet about the job
+      if (transformedFormData.published === true) {
+        await postTweet(transformedFormData);
+      }
       // Send order confirmation
       console.log('sending order confirmation');
       console.log(JSON.stringify(emailData));

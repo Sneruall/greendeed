@@ -6,6 +6,7 @@ import { checkCompany, postCompany } from '../../backend/company/companyApi';
 import { useRouter } from 'next/router';
 import {
   postJob,
+  postTweet,
   sendConfirmationEmail,
   transformFormData,
   updateJobs,
@@ -206,10 +207,13 @@ and get the form state. */
       await postCompany(companyFormData);
       // Sync company data to all company jobs in jobs database (job.companyData object)
       await updateJobs(companyFormData);
+      // Post a tweet about the job
+      await postTweet(transformedFormData);
       // Send order confirmation
       console.log('sending order confirmation');
       console.log(JSON.stringify(emailData));
       await sendConfirmationEmail(emailData);
+      // Post a tweet
     } catch (err) {
       console.log(
         'an error occurred when posting job and/or company data into our database / or updating jobs / sending email confirmation'

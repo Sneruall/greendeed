@@ -6,7 +6,6 @@
  * method is not POST, a 405 status code is returned.
  */
 import clientPromise from '../../../lib/mongodb';
-import postTweet from './tweetJob';
 
 const getCollection = async () => {
   const client = await clientPromise;
@@ -17,6 +16,16 @@ const getCollection = async () => {
 // Function to reset timestamp
 const resetTimestamp = () => {
   return Date.now();
+};
+
+const postTweet = async (job) => {
+  await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/jobs/tweetJob`, {
+    method: 'POST',
+    body: JSON.stringify(job),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };
 
 const handlePost = async (req, res) => {
@@ -40,6 +49,9 @@ const handlePost = async (req, res) => {
     const job = await collection.findOne(filter);
 
     // Send a tweet
+    // await postTweet(job);
+    // Post the job data to the Twitter endpoint
+
     await postTweet(job);
 
     console.log(

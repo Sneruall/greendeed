@@ -10,17 +10,21 @@ const twitterClient = new TwitterApi({
 
 const generateLocation = (locationInfo) => {
   if (locationInfo.location === 'remote') {
-    return 'Remote';
+    return 'remote';
   } else if (locationInfo.location === 'onSite') {
     return locationInfo.onSiteLocation.join(', ');
   } else if (locationInfo.location === 'onSiteOrRemote') {
-    return `Hybrid from: ${locationInfo.onSiteLocation.join(', ')}`;
+    return `🏘️ hybrid from: ${locationInfo.onSiteLocation.join(', ')}`;
   }
 };
 
 const generateLocationRestriction = (locationInfo) => {
-  if (locationInfo.geoRestriction) {
-    return `, ${locationInfo.geoRestriction.join(', ')} only`;
+  if (locationInfo.geoRestriction && locationInfo.location !== 'remote') {
+    return ` 🌐 ${locationInfo.geoRestriction.join(', ')} only`;
+  } else if (locationInfo.geoRestriction) {
+    return `🌐 ${locationInfo.geoRestriction.join(', ')} only`;
+  } else {
+    return '';
   }
 };
 

@@ -223,6 +223,19 @@ export async function postJob(transformedFormData: Job) {
   console.log(data);
 }
 
+export async function postTweet(job: Job) {
+  // Post the job data to the Twitter endpoint
+  const response = await fetch('/api/jobs/tweetJob', {
+    method: 'POST',
+    body: JSON.stringify(job),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+}
+
 export async function updateJobs(updatedCompanyData: Company) {
   const companyResponse = await fetch('/api/job', {
     method: 'PUT',

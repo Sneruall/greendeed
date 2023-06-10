@@ -1,3 +1,7 @@
+/*
+  Endpoint which can be used via Postman to post a new job directly to the DB.
+*/
+
 import clientPromise from '../../lib/mongodb';
 import { customAlphabet } from 'nanoid';
 
@@ -36,6 +40,13 @@ const handlePost = async (req, res) => {
 
   const existingCompany = await fetchCompanyData(data.companyData.name);
 
+  if (!existingCompany.id && !data.companyData.sdgs) {
+    return res.status(400).json({
+      message:
+        'No company details were provided (e.g. SDGs) except the company name and for this company name nothing was found in the database. Double check the company name or if youre adding a new company ensure to use the corresponding JSON template.',
+    });
+  }
+
   if (existingCompany.id) {
     data.companyId = existingCompany.id;
     Object.assign(data.companyData, existingCompany);
@@ -50,16 +61,27 @@ const handlePost = async (req, res) => {
     data.timestamp = Date.now();
   }
 
-  await collection.insertOne(data);
+  try {
+    await collection.insertOne(data);
 
-  const companyData = {
-    id: data.companyId,
-    ...data.companyData,
-  };
+    const companyData = {
+      id: data.companyId,
+      ...data.companyData,
+    };
 
-  await postCompany(companyData);
+    await postCompany(companyData);
 
-  res.status(201).json({ message: 'Data inserted successfully in DB!' });
+    res.status(201).json({
+      message: 'Data inserted successfully in DB!',
+      id: data.id,
+      companyId: data.companyId || data.companyData.id,
+      companyName: data.companyData.name,
+      jobTitle: data.jobTitle,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while inserting data' });
+  }
 };
 
 export default async function handler(req, res) {

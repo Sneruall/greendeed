@@ -43,7 +43,7 @@ const handlePost = async (req, res) => {
   if (!existingCompany.id && !data.companyData.sdgs) {
     return res.status(400).json({
       message:
-        'Company not found in DB and no SDGs provided. Please provide SDGs for the company. Probably you used the wrong JSON schema.',
+        'No company details were provided (e.g. SDGs) except the company name and for this company name nothing was found in the database. Double check the company name or if youre adding a new company ensure to use the corresponding JSON template.',
     });
   }
 

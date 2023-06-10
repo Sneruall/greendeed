@@ -27,7 +27,7 @@
     "countries-list": "^2.6.1",
     "draft-js": "^0.11.7",
     "eslint-config-next": "^13.1.6",
-    "html-react-parser": "^3.0.16",
+    "html-react-parser": "^1.4.14",
     "javascript-time-ago": "^2.3.13",
     "moment": "^2.29.3",
     "mongodb": "^5.5.0",

@@ -36,7 +36,7 @@ export default Yup.object().shape({
       }),
 
     geoRestriction: Yup.array()
-      .nullable()
+      .nullable(true)
       .max(4, 'Max 4 Geographic restrictions allowed'),
     geoRestrictionOther: Yup.string().when(
       'geoRestriction',
@@ -79,7 +79,7 @@ export default Yup.object().shape({
       'URL is not valid, try this format: https://website.com'
     ),
     sdgs: Yup.array().required(REQUIRED_FIELD),
-    sdgsInfo: Yup.array().required(REQUIRED_FIELD),
+    sdgsInfo: Yup.array().nullable(false).required(REQUIRED_FIELD),
   }),
   acceptedPaymentTerms: Yup.boolean()
     .required('These conditions must be accepted.')

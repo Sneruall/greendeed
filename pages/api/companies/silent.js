@@ -14,43 +14,46 @@ const handleGet = async (req, res) => {
     const companies = db.collection(process.env.MONGODB_COMPANY_COLLECTION);
     const jobs = db.collection(process.env.MONGODB_COLLECTION);
 
-    const pipeline = [
-      {
-        $lookup: {
-          from: jobs.collectionName,
-          let: { company_id: '$_id' },
-          pipeline: [
-            {
-              $match: {
-                $expr: {
-                  $and: [
-                    { $eq: ['$companyId', '$$company_id'] },
-                    { $gte: ['$timestamp', getPastDate().getTime()] },
-                  ],
+    const companiesWithJobs = await companies
+      .aggregate([
+        {
+          $lookup: {
+            from: jobs.collectionName,
+            let: { id: '$id' },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: ['$companyId', '$$id'] },
+                      { $gte: ['$timestamp', getPastDate().getTime()] },
+                      { $eq: ['$closed', false] },
+                    ],
+                  },
                 },
-                closed: { $ne: true },
               },
-            },
-          ],
-          as: 'jobs',
+            ],
+            as: 'recentJobs',
+          },
         },
-      },
-      {
-        $match: {
-          jobs: { $eq: [] },
+        {
+          $match: { 'recentJobs.0': { $exists: false } },
         },
-      },
-    ];
+        {
+          $project: { recentJobs: 0 },
+        },
+      ])
+      .toArray();
 
-    const noJobsCompanies = await companies.aggregate(pipeline).toArray();
-
-    if (noJobsCompanies.length === 0) {
-      return res.status(404).json({
-        message: 'No companies found without open jobs in the last 60 days.',
-      });
+    if (companiesWithJobs.length === 0) {
+      return res
+        .status(404)
+        .json({
+          message: 'No companies found without open jobs in the last 60 days.',
+        });
     }
 
-    res.status(200).json({ companies: noJobsCompanies });
+    res.status(200).json({ companies: companiesWithJobs });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

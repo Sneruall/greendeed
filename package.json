@@ -34,7 +34,7 @@
     "nanoid": "^3.3.3",
     "next": "^13.1.6",
     "next-sanity": "^0.8.4",
-    "next-sanity-image": "^6.0.0",
+    "next-sanity-image": "^4.1.0",
     "qs": "^6.10.5",
     "react": "^18.2.0",
     "react-currency-input-field": "^3.6.4",

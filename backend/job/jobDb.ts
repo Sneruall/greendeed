@@ -8,98 +8,92 @@ export const getJobsFromMongo = async (
   category?: jobCategory,
   sdgs?: number[]
 ) => {
-  try {
-    const client = await clientPromise;
+  const client = await clientPromise;
 
-    const db = client.db();
-    if (!process.env.MONGODB_COLLECTION) {
-      throw new Error('Please add your Mongo URI to .env.local');
-    }
-    let jobs;
-
-    // Map the sdg input for mongodb query
-    let sdgQuery: {
-      'companyData.sdgs.sdg': string;
-    }[] = [];
-
-    if (sdgs) {
-      sdgs.forEach((element) => {
-        sdgQuery.push({ 'companyData.sdgs.sdg': `${element}` });
-      });
-    }
-
-    if (category && sdgs) {
-      console.log('cat and sdgs query');
-      jobs = await db
-        .collection(process.env.MONGODB_COLLECTION)
-        .find({
-          published: true,
-          closed: false,
-          listed: true,
-          category: category,
-          timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
-            $gt: 0,
-          },
-          $or: sdgQuery,
-        })
-        .sort({ timestamp: -1 })
-        .limit(limit || 5)
-        .toArray();
-    } else if (category) {
-      console.log('cat query');
-      jobs = await db
-        .collection(process.env.MONGODB_COLLECTION)
-        .find({
-          published: true,
-          closed: false,
-          listed: true,
-          category: category,
-          timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
-            $gt: 0,
-          },
-        })
-        .sort({ timestamp: -1 })
-        .limit(limit || 5)
-        .toArray();
-    } else if (sdgs) {
-      console.log('sdg query');
-      jobs = await db
-        .collection(process.env.MONGODB_COLLECTION)
-        .find({
-          published: true,
-          closed: false,
-          listed: true,
-          timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
-            $gt: 0,
-          },
-          $or: sdgQuery,
-        })
-        .limit(limit || 0)
-        .sort({ timestamp: -1 })
-        .toArray();
-    } else {
-      console.log('else query');
-
-      jobs = await db
-        .collection(process.env.MONGODB_COLLECTION)
-        .find({
-          published: true,
-          closed: false,
-          listed: true,
-          timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
-            $gt: 0,
-          },
-        })
-        .limit(limit || 0)
-        .sort({ timestamp: -1 })
-        .toArray();
-    }
-
-    return jobs;
-  } catch (err) {
-    console.error(`Error getting jobs from Mongo: ${err}`);
-    throw err; // Re-throwing the error to be handled by the caller
+  const db = client.db();
+  if (!process.env.MONGODB_COLLECTION) {
+    throw new Error('Please add your Mongo URI to .env.local');
   }
+  let jobs;
+
+  // Map the sdg input for mongodb query
+  let sdgQuery: {
+    'companyData.sdgs.sdg': string;
+  }[] = [];
+
+  if (sdgs) {
+    sdgs.forEach((element) => {
+      sdgQuery.push({ 'companyData.sdgs.sdg': `${element}` });
+    });
+  }
+
+  if (category && sdgs) {
+    console.log('cat and sdgs query');
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        published: true,
+        closed: false,
+        listed: true,
+        category: category,
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
+        $or: sdgQuery,
+      })
+      .sort({ timestamp: -1 })
+      .limit(limit || 5)
+      .toArray();
+  } else if (category) {
+    console.log('cat query');
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        published: true,
+        closed: false,
+        listed: true,
+        category: category,
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
+      })
+      .sort({ timestamp: -1 })
+      .limit(limit || 5)
+      .toArray();
+  } else if (sdgs) {
+    console.log('sdg query');
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        published: true,
+        closed: false,
+        listed: true,
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
+        $or: sdgQuery,
+      })
+      .limit(limit || 0)
+      .sort({ timestamp: -1 })
+      .toArray();
+  } else {
+    console.log('else query');
+
+    jobs = await db
+      .collection(process.env.MONGODB_COLLECTION)
+      .find({
+        published: true,
+        closed: false,
+        listed: true,
+        timestamp: { $gt: minTimestampInMs, $lt: new Date().getTime() } || {
+          $gt: 0,
+        },
+      })
+      .limit(limit || 0)
+      .sort({ timestamp: -1 })
+      .toArray();
+  }
+  return jobs;
 };
 
 export const getAllJobsFromMongo = async (
@@ -131,28 +125,25 @@ export const getAllJobsFromMongo = async (
 };
 
 export const getJobFromMongo = async (queryId: string) => {
-  try {
-    const client = await clientPromise;
-    const db = client.db();
+  /* Using the MongoDB driver to connect to the database and retrieve a job from the database. */
+  const client = await clientPromise;
 
-    let collection: string;
-    if (process.env.MONGODB_COLLECTION) {
-      collection = process.env.MONGODB_COLLECTION;
-    } else {
-      throw new Error('Please add your Mongo URI to .env.local');
-    }
+  const db = client.db();
 
-    const job = (await db.collection(collection).findOne({
-      id: queryId,
-      published: true,
-      timestamp: { $lt: new Date().getTime() },
-    })) as unknown as Job;
-
-    return job;
-  } catch (err) {
-    console.error(`Error getting job from Mongo: ${err}`);
-    throw err; // Re-throwing the error to be handled by the caller
+  let collection: string;
+  if (process.env.MONGODB_COLLECTION) {
+    collection = process.env.MONGODB_COLLECTION;
+  } else {
+    throw new Error('Please add your Mongo URI to .env.local');
   }
+
+  const job = (await db.collection(collection).findOne({
+    id: queryId,
+    published: true,
+    timestamp: { $lt: new Date().getTime() },
+  })) as unknown as Job;
+
+  return job;
 };
 
 export const getJobsFromCompanyFromMongo = async (

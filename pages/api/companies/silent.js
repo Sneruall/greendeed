@@ -40,17 +40,15 @@ const handleGet = async (req, res) => {
           $match: { 'recentJobs.0': { $exists: false } },
         },
         {
-          $project: { recentJobs: 0 },
+          $project: { name: 1, website: 1 },
         },
       ])
       .toArray();
 
     if (companiesWithJobs.length === 0) {
-      return res
-        .status(404)
-        .json({
-          message: 'No companies found without open jobs in the last 60 days.',
-        });
+      return res.status(404).json({
+        message: 'No companies found without open jobs in the last 60 days.',
+      });
     }
 
     res.status(200).json({ companies: companiesWithJobs });

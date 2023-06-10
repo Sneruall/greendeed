@@ -28,11 +28,11 @@ export default Yup.object().shape({
     onSiteLocation: Yup.string()
       .when('location', {
         is: 'onSite',
-        then: () => Yup.string().required(REQUIRED_FIELD),
+        then: Yup.string().required(REQUIRED_FIELD),
       })
       .when('location', {
         is: 'onSiteOrRemote',
-        then: () => Yup.string().required(REQUIRED_FIELD),
+        then: Yup.string().required(REQUIRED_FIELD),
       }),
 
     geoRestriction: Yup.array()
@@ -57,14 +57,13 @@ export default Yup.object().shape({
   apply: Yup.string()
     .when('applicationMethod', {
       is: 'email',
-      then: () => Yup.string().email('invalid email').required(REQUIRED_FIELD),
+      then: Yup.string().email('invalid email').required(REQUIRED_FIELD),
     })
     .when('applicationMethod', {
       is: 'website',
-      then: () =>
-        Yup.string()
-          .url('URL is not valid, try this format: https://website.com/apply')
-          .required(REQUIRED_FIELD),
+      then: Yup.string()
+        .url('URL is not valid, try this format: https://website.com/apply')
+        .required(REQUIRED_FIELD),
     }),
   email: Yup.string()
     .required(REQUIRED_FIELD)

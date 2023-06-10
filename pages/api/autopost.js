@@ -40,6 +40,13 @@ const handlePost = async (req, res) => {
 
   const existingCompany = await fetchCompanyData(data.companyData.name);
 
+  if (!existingCompany.id && !data.companyData.sdgs) {
+    return res.status(400).json({
+      message:
+        'Company not found in DB and no SDGs provided. Please provide SDGs for the company. Probably you used the wrong JSON schema.',
+    });
+  }
+
   if (existingCompany.id) {
     data.companyId = existingCompany.id;
     Object.assign(data.companyData, existingCompany);
@@ -67,7 +74,7 @@ const handlePost = async (req, res) => {
     res.status(201).json({
       message: 'Data inserted successfully in DB!',
       id: data.id,
-      companyId: data.companyId,
+      companyId: data.companyId || data.companyData.id,
       companyName: data.companyData.name,
       jobTitle: data.jobTitle,
     });

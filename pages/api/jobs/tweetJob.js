@@ -33,7 +33,7 @@ const postTweet = async (job) => {
   const tweetTemplates = [
     `🎯 New Job: ${job.jobTitle} at ${job.companyData.name} (${generateLocation(
       job.locationInfo
-    )} ${generateLocationRestriction(
+    )}${generateLocationRestriction(
       job.locationInfo
     )})! Help us build a greener future. Apply here: https://greendeed.io/greendeed-jobs/${
       job.id
@@ -42,35 +42,35 @@ const postTweet = async (job) => {
       job.companyData.name
     } is now hiring for ${job.jobTitle} (${generateLocation(
       job.locationInfo
-    )} ${generateLocationRestriction(
+    )}${generateLocationRestriction(
       job.locationInfo
     )}). Check it out: https://greendeed.io/greendeed-jobs/${
       job.id
     } #SustainableJobs #Greendeed`,
     `💚 Hot job alert: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Apply now and join us in creating a greener future. https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #GreenJobs #EcoCareers`,
     `🍃 Exciting new job: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Make your next career move count. Apply: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #EcoFriendlyJobs #SustainableWork`,
     `💪 Join the green movement! ${job.companyData.name} is now hiring a ${
       job.jobTitle
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). More info: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #GreenCareers #Sustainability`,
     `⭐ New opportunity: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Help us make a difference. Apply here: https://greendeed.io/greendeed-jobs/${
       job.id
@@ -79,63 +79,63 @@ const postTweet = async (job) => {
       job.jobTitle
     } position at ${job.companyData.name} (${generateLocation(
       job.locationInfo
-    )} ${generateLocationRestriction(
+    )}${generateLocationRestriction(
       job.locationInfo
     )}). More info: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #EcoCareers #Sustainability`,
     `🌿 New job alert: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Come and join the green revolution. Apply now: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #GreenJobs #SustainableWork`,
     `🔥 Hot off the press: ${job.companyData.name} is hiring for the role of ${
       job.jobTitle
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). Check it out: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #EcoFriendlyJobs #GreenCareers`,
     `🌎 Make your work matter! Check out this new ${job.jobTitle} role at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). Apply here: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #EcoJobs #Sustainability`,
     `💫 New green job alert: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). Let's make a difference together! Apply now: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #SustainableJobs #EcoCareers`,
     `✨ ${job.companyData.name} is now hiring a ${
       job.jobTitle
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Be a part of the change. Apply here: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #GreenJobs #SustainableWork`,
     `🌈 Dream job alert: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). Apply now and help us create a more sustainable world. https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #EcoFriendlyJobs #EcoCareers`,
     `⚡ Exciting career opportunity: ${job.jobTitle} at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )})! Let's work towards a greener future. More info: https://greendeed.io/greendeed-jobs/${
       job.id
     } #Greendeed #GreenJobs #SustainableWork`,
     `🌠 Join the green force! New ${job.jobTitle} position open at ${
       job.companyData.name
-    } (${generateLocation(job.locationInfo)} ${generateLocationRestriction(
+    } (${generateLocation(job.locationInfo)}${generateLocationRestriction(
       job.locationInfo
     )}). Apply now: https://greendeed.io/greendeed-jobs/${
       job.id

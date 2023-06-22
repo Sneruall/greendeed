@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { sdgList } from '../types/types';
-import SdgMenu from './SdgMenu';
 import Tooltip from './Tooltip';
 
 type Props = {};

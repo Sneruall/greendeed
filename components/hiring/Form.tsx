@@ -747,6 +747,10 @@ and get the form state. */
                     if (coupon === '2030') {
                       setPrice(0);
                       toast.success('Coupon code applied!');
+                    }
+                    if (coupon === '125') {
+                      setPrice(125);
+                      toast.success('Coupon code applied!');
                     } else {
                       toast.error('Invalid coupon code');
                     }

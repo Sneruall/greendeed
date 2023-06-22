@@ -48,18 +48,18 @@ const handlePost = async (req, res) => {
     // Fetch the job data to send in the tweet
     const job = await collection.findOne(filter);
 
-    // Send a tweet
-    // await postTweet(job);
-    // Post the job data to the Twitter endpoint
+    // Post the job data to the Twitter endpoint if environment is prod
 
-    await postTweet(job);
+    if (process.env.ENVIRONMENT === 'prod') {
+      await postTweet(job);
+    }
 
     console.log(
       `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
     );
     return res.status(201).json({
       message:
-        'Job published and timestamp updated successfully! Also posted to Twitter',
+        'Job published and timestamp updated successfully! Also posted to Twitter if environment was production.',
     });
   } catch (error) {
     console.error(error);

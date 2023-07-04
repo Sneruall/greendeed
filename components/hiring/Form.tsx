@@ -628,7 +628,7 @@ and get the form state. */
           {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
           <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
-              <h2 className="heading-md">Order information</h2>
+              <h2 className="heading-md">Personal Details</h2>
               {/* NAME */}
               <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
@@ -648,29 +648,29 @@ and get the form state. */
                 />
               </div>
 
-              <h2 className="heading-md">Invoice information</h2>
+              {/* <h2 className="heading-md">Invoice information</h2> */}
 
               {/* Invoice company name */}
-              <div className="grid content-end gap-4 sm:grid-cols-2">
+              {/* <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.companyName}
                   id="invoiceInfo.companyName"
                   register={register}
                   title="Company name on invoice*"
                   placeholder="Company Ltd"
-                />
-                {/* Invoice tav */}
-                <FormFieldString
+                /> */}
+              {/* Invoice tav */}
+              {/* <FormFieldString
                   errors={errors?.invoiceInfo?.name}
                   id="invoiceInfo.name"
                   register={register}
                   title="Name on invoice"
                   placeholder="John Doe"
                 />
-              </div>
+              </div> */}
 
               {/* EMAIL */}
-              <div>
+              {/* <div>
                 <FormFieldString
                   errors={errors?.invoiceInfo?.email}
                   id="invoiceInfo.email"
@@ -678,36 +678,36 @@ and get the form state. */
                   title="Invoice e-mail*"
                   placeholder="invoices@company.com"
                 />
-              </div>
+              </div> */}
               {/* ADDRESS LINE 1 */}
-              <div className="grid content-end gap-4 sm:grid-cols-2">
+              {/* <div className="grid content-end gap-4 sm:grid-cols-2">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.addressLine1}
                   id="invoiceInfo.addressLine1"
                   register={register}
                   title="Address Line 1*"
                   placeholder="Streetname 1"
-                />
-                {/* ADDRESS LINE 2 */}
-                <FormFieldString
+                /> */}
+              {/* ADDRESS LINE 2 */}
+              {/* <FormFieldString
                   errors={errors?.invoiceInfo?.addressLine2}
                   id="invoiceInfo.addressLine2"
                   register={register}
                   title="Address Line 2"
                   placeholder="Optional address specification"
                 />
-              </div>
+              </div> */}
               {/* POSTAL CODE */}
-              <div className="grid content-end gap-4 sm:grid-cols-3">
+              {/* <div className="grid content-end gap-4 sm:grid-cols-3">
                 <FormFieldString
                   errors={errors?.invoiceInfo?.postalCode}
                   id="invoiceInfo.postalCode"
                   register={register}
                   title="Postal Code*"
                   placeholder="1234AB"
-                />
+                /> */}
 
-                <FormFieldString
+              {/* <FormFieldString
                   errors={errors?.invoiceInfo?.city}
                   id="invoiceInfo.city"
                   register={register}
@@ -724,11 +724,11 @@ and get the form state. */
                     (value) => value.name
                   )}
                 />
-              </div>
+              </div> */}
 
               {/* COUPON CODE FIELD */}
 
-              <div className="flex gap-2">
+              {/* <div className="flex gap-2">
                 <FormFieldString
                   className="flex-1"
                   errors={errors?.coupon}
@@ -758,10 +758,10 @@ and get the form state. */
                 >
                   Validate
                 </button>
-              </div>
+              </div> */}
 
               {/* CHECKBOX PAYMENT PROMISE */}
-              <div className="flex">
+              {/* <div className="flex">
                 <div className="flex h-5 items-center">
                   <input
                     id="payment-checkbox"
@@ -793,7 +793,7 @@ and get the form state. */
                     {errors?.acceptedPaymentTerms?.message}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -820,7 +820,7 @@ and get the form state. */
                 }}
                 className="button-1 px-6 py-4 text-lg"
               >
-                Submit Job - €{price}
+                Submit Job
               </button>
             </div>
           </div>

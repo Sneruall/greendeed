@@ -84,7 +84,7 @@ const FormStatusIdentifier = ({
           {activeFormStep === 3 &&
             'Provide as much details of the job as possible to attract the best fit for the position.'}
           {activeFormStep === 4 &&
-            'Enter your administrative details and complete your job posting. Our dedicated support team will assist you with any questions or concerns.'}
+            'Enter your personal details and complete your job posting.'}
         </p>
       </div>
     </div>

@@ -87,7 +87,7 @@ const Header: React.FC<{ darkmode?: Boolean }> = ({ darkmode }) => {
           <div className="sm:w-40 md:w-48 lg:w-52">
             <Link href="/hiring#post-job">
               <button className="button-1 px-4 md:px-6 md:text-base lg:px-8">
-                Post a Job - €250
+                Post a Job
               </button>
             </Link>
           </div>

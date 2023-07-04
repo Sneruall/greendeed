@@ -49,7 +49,7 @@ const Step = ({ step, errors, activeFormStep, setActiveFormStep }: Props) => {
             'Sustainable development goals'}
         </div>
         <div>{step === 3 && activeFormStep === 3 && 'Job Details'}</div>
-        <div>{step === 4 && activeFormStep === 4 && 'Checkout'}</div>
+        <div>{step === 4 && activeFormStep === 4 && 'Personal Details'}</div>
       </div>
     </div>
   );

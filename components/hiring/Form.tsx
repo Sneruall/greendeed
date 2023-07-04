@@ -824,6 +824,11 @@ and get the form state. */
               </button>
             </div>
           </div>
+          <p>Stap 4 kan eruit, name en email naar stap 1 verplaatsen</p>
+          <p>
+            Verder een stap toevoegen waarin we een donatie pitchen (of je doet
+            skip donatie en plaats de job zonder donatie...)
+          </p>
         </form>
         <div className="mx-auto max-w-2xl">
           <p className="my-2 mt-4 text-left text-sm">*Required field</p>

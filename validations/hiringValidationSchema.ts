@@ -80,18 +80,18 @@ export default Yup.object().shape({
     sdgs: Yup.array().required(REQUIRED_FIELD),
     sdgsInfo: Yup.array().nullable(false).required(REQUIRED_FIELD),
   }),
-  acceptedPaymentTerms: Yup.boolean()
-    .required('These conditions must be accepted.')
-    .oneOf([true], 'These conditions must be accepted.'),
-  invoiceInfo: Yup.object().shape({
-    name: Yup.string(),
-    companyName: Yup.string().required(REQUIRED_FIELD),
-    email: Yup.string().email('invalid email').required(REQUIRED_FIELD),
-    addressLine1: Yup.string().required(REQUIRED_FIELD),
-    addressLine2: Yup.string(),
-    postalCode: Yup.string().required(REQUIRED_FIELD),
-    city: Yup.string().required(REQUIRED_FIELD),
-    country: Yup.string().required(REQUIRED_FIELD),
-  }),
+  // acceptedPaymentTerms: Yup.boolean()
+  //   .required('These conditions must be accepted.')
+  //   .oneOf([true], 'These conditions must be accepted.'),
+  // invoiceInfo: Yup.object().shape({
+  //   name: Yup.string(),
+  //   companyName: Yup.string().required(REQUIRED_FIELD),
+  //   email: Yup.string().email('invalid email').required(REQUIRED_FIELD),
+  //   addressLine1: Yup.string().required(REQUIRED_FIELD),
+  //   addressLine2: Yup.string(),
+  //   postalCode: Yup.string().required(REQUIRED_FIELD),
+  //   city: Yup.string().required(REQUIRED_FIELD),
+  //   country: Yup.string().required(REQUIRED_FIELD),
+  // }),
   fullName: Yup.string().required(REQUIRED_FIELD),
 });

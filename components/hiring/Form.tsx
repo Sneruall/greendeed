@@ -255,6 +255,24 @@ and get the form state. */
 
           {/* COMPANY FIELDS */}
           <div className={`${activeFormStep !== 1 && 'hidden'}`}>
+            {/* NAME */}
+            <div className="mb-4 grid content-end gap-4 sm:grid-cols-2">
+              <FormFieldString
+                errors={errors?.fullName}
+                id="fullName"
+                register={register}
+                title="Your name*"
+                placeholder="John Doe"
+              />
+              {/* EMAIL */}
+              <FormFieldString
+                errors={errors?.email}
+                id="email"
+                register={register}
+                title="Your E-mail*"
+                placeholder="johndoe@company.com"
+              />
+            </div>
             <div className="mb-6">
               {/* COMPANY NAME */}
               <FormFieldString
@@ -629,171 +647,35 @@ and get the form state. */
           <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
               <h2 className="heading-md">Personal Details</h2>
-              {/* NAME */}
-              <div className="grid content-end gap-4 sm:grid-cols-2">
-                <FormFieldString
-                  errors={errors?.fullName}
-                  id="fullName"
-                  register={register}
-                  title="Your name*"
-                  placeholder="John Doe"
-                />
-                {/* EMAIL */}
-                <FormFieldString
-                  errors={errors?.email}
-                  id="email"
-                  register={register}
-                  title="Your E-mail*"
-                  placeholder="johndoe@company.com"
-                />
+              {/* STRIPE DONATE BUTTON LIVE */}
+              <script
+                async
+                src="https://js.stripe.com/v3/buy-button.js"
+              ></script>
+              <div>
+                {/* @ts-ignore */}
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1NQPlfJ6akcQoDMoT93ORLR3"
+                  publishable-key="pk_live_51JHNnTJ6akcQoDMo6gf3OMlaX66MIIeTGsql6qaugPL2rwgtbehWvHHommMlKTb3FAAPgWpH34sJ33JnvjyIYSXg00yeztqLhy"
+                >
+                  {/* @ts-ignore */}
+                </stripe-buy-button>
+                {/* STRIPE DONATE BUTTON TEST */}
+                <script
+                  async
+                  src="https://js.stripe.com/v3/buy-button.js"
+                ></script>
               </div>
 
-              {/* <h2 className="heading-md">Invoice information</h2> */}
-
-              {/* Invoice company name */}
-              {/* <div className="grid content-end gap-4 sm:grid-cols-2">
-                <FormFieldString
-                  errors={errors?.invoiceInfo?.companyName}
-                  id="invoiceInfo.companyName"
-                  register={register}
-                  title="Company name on invoice*"
-                  placeholder="Company Ltd"
-                /> */}
-              {/* Invoice tav */}
-              {/* <FormFieldString
-                  errors={errors?.invoiceInfo?.name}
-                  id="invoiceInfo.name"
-                  register={register}
-                  title="Name on invoice"
-                  placeholder="John Doe"
-                />
-              </div> */}
-
-              {/* EMAIL */}
-              {/* <div>
-                <FormFieldString
-                  errors={errors?.invoiceInfo?.email}
-                  id="invoiceInfo.email"
-                  register={register}
-                  title="Invoice e-mail*"
-                  placeholder="invoices@company.com"
-                />
-              </div> */}
-              {/* ADDRESS LINE 1 */}
-              {/* <div className="grid content-end gap-4 sm:grid-cols-2">
-                <FormFieldString
-                  errors={errors?.invoiceInfo?.addressLine1}
-                  id="invoiceInfo.addressLine1"
-                  register={register}
-                  title="Address Line 1*"
-                  placeholder="Streetname 1"
-                /> */}
-              {/* ADDRESS LINE 2 */}
-              {/* <FormFieldString
-                  errors={errors?.invoiceInfo?.addressLine2}
-                  id="invoiceInfo.addressLine2"
-                  register={register}
-                  title="Address Line 2"
-                  placeholder="Optional address specification"
-                />
-              </div> */}
-              {/* POSTAL CODE */}
-              {/* <div className="grid content-end gap-4 sm:grid-cols-3">
-                <FormFieldString
-                  errors={errors?.invoiceInfo?.postalCode}
-                  id="invoiceInfo.postalCode"
-                  register={register}
-                  title="Postal Code*"
-                  placeholder="1234AB"
-                /> */}
-
-              {/* <FormFieldString
-                  errors={errors?.invoiceInfo?.city}
-                  id="invoiceInfo.city"
-                  register={register}
-                  title="City*"
-                  placeholder="Amsterdam"
-                />
-                <FormFieldDropdown
-                  errors={errors?.invoiceInfo?.country}
-                  id="invoiceInfo.country"
-                  register={register}
-                  title="Country*"
-                  placeholder="Select country..."
-                  options={Object.values(countries.countries).map(
-                    (value) => value.name
-                  )}
-                />
-              </div> */}
-
-              {/* COUPON CODE FIELD */}
-
-              {/* <div className="flex gap-2">
-                <FormFieldString
-                  className="flex-1"
-                  errors={errors?.coupon}
-                  id="coupon"
-                  register={register}
-                  title="Coupon Code"
-                  onChangeMethod={(e: any) => {
-                    setCoupon(e.target.value);
-                  }}
-                  description="Receive discount by entering a valid coupon code."
-                />
-                <button
-                  type="button"
-                  className="button-yellow mt-auto mb-3"
-                  onClick={() => {
-                    if (coupon === '2030') {
-                      setPrice(0);
-                      toast.success('Coupon code applied!');
-                    }
-                    if (coupon === '125') {
-                      setPrice(125);
-                      toast.success('Coupon code applied!');
-                    } else {
-                      toast.error('Invalid coupon code');
-                    }
-                  }}
+              <div>
+                {/* @ts-ignore */}
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1NQPxaJ6akcQoDModM3bd8Ly"
+                  publishable-key="pk_test_51JHNnTJ6akcQoDMoCwWgxS36v99PGKRN2SzKtqdFAO8I124JgmP3vdupFcUfRJr27rdhxLd1RHPnMPRItIvZfqF700lkj2FpNN"
                 >
-                  Validate
-                </button>
-              </div> */}
-
-              {/* CHECKBOX PAYMENT PROMISE */}
-              {/* <div className="flex">
-                <div className="flex h-5 items-center">
-                  <input
-                    id="payment-checkbox"
-                    aria-describedby="payment-checkbox-text"
-                    type="checkbox"
-                    value=""
-                    className="h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                    {...register('acceptedPaymentTerms')}
-                  />
-                </div>
-                <div className="ml-2 text-sm">
-                  <label
-                    htmlFor="payment-checkbox"
-                    className="font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I agree that I have an obligation to pay €{price} within 14
-                    days after the job has been approved and posted.*
-                  </label>
-                  <p
-                    id="payment-checkbox-text"
-                    className="text-xs font-normal text-gray-500 dark:text-gray-300"
-                  >
-                    You will receive an invoice within 24 hours after submitting
-                    the job. The invoice can be paid via wire transfer or
-                    through various payment methods such as Credit Card, PayPal
-                    or iDeal.
-                  </p>
-                  <p className="text-base text-red-500">
-                    {errors?.acceptedPaymentTerms?.message}
-                  </p>
-                </div>
-              </div> */}
+                  {/* @ts-ignore */}
+                </stripe-buy-button>
+              </div>
             </div>
           </div>
 

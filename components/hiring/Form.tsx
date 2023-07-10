@@ -652,7 +652,7 @@ and get the form state. */
                 async
                 src="https://js.stripe.com/v3/buy-button.js"
               ></script>
-              <div>
+              <div className="flex">
                 {/* @ts-ignore */}
                 <stripe-buy-button
                   buy-button-id="buy_btn_1NQPlfJ6akcQoDMoT93ORLR3"
@@ -665,6 +665,16 @@ and get the form state. */
                   async
                   src="https://js.stripe.com/v3/buy-button.js"
                 ></script>
+                <div className="bg-white p-10">
+                  <div>
+                    <h3>Greendeed Job Submission</h3>
+                  </div>
+                  <div>
+                    <button className="rounded-md bg-custom-brown2 p-4">
+                      Submit without donation
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div>

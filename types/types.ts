@@ -28,7 +28,6 @@ export interface Form {
   fullName: string;
   timestamp: number;
   id: string;
-  price: number;
   acceptedPaymentTerms: boolean;
   applicationMethod: ApplicationMethod;
   apply: string;
@@ -74,7 +73,6 @@ export interface Job {
   fullName: string; // always use Laurens van Roomen
   timestamp: number; // Set as 0
   id: string; // Auto generated 7 character long id e.g. j8etpww, keep empty string as I will generate this in code.
-  price: number; // Set as 0
   paid: boolean; // Set to true
   published: boolean; // Set to true
   listed: boolean; // Set to true
@@ -217,7 +215,6 @@ export type emailData = {
   fullName: string;
   jobType: jobType;
   id: string;
-  price: number;
   companyData: Company;
   invoiceInfo?: InvoiceInfo;
 };

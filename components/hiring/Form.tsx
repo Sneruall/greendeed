@@ -49,9 +49,6 @@ let timer: ReturnType<typeof setTimeout>;
 function Form() {
   const router = useRouter();
 
-  /* ------ KEEP TRACK OF PRICING ------ */
-  const [price, setPrice] = useState(250);
-
   /* ------ KEEP TRACK OF COUPON ------ */
   const [coupon, setCoupon] = useState('');
 
@@ -171,7 +168,6 @@ and get the form state. */
       jobDescriptionHtml,
       companyDescriptionHtml,
       salaryValues,
-      price,
       retrievedCompanyData,
       imagePublicId,
       geoRestrictionValues
@@ -198,7 +194,6 @@ and get the form state. */
       jobType: transformedFormData.jobType,
       id: transformedFormData.id,
       // companyId: transformedFormData.companyId,
-      price: transformedFormData.price,
       invoiceInfo: transformedFormData.invoiceInfo,
       companyData: companyFormData,
     };
@@ -416,16 +411,6 @@ and get the form state. */
                   errors={errors.jobType}
                   title="Type of Employment*"
                   options={jobTypes}
-                  onChangeMethod={(e: any) => {
-                    const value = e.target.value as jobType;
-                    if (value === 'Internship' || 'Volunteer') {
-                      setPrice(125);
-                      toast.success('50% discount applied!');
-                    } else if (price === 125) {
-                      setPrice(250);
-                      toast.error('Internship discount removed!');
-                    }
-                  }}
                 />
 
                 <div>

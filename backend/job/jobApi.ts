@@ -44,7 +44,6 @@ export async function transformFormData(
     minSalary: CurrencyInputOnChangeValues;
     maxSalary: CurrencyInputOnChangeValues;
   },
-  price: number,
   retrievedCompanyData?: Company,
   imagePublicId?: string,
   geoRestrictionValues?: string[] | undefined
@@ -60,7 +59,6 @@ export async function transformFormData(
     jobDescription: retrievedFormData.jobDescription,
     jobType: retrievedFormData.jobType,
     id: setJobId(),
-    price: price,
     paid: true,
     closed: false,
     external: false,

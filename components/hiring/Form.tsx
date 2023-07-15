@@ -55,6 +55,9 @@ function Form() {
   /* ------ KEEP TRACK OF COUPON ------ */
   const [coupon, setCoupon] = useState('');
 
+  /* ------ DONATION ------ */
+  const [donation, setDonation] = useState(false);
+
   /* ------ FORM STEP REGISTRATION ------ */
 
   // Registering which form step is currently active
@@ -223,7 +226,11 @@ and get the form state. */
       console.log(err);
     }
     reset();
-    router.push('/success');
+    if (!donation) {
+      router.push('/success');
+    } else {
+      router.push('https://buy.stripe.com/5kA03k5rNdln7E4aEE');
+    }
   }
 
   // const HandleGeoRestrictionsChange = (
@@ -646,45 +653,36 @@ and get the form state. */
           {/* ////-------/////------////------- STEP 4 -----////------////---////----//// */}
           <div className={`${activeFormStep !== 4 && 'hidden'}`}>
             <div className="flex flex-col gap-5">
-              <h2 className="heading-md">Personal Details</h2>
-              {/* STRIPE DONATE BUTTON LIVE */}
-              <script
-                async
-                src="https://js.stripe.com/v3/buy-button.js"
-              ></script>
-              <div className="flex">
-                {/* @ts-ignore */}
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1NQPlfJ6akcQoDMoT93ORLR3"
-                  publishable-key="pk_live_51JHNnTJ6akcQoDMo6gf3OMlaX66MIIeTGsql6qaugPL2rwgtbehWvHHommMlKTb3FAAPgWpH34sJ33JnvjyIYSXg00yeztqLhy"
+              {/* SUBMIT */}
+              <div className="flex justify-center space-x-4">
+                <button
+                  disabled={companyNameIsLoading}
+                  type="submit"
+                  onClick={() => {
+                    setDonation(true);
+                    formRef.current?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    });
+                  }}
+                  className="button-1 px-6 py-4 text-lg"
                 >
-                  {/* @ts-ignore */}
-                </stripe-buy-button>
-                {/* STRIPE DONATE BUTTON TEST */}
-                <script
-                  async
-                  src="https://js.stripe.com/v3/buy-button.js"
-                ></script>
-                <div className="bg-white p-10">
-                  <div>
-                    <h3>Greendeed Job Submission</h3>
-                  </div>
-                  <div>
-                    <button className="rounded-md bg-custom-brown2 p-4">
-                      Submit without donation
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                {/* @ts-ignore */}
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1NQPxaJ6akcQoDModM3bd8Ly"
-                  publishable-key="pk_test_51JHNnTJ6akcQoDMoCwWgxS36v99PGKRN2SzKtqdFAO8I124JgmP3vdupFcUfRJr27rdhxLd1RHPnMPRItIvZfqF700lkj2FpNN"
+                  Submit Job And Donate ❤️🥳
+                </button>
+                <button
+                  disabled={companyNameIsLoading}
+                  type="submit"
+                  onClick={() => {
+                    setDonation(false);
+                    formRef.current?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    });
+                  }}
+                  className="button-2 px-6 py-4 text-lg"
                 >
-                  {/* @ts-ignore */}
-                </stripe-buy-button>
+                  Submit Job
+                </button>
               </div>
             </div>
           </div>
@@ -695,32 +693,7 @@ and get the form state. */
               activeFormStep={activeFormStep}
               changeFormStep={changeFormStep}
             />
-            {/* SUBMIT */}
-            <div
-              className={`flex justify-end space-x-4 ${
-                activeFormStep !== 4 && 'hidden'
-              }`}
-            >
-              <button
-                disabled={companyNameIsLoading}
-                type="submit"
-                onClick={() => {
-                  formRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  });
-                }}
-                className="button-1 px-6 py-4 text-lg"
-              >
-                Submit Job
-              </button>
-            </div>
           </div>
-          <p>Stap 4 kan eruit, name en email naar stap 1 verplaatsen</p>
-          <p>
-            Verder een stap toevoegen waarin we een donatie pitchen (of je doet
-            skip donatie en plaats de job zonder donatie...)
-          </p>
         </form>
         <div className="mx-auto max-w-2xl">
           <p className="my-2 mt-4 text-left text-sm">*Required field</p>

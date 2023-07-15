@@ -84,7 +84,7 @@ const FormStatusIdentifier = ({
           {activeFormStep === 3 &&
             'Provide as much details of the job as possible to attract the best fit for the position.'}
           {activeFormStep === 4 &&
-            'Enter your personal details and complete your job posting.'}
+            'Sumbit your job listing, either with a donation or for free. If you choose to donate, you will be redirected to Stripe to complete a payment of your choice. We support a broad range of payment methods and you can receive an invoice.'}
         </p>
       </div>
     </div>

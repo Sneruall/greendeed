@@ -26,10 +26,10 @@ function Success() {
             </h1>
             <div className="text-center">
               <p className="text-main">
-                The job is posted automatically unless your organization is new
-                to Greendeed. We will then validate the job and organization
-                details within 24 hours and try to have the job published as
-                soon as possible.
+                The job is posted automatically in 1 minute, unless your
+                organization is new to Greendeed. We will then validate the job
+                and organization details within 24 hours and try to have the job
+                published as soon as possible.
               </p>
             </div>
 

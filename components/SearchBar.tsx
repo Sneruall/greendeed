@@ -56,7 +56,7 @@ export const SearchBar = () => {
                     transform="translate(0 0)"
                     fill="none"
                     stroke="#402C06"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                     stroke-linejoin="round"
                     stroke-width="6"
                   />
@@ -67,7 +67,7 @@ export const SearchBar = () => {
                     transform="translate(0 12.624)"
                     fill="none"
                     stroke="#402C06"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                     stroke-width="6"
                   />
                 </g>

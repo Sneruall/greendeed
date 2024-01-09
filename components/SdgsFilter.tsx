@@ -149,7 +149,7 @@ selectedSdgs array. */
                   transform="translate(0 0)"
                   fill="none"
                   stroke="#402C06"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   stroke-linejoin="round"
                   stroke-width="6"
                 />
@@ -160,7 +160,7 @@ selectedSdgs array. */
                   transform="translate(0 12.624)"
                   fill="none"
                   stroke="#402C06"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   stroke-width="6"
                 />
               </g>
@@ -187,7 +187,7 @@ selectedSdgs array. */
                   transform="translate(0 0)"
                   fill="none"
                   stroke="#402C06"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   stroke-linejoin="round"
                   stroke-width="6"
                 />
@@ -198,7 +198,7 @@ selectedSdgs array. */
                   transform="translate(0 23.925)"
                   fill="none"
                   stroke="#402C06"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   stroke-width="6"
                 />
               </g>

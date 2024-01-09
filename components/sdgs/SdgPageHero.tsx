@@ -70,7 +70,7 @@ function SdgPageHero({}: Props) {
                       transform="translate(0 0)"
                       fill="none"
                       stroke="#3d2d0e"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       stroke-width="6"
                     />
@@ -81,7 +81,7 @@ function SdgPageHero({}: Props) {
                       transform="translate(0 12.624)"
                       fill="none"
                       stroke="#3d2d0e"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-width="6"
                     />
                   </g>
@@ -106,7 +106,7 @@ function SdgPageHero({}: Props) {
                       transform="translate(0 0)"
                       fill="none"
                       stroke="#3d2d0e"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       stroke-width="6"
                     />
@@ -117,7 +117,7 @@ function SdgPageHero({}: Props) {
                       transform="translate(0 23.925)"
                       fill="none"
                       stroke="#3d2d0e"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-width="6"
                     />
                   </g>

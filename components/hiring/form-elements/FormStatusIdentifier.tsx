@@ -36,6 +36,7 @@ const FormStatusIdentifier = ({
             errors.companyData?.name,
             errors.companyDescription,
             errors.companyWebsite,
+            errors.email,
           ]}
           step={1}
           activeFormStep={activeFormStep}
@@ -63,7 +64,7 @@ const FormStatusIdentifier = ({
           setActiveFormStep={setActiveFormStep}
         />
         <Step
-          errors={[errors.acceptedPaymentTerms]}
+          errors={[]}
           step={4}
           activeFormStep={activeFormStep}
           setActiveFormStep={setActiveFormStep}

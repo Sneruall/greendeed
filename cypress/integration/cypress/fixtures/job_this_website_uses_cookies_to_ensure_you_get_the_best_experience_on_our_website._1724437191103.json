@@ -1,0 +1,49 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "Wagestream"
+  },
+  "jobTitle": "This website uses cookies to ensure you get the best experience on our website.",
+  "category": {
+    "id": 26,
+    "name": "Customer Support",
+    "slug": "customer-support"
+  },
+  "jobDescription": "<p><strong>Our Mission</strong></p><p>Wagestream is on a mission to bring better financial wellbeing to frontline workers.</p><p>We partner with some of the world’s most famous employers, like Pizza Express, Asda and the UK’s National Health Service, to give their teams access to fairer financial services - all built around flexible pay. Over three million people can now choose how often they’re paid, track their shifts and earnings, start saving, use budgeting tools, get free financial coaching, and access fairer financial products. All in one financial wellbeing super-app.</p><p>Wagestream is unique: VC-backed and growing at scale-up pace, but with a social conscience. The UK’s leading financial charities and impact funds were our founding investors, and we operate on a social charter - which means every product we build has to improve financial health and reduce the $5.6bn ‘premium’ lower-income earners pay for financial services each year.</p><p>You’d be joining a team of over 150 passionate, ambitious people, growing in Europe and the USA, building a category-leading fintech product and all united by that same mission.</p><p><strong>A day in the life of a Wagestream Customer Support Representative:</strong></p><ul><li>Communicating effectively and promptly with a variety of customers.</li><li>Maintaining a positive and empathetic attitude toward customers at all times.</li><li>Knowing our product inside and out so that you can expertly answer customer inquiries.</li><li>Demonstrating keen problem-solving skills, the ability to think on your feet, and taking initiative.</li><li>Handling technical escalations, reproducing issues, and working with engineering to achieve resolution as required.</li><li>Working seamlessly with the customer success department, collaborating closely to ensure a holistic approach to assisting customers and delivering exceptional service throughout their journey with our product.</li><li>Working closely with the team, management, as well as cross-functionally with other departments to ensure we create and deliver effective, efficient, and meaningful support experiences for our customers.</li></ul><p><strong>Requirements </strong></p><p>We are seeking individuals who possess a strong enthusiasm and eagerness to learn, with a dedication to providing our exceptional users with an optimal product experience. Previous experience working within a financial regulated environment is highly advantageous, and while we will provide comprehensive training, having an interest in technology and a proactive attitude towards learning are essential attributes.</p><p><strong>Location:</strong> This is primarily an office based role and you will be required to work from our office located in Arlington, VA. Please see details below under Shift Pattern 1, 2 &amp; 3.<br></p><p><strong>Hours of work:</strong> up to 40 hours per week (8 hours plus half an hour unpaid lunch break each day). <br></p><p><strong>Shift Patterns available are:</strong><br></p><p><strong>Shift Pattern 1*</strong></p><ul><li><strong></strong>Monday to Thursday 12:30pm to 9:00pm EST (includes half an hour unpaid lunch break) working from our office in Arlington, VA</li><li>Friday 12:30pm to 9:00pm EST (includes half an hour unpaid lunch break) working at your home/place of residence</li></ul><p><strong>Shift Pattern 2*</strong></p><ul><li>Saturday &amp; Sunday 9:00am to 5:30pm EST (includes half an hour unpaid lunch break) working at your home/place of residence</li><li>Wednesday to Friday 9:00am to 5:30pm EST (includes half an hour unpaid lunch break) working from our office in Arlington, VA</li></ul><p><strong>Shift Pattern 3*</strong></p><ul><li>Saturday &amp; Sunday 9:00am to 5:30pm EST (includes half an hour unpaid lunch break) working at your home/place of residence</li><li>Monday to Wednesday 9:00am to 5:30pm EST (includes half an hour unpaid lunch break) working from our office in Arlington, VA</li></ul><p><em>* While it will be common that your working hours align with the shift pattern you are hired for, there is a possibility that on occasion when the need arises to cover shifts, your shifts may fall between Monday to Sunday, which can start as early as 9:00am EST and finish as late as 9:00pm EST. </em><br></p><p>** <em>Onboarding/Training period will last for up to 4 weeks; during this time your hours may differ to your contractual hours.</em></p><p><strong>Holidays:</strong> For operational reasons, there is an expectation that you will be required to work on certain holidays (and overtime rates will apply per company guidelines).<br></p><p><strong>On occasions when you are working from home:</strong></p><ul><li>Must be able to work from your place of residence that is a quiet, distraction free environment.</li><li>A public or shared office space, coffee shop or an area that has an unsecured shared internet space are not an acceptable place of work.</li></ul><p><strong>What will we do for you?</strong></p><ul><li>10 Days Annual Leave</li><li>+5 Days Annual Leave on your 1 year anniversary</li><li>Up to 5 Days Holiday rollover</li><li>One days' paid leave for volunteering</li><li>5 Days Paid Sick Leave</li><li>We want to invest in you financially, so we have a 3% 401k contribution match</li><li>Medical and Dental Insurance provided by TriNet</li><li>We want every to achieve “Zen Mastery” with a free subscription to Calm - work can be stressful and we want to help you switch off</li><li>$350 home office allowance to make WFH comfortable</li><li>Swanky Brand new equipment - from the latest Apple MacBooks to 34” curved monitors at Wagestream HQ in Arlington, VA</li></ul><p>And of course, the best benefit of all, access to Wagestream, of course!</p><p>At Wagestream we celebrate and support our differences. We know employing a team rich in diverse thoughts, experiences, and opinions allows our employees, our product and our community to flourish. Wagestream is an equal opportunity workplace. We are dedicated to equal employment opportunities regardless of race, colour, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity/expression, or veteran status.<br></p>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "£",
+    "period": "Annual",
+    "min": {
+      "float": 85000,
+      "formatted": "85,000",
+      "value": 85000
+    },
+    "max": {
+      "float": 100000,
+      "formatted": "100,000",
+      "value": 100000
+    },
+    "string": ""
+  },
+  "locationInfo": {
+    "location": "Hybrid",
+    "onSiteLocation": [
+      "Arlington"
+    ]
+  },
+  "email": "your-email@example.com",
+  "fullName": "Your Full Name",
+  "timestamp": 1724437191103,
+  "id": "",
+  "price": 0,
+  "paid": true,
+  "published": false,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://careers.wagestream.com/jobs/4806083-customer-support-representative-us?utm_campaign=jobs-widget&utm_source=careers.wagestream.com&utm_content=jobs&utm_medium=web",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

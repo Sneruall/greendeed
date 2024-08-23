@@ -1,0 +1,49 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "Wagestream"
+  },
+  "jobTitle": "This website uses cookies to ensure you get the best experience on our website.",
+  "category": {
+    "id": 26,
+    "name": "Commercial",
+    "slug": "commercial"
+  },
+  "jobDescription": "<p><strong> Our Mission </strong></p><p>Wagestream is on a mission to bring better financial wellbeing to frontline workers.</p><p>We partner with some of the world’s most famous employers, like Asda, Burger King and the NHS to give their teams access to fairer financial services - all built around flexible pay. Over three million people can now choose when they’re paid, track their shifts and earnings, start saving, use budgeting tools, get free financial coaching, and access fairer financial products. All in one financial wellbeing super-app.</p><p>Wagestream is unique: VC-backed and growing at scale-up pace, but with a social conscience. Some of the worlds leading financial charities and impact funds were our founding investors, and we operate on a social charter - which means every product we build has to improve financial health and reduce the $5.6bn ‘premium’ lower-income earners pay for financial services each year.</p><p>You’d be joining a team of over 150 passionate, ambitious people, across Europe and the USA, building a category-leading fintech product and all united by that same mission.</p><p><strong>The Opportunity</strong></p><p>At Wagestream, we have lofty ambitions and our sales team is the driving force behind ensuring we achieve them. Joining the team represents an opportunity to work for the market leader in financial wellbeing, helping to propel us to the next phase of our growth. </p><p>You’ll play a huge part in ensuring we’re achieving our mission of ending payday poverty, by adding more amazing clients to the Wagestream roster. This role primarily involves working with businesses in the SME sector (sub 750 employees).<br><br><strong>The Team</strong></p><p>You will join the SME team based in London working closely with your colleagues to showcase our market leading products to prospective employers across the UK market.</p><p>The team is committed to delivering a class leading service to our customers and in turn making sure that we deliver tangible results for our clients and the business.</p><p><strong>What will you be doing?</strong></p><p>As an integral part of the sales team you will get to work end-to-end from day one. It’ll be your role to source &amp; build relationships with UK SME businesses, nurture prospective clients and ensure that Wagestream is top of the agenda for staff benefits and wellbeing.</p><p><strong>Your responsibilities will include:</strong></p><ul><li>New business prospecting and account planning across SME clients</li><li>Identify, contact and qualify potential customers.</li><li>Set meetings, pitch &amp; demo the Wagestream app to prospects, follow up and close opportunities.</li><li>Engaging, building and maintaining key contact and stakeholder relationships with clients</li><li>Using data and solution selling expertise as part of the value creation process</li><li>Use customer relationship management (CRM) software to manage leads and sales activities</li><li>Working cross-functionally with the in-house delivery, marketing and engineering teams, to complete the sales process and get new customers live</li><li>Achieving monthly and quarterly revenue targets</li></ul><p><strong>What experience might you have?</strong></p><ul><li>Capable of exhibiting key sales attributes such resilience</li><li>Able to demonstrate a track record of successful sales and solution selling or other related commercial experience (previous SaaS experience would be beneficial)</li><li>You can show examples of effective stakeholder management, operating go to market strategies</li><li>You’re able to display a strong work ethic and be able to operate at pace</li><li>You bring a \"full customer life cycle\" mentality</li><li>Proven abilities to make great contacts in businesses within the SME sector</li><li>Your a team player who can engage cross-functionally and contribute to best practice</li><li>Proactive mentality around solving problems (even if it’s outside of your area)</li></ul><p><strong>Working Policy: </strong>We operate a hybrid policy but would initially ask you to be in the London office 4/5 days a week</p><p><strong>Benefits:</strong></p><ul><li>25 Days Annual Leave in addition to public holidays (up to 5 day rollover), as well as flexible time off allowances for any ad-hoc childcare/family/caring needs</li><li>10 days Annual Leave Buy-Back scheme - for if you’d like some additional time off</li><li>12 weeks paid Maternity Leave and 4 weeks paid Paternity Leave for employees with over 12 months service</li><li>Special Leave for In Vitro Fertilisation (IVF) and other fertility treatments</li><li>£250 home office allowance to make WFH comfortable</li><li>Swanky Brand new equipment - from the latest Apple MacBooks to 34” curved monitors at Wagestream HQ</li><li>Private Healthcare via AXA including comprehensive mental-, physical- and dental healthcare</li><li>Salary sacrifice to pension, as well as bonus exchange to Pension: reap even more rewards of any bonus by paying into your pension &amp; save on Tax and NI + added compound growth</li><li>Access to Salary Sacrifice Scheme - Ben -THE Benefits marketplace.Choose the benefits you want, when you want. Pay less tax, receive more value 🎉</li><li>The best benefit of all, access to Wagestream!</li></ul><p><strong>Additional:</strong></p><ul><li>Additional Pension Payments</li><li>Workplace nurseries</li><li>Cycle to Work</li><li>Gym memberships</li><li>Medical or Life Insurance</li><li>Healthcare cash plans, etc</li></ul><p>At Wagestream we celebrate and support our differences. We know employing a team rich in diverse thoughts, experiences, and opinions allows our employees, our product and our community to flourish. Wagestream is an equal opportunity workplace. We are dedicated to equal employment opportunities regardless of race, colour, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity/expression, or veteran status.<br><br></p>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "£",
+    "period": "Annual",
+    "min": {
+      "float": 85000,
+      "formatted": "85,000",
+      "value": 85000
+    },
+    "max": {
+      "float": 100000,
+      "formatted": "100,000",
+      "value": 100000
+    },
+    "string": ""
+  },
+  "locationInfo": {
+    "location": "Hybrid",
+    "onSiteLocation": [
+      "London Office"
+    ]
+  },
+  "email": "your-email@example.com",
+  "fullName": "Your Full Name",
+  "timestamp": 1724437204475,
+  "id": "",
+  "price": 0,
+  "paid": true,
+  "published": false,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://careers.wagestream.com/jobs/4675193-sales-executive?utm_campaign=jobs-widget&utm_source=careers.wagestream.com&utm_content=jobs&utm_medium=web",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

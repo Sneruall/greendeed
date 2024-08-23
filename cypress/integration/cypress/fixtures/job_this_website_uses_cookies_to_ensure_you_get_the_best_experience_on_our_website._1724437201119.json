@@ -1,0 +1,49 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "Wagestream"
+  },
+  "jobTitle": "This website uses cookies to ensure you get the best experience on our website.",
+  "category": {
+    "id": 26,
+    "name": "Engineering",
+    "slug": "engineering"
+  },
+  "jobDescription": "<h4><strong>The Company: </strong></h4><p>Wagestream is on a mission to bring better financial wellbeing to frontline workers.</p><p>We partner with some of the world’s most famous employers, like Asda, Burger King and the NHS, to give their teams access to fairer financial services - all built around flexible pay. Over three million people can now choose when they’re paid, track their shifts and earnings, start saving, use budgeting tools, get free financial coaching, and access fairer financial products. All in one financial wellbeing super-app.</p><p>Wagestream is unique: VC-backed and growing at scale-up pace, but with a social conscience. Some of the worlds leading financial charities and impact funds were our founding investors, and we operate on a social charter - which means every product we build has to improve financial health and reduce the $5.6bn ‘premium’ lower-income earners pay for financial services each year.</p><p>You’d be joining a team of over 150 passionate, ambitious people, across Europe and the USA, building a category-leading fintech product and all united by that same mission.<br></p><p>The poverty premium costs frontline workers an extra £5.8 billion per year in the UK.</p><p>The poverty premium breaks down into:</p><ol> <li>Higher insurance premiums</li> <li>Higher energy tariffs</li> <li>Higher cost of credit (e.g. payday loans)</li> <li>Non-standard billing methods</li> <li>Use of pre-payment meters</li> <li>Insurance for individual items</li> <li>ATM fees</li> </ol><p>Wagestream's flagship product is flexible pay or 'Earned Wage Access' (EWA), which allows employees to access their pay immediately after earning it instead of having to wait until the end of the month, and removes the need for payday loans.</p><p>We now want to pursue the remainder of the poverty premium, and systematically rebuild financial services from the ground up to be fair for all.</p><p><strong>This Role:</strong></p><p>We're looking for Engineers at Staff and Principal levels to join our cross-functional squads. The key technologies we use are Python, Typescript, PostgreSQL, React and AWS.</p><p>Wagestream has a genuine focus on moving quickly, cutting waste, and getting engineers' work into the hands of users in the smallest amount of time possible.</p><p><strong>Requirements: </strong><br></p><ul> <li>You're excited about our mission.</li> <li>You're a great engineer.</li> <li>You're interested in steering the direction of our product, and solving the problems of our customers.</li> <li>You like to work quickly and cut out waste.</li> <li>You take responsibility for the quality of your own work.</li> <li>You like meeting your team face-to-face in the Office at least once per week.</li></ul><p>Salary: Dependant on experience and seniority. Levels starting from £80,000, £100,000, £120,000 or £140,000, plus an equity vesting schedule and an up to 20% bonus.</p><p><strong>Working Policy: </strong>Hybrid, with an expectation of one day per week in the London office. <br></p><ul></ul><p><strong>Benefits:</strong></p><ul><li>25 Days Annual Leave in addition to public holidays (up to 5 day rollover), as well as flexible time off allowances for any ad-hoc childcare/family/caring needs</li><li>10 days Annual Leave Buy-Back scheme </li><li>24 weeks' paid Maternity Leave and 4 weeks paid Paternity Leave for employees with over 12 months service</li><li>Special Leave for In Vitro Fertilisation (IVF) and other fertility treatments</li><li>Sabbatical scheme</li><li>Paid leave to volunteer</li><li>Private Healthcare via AXA including comprehensive mental-, physical- and dental healthcare</li><li>£250 home office allowance to make WFH comfortable</li><li>Salary sacrifice to pension, as well as bonus exchange to Pension: reap even more rewards of any bonus by paying into your pension &amp; save on Tax and NI + added compound growth</li><li>Season Ticket Loan</li><li>The best benefit of all, access to Wagestream!</li><li>Access to Salary Sacrifice Schemes via ThanksBen: THE Benefits marketplace. Choose the benefits you want, when you want. Pay less tax, receive more value </li></ul><p>Including:<br></p><ul><li>Workplace nurseries</li><li>Cycle to Work</li><li>Home and Tech Scheme</li><li>Healthcare cash plans, etc</li><li>Discount platform</li></ul><p><br></p><ul></ul><ul></ul><ul> </ul><p>At Wagestream we celebrate and support our differences. We know employing a team rich in diverse thoughts, experiences, and opinions allows our employees, our product and our community to flourish. Wagestream is an equal opportunity workplace. We are dedicated to equal employment opportunities regardless of race, colour, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity/expression, or veteran status.</p>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "£",
+    "period": "Annual",
+    "min": {
+      "float": 85000,
+      "formatted": "85,000",
+      "value": 85000
+    },
+    "max": {
+      "float": 100000,
+      "formatted": "100,000",
+      "value": 100000
+    },
+    "string": ""
+  },
+  "locationInfo": {
+    "location": "Hybrid",
+    "onSiteLocation": [
+      "London Office"
+    ]
+  },
+  "email": "your-email@example.com",
+  "fullName": "Your Full Name",
+  "timestamp": 1724437201119,
+  "id": "",
+  "price": 0,
+  "paid": true,
+  "published": false,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://careers.wagestream.com/jobs/4717178-lead-software-engineer-staff-principal?utm_campaign=jobs-widget&utm_source=careers.wagestream.com&utm_content=jobs&utm_medium=web",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

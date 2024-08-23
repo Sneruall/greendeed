@@ -1,0 +1,49 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "Wagestream"
+  },
+  "jobTitle": "This website uses cookies to ensure you get the best experience on our website.",
+  "category": {
+    "id": 26,
+    "name": "Operations",
+    "slug": "operations"
+  },
+  "jobDescription": "<p>Wagestream is on a mission to bring better financial wellbeing to frontline workers.</p><p>We partner with some of the world’s most famous employers, like Bupa, Burger King, Green King and the mighty NHS to give their teams access to fairer financial services - all built around flexible pay. Over three million people can now choose how often they’re paid, track their shifts and earnings, start saving, use budgeting tools, get free financial coaching, and access fairer financial products. All in one financial wellbeing super-app.</p><p>Wagestream is unique: VC-backed and growing at scale-up pace, but with a social conscience. Some of the world's leading financial charities and impact funds were our founding investors, and we operate on a social charter - which means every product we build has to improve financial health and reduce the $5.6bn ‘premium’ lower-income earners pay for financial services each year.</p><p>You’d be joining a team of over 150 passionate, ambitious people, across Europe and the USA, building a category-leading fintech product and all united by that same mission.<br></p><p><strong>What you will be doing: </strong></p><ul><li>Managing the month end close process from start to finish including preparation of the monthly management accounts and review of balance sheet reconciliations, to ensure figures can be reported in five working days.</li><li>Ownership of the statutory audit of the Group and its subsidiaries.</li><li>Design and implement processes and controls to ensure that the business is able to scale effectively and operate efficiently</li><li>Own financial systems and ensure tools used within the finance team are best in class</li><li>Liaise with third party accountants and advisors in the territories we operate in to ensure compliance with local laws and regulations.</li><li>Review and submission of VAT and other tax returns both in the UK and abroad.</li><li>Manage other members of the finance team and help them meet their career goals</li><li>Preparation and submission of returns to the FCA for our regulated business</li><li>Management of the companies cash balances</li><li>Work closely with the wider business and finance team including; Finance Director, Head of FP&amp;A and CFO on other ad-hoc projects including operational issues, transfer pricing, treasury, tax etc.</li></ul><p><strong>What you need: </strong></p><ul><li>ACA, ACCA or CIMA certified with (5+ years PQE)</li><li>Experience reporting under both IFRS and UK GAAP accounting standards. US GAAP would be an added bonus</li><li>Experience working in an international business with a specific focus on the US market</li><li>Experience using Netsuite</li><li>Strong Excel skills</li><li>Experience working with fast growth businesses, fintech or SaaS experience is a plus</li></ul><p><strong>Working Policy:</strong> Hybrid</p><p><strong>Salary:</strong> Starting from £85,000 to 100,000 + bonus/stock + benefits</p><p><strong>Benefits:</strong></p><ul><li>25 Days Annual Leave in addition to public holidays (up to 5 day rollover), as well as flexible time off allowances for any ad-hoc childcare/family/caring needs</li><li>10 days Annual Leave Buy-Back scheme </li><li>24 weeks' paid Maternity Leave and 4 weeks paid Paternity Leave for employees with over 12 months service</li><li>Special Leave for In Vitro Fertilisation (IVF) and other fertility treatments</li><li>Sabbatical scheme</li><li>Paid leave to volunteer</li><li>Private Healthcare through AXA including comprehensive mental-, physical- and dental healthcare</li><li>£250 home office allowance to make WFH comfortable</li><li>Salary sacrifice to pension, as well as bonus exchange to Pension: reap even more rewards of any bonus by paying into your pension &amp; save on Tax and NI + added compound growth</li><li>Season Ticket Loan</li><li>The best benefit of all, access to Wagestream!</li><li>Access to Salary Sacrifice Schemes via ThanksBen: THE Benefits marketplace. Choose the benefits you want, when you want. Pay less tax, receive more value.</li></ul><p>Additional:<br></p><ul><li>Workplace nurseries</li><li>Cycle to Work</li><li>Home and Tech Scheme</li><li>Healthcare cash plans, etc</li><li>Discounts platform</li></ul><ul></ul><ul></ul><p>At Wagestream we celebrate and support our differences. We know employing a team rich in diverse thoughts, experiences, and opinions allows our employees, our product and our community to flourish. Wagestream is an equal opportunity workplace. We are dedicated to equal employment opportunities regardless of race, colour, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity/expression, or veteran status.</p><ul></ul>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "£",
+    "period": "Annual",
+    "min": {
+      "float": 85000,
+      "formatted": "85,000",
+      "value": 85000
+    },
+    "max": {
+      "float": 100000,
+      "formatted": "100,000",
+      "value": 100000
+    },
+    "string": ""
+  },
+  "locationInfo": {
+    "location": "Hybrid",
+    "onSiteLocation": [
+      "London Office"
+    ]
+  },
+  "email": "your-email@example.com",
+  "fullName": "Your Full Name",
+  "timestamp": 1724437211283,
+  "id": "",
+  "price": 0,
+  "paid": true,
+  "published": false,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://careers.wagestream.com/jobs/4211735-group-financial-controller?utm_campaign=jobs-widget&utm_source=careers.wagestream.com&utm_content=jobs&utm_medium=web",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

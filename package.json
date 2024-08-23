@@ -25,6 +25,7 @@
     "axios": "^1.2.5",
     "cloudinary": "^1.32.0",
     "countries-list": "^2.6.1",
+    "cypress": "^13.13.3",
     "draft-js": "^0.11.7",
     "eslint-config-next": "^13.1.6",
     "html-react-parser": "^1.4.14",

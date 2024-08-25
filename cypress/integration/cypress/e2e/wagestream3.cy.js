@@ -1,6 +1,7 @@
 describe('Scrape job positions and extract details', () => {
   const jobLinks = [];
-  const submittedJobs = new Set(); // Track already submitted jobs
+  const salaryRegex =
+    /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:[ -]to[ -](?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?|(?:[ -]pa)?|(?:pa))|(?:starting from\s*(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?)/i;
 
   // Predefined job categories list todo: can we import this somehow from our jobCategories.ts file in our types folder?
   const jobCategoriesList = [
@@ -245,6 +246,50 @@ describe('Scrape job positions and extract details', () => {
             const department = getTextFromLabel('Department');
             const mappedCategory = mapDepartmentToCategory(department);
 
+            // Salary extraction with <p> context check
+            let salaryData = null;
+            const salaryElements = doc.querySelectorAll('p');
+            salaryElements.forEach((el) => {
+              if (el.textContent.includes('Salary')) {
+                const salaryMatch = el.textContent.match(salaryRegex);
+                if (salaryMatch) {
+                  const currency = '£'; // Assume GBP; adjust dynamically if needed
+                  const minSalary = parseFloat(
+                    salaryMatch[0]
+                      .match(/\d{1,3}(?:,\d{3})?/g)[0]
+                      .replace(/,/g, '')
+                  );
+                  const maxSalary = salaryMatch[0].match(
+                    /\d{1,3}(?:,\d{3})?/g
+                  )[1]
+                    ? parseFloat(
+                        salaryMatch[0]
+                          .match(/\d{1,3}(?:,\d{3})?/g)[1]
+                          .replace(/,/g, '')
+                      )
+                    : minSalary;
+
+                  salaryData = {
+                    currency: currency,
+                    period: 'Annual', // Assuming annual salary; adjust if needed
+                    min: {
+                      float: minSalary,
+                      formatted: salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[0],
+                      value: minSalary,
+                    },
+                    max: {
+                      float: maxSalary,
+                      formatted:
+                        salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[1] ||
+                        salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[0],
+                      value: maxSalary,
+                    },
+                    string: salaryMatch[0], // Original string found in the text
+                  };
+                }
+              }
+            });
+
             const jobData = {
               companyId: '', // Auto-generated in the backend
               companyData: {
@@ -254,21 +299,7 @@ describe('Scrape job positions and extract details', () => {
               category: mappedCategory, // Use the mapped category
               jobDescription: cleanedJobDescription, // Use the cleaned HTML
               jobType: 'Full-time', // Update dynamically if needed
-              salary: {
-                currency: '£',
-                period: 'Annual',
-                min: {
-                  float: 85000, // You would extract this dynamically if needed
-                  formatted: '85,000',
-                  value: 85000,
-                },
-                max: {
-                  float: 100000, // Extract this dynamically if needed
-                  formatted: '100,000',
-                  value: 100000,
-                },
-                string: '',
-              },
+              salary: salaryData, // Use the extracted salary data
               locationInfo: {
                 location: 'Hybrid', // Assuming this from the working policy
                 onSiteLocation: [getTextFromLabel('Locations')], // Extracting Location
@@ -293,16 +324,6 @@ describe('Scrape job positions and extract details', () => {
               .replace(/\s+/g, '_')
               .toLowerCase()}_${Date.now()}.json`;
             cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
-
-            // Automatically post the job data to the server
-            // cy.request('POST', '/api/autopost', jobData).then((response) => {
-            //   if (response.status === 201) {
-            //     cy.log(`Job submitted successfully: ${jobTitle}`);
-            //   } else {
-            //     cy.log(`Failed to submit job: ${jobTitle}`);
-            //   }
-            // });
-            // });
           });
         });
       });

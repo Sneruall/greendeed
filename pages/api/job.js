@@ -55,12 +55,12 @@ const handleDelete = async (req, res) => {
 };
 
 const handleGet = async (req, res) => {
-  const { id } = req.query;
+  const { apply } = req.query;
   const collection = await getCollection();
 
   let query = {};
-  if (id) {
-    query = { id: id };
+  if (apply) {
+    query = { apply: apply };
   }
 
   const jobs = await collection.find(query).toArray();
@@ -68,7 +68,7 @@ const handleGet = async (req, res) => {
   if (jobs.length > 0) {
     res.status(200).json(jobs);
   } else {
-    res.status(404).json({ message: 'No jobs found' });
+    res.status(204).json();
   }
 };
 

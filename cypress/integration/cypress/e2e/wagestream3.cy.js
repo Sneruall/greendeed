@@ -1,7 +1,7 @@
 describe('Scrape job positions and extract details', () => {
   const jobLinks = [];
   const salaryRegex =
-    /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:[ -]to[ -](?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?|(?:[ -]pa)?|(?:pa))|(?:starting from\s*(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?)/i;
+    /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?/i;
 
   // Predefined job categories list todo: can we import this somehow from our jobCategories.ts file in our types folder?
   const jobCategoriesList = [
@@ -253,38 +253,40 @@ describe('Scrape job positions and extract details', () => {
               if (el.textContent.includes('Salary')) {
                 const salaryMatch = el.textContent.match(salaryRegex);
                 if (salaryMatch) {
-                  const currency = '£'; // Assume GBP; adjust dynamically if needed
-                  const minSalary = parseFloat(
-                    salaryMatch[0]
-                      .match(/\d{1,3}(?:,\d{3})?/g)[0]
-                      .replace(/,/g, '')
-                  );
-                  const maxSalary = salaryMatch[0].match(
-                    /\d{1,3}(?:,\d{3})?/g
-                  )[1]
-                    ? parseFloat(
-                        salaryMatch[0]
-                          .match(/\d{1,3}(?:,\d{3})?/g)[1]
-                          .replace(/,/g, '')
-                      )
-                    : minSalary;
+                  const salaryString = salaryMatch[0];
+                  const currencyMatch =
+                    salaryString.match(/£|US\$|€|CA\$|AU\$/);
+                  const currency = currencyMatch ? currencyMatch[0] : '£'; // Default to GBP if no currency found
+                  const salaryValues =
+                    salaryString.match(/\d{1,3}(?:,\d{3})?/g);
+
+                  let minSalary, maxSalary;
+                  if (salaryValues) {
+                    minSalary = parseFloat(salaryValues[0].replace(/,/g, ''));
+                    maxSalary = salaryValues[1]
+                      ? parseFloat(salaryValues[1].replace(/,/g, ''))
+                      : null;
+                  } else {
+                    minSalary = 0;
+                    maxSalary = 0;
+                  }
 
                   salaryData = {
                     currency: currency,
                     period: 'Annual', // Assuming annual salary; adjust if needed
                     min: {
                       float: minSalary,
-                      formatted: salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[0],
+                      formatted: salaryValues ? salaryValues[0] : '',
                       value: minSalary,
                     },
-                    max: {
-                      float: maxSalary,
-                      formatted:
-                        salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[1] ||
-                        salaryMatch[0].match(/\d{1,3}(?:,\d{3})?/g)[0],
-                      value: maxSalary,
-                    },
-                    string: salaryMatch[0], // Original string found in the text
+                    max: maxSalary
+                      ? {
+                          float: maxSalary,
+                          formatted: salaryValues[1] || '',
+                          value: maxSalary,
+                        }
+                      : null, // If maxSalary is null, set it to null or omit this key
+                    string: salaryString, // Original string found in the text
                   };
                 }
               }

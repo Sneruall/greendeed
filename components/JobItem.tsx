@@ -136,7 +136,9 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                 {job.salary?.min?.formatted &&
                   job.salary?.period === 'Annual' &&
                   '/ y'}
-                {job.salary?.string && '💰 ' + job.salary.string}
+                {!job.salary?.min?.formatted &&
+                  job.salary?.string &&
+                  '💰 ' + job.salary.string}
               </span>
               <span className="text-sm">
                 {job.timestamp &&

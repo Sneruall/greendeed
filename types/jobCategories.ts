@@ -203,4 +203,9 @@ export const jobCategoriesList: jobCategory[] = [
     name: 'Web and Mobile Development',
     slug: 'web-and-mobile-development',
   },
+  {
+    id: 35,
+    name: 'Other',
+    slug: 'other',
+  },
 ];

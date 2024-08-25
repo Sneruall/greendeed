@@ -54,6 +54,24 @@ const handleDelete = async (req, res) => {
   }
 };
 
+const handleGet = async (req, res) => {
+  const { id } = req.query;
+  const collection = await getCollection();
+
+  let query = {};
+  if (id) {
+    query = { id: id };
+  }
+
+  const jobs = await collection.find(query).toArray();
+
+  if (jobs.length > 0) {
+    res.status(200).json(jobs);
+  } else {
+    res.status(404).json({ message: 'No jobs found' });
+  }
+};
+
 export default async function handler(req, res) {
   switch (req.method) {
     case 'POST':
@@ -64,6 +82,8 @@ export default async function handler(req, res) {
       return handlePatch(req, res);
     case 'DELETE':
       return handleDelete(req, res);
+    case 'GET':
+      return handleGet(req, res);
     default:
       return res.status(405).end();
   }

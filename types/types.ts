@@ -82,7 +82,6 @@ export interface Job {
   external: boolean; // Set to false
   coupon?: string; // Set to empty string
   invoiceInfo?: InvoiceInfo; // Set as empty object.
-  externalJobId?: string; // New optional field to track the external job ID
 }
 
 export interface Company {

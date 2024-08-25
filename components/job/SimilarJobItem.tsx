@@ -139,7 +139,9 @@ function SimilarJobItem({ job }: Props) {
               {job.salary?.min?.formatted &&
                 job.salary?.period === 'Annual' &&
                 '/ y'}
-              {job.salary?.string && '💰 ' + job.salary.string}
+              {!job.salary?.min?.formatted &&
+                job.salary?.string &&
+                '💰 ' + job.salary.string}
             </li>
           </ul>
           <div className="mb-10 text-center">

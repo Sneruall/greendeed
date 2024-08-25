@@ -36,3 +36,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+#cypress
+/cypress/integration/cypress/fixtures

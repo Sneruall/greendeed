@@ -342,14 +342,15 @@ describe('Scrape job positions and extract details', () => {
               cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
 
               // Automatically post the job data to the server
-              //   cy.request('POST', '/api/autopost', jobData).then((response) => {
-              //     if (response.status === 201) {
-              //       cy.log(`Job submitted successfully: ${jobTitle}`);
-              //     } else {
-              //       cy.log(`Failed to submit job: ${jobTitle}`);
-              //     }
-              //   });
-              // });
+              cy.request('POST', 'localhost:3000/api/autopost', jobData).then(
+                (response) => {
+                  if (response.status === 201) {
+                    cy.log(`Job submitted successfully: ${jobTitle}`);
+                  } else {
+                    cy.log(`Failed to submit job: ${jobTitle}`);
+                  }
+                }
+              );
             });
           });
         });

@@ -44,7 +44,12 @@ describe('Scrape job positions and extract details', () => {
             const jobDescriptionHTML = doc.querySelector('.prose').innerHTML;
             const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
 
-            const jobTitle = doc.querySelector('h1').innerText; // Assuming the job title is in the <h1> tag
+            // Select the correct job title using a more specific query
+            const jobTitleElement = doc.querySelector(
+              'h1.font-company-header span.textFitted'
+            );
+            const jobTitle = jobTitleElement?.innerText || 'Unknown Title'; // Fallback to avoid null error
+
             const externalJobId = `wagestream_${jobTitle
               .replace(/\s+/g, '_')
               .toLowerCase()}`;

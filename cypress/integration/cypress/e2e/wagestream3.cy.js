@@ -1,23 +1,9 @@
-import { jobCategoriesList } from '../../../../types/jobCategories'; // Adjust the path as necessary
+import { mapDepartmentToCategory } from '../scripts/categories.ts';
 
 describe('Scrape job positions and extract details', () => {
   const jobLinks = [];
   const salaryRegex =
     /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?/i;
-
-  // Function to map department name to job category
-  const mapDepartmentToCategory = (department) => {
-    const lowerCasedDepartment = department.toLowerCase();
-    return (
-      jobCategoriesList.find((category) =>
-        lowerCasedDepartment.includes(category.name.toLowerCase())
-      ) || {
-        id: 35,
-        name: 'Other', // If no match, return the department as is
-        slug: 'other',
-      }
-    );
-  };
 
   it('Retrieve job position links', () => {
     cy.visit('https://wagestream.com/en/careers#job-vacancies');

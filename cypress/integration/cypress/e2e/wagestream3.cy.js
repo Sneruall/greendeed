@@ -1,4 +1,5 @@
 import { mapDepartmentToCategory } from '../scripts/categories.ts';
+import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
 
 describe('Scrape job positions and extract details', () => {
   const jobLinks = [];
@@ -130,37 +131,8 @@ describe('Scrape job positions and extract details', () => {
               invoiceInfo: {},
             };
 
-            // Check if a job with the same apply URL already exists
-            cy.request({
-              method: 'GET',
-              url: `localhost:3000/api/job?apply=${encodeURIComponent(
-                jobData.apply
-              )}`,
-            }).then((response) => {
-              if (response.status === 200 && response.body.length > 0) {
-                cy.log(
-                  `Job with the same apply URL already exists: ${jobTitle}`
-                );
-                return;
-              }
-
-              // Create a unique filename for each job, including the timestamp
-              const fileName = `wagestream_${jobTitle
-                .replace(/\s+/g, '_')
-                .toLowerCase()}_${Date.now()}.json`;
-              cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
-
-              // Automatically post the job data to the server
-              cy.request('POST', 'localhost:3000/api/autopost', jobData).then(
-                (response) => {
-                  if (response.status === 201) {
-                    cy.log(`Job submitted successfully: ${jobTitle}`);
-                  } else {
-                    cy.log(`Failed to submit job: ${jobTitle}`);
-                  }
-                }
-              );
-            });
+            // Call the function to check if job already exists and submit the job
+            checkAndSubmitJob(jobData, jobTitle, jobData.companyData.name);
           });
         });
       });

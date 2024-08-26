@@ -13,12 +13,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "types": ["cypress"] // Add Cypress types here
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "cypress/**/*.ts", // Ensure Cypress tests are included
     "components/hiring/form-elements/LogoUploader.jsx"
   ],
   "exclude": ["node_modules"]

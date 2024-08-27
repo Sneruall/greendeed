@@ -47,13 +47,12 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             const jobTitle =
               jobTitleElement?.innerText.trim() || 'Unknown Title';
 
-            console.log('job title = ' + jobTitle);
-
             const departmentElement = doc.querySelector(
               'li:nth-child(4) span.inline-block.align-middle'
             );
             const department =
               departmentElement?.innerText.trim() || 'Unknown Department';
+            cy.log(department);
             const mappedCategory = mapDepartmentToCategory(department);
 
             const jobTypeElement = doc.querySelector(

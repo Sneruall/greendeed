@@ -64,8 +64,11 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             const locationElement = doc.querySelector(
               'li:nth-child(3) span.inline-block.align-middle'
             );
-            const location =
+            let location =
               locationElement?.innerText.trim() || 'Unknown Location';
+
+            // Remove any newlines from the location string
+            location = location.replace(/\n/g, ' ');
 
             const jobData = {
               companyId: '', // Auto-generated in the backend

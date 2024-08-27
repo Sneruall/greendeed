@@ -132,7 +132,7 @@ describe('Scrape job positions and extract details', () => {
             };
 
             // Call the function to check if job already exists and submit the job
-            checkAndSubmitJob(jobData, jobTitle, jobData.companyData.name);
+            checkAndSubmitJob(jobData);
           });
         });
       });

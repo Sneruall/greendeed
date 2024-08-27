@@ -1,15 +1,15 @@
 import { mapDepartmentToCategory } from '../scripts/categories.ts';
 import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
 
-describe('Scrape job positions and extract details from charity: water', () => {
+describe('Scrape job positions and extract details from Cleanhub', () => {
   const jobLinks = [];
 
-  it('Retrieve job position links from charity: water', () => {
-    cy.visit('https://www.charitywater.org/about/jobs');
+  it('Retrieve job position links from Cleanhub', () => {
+    cy.visit('https://cleanhub.factorialhr.de/embed/jobs');
     cy.wait(5000); // Wait for the page to load fully
 
     // Get all job position links
-    cy.get('a[href*="jobs.lever.co/charitywater/"]')
+    cy.get('.job-offer-item a[href*="/job_posting/"]')
       .each(($el) => {
         const jobLink = $el.attr('href');
         jobLinks.push(jobLink);
@@ -28,14 +28,6 @@ describe('Scrape job positions and extract details from charity: water', () => {
               throw new Error('Document not loaded');
             }
 
-            const getTextFromLabel = (label) => {
-              const labelElement = doc.querySelector(
-                `.posting-categories .${label}`
-              );
-              console.log('labelelement: ' + labelElement);
-              return labelElement ? labelElement.innerText.trim() : '';
-            };
-
             const cleanHTML = (html) => {
               return html
                 .replace(/\n/g, '') // Remove newlines
@@ -45,41 +37,49 @@ describe('Scrape job positions and extract details from charity: water', () => {
                 .trim(); // Trim leading/trailing spaces
             };
 
-            const jobDescriptionHTML = doc.querySelector(
-              '[data-qa="job-description"]'
-            ).innerHTML;
+            const jobDescriptionElement = doc.querySelector('.styledText');
+            const jobDescriptionHTML = jobDescriptionElement
+              ? jobDescriptionElement.innerHTML
+              : 'No description available';
             const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
 
-            const jobTitleElement = doc.querySelector('h2.posting-headline');
-            const jobTitle = jobTitleElement?.innerText || 'Unknown Title';
+            const jobTitleElement = doc.querySelector('h1');
+            const jobTitle =
+              jobTitleElement?.innerText.trim() || 'Unknown Title';
+
+            console.log('job title = ' + jobTitle);
 
             const departmentElement = doc.querySelector(
-              '.posting-categories .department'
+              'li:nth-child(4) span.inline-block.align-middle'
             );
-            const department = departmentElement
-              ? departmentElement.innerText
-              : 'Unknown Department';
+            const department =
+              departmentElement?.innerText.trim() || 'Unknown Department';
             const mappedCategory = mapDepartmentToCategory(department);
 
             const jobTypeElement = doc.querySelector(
-              '.posting-categories .commitment'
+              'li:nth-child(2) span.inline-block.align-middle'
             );
-            const jobType = jobTypeElement
-              ? jobTypeElement.innerText.replace(/\/$/, '').trim()
-              : 'Unknown Job Type';
+            const jobType =
+              jobTypeElement?.innerText.trim() || 'Unknown Job Type';
+
+            const locationElement = doc.querySelector(
+              'li:nth-child(3) span.inline-block.align-middle'
+            );
+            const location =
+              locationElement?.innerText.trim() || 'Unknown Location';
 
             const jobData = {
               companyId: '', // Auto-generated in the backend
               companyData: {
-                name: 'Charity: Water',
+                name: 'Cleanhub',
               },
               jobTitle: jobTitle,
               category: mappedCategory,
               jobDescription: cleanedJobDescription, // Use the cleaned HTML
               jobType: jobType,
               locationInfo: {
-                location: 'Remote', // Assuming this from the working policy
-                onSiteLocation: [getTextFromLabel('location')], // Extracting Location
+                location: location.includes('Hybrid') ? 'Hybrid' : 'Remote', // Assuming hybrid or remote
+                onSiteLocation: [location], // Extracting Location
               },
               email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary
               fullName: 'Laurens van Roomen', // Replace with your full name

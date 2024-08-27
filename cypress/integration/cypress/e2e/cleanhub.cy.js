@@ -1,5 +1,6 @@
 import { mapDepartmentToCategory } from '../scripts/categories.ts';
 import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
+import { mapLocation } from '../scripts/location.ts';
 
 describe('Scrape job positions and extract details from Cleanhub', () => {
   const jobLinks = [];
@@ -8,33 +9,24 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
     cy.visit('https://cleanhub.factorialhr.de/embed/jobs');
     cy.wait(5000); // Wait for the page to load fully
 
-    // Get all job position links
     cy.get('.job-offer-item a[href*="/job_posting/"]')
       .each(($el) => {
         const jobLink = $el.attr('href');
         jobLinks.push(jobLink);
       })
       .then(() => {
-        // Visit each job link and scrape data
         jobLinks.forEach((link) => {
           cy.visit(link);
           cy.wait(3000); // Wait for the job page to load
-          console.log('waiting over');
 
-          // Scrape the required job data
           cy.document().then((doc) => {
-            // Debugging: Ensure document is loaded
-            if (!doc) {
-              throw new Error('Document not loaded');
-            }
-
             const cleanHTML = (html) => {
               return html
-                .replace(/\n/g, '') // Remove newlines
-                .replace(/ dir="ltr"/g, '') // Remove dir="ltr" attributes
-                .replace(/&nbsp;/g, ' ') // Replace &nbsp; with a space
-                .replace(/\s\s+/g, ' ') // Remove extra spaces
-                .trim(); // Trim leading/trailing spaces
+                .replace(/\n/g, '')
+                .replace(/ dir="ltr"/g, '')
+                .replace(/&nbsp;/g, ' ')
+                .replace(/\s\s+/g, ' ')
+                .trim();
             };
 
             const jobDescriptionElement = doc.querySelector('.styledText');
@@ -52,7 +44,6 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             );
             const department =
               departmentElement?.innerText.trim() || 'Unknown Department';
-            cy.log(department);
             const mappedCategory = mapDepartmentToCategory(department);
 
             const jobTypeElement = doc.querySelector(
@@ -61,14 +52,17 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             const jobType =
               jobTypeElement?.innerText.trim() || 'Unknown Job Type';
 
-            const locationElement = doc.querySelector(
-              'li:nth-child(3) span.inline-block.align-middle'
-            );
-            let location =
-              locationElement?.innerText.trim() || 'Unknown Location';
+            // Get the location from the paragraph that contains "Location:"
+            const locationParagraphs = doc.querySelectorAll('.styledText p');
+            let location = 'Unknown Location';
+            locationParagraphs.forEach((p) => {
+              if (p.textContent.includes('Location:')) {
+                location = p.textContent.replace('Location:', '').trim();
+              }
+            });
 
-            // Remove any newlines from the location string
-            location = location.replace(/\n/g, ' ');
+            // Use the mapLocation utility to generate locationInfo
+            const locationInfo = mapLocation(location);
 
             const jobData = {
               companyId: '', // Auto-generated in the backend
@@ -79,10 +73,7 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
               category: mappedCategory,
               jobDescription: cleanedJobDescription, // Use the cleaned HTML
               jobType: jobType,
-              locationInfo: {
-                location: location.includes('Hybrid') ? 'Hybrid' : 'Remote', // Assuming hybrid or remote
-                onSiteLocation: [location], // Extracting Location
-              },
+              locationInfo: locationInfo,
               email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary
               fullName: 'Laurens van Roomen', // Replace with your full name
               timestamp: 0, // Set as 0 for now
@@ -98,7 +89,6 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
               invoiceInfo: {},
             };
 
-            // Submit the job data to the backend
             checkAndSubmitJob(jobData);
           });
         });

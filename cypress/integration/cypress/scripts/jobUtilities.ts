@@ -9,17 +9,17 @@ export const checkAndSubmitJob = (jobData: Job) => {
       jobData.apply
     )}`,
   }).then((response) => {
-    if (response.status === 200 && response.body.length > 0) {
-      cy.log(`Job with the same apply URL already exists: ${jobData.jobTitle}`);
-      return;
-    }
-
     // Create a unique filename for each job, including the timestamp
 
     const fileName = `${jobData.companyData.name}_${jobData.jobTitle
       .replace(/\s+/g, '_')
       .toLowerCase()}_${Date.now()}.json`;
     cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
+
+    if (response.status === 200 && response.body.length > 0) {
+      cy.log(`Job with the same apply URL already exists: ${jobData.jobTitle}`);
+      return;
+    }
 
     // Automatically post the job data to the server
     cy.request('POST', 'http://localhost:3000/api/autopost', jobData).then(

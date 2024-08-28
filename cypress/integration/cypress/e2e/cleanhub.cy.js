@@ -56,7 +56,7 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
 
             // Get the location from the paragraph that contains "Location:"
             const locationParagraphs = doc.querySelectorAll('.styledText p');
-            let location = 'Unknown Location';
+            let location = 'Berlin';
             locationParagraphs.forEach((p) => {
               if (p.textContent.includes('Location:')) {
                 location = p.textContent.replace('Location:', '').trim();

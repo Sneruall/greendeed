@@ -1,4 +1,5 @@
 import { mapDepartmentToCategory } from '../scripts/categories.ts';
+import { mapJobType } from '../scripts/jobType.ts';
 import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
 import { mapLocation } from '../scripts/location.ts';
 
@@ -54,6 +55,9 @@ describe('Scrape job positions and extract details', () => {
             const department = getTextFromLabel('Department');
             const mappedCategory = mapDepartmentToCategory(department);
 
+            const jobTypeString =
+              getTextFromLabel('Job Type') || 'Unknown Job Type';
+            const mappedJobType = mapJobType(jobTypeString);
             let salaryData = null;
             const salaryElements = doc.querySelectorAll('p');
             salaryElements.forEach((el) => {
@@ -110,7 +114,7 @@ describe('Scrape job positions and extract details', () => {
               jobTitle: jobTitle,
               category: mappedCategory,
               jobDescription: cleanedJobDescription,
-              jobType: 'Full-time',
+              jobType: mappedJobType,
               salary: salaryData,
               locationInfo: locationInfo,
               email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary

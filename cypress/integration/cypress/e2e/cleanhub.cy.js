@@ -1,6 +1,7 @@
 import { mapDepartmentToCategory } from '../scripts/categories.ts';
 import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
 import { mapLocation } from '../scripts/location.ts';
+import { mapJobType } from '../scripts/jobType.ts';
 
 describe('Scrape job positions and extract details from Cleanhub', () => {
   const jobLinks = [];
@@ -49,8 +50,9 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             const jobTypeElement = doc.querySelector(
               'li:nth-child(2) span.inline-block.align-middle'
             );
-            const jobType =
+            const jobTypeString =
               jobTypeElement?.innerText.trim() || 'Unknown Job Type';
+            const mappedJobType = mapJobType(jobTypeString); // Use mapJobType
 
             // Get the location from the paragraph that contains "Location:"
             const locationParagraphs = doc.querySelectorAll('.styledText p');
@@ -72,7 +74,7 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
               jobTitle: jobTitle,
               category: mappedCategory,
               jobDescription: cleanedJobDescription, // Use the cleaned HTML
-              jobType: jobType,
+              jobType: mappedJobType, // Use the normalized job type
               locationInfo: locationInfo,
               email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary
               fullName: 'Laurens van Roomen', // Replace with your full name

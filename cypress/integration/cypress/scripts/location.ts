@@ -1,6 +1,9 @@
 import { LocationInfo } from '../../../../types/types';
 
-export function mapLocation(locationString: string): LocationInfo {
+export function mapLocation(
+  locationString: string,
+  locationTypeString?: string
+): LocationInfo {
   let locationInfo: LocationInfo = {
     location: 'onSite', // Default to 'onSite'
   };
@@ -9,6 +12,14 @@ export function mapLocation(locationString: string): LocationInfo {
     locationInfo.location = 'remote';
   } else if (locationString.toLowerCase().includes('hybrid')) {
     locationInfo.location = 'onSiteOrRemote';
+  }
+
+  if (locationTypeString) {
+    if (locationTypeString.toLowerCase().includes('remote')) {
+      locationInfo.location = 'remote';
+    } else if (locationTypeString.toLowerCase().includes('hybrid')) {
+      locationInfo.location = 'onSiteOrRemote';
+    }
   }
 
   // Extract and clean the on-site location

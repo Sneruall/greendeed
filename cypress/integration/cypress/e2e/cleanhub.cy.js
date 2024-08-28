@@ -54,17 +54,36 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
               jobTypeElement?.innerText.trim() || 'Unknown Job Type';
             const mappedJobType = mapJobType(jobTypeString); // Use mapJobType
 
+            let location;
+            let locationType;
+            const locationElement = doc.querySelector(
+              'li:nth-child(3) span.inline-block.align-middle'
+            );
+
             // Get the location from the paragraph that contains "Location:"
             const locationParagraphs = doc.querySelectorAll('.styledText p');
-            let location = 'Berlin';
+
             locationParagraphs.forEach((p) => {
               if (p.textContent.includes('Location:')) {
                 location = p.textContent.replace('Location:', '').trim();
               }
             });
 
+            if (locationElement) {
+              // Get location from the sidebar things
+              if (locationElement?.innerText.trim()) {
+                locationType = locationElement?.innerText.trim();
+                cy.log('location found in sidebar: ' + location);
+              }
+            }
+
+            if (!location) {
+              location = 'Berlin';
+              cy.log('location not found, setting Berlin');
+            }
+
             // Use the mapLocation utility to generate locationInfo
-            const locationInfo = mapLocation(location);
+            const locationInfo = mapLocation(location, locationType);
 
             const jobData = {
               companyId: '', // Auto-generated in the backend

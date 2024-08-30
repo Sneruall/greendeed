@@ -7,7 +7,7 @@ export function mapJobType(jobTypeString: string): jobType {
     return 'Full-time';
   } else if (/part[-\s]?time|pt/i.test(normalizedString)) {
     return 'Part-time';
-  } else if (/contract/i.test(normalizedString)) {
+  } else if (/contractor/i.test(normalizedString)) {
     return 'Contract';
   } else if (/freelance|freelancer/i.test(normalizedString)) {
     return 'Freelance';

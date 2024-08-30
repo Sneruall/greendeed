@@ -54,7 +54,17 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
               'li:nth-child(2) span.inline-block.align-middle'
             );
             const jobTypeString =
-              jobTypeElement?.innerText.trim() || 'Unknown Job Type';
+              jobTypeElement?.innerText.trim() ||
+              Array.from(
+                doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
+              )
+                .map((el) => el.textContent)
+                .find((text) =>
+                  /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
+                    text
+                  )
+                ) ||
+              'Unknown Job Type';
             const mappedJobType = mapJobType(jobTypeString); // Use mapJobType
 
             let location;

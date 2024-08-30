@@ -60,7 +60,17 @@ describe('Scrape job positions and extract details', () => {
             const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
             const jobTypeString =
-              getTextFromLabel('Job Type') || 'Unknown Job Type';
+              getTextFromLabel('Job Type') ||
+              Array.from(
+                doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
+              )
+                .map((el) => el.textContent)
+                .find((text) =>
+                  /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
+                    text
+                  )
+                ) ||
+              'Unknown Job Type';
             const mappedJobType = mapJobType(jobTypeString);
             let salaryData = null;
             const salaryElements = doc.querySelectorAll('p');

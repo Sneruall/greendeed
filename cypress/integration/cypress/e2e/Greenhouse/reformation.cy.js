@@ -10,7 +10,7 @@ describe('Scrape Greenhouse job positions and extract details', () => {
     /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?/i;
 
   it('Retrieve job position links from Greenhouse-hosted job listings', () => {
-    cy.visit('https://boards.greenhouse.io/apeel'); // Replace with the target Greenhouse job listing page
+    cy.visit('https://boards.greenhouse.io/reformation'); // Replace with the target Greenhouse job listing page
     cy.wait(5000); // Wait for the page to load fully
 
     // Selectors for different HTML structures
@@ -95,11 +95,9 @@ describe('Scrape Greenhouse job positions and extract details', () => {
             department !== 'Unknown Department' ? department : jobTitle;
           const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
+          // Extract job type from multiple possible elements
           const jobTypeString =
             getTextFromLabel('Job Type') ||
-            doc
-              .querySelector('.styles_jobs__column-type__FYVII')
-              ?.innerText.trim() ||
             Array.from(
               doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
             )
@@ -166,7 +164,7 @@ describe('Scrape Greenhouse job positions and extract details', () => {
 
           const jobData = {
             companyId: '', // Auto-generated in the backend
-            companyData: { name: 'Apeel' }, // Replace with the correct company name
+            companyData: { name: 'The Reformation' }, // Replace with the correct company name
             jobTitle: jobTitle,
             category: mappedCategory,
             jobDescription: cleanedJobDescription,

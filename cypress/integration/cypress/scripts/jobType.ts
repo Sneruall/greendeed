@@ -3,27 +3,21 @@ import { jobType } from '../../../../types/types';
 export function mapJobType(jobTypeString: string): jobType {
   const normalizedString = jobTypeString.toLowerCase().trim();
 
-  if (
-    normalizedString.includes('full-time') ||
-    normalizedString === 'full time'
-  ) {
+  if (/full[-\s]?time|ft/i.test(normalizedString)) {
     return 'Full-time';
-  } else if (
-    normalizedString.includes('part-time') ||
-    normalizedString === 'part time'
-  ) {
+  } else if (/part[-\s]?time|pt/i.test(normalizedString)) {
     return 'Part-time';
-  } else if (normalizedString.includes('contract')) {
+  } else if (/contract/i.test(normalizedString)) {
     return 'Contract';
-  } else if (normalizedString.includes('freelance')) {
+  } else if (/freelance|freelancer/i.test(normalizedString)) {
     return 'Freelance';
-  } else if (normalizedString.includes('internship')) {
+  } else if (/internship|intern/i.test(normalizedString)) {
     return 'Internship';
-  } else if (normalizedString.includes('traineeship')) {
+  } else if (/traineeship|trainee/i.test(normalizedString)) {
     return 'Traineeship';
-  } else if (normalizedString.includes('volunteer')) {
+  } else if (/volunteer/i.test(normalizedString)) {
     return 'Volunteer';
   } else {
-    return 'Other'; // Default to 'Other' if no match
+    return 'Full-time';
   }
 }

@@ -11,7 +11,7 @@ export const mapDepartmentToCategory = (departmentOrTitle: string) => {
   );
 
   if (directMatch) {
-    console.log(`Direct match found for: ${directMatch.name}`);
+    cy.log(`Direct match found for: ${directMatch.name}`);
 
     return directMatch;
   }
@@ -22,7 +22,7 @@ export const mapDepartmentToCategory = (departmentOrTitle: string) => {
       const regex = new RegExp(`\\b${keyword}\\b`, 'i'); // Word boundary regex, case insensitive
 
       if (regex.test(lowerCasedInput)) {
-        console.log(
+        cy.log(
           `Partial match found for category: ${mapping.category}, keyword: ${keyword}`
         );
         return (
@@ -39,7 +39,7 @@ export const mapDepartmentToCategory = (departmentOrTitle: string) => {
   }
 
   // Step 3: Default to "Other" if no match is found
-  console.log(`No match found, returning "Other".`);
+  cy.log(`No match found, returning "Other".`);
 
   return {
     id: 35,

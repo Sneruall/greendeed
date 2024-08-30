@@ -45,7 +45,10 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             );
             const department =
               departmentElement?.innerText.trim() || 'Unknown Department';
-            const mappedCategory = mapDepartmentToCategory(department);
+            // Use job title if no department is found
+            const departmentOrTitle =
+              department !== 'Unknown Department' ? department : jobTitle;
+            const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
             const jobTypeElement = doc.querySelector(
               'li:nth-child(2) span.inline-block.align-middle'

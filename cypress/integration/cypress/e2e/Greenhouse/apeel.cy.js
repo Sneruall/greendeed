@@ -89,7 +89,11 @@ describe('Scrape Greenhouse job positions and extract details', () => {
 
           const department =
             getTextFromLabel('Department') || 'Unknown Department';
-          const mappedCategory = mapDepartmentToCategory(department);
+
+          // Use job title if no department is found
+          const departmentOrTitle =
+            department !== 'Unknown Department' ? department : jobTitle;
+          const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
           const jobTypeString =
             getTextFromLabel('Job Type') ||

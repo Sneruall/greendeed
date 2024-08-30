@@ -54,7 +54,10 @@ describe('Scrape job positions and extract details', () => {
             const jobTitle = jobTitleElement?.innerText || 'Unknown Title';
 
             const department = getTextFromLabel('Department');
-            const mappedCategory = mapDepartmentToCategory(department);
+            // Use job title if no department is found
+            const departmentOrTitle =
+              department !== 'Unknown Department' ? department : jobTitle;
+            const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
             const jobTypeString =
               getTextFromLabel('Job Type') || 'Unknown Job Type';

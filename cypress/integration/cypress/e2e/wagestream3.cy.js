@@ -2,6 +2,7 @@ import { mapDepartmentToCategory } from '../scripts/categories.ts';
 import { mapJobType } from '../scripts/jobType.ts';
 import { checkAndSubmitJob } from '../scripts/jobUtilities.ts';
 import { mapLocation } from '../scripts/location.ts';
+import { getRandomTimestamp } from '../scripts/timestampRandomizer.ts';
 
 describe('Scrape job positions and extract details', () => {
   const jobLinks = [];
@@ -119,7 +120,7 @@ describe('Scrape job positions and extract details', () => {
               locationInfo: locationInfo,
               email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary
               fullName: 'Laurens van Roomen', // Replace with your full name
-              timestamp: 0, // Set as 0 for now
+              timestamp: getRandomTimestamp(10),
               id: '', // Auto-generated in the backend
               paid: true,
               published: true,

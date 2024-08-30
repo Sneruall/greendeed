@@ -74,6 +74,7 @@ describe('Scrape Greenhouse job positions and extract details', () => {
           // General job description extraction
           const jobDescriptionElement =
             doc.querySelector('.job__description') ||
+            doc.querySelector('#content') ||
             doc.querySelector('.prose');
           const jobDescriptionHTML = jobDescriptionElement
             ? jobDescriptionElement.innerHTML
@@ -161,7 +162,7 @@ describe('Scrape Greenhouse job positions and extract details', () => {
             locationInfo: locationInfo,
             email: 'l.c.vanroomen@gmail.com', // Replace with your email if necessary
             fullName: 'Laurens van Roomen', // Replace with your full name
-            timestamp: getRandomTimestamp(10),
+            timestamp: getRandomTimestamp(),
             id: '', // Auto-generated in the backend
             paid: true,
             published: true,

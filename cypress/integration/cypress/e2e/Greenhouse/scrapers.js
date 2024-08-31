@@ -1,4 +1,4 @@
-// scrapers.ts
+// scrapers.js
 
 import {
   cleanHTML,
@@ -21,8 +21,11 @@ export const scrapeCompanyJobs = (companyKey) => {
   cy.visit(companyConfig.url);
   cy.wait(5000); // Wait for the page to load fully
 
+  const selectors = companyConfig.selectors || [];
+  const jobDetailSelectors = companyConfig.jobDetails || {};
+
   // Loop through each selector and try to find job links
-  cy.wrap(companyConfig.selectors).each((selector) => {
+  cy.wrap(selectors).each((selector) => {
     cy.get('body').then(($body) => {
       if ($body.find(selector).length > 0) {
         cy.get(selector, { timeout: 10000 }).each(($el) => {
@@ -47,19 +50,19 @@ export const scrapeCompanyJobs = (companyKey) => {
       cy.wait(3000); // Wait for the job page to load
 
       cy.document().then((doc) => {
-        const jobDescriptionElement =
-          doc.querySelector('.job__description') ||
-          doc.querySelector('#content') ||
-          doc.querySelector('.prose');
+        // Get job description using the general selectors
+        const jobDescriptionElement = jobDetailSelectors.jobDescription
+          .map((selector) => doc.querySelector(selector))
+          .find((el) => el);
         const jobDescriptionHTML = jobDescriptionElement
           ? jobDescriptionElement.innerHTML
           : 'No description available';
         const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
 
-        const jobTitleElement =
-          doc.querySelector('h1') ||
-          doc.querySelector('.job__title h1') ||
-          doc.querySelector('.styles_jobs__column-title__pIf8P');
+        // Get job title using the general selectors
+        const jobTitleElement = jobDetailSelectors.jobTitle
+          .map((selector) => doc.querySelector(selector))
+          .find((el) => el);
         const jobTitle = jobTitleElement?.innerText.trim() || 'Unknown Title';
 
         const department =
@@ -68,20 +71,16 @@ export const scrapeCompanyJobs = (companyKey) => {
           department !== 'Unknown Department' ? department : jobTitle;
         const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
+        // Get job type using the general selectors
         const jobTypeString =
-          getTextFromLabel('Job Type') ||
-          // Check job title for job type indications
-          (jobTitle &&
-          /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
-            jobTitle
-          )
-            ? jobTitle
-            : null) ||
-          // Check all paragraph elements and specific class for job type indications
-          Array.from(
-            doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
-          )
-            .map((el) => el.textContent)
+          getTextFromLabel(doc, 'Job Type') ||
+          jobTitle ||
+          jobDetailSelectors.jobType
+            .flatMap((selector) =>
+              Array.from(doc.querySelectorAll(selector)).map(
+                (el) => el.textContent
+              )
+            )
             .find((text) =>
               /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
                 text
@@ -92,9 +91,10 @@ export const scrapeCompanyJobs = (companyKey) => {
 
         const salaryData = extractSalaryData(doc, salaryRegex);
 
-        const locationElement = doc.querySelector(
-          '.location, .job__header p.body--metadata'
-        );
+        // Get location using the general selectors
+        const locationElement = jobDetailSelectors.location
+          .map((selector) => doc.querySelector(selector))
+          .find((el) => el);
         const locationText =
           locationElement?.innerText.trim() || 'Unknown Location';
         const locationInfo = mapLocation(locationText);

@@ -4,11 +4,11 @@ import { scrapeCompanyJobs } from './scrapers';
 
 describe('Job Scraping Tests', () => {
   it('should scrape jobs for Apeel company', () => {
-    scrapeCompanyJobs('apeel');
+    scrapeCompanyJobs('pelacase');
   });
 
-  // Uncomment this block to run for multiple companies
-  // it('should scrape jobs for Reformation company', () => {
-  //   scrapeCompanyJobs('reformation');
-  // });
+  // Example: Running the scraper for multiple companies
+  // ['apeel', 'reformation'].forEach((companyKey) => {
+  //     scrapeCompanyJobs(companyKey);
+  //   });
 });

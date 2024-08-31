@@ -61,6 +61,14 @@ describe('Scrape job positions and extract details', () => {
 
             const jobTypeString =
               getTextFromLabel('Job Type') ||
+              // Check job title for job type indications
+              (jobTitle &&
+              /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
+                jobTitle
+              )
+                ? jobTitle
+                : null) ||
+              // Check all paragraph elements and specific class for job type indications
               Array.from(
                 doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
               )
@@ -71,7 +79,9 @@ describe('Scrape job positions and extract details', () => {
                   )
                 ) ||
               'Unknown Job Type';
+
             const mappedJobType = mapJobType(jobTypeString);
+
             let salaryData = null;
             const salaryElements = doc.querySelectorAll('p');
             salaryElements.forEach((el) => {

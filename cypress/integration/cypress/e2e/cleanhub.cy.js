@@ -55,6 +55,13 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
             );
             const jobTypeString =
               jobTypeElement?.innerText.trim() ||
+              (jobTitle &&
+              /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
+                jobTitle
+              )
+                ? jobTitle
+                : null) ||
+              // Check all paragraph elements and specific class for job type indications
               Array.from(
                 doc.querySelectorAll('p, .styles_jobs__column-type__FYVII')
               )
@@ -65,7 +72,8 @@ describe('Scrape job positions and extract details from Cleanhub', () => {
                   )
                 ) ||
               'Unknown Job Type';
-            const mappedJobType = mapJobType(jobTypeString); // Use mapJobType
+
+            const mappedJobType = mapJobType(jobTypeString);
 
             let location;
             let locationType;

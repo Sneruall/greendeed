@@ -3,10 +3,12 @@
 // General selectors for common job boards
 const generalSelectors = [
   'a[href*="boards.greenhouse.io"]',
+  '.job-posts .job-post a',
   'tr.job-post a',
   '.career-openings__item a',
   '.styles_jobs__row__H3nBN',
   'div.opening a[data-mapped="true"]',
+  // Add more specific selectors as needed
   // Add more common selectors here
 ];
 
@@ -35,6 +37,18 @@ export const companyConfigs = {
   pelacase: {
     name: 'Lomi',
     url: 'https://boards.greenhouse.io/pelacase',
+    selectors: generalSelectors,
+    jobDetails: jobDetailSelectors,
+  },
+  ethic: {
+    name: 'Ethic',
+    url: 'https://www.ethic.com/roles',
+    selectors: generalSelectors,
+    jobDetails: jobDetailSelectors,
+  },
+  whogivesacrap: {
+    name: 'Who Gives A Crap',
+    url: 'https://eu.whogivesacrap.org/pages/jobs',
     selectors: generalSelectors,
     jobDetails: jobDetailSelectors,
   },

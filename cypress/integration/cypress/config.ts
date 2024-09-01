@@ -3,21 +3,34 @@
 // General selectors for common job boards
 const generalSelectors = [
   'a[href*="boards.greenhouse.io"]',
+  'a[href*="jobs.lever.co"]',
   '.job-posts .job-post a',
   'tr.job-post a',
   '.career-openings__item a',
   '.styles_jobs__row__H3nBN',
   'div.opening a[data-mapped="true"]',
+  '.posting-title',
   // Add more specific selectors as needed
   // Add more common selectors here
 ];
 
 // General selectors for extracting job details
 const jobDetailSelectors = {
-  jobDescription: ['.job__description', '#content', '.prose'],
-  jobTitle: ['h1', '.job__title h1', '.styles_jobs__column-title__pIf8P'],
+  jobDescription: [
+    '.job__description',
+    '#content',
+    '.prose',
+    '[data-qa="job-description"]',
+  ],
+  jobTitle: [
+    'h1',
+    '.job__title h1',
+    '.styles_jobs__column-title__pIf8P',
+    '.posting-headline h2',
+  ],
   jobType: ['p', '.styles_jobs__column-type__FYVII'],
   location: ['.location', '.job__header p.body--metadata'],
+  department: ['.department'],
   // Add more general selectors as needed
 };
 
@@ -55,6 +68,12 @@ export const companyConfigs = {
   allbirds: {
     name: 'Allbirds',
     url: 'https://boards.greenhouse.io/embed/job_board?for=allbirdsretail&b=https%3A%2F%2Fwww.allbirds.com%2Fpages%2Fcareers-retail',
+    selectors: generalSelectors,
+    jobDetails: jobDetailSelectors,
+  },
+  fairmat: {
+    name: 'FAIRMAT',
+    url: 'https://jobs.lever.co/Fairmat/',
     selectors: generalSelectors,
     jobDetails: jobDetailSelectors,
   },

@@ -4,7 +4,7 @@ import { scrapeCompanyJobs } from './scrapers';
 
 describe('Job Scraping Tests', () => {
   it('should scrape jobs for specific company', () => {
-    scrapeCompanyJobs('allbirds');
+    scrapeCompanyJobs('fairmat');
   });
 
   // Example: Running the scraper for multiple companies

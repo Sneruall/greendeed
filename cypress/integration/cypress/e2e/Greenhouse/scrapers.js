@@ -1,5 +1,11 @@
 // scrapers.js
 
+/* 
+Working:
+- Greenhouse (no iframe)
+- Lever
+*/
+
 import {
   cleanHTML,
   getTextFromLabel,
@@ -66,9 +72,15 @@ export const scrapeCompanyJobs = (companyKey) => {
         const jobTitle = jobTitleElement?.innerText.trim() || 'Unknown Title';
 
         const department =
-          getTextFromLabel(doc, 'Department') || 'Unknown Department';
+          getTextFromLabel(doc, 'Department') ||
+          jobDetailSelectors.department
+            .map((selector) => doc.querySelector(selector))
+            .find((el) => el)
+            .innerText.trim() ||
+          'Unknown Department';
         const departmentOrTitle =
           department !== 'Unknown Department' ? department : jobTitle;
+        cy.log('department found: ' + departmentOrTitle);
         const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
         // Get job type using the general selectors

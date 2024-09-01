@@ -67,10 +67,9 @@ export const scrapeCompanyJobs = (companyKey) => {
         const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
 
         // Get job title using the general selectors
-        const jobTitleElement = jobDetailSelectors.jobTitle
-          .map((selector) => doc.querySelector(selector))
-          .find((el) => el);
-        const jobTitle = jobTitleElement?.innerText.trim() || 'Unknown Title';
+        const jobTitle =
+          getTextFromSelectors(doc, jobDetailSelectors.jobTitle) ||
+          'Unknown Title';
 
         const department =
           getTextFromLabel(doc, 'Department') ||
@@ -102,11 +101,9 @@ export const scrapeCompanyJobs = (companyKey) => {
         const salaryData = extractSalaryData(doc, salaryRegex);
 
         // Get location using the general selectors
-        const locationElement = jobDetailSelectors.location
-          .map((selector) => doc.querySelector(selector))
-          .find((el) => el);
         const locationText =
-          locationElement?.innerText.trim() || 'Unknown Location';
+          getTextFromSelectors(doc, jobDetailSelectors.location) ||
+          'Unknown Location';
         const locationInfo = mapLocation(locationText);
 
         const jobData = {

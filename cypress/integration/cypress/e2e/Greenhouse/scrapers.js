@@ -3,7 +3,7 @@
 /* 
 Working:
 - Greenhouse (no iframe)
-- Lever (WIP)
+- Lever
 */
 
 import {

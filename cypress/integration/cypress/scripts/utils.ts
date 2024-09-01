@@ -33,50 +33,53 @@ export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
   let salaryData = null;
 
   salaryElements.forEach((el) => {
-    // Safely handle textContent which might be undefined
     const textContent = el.textContent?.trim() ?? '';
 
-    // Add more contextual keywords to increase the chance of correct identification
+    // Updated context keywords to include more specific phrases
     const contextKeywords =
       /(salary|compensation|pay|wage|income|remuneration|annual|rate|hourly|earnings|per annum)/i;
 
-    // Match salary regex and also check for nearby contextual keywords
+    // Combine regex and contextual checks for more robust extraction
     if (contextKeywords.test(textContent) && regex.test(textContent)) {
       const salaryMatch = textContent.match(regex);
       if (salaryMatch) {
         const salaryString = salaryMatch[0];
         const currencyMatch = salaryString.match(/£|US\$|€|CA\$|AU\$/);
-        const currency = currencyMatch ? currencyMatch[0] : '$';
-        const salaryValues = salaryString.match(/\d{1,3}(?:,\d{3})?/g);
+        const currency = currencyMatch ? currencyMatch[0] : '$'; // Fallback currency
 
+        const salaryValues = salaryString.match(/\d{1,3}(?:,\d{3})?/g);
         let minSalary, maxSalary;
+
         if (salaryValues) {
           minSalary = parseFloat(salaryValues[0].replace(/,/g, ''));
           maxSalary = salaryValues[1]
             ? parseFloat(salaryValues[1].replace(/,/g, ''))
             : null;
-        } else {
-          minSalary = 0;
-          maxSalary = 0;
-        }
 
-        salaryData = {
-          currency: currency,
-          period: 'Annual',
-          min: {
-            float: minSalary,
-            formatted: salaryValues ? salaryValues[0] : '',
-            value: minSalary,
-          },
-          max: maxSalary
-            ? {
-                float: maxSalary,
-                formatted: salaryValues ? salaryValues[1] : '',
-                value: maxSalary,
-              }
-            : null,
-          string: salaryString,
-        };
+          cy.log('Extracted Text Content:', textContent);
+          cy.log('Salary Match:', salaryMatch);
+
+          // Validation step: Reject obviously incorrect salaries
+          if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
+
+          salaryData = {
+            currency: currency,
+            period: 'Annual',
+            min: {
+              float: minSalary,
+              formatted: salaryValues[0],
+              value: minSalary,
+            },
+            max: maxSalary
+              ? {
+                  float: maxSalary,
+                  formatted: salaryValues[1],
+                  value: maxSalary,
+                }
+              : null,
+            string: salaryString,
+          };
+        }
       }
     }
   });

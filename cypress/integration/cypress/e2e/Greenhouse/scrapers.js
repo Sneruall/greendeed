@@ -10,6 +10,7 @@ import {
   cleanHTML,
   getTextFromLabel,
   extractSalaryData,
+  getTextFromSelectors,
 } from '../../scripts/utils';
 import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';
@@ -22,7 +23,7 @@ export const scrapeCompanyJobs = (companyKey) => {
   const companyConfig = companyConfigs[companyKey];
   const jobLinks = [];
   const salaryRegex =
-    /(?:£|US\$|€|CA\$|AU\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$)?\d{1,3}(?:,\d{3})?)?/i;
+    /(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?/i;
 
   cy.visit(companyConfig.url);
   cy.wait(5000); // Wait for the page to load fully
@@ -73,10 +74,7 @@ export const scrapeCompanyJobs = (companyKey) => {
 
         const department =
           getTextFromLabel(doc, 'Department') ||
-          jobDetailSelectors.department
-            .map((selector) => doc.querySelector(selector))
-            .find((el) => el)
-            .innerText.trim() ||
+          getTextFromSelectors(doc, jobDetailSelectors.department) ||
           'Unknown Department';
         const departmentOrTitle =
           department !== 'Unknown Department' ? department : jobTitle;

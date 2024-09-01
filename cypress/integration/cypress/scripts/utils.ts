@@ -26,6 +26,19 @@ export const getTextFromLabel = (
   );
 };
 
+export const getTextFromSelectors = (
+  doc: Document,
+  selectors: string[]
+): string | null => {
+  for (const selector of selectors) {
+    const element = doc.querySelector(selector);
+    if (element && element.textContent) {
+      return element.textContent.trim();
+    }
+  }
+  return null; // Return null if no matching element is found
+};
+
 export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
   const salaryElements = doc.querySelectorAll(
     'p, div, span, .job__tags, .job__header'

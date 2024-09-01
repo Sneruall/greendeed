@@ -11,6 +11,7 @@ import {
   getTextFromLabel,
   extractSalaryData,
   getTextFromSelectors,
+  getJobTypeFromSelectors,
 } from '../../scripts/utils';
 import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';
@@ -58,12 +59,10 @@ export const scrapeCompanyJobs = (companyKey) => {
 
       cy.document().then((doc) => {
         // Get job description using the general selectors
-        const jobDescriptionElement = jobDetailSelectors.jobDescription
-          .map((selector) => doc.querySelector(selector))
-          .find((el) => el);
-        const jobDescriptionHTML = jobDescriptionElement
-          ? jobDescriptionElement.innerHTML
-          : 'No description available';
+        const jobDescriptionHTML =
+          getHTMLFromSelectors(doc, jobDetailSelectors.jobDescription) ||
+          'No description available';
+
         const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
 
         // Get job title using the general selectors
@@ -81,22 +80,12 @@ export const scrapeCompanyJobs = (companyKey) => {
         const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
 
         // Get job type using the general selectors
-        const jobTypeString =
+        const jobTypeText =
           getTextFromLabel(doc, 'Job Type') ||
           jobTitle ||
-          jobDetailSelectors.jobType
-            .flatMap((selector) =>
-              Array.from(doc.querySelectorAll(selector)).map(
-                (el) => el.textContent
-              )
-            )
-            .find((text) =>
-              /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
-                text
-              )
-            ) ||
+          getJobTypeFromSelectors(doc, jobDetailSelectors.jobType) ||
           'Unknown Job Type';
-        const mappedJobType = mapJobType(jobTypeString);
+        const mappedJobType = mapJobType(jobTypeText);
 
         const salaryData = extractSalaryData(doc, salaryRegex);
 

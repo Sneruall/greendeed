@@ -39,6 +39,31 @@ export const getTextFromSelectors = (
   return null; // Return null if no matching element is found
 };
 
+export const getHTMLFromSelectors = (doc: Document, selectors: string[]) => {
+  for (const selector of selectors) {
+    const element = doc.querySelector(selector);
+    if (element) {
+      return element.innerHTML.trim();
+    }
+  }
+  return null;
+};
+
+export const getJobTypeFromSelectors = (doc: Document, selectors: string[]) => {
+  for (const selector of selectors) {
+    const elements = Array.from(doc.querySelectorAll(selector));
+    const jobType = elements
+      .map((el) => el.textContent.trim())
+      .find((text) =>
+        /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
+          text
+        )
+      );
+    if (jobType) return jobType;
+  }
+  return null;
+};
+
 export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
   const salaryElements = doc.querySelectorAll(
     'p, div, span, .job__tags, .job__header'

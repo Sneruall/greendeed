@@ -25,7 +25,7 @@ export const scrapeCompanyJobs = (companyKey) => {
   const companyConfig = companyConfigs[companyKey];
   const jobLinks = [];
   const salaryRegex =
-    /(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from)\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?/i;
+    /(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?(?:\s*(?:to|from|and)\s*(?:£|US\$|€|CA\$|AU\$|\$)?\s*\d{1,3}(?:,\d{3})?)?/i;
 
   cy.visit(companyConfig.url);
   cy.wait(5000); // Wait for the page to load fully

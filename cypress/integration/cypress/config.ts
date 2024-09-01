@@ -52,5 +52,11 @@ export const companyConfigs = {
     selectors: generalSelectors,
     jobDetails: jobDetailSelectors,
   },
+  allbirds: {
+    name: 'Allbirds',
+    url: 'https://boards.greenhouse.io/embed/job_board?for=allbirdsretail&b=https%3A%2F%2Fwww.allbirds.com%2Fpages%2Fcareers-retail',
+    selectors: generalSelectors,
+    jobDetails: jobDetailSelectors,
+  },
   // Add more companies as needed
 };

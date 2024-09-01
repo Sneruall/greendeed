@@ -47,7 +47,7 @@ export const companyConfigs = {
     selectors: generalSelectors,
     jobDetails: jobDetailSelectors,
   },
-  pelacase: {
+  lomi: {
     name: 'Lomi',
     url: 'https://boards.greenhouse.io/pelacase',
     selectors: generalSelectors,

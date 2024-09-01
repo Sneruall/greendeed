@@ -99,7 +99,7 @@ export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
           cy.log('Salary Min:', minSalary);
 
           // Validation step: Reject obviously incorrect salaries
-          //   if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
+          if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
 
           salaryData = {
             currency: currency,

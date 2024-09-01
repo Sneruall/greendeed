@@ -53,7 +53,7 @@ export const getJobTypeFromSelectors = (doc: Document, selectors: string[]) => {
   for (const selector of selectors) {
     const elements = Array.from(doc.querySelectorAll(selector));
     const jobType = elements
-      .map((el) => el.textContent.trim())
+      .map((el) => el.textContent?.trim() || '') // Use optional chaining and provide a default empty string if null
       .find((text) =>
         /full-time|part-time|contract|freelance|internship|traineeship|volunteer/i.test(
           text
@@ -95,10 +95,11 @@ export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
             : null;
 
           cy.log('Extracted Text Content:', textContent);
-          cy.log('Salary Match:', salaryMatch);
+          cy.log('Salary String:', salaryString);
+          cy.log('Salary Min:', minSalary);
 
           // Validation step: Reject obviously incorrect salaries
-          if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
+          //   if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
 
           salaryData = {
             currency: currency,

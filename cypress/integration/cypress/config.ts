@@ -17,10 +17,10 @@ const generalSelectors = [
 // General selectors for extracting job details
 const jobDetailSelectors = {
   jobDescription: [
-    '.job__description',
-    '#content',
-    '.prose',
-    '[data-qa="job-description"]',
+    '.job__description', //for greenhouse
+    '#content', //for greenhouse
+    '.prose', //for greenhouse
+    "[class='section-wrapper page-full-width']", //for lever jobs
   ],
   jobTitle: [
     'h1',

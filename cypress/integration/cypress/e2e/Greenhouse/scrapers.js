@@ -12,6 +12,7 @@ import {
   extractSalaryData,
   getTextFromSelectors,
   getJobTypeFromSelectors,
+  getHTMLFromSelectors,
 } from '../../scripts/utils';
 import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';

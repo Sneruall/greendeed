@@ -94,6 +94,7 @@ export const scrapeCompanyJobs = (companyKey) => {
         const locationText =
           getTextFromSelectors(doc, jobDetailSelectors.location) ||
           'Unknown Location';
+        cy.log('Location Text: ' + locationText);
         const locationInfo = mapLocation(locationText);
 
         const jobData = {

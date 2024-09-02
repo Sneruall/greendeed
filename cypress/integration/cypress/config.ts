@@ -28,8 +28,8 @@ const jobDetailSelectors = {
     '.styles_jobs__column-title__pIf8P',
     '.posting-headline h2',
   ],
-  jobType: ['p', '.styles_jobs__column-type__FYVII'],
-  location: ['.location', '.job__header p.body--metadata'],
+  jobType: ['p', '.styles_jobs__column-type__FYVII', '.commitment'], //e.g. full-time
+  location: ['.location', '.job__header p.body--metadata', '.workplaceTypes'],
   department: ['.department'],
   // Add more general selectors as needed
 };
@@ -74,6 +74,12 @@ export const companyConfigs = {
   fairmat: {
     name: 'FAIRMAT',
     url: 'https://jobs.lever.co/Fairmat/',
+    selectors: generalSelectors,
+    jobDetails: jobDetailSelectors,
+  },
+  repurpose: {
+    name: 'rePurpose Global',
+    url: 'https://jobs.lever.co/repurposeglobal',
     selectors: generalSelectors,
     jobDetails: jobDetailSelectors,
   },

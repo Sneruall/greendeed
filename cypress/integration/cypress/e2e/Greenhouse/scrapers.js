@@ -1,11 +1,3 @@
-// scrapers.js
-
-/* 
-Working:
-- Greenhouse (no iframe)
-- Lever
-*/
-
 import {
   cleanHTML,
   getTextFromLabel,
@@ -17,9 +9,9 @@ import {
 } from '../../scripts/utils';
 import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';
-import { checkAndSubmitJob } from '../../scripts/jobUtilities';
+import { checkJobExists, submitJob } from '../../scripts/jobUtilities';
 import { mapLocation } from '../../scripts/location';
-import { getRandomTimestamp } from '../../scripts/timestampRandomizer';
+import { getBatchedTimestamps } from '../../scripts/timestampRandomizer';
 import { companyConfigs } from '../../config';
 
 export const scrapeCompanyJobs = (companyKey) => {
@@ -28,6 +20,7 @@ export const scrapeCompanyJobs = (companyKey) => {
   const salaryRegex =
     /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+)(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?(?:\s*(?:to|from|and)\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?\s*(?:per\s*(?:year|annum|month|week|day|hour))?/i;
 
+  cy.log(`Visiting company URL: ${companyConfig.url}`);
   cy.visit(companyConfig.url);
   cy.wait(5000); // Wait for the page to load fully
 
@@ -38,14 +31,31 @@ export const scrapeCompanyJobs = (companyKey) => {
   cy.wrap(selectors).each((selector) => {
     cy.get('body').then(($body) => {
       if ($body.find(selector).length > 0) {
+        cy.log(`Found elements for selector: ${selector}`);
         cy.get(selector, { timeout: 10000 }).each(($el) => {
           const jobLink = $el.attr('href');
           if (jobLink && !jobLinks.includes(jobLink)) {
-            jobLinks.push(
-              jobLink.startsWith('http')
-                ? jobLink
-                : `https://boards.greenhouse.io${jobLink}`
-            );
+            const fullJobLink = jobLink.startsWith('http')
+              ? jobLink
+              : `https://boards.greenhouse.io${jobLink}`;
+
+            cy.log(`Found job link: ${fullJobLink}`);
+
+            // Check if the job is already in the database
+            checkJobExists({ apply: fullJobLink }).then((response) => {
+              cy.log(`Checking if job exists at link: ${fullJobLink}`);
+              if (response.status === 204) {
+                // Only add the job link if it does not already exist
+                cy.log(`Job link ${fullJobLink} is new. Adding to list.`);
+                jobLinks.push(fullJobLink);
+              } else {
+                cy.log(
+                  `Job link ${fullJobLink} already exists. Status code was: ${response.status}`
+                );
+              }
+            });
+          } else {
+            cy.log(`Job link ${jobLink} is either null or already included.`);
           }
         });
       } else {
@@ -55,51 +65,46 @@ export const scrapeCompanyJobs = (companyKey) => {
   });
 
   cy.then(() => {
-    jobLinks.forEach((link) => {
+    cy.log(`Total job links found: ${jobLinks.length}`);
+    const totalJobs = jobLinks.length;
+    const timestamps = getBatchedTimestamps(totalJobs);
+
+    jobLinks.forEach((link, index) => {
+      cy.log(`Visiting job detail page: ${link}`);
       cy.visit(link);
       cy.wait(3000); // Wait for the job page to load
 
       cy.document().then((doc) => {
-        // Get job description using the general selectors
+        cy.log(`Extracting job details from: ${link}`);
+
         const jobDescriptionHTML =
           getHTMLFromSelectors(doc, jobDetailSelectors.jobDescription) ||
           'No description available';
-
         const cleanedJobDescription = cleanHTML(jobDescriptionHTML);
-
-        // Get job title using the general selectors
         const jobTitle =
           getTextFromSelectors(doc, jobDetailSelectors.jobTitle) ||
           'Unknown Title';
-
         const department =
           getTextFromLabel(doc, 'Department') ||
           getTextFromSelectors(doc, jobDetailSelectors.department) ||
           'Unknown Department';
         const departmentOrTitle =
           department !== 'Unknown Department' ? department : jobTitle;
-        cy.log('department found: ' + departmentOrTitle);
         const mappedCategory = mapDepartmentToCategory(departmentOrTitle);
-
-        // Get job type using the general selectors
         const jobTypeText =
           getTextFromLabel(doc, 'Job Type') ||
           jobTitle ||
           getJobTypeFromSelectors(doc, jobDetailSelectors.jobType) ||
           'Unknown Job Type';
         const mappedJobType = mapJobType(jobTypeText);
-
         const salaryData = extractSalaryData(doc, salaryRegex);
-
-        // Get location using the combined selectors
         const locationSelectors = jobDetailSelectors.location || [];
         const locationText =
           getTextFromMultipleSelectors(doc, locationSelectors) ||
           'Unknown Location';
-        cy.log('Combined Location Text: ' + locationText);
-
         const locationInfo = mapLocation(locationText);
 
+        // Prepare job data
         const jobData = {
           companyId: '',
           companyData: { name: companyConfig.name },
@@ -111,7 +116,7 @@ export const scrapeCompanyJobs = (companyKey) => {
           locationInfo: locationInfo,
           email: 'l.c.vanroomen@gmail.com',
           fullName: 'Laurens van Roomen',
-          timestamp: getRandomTimestamp(),
+          timestamp: timestamps[index],
           id: '',
           paid: true,
           published: true,
@@ -124,7 +129,10 @@ export const scrapeCompanyJobs = (companyKey) => {
           invoiceInfo: {},
         };
 
-        checkAndSubmitJob(jobData);
+        cy.log(`Job data prepared: ${JSON.stringify(jobData)}`);
+
+        // Check and submit the job
+        submitJob(jobData);
       });
     });
   });

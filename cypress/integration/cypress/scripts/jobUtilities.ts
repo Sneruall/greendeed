@@ -1,35 +1,29 @@
-// jobUtilities.ts
+import { Job } from '../../../../types/types';
 
-import { Job } from '../../../../types/types'; // Make sure to import necessary types
-
-export const checkAndSubmitJob = (jobData: Job) => {
-  cy.request({
+// Function to check if a job already exists in the database
+export const checkJobExists = (jobData: Job) => {
+  return cy.request({
     method: 'GET',
     url: `http://localhost:3000/api/job?apply=${encodeURIComponent(
       jobData.apply
     )}`,
-  }).then((response) => {
-    // Create a unique filename for each job, including the timestamp
-
-    const fileName = `${jobData.companyData.name}_${jobData.jobTitle
-      .replace(/\s+/g, '_')
-      .toLowerCase()}_${Date.now()}.json`;
-    cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
-
-    if (response.status === 200 && response.body.length > 0) {
-      cy.log(`Job with the same apply URL already exists: ${jobData.jobTitle}`);
-      return;
-    }
-
-    // Automatically post the job data to the server
-    cy.request('POST', 'http://localhost:3000/api/autopost', jobData).then(
-      (response) => {
-        if (response.status === 201) {
-          cy.log(`Job submitted successfully: ${jobData.jobTitle}`);
-        } else {
-          cy.log(`Failed to submit job: ${jobData.jobTitle}`);
-        }
-      }
-    );
   });
+};
+
+// Function to submit a job if it doesn't already exist
+export const submitJob = (jobData: Job) => {
+  const fileName = `${jobData.companyData.name}_${jobData.jobTitle
+    .replace(/\s+/g, '_')
+    .toLowerCase()}_${Date.now()}.json`;
+  cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
+
+  cy.request('POST', 'http://localhost:3000/api/autopost', jobData).then(
+    (response) => {
+      if (response.status === 201) {
+        cy.log(`Job submitted successfully: ${jobData.jobTitle}`);
+      } else {
+        cy.log(`Failed to submit job: ${jobData.jobTitle}`);
+      }
+    }
+  );
 };

@@ -7,8 +7,10 @@ describe('Job Scraping Tests', () => {
     scrapeCompanyJobs('repurpose');
   });
 
-  // Example: Running the scraper for multiple companies
-  // ['apeel', 'reformation'].forEach((companyKey) => {
-  //     scrapeCompanyJobs(companyKey);
+  //   Example: Running the scraper for multiple companies
+  //   it('should scrape jobs for multiple company', () => {
+  //     ['fairmat', 'repurpose', 'reformation'].forEach((companyKey) => {
+  //       scrapeCompanyJobs(companyKey);
+  //     });
   //   });
 });

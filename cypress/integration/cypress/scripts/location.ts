@@ -8,24 +8,36 @@ export function mapLocation(
     location: 'onSite', // Default to 'onSite'
   };
 
-  if (locationString.toLowerCase().includes('remote')) {
+  if (!locationString) {
+    return locationInfo;
+  }
+
+  const normalizedLocationString = locationString.toLowerCase();
+
+  // Check for specific keywords and set the location type
+  if (normalizedLocationString.includes('remote')) {
     locationInfo.location = 'remote';
-  } else if (locationString.toLowerCase().includes('hybrid')) {
+  } else if (normalizedLocationString.includes('hybrid')) {
     locationInfo.location = 'onSiteOrRemote';
   }
 
-  if (locationTypeString) {
-    if (locationTypeString.toLowerCase().includes('remote')) {
-      locationInfo.location = 'remote';
-    } else if (locationTypeString.toLowerCase().includes('hybrid')) {
-      locationInfo.location = 'onSiteOrRemote';
-    }
+  // Extract and clean the on-site location if it exists
+  const onSiteLocation = locationString.replace(/\s*\(.*?\)\s*/g, '').trim();
+  if (
+    onSiteLocation &&
+    !['remote', 'hybrid'].includes(onSiteLocation.toLowerCase())
+  ) {
+    locationInfo.onSiteLocation = [onSiteLocation];
   }
 
-  // Extract and clean the on-site location
-  const onSiteLocation = locationString.replace(/\s*\(.*?\)\s*/g, '').trim();
-  if (onSiteLocation && onSiteLocation.toLowerCase() !== 'remote') {
-    locationInfo.onSiteLocation = [onSiteLocation];
+  // Optionally, handle location type string if provided
+  if (locationTypeString) {
+    const normalizedLocationType = locationTypeString.toLowerCase();
+    if (normalizedLocationType.includes('remote')) {
+      locationInfo.location = 'remote';
+    } else if (normalizedLocationType.includes('hybrid')) {
+      locationInfo.location = 'onSiteOrRemote';
+    }
   }
 
   return locationInfo;

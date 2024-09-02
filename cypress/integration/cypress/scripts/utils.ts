@@ -39,6 +39,25 @@ export const getTextFromSelectors = (
   return null; // Return null if no matching element is found
 };
 
+export function getTextFromMultipleSelectors(
+  doc: Document,
+  selectors: string[]
+) {
+  let combinedText = '';
+
+  selectors.forEach((selector) => {
+    const elements = doc.querySelectorAll(selector);
+    elements.forEach((el) => {
+      const text = el?.textContent?.trim();
+      if (text && !combinedText.includes(text)) {
+        combinedText += (combinedText ? ' ' : '') + text;
+      }
+    });
+  });
+
+  return combinedText;
+}
+
 export const getHTMLFromSelectors = (doc: Document, selectors: string[]) => {
   for (const selector of selectors) {
     const element = doc.querySelector(selector);

@@ -13,6 +13,7 @@ import {
   getTextFromSelectors,
   getJobTypeFromSelectors,
   getHTMLFromSelectors,
+  getTextFromMultipleSelectors,
 } from '../../scripts/utils';
 import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';
@@ -90,11 +91,13 @@ export const scrapeCompanyJobs = (companyKey) => {
 
         const salaryData = extractSalaryData(doc, salaryRegex);
 
-        // Get location using the general selectors
+        // Get location using the combined selectors
+        const locationSelectors = jobDetailSelectors.location || [];
         const locationText =
-          getTextFromSelectors(doc, jobDetailSelectors.location) ||
+          getTextFromMultipleSelectors(doc, locationSelectors) ||
           'Unknown Location';
-        cy.log('Location Text: ' + locationText);
+        cy.log('Combined Location Text: ' + locationText);
+
         const locationInfo = mapLocation(locationText);
 
         const jobData = {

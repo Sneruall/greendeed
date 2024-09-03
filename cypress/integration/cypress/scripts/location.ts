@@ -33,10 +33,10 @@ export function mapLocation(
   // Optionally, handle location type string if provided
   if (locationTypeString) {
     const normalizedLocationType = locationTypeString.toLowerCase();
-    if (normalizedLocationType.includes('remote')) {
-      locationInfo.location = 'remote';
-    } else if (normalizedLocationType.includes('hybrid')) {
+    if (normalizedLocationType.includes('hybrid')) {
       locationInfo.location = 'onSiteOrRemote';
+    } else if (normalizedLocationType.includes('remote')) {
+      locationInfo.location = 'remote';
     }
   }
 

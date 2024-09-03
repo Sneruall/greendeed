@@ -124,9 +124,12 @@ export const scrapeCompanyJobs = (companyKey) => {
         const salaryData = extractSalaryData(doc, salaryRegex);
         const locationSelectors = jobDetailSelectors.location || [];
         const locationText =
+          getTextFromLabel(doc, 'Locations') ||
           getTextFromMultipleSelectors(doc, locationSelectors) ||
           'Unknown Location';
-        const locationInfo = mapLocation(locationText);
+        const locationTypeString =
+          getTextFromLabel(doc, 'Remote status') || null;
+        const locationInfo = mapLocation(locationText, locationTypeString);
 
         // Prepare job data
         const jobData = {

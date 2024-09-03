@@ -68,7 +68,7 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                     {job.locationInfo?.location === 'onSiteOrRemote' &&
                       '🏘️ Hybrid'}
                   </div>
-                  {job.locationInfo?.location !== 'remote' && (
+                  {job.locationInfo?.onSiteLocation && (
                     <div>
                       🏢{' '}
                       {Array.isArray(job.locationInfo?.onSiteLocation)

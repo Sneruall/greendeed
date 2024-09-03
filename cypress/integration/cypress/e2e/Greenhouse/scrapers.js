@@ -116,7 +116,7 @@ export const scrapeCompanyJobs = (companyKey) => {
           locationInfo: locationInfo,
           email: 'l.c.vanroomen@gmail.com',
           fullName: 'Laurens van Roomen',
-          timestamp: timestamps[index],
+          timestamp: 0, // todo: get rid of timestamp randomizer script.
           id: '',
           paid: true,
           published: true,

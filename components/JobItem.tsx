@@ -153,10 +153,23 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
           <div className="self-center font-omnes font-semibold text-black sm:hidden">
             <span className="text-sm">
               {job.timestamp &&
-                timeAgo.format(
-                  new Date().getTime() - (new Date().getTime() - job.timestamp),
-                  'mini-minute-now'
-                )}
+                (() => {
+                  const jobDate = new Date(job.timestamp);
+                  const today = new Date();
+
+                  // Check if jobDate and today are on the same calendar day
+                  const isToday =
+                    jobDate.getFullYear() === today.getFullYear() &&
+                    jobDate.getMonth() === today.getMonth() &&
+                    jobDate.getDate() === today.getDate();
+
+                  return isToday
+                    ? 'today'
+                    : timeAgo.format(
+                        new Date().getTime() - job.timestamp,
+                        'mini-minute-now'
+                      );
+                })()}
             </span>
           </div>
         </div>

@@ -19,6 +19,9 @@ export const scrapeCompanyJobs = (companyKey) => {
   const salaryRegex =
     /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+)(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?(?:\s*(?:to|from|and)\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?\s*(?:per\s*(?:year|annum|month|week|day|hour))?/i;
 
+  const maxJobsPerCompany = 4 + Math.floor(Math.random() * 4); // Random number between 4 to 7
+  let jobsAdded = 0; // Counter to keep track of jobs added
+
   cy.log(`Visiting company URL: ${companyConfig.url}`);
   cy.visit(companyConfig.url);
   cy.wait(5000); // Wait for the page to load fully
@@ -28,36 +31,48 @@ export const scrapeCompanyJobs = (companyKey) => {
 
   // Loop through each selector and find job links
   cy.wrap(selectors).each((selector) => {
+    if (jobsAdded >= maxJobsPerCompany) {
+      cy.log(
+        `Reached the limit of ${maxJobsPerCompany} jobs for company: ${companyConfig.name}`
+      );
+      return false; // Exit the loop if limit is reached
+    }
+
     cy.get('body').then(($body) => {
       if ($body.find(selector).length > 0) {
         cy.log(`Found elements for selector: ${selector}`);
         cy.get(selector, { timeout: 10000 }).each(($el) => {
           const jobLink = $el.attr('href');
-
-          if (jobLink) {
-            // Construct the full link if it's a relative URL
+          if (jobLink && jobsAdded < maxJobsPerCompany) {
             const fullJobLink = jobLink.startsWith('http')
               ? jobLink
               : `https://boards.greenhouse.io${jobLink}`;
 
-            // Filter out any links that match the current page URL
             if (
               fullJobLink !== companyConfig.url &&
               !jobLinks.has(fullJobLink)
             ) {
               cy.log(`Found job link: ${fullJobLink}`);
 
-              // Check if the job is already in the database
+              // Check if the job already exists
               checkJobExists({ apply: fullJobLink }).then((response) => {
                 cy.log(`Checking if job exists at link: ${fullJobLink}`);
-                if (response.status === 204) {
-                  // Only add the job link if it does not already exist
+                if (response.status === 204 && jobsAdded < maxJobsPerCompany) {
                   cy.log(`Job link ${fullJobLink} is new. Adding to list.`);
                   jobLinks.add(fullJobLink); // Add unique job links to the Set
+                  jobsAdded++; // Increment the counter
                 } else {
                   cy.log(
                     `Job link ${fullJobLink} already exists. Status code was: ${response.status}`
                   );
+                }
+
+                // Check if we have reached the maximum jobs and exit the loop
+                if (jobsAdded >= maxJobsPerCompany) {
+                  cy.log(
+                    `Reached the limit of ${maxJobsPerCompany} jobs. Stopping.`
+                  );
+                  return false; // Exit the inner loop
                 }
               });
             } else {
@@ -74,7 +89,9 @@ export const scrapeCompanyJobs = (companyKey) => {
   });
 
   cy.then(() => {
-    cy.log(`Total unique job links found: ${jobLinks.size}`);
+    cy.log(
+      `Total unique job links found (note we have put a max on it): ${jobLinks.size}`
+    );
 
     jobLinks.forEach((link) => {
       cy.log(`Visiting job detail page: ${link}`);

@@ -16,6 +16,7 @@ const generalSelectors = [
 ];
 
 const linkSelectorsWagestream = ['a[href*="careers.wagestream.com/jobs/"]'];
+const linkSelectorsFactorialhr = ['.job-offer-item a[href*="/job_posting/"]'];
 
 // General selectors for extracting job details
 const jobDetailSelectors = {
@@ -44,6 +45,14 @@ const jobDetailSelectorsWagestream = {
   jobType: ['p', '.styles_jobs__column-type__FYVII', '.commitment'], //e.g. full-time
   location: ['.location', '.job__header p.body--metadata', '.workplaceTypes'],
   department: ['.department'],
+};
+// Selectors for factorialHR
+const jobDetailSelectorsFactorialhr = {
+  jobDescription: ['.styledText'],
+  jobTitle: ['h1'],
+  jobType: ['li:nth-child(2) span.inline-block.align-middle'], //e.g. full-time
+  location: ['li:nth-child(3) span.inline-block.align-middle'],
+  department: ['li:nth-child(4) span.inline-block.align-middle'],
 };
 
 export const companyConfigs = {
@@ -100,6 +109,12 @@ export const companyConfigs = {
     url: 'https://wagestream.com/en/careers#job-vacancies',
     selectors: linkSelectorsWagestream,
     jobDetails: jobDetailSelectorsWagestream,
+  },
+  cleanhub: {
+    name: 'Cleanhub',
+    url: 'https://cleanhub.factorialhr.de/embed/jobs',
+    selectors: linkSelectorsFactorialhr,
+    jobDetails: jobDetailSelectorsFactorialhr,
   },
   // Add more companies as needed
 };

@@ -10,7 +10,7 @@ import { scrapeCompanyJobs } from './scrapers';
 
 describe('Job Scraping Tests', () => {
   it('should scrape jobs for specific company', () => {
-    scrapeCompanyJobs('wagestream');
+    scrapeCompanyJobs('cleanhub');
   });
 
   //   Example: Running the scraper for multiple companies

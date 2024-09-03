@@ -22,11 +22,8 @@ export function mapLocation(
   }
 
   // Extract and clean the on-site location if it exists
-  const onSiteLocation = locationString.replace(/\s*\(.*?\)\s*/g, '').trim();
-  if (
-    onSiteLocation &&
-    !['remote', 'hybrid'].includes(onSiteLocation.toLowerCase())
-  ) {
+  const onSiteLocation = locationString.trim();
+  if (onSiteLocation && !['remote'].includes(onSiteLocation.toLowerCase())) {
     locationInfo.onSiteLocation = [onSiteLocation];
   }
 

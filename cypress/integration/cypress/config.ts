@@ -1,6 +1,7 @@
 // config.ts
 
 // General selectors for common job boards
+
 // TODO: split out for greenhouse and lever
 const generalSelectors = [
   'a[href*="boards.greenhouse.io"]',
@@ -15,7 +16,7 @@ const generalSelectors = [
   // Add more common selectors here
 ];
 
-const linkSelectorsWagestream = ['a[href*="careers.wagestream.com/jobs/"]'];
+const linkSelectorsTeamtailor = ['a[href*="careers.wagestream.com/jobs/"]'];
 const linkSelectorsFactorialhr = ['.job-offer-item a[href*="/job_posting/"]'];
 
 // General selectors for extracting job details
@@ -23,7 +24,7 @@ const jobDetailSelectors = {
   jobDescription: [
     '.job__description', //for greenhouse
     '#content', //for greenhouse
-    '.prose', //for greenhouse and wagestream type
+    '.prose', //for greenhouse and teamtailor
     "[class='section-wrapper page-full-width']", //for lever jobs
   ],
   jobTitle: [
@@ -38,8 +39,8 @@ const jobDetailSelectors = {
   // Add more general selectors as needed
 };
 
-// Selectors for Wagestream
-const jobDetailSelectorsWagestream = {
+// Selectors for Teamtailor
+const jobDetailSelectorsTeamtailor = {
   jobDescription: ['.prose'],
   jobTitle: ['h1.font-company-header span.textFitted'],
   jobType: ['p', '.styles_jobs__column-type__FYVII', '.commitment'], //e.g. full-time
@@ -107,8 +108,8 @@ export const companyConfigs = {
   wagestream: {
     name: 'Wagestream',
     url: 'https://wagestream.com/en/careers#job-vacancies',
-    selectors: linkSelectorsWagestream,
-    jobDetails: jobDetailSelectorsWagestream,
+    selectors: linkSelectorsTeamtailor,
+    jobDetails: jobDetailSelectorsTeamtailor,
   },
   cleanhub: {
     name: 'Cleanhub',

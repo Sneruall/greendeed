@@ -1,3 +1,16 @@
+/*
+TODO:
+- Run everything on localhost as test once. If it works out well enough, push to production.
+- Better split out the config file based on tool (lever, cleanhub, wagestream, factorialhr), potentially create config files per system, and only specifying the tool once in the company config so it knows which selectors to use.import in config.ts en die dan importen in scaper.
+- Ensure we don't include 'spontaneous applications etc, see fairmat examples
+- Job removal if outdated (404, 301 etc) scraper maken.
+- Add more jobs from the systems we already support (lever, factorialhr...)
+- Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
+- Ensure we also check for pagination like we have on reformation job listing page
+- Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.
+
+*/
+
 import {
   cleanHTML,
   getTextFromLabel,
@@ -19,7 +32,7 @@ export const scrapeCompanyJobs = (companyKey) => {
   const salaryRegex =
     /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+)(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?(?:\s*(?:to|from|and)\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?\s*(?:per\s*(?:year|annum|month|week|day|hour))?/i;
 
-  const maxJobsPerCompany = 4 + Math.floor(Math.random() * 4); // Random number between 4 to 7
+  const maxJobsPerCompany = 2 + Math.floor(Math.random() * 4); // Random number between 2 to 5
   let jobsAdded = 0; // Counter to keep track of jobs added
 
   cy.log(`Visiting company URL: ${companyConfig.url}`);

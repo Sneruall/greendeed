@@ -1,13 +1,14 @@
 /*
 TODO:
-- Run everything on localhost as test once. If it works out well enough, push to production.
 - Better split out the config file based on tool (lever, cleanhub, wagestream, factorialhr), potentially create config files per system, and only specifying the tool once in the company config so it knows which selectors to use.import in config.ts en die dan importen in scaper.
 - Ensure we don't include 'spontaneous applications etc, see fairmat examples
 - Job removal if outdated (404, 301 etc) scraper maken.
+- Run everything on localhost as test once. If it works out well enough, push to production.
+
 - Add more jobs from the systems we already support (lever, factorialhr...)
 - Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
-- Ensure we also check for pagination like we have on reformation job listing page
 - Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.
+- Ensure we also check for pagination like we have on reformation job listing page
 
 */
 

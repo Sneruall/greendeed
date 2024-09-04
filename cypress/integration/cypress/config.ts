@@ -1,23 +1,30 @@
 // config.ts
 
-// General selectors for common job boards
+// const generalSelectors = [
+//   'a[href*="boards.greenhouse.io"]',
+//   'a[href*="jobs.lever.co"]',
+//   '.job-posts .job-post a',
+//   'tr.job-post a',
+//   'div.opening a[data-mapped="true"]',
+//   '.career-openings__item a',
+//   '.styles_jobs__row__H3nBN',
+//   '.posting-title',
+//   // Add more specific selectors as needed
+//   // Add more common selectors here
+// ];
 
-// TODO: split out for greenhouse and lever
-const generalSelectors = [
-  'a[href*="boards.greenhouse.io"]',
-  'a[href*="jobs.lever.co"]',
-  '.job-posts .job-post a',
-  'tr.job-post a',
-  '.career-openings__item a',
-  '.styles_jobs__row__H3nBN',
-  'div.opening a[data-mapped="true"]',
-  '.posting-title',
-  // Add more specific selectors as needed
-  // Add more common selectors here
-];
+// LINK SELECTORS
 
-const linkSelectorsTeamtailor = ['a[href*="careers.wagestream.com/jobs/"]'];
 const linkSelectorsFactorialhr = ['.job-offer-item a[href*="/job_posting/"]'];
+const linkSelectorsGreenhouse = [
+  'a[href*="boards.greenhouse.io"]',
+  '.career-openings__item a',
+  'div.opening a[data-mapped="true"]',
+  'tr.job-post a',
+  '.job-posts .job-post a',
+];
+const linkSelectorsLever = ['.posting-title', 'a[href*="jobs.lever.co"]'];
+const linkSelectorsTeamtailor = ['a[href*="/jobs/"]'];
 
 // General selectors for extracting job details
 const jobDetailSelectors = {
@@ -60,49 +67,31 @@ export const companyConfigs = {
   apeel: {
     name: 'Apeel',
     url: 'https://boards.greenhouse.io/apeel',
-    selectors: generalSelectors,
+    selectors: linkSelectorsGreenhouse,
     jobDetails: jobDetailSelectors,
   },
   reformation: {
     name: 'The Reformation',
     url: 'https://boards.greenhouse.io/reformation',
-    selectors: generalSelectors,
+    selectors: linkSelectorsGreenhouse,
     jobDetails: jobDetailSelectors,
   },
   lomi: {
     name: 'Lomi',
     url: 'https://boards.greenhouse.io/pelacase',
-    selectors: generalSelectors,
+    selectors: linkSelectorsGreenhouse,
     jobDetails: jobDetailSelectors,
   },
-  //   ethic: {
-  //     name: 'Ethic',
-  //     url: 'https://www.ethic.com/roles',
-  //     selectors: generalSelectors,
-  //     jobDetails: jobDetailSelectors,
-  //   },
-  //   whogivesacrap: {
-  //     name: 'Who Gives A Crap',
-  //     url: 'https://eu.whogivesacrap.org/pages/jobs',
-  //     selectors: generalSelectors,
-  //     jobDetails: jobDetailSelectors,
-  //   },
-  //   allbirds: {
-  //     name: 'Allbirds',
-  //     url: 'https://boards.greenhouse.io/embed/job_board?for=allbirdsretail&b=https%3A%2F%2Fwww.allbirds.com%2Fpages%2Fcareers-retail',
-  //     selectors: generalSelectors,
-  //     jobDetails: jobDetailSelectors,
-  //   },
   fairmat: {
     name: 'FAIRMAT',
     url: 'https://jobs.lever.co/Fairmat/',
-    selectors: generalSelectors,
+    selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectors,
   },
   repurpose: {
     name: 'rePurpose Global',
     url: 'https://jobs.lever.co/repurposeglobal',
-    selectors: generalSelectors,
+    selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectors,
   },
   wagestream: {

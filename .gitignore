@@ -38,4 +38,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 #cypress
-/cypress/integration/cypress/fixtures
+/cypress/fixtures

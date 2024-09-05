@@ -1,0 +1,48 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "rePurpose Global"
+  },
+  "jobTitle": "People Operations Lead",
+  "category": {
+    "id": 6,
+    "name": "Business Operations and Management",
+    "slug": "business-operations-and-management"
+  },
+  "jobDescription": "<div class=\"section page-centered\" data-qa=\"job-description\"><div><a class=\"postings-link\" href=\"https://repurpose.global/\"><b>rePurpose Global</b></a> is the world’s leading Plastic Action Platform, bringing together brands, consumers, innovators, and policymakers to collectively combat the plastic waste crisis and support impactful environmental and social action.</div><div><br></div><div>We are a series-funded social enterprise and are backed by some of the world’s best investors. We have enabled over 350+ leading brands to measure, reduce, and take action on their plastic footprints, while driving systems change on a global scale. Our efforts have led to the recovery of over 25 million kilograms of plastic waste from the environment to date, protecting vulnerable coastal regions across the world. In doing so, the organization has enabled the delivery of waste management services to millions of people for the first time, while positively impacting the lives of thousands of marginalized waste workers across the world.</div><div><br></div><div>We’re just getting started on our mission - the fight against plastic pollution is going to take everything we’ve got, and more. We are looking for entrepreneurial and passionate team members who thrive in a collaborative and purpose-driven environment. We invite you to join our 60+ member global team that is striving hard everyday to create a truly consequential company.</div><div><br></div><div><b>Role Overview:</b></div><div><br></div><div>We are seeking a full-time People Operations Lead <b>to help identify, attract, evaluate, and onboard an all-star team as well as help build a platform for structured organizational development.</b> In this capacity, you will build rePurpose Global's crucial connective tissue by shaping organizational design and strategy, leading talent management initiatives, and driving a culture of high performance, urgency and engagement. <b>You will be working closely with the Co-Founders and leadership team,</b> coordinating with and coaching and developing team members in all departments to deliver on your objectives. </div></div><div class=\"section page-centered\"><div><h3>Responsibilities:</h3><ul class=\"posting-requirements plain-list\"><ul><li>Coach and shepherd a purpose-driven culture of high functioning and highly motivated individuals inspired to bring about social change</li><li>Review and redefine our existing talent acquisition processes to create a best-in-class talent acquisition structure and processes that support rapid growth across borders and cultures</li><li>Review and redesign People Operations processes that scale with the company, including performance management, career development, employee engagement, general well-being and personal development</li><li>Analyze various reporting metrics focused on all aspects related to the people that make up rePurpose Global and to help the company make more effective data-driven decisions</li><li>Be attuned to the stage and pace of our business to provide an integrated HR approach to addressing critical business issues</li></ul></ul></div></div><div class=\"section page-centered\" data-qa=\"salary-range\"><div>$145,000 - $165,000 a year</div><small><div>The above stated range depicts our compensation range for this role. Aside from this rePurpose Global offers Performance-Based Incentives as you achieve key milestones and contribute to our success, and Employee Benefits &amp; Wellness Funds.</div></small></div><div class=\"section page-centered last-section-apply\" data-qa=\"btn-apply-bottom\"><a class=\"postings-btn template-btn-submit hex-color\" data-qa=\"show-page-apply\" href=\"https://jobs.lever.co/repurposeglobal/ecabf1c8-7c16-4473-9bb7-6124f9db71da/apply\">Apply for this job</a></div>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "$",
+    "period": "Annual",
+    "min": {
+      "float": 145000,
+      "formatted": "145,000",
+      "value": 145000
+    },
+    "max": {
+      "float": 165000,
+      "formatted": "165,000",
+      "value": 165000
+    },
+    "string": "$145,000 - $165,000 "
+  },
+  "locationInfo": {
+    "location": "onSiteOrRemote",
+    "onSiteLocation": [
+      "New York Hybrid"
+    ]
+  },
+  "email": "l.c.vanroomen@gmail.com",
+  "fullName": "Laurens van Roomen",
+  "timestamp": 0,
+  "id": "",
+  "paid": true,
+  "published": true,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://jobs.lever.co/repurposeglobal/ecabf1c8-7c16-4473-9bb7-6124f9db71da",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

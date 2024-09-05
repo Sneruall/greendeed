@@ -1,0 +1,48 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "Wagestream"
+  },
+  "jobTitle": "This website uses cookies to ensure you get the best experience on our website.",
+  "category": {
+    "id": 35,
+    "name": "Other",
+    "slug": "other"
+  },
+  "jobDescription": "<p>Wagestream is on a mission to bring better financial wellbeing to frontline workers.</p><p>We partner with some of the world’s most famous employers, like Bupa, Green King, Burger King and the NHS, to give their teams access to fairer financial services - all built around flexible pay. Over three million people can now choose how often they’re paid, track their shifts and earnings, start saving, use budgeting tools, get free financial coaching, and access fairer financial products. All in one financial wellbeing super-app.</p><p>Wagestream is unique: VC-backed and growing at scale-up pace, but with a social conscience. Some of the world's leading financial charities and impact funds were our founding investors, and we operate on a social charter - which means every product we build has to improve financial health and reduce the $5.6bn ‘premium’ lower-income earners pay for financial services each year.</p><p>You’d be joining a team of over 160 passionate, ambitious people, across Europe and the USA, building a category-leading fintech product and all united by that same mission.</p><p><strong>The opportunity: </strong></p><p>As a Solutions Consultant (Pre/Post Sale), you'll play a pivotal role in Wagestream's mission of giving every working person globally power over their pay, to have complete financial freedom and wellbeing. You'll be a bridge between sales and delivery, working with prospects, clients &amp; partners to ensure a seamless sales and onboarding experience. </p><p>Ultimately, the work you do will be instrumental in growing the Wagestream roster, as well as maximising end user experience through elegant solutions. </p><p><strong>What will you be doing? </strong></p><ul><li>Bring to life the Wagestream App and Employer Portal through meaningful demos and presentations to C-Suite stakeholders.</li><li>Expertly explain our \"Flow of Funds\" as well as address concerns about data privacy and security.</li><li>Navigate objections and guide prospective clients towards Wagestream best practices and tailored solutions where appropriate.</li><li>Simplify and explain integration principles for both technical and non-technical audiences, ensuring clarity and buy-in.</li><li>Collaborate with internal and external teams to optimise data transfer (SFTP and APIs) between systems, always aiming to maximise end-user experience.</li><li>Work with internal and external CISOs, DPOs and Security Teams to complete client InfoSec/DPIA Reviews.</li><li>Work with new and existing external partners to develop and refine strategic partnerships.</li><li>Seamlessly handover newly signed clients to Delivery and Client Success teams, providing ongoing support throughout onboarding where necessary.</li><li>Support with the ‘technical scoping’ of existing client change requests.</li><li>Actively contribute to enhancing team best practices, documentation, and internal processes. This includes triaging client/prospect feedback to product teams.</li></ul><p><strong>What experience might you have?</strong> (But if you’re close… we'd still love to talk to you!)</p><ul><li>Proven experience in technical consulting, ideally within the fintech or HR tech space.</li><li>Excellent communication and presentation skills, capable of tailoring messages to diverse audiences.</li><li>Willingness to learn new technologies and get involved in a wide range of day-to-day activities from sales calls to security assessments.</li><li>Proactive mindset with a continuous improvement drive. </li></ul><p><strong>Working policy:</strong> We operate a hybrid policy; you’ll be in our beautiful London office 2-3 days a week, with flexibility to work from home.</p><p><strong>Salary: </strong>Dependant on experience, salaries range between £60,000 - 90,000 + bonus &amp; stocks</p><p><strong>Benefits:</strong></p><ul><li>25 Days Annual Leave in addition to public holidays (up to 5 day rollover), as well as flexible time off allowances for any ad-hoc childcare/family/caring needs</li><li>10 days Annual Leave Buy-Back scheme - for if you’d like some additional time off</li><li>12 weeks paid Maternity Leave and 4 weeks paid Paternity Leave for employees with over 12 months service</li><li>Special Leave for In Vitro Fertilisation (IVF) and other fertility treatments</li><li>Paid leave to volunteer</li><li>10 days Work from Abroad policy</li><li>£250 home office allowance to make WFH comfortable</li><li>Brand new equipment - from the latest Apple MacBooks to 34” curved monitors at Wagestream HQ</li><li>Salary sacrifice to pension, as well as bonus exchange to Pension: reap even more rewards of any bonus by paying into your pension &amp; save on Tax and NI + added compound growth</li><li>The best benefit of all, access to Wagestream!</li><li>Access to Salary Sacrifice Schemes via ThanksBen: THE Benefits marketplace. Choose the benefits you want, when you want. Pay less tax, receive more value 🎉</li></ul><p>Additional:</p><ul><li>Additional Pension Payments</li><li>Workplace nurseries</li><li>Cycle to Work</li><li>Tech Scheme</li><li>Healthcare cash plans, etc</li></ul><p><em>At Wagestream we celebrate and support our differences. We know employing a team rich in diverse thoughts, experiences, and opinions allows our employees, our product and our community to flourish. Wagestream is an equal opportunity workplace. We are dedicated to equal employment opportunities regardless of race, colour, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity/expression, or veteran status.</em></p>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "£",
+    "period": "Annual",
+    "min": {
+      "float": 60000,
+      "formatted": "60,000",
+      "value": 60000
+    },
+    "max": {
+      "float": 90000,
+      "formatted": "90,000",
+      "value": 90000
+    },
+    "string": "£60,000 - 90,000 "
+  },
+  "locationInfo": {
+    "location": "onSiteOrRemote",
+    "onSiteLocation": [
+      "London Office"
+    ]
+  },
+  "email": "l.c.vanroomen@gmail.com",
+  "fullName": "Laurens van Roomen",
+  "timestamp": 0,
+  "id": "",
+  "paid": true,
+  "published": true,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://careers.wagestream.com/jobs/4911527-solution-consultant?utm_campaign=jobs-widget&utm_source=careers.wagestream.com&utm_content=jobs&utm_medium=web",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

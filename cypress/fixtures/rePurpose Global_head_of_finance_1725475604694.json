@@ -1,0 +1,48 @@
+{
+  "companyId": "",
+  "companyData": {
+    "name": "rePurpose Global"
+  },
+  "jobTitle": "Head of Finance",
+  "category": {
+    "id": 1,
+    "name": "Accounting and Finance",
+    "slug": "accounting-and-finance"
+  },
+  "jobDescription": "<div class=\"section page-centered\" data-qa=\"job-description\"><div><a class=\"postings-link\" href=\"https://repurpose.global/\"><b>rePurpose Global</b></a> is the world’s leading Plastic Action Platform, bringing together brands, consumers, innovators, and policymakers to collectively combat the plastic waste crisis and support impactful environmental and social action.</div><div><br></div><div>We are a series-funded social enterprise and are backed by some of the world’s best investors. We have enabled over 350+ leading brands to measure, reduce, and take action on their plastic footprints, while driving systems change on a global scale. Our efforts have led to the recovery of over 25 million kilograms of plastic waste from the environment to date, protecting vulnerable coastal regions across the world. In doing so, the organization has enabled the delivery of waste management services to millions of people for the first time, while positively impacting the lives of thousands of marginalized waste workers across the world.</div><div><br></div><div>We’re just getting started on our mission - the fight against plastic pollution is going to take everything we’ve got, and more. We are looking for entrepreneurial and passionate team members who thrive in a collaborative and purpose-driven environment. We invite you to join our 60+ member global team that is striving hard everyday to create a truly consequential company.</div><div><br></div><div><b><u>Role Overview</u></b></div><div><br></div><div>As a rapidly growing, Series A-funded and VC-backed social enterprise, we are seeking a Head of Finance to join our team. This role will play a pivotal part in rePurpose Global’s next phase of growth, gaining exposure to multiple facets of our company and becoming a strategic business partner. You will employ your strong analytical skills to leverage data and construct robust financial models that can scale. By effectively communicating key insights, you will contribute to informed decision-making processes and actively participate in optimizing our financial &amp; compliance operations during this high-growth phase.</div></div><div class=\"section page-centered\"><div><h3>Your Responsibilities</h3><ul class=\"posting-requirements plain-list\"><ul><li><b>Financial Reporting and Analysis: </b>Set up <b>automated processes</b> for ongoing and accurate reporting of financial health and key business metrics to management and company board. <b>Dashboarding</b> for company-wide visibility and actionability. Conduct in-depth analysis of financial and operational data to provide <b>actionable insights, enabling data-driven decision-making</b> and continuous improvement.</li><li><b>Budgeting Leadership:</b> Lead the annual budgeting process for 2025, collaborating with stakeholders to ensure alignment with strategic goals and financial targets.</li><li><b>Performance Scorecard Implementation:</b> Design and deploy organizational and team-based performance scorecards to monitor ROI and drive accountability across the organization.</li><li><b>Own Foundational Financial Operations: </b>Oversee all compliance, taxation, and treasury management processes with continuous refinement mentality. Oversee all procurement related processes and vendor management and negotiation. Oversee all contracting and accounts receivable management with customers. Oversee all payroll related processes and manage company benefits procurement to meet compliance, deliver employee trust, and manage costs efficiently. Help solve ad-hoc issues that inevitably come up and take on special projects to both respond to risks and jump on opportunities.</li><li><b>Cross-Functional Collaboration:</b> Collaborate with departments company-wide to gather inputs, provide financial insights, and support strategic initiatives, fostering a culture of collaboration and shared success.</li></ul></ul></div></div><div class=\"section page-centered\" data-qa=\"salary-range\"><div>$150,000 - $200,000 a year</div><small><div>The above stated range depicts our compensation range for this role. Aside from this rePurpose Global offers Performance-Based Incentives as you achieve key milestones and contribute to our success, and Employee Benefits &amp; Wellness Funds.</div></small></div><div class=\"section page-centered\" data-qa=\"closing-description\"><div><b><u>What We Are Looking For:</u></b></div><div><br></div><div>📌 Bachelor's degree in Finance, Accounting, Economics, or related field from rigorous educational program.</div><div><br></div><div>📌 Minimum of 5-6 years of experience in FP&amp;A or related field, with a proven track record of financial analysis, budgeting, and performance reporting.</div><div><br></div><div>📌 Been part of a Series A-C company and has had hands-on experience in the fund raising and scaling process.</div><div><br></div><div>📌 Strong analytical and problem-solving skills, with proficiency in financial modeling, forecasting, and data analysis.</div><div><br></div><div>📌 Excellent communication and interpersonal skills, with the ability to clearly communicate complex financial concepts and insights to diverse stakeholders.</div><div><br></div><div>📌 Demonstrated ability to collaborate effectively with cross-functional teams, building strong working relationships and driving collective success.</div><div><br></div><div>📌 Strong leadership skills, with the ability to lead and motivate teams, provide guidance and mentorship to junior members, and drive continuous improvement initiatives.</div><div><br></div><div>📌 Ability to thrive in a fast-paced environment, manage multiple priorities, and adapt to changing business needs and priorities.</div><div><br></div><div>📌 Proficiency in financial reporting and analysis tools, as well as experience with automation and dashboarding solutions (e.g., Causal).</div><div><br></div><div>📌 Strategic mindset with the ability to align financial goals and initiatives with broader organizational objectives, contributing to company-wide success.</div><div><br></div><div>📌 Demonstrated passion for environmental sustainability and socio-economic impact.</div></div><div class=\"section page-centered last-section-apply\" data-qa=\"btn-apply-bottom\"><a class=\"postings-btn template-btn-submit hex-color\" data-qa=\"show-page-apply\" href=\"https://jobs.lever.co/repurposeglobal/fd8f3868-f811-432f-9ea6-bf20e0a56c51/apply\">Apply for this job</a></div>",
+  "jobType": "Full-time",
+  "salary": {
+    "currency": "$",
+    "period": "Annual",
+    "min": {
+      "float": 150000,
+      "formatted": "150,000",
+      "value": 150000
+    },
+    "max": {
+      "float": 200000,
+      "formatted": "200,000",
+      "value": 200000
+    },
+    "string": "$150,000 - $200,000 "
+  },
+  "locationInfo": {
+    "location": "onSiteOrRemote",
+    "onSiteLocation": [
+      "New York Hybrid"
+    ]
+  },
+  "email": "l.c.vanroomen@gmail.com",
+  "fullName": "Laurens van Roomen",
+  "timestamp": 0,
+  "id": "",
+  "paid": true,
+  "published": true,
+  "listed": true,
+  "closed": false,
+  "applicationMethod": "website",
+  "apply": "https://jobs.lever.co/repurposeglobal/fd8f3868-f811-432f-9ea6-bf20e0a56c51",
+  "external": false,
+  "coupon": "",
+  "invoiceInfo": {}
+}

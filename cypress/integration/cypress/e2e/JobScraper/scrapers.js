@@ -1,6 +1,5 @@
 /*
 TODO:
-- Better split out the config file based on tool (lever, cleanhub, wagestream, factorialhr), potentially create config files per system, and only specifying the tool once in the company config so it knows which selectors to use.import in config.ts en die dan importen in scaper.
 - Ensure we don't include 'spontaneous applications etc, see fairmat examples
 - Job removal if outdated (404, 301 etc) scraper maken.
 - Run everything on localhost as test once. If it works out well enough, push to production.
@@ -25,7 +24,7 @@ import { mapDepartmentToCategory } from '../../scripts/categories';
 import { mapJobType } from '../../scripts/jobType';
 import { checkJobExists, submitJob } from '../../scripts/jobUtilities';
 import { mapLocation } from '../../scripts/location';
-import { companyConfigs } from '../../config';
+import { companyConfigs } from './config';
 
 export const scrapeCompanyJobs = (companyKey) => {
   const companyConfig = companyConfigs[companyKey];

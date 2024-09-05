@@ -22,6 +22,6 @@
     "**/*.tsx",
     "cypress/**/*.ts", // Ensure Cypress tests are included
     "components/hiring/form-elements/LogoUploader.jsx"
-  ],
+, "cypress/integration/cypress/e2e/scrapers.cy.js"  ],
   "exclude": ["node_modules"]
 }

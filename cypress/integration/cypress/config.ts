@@ -46,6 +46,17 @@ const jobDetailSelectors = {
   // Add more general selectors as needed
 };
 
+// Selectors for Lever
+const jobDetailSelectorsLever = {
+  jobDescription: [
+    "[class='section-wrapper page-full-width']", //for lever jobs
+  ],
+  jobTitle: ['.posting-headline h2'],
+  jobType: ['p', '.commitment'], //e.g. full-time
+  location: ['.location'],
+  department: ['.department'],
+};
+
 // Selectors for Teamtailor
 const jobDetailSelectorsTeamtailor = {
   jobDescription: ['.prose'],

@@ -11,7 +11,7 @@ const jobDetailSelectorsFactorialhr = {
 
 export const factorialhrConfigs = {
   cleanhub: {
-    name: 'Cleanhub',
+    name: 'CleanHub',
     url: 'https://cleanhub.factorialhr.de/embed/jobs',
     hrTool: 'factorialhr',
     selectors: linkSelectorsFactorialhr,

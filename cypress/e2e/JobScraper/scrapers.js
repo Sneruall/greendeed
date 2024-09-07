@@ -1,6 +1,6 @@
 /*
 TODO:
-- Ensure we don't include 'spontaneous applications etc, see fairmat examples
+- protect 'deleteAll' endpoint so it can only run against dev and staging (not production), based on host in postman.
 - Check why we cannot tweet automatically yet
 - Job removal if outdated (404, 301 etc) scraper maken.
 
@@ -29,6 +29,7 @@ import { mapJobType } from '../../scripts/jobType';
 import { checkJobExists, submitJob } from '../../scripts/jobUtilities';
 import { mapLocation } from '../../scripts/location';
 import { companyConfigs } from './config';
+import { openApplicationKeywords } from '../../scripts/Mappers/openApplicationKeywords';
 
 export const scrapeCompanyJobs = (companyKey) => {
   const companyConfig = companyConfigs[companyKey];

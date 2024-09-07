@@ -3,7 +3,6 @@ TODO:
 - Ensure we don't include 'spontaneous applications etc, see fairmat examples
 - Check why we cannot tweet automatically yet
 - Job removal if outdated (404, 301 etc) scraper maken.
-- Run everything on localhost as test once. If it works out well enough, push to production.
 
 - login to cypress cloud for more features
 - Add more jobs from the systems we already support (lever, factorialhr...)
@@ -126,6 +125,21 @@ export const scrapeCompanyJobs = (companyKey) => {
         const jobTitle =
           getTextFromSelectors(doc, jobDetailSelectors.jobTitle) ||
           'Unknown Title';
+
+        // Filtering open application jobs based on job title
+        const isOpenApplication = openApplicationKeywords.some((keyword) => {
+          // Create a regular expression to match the keyword as a whole word
+          const regex = new RegExp(`\\b${keyword.toLowerCase()}\\b`, 'i');
+          return regex.test(jobTitle.toLowerCase());
+        });
+
+        if (isOpenApplication) {
+          cy.log(
+            `Skipping job: ${jobTitle} due to open application kind of title (based on open application keyword list).`
+          );
+          return; // Skip processing this job
+        }
+
         const department =
           getTextFromLabel(doc, 'Department') ||
           getTextFromSelectors(doc, jobDetailSelectors.department) ||

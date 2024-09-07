@@ -23,11 +23,11 @@ This repository contains the code for [Greendeed](https://greendeed.io/), an onl
 - [x] Typescript (JavaScript With Syntax For Types)
 - [x] Tailwind CSS (A utility-first CSS framework)
 - [x] Yup and react-hook-form (form validation)
-- [ ] Netlify (hosting)
+- [x] Netlify (hosting)
 - [ ] Algolia (search)
-- [ ] Adyen or Stripe (payment)
-- [ ] Sendgrid (emails)
-- [ ] Testing tool (cypress?)
+- [x] Adyen or Stripe (payment)
+- [x] Sendgrid (emails)
+- [x] Testing tool (cypress?)
 
 ## Folder structure (WIP)
 

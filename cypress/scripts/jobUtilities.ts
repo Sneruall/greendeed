@@ -7,6 +7,9 @@ export const checkJobExists = (jobData: Job) => {
     url: `http://localhost:3000/api/job?apply=${encodeURIComponent(
       jobData.apply
     )}`,
+    // url: `https://greendeed.io/api/job?apply=${encodeURIComponent(
+    //   jobData.apply
+    // )}`,
   });
 };
 
@@ -17,6 +20,15 @@ export const submitJob = (jobData: Job) => {
     .toLowerCase()}_${Date.now()}.json`;
   cy.writeFile(`cypress/fixtures/${fileName}`, jobData);
 
+  // cy.request('POST', 'https://greendeed.io/api/autopost', jobData).then(
+  //   (response) => {
+  //     if (response.status === 201) {
+  //       cy.log(`Job submitted successfully: ${jobData.jobTitle}`);
+  //     } else {
+  //       cy.log(`Failed to submit job: ${jobData.jobTitle}`);
+  //     }
+  //   }
+  // );
   cy.request('POST', 'http://localhost:3000/api/autopost', jobData).then(
     (response) => {
       if (response.status === 201) {

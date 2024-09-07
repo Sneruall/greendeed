@@ -167,6 +167,8 @@ export async function getStaticProps() {
     millisecondsSince1970 - JOB_EXPIRATION_TIME_MS
   );
 
+  console.log('Jobs retrieved from Mongo: ' + JSON.stringify(jobs));
+
   return {
     props: {
       jobs: JSON.parse(JSON.stringify(jobs)),

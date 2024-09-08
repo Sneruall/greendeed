@@ -31,6 +31,15 @@ const handleDeleteAllJobs = async (req, res) => {
 };
 
 export default async function handler(req, res) {
+  // Check if the host is 'localhost:3000'
+  const hostHeader = req.headers.host;
+  if (hostHeader !== 'localhost:3000') {
+    return res
+      .status(403)
+      .json({
+        message: 'Forbidden: Invalid host. Only works against localhost.',
+      });
+  }
   switch (req.method) {
     case 'DELETE':
       return handleDeleteAllJobs(req, res);

@@ -1,8 +1,6 @@
 /*
 TODO:
-- protect 'deleteAll' endpoint so it can only run against dev and staging (not production), based on host in postman.
-- Check why we cannot tweet automatically yet
-- Job removal if outdated (404, 301 etc) scraper maken.
+- Test if auto tweeting works on next iteration
 
 - login to cypress cloud for more features
 - Add more jobs from the systems we already support (lever, factorialhr...)

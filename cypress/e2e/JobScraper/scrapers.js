@@ -1,6 +1,5 @@
 /*
 TODO:
-- protect 'deleteAll' endpoint so it can only run against dev and staging (not production), based on host in postman.
 - Check why we cannot tweet automatically yet
 - Job removal if outdated (404, 301 etc) scraper maken.
 

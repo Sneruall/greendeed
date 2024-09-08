@@ -1,7 +1,3 @@
-/*
-  Endpoint which can be used via Postman to post a new job directly to the DB.
-*/
-
 import clientPromise from '../../lib/mongodb';
 import { customAlphabet } from 'nanoid';
 
@@ -34,6 +30,17 @@ const postCompany = async (companyData) => {
   });
 };
 
+// Function to call the Twitter endpoint
+const postToTwitter = async (jobData) => {
+  await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/jobs/tweetJob`, {
+    method: 'POST',
+    body: JSON.stringify(jobData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 const handlePost = async (req, res) => {
   const data = req.body;
   const collection = await getCollection();
@@ -43,7 +50,7 @@ const handlePost = async (req, res) => {
   if (!existingCompany.id && !data.companyData.sdgs) {
     return res.status(400).json({
       message:
-        'No company details were provided (e.g. SDGs) except the company name and for this company name nothing was found in the database. Double check the company name or if youre adding a new company ensure to use the corresponding JSON template.',
+        'No company details were provided (e.g. SDGs) except the company name and for this company name nothing was found in the database. Double check the company name or if you’re adding a new company ensure to use the corresponding JSON template.',
     });
   }
 
@@ -71,8 +78,14 @@ const handlePost = async (req, res) => {
 
     await postCompany(companyData);
 
+    // Call the Twitter endpoint after inserting the job data
+    if (process.env.ENVIRONMENT === 'prod') {
+      await postToTwitter(data);
+    }
+
     res.status(201).json({
-      message: 'Data inserted successfully in DB!',
+      message:
+        'Data inserted successfully in DB and posted to Twitter (if ENV is prod)!',
       id: data.id,
       companyId: data.companyId || data.companyData.id,
       companyName: data.companyData.name,

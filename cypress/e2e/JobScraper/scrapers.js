@@ -1,5 +1,6 @@
 /*
 TODO:
+- Fix issue of teamtailor career pages being at different hosts so not able to run in a row...
 - Add more jobs from the systems we already support (lever, factorialhr...)
 - Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
 - Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.
@@ -30,8 +31,6 @@ import { openApplicationKeywords } from '../../scripts/Mappers/openApplicationKe
 export const scrapeCompanyJobs = (companyKey) => {
   const companyConfig = companyConfigs[companyKey];
   const jobLinks = new Set(); // Use a Set to store unique job links
-  const salaryRegex =
-    /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+)(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?(?:\s*(?:to|from|and)\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*(?:\d{1,3}(?:,\d{3})*|\d+))?\s*(?:per\s*(?:year|annum|month|week|day|hour))?/i;
 
   const maxJobsPerCompany = 2 + Math.floor(Math.random() * 4); // Random number between 2 to 5
   let jobsAdded = 0; // Counter to keep track of jobs added
@@ -150,7 +149,7 @@ export const scrapeCompanyJobs = (companyKey) => {
           getJobTypeFromSelectors(doc, jobDetailSelectors.jobType) ||
           '';
         const mappedJobType = mapJobType(jobTypeText);
-        const salaryData = extractSalaryData(doc, salaryRegex);
+        const salaryData = extractSalaryData(doc);
         const locationSelectors = jobDetailSelectors.location || [];
         const locationText =
           getTextFromLabel(doc, 'Locations') ||

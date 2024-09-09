@@ -1,6 +1,7 @@
 /*
 TODO:
-- Fix issue of teamtailor career pages being at different hosts so not able to run in a row...
+- Fix issue of teamtailor career pages being at different hosts so not able to run in a row... Or leave teamtailor..
+- Try if adding jobs through site still works.
 - Add more jobs from the systems we already support (lever, factorialhr...)
 - Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
 - Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.

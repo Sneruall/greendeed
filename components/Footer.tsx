@@ -23,7 +23,7 @@ function Footer({}: Props) {
               be accessible to everyone, and that the SDGs provide a clear and
               comprehensive guide for doing so. Join us in our mission to create
               a better future for all by exploring the sustainable job
-              opportunities on our platform today.
+              opportunities on our platform today!
             </p>
           </div>
           <div className="mt-4 flex gap-4 md:grid md:grid-cols-2">

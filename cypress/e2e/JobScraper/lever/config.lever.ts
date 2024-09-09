@@ -5,7 +5,7 @@ const jobDetailSelectorsLever = {
   jobDescription: ["[class='section-wrapper page-full-width']"],
   jobTitle: ['.posting-headline h2'],
   jobType: ['p', '.commitment'], // e.g., full-time
-  location: ['.location .workplaceTypes'],
+  location: ['.location', '.workplaceTypes'],
   department: ['.department'],
 };
 
@@ -20,6 +20,13 @@ export const leverConfigs = {
   repurpose: {
     name: 'rePurpose Global',
     url: 'https://jobs.lever.co/repurposeglobal',
+    hrTool: 'lever',
+    selectors: linkSelectorsLever,
+    jobDetails: jobDetailSelectorsLever,
+  },
+  aquabyte: {
+    name: 'Aquabyte',
+    url: 'https://jobs.lever.co/aquabyte',
     hrTool: 'lever',
     selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectorsLever,

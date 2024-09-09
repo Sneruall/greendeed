@@ -1,7 +1,5 @@
 /*
 TODO:
-- Test if auto tweeting works on next iteration
-
 - Add more jobs from the systems we already support (lever, factorialhr...)
 - Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
 - Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.
@@ -150,16 +148,20 @@ export const scrapeCompanyJobs = (companyKey) => {
           getTextFromLabel(doc, 'Job Type') ||
           jobTitle ||
           getJobTypeFromSelectors(doc, jobDetailSelectors.jobType) ||
-          'Unknown Job Type';
+          '';
         const mappedJobType = mapJobType(jobTypeText);
         const salaryData = extractSalaryData(doc, salaryRegex);
         const locationSelectors = jobDetailSelectors.location || [];
         const locationText =
           getTextFromLabel(doc, 'Locations') ||
           getTextFromMultipleSelectors(doc, locationSelectors) ||
-          'Unknown Location';
+          null;
+        cy.log('the retrieved location text:' + locationText);
         const locationTypeString =
           getTextFromLabel(doc, 'Remote status') || null;
+
+        cy.log('location type string: ' + locationTypeString);
+
         const locationInfo = mapLocation(locationText, locationTypeString);
 
         // Prepare job data

@@ -22,9 +22,12 @@ export function mapLocation(
   }
 
   // Extract and clean the on-site location if it exists
-  const onSiteLocation = locationString.trim();
-  if (onSiteLocation && !['remote'].includes(onSiteLocation.toLowerCase())) {
-    locationInfo.onSiteLocation = [onSiteLocation];
+  const cleanedLocation = locationString
+    .replace(/\bon[- ]?site\b/i, '') // Remove "on-site" or similar variations
+    .trim(); // Trim any extra spaces after replacement
+
+  if (cleanedLocation && !['remote'].includes(cleanedLocation.toLowerCase())) {
+    locationInfo.onSiteLocation = [cleanedLocation];
   }
 
   // Optionally, handle location type string if provided

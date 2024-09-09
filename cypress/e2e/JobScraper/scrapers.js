@@ -2,7 +2,6 @@
 TODO:
 - Test if auto tweeting works on next iteration
 
-- login to cypress cloud for more features
 - Add more jobs from the systems we already support (lever, factorialhr...)
 - Update pricing page section so people can contact me: "Want to post regulary or several jobs at once? Contact me!"
 - Error handling toevoegen, als job title of desscription niet gevonden is ('unknown'), niet submitten, maar een error throwen, zodat ik kan analyseren wat er is.
@@ -10,6 +9,7 @@ TODO:
 
 HOW TO USE
 - To submit to production, replace http://localhost:3000 with https://greendeed.io in jobUtilities.ts
+- Also run the setJobAsClosed script (pointing to production) every now and then to get rid of closed jobs in the board.
 
 */
 

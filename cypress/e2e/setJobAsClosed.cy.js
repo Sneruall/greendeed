@@ -10,8 +10,8 @@ describe('Check Job Apply URLs and Mark Closed', () => {
       // Step 2: Parse the list of apply URLs from the response
       const applyUrls = response.body.split('\n');
 
-      // Step 3: Add an invalid URL to the list for testing purposes
-      applyUrls.push('https://greendeed.io/non-existing-page'); // Adding a known invalid URL
+      //   // Step 3: Add an invalid URL to the list for testing purposes
+      //   applyUrls.push('https://greendeed.io/non-existing-page'); // Adding a known invalid URL
 
       // Step 4: Loop through each apply URL and check its status code
       applyUrls.forEach((url) => {

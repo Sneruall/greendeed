@@ -5,7 +5,7 @@ const jobDetailSelectorsLever = {
   jobDescription: ["[class='section-wrapper page-full-width']"],
   jobTitle: ['.posting-headline h2'],
   jobType: ['p', '.commitment'], // e.g., full-time
-  location: ['.location'],
+  location: ['.location .workplaceTypes'],
   department: ['.department'],
 };
 

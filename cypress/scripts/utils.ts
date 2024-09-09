@@ -94,7 +94,7 @@ export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
 
     // Updated context keywords to include more specific phrases
     const contextKeywords =
-      /(salary|compensation|pay|wage|income|remuneration|annual|rate|hourly|earnings|per annum)/i;
+      /(salary|compensation|pay|wage|income|remuneration|annual|rate|hourly|earnings|per annum|per hour)/i;
 
     // Combine regex and contextual checks for more robust extraction
     if (contextKeywords.test(textContent) && regex.test(textContent)) {
@@ -117,12 +117,27 @@ export const extractSalaryData = (doc: Document, regex: RegExp): any | null => {
           cy.log('Salary String:', salaryString);
           cy.log('Salary Min:', minSalary);
 
+          // Determine the period based on keywords
+          let period = 'Annual'; // Default to Annual
+          if (/per hour/i.test(textContent)) {
+            period = 'Hourly';
+          } else if (/per month/i.test(textContent)) {
+            period = 'Monthly';
+          } else if (/per annum|annual/i.test(textContent)) {
+            period = 'Annual';
+          }
+
           // Validation step: Reject obviously incorrect salaries
-          if (minSalary < 1000) return null; // Assuming salaries under 1000 are not valid
+          const isInvalidSalary =
+            (period === 'Annual' && minSalary < 1000) || // Invalid annual salary less than 1000
+            (period === 'Monthly' && minSalary < 100) || // Invalid monthly salary less than 100
+            (period === 'Hourly' && minSalary < 3); // Invalid hourly salary less than 3
+
+          if (isInvalidSalary) return null;
 
           salaryData = {
             currency: currency,
-            period: 'Annual',
+            period: period, // Dynamically set the period based on context
             min: {
               float: minSalary,
               formatted: salaryValues[0],

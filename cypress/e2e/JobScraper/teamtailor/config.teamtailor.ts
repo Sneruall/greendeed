@@ -10,9 +10,16 @@ const jobDetailSelectorsTeamtailor = {
 };
 
 export const teamtailorConfigs = {
-  wagestream: {
-    name: 'Wagestream',
-    url: 'https://wagestream.com/en/careers#job-vacancies',
+  // wagestream: {
+  //   name: 'Wagestream',
+  //   url: 'https://wagestream.com/en/careers#job-vacancies',
+  //   hrTool: 'teamtailor',
+  //   selectors: linkSelectorsTeamtailor,
+  //   jobDetails: jobDetailSelectorsTeamtailor,
+  // },
+  fjallraven: {
+    name: 'Fjallraven',
+    url: 'https://career.fjallraven.com/jobs',
     hrTool: 'teamtailor',
     selectors: linkSelectorsTeamtailor,
     jobDetails: jobDetailSelectorsTeamtailor,

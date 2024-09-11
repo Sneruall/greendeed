@@ -24,6 +24,6 @@ export const teamtailorConfigs = {
     selectors: linkSelectorsTeamtailor,
     jobDetails: jobDetailSelectorsTeamtailor,
   },
-
+  // NOT VERY HANDY TO USE AS YOU CANNOT SWITCH HOSTS PER SCRIPT YOU RUN...
   // Add more companies as needed
 };

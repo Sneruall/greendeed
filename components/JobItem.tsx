@@ -152,13 +152,27 @@ const JobItem: React.FC<{ job: Job }> = ({ job }) => {
                       jobDate.getMonth() === today.getMonth() &&
                       jobDate.getDate() === today.getDate();
 
-                    return isToday
-                      ? 'today'
-                      : timeAgo.format(
-                          new Date().getTime() -
-                            (new Date().getTime() - job.timestamp),
-                          'mini-minute-now'
-                        );
+                    // Check if jobDate is the previous day
+                    const yesterday = new Date(today);
+                    yesterday.setDate(today.getDate() - 1);
+
+                    const isYesterday =
+                      jobDate.getFullYear() === yesterday.getFullYear() &&
+                      jobDate.getMonth() === yesterday.getMonth() &&
+                      jobDate.getDate() === yesterday.getDate();
+
+                    if (isToday) {
+                      return 'today';
+                    } else if (isYesterday) {
+                      return '1d';
+                    } else {
+                      // Use timeAgo to calculate relative time
+                      return timeAgo.format(
+                        new Date().getTime() -
+                          (new Date().getTime() - job.timestamp),
+                        'mini-minute-now'
+                      );
+                    }
                   })()}
               </span>
             </div>

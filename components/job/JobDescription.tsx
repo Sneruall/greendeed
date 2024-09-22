@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import { options } from '../../helpers/htmlReactParserOptions';
 import Link from 'next/link';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 type Props = {
   job: Job;
@@ -69,13 +70,15 @@ function JobDescription({ job, company }: Props) {
               {job.jobTitle}
             </span>
           </h1>
-          {job.closed && (
+          {(job.closed ||
+            new Date().getTime() - job.timestamp > JOB_EXPIRATION_TIME_MS) && (
             <p className="font-bold uppercase text-red-500">Closed</p>
           )}
         </div>
       </div>
       {/* button mobile */}
-      {!job.closed && (
+      {(!job.closed ||
+        new Date().getTime() - job.timestamp < JOB_EXPIRATION_TIME_MS) && (
         <div className="mt-4 lg:hidden">
           <div className="">
             <Link

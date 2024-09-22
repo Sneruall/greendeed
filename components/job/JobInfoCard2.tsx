@@ -6,6 +6,7 @@ import React from 'react';
 import { sdgHexCalculator } from '../../helpers/sdgHexCalculator';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job } from '../../types/types';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 type Props = {
   job: Job;
@@ -160,7 +161,8 @@ function JobInfoCard2({ job, company }: Props) {
         {/* Button */}
 
         <div className="mb-10 text-center">
-          {!job.closed && (
+          {(!job.closed ||
+            new Date().getTime() - job.timestamp < JOB_EXPIRATION_TIME_MS) && (
             <div className="">
               <Link
                 href={

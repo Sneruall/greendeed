@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { generateCompanyUrl } from '../../helpers/urlGeneration';
 import { Company, Job, sdgList } from '../../types/types';
+import { JOB_EXPIRATION_TIME_MS } from '../../helpers/constants';
 
 type Props = { job?: Job; company?: Company };
 
@@ -94,25 +95,27 @@ function JobSdgSection({ job, company }: Props) {
         })}
       </ul>
 
-      {job && !job.closed && (
-        <div className="my-10 text-center">
-          <Link
-            href={
-              (job?.apply &&
-                (job?.applicationMethod === 'website'
-                  ? job?.apply
-                  : `mailto:${job?.apply}`)) ||
-              '#sustainable-jobs'
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
-              Apply
-            </button>
-          </Link>
-        </div>
-      )}
+      {job &&
+        !job.closed &&
+        new Date().getTime() - job.timestamp < JOB_EXPIRATION_TIME_MS && (
+          <div className="my-10 text-center">
+            <Link
+              href={
+                (job?.apply &&
+                  (job?.applicationMethod === 'website'
+                    ? job?.apply
+                    : `mailto:${job?.apply}`)) ||
+                '#sustainable-jobs'
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white">
+                Apply
+              </button>
+            </Link>
+          </div>
+        )}
     </div>
   );
 }

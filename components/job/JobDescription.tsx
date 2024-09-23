@@ -77,25 +77,25 @@ function JobDescription({ job, company }: Props) {
         </div>
       </div>
       {/* button mobile */}
-      {(!job.closed ||
-        new Date().getTime() - job.timestamp < JOB_EXPIRATION_TIME_MS) && (
-        <div className="mt-4 lg:hidden">
-          <div className="">
-            <Link
-              href={
-                job?.applicationMethod === 'website'
-                  ? job?.apply
-                  : `mailto:${job?.apply}` || '#'
-              }
-              legacyBehavior
-            >
-              <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
-                Apply now
-              </button>
-            </Link>
+      {!job.closed &&
+        new Date().getTime() - job.timestamp < JOB_EXPIRATION_TIME_MS && (
+          <div className="mt-4 lg:hidden">
+            <div className="">
+              <Link
+                href={
+                  job?.applicationMethod === 'website'
+                    ? job?.apply
+                    : `mailto:${job?.apply}` || '#'
+                }
+                legacyBehavior
+              >
+                <button className="rounded-full bg-custom-brown1 px-8 py-2 text-sm font-bold text-white hover:opacity-75">
+                  Apply now
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* job description */}
       <div className="my-10">

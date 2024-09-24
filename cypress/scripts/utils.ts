@@ -85,7 +85,7 @@ export const getJobTypeFromSelectors = (doc: Document, selectors: string[]) => {
 
 export const extractSalaryData = (doc: Document): any | null => {
   const regex =
-    /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?)?\s*(?:to|from|and)?\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*(?:per\s*(?:year|annum|month|week|day|hour))?/gi;
+    /(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?(?:\s*-\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?)?\s*(?:to|from|and)?\s*(?:£|US\$|€|CA\$|AU\$|\$|USD|EUR|GBP|CAD|AUD)?\s*\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*(?:per\s*(?:year|annum|month|week|day|hour)|an\s*hour)?/gi;
 
   const salaryElements = doc.querySelectorAll(
     'p, div, span, .job__tags, .job__header'

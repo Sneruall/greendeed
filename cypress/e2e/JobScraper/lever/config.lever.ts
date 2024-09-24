@@ -31,4 +31,11 @@ export const leverConfigs = {
     selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectorsLever,
   },
+  beyondmeat: {
+    name: 'Beyond Meat',
+    url: 'https://jobs.lever.co/beyondmeat',
+    hrTool: 'lever',
+    selectors: linkSelectorsLever,
+    jobDetails: jobDetailSelectorsLever,
+  },
 };

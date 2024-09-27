@@ -24,18 +24,25 @@ export const leverConfigs = {
   //   selectors: linkSelectorsLever,
   //   jobDetails: jobDetailSelectorsLever,
   // },
-  // aquabyte: {
-  //   name: 'Aquabyte',
-  //   url: 'https://jobs.lever.co/aquabyte',
-  //   hrTool: 'lever',
-  //   selectors: linkSelectorsLever,
-  //   jobDetails: jobDetailSelectorsLever,
-  // },
-  beyondmeat: {
-    name: 'Beyond Meat',
-    url: 'https://jobs.lever.co/beyondmeat',
+  aquabyte: {
+    name: 'Aquabyte',
+    url: 'https://jobs.lever.co/aquabyte',
     hrTool: 'lever',
     selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectorsLever,
   },
+  // beyondmeat: {
+  //   name: 'Beyond Meat',
+  //   url: 'https://jobs.lever.co/beyondmeat',
+  //   hrTool: 'lever',
+  //   selectors: linkSelectorsLever,
+  //   jobDetails: jobDetailSelectorsLever,
+  // },
+  // charitywater: {
+  //   name: 'Charity: Water',
+  //   url: 'https://jobs.lever.co/charitywater',
+  //   hrTool: 'lever',
+  //   selectors: linkSelectorsLever,
+  //   jobDetails: jobDetailSelectorsLever,
+  // },
 };

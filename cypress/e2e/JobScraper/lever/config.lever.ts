@@ -17,13 +17,13 @@ export const leverConfigs = {
   //   selectors: linkSelectorsLever,
   //   jobDetails: jobDetailSelectorsLever,
   // },
-  // repurpose: {
-  //   name: 'rePurpose Global',
-  //   url: 'https://jobs.lever.co/repurposeglobal',
-  //   hrTool: 'lever',
-  //   selectors: linkSelectorsLever,
-  //   jobDetails: jobDetailSelectorsLever,
-  // },
+  repurpose: {
+    name: 'rePurpose Global',
+    url: 'https://jobs.lever.co/repurposeglobal',
+    hrTool: 'lever',
+    selectors: linkSelectorsLever,
+    jobDetails: jobDetailSelectorsLever,
+  },
   aquabyte: {
     name: 'Aquabyte',
     url: 'https://jobs.lever.co/aquabyte',
@@ -31,13 +31,6 @@ export const leverConfigs = {
     selectors: linkSelectorsLever,
     jobDetails: jobDetailSelectorsLever,
   },
-  // beyondmeat: {
-  //   name: 'Beyond Meat',
-  //   url: 'https://jobs.lever.co/beyondmeat',
-  //   hrTool: 'lever',
-  //   selectors: linkSelectorsLever,
-  //   jobDetails: jobDetailSelectorsLever,
-  // },
   // charitywater: {
   //   name: 'Charity: Water',
   //   url: 'https://jobs.lever.co/charitywater',

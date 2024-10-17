@@ -11,6 +11,8 @@ TODO:
 - Ensure we also check for pagination like we have on reformation job listing page
 
 HOW TO USE
+- yarn run dev (start app)
+- npx cypress open (start cypress)
 - To submit to production, replace http://localhost:3000 with https://greendeed.io in jobUtilities.ts
 - Also run the setJobAsClosed script (pointing to production) every now and then to get rid of closed jobs in the board.
 

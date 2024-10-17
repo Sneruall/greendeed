@@ -10,20 +10,20 @@ const jobDetailSelectorsTeamtailor = {
 };
 
 export const teamtailorConfigs = {
-  wagestream: {
-    name: 'Wagestream',
-    url: 'https://wagestream.com/en/careers#job-vacancies',
-    hrTool: 'teamtailor',
-    selectors: linkSelectorsTeamtailor,
-    jobDetails: jobDetailSelectorsTeamtailor,
-  },
-  // fjallraven: {
-  //   name: 'Fjallraven',
-  //   url: 'https://career.fjallraven.com/jobs',
+  // wagestream: {
+  //   name: 'Wagestream',
+  //   url: 'https://wagestream.com/en/careers#job-vacancies',
   //   hrTool: 'teamtailor',
   //   selectors: linkSelectorsTeamtailor,
   //   jobDetails: jobDetailSelectorsTeamtailor,
   // },
+  fjallraven: {
+    name: 'Fjallraven',
+    url: 'https://career.fjallraven.com/jobs',
+    hrTool: 'teamtailor',
+    selectors: linkSelectorsTeamtailor,
+    jobDetails: jobDetailSelectorsTeamtailor,
+  },
   // NOT VERY HANDY TO USE AS YOU CANNOT SWITCH HOSTS PER SCRIPT YOU RUN...
   // Add more companies as needed
 };

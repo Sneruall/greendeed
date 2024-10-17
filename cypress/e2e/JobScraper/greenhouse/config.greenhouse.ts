@@ -16,13 +16,13 @@ const jobDetailSelectorsGreenhouse = {
 };
 
 export const greenhouseConfigs = {
-  // apeel: {
-  //   name: 'Apeel',
-  //   url: 'https://boards.greenhouse.io/apeel',
-  //   hrTool: 'greenhouse',
-  //   selectors: linkSelectorsGreenhouse,
-  //   jobDetails: jobDetailSelectorsGreenhouse,
-  // },
+  apeel: {
+    name: 'Apeel',
+    url: 'https://boards.greenhouse.io/apeel',
+    hrTool: 'greenhouse',
+    selectors: linkSelectorsGreenhouse,
+    jobDetails: jobDetailSelectorsGreenhouse,
+  },
   // reformation: {
   //   name: 'The Reformation',
   //   url: 'https://boards.greenhouse.io/reformation',
@@ -37,11 +37,11 @@ export const greenhouseConfigs = {
   //   selectors: linkSelectorsGreenhouse,
   //   jobDetails: jobDetailSelectorsGreenhouse,
   // },
-  overstory: {
-    name: 'Overstory',
-    url: 'https://job-boards.eu.greenhouse.io/overstory',
-    hrTool: 'greenhouse',
-    selectors: linkSelectorsGreenhouse,
-    jobDetails: jobDetailSelectorsGreenhouse,
-  },
+  // overstory: {
+  //   name: 'Overstory',
+  //   url: 'https://job-boards.eu.greenhouse.io/overstory',
+  //   hrTool: 'greenhouse',
+  //   selectors: linkSelectorsGreenhouse,
+  //   jobDetails: jobDetailSelectorsGreenhouse,
+  // },
 };

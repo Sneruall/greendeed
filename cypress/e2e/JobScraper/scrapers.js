@@ -65,8 +65,7 @@ export const scrapeCompanyJobs = (companyKey) => {
           if (jobLink && jobsAdded < maxJobsPerCompany) {
             const fullJobLink = jobLink.startsWith('http')
               ? jobLink
-              : `https://boards.greenhouse.io${jobLink}`;
-
+              : `${new URL(jobLink, companyConfig.url).href}`;
             if (
               fullJobLink !== companyConfig.url &&
               !jobLinks.has(fullJobLink)
@@ -162,8 +161,10 @@ export const scrapeCompanyJobs = (companyKey) => {
           getTextFromMultipleSelectors(doc, locationSelectors) ||
           null;
         cy.log('the retrieved location text:' + locationText);
+        const workplaceText =
+          getTextFromSelectors(doc, jobDetailSelectors.workplace) || null;
         const locationTypeString =
-          getTextFromLabel(doc, 'Remote status') || null;
+          getTextFromLabel(doc, 'Remote status') || workplaceText || null;
 
         cy.log('location type string: ' + locationTypeString);
 

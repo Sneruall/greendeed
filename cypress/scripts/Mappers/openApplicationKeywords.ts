@@ -16,6 +16,9 @@ export const openApplicationKeywords = [
   'open positions',
   'your dream job',
   'opportunities anytime',
+  "If you don't see the role you're looking for...",
+  "If you don't see the role you're looking for...",
+  'see the role',
 
   // French
   'candidature spontanée',

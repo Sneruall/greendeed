@@ -162,9 +162,10 @@ export const scrapeCompanyJobs = (companyKey) => {
           null;
         cy.log('the retrieved location text:' + locationText);
         const workplaceText =
-          getTextFromSelectors(doc, jobDetailSelectors.workplace) || null;
+          getTextFromSelectors(doc, jobDetailSelectors.workplace) || '';
+
         const locationTypeString =
-          getTextFromLabel(doc, 'Remote status') || workplaceText || null;
+          getTextFromLabel(doc, 'Remote status') || workplaceText || '';
 
         cy.log('location type string: ' + locationTypeString);
 

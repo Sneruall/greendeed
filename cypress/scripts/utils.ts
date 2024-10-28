@@ -28,8 +28,12 @@ export const getTextFromLabel = (
 
 export const getTextFromSelectors = (
   doc: Document,
-  selectors: string[]
+  selectors: string[] = []
 ): string | null => {
+  if (!Array.isArray(selectors) || selectors.length === 0) {
+    return null; // Return null if selectors is not an array or is empty
+  }
+
   for (const selector of selectors) {
     const element = doc.querySelector(selector);
     if (element && element.textContent) {

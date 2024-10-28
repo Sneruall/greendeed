@@ -16,32 +16,32 @@ const jobDetailSelectorsGreenhouse = {
 };
 
 export const greenhouseConfigs = {
-  apeel: {
-    name: 'Apeel',
-    url: 'https://boards.greenhouse.io/apeel',
+  // apeel: {
+  //   name: 'Apeel',
+  //   url: 'https://boards.greenhouse.io/apeel',
+  //   hrTool: 'greenhouse',
+  //   selectors: linkSelectorsGreenhouse,
+  //   jobDetails: jobDetailSelectorsGreenhouse,
+  // },
+  reformation: {
+    name: 'The Reformation',
+    url: 'https://boards.greenhouse.io/reformation',
     hrTool: 'greenhouse',
     selectors: linkSelectorsGreenhouse,
     jobDetails: jobDetailSelectorsGreenhouse,
   },
-  // reformation: {
-  //   name: 'The Reformation',
-  //   url: 'https://boards.greenhouse.io/reformation',
-  //   hrTool: 'greenhouse',
-  //   selectors: linkSelectorsGreenhouse,
-  //   jobDetails: jobDetailSelectorsGreenhouse,
-  // },
-  // lomi: {
-  //   name: 'Lomi',
-  //   url: 'https://boards.greenhouse.io/pelacase',
-  //   hrTool: 'greenhouse',
-  //   selectors: linkSelectorsGreenhouse,
-  //   jobDetails: jobDetailSelectorsGreenhouse,
-  // },
-  // overstory: {
-  //   name: 'Overstory',
-  //   url: 'https://job-boards.eu.greenhouse.io/overstory',
-  //   hrTool: 'greenhouse',
-  //   selectors: linkSelectorsGreenhouse,
-  //   jobDetails: jobDetailSelectorsGreenhouse,
-  // },
+  lomi: {
+    name: 'Lomi',
+    url: 'https://boards.greenhouse.io/pelacase',
+    hrTool: 'greenhouse',
+    selectors: linkSelectorsGreenhouse,
+    jobDetails: jobDetailSelectorsGreenhouse,
+  },
+  overstory: {
+    name: 'Overstory',
+    url: 'https://job-boards.eu.greenhouse.io/overstory',
+    hrTool: 'greenhouse',
+    selectors: linkSelectorsGreenhouse,
+    jobDetails: jobDetailSelectorsGreenhouse,
+  },
 };

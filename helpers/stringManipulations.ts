@@ -1,43 +1,36 @@
-//function to replace dashes by whitespaces
-export const replaceCharactersByWhitespace = (input: string) => {
-  let dashAndSlashToWhitespace = input.replace(/[-\/]/g, ' ');
-  dashAndSlashToWhitespace = removeRepeatingSpaces(dashAndSlashToWhitespace);
-  dashAndSlashToWhitespace = removePercentageSign(dashAndSlashToWhitespace);
-  dashAndSlashToWhitespace = removeHashtagSign(dashAndSlashToWhitespace);
-
-  return removeCommas(dashAndSlashToWhitespace);
+// Helper to apply a series of transformations
+const applyTransformations = (
+  input: string,
+  transformations: ((str: string) => string)[]
+) => {
+  return transformations.reduce((str, fn) => fn(str), input);
 };
 
-//function to replace whitespaces by dashes for url generation
-export const replaceCharactersByDash = (input: string) => {
-  let noSpacesandSlashes = input.replace(/[\s\/]/g, '-');
-  noSpacesandSlashes = removeRepeatingDashes(noSpacesandSlashes);
-  noSpacesandSlashes = removePercentageSign(noSpacesandSlashes);
-  noSpacesandSlashes = removeHashtagSign(noSpacesandSlashes);
-  return removeCommas(noSpacesandSlashes);
-};
+// General cleanup functions
+const removePercentageSign = (input: string) => input.replace(/%/g, '');
+const removeHashtagSign = (input: string) => input.replace(/#/g, '');
+const removeCommas = (input: string) => input.replace(/,/g, '');
+const removeRepeatingCharacters =
+  (pattern: RegExp, replacement: string) => (input: string) =>
+    input.replace(pattern, replacement);
 
-const removePercentageSign = (input: string) => {
-  return input.replace(/%/g, '');
-};
+// Primary transformation functions
+export const replaceCharactersByWhitespace = (input: string) =>
+  applyTransformations(input.replace(/[-\/]/g, ' '), [
+    removeRepeatingCharacters(/  +/g, ' '),
+    removePercentageSign,
+    removeHashtagSign,
+    removeCommas,
+  ]);
 
-const removeHashtagSign = (input: string) => {
-  return input.replace(/#/g, '');
-};
+export const replaceCharactersByDash = (input: string) =>
+  applyTransformations(input.replace(/[\s\/]/g, '-'), [
+    removeRepeatingCharacters(/-{2,}/g, '-'),
+    removePercentageSign,
+    removeHashtagSign,
+    removeCommas,
+  ]);
 
-const removeCommas = (input: string) => {
-  return input.replace(/,/g, '');
-};
-
-const removeRepeatingDashes = (input: string) => {
-  return input.replace(/-{2,}/g, '-');
-};
-
-const removeRepeatingSpaces = (input: string) => {
-  return input.replace(/  +/g, ' ');
-};
-
-export const capitalizeFirstLetter = (text?: string) => {
-  if (!text) return null;
-  return text.charAt(0).toUpperCase() + text.slice(1);
-};
+// Utility function
+export const capitalizeFirstLetter = (text?: string) =>
+  text ? text.charAt(0).toUpperCase() + text.slice(1) : null;

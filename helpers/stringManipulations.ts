@@ -7,6 +7,7 @@ const applyTransformations = (
 };
 
 // General cleanup functions
+const replaceAmpersand = (input: string) => input.replace(/&/g, 'and');
 const removePercentageSign = (input: string) => input.replace(/%/g, '');
 const removeHashtagSign = (input: string) => input.replace(/#/g, '');
 const removeCommas = (input: string) => input.replace(/,/g, '');
@@ -17,6 +18,7 @@ const removeRepeatingCharacters =
 // Primary transformation functions
 export const replaceCharactersByWhitespace = (input: string) =>
   applyTransformations(input.replace(/[-\/]/g, ' '), [
+    replaceAmpersand,
     removeRepeatingCharacters(/  +/g, ' '),
     removePercentageSign,
     removeHashtagSign,
@@ -25,12 +27,13 @@ export const replaceCharactersByWhitespace = (input: string) =>
 
 export const replaceCharactersByDash = (input: string) =>
   applyTransformations(input.replace(/[\s\/]/g, '-'), [
+    replaceAmpersand,
     removeRepeatingCharacters(/-{2,}/g, '-'),
     removePercentageSign,
     removeHashtagSign,
     removeCommas,
   ]);
 
-// Utility function
+// Utility function to capitalize the first letter of a string
 export const capitalizeFirstLetter = (text?: string) =>
   text ? text.charAt(0).toUpperCase() + text.slice(1) : null;

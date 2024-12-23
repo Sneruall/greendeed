@@ -29,6 +29,8 @@ export const submitJob = (jobData: Job) => {
       }
     }
   );
+
+  // Uncomment the following line to submit jobs to the local database instead of the production database
   // cy.request('POST', 'http://localhost:3000/api/autopost', jobData).then(
   //   (response) => {
   //     if (response.status === 201) {
